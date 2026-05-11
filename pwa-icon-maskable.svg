@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="CodeSnap Nexus Maskable">
+  <rect width="512" height="512" fill="#020302" />
+  <g transform="translate(64 64)">
+    <rect x="0" y="0" width="384" height="384" rx="72" fill="#030603" />
+    <g fill="none" stroke="#2cff6b" stroke-width="14" shape-rendering="crispEdges">
+      <rect x="56" y="56" width="272" height="272" rx="24" />
+      <path d="M96 96h192v64H160v128H96z" fill="#2cff6b" stroke="none" />
+      <path d="M96 256h64v48h128" />
+    </g>
+    <rect x="8" y="8" width="368" height="368" rx="68" fill="none" stroke="#2cff6b" stroke-opacity=".35" stroke-width="4" />
+  </g>
+</svg>

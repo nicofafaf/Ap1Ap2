@@ -17,12 +17,12 @@ cache:
 pages:
   stage: deploy
   script:
-    - npm ci
-    - npm run build
-    - rm -rf public
-    - mv dist public
-    - test -d public/assets
-    - find public/assets -type f | head -n 1 | grep .
+    - "npm ci"
+    - "npm run build"
+    - "rm -rf public"
+    - "mv dist public"
+    - "test -d public/assets"
+    - "find public/assets -type f | head -n 1 | grep ."
   artifacts:
     paths:
       - public

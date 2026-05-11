@@ -21,8 +21,8 @@ pages:
     - npm run build
     - rm -rf public
     - mv dist public
-    - test -d public/assets || (echo "ERROR: public/assets fehlt" && exit 1)
-    - test "$(find public/assets -type f | wc -l)" -ge 1 || (echo "ERROR: public/assets leer" && exit 1)
+    - test -d public/assets
+    - find public/assets -type f | head -n 1 | grep .
   artifacts:
     paths:
       - public

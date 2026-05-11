@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform, type MotionValue } from "framer-motion";
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import ArtifactGallery from "../gallery/ArtifactGallery";
 import {
   achievementOrder,
@@ -339,10 +339,32 @@ export function SectorMap({
     const onWheelNative = (e: WheelEvent) => {
       e.preventDefault();
       const z = zoom.get() - e.deltaY * 0.0011;
-      zoom.set(Math.min(2.65, Math.max(0.52, z)));
+      zoom.set(Math.min(2.65, Math.max(0.36, z)));
     };
     el.addEventListener("wheel", onWheelNative, { passive: false });
     return () => el.removeEventListener("wheel", onWheelNative);
+  }, [zoom]);
+
+  /** Karten-Bühne 900×640: ohne Auto-Fit wirkt die Oberwelt auf kleinen Screens „reingezoomt“ */
+  useLayoutEffect(() => {
+    const el = mapRootRef.current;
+    if (!el) return;
+    const STAGE_W = 900;
+    const STAGE_H = 640;
+    const apply = () => {
+      const r = el.getBoundingClientRect();
+      if (r.width < 96 || r.height < 96) return;
+      const marginX = 48;
+      const marginY = 168;
+      const zw = (r.width - marginX) / STAGE_W;
+      const zh = (r.height - marginY) / STAGE_H;
+      const fit = Math.min(1.12, Math.max(0.34, Math.min(zw, zh)));
+      zoom.set(Math.min(zoom.get(), fit));
+    };
+    apply();
+    const ro = new ResizeObserver(() => requestAnimationFrame(apply));
+    ro.observe(el);
+    return () => ro.disconnect();
   }, [zoom]);
 
   const hoverEntry = hoverLf

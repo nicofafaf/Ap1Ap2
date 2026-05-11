@@ -94,6 +94,8 @@ html {
   font-family: var(--nx-font-sans);
   background: var(--nx-vantablack);
   height: 100%;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   overscroll-behavior: none;
 }
@@ -102,11 +104,15 @@ body {
   margin: 0;
   min-height: 100dvh;
   height: 100%;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   overscroll-behavior: none;
   background: var(--nx-vantablack);
   color: var(--nx-text-primary);
-  font-size: clamp(16px, 0.35vw + 15.2px, 18px);
+  /* Etwas kompakter auf großen Screens, gut lesbar auf kleinen — weniger „alles zu groß“ */
+  font-size: clamp(15px, 0.22vw + 14.1px, 17px);
+  line-height: 1.45;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   position: relative;
@@ -132,6 +138,8 @@ body::before {
   position: relative;
   z-index: var(--nx-z-content);
   min-height: 100dvh;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
 }
 

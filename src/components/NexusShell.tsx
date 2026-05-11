@@ -184,7 +184,7 @@ export function NexusShell() {
             style={{
               position: "absolute",
               inset: 0,
-              transformOrigin: "50% 45%",
+              transformOrigin: "50% 50%",
             }}
           >
             {(surface === "overworld" || mapHoldCombat) && (

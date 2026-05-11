@@ -55,8 +55,8 @@ export function nxBossSharedLayoutTransition(reducedMotion: boolean | null): Tra
     : { type: "spring", stiffness: 320, damping: 34 };
 }
 
-/** Panel-Einflug: Downscale von leicht über 1.0 auf Ruhelage */
-export const NX_PANEL_ENTRANCE_INITIAL = { scale: 1.05, opacity: 1 };
+/** Panel-Einflug: kaum sichtbarer Overshoot — wirkt weniger „aufgezoomt“ */
+export const NX_PANEL_ENTRANCE_INITIAL = { scale: 1.018, opacity: 1 };
 export const NX_PANEL_ENTRANCE_ANIMATE = { scale: 1, opacity: 1 };
 
 export function nxUiSpringTransition(overrides?: Partial<{ stiffness: number; damping: number }>) {

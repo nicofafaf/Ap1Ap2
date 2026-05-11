@@ -1,34 +1,28 @@
+# GitLab Pages: ein Job = bauen + veröffentlichen (weniger kann schiefgehen)
+# Du: pushen auf den Standard-Branch → Pipeline grün → Seite neu laden (Strg+F5)
+
 image: node:20
 
 stages:
-  - build
   - deploy
+
+variables:
+  NODE_ENV: production
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
 
-variables:
-  NODE_ENV: production
-
-build:
-  stage: build
+pages:
+  stage: deploy
   script:
     - npm ci
     - npm run build
-  artifacts:
-    paths:
-      - dist/
-    expire_in: 1 week
-
-pages:
-  stage: deploy
-  dependencies:
-    - build
-  script:
     - rm -rf public
     - mv dist public
+    - test -d public/assets || (echo "ERROR: public/assets fehlt" && exit 1)
+    - test "$(find public/assets -type f | wc -l)" -ge 1 || (echo "ERROR: public/assets leer" && exit 1)
   artifacts:
     paths:
       - public

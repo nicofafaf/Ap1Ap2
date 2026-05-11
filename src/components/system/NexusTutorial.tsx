@@ -13,18 +13,18 @@ type SpotlightTarget = {
 const SPOTLIGHTS: SpotlightTarget[] = [
   {
     id: "codex",
-    label: "Codex Fokus",
-    text: "Hier startest du Wissen in schnellen Karten Nutze Codex fuer klare Lernpfade",
+    label: "Codex",
+    text: "Hier startest du mit kurzen Karten statt Textwüsten — ein Tipp pro Karte, dann weiter",
   },
   {
     id: "map",
-    label: "Map Fokus",
-    text: "Die Map zeigt deinen Fortschritt Pro Sektor wartet eine neue Mission",
+    label: "Sektoren-Karte",
+    text: "So siehst du, welche Lernfelder als Nächstes dran sind — später klickst du einen Sektor für die Mission",
   },
   {
     id: "terminal",
-    label: "Terminal Fokus",
-    text: "Hier loest du Abfragen Schritt fuer Schritt Jede richtige Eingabe bringt Kontrolle",
+    label: "SQL-Terminal",
+    text: "Hier tippst du echte Abfragen wie in der Prüfung — wir führen dich in drei Mini-Schritten an SELECT, FROM und WHERE",
   },
 ];
 
@@ -62,6 +62,8 @@ export function NexusTutorial() {
   const activeTutorialSql = tutorialSteps[Math.min(tutorialStepIndex, tutorialSteps.length - 1)];
   const canFinish = tutorialStepIndex >= SPOTLIGHTS.length - 1;
   const activeAnimeSql = animeSteps[Math.min(tutorialStepIndex, Math.max(animeSteps.length - 1, 0))];
+  const stepHuman = tutorialStepIndex + 1;
+  const stepTotal = SPOTLIGHTS.length;
 
   useEffect(() => {
     const updateRect = () => {
@@ -106,6 +108,14 @@ export function NexusTutorial() {
 
   if (!isFirstBoot) return null;
 
+  const cardTypography = {
+    title: { fontSize: "clamp(1.35rem, 3.6vw, 1.85rem)", fontWeight: 600, letterSpacing: "0.04em", lineHeight: 1.25 },
+    subtitle: { fontSize: "clamp(0.95rem, 2.4vw, 1.05rem)", fontWeight: 500, opacity: 0.92, lineHeight: 1.45 },
+    body: { fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)", lineHeight: 1.55 },
+    hint: { fontSize: "clamp(0.85rem, 2.1vw, 0.95rem)", lineHeight: 1.45, color: "var(--nx-bone-50)" },
+    code: { fontSize: "clamp(0.8rem, 2vw, 0.95rem)", lineHeight: 1.45 },
+  } as const;
+
   return (
     <div
       style={{
@@ -145,173 +155,225 @@ export function NexusTutorial() {
       />
 
       <AnimatePresence mode="wait">
-        <motion.section
+        <motion.div
           key={spotlight.id}
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -14 }}
+          exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.24 }}
           style={{
             position: "absolute",
-            left: "50%",
-            bottom: "6%",
-            transform: "translateX(-50%)",
-            width: "min(920px, calc(100vw - 28px))",
-            borderRadius: 16,
-            border: "1px solid rgba(255,214,165,0.52)",
-            background: "rgba(10, 10, 14, 0.94)",
-            padding: "18px 20px",
+            inset: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            paddingLeft: "max(12px, env(safe-area-inset-left, 0px))",
+            paddingRight: "max(12px, env(safe-area-inset-right, 0px))",
+            paddingBottom: "max(14px, env(safe-area-inset-bottom, 0px))",
+            paddingTop: "min(22vh, 160px)",
+            pointerEvents: "none",
+            boxSizing: "border-box",
           }}
         >
-          <div style={{ color: "var(--nx-bone-90)", fontSize: 42, fontWeight: 100, letterSpacing: "0.08em" }}>
-            Architect Awakening
-          </div>
-          <div style={{ color: "var(--nx-bone-90)", fontSize: 24, marginTop: 10 }}>{spotlight.label}</div>
-          <div style={{ color: "var(--nx-bone-90)", fontSize: 24, marginTop: 8, lineHeight: 1.35 }}>
-            {spotlight.text}
-          </div>
-          <div style={{ color: "var(--nx-bone-50)", fontSize: 24, marginTop: 8, lineHeight: 1.35 }}>
-            {activeTutorialSql?.title} {activeTutorialSql?.body}
-          </div>
-          {showAnimeTrack && isTutorialAnimeUnlocked && activeAnimeSql ? (
-            <div style={{ color: "var(--nx-bone-90)", fontSize: 24, marginTop: 8, lineHeight: 1.35 }}>
-              {activeAnimeSql.title} {activeAnimeSql.body}
-            </div>
-          ) : null}
-          <pre
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="nx-tutorial-title"
             style={{
-              margin: "10px 0 0",
-              borderRadius: 8,
-              border: "1px solid rgba(255,214,165,0.3)",
-              background: "rgba(5,5,7,0.92)",
-              color: "var(--nx-bone-90)",
-              padding: "10px 12px",
-              fontSize: 20,
-              overflowX: "auto",
+              pointerEvents: "auto",
+              width: "min(680px, 100%)",
+              maxHeight: "min(78dvh, 720px)",
+              overflowX: "hidden",
+              overflowY: "auto",
+              WebkitOverflowScrolling: "touch",
+              borderRadius: 16,
+              border: "1px solid rgba(255,214,165,0.52)",
+              background: "rgba(10, 10, 14, 0.94)",
+              padding: "clamp(14px, 3vw, 22px) clamp(16px, 3.5vw, 24px)",
+              boxShadow: "0 -8px 40px rgba(0,0,0,0.45)",
             }}
           >
-            {showAnimeTrack && isTutorialAnimeUnlocked && activeAnimeSql
-              ? activeAnimeSql.example
-              : activeTutorialSql?.example}
-          </pre>
-          {animeLocked && !isTutorialAnimeUnlocked ? (
+            <div
+              id="nx-tutorial-title"
+              style={{ color: "var(--nx-bone-90)", ...cardTypography.title }}
+            >
+              Architect Awakening
+            </div>
+            <div style={{ color: "var(--nx-bone-50)", marginTop: 8, ...cardTypography.hint }}>
+              Kurzes Onboarding · Schritt {stepHuman} von {stepTotal}
+            </div>
+            <div style={{ color: "var(--nx-bone-90)", marginTop: 12, ...cardTypography.subtitle }}>{spotlight.label}</div>
+            <div style={{ color: "var(--nx-bone-90)", marginTop: 8, ...cardTypography.body }}>{spotlight.text}</div>
+
             <div
               style={{
-                marginTop: 10,
-                borderRadius: 8,
-                border: "1px solid rgba(255,214,165,0.34)",
-                background: "rgba(255,214,165,0.06)",
-                color: "var(--nx-bone-90)",
-                fontSize: 24,
-                padding: "8px 10px",
+                marginTop: 14,
+                paddingTop: 12,
+                borderTop: "1px solid rgba(255,214,165,0.2)",
               }}
             >
-              Anime Track gesperrt wird nach Boot Query aktiv
+              <div style={{ color: "var(--nx-bone-90)", fontWeight: 600, ...cardTypography.subtitle }}>
+                {activeTutorialSql?.title}
+              </div>
+              <div style={{ color: "var(--nx-bone-50)", marginTop: 6, ...cardTypography.body }}>{activeTutorialSql?.body}</div>
             </div>
-          ) : null}
-          {isTutorialAnimeUnlocked ? (
-            <button
-              type="button"
-              onClick={() => setShowAnimeTrack((v) => !v)}
+
+            {showAnimeTrack && isTutorialAnimeUnlocked && activeAnimeSql ? (
+              <div style={{ color: "var(--nx-bone-90)", marginTop: 10, ...cardTypography.body }}>
+                <strong style={{ fontWeight: 600 }}>{activeAnimeSql.title}</strong>
+                <span style={{ color: "var(--nx-bone-50)" }}> — {activeAnimeSql.body}</span>
+              </div>
+            ) : null}
+
+            <pre
               style={{
-                marginTop: 10,
+                margin: "12px 0 0",
                 borderRadius: 8,
-                border: "1px solid rgba(255,214,165,0.52)",
-                background: "rgba(255,214,165,0.1)",
+                border: "1px solid rgba(255,214,165,0.3)",
+                background: "rgba(5,5,7,0.92)",
                 color: "var(--nx-bone-90)",
-                fontSize: 24,
-                padding: "8px 12px",
-                textTransform: "uppercase",
-                cursor: "pointer",
+                padding: "10px 12px",
+                ...cardTypography.code,
+                overflowX: "auto",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
               }}
             >
-              {showAnimeTrack ? "Star Wars Track" : "Anime Track"}
-            </button>
-          ) : null}
+              {showAnimeTrack && isTutorialAnimeUnlocked && activeAnimeSql
+                ? activeAnimeSql.example
+                : activeTutorialSql?.example}
+            </pre>
 
-          {canFinish ? (
-            <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
-              <div style={{ color: "var(--nx-bone-90)", fontSize: 24 }}>Boot Query</div>
-              <textarea
-                value={sqlInput}
-                onChange={(e) => {
-                  setSqlInput(e.target.value);
-                  setSqlState("idle");
-                }}
-                rows={3}
-                spellCheck={false}
+            {animeLocked && !isTutorialAnimeUnlocked ? (
+              <div
                 style={{
-                  width: "100%",
+                  marginTop: 12,
                   borderRadius: 8,
-                  border: "1px solid rgba(255,214,165,0.35)",
-                  background: "rgba(5,5,7,0.95)",
+                  border: "1px solid rgba(255,214,165,0.34)",
+                  background: "rgba(255,214,165,0.06)",
                   color: "var(--nx-bone-90)",
-                  fontSize: 20,
+                  ...cardTypography.body,
                   padding: "10px 12px",
                 }}
-              />
-              <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const ok = normalizeSql(sqlInput) === normalizeSql(sqlUnlock);
-                    if (!ok) {
-                      setSqlState("retry");
-                      return;
-                    }
-                    setSqlState("ok");
-                    unlockTutorialAnime();
-                    setShowSuccessFx(true);
-                    setShowAnimeUnlockCard(true);
-                    void playNexusUiGlitchSound();
-                    void playNexusUiClickSound(true);
-                    window.setTimeout(() => {
-                      setShowSuccessFx(false);
-                      completeFirstBoot();
-                    }, 1450);
-                  }}
-                  style={{
-                    borderRadius: 8,
-                    border: "1px solid rgba(255,214,165,0.58)",
-                    background: "rgba(255,214,165,0.1)",
-                    color: "var(--nx-bone-90)",
-                    fontSize: 24,
-                    padding: "8px 12px",
-                    textTransform: "uppercase",
-                    cursor: "pointer",
-                  }}
-                >
-                  Interface freischalten
-                </button>
-                <span style={{ color: "var(--nx-bone-50)", fontSize: 24 }}>
-                  {sqlState === "ok"
-                    ? "Boot erfolgreich"
-                    : sqlState === "retry"
-                      ? "Noch nicht korrekt"
-                      : "Nutze SELECT Stern von star wars"}
-                </span>
+              >
+                Anime-Track ist noch gesperrt — freischalten mit der Boot-Query unten
               </div>
-            </div>
-          ) : (
-            <button
-              type="button"
-              onClick={() => advanceTutorialStep()}
-              style={{
-                marginTop: 12,
-                borderRadius: 8,
-                border: "1px solid rgba(255,214,165,0.58)",
-                background: "rgba(255,214,165,0.1)",
-                color: "var(--nx-bone-90)",
-                fontSize: 24,
-                padding: "8px 12px",
-                textTransform: "uppercase",
-                cursor: "pointer",
-              }}
-            >
-              Weiter
-            </button>
-          )}
-        </motion.section>
+            ) : null}
+
+            {isTutorialAnimeUnlocked ? (
+              <button
+                type="button"
+                onClick={() => setShowAnimeTrack((v) => !v)}
+                style={{
+                  marginTop: 12,
+                  borderRadius: 8,
+                  border: "1px solid rgba(255,214,165,0.52)",
+                  background: "rgba(255,214,165,0.1)",
+                  color: "var(--nx-bone-90)",
+                  fontSize: "clamp(0.85rem, 2.2vw, 0.95rem)",
+                  padding: "10px 14px",
+                  letterSpacing: "0.06em",
+                  cursor: "pointer",
+                }}
+              >
+                {showAnimeTrack ? "Zu Star-Wars-Beispielen wechseln" : "Anime-Beispiele anzeigen"}
+              </button>
+            ) : null}
+
+            {canFinish ? (
+              <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
+                <div style={{ color: "var(--nx-bone-90)", fontWeight: 600, ...cardTypography.subtitle }}>Boot-Query</div>
+                <div style={{ ...cardTypography.hint, marginTop: -4 }}>
+                  Tippe exakt dieselbe Zeile wie im Star-Wars-Block: <strong style={{ color: "var(--nx-bone-90)" }}>{sqlUnlock}</strong>
+                </div>
+                <textarea
+                  value={sqlInput}
+                  onChange={(e) => {
+                    setSqlInput(e.target.value);
+                    setSqlState("idle");
+                  }}
+                  rows={3}
+                  spellCheck={false}
+                  aria-label="Boot-Query eingeben"
+                  placeholder={sqlUnlock}
+                  style={{
+                    width: "100%",
+                    boxSizing: "border-box",
+                    borderRadius: 8,
+                    border: "1px solid rgba(255,214,165,0.35)",
+                    background: "rgba(5,5,7,0.95)",
+                    color: "var(--nx-bone-90)",
+                    fontSize: "clamp(0.85rem, 2.2vw, 1rem)",
+                    padding: "10px 12px",
+                    resize: "vertical",
+                    minHeight: "4.5rem",
+                  }}
+                />
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const ok = normalizeSql(sqlInput) === normalizeSql(sqlUnlock);
+                      if (!ok) {
+                        setSqlState("retry");
+                        return;
+                      }
+                      setSqlState("ok");
+                      unlockTutorialAnime();
+                      setShowSuccessFx(true);
+                      setShowAnimeUnlockCard(true);
+                      void playNexusUiGlitchSound();
+                      void playNexusUiClickSound(true);
+                      window.setTimeout(() => {
+                        setShowSuccessFx(false);
+                        completeFirstBoot();
+                      }, 1450);
+                    }}
+                    style={{
+                      borderRadius: 8,
+                      border: "1px solid rgba(255,214,165,0.58)",
+                      background: "rgba(255,214,165,0.14)",
+                      color: "var(--nx-bone-90)",
+                      fontSize: "clamp(0.88rem, 2.3vw, 1rem)",
+                      fontWeight: 600,
+                      padding: "10px 16px",
+                      letterSpacing: "0.05em",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Interface freischalten
+                  </button>
+                  <span style={{ ...cardTypography.hint, flex: "1 1 200px" }}>
+                    {sqlState === "ok"
+                      ? "Boot erfolgreich"
+                      : sqlState === "retry"
+                        ? "Noch nicht korrekt — vergleiche Groß- und Kleinschreibung mit dem Beispiel"
+                        : "Tipp: kopieren geht auch per Rechtsklick aus dem Beispiel oben"}
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => advanceTutorialStep()}
+                style={{
+                  marginTop: 16,
+                  borderRadius: 8,
+                  border: "1px solid rgba(255,214,165,0.58)",
+                  background: "rgba(255,214,165,0.14)",
+                  color: "var(--nx-bone-90)",
+                  fontSize: "clamp(0.9rem, 2.4vw, 1.05rem)",
+                  fontWeight: 600,
+                  padding: "10px 18px",
+                  letterSpacing: "0.05em",
+                  cursor: "pointer",
+                }}
+              >
+                Weiter
+              </button>
+            )}
+          </section>
+        </motion.div>
       </AnimatePresence>
       <AnimatePresence>
         {showSuccessFx ? (
@@ -341,14 +403,16 @@ export function NexusTutorial() {
             transition={{ duration: 0.25 }}
             style={{
               position: "absolute",
-              top: "8%",
+              top: "max(8%, env(safe-area-inset-top, 0px))",
               left: "50%",
               transform: "translateX(-50%)",
+              maxWidth: "min(520px, calc(100vw - 32px))",
               borderRadius: 12,
               border: "1px solid rgba(255,214,165,0.58)",
               background: "rgba(10, 10, 14, 0.94)",
               color: "var(--nx-bone-90)",
-              fontSize: 24,
+              fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)",
+              lineHeight: 1.45,
               padding: "12px 16px",
               boxShadow: "0 0 36px rgba(255,214,165,0.35)",
             }}

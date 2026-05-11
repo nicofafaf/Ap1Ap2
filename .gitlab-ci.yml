@@ -8,11 +8,12 @@ stages:
 
 variables:
   NODE_ENV: production
-  # große Vite-/Asset-Builds: weniger OOM auf GitLab Runnern
   NODE_OPTIONS: "--max-old-space-size=4096"
+  # Riesige Sound-Bibliothek unter ./assets killt CI (Zeit/Speicher) — App baut trotzdem; Medien ggf. separat hosten
+  GITLAB_PAGES_SKIP_MEDIA: "1"
 
 cache:
-  key: ${CI_COMMIT_REF_SLUG}
+  key: "v3-${CI_COMMIT_REF_SLUG}"
   paths:
     - node_modules/
 

@@ -16,6 +16,10 @@ function ensurePublicAssetsPlugin(): Plugin {
   return {
     name: "ensure-public-assets",
     buildStart() {
+      if (process.env.GITLAB_PAGES_SKIP_MEDIA === "1") {
+        console.warn("[ensure-public-assets] Skip ./assets → public/assets (GITLAB_PAGES_SKIP_MEDIA=1)");
+        return;
+      }
       const srcDir = resolve(__dirname, "assets");
       const destDir = resolve(__dirname, "public", "assets");
       if (!existsSync(srcDir) || !statSync(srcDir).isDirectory()) return;

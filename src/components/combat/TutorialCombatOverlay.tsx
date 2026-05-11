@@ -1,12 +1,22 @@
-import { AnimatePresence } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
-import { useBossAudioEngine } from "../../lib/audio/bossAudioEngine";
-import { TransmissionShard } from "./DialogueOverlay";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useMemo } from "react";
 
-const MESSAGES: string[] = [
-  "TRAINING / SENTINEL — Nutze CIPHER SHIELD (Verteidigungs-Karte) wenn der Puls droht",
-  "ANGRIFF — Wähle SYSTEM OVERCLOCK um den Titanen zu fragmentieren",
-  "SPEZIAL — Lege INFINITE RECURSION bevor du erneut angreifst um den nächsten Treffer zu verdoppeln",
+const STEPS: readonly { kicker: string; line1: string; line2: string }[] = [
+  {
+    kicker: "Verteidigen",
+    line1: "Boss-Puls wird rot",
+    line2: "CIPHER SHIELD tippen",
+  },
+  {
+    kicker: "Angreifen",
+    line1: "Karte wählen",
+    line2: "SYSTEM OVERCLOCK tippen",
+  },
+  {
+    kicker: "Spezial",
+    line1: "INFINITE RECURSION legen",
+    line2: "Danach noch einmal angreifen",
+  },
 ];
 
 export type TutorialCombatOverlayProps = {
@@ -15,82 +25,103 @@ export type TutorialCombatOverlayProps = {
 };
 
 export function TutorialCombatOverlay({ visible, step }: TutorialCombatOverlayProps) {
-  const { playDossierTeletypeTick, stopDossierTeletypeTick } = useBossAudioEngine();
-  const [shown, setShown] = useState(0);
-  const text = useMemo(() => MESSAGES[Math.min(step, MESSAGES.length - 1)] ?? "", [step]);
-
-  useEffect(() => {
-    setShown(0);
-  }, [step, text]);
-
-  useEffect(() => {
-    if (!visible || !text) return;
-    void playDossierTeletypeTick();
-    const cap = window.setTimeout(() => stopDossierTeletypeTick(), 3200);
-    return () => {
-      window.clearTimeout(cap);
-      stopDossierTeletypeTick();
-    };
-  }, [visible, text, step, playDossierTeletypeTick, stopDossierTeletypeTick]);
-
-  useEffect(() => {
-    if (!visible || shown >= text.length) return;
-    const id = window.setTimeout(() => setShown((c) => c + 1), 32);
-    return () => window.clearTimeout(id);
-  }, [visible, shown, text.length]);
+  const reduceMotion = useReducedMotion();
+  const idx = Math.min(Math.max(0, step), STEPS.length - 1);
+  const card = useMemo(() => STEPS[idx]!, [idx]);
 
   return (
     <AnimatePresence>
       {visible ? (
-        <TransmissionShard
-          key="tutorial-dossier"
-          origin="tr"
+        <div
+          key="tutorial-action-stack"
           style={{
             position: "fixed",
-            top: 72,
-            right: 20,
+            top: "max(52px, env(safe-area-inset-top))",
+            left: 0,
+            right: 0,
             zIndex: 160,
-            width: "min(560px, calc(100vw - 36px))",
+            display: "flex",
+            justifyContent: "center",
             pointerEvents: "none",
-            padding: "14px 18px 16px",
+            padding: "0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right))",
+            boxSizing: "border-box",
           }}
         >
-          <div
+          <motion.div
+            role="status"
+            aria-live="polite"
+            initial={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={reduceMotion ? { duration: 0.01 } : { type: "spring", stiffness: 380, damping: 32 }}
             style={{
-              fontSize: "max(12px, 0.75rem)",
-              letterSpacing: ".28em",
-              color: "rgba(212, 212, 216, 0.92)",
-              marginBottom: 8,
-              fontFamily: "var(--nx-font-sans, Inter, system-ui, sans-serif)",
+              width: "min(420px, 100%)",
+              borderRadius: 16,
+              padding: "22px 24px 20px",
+              background:
+                "linear-gradient(165deg, color-mix(in srgb, var(--nx-vantablack) 88%, rgba(255,214,165,0.08)) 0%, rgba(12,14,20,0.92) 100%)",
+              border: "1px solid color-mix(in srgb, rgba(255,214,165,0.55) 40%, rgba(232,233,240,0.18))",
+              boxShadow: "0 24px 64px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06)",
+              backdropFilter: "blur(18px) saturate(160%)",
+              WebkitBackdropFilter: "blur(18px) saturate(160%)",
             }}
           >
-            DOSSIER · TRAINING
-          </div>
-          <p
-            style={{
-              margin: 0,
-              fontFamily: "var(--nx-font-sans, Inter, system-ui, sans-serif)",
-              fontSize: "clamp(16px, 2.5vw, 18px)",
-              lineHeight: 1.55,
-              color: "var(--nx-text-primary, #f4f4f5)",
-              minHeight: 52,
-            }}
-          >
-            {text.slice(0, shown)}
-            <span style={{ opacity: 0.45 }}>▍</span>
-          </p>
-          <div
-            style={{
-              marginTop: 10,
-              fontSize: "max(12px, 0.75rem)",
-              letterSpacing: ".2em",
-              color: "rgba(212, 212, 216, 0.88)",
-              fontFamily: "var(--nx-font-sans, Inter, system-ui, sans-serif)",
-            }}
-          >
-            SCHRITT {Math.min(step + 1, 3)} / 3
-          </div>
-        </TransmissionShard>
+            <div
+              style={{
+                fontFamily: "var(--nx-font-mono)",
+                fontSize: 11,
+                letterSpacing: "0.32em",
+                textTransform: "uppercase",
+                color: "color-mix(in srgb, var(--nx-bone) 72%, rgba(255,214,165,0.9))",
+                marginBottom: 14,
+              }}
+            >
+              Training · Schritt {idx + 1} / {STEPS.length}
+            </div>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                marginBottom: 16,
+                padding: "6px 12px",
+                borderRadius: 999,
+                background: "rgba(255,214,165,0.12)",
+                color: "var(--nx-bone-90)",
+                fontFamily: "var(--nx-font-sans)",
+                fontWeight: 700,
+                fontSize: 13,
+                letterSpacing: "0.04em",
+              }}
+            >
+              {card.kicker}
+            </div>
+            <p
+              style={{
+                margin: 0,
+                fontFamily: "var(--nx-font-sans)",
+                fontWeight: 100,
+                fontSize: "clamp(20px, 3.2vw, 24px)",
+                lineHeight: 1.35,
+                color: "var(--nx-bone-90)",
+              }}
+            >
+              {card.line1}
+            </p>
+            <p
+              style={{
+                margin: "10px 0 0",
+                fontFamily: "var(--nx-font-sans)",
+                fontWeight: 100,
+                fontSize: "clamp(20px, 3.2vw, 24px)",
+                lineHeight: 1.35,
+                color: "color-mix(in srgb, var(--nx-bone) 88%, rgb(103,232,249))",
+              }}
+            >
+              {card.line2}
+            </p>
+          </motion.div>
+        </div>
       ) : null}
     </AnimatePresence>
   );

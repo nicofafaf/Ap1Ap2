@@ -21,13 +21,13 @@ const LINE = {
   show: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 420, damping: 32 },
+    transition: { type: "spring" as const, stiffness: 420, damping: 32 },
   },
 };
 
 const FLICKER = {
   opacity: [0.55, 1, 0.72, 1, 0.85],
-  transition: { duration: 2.4, repeat: Infinity, ease: "easeInOut" },
+  transition: { duration: 2.4, repeat: Infinity, ease: "easeInOut" as const },
 };
 
 export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {

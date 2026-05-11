@@ -9,6 +9,7 @@ import {
   YAxis,
 } from "recharts";
 import { motion } from "framer-motion";
+import type { LearningField } from "../../data/nexusRegistry";
 import { useGameStore } from "../../store/useGameStore";
 import { useShallow } from "zustand/react/shallow";
 import {
@@ -48,7 +49,7 @@ export function AnalyticsDashboard() {
   const masteredLf = useMemo(() => {
     let n = 0;
     for (let lf = 1; lf <= 12; lf += 1) {
-      const k = `LF${lf}` as const;
+      const k = `LF${lf}` as LearningField;
       if (correctLf[k]?.length) n += 1;
     }
     return n;

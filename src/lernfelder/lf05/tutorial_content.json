@@ -35,7 +35,7 @@
     {
       "id": "anime_where",
       "title": "Anime WHERE",
-      "body": "WHERE filtert starke Charaktere fuer schnelle Muster",
+      "body": "WHERE filtert starke Charaktere für schnelle Muster",
       "example": "SELECT name serie FROM anime_charaktere WHERE kraft_level > 8000"
     }
   ]

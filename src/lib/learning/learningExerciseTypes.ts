@@ -15,4 +15,6 @@ export type LearningExercise = {
   mcOptions: LearningMcOption[];
   /** Optional: Diagramm/Foto — bei 404 nur einmaliger Fallback, kein Retry */
   illustrationSrc?: string;
+  /** Optional: Kurz-Hilfe unter der Aufgabe (ADHD-freundlich, ohne Extra-Scroll) */
+  solutionHint?: string;
 };

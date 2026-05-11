@@ -199,11 +199,11 @@ export function NexusTutorial() {
             >
               Architect Awakening
             </div>
-            <div style={{ color: "var(--nx-bone-50)", marginTop: 8, ...cardTypography.hint }}>
+            <div style={{ ...cardTypography.hint, marginTop: 8 }}>
               Kurzes Onboarding · Schritt {stepHuman} von {stepTotal}
             </div>
-            <div style={{ color: "var(--nx-bone-90)", marginTop: 12, ...cardTypography.subtitle }}>{spotlight.label}</div>
-            <div style={{ color: "var(--nx-bone-90)", marginTop: 8, ...cardTypography.body }}>{spotlight.text}</div>
+            <div style={{ ...cardTypography.subtitle, color: "var(--nx-bone-90)", marginTop: 12 }}>{spotlight.label}</div>
+            <div style={{ ...cardTypography.body, color: "var(--nx-bone-90)", marginTop: 8 }}>{spotlight.text}</div>
 
             <div
               style={{
@@ -212,7 +212,7 @@ export function NexusTutorial() {
                 borderTop: "1px solid rgba(255,214,165,0.2)",
               }}
             >
-              <div style={{ color: "var(--nx-bone-90)", fontWeight: 600, ...cardTypography.subtitle }}>
+              <div style={{ ...cardTypography.subtitle, color: "var(--nx-bone-90)", fontWeight: 600 }}>
                 {activeTutorialSql?.title}
               </div>
               <div style={{ color: "var(--nx-bone-50)", marginTop: 6, ...cardTypography.body }}>{activeTutorialSql?.body}</div>
@@ -282,7 +282,7 @@ export function NexusTutorial() {
 
             {canFinish ? (
               <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
-                <div style={{ color: "var(--nx-bone-90)", fontWeight: 600, ...cardTypography.subtitle }}>Boot-Query</div>
+                <div style={{ ...cardTypography.subtitle, color: "var(--nx-bone-90)", fontWeight: 600 }}>Boot-Query</div>
                 <div style={{ ...cardTypography.hint, marginTop: -4 }}>
                   Tippe exakt dieselbe Zeile wie im Star-Wars-Block: <strong style={{ color: "var(--nx-bone-90)" }}>{sqlUnlock}</strong>
                 </div>

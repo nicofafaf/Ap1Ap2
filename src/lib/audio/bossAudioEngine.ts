@@ -135,7 +135,7 @@ const sharedAudioState: AudioState = createState();
 let encryptionAudioHookRefCount = 0;
 let lastHandledCombatPhaseToken = 0;
 let combatPhaseTransitionAudioBusy = false;
-let dossierTeletypeIntervalId: ReturnType<typeof setInterval> | null = null;
+let dossierTeletypeIntervalId: number | null = null;
 
 type MentorAscBundle = {
   o1: OscillatorNode;

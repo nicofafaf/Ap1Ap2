@@ -83,6 +83,7 @@ export function LearningTerminal({
   const recordCombatLearningAttempt = useGameStore((s) => s.recordCombatLearningAttempt);
   const triggerBossHit = useGameStore((s) => s.triggerBossHit);
   const markMissionCleared = useGameStore((s) => s.markMissionCleared);
+  const recordLearningExerciseMastery = useGameStore((s) => s.recordLearningExerciseMastery);
   const setActiveMissionContext = useGameStore((s) => s.setActiveMissionContext);
   const clearActiveMissionContext = useGameStore((s) => s.clearActiveMissionContext);
   const mission = useGameStore((s) => s.mission);
@@ -229,21 +230,26 @@ export function LearningTerminal({
           ...(learningFocus
             ? {
                 left: "50%",
-                top: "50%",
-                bottom: "auto",
-                transform: "translate(-50%, -50%)",
-                width: "min(960px, calc(100vw - var(--nx-space-24)))",
-                maxHeight: "min(90dvh, 960px)",
+                top: "max(10px, env(safe-area-inset-top))",
+                bottom: "max(10px, env(safe-area-inset-bottom))",
+                transform: "translateX(-50%)",
+                width: "min(960px, calc(100vw - var(--nx-space-16)))",
+                maxHeight: "none",
                 zIndex: "var(--nx-z-learning-focus-panel)",
                 overflowY: "auto",
                 WebkitOverflowScrolling: "touch",
+                boxSizing: "border-box",
               }
             : {
                 left: "50%",
-                bottom: "calc(224px + env(safe-area-inset-bottom, 0px))",
+                bottom: "calc(248px + env(safe-area-inset-bottom, 0px))",
                 transform: "translateX(-50%)",
                 zIndex: 45,
-                width: "min(720px, calc(100vw - var(--nx-space-32)))",
+                width: "min(720px, calc(100vw - var(--nx-space-16)))",
+                maxHeight: "min(52dvh, 520px)",
+                overflowY: "auto",
+                WebkitOverflowScrolling: "touch",
+                boxSizing: "border-box",
               }),
           pointerEvents: interactiveMc ? "auto" : "none",
         }}
@@ -349,11 +355,31 @@ export function LearningTerminal({
                         ? "clamp(1.05rem, 2.5vw, 1.35rem)"
                         : typography.bodySize,
                       lineHeight: learningFocus ? 1.55 : typography.bodyLineHeight,
-                      color: learningFocus ? "var(--nx-bone-50)" : typography.fgMuted,
+                      color: learningFocus ? "rgba(244,244,245,0.88)" : typography.fgMuted,
+                      whiteSpace: "pre-wrap",
                     }}
                   >
                     {exercise.problem}
                   </p>
+                  {learningFocus && exercise.solutionHint ? (
+                    <p
+                      style={{
+                        margin: "var(--nx-space-16) 0 0",
+                        padding: "var(--nx-space-16)",
+                        borderRadius: 12,
+                        border: "1px solid color-mix(in srgb, rgba(255,214,165,0.45) 55%, rgba(232,233,240,0.14))",
+                        background: "rgba(255,214,165,0.06)",
+                        fontFamily: typography.fontSans,
+                        fontWeight: 100,
+                        fontSize: "clamp(18px, 2.4vw, 20px)",
+                        lineHeight: 1.5,
+                        color: "var(--nx-bone-90)",
+                        whiteSpace: "pre-wrap",
+                      }}
+                    >
+                      {exercise.solutionHint}
+                    </p>
+                  ) : null}
                   {exercise.illustrationSrc ? (
                     <SafeLearningFigure src={exercise.illustrationSrc} alt="" />
                   ) : null}
@@ -375,7 +401,10 @@ export function LearningTerminal({
                       lang={exercise.lang}
                       reference={exercise.solutionCode}
                       milestoneId={exercise.id}
-                      onSuccess={() => markMissionCleared(exercise.id)}
+                      onSuccess={() => {
+                        markMissionCleared(exercise.id);
+                        recordLearningExerciseMastery(answerLf, exercise.id);
+                      }}
                       initialDraft={
                         archiveWorkbenchSnippet &&
                         archiveWorkbenchSnippet.lf === answerLf &&
@@ -388,145 +417,316 @@ export function LearningTerminal({
                   </motion.div>
                 ) : null}
 
-                {learningFocus && exercise.lang !== "sql" && exercise.lang !== "csharp" ? (
-                  <motion.div
-                    variants={streamChild}
-                    style={{ padding: "var(--nx-space-8) 0", display: "flex", flexDirection: "column", gap: 0 }}
-                  >
-                    <InteractiveMissionInput
-                      expected={exercise.solutionCode}
-                      onSuccess={() => {
-                        markMissionCleared(exercise.id);
-                        triggerBossHit(12);
+                {learningFocus &&
+                exercise.lang !== "sql" &&
+                exercise.lang !== "csharp" ? (
+                  <>
+                    <motion.div
+                      variants={streamChild}
+                      style={{
+                        padding: "var(--nx-space-8) 0",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 0,
                       }}
-                    />
-                  </motion.div>
-                ) : null}
-
-                {learningFocus ? (
-                  <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
-                ) : null}
-
-                <motion.div
-                  variants={streamChild}
-                  style={{
-                    padding: learningFocus ? "var(--nx-space-8) 0" : "var(--nx-space-8) 0",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 0,
-                  }}
-                >
-                  <p
-                    style={{
-                      margin: 0,
-                      fontFamily: typography.fontSans,
-                      fontSize: learningFocus
-                        ? "clamp(1.35rem, 4.5vw, 2.2rem)"
-                        : "max(13px, 0.82rem)",
-                      fontWeight: learningFocus ? 650 : 650,
-                      lineHeight: learningFocus ? 1.22 : 1.4,
-                      letterSpacing: learningFocus ? "-0.02em" : undefined,
-                      color: "var(--nx-bone-90)",
-                    }}
-                  >
-                    {exercise.mcQuestion}
-                  </p>
-                </motion.div>
-
-                <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
-
-                <motion.div
-                  role="group"
-                  aria-label={t("learningTerminal.ariaMc")}
-                  variants={streamChild}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 0,
-                    padding: learningFocus ? "var(--nx-space-8) 0 0" : "var(--nx-space-8) 0",
-                  }}
-                >
-                  {exercise.mcOptions.map((opt, optIdx) => {
-                    const showFeedback = pickedId === opt.id;
-                    const isLast = optIdx === exercise.mcOptions.length - 1;
-                    return (
-                      <button
-                        key={opt.id}
-                        type="button"
-                        onClick={() => {
-                          setPickedId(opt.id);
-                          recordCombatLearningAttempt({
-                            lf: answerLf,
-                            exerciseId: exercise.id,
-                            title: exercise.title,
-                            problem: exercise.problem,
-                            mcQuestion: exercise.mcQuestion,
-                            selectedOptionId: opt.id,
-                            wasCorrect: opt.isCorrect,
-                          });
-                        }}
+                    >
+                      <p
                         style={{
-                          textAlign: "left",
-                          width: "100%",
-                          border: "none",
-                          borderRadius: 0,
-                          borderBottom: isLast
-                            ? "none"
-                            : "1px solid rgba(232, 233, 240, 0.14)",
-                          background: showFeedback
-                            ? opt.isCorrect
-                              ? "rgba(255, 214, 165, 0.07)"
-                              : "rgba(248, 113, 113, 0.05)"
-                            : "transparent",
-                          padding: learningFocus
-                            ? "var(--nx-space-24) 0"
-                            : "var(--nx-space-8) var(--nx-space-16)",
-                          cursor: "pointer",
+                          margin: 0,
                           fontFamily: typography.fontSans,
-                          fontSize: learningFocus
-                            ? "clamp(1.08rem, 2.8vw, 1.42rem)"
-                            : typography.bodySize,
-                          lineHeight: 1.45,
+                          fontSize: "clamp(1.05rem, 3.2vw, 1.45rem)",
+                          fontWeight: 650,
+                          lineHeight: 1.35,
+                          letterSpacing: "-0.01em",
                           color: "var(--nx-bone-90)",
                         }}
                       >
-                        <span
-                          style={{
-                            fontWeight: 700,
-                            marginRight: "var(--nx-space-16)",
-                            color: "var(--nx-bone-50)",
-                          }}
-                        >
-                          {opt.id.toUpperCase()}
-                        </span>
-                        {opt.text}
-                        {showFeedback && !opt.isCorrect && opt.whyWrongHint ? (
-                          <div
+                        {exercise.mcQuestion}
+                      </p>
+                    </motion.div>
+                    <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
+                    <motion.div
+                      role="group"
+                      aria-label={t("learningTerminal.ariaMc")}
+                      variants={streamChild}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 0,
+                        padding: "var(--nx-space-8) 0 0",
+                      }}
+                    >
+                      {exercise.mcOptions.map((opt, optIdx) => {
+                        const showFeedback = pickedId === opt.id;
+                        const isLast = optIdx === exercise.mcOptions.length - 1;
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => {
+                              setPickedId(opt.id);
+                              recordCombatLearningAttempt({
+                                lf: answerLf,
+                                exerciseId: exercise.id,
+                                title: exercise.title,
+                                problem: exercise.problem,
+                                mcQuestion: exercise.mcQuestion,
+                                selectedOptionId: opt.id,
+                                wasCorrect: opt.isCorrect,
+                              });
+                            }}
                             style={{
-                              marginTop: "var(--nx-space-16)",
-                              fontSize: "max(14px, 0.88rem)",
-                              lineHeight: 1.5,
+                              textAlign: "left",
+                              width: "100%",
+                              border: "none",
+                              borderRadius: 0,
+                              borderBottom: isLast
+                                ? "none"
+                                : "1px solid rgba(232, 233, 240, 0.14)",
+                              background: showFeedback
+                                ? opt.isCorrect
+                                  ? "rgba(255, 214, 165, 0.07)"
+                                  : "rgba(248, 113, 113, 0.05)"
+                                : "transparent",
+                              padding: "var(--nx-space-16) 0",
+                              cursor: "pointer",
+                              fontFamily: typography.fontSans,
+                              fontSize: "clamp(1.02rem, 2.6vw, 1.28rem)",
+                              lineHeight: 1.45,
                               color: "var(--nx-bone-90)",
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "stretch",
+                              gap: 0,
                             }}
                           >
-                            Hinweis {opt.whyWrongHint}
-                          </div>
-                        ) : null}
-                        {showFeedback && opt.isCorrect ? (
-                          <div
+                            <span
+                              style={{
+                                display: "flex",
+                                alignItems: "flex-start",
+                                gap: "var(--nx-space-12)",
+                                minWidth: 0,
+                              }}
+                            >
+                              <span
+                                aria-hidden
+                                style={{
+                                  flexShrink: 0,
+                                  fontWeight: 700,
+                                  minWidth: "1.25em",
+                                  color: "var(--nx-bone-50)",
+                                }}
+                              >
+                                {opt.id.toUpperCase()}
+                              </span>
+                              <span style={{ flex: 1, minWidth: 0 }}>{opt.text}</span>
+                            </span>
+                            {showFeedback && !opt.isCorrect && opt.whyWrongHint ? (
+                              <div
+                                style={{
+                                  marginTop: "var(--nx-space-16)",
+                                  fontSize: "max(14px, 0.88rem)",
+                                  lineHeight: 1.5,
+                                  color: "var(--nx-bone-90)",
+                                }}
+                              >
+                                Hinweis {opt.whyWrongHint}
+                              </div>
+                            ) : null}
+                            {showFeedback && opt.isCorrect ? (
+                              <div
+                                style={{
+                                  marginTop: "var(--nx-space-16)",
+                                  fontSize: "max(14px, 0.88rem)",
+                                  color: "var(--nx-bone-90)",
+                                }}
+                              >
+                                Passt weiter mit den Skill Karten unten
+                              </div>
+                            ) : null}
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                    <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
+                    <motion.div
+                      variants={streamChild}
+                      style={{
+                        fontFamily: typography.fontSans,
+                        fontSize: "max(11px, 0.7rem)",
+                        fontWeight: 600,
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        color: "var(--nx-bone-50)",
+                        padding: "var(--nx-space-8) 0 0",
+                      }}
+                    >
+                      Zahlenantwort
+                    </motion.div>
+                    <motion.div
+                      variants={streamChild}
+                      style={{ padding: "var(--nx-space-8) 0 0", display: "flex", flexDirection: "column", gap: 0 }}
+                    >
+                      <InteractiveMissionInput
+                        expected={exercise.solutionCode}
+                        onSuccess={() => {
+                          markMissionCleared(exercise.id);
+                          recordLearningExerciseMastery(answerLf, exercise.id);
+                          triggerBossHit(12);
+                        }}
+                      />
+                    </motion.div>
+                  </>
+                ) : null}
+
+                {learningFocus && (exercise.lang === "sql" || exercise.lang === "csharp") ? (
+                  <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
+                ) : null}
+
+                {exercise &&
+                !(
+                  learningFocus &&
+                  exercise.lang !== "sql" &&
+                  exercise.lang !== "csharp"
+                ) ? (
+                  <>
+                    <motion.div
+                      variants={streamChild}
+                      style={{
+                        padding: learningFocus ? "var(--nx-space-8) 0" : "var(--nx-space-8) 0",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 0,
+                      }}
+                    >
+                      <p
+                        style={{
+                          margin: 0,
+                          fontFamily: typography.fontSans,
+                          fontSize: learningFocus
+                            ? "clamp(1.35rem, 4.5vw, 2.2rem)"
+                            : "max(13px, 0.82rem)",
+                          fontWeight: learningFocus ? 650 : 650,
+                          lineHeight: learningFocus ? 1.22 : 1.4,
+                          letterSpacing: learningFocus ? "-0.02em" : undefined,
+                          color: "var(--nx-bone-90)",
+                        }}
+                      >
+                        {exercise.mcQuestion}
+                      </p>
+                    </motion.div>
+
+                    <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
+
+                    <motion.div
+                      role="group"
+                      aria-label={t("learningTerminal.ariaMc")}
+                      variants={streamChild}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 0,
+                        padding: learningFocus ? "var(--nx-space-8) 0 0" : "var(--nx-space-8) 0",
+                      }}
+                    >
+                      {exercise.mcOptions.map((opt, optIdx) => {
+                        const showFeedback = pickedId === opt.id;
+                        const isLast = optIdx === exercise.mcOptions.length - 1;
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => {
+                              setPickedId(opt.id);
+                              recordCombatLearningAttempt({
+                                lf: answerLf,
+                                exerciseId: exercise.id,
+                                title: exercise.title,
+                                problem: exercise.problem,
+                                mcQuestion: exercise.mcQuestion,
+                                selectedOptionId: opt.id,
+                                wasCorrect: opt.isCorrect,
+                              });
+                            }}
                             style={{
-                              marginTop: "var(--nx-space-16)",
-                              fontSize: "max(14px, 0.88rem)",
+                              textAlign: "left",
+                              width: "100%",
+                              border: "none",
+                              borderRadius: 0,
+                              borderBottom: isLast
+                                ? "none"
+                                : "1px solid rgba(232, 233, 240, 0.14)",
+                              background: showFeedback
+                                ? opt.isCorrect
+                                  ? "rgba(255, 214, 165, 0.07)"
+                                  : "rgba(248, 113, 113, 0.05)"
+                                : "transparent",
+                              padding: learningFocus
+                                ? "var(--nx-space-24) 0"
+                                : "var(--nx-space-8) var(--nx-space-16)",
+                              cursor: "pointer",
+                              fontFamily: typography.fontSans,
+                              fontSize: learningFocus
+                                ? "clamp(1.08rem, 2.8vw, 1.42rem)"
+                                : typography.bodySize,
+                              lineHeight: 1.45,
                               color: "var(--nx-bone-90)",
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "stretch",
+                              gap: 0,
                             }}
                           >
-                            Passt weiter mit den Skill Karten unten
-                          </div>
-                        ) : null}
-                      </button>
-                    );
-                  })}
-                </motion.div>
+                            <span
+                              style={{
+                                display: "flex",
+                                alignItems: "flex-start",
+                                gap: "var(--nx-space-12)",
+                                minWidth: 0,
+                              }}
+                            >
+                              <span
+                                aria-hidden
+                                style={{
+                                  flexShrink: 0,
+                                  fontWeight: 700,
+                                  minWidth: "1.25em",
+                                  color: "var(--nx-bone-50)",
+                                }}
+                              >
+                                {opt.id.toUpperCase()}
+                              </span>
+                              <span style={{ flex: 1, minWidth: 0 }}>{opt.text}</span>
+                            </span>
+                            {showFeedback && !opt.isCorrect && opt.whyWrongHint ? (
+                              <div
+                                style={{
+                                  marginTop: "var(--nx-space-16)",
+                                  fontSize: "max(14px, 0.88rem)",
+                                  lineHeight: 1.5,
+                                  color: "var(--nx-bone-90)",
+                                }}
+                              >
+                                Hinweis {opt.whyWrongHint}
+                              </div>
+                            ) : null}
+                            {showFeedback && opt.isCorrect ? (
+                              <div
+                                style={{
+                                  marginTop: "var(--nx-space-16)",
+                                  fontSize: "max(14px, 0.88rem)",
+                                  color: "var(--nx-bone-90)",
+                                }}
+                              >
+                                Passt weiter mit den Skill Karten unten
+                              </div>
+                            ) : null}
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                  </>
+                ) : null}
               </>
             ) : (
               <>
@@ -562,7 +762,8 @@ export function LearningTerminal({
               </>
             )}
 
-            {(pickedId != null || !exercise) && (
+            {(pickedId != null || !exercise) &&
+              (!learningFocus || !exercise || mission.status === "cleared") && (
               <>
                 <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
                 <motion.div

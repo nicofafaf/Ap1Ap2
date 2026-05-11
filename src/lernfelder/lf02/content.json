@@ -8,7 +8,7 @@
       "chapter": "Systeme",
       "type": "note",
       "title": "Kern Konzept",
-      "body": "Client Server Modell trennt Anfrage und Dienst IP DNS DHCP bilden die Basis fuer Erreichbarkeit"
+      "body": "Client Server Modell trennt Anfrage und Dienst IP DNS DHCP bilden die Basis für Erreichbarkeit"
     },
     {
       "id": "lf2-code",

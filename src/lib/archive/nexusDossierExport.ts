@@ -108,7 +108,7 @@ export async function openNexusDossierJson(
   const key = await crypto.subtle.deriveKey(
     {
       name: "PBKDF2",
-      salt,
+      salt: salt as BufferSource,
       iterations: outer.iterations ?? PBKDF2_ITERATIONS,
       hash: "SHA-256",
     },
@@ -118,9 +118,9 @@ export async function openNexusDossierJson(
     ["decrypt"]
   );
   const plain = await crypto.subtle.decrypt(
-    { name: "AES-GCM", iv },
+    { name: "AES-GCM", iv: iv as BufferSource },
     key,
-    rawCipher
+    rawCipher as BufferSource
   );
   return JSON.parse(new TextDecoder().decode(plain)) as NexusDossierPayload;
 }

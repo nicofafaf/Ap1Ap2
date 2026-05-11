@@ -473,7 +473,6 @@ export function CoreAugmentations({ open, onClose }: Props) {
                       />
                       <foreignObject x={n.cx - 110} y={n.cy + 26} width={220} height={120}>
                         <div
-                          xmlns="http://www.w3.org/1999/xhtml"
                           style={{
                             fontFamily: "system-ui, sans-serif",
                             color: "#e2e8f0",

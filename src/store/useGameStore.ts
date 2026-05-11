@@ -14,7 +14,6 @@ import {
 } from "../data/achievementRegistry";
 import { rollLootRarity, type LearningField, type LootRarity } from "../data/nexusRegistry";
 import { CURRICULUM_BY_LF, applyLeitnerReview, type LeitnerCardState } from "../lib/learning/learningRegistry";
-import type { SkillId } from "../data/skillRegistry";
 import {
   computeArchitectPersona,
   computePerformanceTrend,
@@ -127,7 +126,7 @@ export type StoredAudioPreset = {
   cRankStaticLayerEnabled: boolean;
 };
 
-let combatPhaseTransitionFinishTimer: ReturnType<typeof window.setTimeout> | null = null;
+let combatPhaseTransitionFinishTimer: number | null = null;
 
 function scheduleCombatPhaseTransitionFinish() {
   if (combatPhaseTransitionFinishTimer != null) {
@@ -157,11 +156,13 @@ const HARDCORE_DRIFT_STORAGE_KEY = "nexus.hardcoreDrift.v1";
 const FIRST_BOOT_COMPLETE_KEY = "nexus.firstBootCompleted.v1";
 const TUTORIAL_ANIME_UNLOCK_KEY = "nexus.tutorialAnimeUnlocked.v1";
 
+type PersonaPersistSlice = { personaId?: string; dominanceCount?: number };
+
 function persistArchitectPersonaProfile(persona: ArchitectPersona, reportId: string) {
   try {
     const raw = localStorage.getItem(ARCHITECT_PERSONA_PROFILE_KEY);
-    let prev: { personaId?: string; dominanceCount?: number } | null = null;
-    if (raw) prev = JSON.parse(raw) as typeof prev;
+    let prev: PersonaPersistSlice | null = null;
+    if (raw) prev = JSON.parse(raw) as PersonaPersistSlice;
     const dominanceCount =
       prev?.personaId === persona.id ? Math.max(1, (prev.dominanceCount ?? 0) + 1) : 1;
     localStorage.setItem(
@@ -631,6 +632,8 @@ type GameStore = {
     selectedOptionId: string;
     wasCorrect: boolean;
   }) => void;
+  /** LF-Mastery / Abzeichen — nur nach Code- oder Zahlen-Lösung (nicht schon nach MC) */
+  recordLearningExerciseMastery: (lf: LearningField, exerciseId: string) => void;
   /** Leitner + Ebbinghaus je Übungs-ID (Spaced Repetition) */
   learningLeitnerByExerciseId: Record<string, LeitnerCardState>;
   sourceMirrorSkillId: SkillId | null;
@@ -1995,19 +1998,29 @@ export const useGameStore = create<GameStore>((set, get) => ({
         };
       }
 
+      flush(state.learningCorrectByLf, state.lfArchitectBadgeGranted);
+      return {
+        lastCombatLearningEvents: log,
+        learningLeitnerByExerciseId,
+        learningMentorStreak: state.learningMentorStreak + 1,
+        learningMentorColdToken: state.learningMentorColdToken,
+      };
+    });
+    queueMicrotask(() => {
+      appendRetentionSnapshot(get().learningLeitnerByExerciseId);
+    });
+  },
+
+  recordLearningExerciseMastery: (lf, exerciseId) => {
+    set((state) => {
       const prevCorrect = state.learningCorrectByLf[lf] ?? [];
       if (prevCorrect.includes(exerciseId)) {
-        flush(state.learningCorrectByLf, state.lfArchitectBadgeGranted);
-        return {
-          lastCombatLearningEvents: log,
-          learningLeitnerByExerciseId,
-          learningMentorStreak: state.learningMentorStreak + 1,
-          learningMentorColdToken: state.learningMentorColdToken,
-          mission:
-            state.mission.missionId === exerciseId
-              ? { ...state.mission, status: "cleared" as const }
-              : state.mission,
-        };
+        persistLearningMastery({
+          correctByLf: state.learningCorrectByLf,
+          badgeGranted: state.lfArchitectBadgeGranted,
+          leitner: state.learningLeitnerByExerciseId,
+        });
+        return {};
       }
 
       const nextCorrectLf = [...prevCorrect, exerciseId];
@@ -2025,22 +2038,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
       }
       const masteryChecks = { ...nextBadges };
       const unlockedSectors = deriveUnlockedSectorsFromMastery(masteryChecks);
-      flush(nextCorrectMap, nextBadges);
+      persistLearningMastery({
+        correctByLf: nextCorrectMap,
+        badgeGranted: nextBadges,
+        leitner: state.learningLeitnerByExerciseId,
+      });
       return {
-        lastCombatLearningEvents: log,
         learningCorrectByLf: nextCorrectMap,
         lfArchitectBadgeGranted: nextBadges,
-        learningLeitnerByExerciseId,
-        learningMentorStreak: state.learningMentorStreak + 1,
-        learningMentorColdToken: state.learningMentorColdToken,
         campaign: {
           masteryChecks,
           unlockedSectors,
         },
-        mission:
-          state.mission.missionId === exerciseId
-            ? { ...state.mission, status: "cleared" as const }
-            : state.mission,
       };
     });
     queueMicrotask(() => {

@@ -7,14 +7,14 @@ import {
 } from "../../cert/nexusMasterCertificate";
 
 async function sha256Hex(data: Uint8Array): Promise<string> {
-  const buf = await crypto.subtle.digest("SHA-256", data);
+  const buf = await crypto.subtle.digest("SHA-256", data as BufferSource);
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
 function randomKey32(): ArrayBuffer {
   const u = new Uint8Array(32);
   crypto.getRandomValues(u);
-  return u.buffer;
+  return u.buffer.slice(0) as ArrayBuffer;
 }
 
 describe("AES-GCM-256 — Nexus Master Dossier", () => {

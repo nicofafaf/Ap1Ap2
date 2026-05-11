@@ -25,7 +25,7 @@ export async function getOrCreateDeviceKeyRaw(): Promise<ArrayBuffer> {
     b64 = u8ToB64(buf);
     localStorage.setItem(DEVICE_KEY_STORAGE, b64);
   }
-  return b64ToU8(b64).buffer;
+  return b64ToU8(b64).buffer.slice(0) as ArrayBuffer;
 }
 
 export type NexusMasterCertPlain = {
@@ -50,14 +50,18 @@ export async function sealNexusMasterDossier(
 ): Promise<string> {
   const key = await crypto.subtle.importKey(
     "raw",
-    deviceKeyRaw,
+    deviceKeyRaw as BufferSource,
     { name: "AES-GCM", length: 256 },
     false,
     ["encrypt"]
   );
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const enc = new TextEncoder().encode(JSON.stringify(plain));
-  const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, enc);
+  const ct = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv: iv as BufferSource },
+    key,
+    enc as BufferSource
+  );
   const envelope = {
     algo: "AES-GCM-256",
     iv: u8ToB64(iv),
@@ -129,14 +133,18 @@ export async function openNexusMasterDossier(
   const { envelope } = parsed;
   const key = await crypto.subtle.importKey(
     "raw",
-    deviceKeyRaw,
+    deviceKeyRaw as BufferSource,
     { name: "AES-GCM", length: 256 },
     false,
     ["decrypt"]
   );
   const iv = b64ToU8(envelope.iv);
   const ct = b64ToU8(envelope.ciphertext);
-  const dec = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ct);
+  const dec = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv: iv as BufferSource },
+    key,
+    ct as BufferSource
+  );
   const json = new TextDecoder().decode(dec);
   return JSON.parse(json) as NexusMasterCertPlain;
 }

@@ -60,9 +60,10 @@ function DynamicFlowCameraRig({
   const flowTarget = useMotionValue(1);
   const flowSpring = useSpring(flowTarget, CAMERA_FLOW_SPRING);
   const bump = useMotionValue(0);
-  const totalScale = useTransform([flowSpring, bump], (a, b) =>
-    Math.min(1.128, Math.max(0.94, a + b))
-  );
+  const totalScale = useTransform([flowSpring, bump], (latest: number[]) => {
+    const [a, b] = latest;
+    return Math.min(1.128, Math.max(0.94, a + b));
+  });
 
   useEffect(() => {
     flowTarget.set(1 + (synapticFlow / 100) * 0.071);

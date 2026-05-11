@@ -12,8 +12,10 @@ export const LF1_WIRTSCHAFT: LearningExercise[] = [
     id: "wirt-handelsspanne",
     title: "Handelsspanne",
     problem:
-      "Du kennst Listeneinkaufspreis 400 €, Lieferantenrabatt 12 %, Bezugskosten 28 €. Verkaufspreis 520 € (netto). Ermittle die Handelsspanne v.H. auf den Verkaufspreis (kaufmännisch gerundet)",
-    solutionCode: `### Bezugskalkulation (Kurzschema)\n\n| Position              | Betrag |\n|-----------------------|-------:|\n| Listeneinkaufspreis   | 400,00 |\n| − 12 % Rabatt         | −48,00 |\n| + Bezugskosten        | +28,00 |\n| **Bezugspreis / EP**  | **380,00** |\n\n### Handelsspanne v.H. VP\n\n- Rohertrag = 520 − 380 = **140 €**\n- Handelsspanne v.H. VP = 140 / 520 ≈ **26,9 %**`,
+      "Gegeben: Listen-EK 400 € · Rabatt 12 % · Bezug 28 € · Verkauf netto 520 €\n\n1) EK nach Rabatt = 400 − 12 %\n2) Bezugspreis = (1) + 28 €\n3) Rohertrag = 520 − Bezugspreis\n4) Spanne v. H. auf VK = Rohertrag ÷ 520 → als Prozent, eine Dezimalstelle",
+    solutionHint:
+      "Tipp: 12 % von 400 = 48 → nach Rabatt 352 €, plus 28 € Bezug = 380 € Bezugspreis · Rohertrag 140 € · 140÷520 ≈ 0,269 → 26,9 %",
+    solutionCode: "26,9",
     lang: "markdown",
     mcQuestion: "Welche Formel ist für die Handelsspanne v.H. auf den Verkaufspreis korrekt?",
     mcOptions: [

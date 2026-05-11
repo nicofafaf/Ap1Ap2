@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "@fontsource/inter/latin-100.css";
 import "./styles/globals.css";
 import { FractalDepthRoot } from "./components/FractalDepthRoot";
 import { NexusShell } from "./components/NexusShell";
@@ -23,7 +24,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <NexusErrorBoundary>
       <I18nProvider>
         <FractalDepthRoot>
-          <div style={{ width: "100vw", minHeight: "100vh", background: "transparent" }}>
+          <div
+            className="nx-app-frame"
+            style={{ width: "100%", minHeight: "100dvh", minWidth: 0, background: "transparent" }}
+          >
             <NexusShell />
             <CertificateVerifyPage />
           </div>

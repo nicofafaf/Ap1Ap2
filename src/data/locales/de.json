@@ -117,7 +117,7 @@
       {
         "kicker": "02 · PATTERNS",
         "title": "Observer, Strategy, Facade",
-        "body": "Zustand-Subscriptions und Vitals entkoppeln Messung vom Render. Austauschbare Strategien steuern Audio, Presets und Sync. Versiegelung und Cloud-Umschläge kapseln komplexe Security hinter klaren Oberflächen",
+        "body": "Zustand-Subscriptions und Vitals entkoppeln Messung vom Render — austauschbare Strategien steuern Audio, Presets und Sync — Versiegelung und Cloud-Umschläge kapseln komplexe Security hinter klaren Oberflächen",
         "tag": "Architecture"
       },
       {

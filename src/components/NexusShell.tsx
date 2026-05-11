@@ -1,9 +1,11 @@
 import { lazy, Suspense, useCallback, useEffect, useState, type ReactNode } from "react";
-import { LayoutGroup, motion } from "framer-motion";
+import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import {
   NX_PANEL_ENTRANCE_ANIMATE,
   NX_PANEL_ENTRANCE_INITIAL,
+  NX_UI_INSTANT,
   NX_UI_SPRING,
+  nxHudPulseTransition,
 } from "../lib/ui/textMotionPolicy";
 import type { LearningField } from "../data/nexusRegistry";
 import type { InitiateCombatOptions } from "../lib/dailyIncursion";
@@ -23,6 +25,7 @@ const CombatManagerLazy = lazy(() =>
 
 function InitializationFallback() {
   const { t } = useNexusI18n();
+  const reduceMotion = useReducedMotion();
   return (
     <div
       style={{
@@ -33,18 +36,47 @@ function InitializationFallback() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "rgba(247,244,236,0.35)",
-        fontFamily: "ui-monospace, monospace",
-        fontSize: 11,
-        letterSpacing: ".28em",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      {t("shell.loading")}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0.04 }}
+        animate={{ opacity: reduceMotion ? 0.06 : [0.04, 0.1, 0.06] }}
+        transition={nxHudPulseTransition(reduceMotion, { duration: 2.8, ease: "easeInOut" })}
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(34,211,238,0.04) 48px, rgba(34,211,238,0.04) 49px)",
+          pointerEvents: "none",
+        }}
+      />
+      <motion.div
+        initial={{ opacity: 0.45, letterSpacing: "0.42em" }}
+        animate={{
+          opacity: reduceMotion ? 0.55 : [0.45, 0.88, 0.62],
+          letterSpacing: reduceMotion ? "0.32em" : ["0.42em", "0.28em", "0.32em"],
+        }}
+        transition={nxHudPulseTransition(reduceMotion, { duration: 1.85, ease: "easeInOut" })}
+        style={{
+          position: "relative",
+          zIndex: 1,
+          color: "rgba(247,244,236,0.38)",
+          fontFamily: "var(--nx-font-mono, ui-monospace, monospace)",
+          fontSize: 11,
+          textTransform: "uppercase",
+        }}
+      >
+        {t("shell.loading")}
+      </motion.div>
     </div>
   );
 }
 
 function CombatSurfaceFallback({ label }: { label: ReactNode }) {
+  const reduceMotion = useReducedMotion();
   return (
     <div
       style={{
@@ -55,19 +87,52 @@ function CombatSurfaceFallback({ label }: { label: ReactNode }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "rgba(232,233,240,0.22)",
-        fontFamily: "var(--nx-font-mono, ui-monospace, monospace)",
-        fontSize: 10,
-        letterSpacing: "0.32em",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      {label}
+      <motion.div
+        aria-hidden
+        animate={
+          reduceMotion
+            ? { scale: 1, opacity: 0.12 }
+            : { scale: [1, 1.02, 1], opacity: [0.08, 0.16, 0.1] }
+        }
+        transition={reduceMotion ? NX_UI_INSTANT : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: "absolute",
+          width: "120%",
+          height: "120%",
+          left: "-10%",
+          top: "-10%",
+          background:
+            "radial-gradient(ellipse 50% 42% at 50% 50%, rgba(34,211,238,0.07), transparent 72%)",
+          pointerEvents: "none",
+        }}
+      />
+      <motion.div
+        initial={{ opacity: 0.35 }}
+        animate={{ opacity: reduceMotion ? 0.42 : [0.35, 0.72, 0.48] }}
+        transition={nxHudPulseTransition(reduceMotion, { duration: 1.4, ease: "easeInOut" })}
+        style={{
+          position: "relative",
+          zIndex: 1,
+          color: "rgba(232,233,240,0.26)",
+          fontFamily: "var(--nx-font-mono, ui-monospace, monospace)",
+          fontSize: 10,
+          letterSpacing: "0.32em",
+          textTransform: "uppercase",
+        }}
+      >
+        {label}
+      </motion.div>
     </div>
   );
 }
 
 export function NexusShell() {
   const { t } = useNexusI18n();
+  const reduceMotionShell = useReducedMotion();
   const [surface, setSurface] = useState<"overworld" | "combat">("overworld");
   const [diveBridgeLf, setDiveBridgeLf] = useState<number | null>(null);
   const [mapHoldCombat, setMapHoldCombat] = useState(false);
@@ -180,7 +245,7 @@ export function NexusShell() {
             key={surface}
             initial={NX_PANEL_ENTRANCE_INITIAL}
             animate={NX_PANEL_ENTRANCE_ANIMATE}
-            transition={NX_UI_SPRING}
+            transition={reduceMotionShell ? NX_UI_INSTANT : NX_UI_SPRING}
             style={{
               position: "absolute",
               inset: 0,

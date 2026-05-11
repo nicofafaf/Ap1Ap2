@@ -22,30 +22,33 @@ export function ActiveBoostsHUD() {
     }))
   );
 
-  const chips = useMemo<BoostChip[]>(
-    () => [
-      {
-        id: "crit",
-        label: "CRIT",
-        value: `+${Math.round((state.activeCombatBoosts.criticalDamageMultiplier - 1) * 100)}%`,
-        active: state.activeCombatBoosts.criticalDamageMultiplier > 1.001,
-        talentPath: "overclock",
-      },
-      {
-        id: "draw",
-        label: "DRAW",
-        value: `+${Math.round((state.activeCombatBoosts.cardDrawMultiplier - 1) * 100)}%`,
-        active: state.activeCombatBoosts.cardDrawMultiplier > 1.001,
-        talentPath: "throughput",
-      },
-      {
-        id: "shield",
-        label: "SHIELD",
-        value: `+${Math.round((state.activeCombatBoosts.shieldStrengthMultiplier - 1) * 100)}%`,
-        active: state.activeCombatBoosts.shieldStrengthMultiplier > 1.001,
-        talentPath: "firewall",
-      },
-    ].filter((chip) => chip.active),
+  const chips = useMemo(
+    () =>
+      (
+        [
+          {
+            id: "crit",
+            label: "CRIT",
+            value: `+${Math.round((state.activeCombatBoosts.criticalDamageMultiplier - 1) * 100)}%`,
+            active: state.activeCombatBoosts.criticalDamageMultiplier > 1.001,
+            talentPath: "overclock",
+          },
+          {
+            id: "draw",
+            label: "DRAW",
+            value: `+${Math.round((state.activeCombatBoosts.cardDrawMultiplier - 1) * 100)}%`,
+            active: state.activeCombatBoosts.cardDrawMultiplier > 1.001,
+            talentPath: "throughput",
+          },
+          {
+            id: "shield",
+            label: "SHIELD",
+            value: `+${Math.round((state.activeCombatBoosts.shieldStrengthMultiplier - 1) * 100)}%`,
+            active: state.activeCombatBoosts.shieldStrengthMultiplier > 1.001,
+            talentPath: "firewall",
+          },
+        ] satisfies BoostChip[]
+      ).filter((chip) => chip.active),
     [state.activeCombatBoosts, state.talentLevels]
   );
 

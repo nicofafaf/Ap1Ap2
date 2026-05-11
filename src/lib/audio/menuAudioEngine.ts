@@ -43,16 +43,25 @@ const shared: MenuAmbientState = {
 
 let hookRefCount = 0;
 
-function linearShaperCurve(): Float32Array {
+type WaveShaperCurve = NonNullable<WaveShaperNode["curve"]>;
+
+function cloneFloat32ForWaveShaper(source: Float32Array): WaveShaperCurve {
+  const ab = new ArrayBuffer(source.byteLength);
+  const out = new Float32Array(ab);
+  out.set(source);
+  return out as WaveShaperCurve;
+}
+
+function linearShaperCurve(): WaveShaperCurve {
   const n = 256;
   const c = new Float32Array(n);
   for (let i = 0; i < n; i += 1) {
     c[i] = (i / (n - 1)) * 2 - 1;
   }
-  return c;
+  return cloneFloat32ForWaveShaper(c);
 }
 
-function bitcrushCurve(steps: number): Float32Array {
+function bitcrushCurve(steps: number): WaveShaperCurve {
   const n = 2048;
   const c = new Float32Array(n);
   for (let i = 0; i < n; i += 1) {
@@ -60,7 +69,7 @@ function bitcrushCurve(steps: number): Float32Array {
     const q = Math.round(x * steps) / steps;
     c[i] = Math.max(-1, Math.min(1, q));
   }
-  return c;
+  return cloneFloat32ForWaveShaper(c);
 }
 
 function brownNoiseBuffer(ctx: AudioContext, seconds: number): AudioBuffer {

@@ -45,7 +45,7 @@ const childVariants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 320, damping: 28 },
+    transition: { type: "spring" as const, stiffness: 320, damping: 28 },
   },
 };
 
@@ -423,7 +423,7 @@ export function VictoryStats({
               initial={{ scale: 0.96, opacity: 0, y: 12 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.98, opacity: 0, y: 8 }}
-              transition={{ type: "spring", stiffness: 280, damping: 28 }}
+              transition={{ type: "spring" as const, stiffness: 280, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
               style={{
                 width: "min(640px, calc(100vw - 32px))",
@@ -1078,7 +1078,7 @@ export function VictoryStats({
             initial={{ x: 200, y: -220, rotate: -42, scale: 1.55, opacity: 0 }}
             animate={{ x: 0, y: 0, rotate: -14, scale: 1, opacity: 1 }}
             transition={{
-              type: "spring",
+              type: "spring" as const,
               stiffness: 380,
               damping: 22,
               mass: 0.82,

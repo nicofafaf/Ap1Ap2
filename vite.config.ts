@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdirSync, realpathSync, statSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, realpathSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig, loadEnv, type Plugin } from "vite";
@@ -11,6 +11,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 /**
  * Netlify/Linux: ohne Windows-Junction muss public/assets existieren.
  * Wenn public/assets fehlt oder leer ist, wird aus ./assets synchronisiert (einmalig pro Build-Start).
+ *
+ * Lokales Windows/OneDrive: ein vollständiges cpSync von ./assets (~250MB+) bei jedem Build kann
+ * instabil werden — wenn Kern-Assets bereits unter public/assets liegen, wird übersprungen
+ * (NEXUS_FORCE_PUBLIC_ASSET_SYNC=1 erzwingt erneutes Kopieren).
  */
 function ensurePublicAssetsPlugin(): Plugin {
   return {
@@ -27,6 +31,24 @@ function ensurePublicAssetsPlugin(): Plugin {
         if (realpathSync(srcDir) === realpathSync(destDir)) return;
       } catch {
         // dest may not exist yet
+      }
+      const marker = join(destDir, "inter-latin-400-normal-c38fxh4l.woff2");
+      if (
+        existsSync(destDir) &&
+        existsSync(marker) &&
+        process.env.NEXUS_FORCE_PUBLIC_ASSET_SYNC !== "1"
+      ) {
+        try {
+          const n = readdirSync(destDir).length;
+          if (n > 0) {
+            console.warn(
+              `[ensure-public-assets] public/assets vorhanden (${n} Einträge) — überspringe schweres Kopieren (NEXUS_FORCE_PUBLIC_ASSET_SYNC=1 zum Neu-Sync)`,
+            );
+            return;
+          }
+        } catch {
+          // fall through to copy
+        }
       }
       mkdirSync(resolve(__dirname, "public"), { recursive: true });
       mkdirSync(destDir, { recursive: true });

@@ -8,6 +8,8 @@ stages:
 
 variables:
   NODE_ENV: production
+  # große Vite-/Asset-Builds: weniger OOM auf GitLab Runnern
+  NODE_OPTIONS: "--max-old-space-size=4096"
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -19,10 +21,10 @@ pages:
   script:
     - "npm ci"
     - "npm run build"
+    - "test -d dist && test -d dist/assets"
     - "rm -rf public"
     - "mv dist public"
     - "test -d public/assets"
-    - "find public/assets -type f | head -n 1 | grep ."
   artifacts:
     paths:
       - public

@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-05-06T07:48:47.522Z",
+  "imported": [
+    {
+      "file": "SQL Grundlagen — Fachinformatiker (5.5.2026 09：04：20)_2.html",
+      "section": 0,
+      "bucket": "sql",
+      "cards": 6,
+      "fromTableRows": 0
+    },
+    {
+      "file": "test_sql_grundlagen.html",
+      "section": 0,
+      "bucket": "sql",
+      "cards": 6,
+      "fromTableRows": 0
+    }
+  ],
+  "rejected": [
+    {
+      "file": "Ap1Ap2.txt",
+      "reason": "No readable text extracted"
+    },
+    {
+      "file": "bab_dynamic_test.txt",
+      "reason": "Split sections below minimum card count"
+    },
+    {
+      "file": "network_puzzles.txt",
+      "reason": "Split sections below minimum card count"
+    },
+    {
+      "file": "raid_puzzles.txt",
+      "reason": "Split sections below minimum card count"
+    }
+  ],
+  "qualityGuard": {
+    "compressedCount": 0,
+    "splitCount": 0,
+    "manualReviewRequired": 0,
+    "mathSolverGeneratedCount": {
+      "hardware": 3,
+      "network": 2,
+      "sql": 0,
+      "bwl": 8,
+      "unclassified": 0
+    }
+  }
+}

@@ -1,0 +1,233 @@
+/* Nexus — Color Harmony & 8px Grid (Bone White Opacity + Vantablack) */
+
+@import "./parallax.css";
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/GeistMono-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/inter-latin-400-normal-c38fxh4l.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/inter-latin-600-normal-lgql8muc.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/inter-latin-700-normal-yt3apruw.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --nx-font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --nx-font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+
+  /* Cinematic base — Vantablack, Frosted Titanium, Bone White */
+  --nx-vantablack: #050507;
+  --nx-bone: #e8e9f0;
+  --nx-bone-90: rgba(232, 233, 240, 0.9);
+  --nx-bone-50: rgba(232, 233, 240, 0.5);
+  --nx-bone-25: rgba(232, 233, 240, 0.25);
+  --nx-panel-frost: rgba(20, 22, 27, 0.6);
+  --nx-tungsten: rgba(255, 214, 165, 0.32);
+  --nx-tungsten-soft: rgba(255, 214, 165, 0.14);
+
+  /* Subtiles Teal & Orange (entsättigt) — nur für globales Grading */
+  --nx-grade-teal-mist: rgba(48, 72, 78, 0.07);
+  --nx-grade-orange-mist: rgba(82, 64, 52, 0.06);
+
+  /* STRICT_SPATIAL_SYSTEM — nur 8er-Raster */
+  --nx-space-8: 8px;
+  --nx-space-16: 16px;
+  --nx-space-24: 24px;
+  --nx-space-32: 32px;
+  --nx-space-64: 64px;
+
+  --nx-text-primary: var(--nx-bone-90);
+  --nx-text-muted: var(--nx-bone-50);
+  --nx-text-tertiary: var(--nx-bone-25);
+  --nx-surface-elevated: var(--nx-panel-frost);
+  --nx-border-readable: var(--nx-bone-25);
+
+  --nx-bg-brightness: 0.48;
+  --nx-bg-contrast: 1.12;
+  --nx-shadow-deep: rgba(5, 5, 7, 0.62);
+  --nx-obsidian: var(--nx-vantablack);
+  --nx-ivory: var(--nx-bone);
+  --nx-iridium-mist: rgba(232, 233, 240, 0.06);
+
+  --nx-readability-particles: 1;
+
+  /* Stacking — festes Layering (Parallax/UI/Overlays) */
+  --nx-z-bg: 0;
+  --nx-z-bg-fx: 1;
+  --nx-z-parallax-mid: 5;
+  --nx-z-particles: 10;
+  --nx-z-content: 20;
+  --nx-z-ui-atmosphere: 85;
+  --nx-z-ui: 100;
+  --nx-z-overlay: 1000;
+  --nx-z-system: 10000;
+  --nx-z-learning-focus-backdrop: 1050;
+  --nx-z-learning-focus-panel: 1060;
+}
+
+html {
+  font-family: var(--nx-font-sans);
+  background: var(--nx-vantablack);
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--nx-vantablack);
+  color: var(--nx-text-primary);
+  font-size: clamp(16px, 0.35vw + 15.2px, 18px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Cinematic Teal & Orange — extrem subtil, entsättigt */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--nx-z-bg-fx);
+  background:
+    radial-gradient(ellipse 130% 85% at 18% 12%, var(--nx-grade-teal-mist) 0%, transparent 58%),
+    radial-gradient(ellipse 110% 75% at 88% 88%, var(--nx-grade-orange-mist) 0%, transparent 52%);
+  mix-blend-mode: overlay;
+}
+
+#root {
+  position: relative;
+  z-index: var(--nx-z-content);
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+html[data-nx-readability="on"] {
+  --nx-readability-particles: 0;
+}
+
+/* Reiner Lernfokus: Welt dimmen, Partikel fast aus */
+html[data-nx-learning-focus="1"] .nx-fractal-particle-layer {
+  opacity: 0.06;
+  filter: brightness(0.4);
+  transition:
+    opacity 0.45s ease,
+    filter 0.45s ease;
+}
+
+html[data-nx-learning-focus="1"] .nx-volumetric-leaks {
+  opacity: 0.12;
+  transition: opacity 0.45s ease;
+}
+
+html[data-nx-learning-focus="1"] .nx-fractal-bg-video {
+  filter: brightness(0.22) contrast(1.02) !important;
+  transition: filter 0.5s ease;
+}
+
+html[data-nx-learning-focus="1"] .nx-fractal-bg-fallback {
+  filter: brightness(0.22) contrast(1.02) !important;
+}
+
+html[data-nx-learning-focus="1"] .nexus-combat-hud {
+  opacity: 0.18;
+  filter: grayscale(0.35);
+  transition:
+    opacity 0.4s ease,
+    filter 0.4s ease;
+}
+
+html[data-nx-learning-focus="1"] [data-nx-learning-dim-chrome="1"] {
+  opacity: 0.2;
+  filter: grayscale(0.4);
+  transition:
+    opacity 0.4s ease,
+    filter 0.4s ease;
+}
+
+html[data-nx-learning-focus="1"] .nexus-flow-indicator {
+  opacity: 0.1;
+  transition: opacity 0.45s ease;
+}
+
+html[data-nx-readability="on"] .nx-backdrop-sweep {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+.nx-text-stable {
+  animation: none !important;
+  filter: none !important;
+}
+
+[data-nx-epilogue="1"] {
+  --nx-chroma-grid: rgba(255, 214, 165, 0.1);
+}
+
+.nx-code-block {
+  font-family: var(--nx-font-mono);
+  font-size: max(14px, 0.85em);
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+/* Tastatur-Fokus — sichtbar nur bei :focus-visible (AAA / WCAG) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--nx-bone) 72%, rgb(103, 232, 249) 28%);
+  outline-offset: 3px;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--nx-bone) 65%, rgb(103, 232, 249) 35%);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}

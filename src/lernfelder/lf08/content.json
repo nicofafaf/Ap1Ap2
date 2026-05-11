@@ -1,0 +1,28 @@
+{
+  "lf": "LF8",
+  "ap": "AP2",
+  "title": "Datenmodelle und Persistenz",
+  "reference": [
+    {
+      "id": "lf8-kern",
+      "chapter": "Modellierung",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Entitaeten Attribute Beziehungen bilden das Modell Primaerschluessel sichern Eindeutigkeit Normalformen reduzieren Redundanz"
+    },
+    {
+      "id": "lf8-code",
+      "chapter": "Modellierung",
+      "type": "sql",
+      "title": "Code Beispiel",
+      "code": "CREATE TABLE Kunde (Id INT PRIMARY KEY, Name VARCHAR(120) NOT NULL)"
+    },
+    {
+      "id": "lf8-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Erkenne 1N und NM Beziehungen setze Schluessel korrekt pruefe Modell auf dritte Normalform"
+    }
+  ]
+}

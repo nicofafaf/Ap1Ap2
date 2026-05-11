@@ -1,0 +1,193 @@
+/* Parallax / Fractal — Tokens in globals.css :root (Vantablack, Bone, Raster) */
+
+.nx-fractal-victory-shards {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nx-z-parallax-mid);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.nx-fractal-bg-fallback {
+  background:
+    radial-gradient(ellipse 88% 72% at 50% 38%, rgba(12, 14, 18, 0.94) 0%, rgba(5, 5, 7, 0.98) 42%, var(--nx-vantablack) 100%),
+    repeating-linear-gradient(
+      -18deg,
+      var(--nx-bone-25) 0px,
+      transparent 2px,
+      transparent 14px,
+      var(--nx-tungsten-soft) 16px
+    );
+}
+
+.nx-fractal-bg-video {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nx-z-bg);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  filter: brightness(var(--nx-bg-brightness)) contrast(var(--nx-bg-contrast));
+  transition: filter 0.35s ease-out;
+}
+
+.nx-fractal-particle-layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nx-z-particles);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.nx-fractal-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 1px;
+  background: radial-gradient(circle, var(--nx-bone-50) 0%, transparent 72%);
+  box-shadow: 0 0 6px var(--nx-bone-25);
+  opacity: 0.4;
+}
+
+.nx-fractal-foreground {
+  position: relative;
+  z-index: var(--nx-z-content);
+  min-height: 100dvh;
+}
+
+/**
+ * IRIDIUM_GLASS_SURFACES — drei Schichten: Tiefe blur(40px), Rauschen, 1px Lichtkante
+ * .nx-iridium-panel und Alias .nx-refraction-panel
+ */
+.nx-iridium-panel,
+.nx-refraction-panel {
+  position: relative;
+  isolation: isolate;
+  background: var(--nx-panel-frost);
+  backdrop-filter: blur(40px) saturate(98%);
+  -webkit-backdrop-filter: blur(40px) saturate(98%);
+  box-shadow: 0 var(--nx-space-32) var(--nx-space-64) var(--nx-shadow-deep);
+}
+
+.nx-iridium-panel::before,
+.nx-refraction-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.055;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nxn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nxn)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.nx-iridium-panel::after,
+.nx-refraction-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  padding: 1px;
+  background: linear-gradient(
+    128deg,
+    var(--nx-bone-50) 0%,
+    var(--nx-bone-25) 32%,
+    transparent 48%,
+    transparent 55%,
+    var(--nx-bone-25) 72%,
+    color-mix(in srgb, var(--nx-bone) 40%, transparent) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.nx-title-ultra {
+  font-family: var(--nx-font-sans);
+  font-weight: 100;
+  letter-spacing: 0.1em;
+}
+
+@keyframes nx-scan-drift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(12px);
+  }
+}
+
+.nx-helm-scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--nx-z-ui-atmosphere) + 1);
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    var(--nx-bone-25) 2px,
+    var(--nx-bone-25) 3px
+  );
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  animation: nx-scan-drift 9s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-helm-scanlines {
+    animation: none;
+    opacity: 0.1;
+  }
+}
+
+.nx-helm-chromatic {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nx-z-ui-atmosphere);
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 100px var(--nx-tungsten-soft),
+    inset 0 0 160px rgba(5, 5, 7, 0.4);
+  mix-blend-mode: overlay;
+}
+
+.nx-ui-bloom {
+  filter: drop-shadow(0 0 20px var(--nx-tungsten-soft));
+}
+
+/* Spieler-Schaden: kurzer Split — gedämpft, ohne Neon */
+html[data-nx-player-rgb-glitch="1"] .nexus-combat-capture {
+  filter: drop-shadow(-12px 0 0 var(--nx-bone-25))
+    drop-shadow(12px 0 0 rgba(5, 5, 7, 0.5)) contrast(1.18) saturate(0.82);
+  will-change: filter;
+}
+
+@keyframes nx-fractal-shard-rattle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    transform: translate3d(4px, -3px, 0);
+  }
+  40% {
+    transform: translate3d(-5px, 3px, 0);
+  }
+  60% {
+    transform: translate3d(3px, 4px, 0);
+  }
+  80% {
+    transform: translate3d(-3px, -2px, 0);
+  }
+}
+
+html[data-nx-fractal-shard-rattle] .nx-transmission-shard {
+  animation: nx-fractal-shard-rattle 0.24s ease-out;
+}

@@ -1,0 +1,28 @@
+{
+  "lf": "LF3",
+  "ap": "AP1",
+  "title": "Netzwerke und Dienste",
+  "reference": [
+    {
+      "id": "lf3-kern",
+      "chapter": "Netzbasis",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Subnetzmaske trennt Netz und Host Routing verbindet Teilnetze Ports ordnen Dienste eindeutig zu"
+    },
+    {
+      "id": "lf3-code",
+      "chapter": "Netzbasis",
+      "type": "sql",
+      "title": "Code Beispiel",
+      "code": "SELECT Dienst Port Protokoll FROM Netzwerkdienste WHERE Port IN (53, 80, 443)"
+    },
+    {
+      "id": "lf3-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Berechne Subnetze sicher unterscheide TCP und UDP ordne DHCP DNS HTTP korrekt"
+    }
+  ]
+}

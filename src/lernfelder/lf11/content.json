@@ -1,0 +1,28 @@
+{
+  "lf": "LF11",
+  "ap": "AP2",
+  "title": "Informationssicherheit",
+  "reference": [
+    {
+      "id": "lf11-kern",
+      "chapter": "Security Basis",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Vertraulichkeit Integritaet Verfuegbarkeit bilden das Schutzziel Risiko ergibt sich aus Eintritt und Schaden"
+    },
+    {
+      "id": "lf11-code",
+      "chapter": "Security Basis",
+      "type": "csharp",
+      "title": "Code Beispiel",
+      "code": "using var rng = RandomNumberGenerator.Create();\nvar nonce = new byte[12];\nrng.GetBytes(nonce);"
+    },
+    {
+      "id": "lf11-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Nutze MFA konsequent plane Backup 321 Schema erkenne Phishing und Least Privilege"
+    }
+  ]
+}

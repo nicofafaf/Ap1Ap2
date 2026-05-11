@@ -1,0 +1,42 @@
+{
+  "lf": "LF5",
+  "title": "Architect Awakening SQL Intro",
+  "track_order": ["starwars", "anime"],
+  "steps": [
+    {
+      "id": "select",
+      "title": "SELECT Sehen",
+      "body": "SELECT zeigt welche Spalten du sehen willst",
+      "example": "SELECT name kraft_level FROM anime_charaktere"
+    },
+    {
+      "id": "from",
+      "title": "FROM Woher",
+      "body": "FROM sagt aus welcher Tabelle die Daten kommen",
+      "example": "SELECT name rolle FROM star_wars"
+    },
+    {
+      "id": "where",
+      "title": "WHERE Filter",
+      "body": "WHERE filtert nur die Zeilen die du brauchst",
+      "example": "SELECT name serie FROM anime_charaktere WHERE kraft_level > 8000"
+    }
+  ],
+  "unlock_query": "SELECT * FROM star_wars",
+  "anime_locked": true,
+  "anime_unlock_card": "Zugriff auf Anime Datenbank freigeschaltet",
+  "anime_steps": [
+    {
+      "id": "anime_select",
+      "title": "Anime SELECT",
+      "body": "SELECT zeigt Namen und Kraft aus deiner Welt",
+      "example": "SELECT name kraft_level FROM anime_charaktere"
+    },
+    {
+      "id": "anime_where",
+      "title": "Anime WHERE",
+      "body": "WHERE filtert starke Charaktere fuer schnelle Muster",
+      "example": "SELECT name serie FROM anime_charaktere WHERE kraft_level > 8000"
+    }
+  ]
+}

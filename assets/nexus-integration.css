@@ -1,0 +1,56 @@
+/* Nexus Path — integration layer (loaded after main bundle CSS) */
+
+:root {
+  --cyan: rgba(34, 211, 238, 0.95);
+  --violet: rgba(167, 139, 250, 0.98);
+  --gold: rgba(250, 204, 21, 0.98);
+  --nx-chroma-surface: #030712;
+  --nx-chroma-grid: rgba(34, 211, 238, 0.16);
+  --nx-font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --nx-font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+  --nx-readability-particles: 1;
+}
+
+/* Cinematic input lock: block all nested interactive UI during finisher / loot eruption */
+.nexus-combat-capture.nexus-cine-input-lock {
+  pointer-events: none !important;
+}
+
+.nexus-combat-capture.nexus-cine-input-lock * {
+  pointer-events: none !important;
+}
+
+/* Sicherheits-Extraktion: dezente Rahmen-Pulse während Loot-Eruption */
+.nexus-combat-capture[data-nexus-loot-extraction="1"] {
+  outline: 1px solid color-mix(in srgb, var(--cyan, #22d3ee) 35%, transparent);
+  outline-offset: -1px;
+  animation: nx-loot-extraction-pulse 1.25s ease-in-out infinite;
+}
+
+@keyframes nx-loot-extraction-pulse {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cyan, #22d3ee) 22%, transparent);
+  }
+  50% {
+    box-shadow: inset 0 0 28px color-mix(in srgb, var(--violet, #a78bfa) 18%, transparent);
+  }
+}
+
+/* Technische Kennzahlen: NC, XP, Prozent, Tabellen — übernimmt bestehende Tailwind font-mono Nutzung */
+.font-mono,
+.tabular-nums,
+kbd,
+pre,
+code {
+  font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Explizite Hook für spätere React-Markup-Erweiterungen */
+[data-tech-numeric="true"] {
+  font-family: var(--nx-font-mono) !important;
+  font-variant-numeric: tabular-nums lining-nums;
+}

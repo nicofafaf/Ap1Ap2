@@ -1,0 +1,60 @@
+{
+  "lf": "LF5",
+  "title": "Software zur Verwaltung von Daten anpassen",
+  "ap_relevance": 1,
+  "ap": "AP1",
+  "reference": [
+    {
+      "id": "lf5-kern",
+      "chapter": "SQL Basics",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "SELECT liest Daten WHERE filtert JOIN verbindet GROUP BY aggregiert HAVING filtert Gruppen ORDER BY sortiert"
+    },
+    {
+      "id": "lf5-code-filter",
+      "chapter": "SQL Basics",
+      "type": "sql",
+      "title": "Code Beispiel",
+      "code": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'"
+    },
+    {
+      "id": "lf5-code-join",
+      "chapter": "Joins",
+      "type": "sql",
+      "title": "Code Beispiel",
+      "code": "SELECT k.Name b.Betrag FROM Kunden k INNER JOIN Bestellungen b ON b.KundenID = k.ID"
+    },
+    {
+      "id": "lf5-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Baue SELECT mit Filter nutze JOIN korrekt pruefe Aggregation mit GROUP BY und HAVING"
+    },
+    {
+      "id": "lf5-code-csharp",
+      "chapter": "Anbindung",
+      "type": "csharp",
+      "title": "Code Beispiel",
+      "code": "using var cmd = new SqlCommand(\"SELECT * FROM Kunden WHERE Stadt = @stadt\" conn)\ncmd.Parameters.AddWithValue(\"@stadt\" \"Berlin\")"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "sql_select_basic",
+      "type": "workbench",
+      "task": "Filtere alle Kunden aus der Tabelle Kunden die aus Berlin kommen",
+      "context": "Tabelle Kunden ID Name Stadt Umsatz",
+      "expected_query": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'",
+      "hint": "Nutze die WHERE Klausel für die Filterung"
+    },
+    {
+      "id": "sql_join_order",
+      "type": "mc",
+      "question": "Welcher JOIN Typ gibt alle Datensätze zurück wenn es eine Übereinstimmung in einer der Tabellen gibt",
+      "options": ["INNER JOIN", "LEFT JOIN", "FULL OUTER JOIN", "CROSS JOIN"],
+      "answer": 2
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "lf": "LF12",
+  "ap": "AP2",
+  "title": "Agile Methoden und Projektsteuerung",
+  "reference": [
+    {
+      "id": "lf12-kern",
+      "chapter": "Agil",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Scrum nutzt Rollen Events und Artefakte Sprintziel und Definition of Done sichern Lieferqualitaet"
+    },
+    {
+      "id": "lf12-code",
+      "chapter": "Agil",
+      "type": "sql",
+      "title": "Code Beispiel",
+      "code": "SELECT Sprint StoryPoints Status FROM Backlog WHERE Status IN ('Ready','Done')"
+    },
+    {
+      "id": "lf12-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Plane Sprint realistisch formuliere Akzeptanzkriterien klar bewerte Risiken und Teamkommunikation"
+    }
+  ]
+}

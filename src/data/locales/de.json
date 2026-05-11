@@ -1,0 +1,149 @@
+{
+  "shell": {
+    "loading": "SYNAPSE LÄDT…"
+  },
+  "map": {
+    "technicalPortfolioTitle": "Technical Portfolio",
+    "openDossierAria": "Technical Portfolio öffnen",
+    "tierStable": "STABIL",
+    "tierUnstable": "DRIFT",
+    "tierCritical": "KRITISCH"
+  },
+  "lf": {
+    "LF1": { "boss": "Archivar der Leere", "discipline": "Planung und Steuerung" },
+    "LF2": { "boss": "Glimmer-Schlange", "discipline": "IT-Systeme" },
+    "LF3": { "boss": "Käfig-Wächter", "discipline": "Entwicklung und Bereitstellung" },
+    "LF4": { "boss": "Spiegel-Sylphe", "discipline": "IT-Infrastruktur" },
+    "LF5": { "boss": "Schlacken-Hund", "discipline": "Datenbanken und Datenorganisation" },
+    "LF6": { "boss": "Schatten-Broker", "discipline": "Softwareentwicklung" },
+    "LF7": { "boss": "Lichtfänger-Spinne", "discipline": "Überwachung und Steuerung" },
+    "LF8": { "boss": "Neon-Requiem", "discipline": "Daten und Geschäftsprozesse" },
+    "LF9": { "boss": "Uhrwerk-Inquisitor", "discipline": "Netzwerke und IT-Sicherheit" },
+    "LF10": { "boss": "Obsidian-Schwarm", "discipline": "Schutzbedarfsanalyse" },
+    "LF11": { "boss": "Gravitations-Sirene", "discipline": "Informationssicherheit" },
+    "LF12": { "boss": "Der Letzte Schlüssel", "discipline": "Projektmanagement" }
+  },
+  "learningTerminal": {
+    "phase1": "Phase 1 — Grundlagen",
+    "phase2": "Phase 2 — Adaptiver Modus",
+    "sectorZero": "Sektor Ø · Final Exam",
+    "semanticHardware": "Hardware & Netzwerk",
+    "semanticSecurity": "Sicherheit & Kryptographie",
+    "semanticDatabase": "Datenbanken & Logik",
+    "ariaLearningPath": "Lernpfad",
+    "ariaMc": "Multiple Choice",
+    "sectorZeroMorph": "Sektor Ø · Morph"
+  },
+  "dossier": {
+    "portfolioKicker": "PORTFOLIO · TECH STACK",
+    "title": "Technical Dossier",
+    "subtitle": "Kurzüberblick für Prüfer:innen — welche produktionsnahen Web-Techniken in dieser PWA stecken und wie sie das Lernen und die Nachweise absichern",
+    "examMode": "EXAM-MODE",
+    "close": "SCHLIESSEN",
+    "language": "SPRACHE",
+    "langDe": "DE",
+    "langEn": "EN",
+    "openDeck": "ARCHITEKTUR-DECK",
+    "liveVitals": "LIVE · WEB VITALS",
+    "vitalsFootnote": "Messung im laufenden Nexus-UI — Ziel: schnelle LCP und Interaktion unter typischen Showcase-Schwellen trotz Effekt-Stack",
+    "vitalsLcpHint": "Largest Contentful Paint",
+    "vitalsFidHint": "First Input Delay (Legacy)",
+    "vitalsInpHint": "Interaction → Next Paint",
+    "mentorKicker": "NEURAL MENTOR · LERN-PROGNOSE",
+    "mentorReadiness": "IHK-READINESS (HEURISTIK)",
+    "mentorWeeks": "ZEITFENSTER (WOCHEN)",
+    "mentorFocus": "FOKUS-LFS",
+    "mentorActions": "HANDLUNGSEMPFEHLUNGEN",
+    "verifyKicker": "Nexus Master · Ausbilder-Verify",
+    "verifyButton": "VERIFY SEITE",
+    "cloudTitle": "CLOUD · OPTIONAL BACKUP",
+    "cloudBlurb": "Nur der bereits versiegelte .nxc-String verlässt das Gerät — Offline-First bleibt Standard",
+    "cloudWebhook": "HTTPS-Webhook",
+    "cloudSupabaseUrl": "Supabase URL",
+    "cloudSupabaseKey": "Service Role / anon Key",
+    "cloudTable": "Tabelle",
+    "cloudSendBusy": "SENDE…",
+    "cloudSend": "VERSIEGELTES DOSSIER JETZT SICHERN",
+    "healthKicker": "SYSTEM · HEALTH",
+    "healthBlurb": "Prüft alle 12 Lernfelder (Curriculum + Registry) und einen AES-GCM-Roundtrip — ideal vor Live-Demo",
+    "healthRun": "HEALTH-CHECK AUSFÜHREN",
+    "healthRunning": "PRÜFE…",
+    "healthOk": "ALLE SYSTEME GRÜN",
+    "healthFail": "ABWEICHUNG",
+    "healthLf": "LF",
+    "healthExercises": "Übungen",
+    "healthRegistry": "Registry",
+    "healthAes": "AES-GCM",
+    "pillars": [
+      {
+        "title": "Spaced Repetition · Ebbinghaus",
+        "body": "Übungen wandern in Leitner-Fächern mit wachsenden Intervallen — die geschätzte Retention R(t) steuert die Auswahl, damit schwache Karten häufiger und starke seltener trainiert werden",
+        "pattern": "Strategy",
+        "detail": "Auswahlalgorithmus (Leitner-Gewichte) ist zur Laufzeit austauschbar — verschiedene Review-Strategien ohne UI-Änderung"
+      },
+      {
+        "title": "AES-GCM-256 · Zertifikate",
+        "body": "Das Nexus-Master-Dossier wird clientseitig mit AES-GCM-256 versiegelt — symmetrisch, authentifiziert, ohne Klartext-Persistenz der Prüfungsnachweise",
+        "pattern": "Facade",
+        "detail": "Web Crypto API kapselt Schlüssel-Material und Verschlüsselung — einfache Oberfläche für komplexe kryptografische Schritte"
+      },
+      {
+        "title": "PWA · Service Worker",
+        "body": "Offline-First Shell: statische Assets und Kern-Bundles werden vorab gecacht — die Arena bleibt auch bei instabilem Link nutzbar und synchronisiert bei Rückkehr",
+        "pattern": "Observer / Event-Driven",
+        "detail": "Service-Worker-Lebenszyklus und Cache-Updates reagieren auf Nachrichten und Fetch-Events — lose gekoppelte Updates"
+      },
+      {
+        "title": "Web Audio API",
+        "body": "Boss-Stinger, Impact-Frames und Menü-Ambience laufen über die Web Audio API — prozedurale Einblendungen und dynamische Ducking-Ketten ohne schwere Sample-Libraries",
+        "pattern": "Factory + Command",
+        "detail": "Audio-Nodes werden komponiert; Stinger laufen als kurze Befehlssequenzen auf dem Graph statt monolithischer Player"
+      }
+    ]
+  },
+  "slideshow": {
+    "title": "Architektur-Präsentation",
+    "close": "SCHLIESSEN",
+    "prev": "ZURÜCK",
+    "next": "WEITER",
+    "hint": "Escape oder Schließen — zurück zur Live-App",
+    "slides": [
+      {
+        "kicker": "01 · VISION",
+        "title": "Nexus Path — PWA als Prüfungsarena",
+        "body": "Eine installierbare Progressive Web App verbindet IHK-Stoff, Leitner-Intervalle und einen kampfbasierten Feedback-Loop — Lernen bleibt offline-fähig und nachvollziehbar",
+        "tag": "Core Product"
+      },
+      {
+        "kicker": "02 · PATTERNS",
+        "title": "Observer, Strategy, Facade",
+        "body": "Zustand-Subscriptions und Vitals entkoppeln Messung vom Render. Austauschbare Strategien steuern Audio, Presets und Sync. Versiegelung und Cloud-Umschläge kapseln komplexe Security hinter klaren Oberflächen",
+        "tag": "Architecture"
+      },
+      {
+        "kicker": "03 · SECURITY",
+        "title": "AES-GCM-256 im Browser",
+        "body": "Das Master-Dossier nutzt authentifizierte Verschlüsselung mit zufälligem IV — Manipulation bricht die Entschlüsselung ab, Klartext verlässt den Umschlag nicht unversiegelt",
+        "tag": "Web Crypto"
+      },
+      {
+        "kicker": "04 · PÄDAGOGIK",
+        "title": "Spaced Repetition",
+        "body": "Ebbinghaus-inspirierte Retention und Leitner-Fächer steuern, welche Übung als Nächstes fällig ist — weniger Vergessen, messbarer Fortschritt",
+        "tag": "Psychology"
+      },
+      {
+        "kicker": "05 · QUALITÄT",
+        "title": "CI/CD Quality Gate",
+        "body": "GitHub Actions fahren Vitest und Production-Build bei jedem Push — mathematische und kryptografische Kerne bleiben regressionsfrei",
+        "tag": "DevOps"
+      },
+      {
+        "kicker": "06 · DEMO",
+        "title": "Zurück zur Live-App",
+        "body": "Schließe das Deck und zeige Karte, Terminal und Dossier im laufenden Zustand — Kampf-State bleibt durch Zustand-Persistenz erhalten",
+        "tag": "Handover"
+      }
+    ]
+  }
+}

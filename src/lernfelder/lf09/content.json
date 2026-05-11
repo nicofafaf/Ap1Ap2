@@ -1,0 +1,28 @@
+{
+  "lf": "LF9",
+  "ap": "AP2",
+  "title": "Dienste Protokolle und Schnittstellen",
+  "reference": [
+    {
+      "id": "lf9-kern",
+      "chapter": "Schnittstellen",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "REST nutzt Ressourcen und HTTP Methoden JSON transportiert Daten klar Versionierung stabilisiert Clients"
+    },
+    {
+      "id": "lf9-code",
+      "chapter": "Schnittstellen",
+      "type": "csharp",
+      "title": "Code Beispiel",
+      "code": "app.MapGet(\"/status\", () => Results.Ok(new { service = \"nexus\", health = \"green\" }));"
+    },
+    {
+      "id": "lf9-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Waehle GET POST PUT DELETE richtig pruefe Statuscodes sauber sichere API gegen Missbrauch"
+    }
+  ]
+}

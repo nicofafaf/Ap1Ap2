@@ -1,0 +1,28 @@
+{
+  "lf": "LF7",
+  "ap": "AP2",
+  "title": "Objektorientierte Programmierung",
+  "reference": [
+    {
+      "id": "lf7-kern",
+      "chapter": "OOP Basis",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Klasse definiert Struktur Objekt traegt Zustand Kapselung Vererbung Polymorphie halten Code erweiterbar"
+    },
+    {
+      "id": "lf7-code",
+      "chapter": "OOP Basis",
+      "type": "csharp",
+      "title": "Code Beispiel",
+      "code": "public class Ticket\n{\n  public string Nummer { get; set; } = \"T 100\";\n}"
+    },
+    {
+      "id": "lf7-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Modelliere Klassenbeziehungen sauber setze Sichtbarkeit sinnvoll ein erklaere Interface gegen Implementierung"
+    }
+  ]
+}

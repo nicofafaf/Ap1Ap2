@@ -1,0 +1,28 @@
+{
+  "lf": "LF10",
+  "ap": "AP2",
+  "title": "Benutzeroberflächen und Barrierefreiheit",
+  "reference": [
+    {
+      "id": "lf10-kern",
+      "chapter": "UX Basis",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Kontrast Fokus Reihenfolge und klare Labels senken Fehler Tastaturbedienung bleibt fuer alle Pflicht"
+    },
+    {
+      "id": "lf10-code",
+      "chapter": "UX Basis",
+      "type": "csharp",
+      "title": "Code Beispiel",
+      "code": "var label = \"E Mail\";\nvar required = true;\nvar aria = required ? \"required\" : \"optional\";"
+    },
+    {
+      "id": "lf10-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Pruefe WCAG Kontrast beachte Fokus sichtbar strukturiere Formulare mit klarer Rueckmeldung"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "lf": "LF4",
+  "ap": "AP1",
+  "title": "Hardware und Systemintegration",
+  "reference": [
+    {
+      "id": "lf4-kern",
+      "chapter": "Integration",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Mainboard verbindet CPU RAM und Bus Treiber koppeln Hardware stabil an das Betriebssystem"
+    },
+    {
+      "id": "lf4-code",
+      "chapter": "Integration",
+      "type": "csharp",
+      "title": "Code Beispiel",
+      "code": "var deviceReady = true;\nvar driverVersion = \"2 4\";\nvar result = deviceReady ? \"System stabil\" : \"Treiber pruefen\";"
+    },
+    {
+      "id": "lf4-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Plane Komponenten kompatibel erkenne Flaschenhaelse dokumentiere Einbau und Test nachvollziehbar"
+    }
+  ]
+}

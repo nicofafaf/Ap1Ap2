@@ -1,0 +1,28 @@
+{
+  "lf": "LF2",
+  "ap": "AP1",
+  "title": "IT Grundlagen und Infrastruktur",
+  "reference": [
+    {
+      "id": "lf2-kern",
+      "chapter": "Systeme",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Client Server Modell trennt Anfrage und Dienst IP DNS DHCP bilden die Basis fuer Erreichbarkeit"
+    },
+    {
+      "id": "lf2-code",
+      "chapter": "Systeme",
+      "type": "csharp",
+      "title": "Code Beispiel",
+      "code": "var host = \"filesrv01\";\nvar online = true;\nvar status = online ? $\"{host} bereit\" : $\"{host} offline\";"
+    },
+    {
+      "id": "lf2-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Erklaere IPv4 Aufbau benenne DNS Ablauf sichere Grundkonfiguration von Client und Server"
+    }
+  ]
+}

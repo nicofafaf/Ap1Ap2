@@ -1,0 +1,28 @@
+{
+  "lf": "LF6",
+  "ap": "AP1",
+  "title": "Anwendungsentwicklung und Skripte",
+  "reference": [
+    {
+      "id": "lf6-kern",
+      "chapter": "Flow",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Sequenz Auswahl Schleife steuern jeden Ablauf Funktionen kapseln Logik und machen Tests einfacher"
+    },
+    {
+      "id": "lf6-code",
+      "chapter": "Flow",
+      "type": "csharp",
+      "title": "Code Beispiel",
+      "code": "for (var i = 0; i < 3; i++)\n{\n  Console.WriteLine($\"Run {i}\");\n}"
+    },
+    {
+      "id": "lf6-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Erstelle Pseudocode sauber nutze Bedingungen korrekt erklaere Fehleranalyse mit klaren Schritten"
+    }
+  ]
+}

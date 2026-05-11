@@ -1,0 +1,149 @@
+{
+  "shell": {
+    "loading": "LOADING SYNAPSE…"
+  },
+  "map": {
+    "technicalPortfolioTitle": "Technical Portfolio",
+    "openDossierAria": "Open technical portfolio",
+    "tierStable": "STABLE",
+    "tierUnstable": "DRIFT",
+    "tierCritical": "CRITICAL"
+  },
+  "lf": {
+    "LF1": { "boss": "Archivist of the Void", "discipline": "Planning and control" },
+    "LF2": { "boss": "Glimmer Serpent", "discipline": "IT systems" },
+    "LF3": { "boss": "Cage Warden", "discipline": "Development and deployment" },
+    "LF4": { "boss": "Mirror Sylph", "discipline": "IT infrastructure" },
+    "LF5": { "boss": "Slag Hound", "discipline": "Databases and data" },
+    "LF6": { "boss": "Shadow Broker", "discipline": "Software development" },
+    "LF7": { "boss": "Lightcatcher Spider", "discipline": "Monitoring and operations" },
+    "LF8": { "boss": "Neon Requiem", "discipline": "Data and business processes" },
+    "LF9": { "boss": "Clockwork Inquisitor", "discipline": "Networks and security" },
+    "LF10": { "boss": "Obsidian Swarm", "discipline": "Protection requirements" },
+    "LF11": { "boss": "Gravity Siren", "discipline": "Information security" },
+    "LF12": { "boss": "The Final Key", "discipline": "Project management" }
+  },
+  "learningTerminal": {
+    "phase1": "Phase 1 — Foundations",
+    "phase2": "Phase 2 — Adaptive mode",
+    "sectorZero": "Sector Ø · Final exam",
+    "semanticHardware": "Hardware & networking",
+    "semanticSecurity": "Security & cryptography",
+    "semanticDatabase": "Databases & logic",
+    "ariaLearningPath": "Learning path",
+    "ariaMc": "Multiple choice",
+    "sectorZeroMorph": "Sector Ø · Morph"
+  },
+  "dossier": {
+    "portfolioKicker": "PORTFOLIO · TECH STACK",
+    "title": "Technical dossier",
+    "subtitle": "Examiner-facing overview — production web techniques in this PWA and how learning and evidence stay protected",
+    "examMode": "EXAM MODE",
+    "close": "CLOSE",
+    "language": "LANGUAGE",
+    "langDe": "DE",
+    "langEn": "EN",
+    "openDeck": "ARCHITECTURE DECK",
+    "liveVitals": "LIVE · WEB VITALS",
+    "vitalsFootnote": "Measured in the live Nexus UI — target responsive LCP and interaction under showcase load despite the effect stack",
+    "vitalsLcpHint": "Largest Contentful Paint",
+    "vitalsFidHint": "First Input Delay (legacy)",
+    "vitalsInpHint": "Interaction to Next Paint",
+    "mentorKicker": "NEURAL MENTOR · LEARNING FORECAST",
+    "mentorReadiness": "EXAM READINESS (HEURISTIC)",
+    "mentorWeeks": "TIME WINDOW (WEEKS)",
+    "mentorFocus": "FOCUS LFs",
+    "mentorActions": "RECOMMENDED ACTIONS",
+    "verifyKicker": "Nexus Master · Instructor verify",
+    "verifyButton": "OPEN VERIFY PAGE",
+    "cloudTitle": "CLOUD · OPTIONAL BACKUP",
+    "cloudBlurb": "Only the sealed .nxc payload may leave the device — offline-first remains the default",
+    "cloudWebhook": "HTTPS webhook",
+    "cloudSupabaseUrl": "Supabase URL",
+    "cloudSupabaseKey": "Service role / anon key",
+    "cloudTable": "Table",
+    "cloudSendBusy": "SENDING…",
+    "cloudSend": "BACK UP SEALED DOSSIER",
+    "healthKicker": "SYSTEM · HEALTH",
+    "healthBlurb": "Validates all 12 learning fields (curriculum + registry) plus an AES-GCM roundtrip — ideal before a live demo",
+    "healthRun": "RUN HEALTH CHECK",
+    "healthRunning": "CHECKING…",
+    "healthOk": "ALL SYSTEMS GREEN",
+    "healthFail": "ISSUE DETECTED",
+    "healthLf": "LF",
+    "healthExercises": "Exercises",
+    "healthRegistry": "Registry",
+    "healthAes": "AES-GCM",
+    "pillars": [
+      {
+        "title": "Spaced repetition · Ebbinghaus",
+        "body": "Exercises move through Leitner boxes with growing intervals — estimated retention R(t) drives selection so weak cards appear more often and strong cards less",
+        "pattern": "Strategy",
+        "detail": "The picker (Leitner weights) is swappable at runtime — different review strategies without UI churn"
+      },
+      {
+        "title": "AES-GCM-256 · Certificates",
+        "body": "The Nexus master dossier is sealed client-side with AES-GCM-256 — authenticated symmetric crypto without persisting exam evidence in plaintext",
+        "pattern": "Facade",
+        "detail": "Web Crypto wraps key material and encryption behind a small surface area"
+      },
+      {
+        "title": "PWA · Service worker",
+        "body": "Offline-first shell: static assets and core bundles are precached — the arena stays usable on flaky links and resyncs on reconnect",
+        "pattern": "Observer / event-driven",
+        "detail": "Service worker lifecycle reacts to messages and fetch events — loosely coupled updates"
+      },
+      {
+        "title": "Web Audio API",
+        "body": "Boss stingers, impact frames and menu ambience use the Web Audio API — procedural layers and ducking without heavy sample stacks",
+        "pattern": "Factory + command",
+        "detail": "Nodes compose a graph; stingers are short command sequences rather than monolithic players"
+      }
+    ]
+  },
+  "slideshow": {
+    "title": "Architecture presentation",
+    "close": "CLOSE",
+    "prev": "BACK",
+    "next": "NEXT",
+    "hint": "Escape or close — return to the live app",
+    "slides": [
+      {
+        "kicker": "01 · VISION",
+        "title": "Nexus Path — PWA as exam arena",
+        "body": "An installable progressive web app combines vocational curriculum, Leitner scheduling and a combat feedback loop — learning stays offline-capable and auditable",
+        "tag": "Core product"
+      },
+      {
+        "kicker": "02 · PATTERNS",
+        "title": "Observer, strategy, facade",
+        "body": "Store subscriptions and vitals decouple measurement from render. Swappable strategies drive audio, presets and sync. Sealing and cloud adapters hide cryptographic complexity",
+        "tag": "Architecture"
+      },
+      {
+        "kicker": "03 · SECURITY",
+        "title": "AES-GCM-256 in the browser",
+        "body": "The master dossier uses authenticated encryption with a random IV — tampering fails decryption; plaintext never leaves the envelope unsealed",
+        "tag": "Web crypto"
+      },
+      {
+        "kicker": "04 · PEDAGOGY",
+        "title": "Spaced repetition",
+        "body": "Ebbinghaus-style retention and Leitner boxes decide which exercise is due next — less forgetting, measurable progress",
+        "tag": "Psychology"
+      },
+      {
+        "kicker": "05 · QUALITY",
+        "title": "CI/CD quality gate",
+        "body": "GitHub Actions runs Vitest and a production build on every push — mathematical and crypto cores stay regression-safe",
+        "tag": "DevOps"
+      },
+      {
+        "kicker": "06 · DEMO",
+        "title": "Back to the live app",
+        "body": "Close the deck and show map, terminal and dossier in motion — combat state persists via the global store",
+        "tag": "Handover"
+      }
+    ]
+  }
+}

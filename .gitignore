@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment (secrets)
+.env
+.env.local
+.env.*.local
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE (optional — remove if you want to commit workspace settings)
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Vite / caches
+*.local
+
+# ---------------------------------------------------------------------------
+# Nexus Medien: Ordner `assets/` enthält Boss-Videos, Audio, Fractal-MP4 usw.
+# NICHT in .gitignore aufnehmen — sonst liefert Netlify leere /assets/ (404).
+# ---------------------------------------------------------------------------
+
+public/assets/
+
+# large media
+assets/*.mp4
+public/assets/
+dist/
+*.map

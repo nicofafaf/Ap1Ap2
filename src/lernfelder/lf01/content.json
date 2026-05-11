@@ -1,0 +1,28 @@
+{
+  "lf": "LF1",
+  "ap": "AP1",
+  "title": "Wirtschaft und Recht",
+  "reference": [
+    {
+      "id": "lf1-kern",
+      "chapter": "Grundlagen",
+      "type": "note",
+      "title": "Kern Konzept",
+      "body": "Betrieb Bedarf Beschaffung Verkauf bilden den Wertstrom Wirtschaftliche Entscheidungen folgen Recht und Vertrag"
+    },
+    {
+      "id": "lf1-code",
+      "chapter": "Grundlagen",
+      "type": "sql",
+      "title": "Code Beispiel",
+      "code": "SELECT Artikel Nummer Menge Preis FROM Einkauf WHERE Menge > 10"
+    },
+    {
+      "id": "lf1-check",
+      "chapter": "Pruefung",
+      "type": "note",
+      "title": "Pruefungs Check",
+      "body": "Nenne Kaufvertrag Pflichten rechne Rabatt und Skonto korrekt erkläre Eigentum und Besitz klar"
+    }
+  ]
+}

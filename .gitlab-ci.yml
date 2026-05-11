@@ -9,8 +9,6 @@ stages:
 variables:
   # Kein NODE_ENV=production vor "npm ci" — sonst fehlen devDependencies (vite → "vite: not found")
   NODE_OPTIONS: "--max-old-space-size=4096"
-  # Riesige Sound-Bibliothek unter ./assets killt CI (Zeit/Speicher) — App baut trotzdem; Medien ggf. separat hosten
-  GITLAB_PAGES_SKIP_MEDIA: "1"
 
 cache:
   key: "v3-${CI_COMMIT_REF_SLUG}"

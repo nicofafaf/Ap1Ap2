@@ -1,5 +1,5 @@
 import { cpSync, existsSync, mkdirSync, realpathSync, statSync, writeFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig, loadEnv, type Plugin } from "vite";
 import type { OutputChunk } from "rollup";
@@ -41,8 +41,19 @@ function nexusPrecacheManifestPlugin(): Plugin {
     name: "nexus-precache-manifest",
     buildStart() {
       const urls = collectNexusPrecacheUrls();
+      const publicRoot = resolve(__dirname, "public");
+      const filtered = urls.filter((path) => {
+        if (typeof path !== "string" || !path.startsWith("/")) return false;
+        const rel = path.slice(1);
+        return existsSync(join(publicRoot, rel));
+      });
+      if (filtered.length < urls.length) {
+        console.warn(
+          `[nexus-precache-manifest] ${urls.length - filtered.length}/${urls.length} URLs nicht unter public/ — werden nicht precached (keine 404-Flut im SW)`
+        );
+      }
       mkdirSync(resolve(__dirname, "public"), { recursive: true });
-      writeFileSync(out, `${JSON.stringify(urls, null, 0)}\n`, "utf8");
+      writeFileSync(out, `${JSON.stringify(filtered, null, 0)}\n`, "utf8");
     },
   };
 }

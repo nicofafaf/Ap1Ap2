@@ -132,10 +132,10 @@ export function SectorNode({
         x: offsetX,
         y: offsetY,
         z: parallaxZ,
-        marginLeft: -66,
-        marginTop: -58,
-        width: 132,
-        height: 116,
+        marginLeft: -90,
+        marginTop: -76,
+        width: 180,
+        height: 152,
         transformStyle: "preserve-3d",
         touchAction: "none",
         ["--sector-prestige" as string]: prestigeColor,
@@ -281,8 +281,8 @@ export function SectorNode({
         >
           <div
             style={{
-              fontSize: 9,
-              letterSpacing: ".08em",
+              fontSize: 20,
+              letterSpacing: ".04em",
               color: "var(--nx-learn-muted)",
             }}
           >
@@ -291,12 +291,12 @@ export function SectorNode({
           <div
             style={{
               marginTop: 4,
-              fontSize: 16,
+              fontSize: 22,
               fontWeight: 850,
               letterSpacing: "-0.03em",
               color: "var(--nx-learn-ink)",
               lineHeight: 1.2,
-              maxHeight: 32,
+              maxHeight: 54,
               overflow: "hidden",
             }}
           >
@@ -305,7 +305,7 @@ export function SectorNode({
           <div
             style={{
               marginTop: 6,
-              fontSize: 10,
+              fontSize: 20,
               letterSpacing: ".04em",
               color:
                 tier === "critical"
@@ -321,8 +321,8 @@ export function SectorNode({
             <div
               style={{
                 marginTop: 5,
-                fontSize: 7,
-                letterSpacing: ".2em",
+                fontSize: 20,
+                letterSpacing: ".08em",
                 color: dailyRankedSlotOpen ? DAILY_PURPLE_NEON : "rgba(248, 113, 113, 0.92)",
               }}
             >

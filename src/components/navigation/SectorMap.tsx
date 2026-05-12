@@ -12,7 +12,6 @@ import { useGameStore } from "../../store/useGameStore";
 import type { GlobalCollectionEntry } from "../../store/useGameStore";
 import {
   computeAllSectorStabilities,
-  isSectorReachable,
   lastReportForLf,
   sectorCorruptionRate,
   stabilityTier,
@@ -246,7 +245,6 @@ export function SectorMap({
   const regenerateSectorAnomalies = useGameStore((s) => s.regenerateSectorAnomalies);
   const dailyRankedClearDateUtc = useGameStore((s) => s.dailyRankedClearDateUtc);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
-  const campaign = useGameStore((s) => s.campaign);
   const nexusMasterCertificateSealed = useGameStore((s) => s.nexusMasterCertificateSealed);
 
   const [utcTick, setUtcTick] = useState(0);
@@ -970,12 +968,7 @@ export function SectorMap({
               const lfKey = `LF${lf}` as LearningField;
               const stab = stabilities[lf] ?? 0;
               const tier = stabilityTier(stab);
-              const unlocked = isSectorReachable(
-                lf,
-                history,
-                stabilities,
-                campaign.masteryChecks as Partial<Record<`LF${number}`, boolean>>
-              );
+              const unlocked = true;
               const last = lastReportForLf(history, lf);
               const isDaily = lf === dailyDef.targetLf;
               const displayAnomaly = dailyDef.anomalies[lf] ?? sectorAnomalies[lf] ?? null;

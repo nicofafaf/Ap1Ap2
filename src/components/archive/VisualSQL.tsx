@@ -101,7 +101,7 @@ export function VisualSQL({ title }: VisualSqlProps) {
           cursor: "pointer",
         }}
       >
-        Schluessel Verbindung aktivieren
+        Schlüssel Verbindung aktivieren
       </button>
     </section>
   );

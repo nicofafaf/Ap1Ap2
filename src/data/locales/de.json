@@ -1,6 +1,6 @@
 {
   "shell": {
-    "loading": "SYNAPSE LÄDT…"
+    "loading": "Lernraum lädt…"
   },
   "map": {
     "technicalPortfolioTitle": "Technical Portfolio",
@@ -10,23 +10,23 @@
     "tierCritical": "KRITISCH"
   },
   "lf": {
-    "LF1": { "boss": "Archivar der Leere", "discipline": "Planung und Steuerung" },
-    "LF2": { "boss": "Glimmer-Schlange", "discipline": "IT-Systeme" },
-    "LF3": { "boss": "Käfig-Wächter", "discipline": "Entwicklung und Bereitstellung" },
-    "LF4": { "boss": "Spiegel-Sylphe", "discipline": "IT-Infrastruktur" },
-    "LF5": { "boss": "Schlacken-Hund", "discipline": "Datenbanken und Datenorganisation" },
-    "LF6": { "boss": "Schatten-Broker", "discipline": "Softwareentwicklung" },
-    "LF7": { "boss": "Lichtfänger-Spinne", "discipline": "Überwachung und Steuerung" },
-    "LF8": { "boss": "Neon-Requiem", "discipline": "Daten und Geschäftsprozesse" },
-    "LF9": { "boss": "Uhrwerk-Inquisitor", "discipline": "Netzwerke und IT-Sicherheit" },
-    "LF10": { "boss": "Obsidian-Schwarm", "discipline": "Schutzbedarfsanalyse" },
-    "LF11": { "boss": "Gravitations-Sirene", "discipline": "Informationssicherheit" },
-    "LF12": { "boss": "Der Letzte Schlüssel", "discipline": "Projektmanagement" }
+    "LF1": { "boss": "Lernfeld 1", "discipline": "Planung und Steuerung" },
+    "LF2": { "boss": "Lernfeld 2", "discipline": "IT-Systeme" },
+    "LF3": { "boss": "Lernfeld 3", "discipline": "Entwicklung und Bereitstellung" },
+    "LF4": { "boss": "Lernfeld 4", "discipline": "IT-Infrastruktur" },
+    "LF5": { "boss": "Lernfeld 5", "discipline": "Datenbanken und Datenorganisation" },
+    "LF6": { "boss": "Lernfeld 6", "discipline": "Softwareentwicklung" },
+    "LF7": { "boss": "Lernfeld 7", "discipline": "Überwachung und Steuerung" },
+    "LF8": { "boss": "Lernfeld 8", "discipline": "Daten und Geschäftsprozesse" },
+    "LF9": { "boss": "Lernfeld 9", "discipline": "Netzwerke und IT-Sicherheit" },
+    "LF10": { "boss": "Lernfeld 10", "discipline": "Schutzbedarfsanalyse" },
+    "LF11": { "boss": "Lernfeld 11", "discipline": "Informationssicherheit" },
+    "LF12": { "boss": "Lernfeld 12", "discipline": "Projektmanagement" }
   },
   "learningTerminal": {
-    "phase1": "Phase 1 — Grundlagen",
-    "phase2": "Phase 2 — Adaptiver Modus",
-    "sectorZero": "Sektor Ø · Final Exam",
+    "phase1": "Phase 1 Grundlagen",
+    "phase2": "Phase 2 Adaptiver Modus",
+    "sectorZero": "Finale Prüfung",
     "semanticHardware": "Hardware & Netzwerk",
     "semanticSecurity": "Sicherheit & Kryptographie",
     "semanticDatabase": "Datenbanken & Logik",

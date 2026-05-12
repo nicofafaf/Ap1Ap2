@@ -32,32 +32,35 @@ export function InteractiveMissionInput({ expected, onSuccess }: InteractiveMiss
   }, [expected]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <textarea
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
           if (state !== "idle") setState("idle");
         }}
-        rows={5}
+        rows={2}
         spellCheck={false}
         aria-label="Zahlenantwort zur Aufgabe"
-        placeholder="Antwort hier eintragen"
+        placeholder="z B 26,9"
         style={{
           width: "100%",
-          minHeight: 100,
-          borderRadius: 8,
-          border: "1px solid rgba(232,233,240,0.28)",
+          minHeight: 72,
+          borderRadius: 18,
+          border: "1px solid var(--nx-learn-line)",
           outline: "none",
-          boxShadow: "inset 0 0 0 1px rgba(34,211,238,0.12)",
-          background: "rgba(10,12,18,0.98)",
-          color: "var(--nx-bone-90)",
-          fontFamily: "var(--nx-font-mono, Geist Mono, monospace)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.65)",
+          background: "rgba(255,255,255,0.74)",
+          color: "var(--nx-learn-ink)",
+          fontFamily: typography.fontSans,
+          fontSize: "clamp(22px, 3vw, 28px)",
+          fontWeight: 700,
+          lineHeight: 1.35,
           padding: "var(--nx-space-16)",
           resize: "vertical",
         }}
       />
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
         <button
           type="button"
           onClick={() => {
@@ -70,28 +73,27 @@ export function InteractiveMissionInput({ expected, onSuccess }: InteractiveMiss
             if (ok) onSuccess();
           }}
           style={{
-            borderRadius: 8,
-            border: "1px solid rgba(34,211,238,0.45)",
-            background: "rgba(34,211,238,0.12)",
-            color: "var(--nx-bone-90)",
+            borderRadius: 999,
+            border: "1px solid rgba(22,32,25,0.14)",
+            background: "linear-gradient(135deg, #18251c 0%, #314832 100%)",
+            color: "rgba(251,247,239,0.98)",
             fontFamily: typography.fontSans,
-            fontWeight: 600,
-            fontSize: "max(13px,0.8rem)",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            minHeight: 44,
-            padding: "12px 18px",
+            fontWeight: 800,
+            fontSize: "18px",
+            letterSpacing: "0.01em",
+            minHeight: 52,
+            padding: "14px 24px",
             cursor: "pointer",
           }}
         >
-          Mission prüfen
+          Antwort prüfen
         </button>
-        <span style={{ color: "var(--nx-bone-50)", fontFamily: typography.fontSans, fontSize: "max(12px,0.75rem)" }}>
+        <span style={{ color: "var(--nx-learn-muted)", fontFamily: typography.fontSans, fontSize: "16px", lineHeight: 1.4 }}>
           {state === "ok"
-            ? "Mission erfüllt"
+            ? "Richtig"
             : state === "retry"
-              ? "Mission noch offen"
-              : "Eingabe im Feld oben"}
+              ? "Noch nicht, prüfe den Tipp"
+              : "Trage nur die Zahl ein"}
         </span>
       </div>
     </div>

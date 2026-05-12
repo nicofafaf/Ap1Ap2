@@ -32,7 +32,7 @@ function InitializationFallback() {
         width: "100%",
         height: "100dvh",
         minHeight: "100dvh",
-        background: "var(--nx-vantablack, #050507)",
+        background: "var(--nx-vantablack, #080c0a)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -48,8 +48,8 @@ function InitializationFallback() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage:
-            "repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(34,211,238,0.04) 48px, rgba(34,211,238,0.04) 49px)",
+          background:
+            "radial-gradient(ellipse 70% 45% at 50% 30%, rgba(214,181,111,0.1), transparent 62%)",
           pointerEvents: "none",
         }}
       />
@@ -63,10 +63,9 @@ function InitializationFallback() {
         style={{
           position: "relative",
           zIndex: 1,
-          color: "rgba(247,244,236,0.38)",
-          fontFamily: "var(--nx-font-mono, ui-monospace, monospace)",
-          fontSize: 11,
-          textTransform: "uppercase",
+          color: "rgba(251,247,239,0.58)",
+          fontFamily: "var(--nx-font-sans, system-ui)",
+          fontSize: 16,
         }}
       >
         {t("shell.loading")}
@@ -83,7 +82,7 @@ function CombatSurfaceFallback({ label }: { label: ReactNode }) {
         width: "100%",
         height: "100%",
         minHeight: "100dvh",
-        background: "var(--nx-vantablack, #050507)",
+        background: "var(--nx-vantablack, #080c0a)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -106,7 +105,7 @@ function CombatSurfaceFallback({ label }: { label: ReactNode }) {
           left: "-10%",
           top: "-10%",
           background:
-            "radial-gradient(ellipse 50% 42% at 50% 50%, rgba(34,211,238,0.07), transparent 72%)",
+            "radial-gradient(ellipse 50% 42% at 50% 50%, rgba(214,181,111,0.1), transparent 72%)",
           pointerEvents: "none",
         }}
       />
@@ -117,11 +116,10 @@ function CombatSurfaceFallback({ label }: { label: ReactNode }) {
         style={{
           position: "relative",
           zIndex: 1,
-          color: "rgba(232,233,240,0.26)",
-          fontFamily: "var(--nx-font-mono, ui-monospace, monospace)",
-          fontSize: 10,
-          letterSpacing: "0.32em",
-          textTransform: "uppercase",
+          color: "rgba(251,247,239,0.48)",
+          fontFamily: "var(--nx-font-sans, system-ui)",
+          fontSize: 16,
+          letterSpacing: "0.01em",
         }}
       >
         {label}

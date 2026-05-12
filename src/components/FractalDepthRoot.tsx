@@ -381,13 +381,13 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
   }, [gameState]);
 
   const { br, ct } = useMemo(() => {
-    const baseB = combatHot ? 0.52 : 0.46;
-    const baseC = combatHot ? 1.18 : 1.1;
+    const baseB = combatHot ? 0.28 : 0.24;
+    const baseC = combatHot ? 0.98 : 0.92;
     if (damageBurst) {
-      const hitB = 1.5 + burstIntensity * 3;
+      const hitB = 0.48 + burstIntensity * 0.36;
       return {
-        br: Math.min(4.5, Math.max(1.35, hitB)),
-        ct: Math.min(1.42, Math.max(1.18, 1.22 + burstIntensity * 0.18)),
+        br: Math.min(0.84, Math.max(0.42, hitB)),
+        ct: Math.min(1.08, Math.max(0.94, 0.98 + burstIntensity * 0.08)),
       };
     }
     return { br: baseB, ct: baseC };
@@ -399,10 +399,10 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
     root.style.setProperty("--nx-bg-contrast", String(ct));
   }, [br, ct]);
 
-  const litBrightness = Math.min(8, Math.max(0.08, br * energyMul));
+  const litBrightness = Math.min(1.2, Math.max(0.08, br * energyMul));
   const blurPx = fractalCollapse ? COLLAPSE_BLUR_PX : 0;
   const bgFilterTransitionMs = fractalCollapse ? 520 : energyReleaseMs;
-  const voidAtmosphereFilter = `saturate(0.2) sepia(0.14) hue-rotate(-8deg)`;
+  const voidAtmosphereFilter = `saturate(0.34) sepia(0.12) hue-rotate(-12deg)`;
 
   const shakeX = Math.min(26, Math.max(2, burstLastDamage * 0.2 + burstIntensity * 10));
   const shakeY = shakeX * 0.72;

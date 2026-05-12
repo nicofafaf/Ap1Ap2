@@ -8,7 +8,7 @@
       "chapter": "OOP Basis",
       "type": "note",
       "title": "Kern Konzept",
-      "body": "Klasse definiert Struktur Objekt traegt Zustand Kapselung Vererbung Polymorphie halten Code erweiterbar"
+      "body": "Klasse definiert Struktur Objekt trägt Zustand Kapselung Vererbung Polymorphie halten Code erweiterbar"
     },
     {
       "id": "lf7-code",
@@ -19,10 +19,10 @@
     },
     {
       "id": "lf7-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
-      "body": "Modelliere Klassenbeziehungen sauber setze Sichtbarkeit sinnvoll ein erklaere Interface gegen Implementierung"
+      "title": "Prüfungs Check",
+      "body": "Modelliere Klassenbeziehungen sauber setze Sichtbarkeit sinnvoll ein erkläre Interface gegen Implementierung"
     }
   ]
 }

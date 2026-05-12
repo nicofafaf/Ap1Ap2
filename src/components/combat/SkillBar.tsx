@@ -63,10 +63,10 @@ export function SkillBar() {
       style={{
         position: "absolute",
         left: "50%",
-        bottom: "26px",
+        bottom: "22px",
         transform: "translateX(-50%)",
         zIndex: 46,
-        width: "min(1080px, calc(100vw - 40px))",
+        width: "min(980px, calc(100vw - 40px))",
         pointerEvents: "none",
       }}
     >
@@ -74,44 +74,29 @@ export function SkillBar() {
         layout
         style={{
           margin: "0 auto",
-          borderRadius: "16px",
-          padding: "12px 14px 14px",
+          borderRadius: "28px",
+          padding: "12px 16px",
           background: hcHud
-            ? "linear-gradient(180deg, rgba(22,4,6,0.52) 0%, rgba(12,3,4,0.72) 100%)"
-            : "linear-gradient(180deg, rgba(2,14,22,0.44) 0%, rgba(2,12,18,0.66) 100%)",
+            ? "rgba(76, 32, 28, 0.55)"
+            : "rgba(251,247,239,0.14)",
           border: hcHud
             ? "1px solid rgba(255, 55, 48, 0.42)"
-            : "1px solid rgba(34, 211, 238, 0.26)",
-          backdropFilter: "blur(10px)",
+            : "1px solid rgba(251,247,239,0.16)",
+          backdropFilter: "blur(16px)",
           boxShadow: hcHud
             ? "0 0 28px rgba(255,55,48,0.22)"
-            : "0 0 26px rgba(0,255,255,0.14)",
+            : "0 24px 70px rgba(0,0,0,0.22)",
           overflow: "hidden",
           pointerEvents: "auto",
         }}
       >
-        <motion.div
-          aria-hidden="true"
-          animate={{ x: ["-40%", "140%"] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
-          style={{
-            position: "absolute",
-            inset: "0 auto 0 -30%",
-            width: "30%",
-            background:
-              "linear-gradient(90deg, rgba(0,255,255,0) 0%, rgba(0,255,255,0.15) 50%, rgba(0,255,255,0) 100%)",
-            mixBlendMode: "screen",
-            pointerEvents: "none",
-          }}
-        />
-
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "flex-end",
-            gap: "12px",
-            minHeight: "190px",
+            gap: "14px",
+            minHeight: "154px",
           }}
         >
           <AnimatePresence initial={false}>

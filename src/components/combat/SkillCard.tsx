@@ -40,14 +40,7 @@ type SkillCardProps = {
 
 const CODE_CHARSET = "01∑∏Ω<>[]{}%#@$&^*+=XABΓΔΛΣΨΩ▄▀▐▌░▒▓";
 
-const DATA_SHARD_CLIP =
-  "polygon(5% 0%, 100% 0%, 100% 92%, 93% 100%, 0% 100%, 0% 11%)";
-
-/** Scan-Fadenkreuz, Hotspot zentriert — Fallback crosshair */
-const SCAN_CURSOR =
-  `url("data:image/svg+xml,${encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g fill="none" stroke="#67e8f9" stroke-width="1.15"><path d="M14 4v20M4 14h20"/><circle cx="14" cy="14" r="5"/></g></svg>'
-  )}") 14 14, crosshair`;
+const DATA_SHARD_CLIP = "inset(0 round 24px)";
 
 function randomCipherLine(length: number): string {
   let s = "";
@@ -71,7 +64,6 @@ export function SkillCard({
   const reduceMotion = useReducedMotion();
   const beat = useFractalBeat();
   const playSkillCard = useGameStore((state) => state.playSkillCard);
-  const setSourceMirrorSkill = useGameStore((state) => state.setSourceMirrorSkill);
   const isDataEncrypted = useGameStore((state) => state.isDataEncrypted);
   const gameState = useGameStore((state) => state.gameState);
   const victoryFinisherComplete = useGameStore((state) => state.victoryFinisherComplete);
@@ -88,10 +80,6 @@ export function SkillCard({
     !isLootErupting &&
     !interactionDisabled;
   const inspectGlowActive = inspectIdentifyUi;
-  const sourceMirrorEligible =
-    (gameState === "FIGHTING" || gameState === "STARTING") &&
-    !interactionDisabled &&
-    !inspectIdentifyUi;
   const tierStyle = RARITY_LEVELS[lootRarity];
   const draggedFarRef = useRef(false);
   const decryptTimerRef = useRef<number | null>(null);
@@ -352,24 +340,24 @@ export function SkillCard({
             }
       }
       style={{
-        width: compact ? 198 : 240,
-        minHeight: compact ? 148 : 168,
-        borderRadius: 0,
+        width: compact ? 174 : 232,
+        minHeight: compact ? 136 : 168,
+        borderRadius: 24,
         clipPath: DATA_SHARD_CLIP,
-        border: `1px solid color-mix(in srgb, ${tierStyle.color} 55%, rgba(186,230,253,0.35))`,
+        border: "1px solid rgba(251,247,239,0.2)",
         background:
-          "linear-gradient(160deg, rgba(7,19,30,0.88) 0%, rgba(4,14,22,0.78) 56%, rgba(10,28,39,0.92) 100%)",
-        backdropFilter: "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%)",
-        boxShadow: `inset 0 0 ${12 + beat * 26}px rgba(34,211,238,${0.14 + beat * 0.26}), inset 0 0 0 1px rgba(255,255,255,0.06), 0 0 28px rgba(0,255,255,0.14), ${tierStyle.glow} ${tierStyle.color}`,
-        color: "rgba(207, 250, 254, 0.96)",
+          "linear-gradient(160deg, rgba(251,247,239,0.9) 0%, rgba(238,229,213,0.82) 100%)",
+        backdropFilter: "blur(18px) saturate(105%)",
+        WebkitBackdropFilter: "blur(18px) saturate(105%)",
+        boxShadow: `0 ${18 + beat * 4}px ${46 + beat * 8}px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 1px rgba(214,181,111,0.08)`,
+        color: "var(--nx-learn-ink)",
         textAlign: "left",
         padding: compact ? 12 : 14,
         cursor:
           cinematicInputLocked || interactionDisabled
             ? "default"
             : inspectIdentifyUi && hoverInspect
-              ? SCAN_CURSOR
+              ? "pointer"
               : "grab",
         position: "relative",
         overflow: "hidden",
@@ -398,60 +386,20 @@ export function SkillCard({
       />
       <motion.div
         aria-hidden="true"
-        animate={
-          reduceMotion ? { opacity: 0.42 } : { opacity: [0.25, 0.58, 0.25] }
-        }
-        transition={
-          reduceMotion
-            ? NX_UI_INSTANT
-            : { duration: 1.5, repeat: Infinity, ease: "easeInOut" as const }
-        }
+        animate={{ opacity: 0.18 }}
+        transition={NX_UI_INSTANT}
         style={{
           position: "absolute",
           inset: "-20% 0 auto -10%",
           height: 70,
           background:
-            "linear-gradient(100deg, rgba(0,255,255,0) 0%, rgba(0,255,255,0.24) 45%, rgba(0,255,255,0) 100%)",
+            "linear-gradient(100deg, rgba(214,181,111,0) 0%, rgba(214,181,111,0.18) 45%, rgba(214,181,111,0) 100%)",
           transform: "rotate(-7deg)",
-          mixBlendMode: "screen",
+          mixBlendMode: "multiply",
           pointerEvents: "none",
           zIndex: 1,
         }}
       />
-
-      {sourceMirrorEligible ? (
-        <button
-          type="button"
-          aria-label="Source Mirror — Kartenlogik"
-          onPointerDown={(e) => e.stopPropagation()}
-          onClick={(e) => {
-            e.stopPropagation();
-            setSourceMirrorSkill(skill.id);
-          }}
-          style={{
-            position: "absolute",
-            top: 8,
-            left: 8,
-            zIndex: 6,
-            width: 30,
-            height: 30,
-            borderRadius: 8,
-            border: "1px solid rgba(103,232,249,0.45)",
-            background: "rgba(4,18,28,0.88)",
-            color: "rgba(165, 243, 252, 0.95)",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 15,
-            lineHeight: 1,
-            padding: 0,
-            boxShadow: "0 0 12px rgba(0,255,255,0.2)",
-          }}
-        >
-          ⚙
-        </button>
-      ) : null}
 
       {inspectIdentifyUi ? (
         <motion.div
@@ -474,18 +422,18 @@ export function SkillCard({
             zIndex: 4,
             padding: "3px 7px",
             borderRadius: 6,
-            border: "1px solid rgba(103,232,249,0.65)",
-            background: "rgba(4,18,28,0.82)",
+            border: "1px solid rgba(22,32,25,0.12)",
+            background: "rgba(251,247,239,0.82)",
             fontSize: 8,
             letterSpacing: ".2em",
             fontWeight: 700,
-            color: "rgba(165, 243, 252, 0.98)",
+            color: "var(--nx-learn-muted)",
             textTransform: "uppercase",
             boxShadow: "0 0 14px rgba(0,255,255,0.35)",
             pointerEvents: "none",
           }}
         >
-          IDENTIFY
+          ansehen
         </motion.div>
       ) : null}
 
@@ -499,12 +447,12 @@ export function SkillCard({
             zIndex: 4,
             padding: "3px 8px",
             borderRadius: 6,
-            border: "1px solid rgba(167,139,250,0.55)",
-            background: "rgba(15,23,42,0.88)",
+            border: "1px solid rgba(214,181,111,0.32)",
+            background: "rgba(251,247,239,0.86)",
             fontSize: 10,
             fontWeight: 800,
             letterSpacing: ".12em",
-            color: dataTurbulenceBlocked ? "rgba(248,113,113,0.95)" : "rgba(216,180,254,0.98)",
+            color: dataTurbulenceBlocked ? "rgba(150,56,48,0.95)" : "var(--nx-learn-muted)",
             pointerEvents: "none",
           }}
         >
@@ -534,18 +482,18 @@ export function SkillCard({
             zIndex: 4,
             padding: "3px 8px",
             borderRadius: 6,
-            border: "1px solid rgba(0,255,255,0.65)",
-            background: "rgba(4,24,32,0.88)",
+            border: "1px solid rgba(214,181,111,0.38)",
+            background: "rgba(251,247,239,0.9)",
             fontSize: 8,
             fontWeight: 800,
             letterSpacing: ".28em",
-            color: "rgba(0,255,255,0.95)",
+            color: "var(--nx-learn-muted)",
             pointerEvents: "none",
             textTransform: "uppercase",
             boxShadow: "0 0 16px rgba(0,255,255,0.35)",
           }}
         >
-          Halten
+          halten
         </motion.div>
       ) : null}
 
@@ -561,18 +509,18 @@ export function SkillCard({
         <div
           style={{
             fontSize: 10,
-            letterSpacing: ".22em",
+            letterSpacing: ".08em",
             textTransform: "uppercase",
-            color: "rgba(103, 232, 249, 0.92)",
+            color: "var(--nx-learn-muted)",
             marginBottom: 6,
           }}
         >
           {shardLabel(skill.type)}
         </div>
-        <div style={{ fontSize: compact ? 15 : 18, fontWeight: 600, marginBottom: 8 }}>
+        <div style={{ fontSize: compact ? 17 : 20, fontWeight: 850, marginBottom: 8, letterSpacing: "-0.02em" }}>
           {shardLabel(skill.name)}
         </div>
-        <div style={{ fontSize: compact ? 10 : 11, opacity: 0.92, lineHeight: 1.45 }}>
+        <div style={{ fontSize: compact ? 12 : 14, opacity: 0.86, lineHeight: 1.45 }}>
           {shardLabel(skill.lore)}
         </div>
         <div
@@ -581,8 +529,8 @@ export function SkillCard({
             fontSize: 10,
             letterSpacing: ".14em",
             textTransform: "uppercase",
-            color: "rgba(125, 211, 252, 0.95)",
-            mixBlendMode: "screen",
+            color: "rgba(22,32,25,0.48)",
+            mixBlendMode: "normal",
           }}
         >
           {vfxTag}

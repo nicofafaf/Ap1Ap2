@@ -12,12 +12,12 @@ export const LF1_WIRTSCHAFT: LearningExercise[] = [
     id: "wirt-handelsspanne",
     title: "Handelsspanne",
     problem:
-      "Gegeben: Listen-EK 400 € · Rabatt 12 % · Bezug 28 € · Verkauf netto 520 €\n\n1) EK nach Rabatt = 400 − 12 %\n2) Bezugspreis = (1) + 28 €\n3) Rohertrag = 520 − Bezugspreis\n4) Spanne v. H. auf VK = Rohertrag ÷ 520 → als Prozent, eine Dezimalstelle",
+      "Listen-EK 400 € · Rabatt 12 % · Bezug 28 € · Verkauf netto 520 €\nBerechne die Handelsspanne in Prozent auf den Verkaufspreis",
     solutionHint:
-      "Tipp: 12 % von 400 = 48 → nach Rabatt 352 €, plus 28 € Bezug = 380 € Bezugspreis · Rohertrag 140 € · 140÷520 ≈ 0,269 → 26,9 %",
+      "Tipp: 400 − 48 + 28 = 380 € Bezugspreis · 520 − 380 = 140 € Rohertrag · 140 ÷ 520 = 26,9 %",
     solutionCode: "26,9",
     lang: "markdown",
-    mcQuestion: "Welche Formel ist für die Handelsspanne v.H. auf den Verkaufspreis korrekt?",
+    mcQuestion: "Welche Formel passt zur Handelsspanne auf den Verkaufspreis?",
     mcOptions: [
       {
         id: "a",

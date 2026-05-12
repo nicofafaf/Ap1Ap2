@@ -19,10 +19,10 @@
     },
     {
       "id": "lf6-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
-      "body": "Erstelle Pseudocode sauber nutze Bedingungen korrekt erklaere Fehleranalyse mit klaren Schritten"
+      "title": "Prüfungs Check",
+      "body": "Erstelle Pseudocode sauber nutze Bedingungen korrekt erkläre Fehleranalyse mit klaren Schritten"
     }
   ]
 }

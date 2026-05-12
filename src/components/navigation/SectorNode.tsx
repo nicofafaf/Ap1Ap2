@@ -19,8 +19,7 @@ import {
   NX_GLASS_NOISE_OPACITY_IDLE,
 } from "../../lib/ui/glassNoiseTexture";
 
-const NODE_SHARD_CLIP =
-  "polygon(8% 0%, 100% 0%, 100% 90%, 91% 100%, 0% 100%, 0% 14%)";
+const NODE_SHARD_CLIP = "inset(0 round 28px)";
 
 const RANK_ACCENT_VAR: Record<CombatRank, string> = {
   S: "var(--gold, #facc15)",
@@ -30,9 +29,9 @@ const RANK_ACCENT_VAR: Record<CombatRank, string> = {
 };
 
 const TIER_LABEL: Record<StabilityTier, string> = {
-  stable: "STABLE",
-  unstable: "DRIFT",
-  critical: "CRITICAL",
+  stable: "Ruhig",
+  unstable: "Offen",
+  critical: "Wiederholen",
 };
 
 export type SectorNodeProps = {
@@ -100,8 +99,8 @@ export function SectorNode({
   const rankAccent = lastRank ? RANK_ACCENT_VAR[lastRank] : "var(--cyan, #22d3ee)";
   const ringColor = isDailyIncursion ? DAILY_PURPLE_NEON : rankAccent;
   const outerGlow = isDailyIncursion
-    ? `0 0 32px rgba(192,132,252,0.45), 0 0 14px rgba(192,132,252,0.35), inset 0 0 22px rgba(192,132,252,0.12)`
-    : `0 0 28px color-mix(in srgb, var(--sector-prestige) 45%, transparent), 0 0 14px color-mix(in srgb, var(--sector-rank) 35%, transparent), inset 0 0 22px rgba(34,211,238,0.08)`;
+    ? `0 26px 60px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.54)`
+    : `0 24px 54px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.62)`;
 
   const handleClick = (e?: MouseEvent | PointerEvent) => {
     e?.stopPropagation();
@@ -133,10 +132,10 @@ export function SectorNode({
         x: offsetX,
         y: offsetY,
         z: parallaxZ,
-        marginLeft: -52,
-        marginTop: -52,
-        width: 104,
-        height: 104,
+        marginLeft: -66,
+        marginTop: -58,
+        width: 132,
+        height: 116,
         transformStyle: "preserve-3d",
         touchAction: "none",
         ["--sector-prestige" as string]: prestigeColor,
@@ -191,24 +190,24 @@ export function SectorNode({
           position: "relative",
           width: "100%",
           height: "100%",
-          borderRadius: 0,
+          borderRadius: 28,
           clipPath: NODE_SHARD_CLIP,
           border: isDailyIncursion
             ? `2px solid ${DAILY_PURPLE_BORDER}`
             : lfCurriculumMastered
-              ? `2px solid color-mix(in srgb, var(--gold, #facc15) 70%, transparent)`
-              : `2px solid color-mix(in srgb, ${ringColor} 65%, transparent)`,
+              ? `2px solid rgba(214,181,111,0.58)`
+              : `1px solid rgba(251,247,239,0.2)`,
           cursor: unlocked ? "pointer" : "not-allowed",
           padding: 0,
           touchAction: "manipulation",
           overflow: anomalyType ? "visible" : "hidden",
           background: isDailyIncursion
-            ? "linear-gradient(155deg, rgba(24,10,40,0.94) 0%, rgba(6,12,24,0.9) 100%)"
-            : "linear-gradient(155deg, rgba(6,18,28,0.92) 0%, rgba(4,12,20,0.88) 100%)",
-          backdropFilter: "blur(20px) saturate(180%)",
-          WebkitBackdropFilter: "blur(20px) saturate(180%)",
+            ? "linear-gradient(155deg, rgba(251,247,239,0.94) 0%, rgba(230,218,240,0.86) 100%)"
+            : "linear-gradient(155deg, rgba(251,247,239,0.93) 0%, rgba(238,229,213,0.84) 100%)",
+          backdropFilter: "blur(18px) saturate(105%)",
+          WebkitBackdropFilter: "blur(18px) saturate(105%)",
           boxShadow: unlocked
-            ? `${outerGlow}, inset 0 0 ${10 + beat * 18}px rgba(34,211,238,${0.12 + beat * 0.24}), inset 0 0 0 1px rgba(255,255,255,0.05)`
+            ? `${outerGlow}, inset 0 0 ${8 + beat * 6}px rgba(214,181,111,${0.08 + beat * 0.08})`
             : "inset 0 0 12px rgba(0,0,0,0.5)",
         }}
       >
@@ -243,10 +242,10 @@ export function SectorNode({
               zIndex: 6,
               pointerEvents: "none",
               background:
-                "radial-gradient(circle at 35% 30%, rgba(250,250,255,0.95), rgba(34,211,238,0.35) 42%, rgba(15,23,42,0.2) 100%)",
+                "radial-gradient(circle at 35% 30%, rgba(251,247,239,0.95), rgba(214,181,111,0.35) 42%, rgba(21,34,25,0.18) 100%)",
               boxShadow:
-                "0 0 28px rgba(34, 211, 238, 0.75), 0 0 52px rgba(250, 204, 21, 0.35), inset 0 0 18px rgba(255,255,255,0.45)",
-              border: "1px solid rgba(186, 230, 253, 0.55)",
+                "0 18px 42px rgba(0,0,0,0.22), inset 0 0 18px rgba(255,255,255,0.45)",
+              border: "1px solid rgba(251,247,239,0.55)",
             }}
           />
         ) : null}
@@ -266,25 +265,25 @@ export function SectorNode({
             position: "absolute",
             inset: -2,
             borderRadius: 18,
-            background: `radial-gradient(circle at 40% 30%, color-mix(in srgb, var(--sector-prestige) 55%, transparent), transparent 62%)`,
+            background: `radial-gradient(circle at 40% 30%, rgba(214,181,111,0.18), transparent 62%)`,
             pointerEvents: "none",
-            mixBlendMode: "screen",
+            mixBlendMode: "multiply",
           }}
         />
         <div
           style={{
             position: "relative",
             zIndex: 3,
-            padding: "10px 8px",
+            padding: "14px 12px",
             textAlign: "center",
-            fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+            fontFamily: "var(--nx-font-sans)",
           }}
         >
           <div
             style={{
               fontSize: 9,
-              letterSpacing: ".24em",
-              color: "rgba(103, 232, 249, 0.78)",
+              letterSpacing: ".08em",
+              color: "var(--nx-learn-muted)",
             }}
           >
             LF{lf}
@@ -292,29 +291,28 @@ export function SectorNode({
           <div
             style={{
               marginTop: 4,
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: ".06em",
-              color: "rgba(224, 250, 255, 0.94)",
+              fontSize: 16,
+              fontWeight: 850,
+              letterSpacing: "-0.03em",
+              color: "var(--nx-learn-ink)",
               lineHeight: 1.2,
               maxHeight: 32,
               overflow: "hidden",
             }}
           >
-            {bossName.slice(0, 18)}
-            {bossName.length > 18 ? "…" : ""}
+            {bossName}
           </div>
           <div
             style={{
               marginTop: 6,
-              fontSize: 8,
-              letterSpacing: ".18em",
+              fontSize: 10,
+              letterSpacing: ".04em",
               color:
                 tier === "critical"
-                  ? "rgba(248, 113, 113, 0.9)"
+                  ? "rgba(150, 56, 48, 0.88)"
                   : tier === "unstable"
-                    ? "rgba(250, 204, 21, 0.88)"
-                    : "rgba(52, 211, 153, 0.88)",
+                    ? "rgba(132, 92, 42, 0.88)"
+                    : "rgba(48, 92, 60, 0.88)",
             }}
           >
             {shardLabel(tierCopy[tier])} {(stability * 100).toFixed(0)}
@@ -328,7 +326,7 @@ export function SectorNode({
                 color: dailyRankedSlotOpen ? DAILY_PURPLE_NEON : "rgba(248, 113, 113, 0.92)",
               }}
             >
-              {dailyRankedSlotOpen ? "GLOBAL DAILY" : "PRAXIS"}
+              {dailyRankedSlotOpen ? "Heute" : "Praxis"}
             </div>
           ) : null}
           <div
@@ -336,7 +334,7 @@ export function SectorNode({
               marginTop: 8,
               height: 4,
               borderRadius: 999,
-              background: "rgba(15,23,42,0.75)",
+              background: "rgba(22,32,25,0.12)",
               overflow: "hidden",
             }}
             aria-hidden
@@ -349,8 +347,8 @@ export function SectorNode({
                 height: "100%",
                 borderRadius: 999,
                 background: lfCurriculumMastered
-                  ? "linear-gradient(90deg, rgba(250,204,21,0.95), rgba(52,211,153,0.85))"
-                  : "linear-gradient(90deg, rgba(34,211,238,0.9), rgba(167,139,250,0.8))",
+                  ? "linear-gradient(90deg, rgba(214,181,111,0.95), rgba(58,112,72,0.85))"
+                  : "linear-gradient(90deg, rgba(214,181,111,0.72), rgba(58,112,72,0.72))",
               }}
             />
           </div>

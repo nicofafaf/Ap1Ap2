@@ -1,4 +1,4 @@
-/* Nexus — Color Harmony & 8px Grid (Bone White Opacity + Vantablack) */
+/* Nexus — Calm Learning Atmosphere & 8px Grid */
 
 @import "./parallax.css";
 
@@ -39,28 +39,34 @@
     sans-serif;
   --nx-font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, monospace;
-  --nx-font-sans-weight: 100;
-  --nx-content-max: 1440px;
-  --nx-content-pad: max(20px, env(safe-area-inset-left));
-  --nx-type-display: clamp(34px, 2.6vw + 22px, 42px);
+  --nx-font-sans-weight: 400;
+  --nx-content-max: 1280px;
+  --nx-content-pad: clamp(20px, 4vw, 56px);
+  --nx-type-display: clamp(42px, 4.8vw, 72px);
 
-  /* Iridium / Obsidian-Glas — Vantablack, Bone, Tungsten-Gold */
-  --nx-vantablack: #050507;
-  --nx-bone: #f4f4f5;
-  --nx-bone-90: rgba(244, 244, 245, 0.94);
-  --nx-bone-55: rgba(244, 244, 245, 0.62);
-  --nx-bone-50: rgba(232, 233, 240, 0.55);
-  --nx-bone-25: rgba(232, 233, 240, 0.25);
-  --nx-panel-frost: rgba(16, 18, 24, 0.72);
-  --nx-tungsten: rgba(212, 175, 55, 0.42);
-  --nx-tungsten-soft: rgba(255, 214, 165, 0.16);
+  /* Calm AAA learning palette — deep garden, warm paper, soft brass */
+  --nx-vantablack: #080c0a;
+  --nx-bone: #fbf7ef;
+  --nx-bone-90: rgba(251, 247, 239, 0.95);
+  --nx-bone-55: rgba(251, 247, 239, 0.68);
+  --nx-bone-50: rgba(251, 247, 239, 0.56);
+  --nx-bone-25: rgba(251, 247, 239, 0.18);
+  --nx-panel-frost: rgba(18, 24, 20, 0.78);
+  --nx-tungsten: rgba(214, 181, 111, 0.62);
+  --nx-tungsten-soft: rgba(214, 181, 111, 0.16);
+  --nx-learn-surface: rgba(251, 247, 239, 0.955);
+  --nx-learn-surface-soft: rgba(245, 238, 226, 0.92);
+  --nx-learn-ink: #162019;
+  --nx-learn-muted: rgba(22, 32, 25, 0.68);
+  --nx-learn-line: rgba(22, 32, 25, 0.12);
 
-  /* Subtiles Teal & Orange (entsättigt) — nur für globales Grading */
-  --nx-grade-teal-mist: rgba(48, 72, 78, 0.07);
-  --nx-grade-orange-mist: rgba(82, 64, 52, 0.06);
+  /* Atmospheric grading — slow, warm and almost still */
+  --nx-grade-teal-mist: rgba(58, 89, 70, 0.1);
+  --nx-grade-orange-mist: rgba(130, 94, 54, 0.1);
 
   /* STRICT_SPATIAL_SYSTEM — nur 8er-Raster */
   --nx-space-8: 8px;
+  --nx-space-12: 12px;
   --nx-space-16: 16px;
   --nx-space-24: 24px;
   --nx-space-32: 32px;
@@ -72,14 +78,15 @@
   --nx-surface-elevated: var(--nx-panel-frost);
   --nx-border-readable: var(--nx-bone-25);
 
-  --nx-bg-brightness: 0.48;
-  --nx-bg-contrast: 1.12;
-  --nx-shadow-deep: rgba(5, 5, 7, 0.62);
+  --nx-bg-brightness: 0.26;
+  --nx-bg-contrast: 0.92;
+  --nx-shadow-deep: rgba(3, 6, 4, 0.38);
   --nx-obsidian: var(--nx-vantablack);
   --nx-ivory: var(--nx-bone);
   --nx-iridium-mist: rgba(232, 233, 240, 0.06);
+  --nx-chroma-grid: rgba(251, 247, 239, 0.08);
 
-  --nx-readability-particles: 1;
+  --nx-readability-particles: 0;
 
   /* Stacking — festes Layering (Parallax/UI/Overlays) */
   --nx-z-bg: 0;
@@ -98,7 +105,9 @@
 html {
   font-family: var(--nx-font-sans);
   font-weight: var(--nx-font-sans-weight);
-  background: var(--nx-vantablack);
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(214, 181, 111, 0.12), transparent 48%),
+    linear-gradient(160deg, #0b110d 0%, #101812 46%, #070a08 100%);
   height: 100%;
   width: 100%;
   max-width: 100%;
@@ -114,7 +123,10 @@ body {
   max-width: 100%;
   overflow: hidden;
   overscroll-behavior: none;
-  background: var(--nx-vantablack);
+  background:
+    radial-gradient(ellipse 95% 70% at 14% 6%, rgba(214, 181, 111, 0.12), transparent 52%),
+    radial-gradient(ellipse 80% 70% at 88% 92%, rgba(74, 112, 86, 0.18), transparent 54%),
+    var(--nx-vantablack);
   color: var(--nx-text-primary);
   font-size: clamp(20px, 0.28vw + 18px, 22px);
   line-height: 1.5;
@@ -126,7 +138,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Cinematic Teal & Orange — extrem subtil, entsättigt */
+/* Ruhige Lern-Atmosphäre — keine Scanlines, kein Neon */
 body::before {
   content: "";
   position: fixed;
@@ -134,9 +146,10 @@ body::before {
   pointer-events: none;
   z-index: var(--nx-z-bg-fx);
   background:
-    radial-gradient(ellipse 130% 85% at 18% 12%, var(--nx-grade-teal-mist) 0%, transparent 58%),
-    radial-gradient(ellipse 110% 75% at 88% 88%, var(--nx-grade-orange-mist) 0%, transparent 52%);
-  mix-blend-mode: overlay;
+    radial-gradient(ellipse 120% 85% at 18% 12%, var(--nx-grade-teal-mist) 0%, transparent 58%),
+    radial-gradient(ellipse 110% 75% at 88% 88%, var(--nx-grade-orange-mist) 0%, transparent 56%);
+  mix-blend-mode: soft-light;
+  opacity: 0.75;
 }
 
 #root {
@@ -163,45 +176,45 @@ html[data-nx-readability="on"] {
 
 /* Reiner Lernfokus: Welt dimmen, Partikel fast aus */
 html[data-nx-learning-focus="1"] .nx-fractal-particle-layer {
-  opacity: 0.06;
-  filter: brightness(0.4);
+  opacity: 0;
+  filter: brightness(0.2);
   transition:
     opacity 0.45s ease,
     filter 0.45s ease;
 }
 
 html[data-nx-learning-focus="1"] .nx-volumetric-leaks {
-  opacity: 0.12;
+  opacity: 0.08;
   transition: opacity 0.45s ease;
 }
 
 html[data-nx-learning-focus="1"] .nx-fractal-bg-video {
-  filter: brightness(0.22) contrast(1.02) !important;
+  filter: brightness(0.12) contrast(0.9) saturate(0.28) blur(10px) !important;
   transition: filter 0.5s ease;
 }
 
 html[data-nx-learning-focus="1"] .nx-fractal-bg-fallback {
-  filter: brightness(0.22) contrast(1.02) !important;
+  filter: brightness(0.18) contrast(0.9) saturate(0.45) blur(8px) !important;
 }
 
 html[data-nx-learning-focus="1"] .nexus-combat-hud {
-  opacity: 0.18;
-  filter: grayscale(0.35);
+  opacity: 0;
+  filter: grayscale(1);
   transition:
     opacity 0.4s ease,
     filter 0.4s ease;
 }
 
 html[data-nx-learning-focus="1"] [data-nx-learning-dim-chrome="1"] {
-  opacity: 0.2;
-  filter: grayscale(0.4);
+  opacity: 0.1;
+  filter: grayscale(1) blur(2px);
   transition:
     opacity 0.4s ease,
     filter 0.4s ease;
 }
 
 html[data-nx-learning-focus="1"] .nexus-flow-indicator {
-  opacity: 0.1;
+  opacity: 0;
   transition: opacity 0.45s ease;
 }
 
@@ -224,6 +237,25 @@ html[data-nx-readability="on"] .nx-backdrop-sweep {
   font-size: max(14px, 0.85em);
   line-height: 1.5;
   tab-size: 2;
+}
+
+.nx-calm-card {
+  background: var(--nx-learn-surface);
+  color: var(--nx-learn-ink);
+  border: 1px solid var(--nx-learn-line);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.22);
+}
+
+.nx-calm-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: rgba(214, 181, 111, 0.16);
+  color: var(--nx-learn-ink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 /* Tastatur-Fokus — sichtbar nur bei :focus-visible (AAA / WCAG) */

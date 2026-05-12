@@ -3,19 +3,19 @@ import { useMemo } from "react";
 
 const STEPS: readonly { kicker: string; line1: string; line2: string }[] = [
   {
-    kicker: "Verteidigen",
-    line1: "Boss-Puls wird rot",
-    line2: "CIPHER SHIELD tippen",
+    kicker: "Tempo rausnehmen",
+    line1: "Wenn es zu viel wird",
+    line2: "Kurz sichern tippen",
   },
   {
-    kicker: "Angreifen",
-    line1: "Karte wählen",
-    line2: "SYSTEM OVERCLOCK tippen",
+    kicker: "Antwort nutzen",
+    line1: "Wenn du sicher bist",
+    line2: "Lösung anwenden tippen",
   },
   {
-    kicker: "Spezial",
-    line1: "INFINITE RECURSION legen",
-    line2: "Danach noch einmal angreifen",
+    kicker: "Verstärken",
+    line1: "Guter Lauf",
+    line2: "Verstärken für den nächsten Schritt",
   },
 ];
 
@@ -58,25 +58,24 @@ export function TutorialCombatOverlay({ visible, step }: TutorialCombatOverlayPr
               width: "min(420px, 100%)",
               borderRadius: 16,
               padding: "22px 24px 20px",
-              background:
-                "linear-gradient(165deg, color-mix(in srgb, var(--nx-vantablack) 88%, rgba(255,214,165,0.08)) 0%, rgba(12,14,20,0.92) 100%)",
-              border: "1px solid color-mix(in srgb, rgba(255,214,165,0.55) 40%, rgba(232,233,240,0.18))",
-              boxShadow: "0 24px 64px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06)",
-              backdropFilter: "blur(18px) saturate(160%)",
-              WebkitBackdropFilter: "blur(18px) saturate(160%)",
+              background: "rgba(251,247,239,0.94)",
+              border: "1px solid var(--nx-learn-line)",
+              boxShadow: "0 24px 64px rgba(0,0,0,0.2)",
+              backdropFilter: "blur(18px) saturate(105%)",
+              WebkitBackdropFilter: "blur(18px) saturate(105%)",
             }}
           >
             <div
               style={{
-                fontFamily: "var(--nx-font-mono)",
+                fontFamily: "var(--nx-font-sans)",
                 fontSize: 11,
-                letterSpacing: "0.32em",
+                letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "color-mix(in srgb, var(--nx-bone) 72%, rgba(255,214,165,0.9))",
+                color: "var(--nx-learn-muted)",
                 marginBottom: 14,
               }}
             >
-              Training · Schritt {idx + 1} / {STEPS.length}
+              Training Schritt {idx + 1} von {STEPS.length}
             </div>
             <div
               style={{
@@ -86,8 +85,8 @@ export function TutorialCombatOverlay({ visible, step }: TutorialCombatOverlayPr
                 marginBottom: 16,
                 padding: "6px 12px",
                 borderRadius: 999,
-                background: "rgba(255,214,165,0.12)",
-                color: "var(--nx-bone-90)",
+                background: "rgba(214,181,111,0.16)",
+                color: "var(--nx-learn-ink)",
                 fontFamily: "var(--nx-font-sans)",
                 fontWeight: 700,
                 fontSize: 13,
@@ -100,10 +99,10 @@ export function TutorialCombatOverlay({ visible, step }: TutorialCombatOverlayPr
               style={{
                 margin: 0,
                 fontFamily: "var(--nx-font-sans)",
-                fontWeight: 100,
+                fontWeight: 800,
                 fontSize: "clamp(20px, 3.2vw, 24px)",
                 lineHeight: 1.35,
-                color: "var(--nx-bone-90)",
+                color: "var(--nx-learn-ink)",
               }}
             >
               {card.line1}
@@ -112,10 +111,10 @@ export function TutorialCombatOverlay({ visible, step }: TutorialCombatOverlayPr
               style={{
                 margin: "10px 0 0",
                 fontFamily: "var(--nx-font-sans)",
-                fontWeight: 100,
+                fontWeight: 700,
                 fontSize: "clamp(20px, 3.2vw, 24px)",
                 lineHeight: 1.35,
-                color: "color-mix(in srgb, var(--nx-bone) 88%, rgb(103,232,249))",
+                color: "var(--nx-learn-muted)",
               }}
             >
               {card.line2}

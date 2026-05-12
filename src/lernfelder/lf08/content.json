@@ -8,7 +8,7 @@
       "chapter": "Modellierung",
       "type": "note",
       "title": "Kern Konzept",
-      "body": "Entitaeten Attribute Beziehungen bilden das Modell Primaerschluessel sichern Eindeutigkeit Normalformen reduzieren Redundanz"
+      "body": "Entitäten Attribute Beziehungen bilden das Modell Primärschlüssel sichern Eindeutigkeit Normalformen reduzieren Redundanz"
     },
     {
       "id": "lf8-code",
@@ -19,10 +19,10 @@
     },
     {
       "id": "lf8-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
-      "body": "Erkenne 1N und NM Beziehungen setze Schluessel korrekt pruefe Modell auf dritte Normalform"
+      "title": "Prüfungs Check",
+      "body": "Erkenne 1N und NM Beziehungen setze Schlüssel korrekt prüfe Modell auf dritte Normalform"
     }
   ]
 }

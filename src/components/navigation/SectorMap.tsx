@@ -404,7 +404,7 @@ export function SectorMap({
         minHeight: "100dvh",
         background: epilogueActive
           ? `radial-gradient(ellipse 82% 58% at 50% 36%, rgba(250, 204, 21, 0.34), rgba(255, 252, 245, 0.92) 52%, #f7f2e8), linear-gradient(165deg, #fffefb 0%, #f3ebe0 55%, #ebe4d4 100%)`
-          : `radial-gradient(ellipse 80% 60% at 50% 38%, color-mix(in srgb, var(--cyan, #22d3ee) 18%, transparent), transparent 55%), rgba(3, 7, 18, 0.58)`,
+          : `radial-gradient(ellipse 80% 60% at 50% 20%, rgba(214,181,111,0.14), transparent 58%), radial-gradient(ellipse 70% 55% at 12% 88%, rgba(58,112,72,0.18), transparent 56%), rgba(8, 12, 10, 0.68)`,
         overflow: "hidden",
         touchAction: "none",
         transition: "background 1.1s ease",
@@ -428,11 +428,11 @@ export function SectorMap({
           <div
             style={{
               fontSize: 11,
-              letterSpacing: ".34em",
-              color: epilogueActive ? "rgba(180, 130, 40, 0.88)" : "rgba(103, 232, 249, 0.78)",
+              letterSpacing: ".08em",
+              color: epilogueActive ? "rgba(180, 130, 40, 0.88)" : "rgba(251,247,239,0.68)",
             }}
           >
-            {epilogueActive ? "System Restored" : "Nexus Overworld"}
+            {epilogueActive ? "Lernstand gesichert" : "Lernfelder"}
           </div>
           <div
             className={epilogueActive ? undefined : "nx-title-ultra"}
@@ -441,10 +441,10 @@ export function SectorMap({
               fontSize: 20,
               fontWeight: epilogueActive ? 700 : undefined,
               letterSpacing: ".04em",
-              color: epilogueActive ? "rgba(55, 42, 18, 0.94)" : "rgba(224, 250, 255, 0.96)",
+              color: epilogueActive ? "rgba(55, 42, 18, 0.94)" : "rgba(251,247,239,0.96)",
             }}
           >
-            {epilogueActive ? "Weißgold-Lattice" : "Sector Lattice"}
+            {epilogueActive ? "Abschlussübersicht" : "Wähle dein nächstes Lernfeld"}
           </div>
           <div
             style={{
@@ -458,7 +458,7 @@ export function SectorMap({
           >
             {epilogueActive
               ? "Der Kern ist gesichert — die Karte trägt dein Architekten-Siegel"
-              : "Drag to pan · Scroll to zoom · Nodes glow with your highest vault achievement"}
+              : "Ziehe zum Verschieben · Scrollen zum Zoomen · Fortschritt steht direkt auf jeder Karte"}
           </div>
           {epilogueActive ? (
             <motion.div
@@ -538,7 +538,7 @@ export function SectorMap({
                 maxWidth: 440,
               }}
             >
-              Sektor Ø — alle 12 Sektoren über {(SECTOR_ZERO_STABILITY_THRESHOLD * 100).toFixed(0)} %
+              Finale Prüfung — alle 12 Lernfelder über {(SECTOR_ZERO_STABILITY_THRESHOLD * 100).toFixed(0)} %
               Stabilität
             </div>
           ) : null}
@@ -559,7 +559,7 @@ export function SectorMap({
                 color: DAILY_PURPLE_MUTED,
               }}
             >
-              NÄCHSTE GLOBALE INKURSION
+              Nächste Übungsrunde
             </div>
             <div
               style={{
@@ -567,8 +567,8 @@ export function SectorMap({
                 fontSize: 13,
                 fontWeight: 700,
                 letterSpacing: ".08em",
-                color: DAILY_PURPLE_NEON,
-                fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+                color: "rgba(251,247,239,0.9)",
+                fontFamily: "var(--nx-font-sans)",
               }}
             >
               {formatCountdownHMS(secToMidnight)} · Reset 00:00 UTC
@@ -581,7 +581,7 @@ export function SectorMap({
                 lineHeight: 1.4,
               }}
             >
-              Tages-Sektor LF{dailyDef.targetLf} · Boss-Start Phase {dailyDef.startCombatPhase}
+              Tages-Lernfeld LF{dailyDef.targetLf} · Startphase {dailyDef.startCombatPhase}
             </div>
           </div>
         </div>
@@ -603,7 +603,7 @@ export function SectorMap({
               cursor: "pointer",
               fontSize: 10,
               letterSpacing: ".14em",
-              color: "rgba(186,230,253,0.92)",
+              color: "rgba(251,247,239,0.82)",
               userSelect: "none",
             }}
           >
@@ -613,7 +613,7 @@ export function SectorMap({
               onChange={(e) => setEndlessDeepDiveOptIn(e.target.checked)}
               style={{ accentColor: "#facc15" }}
             />
-            ENDLESS DEEP DIVE
+            Langlauf
           </label>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" }}>
             <button
@@ -622,16 +622,16 @@ export function SectorMap({
               onClick={() => setCodexOpen(true)}
               style={{
                 borderRadius: 10,
-                border: "1px solid rgba(255, 214, 165, 0.52)",
-                background: "rgba(20, 16, 10, 0.72)",
-                color: "rgba(232, 233, 240, 0.97)",
+                border: "1px solid rgba(251,247,239,0.18)",
+                background: "rgba(251,247,239,0.12)",
+                color: "rgba(251,247,239,0.96)",
                 letterSpacing: ".14em",
                 fontSize: 11,
                 padding: "10px 14px",
                 cursor: "pointer",
               }}
             >
-              CODEX
+              Übungen
             </button>
             <button
               type="button"
@@ -640,48 +640,48 @@ export function SectorMap({
               aria-label={t("map.openDossierAria")}
               style={{
                 borderRadius: 10,
-                border: "1px solid rgba(52, 211, 153, 0.42)",
-                background: "rgba(6, 28, 22, 0.72)",
-                color: "rgba(167, 243, 208, 0.96)",
+                border: "1px solid rgba(251,247,239,0.18)",
+                background: "rgba(251,247,239,0.12)",
+                color: "rgba(251,247,239,0.96)",
                 letterSpacing: ".14em",
                 fontSize: 11,
                 padding: "10px 14px",
                 cursor: "pointer",
               }}
             >
-              INFO
+              Info
             </button>
             <button
               type="button"
               onClick={() => setHallRecordsOpen(true)}
               style={{
                 borderRadius: 10,
-                border: "1px solid rgba(167,139,250,0.42)",
-                background: "rgba(30,12,48,0.72)",
-                color: "rgba(233,213,255,0.95)",
+                border: "1px solid rgba(251,247,239,0.18)",
+                background: "rgba(251,247,239,0.12)",
+                color: "rgba(251,247,239,0.96)",
                 letterSpacing: ".14em",
                 fontSize: 11,
                 padding: "10px 14px",
                 cursor: "pointer",
               }}
             >
-              HALL OF RECORDS
+              Verlauf
             </button>
             <button
               type="button"
               onClick={() => setOverlayOpenState("GALLERY")}
               style={{
                 borderRadius: 10,
-                border: "1px solid rgba(34,211,238,0.45)",
-                background: "rgba(7,25,36,0.74)",
-                color: "rgba(186,230,253,0.97)",
+                border: "1px solid rgba(251,247,239,0.18)",
+                background: "rgba(251,247,239,0.12)",
+                color: "rgba(251,247,239,0.96)",
                 letterSpacing: ".14em",
                 fontSize: 11,
                 padding: "10px 14px",
                 cursor: "pointer",
               }}
             >
-              VAULT
+              Sammlung
             </button>
           </div>
         </div>
@@ -700,21 +700,21 @@ export function SectorMap({
             zIndex: 30,
             padding: "12px 14px",
             borderRadius: 12,
-            border: "1px solid rgba(34,211,238,0.34)",
+            border: "1px solid rgba(251,247,239,0.18)",
             background:
-              "linear-gradient(168deg, rgba(5,14,22,0.94) 0%, rgba(4,11,18,0.97) 100%)",
-            boxShadow: "0 16px 40px rgba(0,0,0,0.45), 0 0 24px rgba(0,255,255,0.08)",
+              "linear-gradient(168deg, rgba(251,247,239,0.94) 0%, rgba(238,229,213,0.92) 100%)",
+            boxShadow: "0 20px 54px rgba(0,0,0,0.22)",
             pointerEvents: "none",
           }}
         >
           <div
             style={{
               fontSize: 9,
-              letterSpacing: ".22em",
-              color: "rgba(103, 232, 249, 0.72)",
+              letterSpacing: ".08em",
+              color: "var(--nx-learn-muted)",
             }}
           >
-            Boss Signal · LF{hoverLf}
+            Lernfeld {hoverLf}
           </div>
           <div style={{ marginTop: 8 }}>
             <BossPreview lf={hoverLf} />
@@ -726,7 +726,7 @@ export function SectorMap({
               fontSize: 13,
               fontWeight: 700,
               letterSpacing: ".06em",
-              color: "rgba(224, 250, 255, 0.95)",
+              color: "var(--nx-learn-ink)",
             }}
           >
             {t(`lf.LF${hoverLf}.boss`, hoverEntry.bossDisplayName)}
@@ -737,7 +737,7 @@ export function SectorMap({
               fontSize: 11,
               lineHeight: 1.5,
               opacity: 0.82,
-              color: "rgba(186, 230, 253, 0.9)",
+              color: "var(--nx-learn-muted)",
             }}
           >
             {hoverEntry.lore.slice(0, 160)}
@@ -748,10 +748,10 @@ export function SectorMap({
               marginTop: 10,
               fontSize: 10,
               letterSpacing: ".14em",
-              color: "rgba(248, 113, 113, 0.9)",
+              color: "rgba(132, 92, 42, 0.9)",
             }}
           >
-            Corruption rate · {(hoverCorruption * 100).toFixed(0)}%
+            Wiederholbedarf · {(hoverCorruption * 100).toFixed(0)}%
           </div>
         </motion.div>
       ) : null}

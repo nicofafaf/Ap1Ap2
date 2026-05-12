@@ -19,10 +19,10 @@
     },
     {
       "id": "lf2-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
-      "body": "Erklaere IPv4 Aufbau benenne DNS Ablauf sichere Grundkonfiguration von Client und Server"
+      "title": "Prüfungs Check",
+      "body": "Erkläre IPv4 Aufbau benenne DNS Ablauf sichere Grundkonfiguration von Client und Server"
     }
   ]
 }

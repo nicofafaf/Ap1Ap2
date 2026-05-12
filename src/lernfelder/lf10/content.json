@@ -19,10 +19,10 @@
     },
     {
       "id": "lf10-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
-      "body": "Pruefe WCAG Kontrast beachte Fokus sichtbar strukturiere Formulare mit klarer Rueckmeldung"
+      "title": "Prüfungs Check",
+      "body": "Prüfe WCAG Kontrast beachte Fokus sichtbar strukturiere Formulare mit klarer Rückmeldung"
     }
   ]
 }

@@ -19,9 +19,9 @@
     },
     {
       "id": "lf3-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
+      "title": "Prüfungs Check",
       "body": "Berechne Subnetze sicher unterscheide TCP und UDP ordne DHCP DNS HTTP korrekt"
     }
   ]

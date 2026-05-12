@@ -8,7 +8,7 @@
       "chapter": "Security Basis",
       "type": "note",
       "title": "Kern Konzept",
-      "body": "Vertraulichkeit Integritaet Verfuegbarkeit bilden das Schutzziel Risiko ergibt sich aus Eintritt und Schaden"
+      "body": "Vertraulichkeit Integrität Verfügbarkeit bilden das Schutzziel Risiko ergibt sich aus Eintritt und Schaden"
     },
     {
       "id": "lf11-code",
@@ -19,9 +19,9 @@
     },
     {
       "id": "lf11-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
+      "title": "Prüfungs Check",
       "body": "Nutze MFA konsequent plane Backup 321 Schema erkenne Phishing und Least Privilege"
     }
   ]

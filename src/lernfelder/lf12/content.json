@@ -8,7 +8,7 @@
       "chapter": "Agil",
       "type": "note",
       "title": "Kern Konzept",
-      "body": "Scrum nutzt Rollen Events und Artefakte Sprintziel und Definition of Done sichern Lieferqualitaet"
+      "body": "Scrum nutzt Rollen Events und Artefakte Sprintziel und Definition of Done sichern Lieferqualität"
     },
     {
       "id": "lf12-code",
@@ -19,9 +19,9 @@
     },
     {
       "id": "lf12-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
+      "title": "Prüfungs Check",
       "body": "Plane Sprint realistisch formuliere Akzeptanzkriterien klar bewerte Risiken und Teamkommunikation"
     }
   ]

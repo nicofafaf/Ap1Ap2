@@ -91,7 +91,7 @@ export async function downloadMasterCertPdfDossier(sealed: string): Promise<void
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
-  doc.text("Versiegelung: AES-GCM-256 (geraetegebunden)", 14, y);
+  doc.text("Versiegelung: AES-GCM-256 (gerätegebunden)", 14, y);
   y += 6;
   doc.text(`SHA-256 Fingerprint (Export-String): ${fp}`, 14, y);
   y += 8;

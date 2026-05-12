@@ -15,14 +15,14 @@
       "chapter": "Integration",
       "type": "csharp",
       "title": "Code Beispiel",
-      "code": "var deviceReady = true;\nvar driverVersion = \"2 4\";\nvar result = deviceReady ? \"System stabil\" : \"Treiber pruefen\";"
+      "code": "var deviceReady = true;\nvar driverVersion = \"2 4\";\nvar result = deviceReady ? \"System stabil\" : \"Treiber prüfen\";"
     },
     {
       "id": "lf4-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
-      "body": "Plane Komponenten kompatibel erkenne Flaschenhaelse dokumentiere Einbau und Test nachvollziehbar"
+      "title": "Prüfungs Check",
+      "body": "Plane Komponenten kompatibel erkenne Flaschenhälse dokumentiere Einbau und Test nachvollziehbar"
     }
   ]
 }

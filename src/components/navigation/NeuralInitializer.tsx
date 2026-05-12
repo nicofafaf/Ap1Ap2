@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState, type CSSProperties } from "react";
-import { useBossAudioEngine } from "../../lib/audio/bossAudioEngine";
 
 export type NeuralInitializerProps = {
   onBeginTraining: () => void;
@@ -25,27 +24,18 @@ const LINE = {
   },
 };
 
-const FLICKER = {
-  opacity: [0.55, 1, 0.72, 1, 0.85],
-  transition: { duration: 2.4, repeat: Infinity, ease: "easeInOut" as const },
-};
-
 export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
   const [phase, setPhase] = useState<InitPhase>("identity");
-  const { playDossierTeletypeTick, stopDossierTeletypeTick } = useBossAudioEngine();
-
-  useEffect(() => {
-    void playDossierTeletypeTick();
-    const t = window.setTimeout(() => stopDossierTeletypeTick(), 2800);
-    return () => {
-      window.clearTimeout(t);
-      stopDossierTeletypeTick();
-    };
-  }, [phase, playDossierTeletypeTick, stopDossierTeletypeTick]);
 
   useEffect(() => {
     if (phase !== "identity") return;
-    const t = window.setTimeout(() => setPhase("neural"), 5200);
+    const t = window.setTimeout(() => setPhase("neural"), 1400);
+    return () => window.clearTimeout(t);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "neural") return;
+    const t = window.setTimeout(() => setPhase("ready"), 3600);
     return () => window.clearTimeout(t);
   }, [phase]);
 
@@ -59,7 +49,8 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
         position: "fixed",
         inset: 0,
         zIndex: 20000,
-        background: "radial-gradient(ellipse 65% 50% at 50% 42%, rgba(34,211,238,0.12), #020617)",
+        background:
+          "radial-gradient(ellipse 70% 48% at 50% 18%, rgba(214,181,111,0.16), transparent 58%), linear-gradient(160deg, #121a14 0%, #0b100d 52%, #070a08 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -70,13 +61,13 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
       }}
     >
       <motion.div
-        animate={{ opacity: [0.04, 0.09, 0.05] }}
-        transition={{ duration: 3.2, repeat: Infinity }}
+        animate={{ opacity: [0.22, 0.3, 0.24] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(34,211,238,0.03) 2px, rgba(34,211,238,0.03) 4px)",
+          background:
+            "radial-gradient(circle at 50% 26%, rgba(251,247,239,0.09), transparent 28%), radial-gradient(circle at 18% 82%, rgba(73,112,87,0.18), transparent 34%)",
           pointerEvents: "none",
         }}
       />
@@ -84,7 +75,7 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
       <div
         style={{
           position: "relative",
-          width: "min(420px, 90vw)",
+          width: "min(280px, 58vw)",
           marginBottom: 28,
           pointerEvents: "none",
         }}
@@ -92,15 +83,15 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
         <svg viewBox="0 0 200 200" style={{ width: "100%", display: "block", pointerEvents: "none" }}>
           <defs>
             <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(34,211,238,0.95)" />
-              <stop offset="55%" stopColor="rgba(8,145,178,0.55)" />
-              <stop offset="100%" stopColor="rgba(2,12,20,0.9)" />
+              <stop offset="0%" stopColor="rgba(251,247,239,0.96)" />
+              <stop offset="55%" stopColor="rgba(214,181,111,0.46)" />
+              <stop offset="100%" stopColor="rgba(18,26,20,0.88)" />
             </radialGradient>
             <clipPath id="eyeClip">
               <ellipse cx="100" cy="100" rx="88" ry="52" />
             </clipPath>
           </defs>
-          <ellipse cx="100" cy="100" rx="92" ry="56" fill="rgba(6,20,32,0.92)" stroke="rgba(34,211,238,0.45)" strokeWidth="2" />
+          <ellipse cx="100" cy="100" rx="92" ry="56" fill="rgba(251,247,239,0.08)" stroke="rgba(251,247,239,0.26)" strokeWidth="2" />
           <g clipPath="url(#eyeClip)">
             <circle cx="100" cy="100" r="46" fill="url(#irisGrad)" />
             <motion.ellipse
@@ -117,7 +108,7 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
               y1="100"
               x2="188"
               y2="100"
-              stroke="rgba(103,232,249,0.85)"
+              stroke="rgba(214,181,111,0.55)"
               strokeWidth="1.5"
               initial={{ y1: 72, y2: 72 }}
               animate={{
@@ -142,42 +133,29 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
         style={{
           position: "relative",
           zIndex: 1,
-          width: "min(520px, 94vw)",
-          borderRadius: 12,
-          border: "1px solid rgba(34,211,238,0.28)",
-          background: "linear-gradient(168deg, rgba(5,14,22,0.94) 0%, rgba(4,11,18,0.98) 100%)",
-          padding: "18px 20px 22px",
-          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.03), 0 0 32px rgba(0,255,255,0.08)",
+          width: "min(620px, calc(100vw - 48px))",
+          borderRadius: 28,
+          border: "1px solid rgba(251,247,239,0.18)",
+          background: "rgba(251,247,239,0.94)",
+          color: "var(--nx-learn-ink)",
+          padding: "32px clamp(24px, 5vw, 44px) 36px",
+          boxShadow: "0 34px 100px rgba(0,0,0,0.28)",
           pointerEvents: "auto",
         }}
       >
-        <motion.div
-          animate={FLICKER}
-          style={{
-            fontSize: 9,
-            letterSpacing: ".32em",
-            color: "rgba(103, 232, 249, 0.72)",
-            marginBottom: 12,
-          }}
-        >
-          {phase === "identity" && "SYSTEM · IDENTITÄTSPRÜFUNG"}
-          {phase === "neural" && "SYSTEM · NEURAL LINK"}
-          {phase === "ready" && "SYSTEM · TRAINING"}
-        </motion.div>
+        <div style={eyebrowStyle}>
+          {phase === "identity" && "Willkommen"}
+          {phase === "neural" && "Kurz fokussieren"}
+          {phase === "ready" && "Training bereit"}
+        </div>
 
         {phase === "identity" && (
           <>
             <motion.p variants={LINE} style={terminalLine}>
-              NEXUS KERNEL v9 · Erstkontakt erkannt
+              Wir bereiten einen ruhigen Lernraum vor
             </motion.p>
             <motion.p variants={LINE} style={terminalLine}>
-              Neue Architektur-Signatur wird zugelassen
-            </motion.p>
-            <motion.p variants={LINE} style={terminalLine}>
-              Retina-Mapping · biometrische Stabilität OK
-            </motion.p>
-            <motion.p variants={LINE} style={{ ...terminalLine, color: "rgba(167,139,250,0.92)" }}>
-              Du wirst als Architekt registriert
+              Große Schrift, klare Schritte, wenig Ablenkung
             </motion.p>
           </>
         )}
@@ -185,16 +163,13 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
         {phase === "neural" && (
           <>
             <motion.p variants={LINE} style={terminalLine}>
-              Synapsen-Handshake · Latenz 12 ms
+              Starte mit einer geführten Aufgabe aus LF1
             </motion.p>
             <motion.p variants={LINE} style={terminalLine}>
-              Cipher-Kanal wird aufgebaut
-            </motion.p>
-            <motion.p variants={LINE} style={terminalLine}>
-              Bereit für geführten Trainingskampf in LF1
+              Du bekommst Formel, Tipp und Eingabefeld direkt zusammen
             </motion.p>
             <button type="button" onClick={onNeuralAck} style={ctaStyle}>
-              NEURAL LINK BESTÄTIGEN
+              Weiter
             </button>
           </>
         )}
@@ -202,21 +177,13 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
         {phase === "ready" && (
           <>
             <motion.p variants={LINE} style={terminalLine}>
-              Trainings-Titan: reduzierte Aggression
+              Rechne die Antwort aus und prüfe sie sofort
             </motion.p>
             <motion.p variants={LINE} style={terminalLine}>
-              Folge den Dossier-Hinweisen während des Kampfes
+              Karten sind nur Hilfen, die Aufgabe bleibt im Mittelpunkt
             </motion.p>
-            <button
-              type="button"
-              onClick={onBeginTraining}
-              style={{
-                ...ctaStyle,
-                borderColor: "rgba(167,139,250,0.55)",
-                background: "rgba(46,16,80,0.45)",
-              }}
-            >
-              TRAINING STARTEN
+            <button type="button" onClick={onBeginTraining} style={ctaStyle}>
+              Training starten
             </button>
           </>
         )}
@@ -226,23 +193,34 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
 }
 
 const terminalLine: CSSProperties = {
-  margin: "0 0 10px",
-  fontFamily: '"JetBrains Mono",ui-monospace,monospace',
-  fontSize: 12,
-  lineHeight: 1.5,
-  color: "rgba(186, 230, 253, 0.92)",
+  margin: "0 0 12px",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: "clamp(20px, 2.2vw, 24px)",
+  lineHeight: 1.55,
+  color: "var(--nx-learn-muted)",
+};
+
+const eyebrowStyle: CSSProperties = {
+  marginBottom: 18,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 14,
+  fontWeight: 700,
+  letterSpacing: ".08em",
+  color: "rgba(22,32,25,0.58)",
+  textTransform: "uppercase",
 };
 
 const ctaStyle: CSSProperties = {
-  marginTop: 14,
+  marginTop: 18,
   width: "100%",
-  borderRadius: 10,
-  border: "1px solid rgba(34,211,238,0.5)",
-  background: "rgba(7,25,36,0.75)",
-  color: "rgba(186,230,253,0.97)",
-  letterSpacing: ".18em",
-  fontSize: 10,
-  padding: "12px 14px",
+  borderRadius: 999,
+  border: "1px solid rgba(22,32,25,0.12)",
+  background: "linear-gradient(135deg, #18251c 0%, #314832 100%)",
+  color: "rgba(251,247,239,0.98)",
+  letterSpacing: ".02em",
+  fontSize: 18,
+  fontWeight: 800,
+  padding: "16px 18px",
   cursor: "pointer",
   pointerEvents: "auto",
   WebkitTapHighlightColor: "transparent",

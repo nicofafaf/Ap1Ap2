@@ -216,7 +216,10 @@ export function LearningTerminal({
             inset: 0,
             zIndex: "var(--nx-z-learning-focus-backdrop)",
             pointerEvents: "none",
-            background: "rgba(5, 5, 7, 0.86)",
+            background:
+              "linear-gradient(180deg, rgba(8,12,10,0.72) 0%, rgba(8,12,10,0.9) 100%)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
           }}
         />
       ) : null}
@@ -226,17 +229,21 @@ export function LearningTerminal({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
         style={{
-          position: "absolute",
+          position: learningFocus ? "fixed" : "absolute",
           ...(learningFocus
             ? {
-                left: "50%",
-                top: "max(10px, env(safe-area-inset-top))",
-                bottom: "max(10px, env(safe-area-inset-bottom))",
-                transform: "translateX(-50%)",
-                width: "min(960px, calc(100vw - var(--nx-space-16)))",
-                maxHeight: "none",
+                left: "max(24px, env(safe-area-inset-left))",
+                right: "max(24px, env(safe-area-inset-right))",
+                top: "max(24px, env(safe-area-inset-top))",
+                bottom: "max(24px, env(safe-area-inset-bottom))",
+                transform: "none",
+                width: "auto",
+                maxWidth: "1040px",
+                marginInline: "auto",
+                maxHeight: "calc(100dvh - 48px)",
                 zIndex: "var(--nx-z-learning-focus-panel)",
                 overflowY: "auto",
+                overflowX: "hidden",
                 WebkitOverflowScrolling: "touch",
                 boxSizing: "border-box",
               }
@@ -255,18 +262,20 @@ export function LearningTerminal({
         }}
       >
         <div
+          className={learningFocus ? "nx-calm-card" : undefined}
           style={{
-            borderRadius: learningFocus ? 6 : 16,
+            borderRadius: learningFocus ? 32 : 22,
             padding: learningFocus
-              ? "var(--nx-space-32) var(--nx-space-32)"
+              ? "clamp(28px, 4vw, 56px)"
               : "var(--nx-space-24) var(--nx-space-32)",
-            background: learningFocus ? "var(--nx-vantablack)" : "var(--nx-panel-frost)",
+            background: learningFocus ? "var(--nx-learn-surface)" : "var(--nx-panel-frost)",
             border: learningFocus
-              ? "1px solid rgba(232, 233, 240, 0.16)"
+              ? "1px solid var(--nx-learn-line)"
               : "1px solid var(--nx-border-readable)",
             boxShadow: learningFocus
-              ? "0 0 0 1px rgba(0,0,0,0.4), 0 var(--nx-space-64) 120px rgba(0,0,0,0.55)"
+              ? "0 36px 110px rgba(0,0,0,0.28)"
               : "0 var(--nx-space-24) var(--nx-space-64) var(--nx-shadow-deep), inset 0 1px 0 var(--nx-bone-25)",
+            color: learningFocus ? "var(--nx-learn-ink)" : undefined,
           }}
         >
           <motion.div
@@ -323,26 +332,25 @@ export function LearningTerminal({
                       marginBottom: "var(--nx-space-8)",
                       fontFamily: typography.fontSans,
                       fontSize: "max(11px, 0.7rem)",
-                      fontWeight: 100,
-                      letterSpacing: "0.12em",
+                      fontWeight: 800,
+                      letterSpacing: "0.08em",
                       textTransform: "uppercase",
-                      color: "var(--nx-bone-50)",
+                      color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-50)",
                     }}
                   >
-                    Mission {exercise.id} Status {mission.status}
+                    Aufgabe {mission.status === "cleared" ? "abgeschlossen" : "in Arbeit"}
                   </div>
                   <h2
                     style={{
                       margin: 0,
                       fontFamily: typography.fontSans,
                       fontSize: learningFocus
-                        ? "clamp(13px, 2vw, 15px)"
+                        ? "clamp(42px, 5.4vw, 64px)"
                         : "clamp(17px, 2.4vw, 20px)",
-                      fontWeight: learningFocus ? 500 : typography.headingWeight,
-                      letterSpacing: learningFocus ? "0.14em" : undefined,
-                      textTransform: learningFocus ? "uppercase" : undefined,
-                      lineHeight: 1.35,
-                      color: learningFocus ? "var(--nx-bone-50)" : typography.fg,
+                      fontWeight: learningFocus ? 800 : typography.headingWeight,
+                      letterSpacing: learningFocus ? "-0.04em" : undefined,
+                      lineHeight: learningFocus ? 0.98 : 1.35,
+                      color: learningFocus ? "var(--nx-learn-ink)" : typography.fg,
                     }}
                   >
                     {exercise.title}
@@ -352,11 +360,12 @@ export function LearningTerminal({
                       margin: "var(--nx-space-16) 0 0",
                       fontFamily: typography.fontSans,
                       fontSize: learningFocus
-                        ? "clamp(1.05rem, 2.5vw, 1.35rem)"
+                        ? "clamp(20px, 2vw, 24px)"
                         : typography.bodySize,
-                      lineHeight: learningFocus ? 1.55 : typography.bodyLineHeight,
-                      color: learningFocus ? "rgba(244,244,245,0.88)" : typography.fgMuted,
+                      lineHeight: learningFocus ? 1.72 : typography.bodyLineHeight,
+                      color: learningFocus ? "var(--nx-learn-muted)" : typography.fgMuted,
                       whiteSpace: "pre-wrap",
+                      maxWidth: "72ch",
                     }}
                   >
                     {exercise.problem}
@@ -366,14 +375,14 @@ export function LearningTerminal({
                       style={{
                         margin: "var(--nx-space-16) 0 0",
                         padding: "var(--nx-space-16)",
-                        borderRadius: 12,
-                        border: "1px solid color-mix(in srgb, rgba(255,214,165,0.45) 55%, rgba(232,233,240,0.14))",
-                        background: "rgba(255,214,165,0.06)",
+                        borderRadius: 20,
+                        border: "1px solid rgba(214,181,111,0.26)",
+                        background: "rgba(214,181,111,0.12)",
                         fontFamily: typography.fontSans,
-                        fontWeight: 100,
+                        fontWeight: 600,
                         fontSize: "clamp(18px, 2.4vw, 20px)",
-                        lineHeight: 1.5,
-                        color: "var(--nx-bone-90)",
+                        lineHeight: 1.6,
+                        color: "var(--nx-learn-ink)",
                         whiteSpace: "pre-wrap",
                       }}
                     >
@@ -435,10 +444,10 @@ export function LearningTerminal({
                           margin: 0,
                           fontFamily: typography.fontSans,
                           fontSize: "clamp(1.05rem, 3.2vw, 1.45rem)",
-                          fontWeight: 650,
+                          fontWeight: 800,
                           lineHeight: 1.35,
                           letterSpacing: "-0.01em",
-                          color: "var(--nx-bone-90)",
+                          color: learningFocus ? "var(--nx-learn-ink)" : "var(--nx-bone-90)",
                         }}
                       >
                         {exercise.mcQuestion}
@@ -482,18 +491,18 @@ export function LearningTerminal({
                               borderRadius: 0,
                               borderBottom: isLast
                                 ? "none"
-                                : "1px solid rgba(232, 233, 240, 0.14)",
+                                : `1px solid ${learningFocus ? "var(--nx-learn-line)" : "rgba(232, 233, 240, 0.14)"}`,
                               background: showFeedback
                                 ? opt.isCorrect
-                                  ? "rgba(255, 214, 165, 0.07)"
-                                  : "rgba(248, 113, 113, 0.05)"
+                                  ? "rgba(214, 181, 111, 0.18)"
+                                  : "rgba(172, 67, 55, 0.08)"
                                 : "transparent",
-                              padding: "var(--nx-space-16) 0",
+                              padding: "18px 0",
                               cursor: "pointer",
                               fontFamily: typography.fontSans,
                               fontSize: "clamp(1.02rem, 2.6vw, 1.28rem)",
                               lineHeight: 1.45,
-                              color: "var(--nx-bone-90)",
+                              color: learningFocus ? "var(--nx-learn-ink)" : "var(--nx-bone-90)",
                               display: "flex",
                               flexDirection: "column",
                               alignItems: "stretch",
@@ -514,7 +523,7 @@ export function LearningTerminal({
                                   flexShrink: 0,
                                   fontWeight: 700,
                                   minWidth: "1.25em",
-                                  color: "var(--nx-bone-50)",
+                                  color: learningFocus ? "rgba(22,32,25,0.46)" : "var(--nx-bone-50)",
                                 }}
                               >
                                 {opt.id.toUpperCase()}
@@ -527,7 +536,7 @@ export function LearningTerminal({
                                   marginTop: "var(--nx-space-16)",
                                   fontSize: "max(14px, 0.88rem)",
                                   lineHeight: 1.5,
-                                  color: "var(--nx-bone-90)",
+                                  color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-90)",
                                 }}
                               >
                                 Hinweis {opt.whyWrongHint}
@@ -538,10 +547,10 @@ export function LearningTerminal({
                                 style={{
                                   marginTop: "var(--nx-space-16)",
                                   fontSize: "max(14px, 0.88rem)",
-                                  color: "var(--nx-bone-90)",
+                                  color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-90)",
                                 }}
                               >
-                                Passt weiter mit den Skill Karten unten
+                                Richtig, jetzt die Zahlenantwort prüfen
                               </div>
                             ) : null}
                           </button>
@@ -554,10 +563,10 @@ export function LearningTerminal({
                       style={{
                         fontFamily: typography.fontSans,
                         fontSize: "max(11px, 0.7rem)",
-                        fontWeight: 600,
-                        letterSpacing: "0.14em",
+                        fontWeight: 800,
+                        letterSpacing: "0.08em",
                         textTransform: "uppercase",
-                        color: "var(--nx-bone-50)",
+                        color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-50)",
                         padding: "var(--nx-space-8) 0 0",
                       }}
                     >
@@ -755,8 +764,8 @@ export function LearningTerminal({
                       color: typography.fgMuted,
                     }}
                   >
-                    Nutze die Karten unten wie Antwortoptionen — richtige Karte = dein Angriff, Fehlwahl =
-                    Konter des Titans
+                    Nutze die Karten unten wie Antwortoptionen — richtige Karte bringt dich weiter,
+                    Fehlwahl kostet Fokus
                   </p>
                 </motion.div>
               </>
@@ -822,7 +831,7 @@ export function LearningTerminal({
                     textTransform: "uppercase",
                   }}
                 >
-                  Antwortoptionen — Skill-Karten unten
+                  Antwortoptionen unten
                 </motion.div>
               </>
             ) : pickedId != null ? (
@@ -840,7 +849,7 @@ export function LearningTerminal({
                     textTransform: "uppercase",
                   }}
                 >
-                  Skill-Karten unten — weiter im Kampf
+                  Karten unten — weiter üben
                 </motion.div>
               </>
             ) : null}

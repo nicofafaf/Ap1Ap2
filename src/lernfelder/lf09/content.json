@@ -19,10 +19,10 @@
     },
     {
       "id": "lf9-check",
-      "chapter": "Pruefung",
+      "chapter": "Prüfung",
       "type": "note",
-      "title": "Pruefungs Check",
-      "body": "Waehle GET POST PUT DELETE richtig pruefe Statuscodes sauber sichere API gegen Missbrauch"
+      "title": "Prüfungs Check",
+      "body": "Wähle GET POST PUT DELETE richtig prüfe Statuscodes sauber sichere API gegen Missbrauch"
     }
   ]
 }

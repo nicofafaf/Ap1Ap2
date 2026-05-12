@@ -166,6 +166,7 @@ export function CombatManager({
       examLogicFlowToken: state.examLogicFlowToken,
       learningMentorStreak: state.learningMentorStreak,
       learningMentorColdToken: state.learningMentorColdToken,
+      missionStatus: state.mission.status,
     }))
   );
   const clearAchievementBuffer = useGameStore((state) => state.clearAchievementBuffer);
@@ -275,12 +276,12 @@ export function CombatManager({
       setBossVisible(true);
       setCombatUnlocked(true);
       onCombatUnlocked?.();
-    }, 3000);
+    }, 900);
 
-    // Phase 2: Lore auto-fade (hard requirement: 4s)
+    // Phase 2: kurze Einblendung, dann direkt in die Aufgabe
     const loreFadeTimer = window.setTimeout(() => {
       setLoreVisible(false);
-    }, 4000);
+    }, 1200);
 
     return () => {
       window.clearTimeout(showBossTimer);
@@ -452,6 +453,13 @@ export function CombatManager({
     [storeSlice.playerHP, storeSlice.maxPlayerHP]
   );
 
+  const learningModeActive =
+    combatUnlocked &&
+    !tokens.isVictory &&
+    !loreVisible &&
+    storeSlice.missionStatus !== "cleared" &&
+    (storeSlice.gameState === "FIGHTING" || storeSlice.gameState === "STARTING");
+
   return (
     <div
       className={className}
@@ -472,17 +480,9 @@ export function CombatManager({
           height: "100%",
         }}
       >
-      <HUD />
-      <TutorialCombatOverlay
-        visible={
-          storeSlice.isTutorialCombatRun &&
-          storeSlice.combatTutorialStep < 3 &&
-          combatUnlocked &&
-          (storeSlice.gameState === "FIGHTING" || storeSlice.gameState === "STARTING")
-        }
-        step={storeSlice.combatTutorialStep}
-      />
-      <FlowIndicator />
+      {!learningModeActive ? <HUD /> : null}
+      <TutorialCombatOverlay visible={false} step={storeSlice.combatTutorialStep} />
+      {!learningModeActive ? <FlowIndicator /> : null}
       <LearningTerminal
         currentLF={effectiveLF}
         combatPhase={storeSlice.currentCombatPhase}
@@ -491,12 +491,7 @@ export function CombatManager({
         morphLf={
           storeSlice.activeCombatIsSectorZero ? storeSlice.sectorZeroMorphLf : null
         }
-        visible={
-          combatUnlocked &&
-          !tokens.isVictory &&
-          !loreVisible &&
-          (storeSlice.gameState === "FIGHTING" || storeSlice.gameState === "STARTING")
-        }
+        visible={learningModeActive}
       />
       <ArtifactGallery
         visible={storeSlice.overlayOpenState !== "NONE"}
@@ -507,7 +502,7 @@ export function CombatManager({
         onClose={() => setSourceMirrorSkill(null)}
       />
 
-      {bossVisible && (
+      {bossVisible && !learningModeActive && (
         <motion.div
           animate={{
             scale: tokens.isVictory
@@ -577,6 +572,7 @@ export function CombatManager({
         </motion.div>
       )}
 
+      {!learningModeActive && !storeSlice.isTutorialCombatRun ? (
       <LoreOverlay
         currentLF={effectiveLF}
         lore={
@@ -589,9 +585,11 @@ export function CombatManager({
         }
         visible={loreVisible}
       />
+      ) : null}
 
       <AssetDataStreamOverlay visible={!bossVisible} lines={assetStreamLines} />
 
+      {!learningModeActive ? (
       <div
         data-nx-learning-dim-chrome="1"
         style={{
@@ -614,6 +612,7 @@ export function CombatManager({
           isCriticalPhase={storeSlice.isCriticalPhase}
         />
       </div>
+      ) : null}
 
       {tokens.isVictory && lootReady && !storeSlice.endlessAwaitingBossSpawn && (
         <motion.div
@@ -736,11 +735,13 @@ export function CombatManager({
           storeSlice.victoryFinisherComplete &&
           storeSlice.isLootErupting && <LootEruption />}
         {combatUnlocked &&
+          !learningModeActive &&
           (!tokens.isVictory ||
             (storeSlice.victoryFinisherComplete &&
               !storeSlice.isLootErupting &&
               !storeSlice.endlessAwaitingBossSpawn)) && (
             <div
+              data-nx-learning-dim-chrome="1"
               style={{
                 position: "absolute",
                 left: 0,
@@ -754,7 +755,7 @@ export function CombatManager({
             </div>
           )}
       </LayoutGroup>
-      {combatUnlocked && !tokens.isVictory && <ActiveBoostsHUD />}
+      {combatUnlocked && !tokens.isVictory && !learningModeActive && <ActiveBoostsHUD />}
       </div>
       <VictoryFinisher captureRef={combatCaptureRef} />
       <LootDetailOverlay />

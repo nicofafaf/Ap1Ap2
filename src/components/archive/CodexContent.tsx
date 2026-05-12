@@ -96,7 +96,7 @@ export function CodexContent({ lf, chapter, items }: CodexContentProps) {
             cursor: "pointer",
           }}
         >
-          Naechste Karte
+          Nächste Karte
         </button>
       </div>
       <AnimatePresence mode="wait" initial={false}>

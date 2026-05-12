@@ -165,6 +165,23 @@ export function NexusShell() {
     setSurface("combat");
   }, [beginNeuralTrainingCombat]);
 
+  const handleOpenOverview = useCallback(() => {
+    completeInitialization();
+    resetCombat();
+    recomputeMenuSystemMood();
+    setDiveBridgeLf(null);
+    setMapHoldCombat(false);
+    setSurface("overworld");
+  }, [completeInitialization, resetCombat, recomputeMenuSystemMood]);
+
+  const handleBeginLearningField = useCallback(
+    (lf: number) => {
+      completeInitialization();
+      handleEngage(lf);
+    },
+    [completeInitialization, handleEngage]
+  );
+
   useEffect(() => {
     if (surface !== "combat" || !mapHoldCombat) return;
     const t1 = window.setTimeout(() => setDiveBridgeLf(null), 1000);
@@ -219,7 +236,11 @@ export function NexusShell() {
       <>
         <div style={{ width: "100%", height: "100%", minHeight: "100dvh", overflow: "hidden" }}>
           <Suspense fallback={<InitializationFallback />}>
-            <NeuralInitializerLazy onBeginTraining={handleBeginTraining} />
+            <NeuralInitializerLazy
+              onBeginTraining={handleBeginTraining}
+              onOpenOverview={handleOpenOverview}
+              onBeginLearningField={handleBeginLearningField}
+            />
           </Suspense>
         </div>
         <NexusTutorial />

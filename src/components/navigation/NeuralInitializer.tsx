@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { useCallback, useEffect, useState, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 export type NeuralInitializerProps = {
   onBeginTraining: () => void;
+  onOpenOverview: () => void;
+  onBeginLearningField: (lf: number) => void;
 };
-
-type InitPhase = "identity" | "neural" | "ready";
 
 const STAGGER = {
   hidden: { opacity: 0 },
@@ -15,33 +15,37 @@ const STAGGER = {
   },
 };
 
-const LINE = {
-  hidden: { opacity: 0, x: -12 },
+const CARD = {
+  hidden: { opacity: 0, y: 18 },
   show: {
     opacity: 1,
-    x: 0,
-    transition: { type: "spring" as const, stiffness: 420, damping: 32 },
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 260, damping: 26 },
   },
 };
 
-export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
-  const [phase, setPhase] = useState<InitPhase>("identity");
+const LEARNING_FIELDS = [
+  { lf: 1, ap: "AP1", title: "Wirtschaft & Recht", focus: "Kalkulation, Vertrag, Grundlagen" },
+  { lf: 2, ap: "AP1", title: "IT-Systeme", focus: "Client, Server, DNS, DHCP" },
+  { lf: 3, ap: "AP1", title: "Netzwerke", focus: "Subnetze, Dienste, Ports" },
+  { lf: 4, ap: "AP1", title: "Hardware", focus: "Integration, Treiber, Tests" },
+  { lf: 5, ap: "AP1", title: "Datenbanken", focus: "SQL, SELECT, JOIN" },
+  { lf: 6, ap: "AP1", title: "Skripte", focus: "Abläufe, Bedingungen, Schleifen" },
+  { lf: 7, ap: "AP2", title: "OOP", focus: "Klassen, Objekte, Interfaces" },
+  { lf: 8, ap: "AP2", title: "Datenmodelle", focus: "ERD, Schlüssel, Normalformen" },
+  { lf: 9, ap: "AP2", title: "Schnittstellen", focus: "REST, HTTP, Statuscodes" },
+  { lf: 10, ap: "AP2", title: "UX & Barrierefreiheit", focus: "Kontrast, Fokus, Formulare" },
+  { lf: 11, ap: "AP2", title: "Security", focus: "CIA, Risiko, Maßnahmen" },
+  { lf: 12, ap: "AP2", title: "Projekt", focus: "Scrum, Planung, Risiken" },
+] as const;
 
-  useEffect(() => {
-    if (phase !== "identity") return;
-    const t = window.setTimeout(() => setPhase("neural"), 1400);
-    return () => window.clearTimeout(t);
-  }, [phase]);
-
-  useEffect(() => {
-    if (phase !== "neural") return;
-    const t = window.setTimeout(() => setPhase("ready"), 3600);
-    return () => window.clearTimeout(t);
-  }, [phase]);
-
-  const onNeuralAck = useCallback(() => {
-    setPhase("ready");
-  }, []);
+export function NeuralInitializer({
+  onBeginTraining,
+  onOpenOverview,
+  onBeginLearningField,
+}: NeuralInitializerProps) {
+  const ap1Count = LEARNING_FIELDS.filter((item) => item.ap === "AP1").length;
+  const ap2Count = LEARNING_FIELDS.length - ap1Count;
 
   return (
     <div
@@ -51,12 +55,10 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
         zIndex: 20000,
         background:
           "radial-gradient(ellipse 70% 48% at 50% 18%, rgba(214,181,111,0.16), transparent 58%), linear-gradient(160deg, #121a14 0%, #0b100d 52%, #070a08 100%)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 24,
-        overflow: "hidden",
+        display: "grid",
+        placeItems: "center",
+        padding: "clamp(18px, 4vw, 56px)",
+        overflow: "auto",
         pointerEvents: "auto",
       }}
     >
@@ -72,131 +74,101 @@ export function NeuralInitializer({ onBeginTraining }: NeuralInitializerProps) {
         }}
       />
 
-      <div
-        style={{
-          position: "relative",
-          width: "min(280px, 58vw)",
-          marginBottom: 28,
-          pointerEvents: "none",
-        }}
-      >
-        <svg viewBox="0 0 200 200" style={{ width: "100%", display: "block", pointerEvents: "none" }}>
-          <defs>
-            <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(251,247,239,0.96)" />
-              <stop offset="55%" stopColor="rgba(214,181,111,0.46)" />
-              <stop offset="100%" stopColor="rgba(18,26,20,0.88)" />
-            </radialGradient>
-            <clipPath id="eyeClip">
-              <ellipse cx="100" cy="100" rx="88" ry="52" />
-            </clipPath>
-          </defs>
-          <ellipse cx="100" cy="100" rx="92" ry="56" fill="rgba(251,247,239,0.08)" stroke="rgba(251,247,239,0.26)" strokeWidth="2" />
-          <g clipPath="url(#eyeClip)">
-            <circle cx="100" cy="100" r="46" fill="url(#irisGrad)" />
-            <motion.ellipse
-              cx="100"
-              cy="100"
-              rx="18"
-              ry="18"
-              fill="rgba(2,8,14,0.92)"
-              animate={{ scale: phase === "identity" ? [1, 1.08, 1] : 1 }}
-              transition={{ duration: 1.8, repeat: phase === "identity" ? Infinity : 0 }}
-            />
-            <motion.line
-              x1="12"
-              y1="100"
-              x2="188"
-              y2="100"
-              stroke="rgba(214,181,111,0.55)"
-              strokeWidth="1.5"
-              initial={{ y1: 72, y2: 72 }}
-              animate={{
-                y1: phase === "identity" ? [72, 128, 72] : 100,
-                y2: phase === "identity" ? [72, 128, 72] : 100,
-              }}
-              transition={{
-                duration: 2.8,
-                repeat: phase === "identity" ? Infinity : 0,
-                ease: "easeInOut",
-              }}
-            />
-          </g>
-        </svg>
-      </div>
-
       <motion.div
         variants={STAGGER}
         initial="hidden"
         animate="show"
-        key={phase}
         style={{
           position: "relative",
           zIndex: 1,
-          width: "min(620px, calc(100vw - 48px))",
-          borderRadius: 28,
+          width: "min(1180px, 100%)",
+          borderRadius: 36,
           border: "1px solid rgba(251,247,239,0.18)",
-          background: "rgba(251,247,239,0.94)",
+          background: "rgba(251,247,239,0.96)",
           color: "var(--nx-learn-ink)",
-          padding: "32px clamp(24px, 5vw, 44px) 36px",
+          padding: "clamp(26px, 4vw, 54px)",
           boxShadow: "0 34px 100px rgba(0,0,0,0.28)",
           pointerEvents: "auto",
         }}
       >
-        <div style={eyebrowStyle}>
-          {phase === "identity" && "Willkommen"}
-          {phase === "neural" && "Kurz fokussieren"}
-          {phase === "ready" && "Training bereit"}
+        <div style={heroGridStyle}>
+          <motion.section variants={CARD}>
+            <div style={eyebrowStyle}>LernenSchule</div>
+            <h1 style={headlineStyle}>Deine ruhige Lernzentrale</h1>
+            <p style={leadStyle}>
+              Alles im Blick: AP1, AP2, alle 12 Lernfelder und ein geführter Start ohne
+              Ablenkung
+            </p>
+            <div style={actionRowStyle}>
+              <button type="button" onClick={onOpenOverview} style={ctaStyle}>
+                Lernübersicht öffnen
+              </button>
+              <button type="button" onClick={onBeginTraining} style={secondaryCtaStyle}>
+                Geführtes Beispiel starten
+              </button>
+            </div>
+          </motion.section>
+
+          <motion.aside variants={CARD} style={statsPanelStyle} aria-label="Lernstatus Übersicht">
+            <div style={statStyle}>
+              <strong>{LEARNING_FIELDS.length}</strong>
+              <span>Lernfelder</span>
+            </div>
+            <div style={statStyle}>
+              <strong>{ap1Count}</strong>
+              <span>AP1 Fokus</span>
+            </div>
+            <div style={statStyle}>
+              <strong>{ap2Count}</strong>
+              <span>AP2 Fokus</span>
+            </div>
+          </motion.aside>
         </div>
 
-        {phase === "identity" && (
-          <>
-            <motion.p variants={LINE} style={terminalLine}>
-              Wir bereiten einen ruhigen Lernraum vor
-            </motion.p>
-            <motion.p variants={LINE} style={terminalLine}>
-              Große Schrift, klare Schritte, wenig Ablenkung
-            </motion.p>
-          </>
-        )}
-
-        {phase === "neural" && (
-          <>
-            <motion.p variants={LINE} style={terminalLine}>
-              Starte mit einer geführten Aufgabe aus LF1
-            </motion.p>
-            <motion.p variants={LINE} style={terminalLine}>
-              Du bekommst Formel, Tipp und Eingabefeld direkt zusammen
-            </motion.p>
-            <button type="button" onClick={onNeuralAck} style={ctaStyle}>
-              Weiter
+        <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
+          {LEARNING_FIELDS.map((field) => (
+            <button
+              key={field.lf}
+              type="button"
+              onClick={() => onBeginLearningField(field.lf)}
+              style={fieldCardStyle}
+            >
+              <span style={fieldMetaStyle}>
+                LF{field.lf} · {field.ap}
+              </span>
+              <strong>{field.title}</strong>
+              <span>{field.focus}</span>
             </button>
-          </>
-        )}
-
-        {phase === "ready" && (
-          <>
-            <motion.p variants={LINE} style={terminalLine}>
-              Rechne die Antwort aus und prüfe sie sofort
-            </motion.p>
-            <motion.p variants={LINE} style={terminalLine}>
-              Karten sind nur Hilfen, die Aufgabe bleibt im Mittelpunkt
-            </motion.p>
-            <button type="button" onClick={onBeginTraining} style={ctaStyle}>
-              Training starten
-            </button>
-          </>
-        )}
+          ))}
+        </motion.div>
       </motion.div>
     </div>
   );
 }
 
-const terminalLine: CSSProperties = {
-  margin: "0 0 12px",
+const heroGridStyle: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
+  gap: "clamp(24px, 4vw, 48px)",
+  alignItems: "stretch",
+};
+
+const headlineStyle: CSSProperties = {
+  margin: 0,
+  maxWidth: 720,
   fontFamily: "var(--nx-font-sans)",
-  fontSize: "clamp(20px, 2.2vw, 24px)",
-  lineHeight: 1.55,
+  fontSize: "clamp(46px, 6vw, 86px)",
+  lineHeight: 0.95,
+  letterSpacing: "-0.07em",
+  color: "var(--nx-learn-ink)",
+};
+
+const leadStyle: CSSProperties = {
+  margin: "22px 0 0",
+  maxWidth: 640,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: "clamp(20px, 2.4vw, 27px)",
+  lineHeight: 1.45,
   color: "var(--nx-learn-muted)",
 };
 
@@ -210,9 +182,15 @@ const eyebrowStyle: CSSProperties = {
   textTransform: "uppercase",
 };
 
+const actionRowStyle: CSSProperties = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 14,
+  marginTop: 30,
+};
+
 const ctaStyle: CSSProperties = {
-  marginTop: 18,
-  width: "100%",
+  minWidth: 230,
   borderRadius: 999,
   border: "1px solid rgba(22,32,25,0.12)",
   background: "linear-gradient(135deg, #18251c 0%, #314832 100%)",
@@ -225,6 +203,64 @@ const ctaStyle: CSSProperties = {
   pointerEvents: "auto",
   WebkitTapHighlightColor: "transparent",
   touchAction: "manipulation",
+};
+
+const secondaryCtaStyle: CSSProperties = {
+  ...ctaStyle,
+  background: "rgba(22,32,25,0.06)",
+  color: "var(--nx-learn-ink)",
+};
+
+const statsPanelStyle: CSSProperties = {
+  display: "grid",
+  gap: 14,
+  padding: 18,
+  borderRadius: 28,
+  background: "rgba(22,32,25,0.06)",
+  border: "1px solid var(--nx-learn-line)",
+};
+
+const statStyle: CSSProperties = {
+  display: "flex",
+  alignItems: "baseline",
+  justifyContent: "space-between",
+  gap: 18,
+  padding: "14px 16px",
+  borderRadius: 20,
+  background: "rgba(255,255,255,0.46)",
+  color: "var(--nx-learn-muted)",
+};
+
+const fieldGridStyle: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(min(210px, 100%), 1fr))",
+  gap: 14,
+  marginTop: 34,
+};
+
+const fieldCardStyle: CSSProperties = {
+  minHeight: 132,
+  textAlign: "left",
+  border: "1px solid var(--nx-learn-line)",
+  borderRadius: 24,
+  background: "linear-gradient(160deg, rgba(255,255,255,0.62), rgba(238,229,213,0.62))",
+  color: "var(--nx-learn-muted)",
+  padding: 18,
+  display: "flex",
+  flexDirection: "column",
+  gap: 8,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 15,
+  lineHeight: 1.35,
+  cursor: "pointer",
+};
+
+const fieldMetaStyle: CSSProperties = {
+  fontSize: 12,
+  fontWeight: 800,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  color: "rgba(22,32,25,0.48)",
 };
 
 export default NeuralInitializer;

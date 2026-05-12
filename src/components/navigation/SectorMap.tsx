@@ -685,6 +685,75 @@ export function SectorMap({
         </div>
       </div>
 
+      <nav
+        aria-label="Direkte Lernfeldauswahl"
+        style={{
+          position: "fixed",
+          left: "max(20px, env(safe-area-inset-left))",
+          right: "max(20px, env(safe-area-inset-right))",
+          bottom: "max(20px, env(safe-area-inset-bottom))",
+          zIndex: 34,
+          pointerEvents: "auto",
+          padding: 16,
+          borderRadius: 26,
+          border: "1px solid rgba(251,247,239,0.16)",
+          background: "rgba(8, 12, 10, 0.76)",
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          boxShadow: "0 22px 70px rgba(0,0,0,0.26)",
+        }}
+      >
+        <div
+          style={{
+            marginBottom: 12,
+            fontFamily: "var(--nx-font-mono)",
+            fontSize: 20,
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "rgba(251,247,239,0.72)",
+          }}
+        >
+          Direkt starten
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(112px, 1fr))",
+            gap: 10,
+          }}
+        >
+          {Array.from({ length: 12 }, (_, idx) => {
+            const lf = idx + 1;
+            return (
+              <button
+                key={`direct-lf-${lf}`}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onEngage(lf);
+                }}
+                style={{
+                  minHeight: 54,
+                  borderRadius: 18,
+                  border: "1px solid rgba(214,181,111,0.3)",
+                  background:
+                    "linear-gradient(160deg, rgba(251,247,239,0.92), rgba(238,229,213,0.82))",
+                  color: "var(--nx-learn-ink)",
+                  fontFamily: "var(--nx-font-mono)",
+                  fontSize: 20,
+                  fontWeight: 800,
+                  cursor: "pointer",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.58)",
+                }}
+              >
+                LF{lf} starten
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
       {hoverLf != null && hoverEntry ? (
         <motion.div
           initial={{ opacity: 0, x: 16 }}

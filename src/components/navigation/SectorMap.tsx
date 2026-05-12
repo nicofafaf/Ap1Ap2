@@ -726,13 +726,9 @@ export function SectorMap({
           {Array.from({ length: 12 }, (_, idx) => {
             const lf = idx + 1;
             return (
-              <button
+              <a
                 key={`direct-lf-${lf}`}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onEngage(lf);
-                }}
+                href={`/?startLf=${lf}`}
                 style={{
                   minHeight: 54,
                   borderRadius: 18,
@@ -744,11 +740,15 @@ export function SectorMap({
                   fontSize: 20,
                   fontWeight: 800,
                   cursor: "pointer",
+                  display: "grid",
+                  placeItems: "center",
+                  textAlign: "center",
+                  textDecoration: "none",
                   boxShadow: "inset 0 1px 0 rgba(255,255,255,0.58)",
                 }}
               >
                 LF{lf} starten
-              </button>
+              </a>
             );
           })}
         </div>

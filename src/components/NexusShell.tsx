@@ -182,6 +182,22 @@ export function NexusShell() {
   );
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const rawLf = params.get("startLf");
+    if (!rawLf) return;
+
+    const lf = Number.parseInt(rawLf, 10);
+    if (!Number.isFinite(lf) || lf < 1 || lf > 12) return;
+
+    params.delete("startLf");
+    const nextSearch = params.toString();
+    const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ""}${window.location.hash}`;
+    window.history.replaceState(null, "", nextUrl);
+    completeInitialization();
+    handleEngage(lf);
+  }, [completeInitialization, handleEngage]);
+
+  useEffect(() => {
     if (surface !== "combat" || !mapHoldCombat) return;
     const t1 = window.setTimeout(() => setDiveBridgeLf(null), 1000);
     const t2 = window.setTimeout(() => setMapHoldCombat(false), 1200);

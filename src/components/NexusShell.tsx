@@ -12,7 +12,6 @@ import type { InitiateCombatOptions } from "../lib/dailyIncursion";
 import { useGameStore } from "../store/useGameStore";
 import { SectorMap } from "./navigation/SectorMap";
 import { MaintenanceOverlay } from "./system/MaintenanceOverlay";
-import { NexusTutorial } from "./system/NexusTutorial";
 import { useNexusI18n } from "../lib/i18n/I18nProvider";
 
 const NeuralInitializerLazy = lazy(() =>
@@ -233,18 +232,15 @@ export function NexusShell() {
 
   if (showNeuralIntroOnly) {
     return (
-      <>
-        <div style={{ width: "100%", height: "100%", minHeight: "100dvh", overflow: "hidden" }}>
-          <Suspense fallback={<InitializationFallback />}>
-            <NeuralInitializerLazy
-              onBeginTraining={handleBeginTraining}
-              onOpenOverview={handleOpenOverview}
-              onBeginLearningField={handleBeginLearningField}
-            />
-          </Suspense>
-        </div>
-        <NexusTutorial />
-      </>
+      <div style={{ width: "100%", height: "100%", minHeight: "100dvh", overflow: "hidden" }}>
+        <Suspense fallback={<InitializationFallback />}>
+          <NeuralInitializerLazy
+            onBeginTraining={handleBeginTraining}
+            onOpenOverview={handleOpenOverview}
+            onBeginLearningField={handleBeginLearningField}
+          />
+        </Suspense>
+      </div>
     );
   }
 
@@ -305,7 +301,6 @@ export function NexusShell() {
         </div>
       </LayoutGroup>
       <MaintenanceOverlay />
-      <NexusTutorial />
     </div>
   );
 }

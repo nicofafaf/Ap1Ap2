@@ -1,4 +1,14 @@
-import { cpSync, existsSync, mkdirSync, realpathSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import {
+  copyFileSync,
+  cpSync,
+  existsSync,
+  mkdirSync,
+  realpathSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig, loadEnv, type Plugin } from "vite";
@@ -8,6 +18,16 @@ import { collectNexusPrecacheUrls } from "./src/lib/nexusAssetManifest";
 import { getAllNexusEntries } from "./src/data/nexusRegistry";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const REQUIRED_DEPLOY_ASSETS = [
+  ...Array.from({ length: 12 }, (_, idx) => `LF${idx + 1}GIF.mp4`),
+  "BossThemen.mp3",
+  "BossThemen2.mp3",
+  "BossThemen3.mp3",
+  "BossThemen4.mp3",
+  "BossThemen5.mp3",
+  "lobbysound_2.mp3",
+];
 
 /**
  * Netlify/Linux: ohne Windows-Junction muss public/assets existieren.
@@ -28,6 +48,21 @@ function ensurePublicAssetsPlugin(): Plugin {
       const srcDir = resolve(__dirname, "assets");
       const destDir = resolve(__dirname, "public", "assets");
       if (!existsSync(srcDir) || !statSync(srcDir).isDirectory()) return;
+      if (process.env.GITLAB_CI === "true" || process.env.CI === "true") {
+        rmSync(destDir, { recursive: true, force: true });
+        mkdirSync(destDir, { recursive: true });
+        for (const fileName of REQUIRED_DEPLOY_ASSETS) {
+          const srcFile = join(srcDir, fileName);
+          if (!existsSync(srcFile)) {
+            throw new Error(`[ensure-public-assets] Fehlendes Deploy-Asset: assets/${fileName}`);
+          }
+          copyFileSync(srcFile, join(destDir, fileName));
+        }
+        console.warn(
+          `[ensure-public-assets] CI Slim Deploy — ${REQUIRED_DEPLOY_ASSETS.length} Kern-Assets kopiert`
+        );
+        return;
+      }
       try {
         if (realpathSync(srcDir) === realpathSync(destDir)) return;
       } catch {

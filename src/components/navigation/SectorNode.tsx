@@ -87,7 +87,6 @@ export function SectorNode({
   learningProgressRatio = 0,
   lfCurriculumMastered = false,
   layoutBridgeLf = null,
-  seamlessEngage = false,
   tierLabels,
 }: SectorNodeProps) {
   const beat = useFractalBeat();
@@ -105,12 +104,9 @@ export function SectorNode({
   const handleClick = (e?: MouseEvent | PointerEvent) => {
     e?.stopPropagation();
     if (!unlocked || phase === "diving") return;
-    if (seamlessEngage) {
-      onEngage(lf, engageOptions ?? undefined);
-      return;
-    }
-    engagedRef.current = false;
+    engagedRef.current = true;
     setPhase("diving");
+    onEngage(lf, engageOptions ?? undefined);
   };
 
   useEffect(() => {

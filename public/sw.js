@@ -1,5 +1,5 @@
 /* global self, caches, fetch, clients */
-const CACHE_NAME = "nexus-media-v1";
+const CACHE_NAME = "nexus-media-v3";
 const MANIFEST_PATH = "/nexus-precache-manifest.json";
 
 self.addEventListener("install", (event) => {
@@ -32,7 +32,15 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    (async () => {
+      const names = await caches.keys();
+      await Promise.all(names.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name)));
+      await self.clients.claim();
+      const all = await self.clients.matchAll({ includeUncontrolled: true });
+      all.forEach((c) => c.postMessage({ type: "NEXUS_SW_ACTIVATED", cacheName: CACHE_NAME }));
+    })()
+  );
 });
 
 self.addEventListener("fetch", (event) => {
@@ -45,15 +53,21 @@ self.addEventListener("fetch", (event) => {
 
   event.respondWith(
     (async () => {
-      const hit = await caches.match(req);
-      if (hit) return hit;
-
       try {
+        if (isNavigate) {
+          return await fetch(req, { cache: "no-store" });
+        }
+        const url = new URL(req.url);
+        const isBuildAsset = url.pathname.startsWith("/assets/") && /\.(js|css)$/i.test(url.pathname);
+        if (isBuildAsset || url.pathname === "/index.html") {
+          return await fetch(req, { cache: "no-store" });
+        }
+        const hit = await caches.match(req);
+        if (hit) return hit;
         return await fetch(req);
       } catch {
         if (isNavigate) {
-          const shell = await caches.match("/index.html");
-          if (shell) return shell;
+          return fetch("/index.html", { cache: "reload" }).catch(() => Response.error());
         }
         return Response.error();
       }

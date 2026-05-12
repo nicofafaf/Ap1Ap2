@@ -4,8 +4,8 @@ export const typography = {
     '"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
   fontMono:
     '"Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
-  /** Mindest-Basis 20px — entspannt lesen statt HUD scannen */
-  bodySize: "clamp(20px, 0.3vw + 18px, 22px)",
+  /** Mindest-Basis 24px — entspannt lesen statt HUD scannen */
+  bodySize: "clamp(24px, 0.3vw + 22px, 26px)",
   bodyLineHeight: 1.68,
   displaySize: "var(--nx-type-display)",
   fg: "var(--nx-bone-90)",

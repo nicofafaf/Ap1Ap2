@@ -55,9 +55,9 @@ export function TutorialCombatOverlay({ visible, step }: TutorialCombatOverlayPr
             exit={{ opacity: 0, y: -6 }}
             transition={reduceMotion ? { duration: 0.01 } : { type: "spring", stiffness: 380, damping: 32 }}
             style={{
-              width: "min(420px, 100%)",
-              borderRadius: 16,
-              padding: "22px 24px 20px",
+              width: "min(520px, 100%)",
+              borderRadius: 26,
+              padding: "26px 30px",
               background: "rgba(251,247,239,0.94)",
               border: "1px solid var(--nx-learn-line)",
               boxShadow: "0 24px 64px rgba(0,0,0,0.2)",
@@ -68,8 +68,8 @@ export function TutorialCombatOverlay({ visible, step }: TutorialCombatOverlayPr
             <div
               style={{
                 fontFamily: "var(--nx-font-sans)",
-                fontSize: 11,
-                letterSpacing: "0.08em",
+                fontSize: 20,
+                letterSpacing: "0.04em",
                 textTransform: "uppercase",
                 color: "var(--nx-learn-muted)",
                 marginBottom: 14,
@@ -89,7 +89,7 @@ export function TutorialCombatOverlay({ visible, step }: TutorialCombatOverlayPr
                 color: "var(--nx-learn-ink)",
                 fontFamily: "var(--nx-font-sans)",
                 fontWeight: 700,
-                fontSize: 13,
+                fontSize: 20,
                 letterSpacing: "0.04em",
               }}
             >

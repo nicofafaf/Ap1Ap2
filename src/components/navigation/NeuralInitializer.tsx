@@ -57,7 +57,7 @@ export function NeuralInitializer({
           "radial-gradient(ellipse 70% 48% at 50% 18%, rgba(214,181,111,0.16), transparent 58%), linear-gradient(160deg, #121a14 0%, #0b100d 52%, #070a08 100%)",
         display: "grid",
         placeItems: "center",
-        padding: "clamp(18px, 4vw, 56px)",
+        padding: "clamp(20px, 4vw, 64px)",
         overflow: "auto",
         pointerEvents: "auto",
       }}
@@ -81,12 +81,12 @@ export function NeuralInitializer({
         style={{
           position: "relative",
           zIndex: 1,
-          width: "min(1180px, 100%)",
-          borderRadius: 36,
+          width: "min(1340px, 100%)",
+          borderRadius: 40,
           border: "1px solid rgba(251,247,239,0.18)",
           background: "rgba(251,247,239,0.96)",
           color: "var(--nx-learn-ink)",
-          padding: "clamp(26px, 4vw, 54px)",
+          padding: "clamp(30px, 4.6vw, 64px)",
           boxShadow: "0 34px 100px rgba(0,0,0,0.28)",
           pointerEvents: "auto",
         }}
@@ -134,7 +134,10 @@ export function NeuralInitializer({
               style={fieldCardStyle}
             >
               <span style={fieldMetaStyle}>
-                LF{field.lf} · {field.ap}
+                <span>Datenträger</span>
+                <b>
+                  LF{field.lf} · {field.ap}
+                </b>
               </span>
               <strong>{field.title}</strong>
               <span>{field.focus}</span>
@@ -149,7 +152,7 @@ export function NeuralInitializer({
 const heroGridStyle: CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
-  gap: "clamp(24px, 4vw, 48px)",
+  gap: "clamp(28px, 4vw, 56px)",
   alignItems: "stretch",
 };
 
@@ -157,7 +160,8 @@ const headlineStyle: CSSProperties = {
   margin: 0,
   maxWidth: 720,
   fontFamily: "var(--nx-font-sans)",
-  fontSize: "clamp(46px, 6vw, 86px)",
+  fontSize: "clamp(48px, 6vw, 90px)",
+  fontWeight: 100,
   lineHeight: 0.95,
   letterSpacing: "-0.07em",
   color: "var(--nx-learn-ink)",
@@ -167,16 +171,17 @@ const leadStyle: CSSProperties = {
   margin: "22px 0 0",
   maxWidth: 640,
   fontFamily: "var(--nx-font-sans)",
-  fontSize: "clamp(20px, 2.4vw, 27px)",
+  fontSize: "clamp(24px, 2.5vw, 30px)",
+  fontWeight: 400,
   lineHeight: 1.45,
   color: "var(--nx-learn-muted)",
 };
 
 const eyebrowStyle: CSSProperties = {
   marginBottom: 18,
-  fontFamily: "var(--nx-font-sans)",
-  fontSize: 14,
-  fontWeight: 700,
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: 20,
+  fontWeight: 650,
   letterSpacing: ".08em",
   color: "rgba(22,32,25,0.58)",
   textTransform: "uppercase",
@@ -196,9 +201,9 @@ const ctaStyle: CSSProperties = {
   background: "linear-gradient(135deg, #18251c 0%, #314832 100%)",
   color: "rgba(251,247,239,0.98)",
   letterSpacing: ".02em",
-  fontSize: 18,
+  fontSize: 22,
   fontWeight: 800,
-  padding: "16px 18px",
+  padding: "18px 22px",
   cursor: "pointer",
   pointerEvents: "auto",
   WebkitTapHighlightColor: "transparent",
@@ -213,9 +218,9 @@ const secondaryCtaStyle: CSSProperties = {
 
 const statsPanelStyle: CSSProperties = {
   display: "grid",
-  gap: 14,
-  padding: 18,
-  borderRadius: 28,
+  gap: 18,
+  padding: 22,
+  borderRadius: 32,
   background: "rgba(22,32,25,0.06)",
   border: "1px solid var(--nx-learn-line)",
 };
@@ -225,40 +230,49 @@ const statStyle: CSSProperties = {
   alignItems: "baseline",
   justifyContent: "space-between",
   gap: 18,
-  padding: "14px 16px",
-  borderRadius: 20,
+  padding: "18px 20px",
+  borderRadius: 24,
   background: "rgba(255,255,255,0.46)",
   color: "var(--nx-learn-muted)",
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: 22,
+  lineHeight: 1.2,
 };
 
 const fieldGridStyle: CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(min(210px, 100%), 1fr))",
-  gap: 14,
-  marginTop: 34,
+  gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))",
+  gap: 18,
+  marginTop: 42,
 };
 
 const fieldCardStyle: CSSProperties = {
-  minHeight: 132,
+  minHeight: 196,
   textAlign: "left",
   border: "1px solid var(--nx-learn-line)",
-  borderRadius: 24,
-  background: "linear-gradient(160deg, rgba(255,255,255,0.62), rgba(238,229,213,0.62))",
+  borderRadius: 30,
+  background:
+    "linear-gradient(160deg, rgba(255,255,255,0.78), rgba(238,229,213,0.68)), radial-gradient(circle at 12% 10%, rgba(214,181,111,0.16), transparent 36%)",
   color: "var(--nx-learn-muted)",
-  padding: 18,
+  padding: 24,
   display: "flex",
   flexDirection: "column",
-  gap: 8,
+  gap: 14,
   fontFamily: "var(--nx-font-sans)",
-  fontSize: 15,
-  lineHeight: 1.35,
+  fontSize: 24,
+  lineHeight: 1.32,
   cursor: "pointer",
+  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 18px 50px rgba(22,32,25,0.08)",
 };
 
 const fieldMetaStyle: CSSProperties = {
-  fontSize: 12,
-  fontWeight: 800,
-  letterSpacing: "0.08em",
+  display: "flex",
+  justifyContent: "space-between",
+  gap: 12,
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: 20,
+  fontWeight: 650,
+  letterSpacing: "0.04em",
   textTransform: "uppercase",
   color: "rgba(22,32,25,0.48)",
 };

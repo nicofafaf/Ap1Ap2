@@ -65,7 +65,7 @@ function InitializationFallback() {
           zIndex: 1,
           color: "rgba(251,247,239,0.58)",
           fontFamily: "var(--nx-font-sans, system-ui)",
-          fontSize: 16,
+          fontSize: 20,
         }}
       >
         {t("shell.loading")}
@@ -118,7 +118,7 @@ function CombatSurfaceFallback({ label }: { label: ReactNode }) {
           zIndex: 1,
           color: "rgba(251,247,239,0.48)",
           fontFamily: "var(--nx-font-sans, system-ui)",
-          fontSize: 16,
+          fontSize: 20,
           letterSpacing: "0.01em",
         }}
       >

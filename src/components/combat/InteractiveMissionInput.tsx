@@ -79,7 +79,7 @@ export function InteractiveMissionInput({ expected, onSuccess }: InteractiveMiss
             color: "rgba(251,247,239,0.98)",
             fontFamily: typography.fontSans,
             fontWeight: 800,
-            fontSize: "18px",
+            fontSize: "22px",
             letterSpacing: "0.01em",
             minHeight: 52,
             padding: "14px 24px",
@@ -88,7 +88,7 @@ export function InteractiveMissionInput({ expected, onSuccess }: InteractiveMiss
         >
           Antwort prüfen
         </button>
-        <span style={{ color: "var(--nx-learn-muted)", fontFamily: typography.fontSans, fontSize: "16px", lineHeight: 1.4 }}>
+        <span style={{ color: "var(--nx-learn-muted)", fontFamily: typography.fontSans, fontSize: "20px", lineHeight: 1.4 }}>
           {state === "ok"
             ? "Richtig"
             : state === "retry"

@@ -36,7 +36,7 @@ function SafeLearningFigure({ src, alt }: { src: string; alt: string }) {
           margin: "var(--nx-space-16) 0 0",
           padding: "var(--nx-space-16) var(--nx-space-8)",
           fontFamily: typography.fontSans,
-          fontSize: "max(15px, 0.95rem)",
+          fontSize: 20,
           lineHeight: 1.55,
           color: "var(--nx-bone-50)",
           background: "color-mix(in srgb, var(--nx-vantablack) 92%, transparent)",
@@ -295,7 +295,7 @@ export function LearningTerminal({
                   alignItems: "center",
                   gap: "var(--nx-space-8)",
                   fontFamily: typography.fontSans,
-                  fontSize: "max(12px, 0.75rem)",
+                  fontSize: 20,
                   fontWeight: 100,
                   letterSpacing: "0.02em",
                   color: typography.fgMuted,
@@ -331,7 +331,7 @@ export function LearningTerminal({
                     style={{
                       marginBottom: "var(--nx-space-8)",
                       fontFamily: typography.fontSans,
-                      fontSize: "max(11px, 0.7rem)",
+                      fontSize: 20,
                       fontWeight: 800,
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
@@ -346,7 +346,7 @@ export function LearningTerminal({
                       fontFamily: typography.fontSans,
                       fontSize: learningFocus
                         ? "clamp(42px, 5.4vw, 64px)"
-                        : "clamp(17px, 2.4vw, 20px)",
+                        : "clamp(24px, 2.8vw, 30px)",
                       fontWeight: learningFocus ? 800 : typography.headingWeight,
                       letterSpacing: learningFocus ? "-0.04em" : undefined,
                       lineHeight: learningFocus ? 0.98 : 1.35,
@@ -360,7 +360,7 @@ export function LearningTerminal({
                       margin: "var(--nx-space-16) 0 0",
                       fontFamily: typography.fontSans,
                       fontSize: learningFocus
-                        ? "clamp(20px, 2vw, 24px)"
+                        ? "clamp(24px, 2vw, 28px)"
                         : typography.bodySize,
                       lineHeight: learningFocus ? 1.72 : typography.bodyLineHeight,
                       color: learningFocus ? "var(--nx-learn-muted)" : typography.fgMuted,
@@ -380,7 +380,7 @@ export function LearningTerminal({
                         background: "rgba(214,181,111,0.12)",
                         fontFamily: typography.fontSans,
                         fontWeight: 600,
-                        fontSize: "clamp(18px, 2.4vw, 20px)",
+                        fontSize: "clamp(22px, 2.4vw, 26px)",
                         lineHeight: 1.6,
                         color: "var(--nx-learn-ink)",
                         whiteSpace: "pre-wrap",
@@ -534,7 +534,7 @@ export function LearningTerminal({
                               <div
                                 style={{
                                   marginTop: "var(--nx-space-16)",
-                                  fontSize: "max(14px, 0.88rem)",
+                                  fontSize: 20,
                                   lineHeight: 1.5,
                                   color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-90)",
                                 }}
@@ -546,7 +546,7 @@ export function LearningTerminal({
                               <div
                                 style={{
                                   marginTop: "var(--nx-space-16)",
-                                  fontSize: "max(14px, 0.88rem)",
+                                  fontSize: 20,
                                   color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-90)",
                                 }}
                               >
@@ -562,7 +562,7 @@ export function LearningTerminal({
                       variants={streamChild}
                       style={{
                         fontFamily: typography.fontSans,
-                        fontSize: "max(11px, 0.7rem)",
+                        fontSize: 20,
                         fontWeight: 800,
                         letterSpacing: "0.08em",
                         textTransform: "uppercase",
@@ -614,7 +614,7 @@ export function LearningTerminal({
                           fontFamily: typography.fontSans,
                           fontSize: learningFocus
                             ? "clamp(1.35rem, 4.5vw, 2.2rem)"
-                            : "max(13px, 0.82rem)",
+                            : 20,
                           fontWeight: learningFocus ? 650 : 650,
                           lineHeight: learningFocus ? 1.22 : 1.4,
                           letterSpacing: learningFocus ? "-0.02em" : undefined,
@@ -711,7 +711,7 @@ export function LearningTerminal({
                               <div
                                 style={{
                                   marginTop: "var(--nx-space-16)",
-                                  fontSize: "max(14px, 0.88rem)",
+                                  fontSize: 20,
                                   lineHeight: 1.5,
                                   color: "var(--nx-bone-90)",
                                 }}
@@ -723,7 +723,7 @@ export function LearningTerminal({
                               <div
                                 style={{
                                   marginTop: "var(--nx-space-16)",
-                                  fontSize: "max(14px, 0.88rem)",
+                                  fontSize: 20,
                                   color: "var(--nx-bone-90)",
                                 }}
                               >
@@ -747,7 +747,7 @@ export function LearningTerminal({
                     style={{
                       margin: 0,
                       fontFamily: typography.fontSans,
-                      fontSize: "clamp(17px, 2.4vw, 20px)",
+                      fontSize: "clamp(24px, 2.8vw, 30px)",
                       fontWeight: typography.headingWeight,
                       lineHeight: 1.35,
                       color: typography.fg,
@@ -782,7 +782,7 @@ export function LearningTerminal({
                   <div
                     style={{
                       fontFamily: typography.fontSans,
-                      fontSize: "max(11px, 0.7rem)",
+                      fontSize: 20,
                       fontWeight: 100,
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
@@ -824,7 +824,7 @@ export function LearningTerminal({
                   style={{
                     paddingTop: "var(--nx-space-8)",
                     fontFamily: typography.fontSans,
-                    fontSize: "max(12px, 0.75rem)",
+                    fontSize: 20,
                     fontWeight: 100,
                     letterSpacing: "0.06em",
                     color: typography.fgMuted,
@@ -842,7 +842,7 @@ export function LearningTerminal({
                   style={{
                     paddingTop: "var(--nx-space-8)",
                     fontFamily: typography.fontSans,
-                    fontSize: "max(11px, 0.72rem)",
+                    fontSize: 20,
                     fontWeight: 100,
                     letterSpacing: "0.1em",
                     color: "var(--nx-bone-50)",

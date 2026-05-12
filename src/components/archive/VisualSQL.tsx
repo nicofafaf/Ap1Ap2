@@ -16,34 +16,43 @@ export function VisualSQL({ title }: VisualSqlProps) {
   return (
     <section
       style={{
-        borderRadius: 12,
-        border: "1px solid rgba(255, 214, 165, 0.35)",
-        background: "rgba(12, 13, 16, 0.56)",
-        backdropFilter: "blur(14px) saturate(120%)",
-        padding: "14px 16px",
+        borderRadius: 28,
+        border: "1px solid var(--nx-learn-line)",
+        background: "rgba(251,247,239,0.92)",
+        color: "var(--nx-learn-ink)",
+        backdropFilter: "blur(14px) saturate(110%)",
+        padding: 24,
       }}
     >
-      <div style={{ color: "var(--nx-bone-90)", fontSize: 42, fontWeight: 100, letterSpacing: "0.08em" }}>{title}</div>
-      <div style={{ color: "var(--nx-bone-90)", fontSize: 20, marginTop: 6 }}>
+      <div style={{ color: "var(--nx-learn-ink)", fontSize: 48, fontWeight: 100, letterSpacing: "-0.04em" }}>{title}</div>
+      <div style={{ color: "var(--nx-learn-muted)", fontSize: 24, marginTop: 8 }}>
         Primary Key verbindet Tabellen
       </div>
-      <div style={{ marginTop: 16, display: "grid", gridTemplateColumns: "1fr 180px 1fr", alignItems: "center" }}>
+      <div
+        style={{
+          marginTop: 22,
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(220px, 100%), 1fr))",
+          alignItems: "stretch",
+          gap: 14,
+        }}
+      >
         <button
           type="button"
           onClick={() => setActive("kunden")}
           style={{
-            borderRadius: 10,
-            border: "1px solid rgba(255,214,165,0.45)",
-            background: active === "kunden" ? "rgba(255,214,165,0.14)" : "rgba(232,233,240,0.03)",
-            color: "var(--nx-bone-90)",
-            padding: "12px",
+            borderRadius: 22,
+            border: "1px solid var(--nx-learn-line)",
+            background: active === "kunden" ? "rgba(214,181,111,0.2)" : "rgba(255,255,255,0.56)",
+            color: "var(--nx-learn-ink)",
+            padding: 18,
             textAlign: "left",
             cursor: "pointer",
-            fontSize: 20,
+            fontSize: 24,
           }}
         >
           Kunden Tabelle
-          <div style={{ fontSize: 20, color: "var(--nx-bone-50)", marginTop: 6 }}>ID PK Name Stadt</div>
+          <div style={{ fontSize: 20, color: "var(--nx-learn-muted)", marginTop: 8 }}>ID PK Name Stadt</div>
         </button>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <svg width="170" height="90" viewBox="0 0 170 90" role="img" aria-label="sql relation flow">
@@ -72,18 +81,18 @@ export function VisualSQL({ title }: VisualSqlProps) {
           type="button"
           onClick={() => setActive("bestellungen")}
           style={{
-            borderRadius: 10,
-            border: "1px solid rgba(255,214,165,0.45)",
-            background: active === "bestellungen" ? "rgba(255,214,165,0.14)" : "rgba(232,233,240,0.03)",
-            color: "var(--nx-bone-90)",
-            padding: "12px",
+            borderRadius: 22,
+            border: "1px solid var(--nx-learn-line)",
+            background: active === "bestellungen" ? "rgba(214,181,111,0.2)" : "rgba(255,255,255,0.56)",
+            color: "var(--nx-learn-ink)",
+            padding: 18,
             textAlign: "left",
             cursor: "pointer",
-            fontSize: 20,
+            fontSize: 24,
           }}
         >
           Bestellungen Tabelle
-          <div style={{ fontSize: 20, color: "var(--nx-bone-50)", marginTop: 6 }}>ID PK KundenID FK Betrag</div>
+          <div style={{ fontSize: 20, color: "var(--nx-learn-muted)", marginTop: 8 }}>ID PK KundenID FK Betrag</div>
         </button>
       </div>
       <button
@@ -91,13 +100,13 @@ export function VisualSQL({ title }: VisualSqlProps) {
         onClick={() => setActive("kundenid")}
         style={{
           marginTop: 12,
-          borderRadius: 8,
-          border: "1px solid rgba(255,214,165,0.45)",
-          background: "rgba(255,214,165,0.1)",
-          color: "var(--nx-bone-90)",
+          borderRadius: 999,
+          border: "1px solid rgba(214,181,111,0.55)",
+          background: "rgba(214,181,111,0.18)",
+          color: "var(--nx-learn-ink)",
           fontSize: 20,
           textTransform: "uppercase",
-          padding: "8px 12px",
+          padding: "12px 18px",
           cursor: "pointer",
         }}
       >

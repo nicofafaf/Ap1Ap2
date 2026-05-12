@@ -140,11 +140,11 @@ export function TerminalCodeWorkbench({
       <div
         style={{
           fontFamily: typography.fontSans,
-          fontSize: "max(11px, 0.7rem)",
-          fontWeight: 100,
-          letterSpacing: "0.1em",
+          fontSize: 20,
+          fontWeight: 600,
+          letterSpacing: "0.06em",
           textTransform: "uppercase",
-          color: "var(--nx-bone-50)",
+          color: "var(--nx-learn-muted)",
           paddingBottom: "var(--nx-space-8)",
         }}
       >
@@ -163,17 +163,17 @@ export function TerminalCodeWorkbench({
         style={{
           width: "100%",
           resize: "vertical",
-          minHeight: 140,
+          minHeight: 180,
           margin: 0,
           padding: "var(--nx-space-16)",
-          borderRadius: 6,
+          borderRadius: 22,
           border: goldGlitch
             ? "1px solid rgba(255, 214, 165, 0.6)"
-            : "1px solid rgba(232, 233, 240, 0.12)",
-          background: "rgba(8, 9, 12, 0.96)",
-          color: "var(--nx-bone-90)",
+            : "1px solid var(--nx-learn-line)",
+          background: "rgba(251,247,239,0.92)",
+          color: "var(--nx-learn-ink)",
           fontFamily: "var(--nx-font-mono, Geist Mono, monospace)",
-          fontSize: "max(13px, 0.82rem)",
+          fontSize: 24,
           lineHeight: 1.45,
           outline: "none",
           boxShadow: goldGlitch
@@ -186,32 +186,41 @@ export function TerminalCodeWorkbench({
         <section
           style={{
             marginTop: "var(--nx-space-12)",
-            borderRadius: 8,
-            border: "1px solid rgba(255,214,165,0.28)",
-            background: "rgba(8, 9, 12, 0.86)",
-            padding: "10px 12px",
+            borderRadius: 26,
+            border: "1px solid var(--nx-learn-line)",
+            background: "rgba(251,247,239,0.76)",
+            padding: 18,
           }}
         >
-          <div style={{ color: "var(--nx-bone-90)", fontSize: 20, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+          <div
+            style={{
+              color: "var(--nx-learn-ink)",
+              fontFamily: "var(--nx-font-mono)",
+              fontSize: 20,
+              textTransform: "uppercase",
+              letterSpacing: "0.06em",
+            }}
+          >
             Themen Switcher
           </div>
-          <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
             {(Object.keys(SQL_THEME_PRESETS) as Array<"starwars" | "anime" | "bodybuilding">).map((key) => (
               <button
                 key={key}
                 type="button"
                 onClick={() => setSqlTheme(key)}
                 style={{
-                  borderRadius: 6,
+                  borderRadius: 999,
                   border:
                     sqlTheme === key
                       ? "1px solid rgba(255,214,165,0.68)"
-                      : "1px solid rgba(255,214,165,0.3)",
-                  background: sqlTheme === key ? "rgba(255,214,165,0.14)" : "rgba(232,233,240,0.03)",
-                  color: "var(--nx-bone-90)",
+                      : "1px solid var(--nx-learn-line)",
+                  background: sqlTheme === key ? "rgba(214,181,111,0.2)" : "rgba(255,255,255,0.5)",
+                  color: "var(--nx-learn-ink)",
+                  fontFamily: "var(--nx-font-mono)",
                   fontSize: 20,
                   textTransform: "uppercase",
-                  padding: "6px 10px",
+                  padding: "10px 16px",
                   cursor: "pointer",
                 }}
               >
@@ -219,19 +228,21 @@ export function TerminalCodeWorkbench({
               </button>
             ))}
           </div>
-          <div style={{ marginTop: 8, color: "var(--nx-bone-50)", fontSize: 20 }}>Tabellen Vorschau</div>
+          <div style={{ marginTop: 18, color: "var(--nx-learn-muted)", fontSize: 22 }}>Tabellen Vorschau</div>
           <pre
             style={{
               margin: "8px 0 0",
-              padding: "10px",
-              borderRadius: 8,
-              border: "1px solid rgba(255,214,165,0.2)",
-              background: "rgba(5, 5, 7, 0.92)",
-              color: "var(--nx-bone-90)",
+              minHeight: 146,
+              padding: 16,
+              borderRadius: 20,
+              border: "1px solid var(--nx-learn-line)",
+              background: "rgba(22,32,25,0.06)",
+              color: "var(--nx-learn-ink)",
               overflowX: "auto",
               fontFamily: "var(--nx-font-mono, Geist Mono, monospace)",
               fontSize: 20,
               lineHeight: 1.35,
+              whiteSpace: "pre-wrap",
             }}
           >
             {SQL_THEME_PRESETS[sqlTheme].preview}
@@ -244,13 +255,13 @@ export function TerminalCodeWorkbench({
             }}
             style={{
               marginTop: 8,
-              borderRadius: 6,
-              border: "1px solid rgba(255,214,165,0.55)",
-              background: "rgba(255,214,165,0.12)",
-              color: "var(--nx-bone-90)",
+              borderRadius: 999,
+              border: "1px solid rgba(214,181,111,0.55)",
+              background: "rgba(214,181,111,0.18)",
+              color: "var(--nx-learn-ink)",
               fontSize: 20,
               textTransform: "uppercase",
-              padding: "8px 10px",
+              padding: "12px 18px",
               cursor: "pointer",
             }}
           >
@@ -263,22 +274,22 @@ export function TerminalCodeWorkbench({
           type="button"
           onClick={runCheck}
           style={{
-            borderRadius: 4,
-            border: "1px solid rgba(232, 233, 240, 0.2)",
-            background: "rgba(232, 233, 240, 0.06)",
-            color: "var(--nx-bone-90)",
+            borderRadius: 999,
+            border: "1px solid rgba(214,181,111,0.55)",
+            background: "rgba(214,181,111,0.16)",
+            color: "var(--nx-learn-ink)",
             fontFamily: typography.fontSans,
-            fontWeight: 600,
-            fontSize: "max(12px, 0.75rem)",
-            letterSpacing: "0.08em",
+            fontWeight: 800,
+            fontSize: 20,
+            letterSpacing: "0.04em",
             textTransform: "uppercase",
-            padding: "10px 16px",
+            padding: "14px 20px",
             cursor: "pointer",
           }}
         >
           Abgleich starten
         </button>
-        <span style={{ fontFamily: typography.fontSans, fontSize: "max(12px, 0.75rem)", color: "var(--nx-bone-50)" }}>
+        <span style={{ fontFamily: typography.fontSans, fontSize: 20, color: "var(--nx-learn-muted)" }}>
           {hint}
         </span>
       </div>

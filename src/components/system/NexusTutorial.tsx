@@ -36,6 +36,7 @@ export function NexusTutorial() {
   const tutorialStepIndex = useGameStore((s) => s.tutorialStepIndex);
   const isFirstBoot = useGameStore((s) => s.isFirstBoot);
   const hasCompletedInitialization = useGameStore((s) => s.hasCompletedInitialization);
+  const gameState = useGameStore((s) => s.gameState);
   const isTutorialAnimeUnlocked = useGameStore((s) => s.isTutorialAnimeUnlocked);
   const advanceTutorialStep = useGameStore((s) => s.advanceTutorialStep);
   const completeFirstBoot = useGameStore((s) => s.completeFirstBoot);
@@ -107,7 +108,7 @@ export function NexusTutorial() {
     [targetRect]
   );
 
-  if (!isFirstBoot || !hasCompletedInitialization) return null;
+  if (!isFirstBoot || !hasCompletedInitialization || gameState !== "IDLE") return null;
 
   const cardTypography = {
     title: { fontSize: "clamp(1.35rem, 3.6vw, 1.85rem)", fontWeight: 600, letterSpacing: "0.04em", lineHeight: 1.25 },

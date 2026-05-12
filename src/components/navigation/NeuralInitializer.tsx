@@ -133,6 +133,17 @@ export function NeuralInitializer({
               onClick={() => onBeginLearningField(field.lf)}
               style={fieldCardStyle}
             >
+              <span style={fieldVisualStyle} aria-hidden="true">
+                <video
+                  src={`/assets/LF${field.lf}GIF.mp4`}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  style={fieldVideoStyle}
+                />
+              </span>
               <span style={fieldMetaStyle}>
                 <span>Datenträger</span>
                 <b>
@@ -248,6 +259,8 @@ const fieldGridStyle: CSSProperties = {
 
 const fieldCardStyle: CSSProperties = {
   minHeight: 196,
+  position: "relative",
+  overflow: "hidden",
   textAlign: "left",
   border: "1px solid var(--nx-learn-line)",
   borderRadius: 30,
@@ -263,6 +276,30 @@ const fieldCardStyle: CSSProperties = {
   lineHeight: 1.32,
   cursor: "pointer",
   boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 18px 50px rgba(22,32,25,0.08)",
+};
+
+const fieldVisualStyle: CSSProperties = {
+  position: "relative",
+  display: "block",
+  width: "100%",
+  aspectRatio: "16 / 9",
+  marginBottom: 4,
+  overflow: "hidden",
+  borderRadius: 22,
+  background:
+    "radial-gradient(circle at 50% 42%, rgba(214,181,111,0.2), rgba(22,32,25,0.08) 58%, rgba(22,32,25,0.16))",
+  boxShadow: "inset 0 0 0 1px rgba(22,32,25,0.08)",
+  pointerEvents: "none",
+};
+
+const fieldVideoStyle: CSSProperties = {
+  display: "block",
+  width: "100%",
+  height: "100%",
+  objectFit: "contain",
+  filter: "saturate(0.72) contrast(0.92) brightness(0.9)",
+  mixBlendMode: "multiply",
+  opacity: 0.84,
 };
 
 const fieldMetaStyle: CSSProperties = {

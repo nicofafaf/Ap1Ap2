@@ -31,6 +31,7 @@ public/assets/
 
 # large media
 assets/*.mp4
+!assets/LF*GIF.mp4
 public/assets/
 dist/
 *.map

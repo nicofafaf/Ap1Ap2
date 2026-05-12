@@ -5,6 +5,7 @@ import { defineConfig, loadEnv, type Plugin } from "vite";
 import type { OutputChunk } from "rollup";
 import react from "@vitejs/plugin-react";
 import { collectNexusPrecacheUrls } from "./src/lib/nexusAssetManifest";
+import { getAllNexusEntries } from "./src/data/nexusRegistry";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -76,6 +77,27 @@ function nexusPrecacheManifestPlugin(): Plugin {
       }
       mkdirSync(resolve(__dirname, "public"), { recursive: true });
       writeFileSync(out, `${JSON.stringify(filtered, null, 0)}\n`, "utf8");
+    },
+  };
+}
+
+function requiredNexusMediaPlugin(): Plugin {
+  return {
+    name: "required-nexus-media",
+    buildStart() {
+      const publicRoot = resolve(__dirname, "public");
+      const missingBossVideos = getAllNexusEntries()
+        .map((entry) => entry.bossVisual.primaryPath)
+        .filter((path) => {
+          if (!path.startsWith("/")) return true;
+          return !existsSync(join(publicRoot, path.slice(1)));
+        });
+
+      if (missingBossVideos.length > 0) {
+        throw new Error(
+          `[required-nexus-media] Fehlende Boss-Videos: ${missingBossVideos.join(", ")}`
+        );
+      }
     },
   };
 }
@@ -154,6 +176,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     ensurePublicAssetsPlugin(),
+    requiredNexusMediaPlugin(),
     nexusPrecacheManifestPlugin(),
     openGraphInjectPlugin(mode),
     nexusInitialBundleBudgetPlugin(520),

@@ -3,26 +3,63 @@
   "title": "Software zur Verwaltung von Daten anpassen",
   "ap_relevance": 1,
   "ap": "AP1",
+  "beginnerPath": [
+    {
+      "id": "lf5-start",
+      "topic": "Daten filtern",
+      "level": "beginner",
+      "title": "Eine Tabelle wie eine Liste lesen",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Eine Datenbanktabelle ist für den Start wie eine Excel-Liste mit Spalten und Zeilen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "SELECT zeigt Daten. FROM wählt die Tabelle. WHERE setzt den Filter"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Du musst SQL noch nicht auswendig können. Übernimm zuerst das Beispiel und erkenne den Filter"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'"
+      },
+      "practice": {
+        "type": "sql",
+        "question": "Zeige nur Kunden aus Berlin",
+        "expected": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'",
+        "options": [
+          { "text": "WHERE Stadt = 'Berlin' filtert die Kundenliste", "correct": true },
+          { "text": "WHERE löscht Berliner Kunden", "correct": false, "hint": "WHERE zeigt nur passende Zeilen, es löscht nichts" },
+          { "text": "FROM sortiert nach Stadt", "correct": false, "hint": "FROM wählt die Tabelle" },
+          { "text": "SELECT verbindet zwei Tabellen", "correct": false, "hint": "SELECT bestimmt, was angezeigt wird" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf5-kern",
       "chapter": "SQL Basics",
       "type": "note",
-      "title": "Kern Konzept",
-      "body": "SELECT liest Daten WHERE filtert JOIN verbindet GROUP BY aggregiert HAVING filtert Gruppen ORDER BY sortiert"
+      "title": "Datenbank ganz einfach",
+      "body": "Eine Tabelle ist wie eine Excel-Liste. Mit einem Filter zeigst du nur die Zeilen, die du brauchst"
     },
     {
       "id": "lf5-code-filter",
       "chapter": "SQL Basics",
       "type": "sql",
-      "title": "Code Beispiel",
+      "title": "Mini Beispiel",
       "code": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'"
     },
     {
       "id": "lf5-code-join",
       "chapter": "Joins",
       "type": "sql",
-      "title": "Code Beispiel",
+      "title": "Späteres Beispiel",
       "code": "SELECT k.Name b.Betrag FROM Kunden k INNER JOIN Bestellungen b ON b.KundenID = k.ID"
     },
     {
@@ -30,7 +67,7 @@
       "chapter": "Prüfung",
       "type": "note",
       "title": "Prüfungs Check",
-      "body": "Baue SELECT mit Filter nutze JOIN korrekt prüfe Aggregation mit GROUP BY und HAVING"
+      "body": "Erst verstehen, dann schreiben: Welche Tabelle, welcher Filter, welches Ergebnis"
     },
     {
       "id": "lf5-code-csharp",
@@ -44,17 +81,17 @@
     {
       "id": "sql_select_basic",
       "type": "workbench",
-      "task": "Filtere alle Kunden aus der Tabelle Kunden die aus Berlin kommen",
-      "context": "Tabelle Kunden ID Name Stadt Umsatz",
+      "task": "Du hast eine Kundenliste. Zeige nur die Kunden aus Berlin",
+      "context": "Tabelle Kunden: ID, Name, Stadt, Umsatz",
       "expected_query": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'",
-      "hint": "Nutze die WHERE Klausel für die Filterung"
+      "hint": "WHERE ist nur ein Filter. Es bedeutet hier: Stadt muss Berlin sein"
     },
     {
       "id": "sql_join_order",
       "type": "mc",
-      "question": "Welcher JOIN Typ gibt alle Datensätze zurück wenn es eine Übereinstimmung in einer der Tabellen gibt",
-      "options": ["INNER JOIN", "LEFT JOIN", "FULL OUTER JOIN", "CROSS JOIN"],
-      "answer": 2
+      "question": "Was macht der Filter in dieser Aufgabe",
+      "options": ["Er zeigt nur Kunden aus Berlin", "Er löscht Kunden aus Berlin", "Er sortiert alle Städte", "Er verbindet zwei Tabellen"],
+      "answer": 0
     }
   ]
 }

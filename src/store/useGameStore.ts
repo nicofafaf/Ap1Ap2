@@ -13,7 +13,12 @@ import {
   type AchievementType,
 } from "../data/achievementRegistry";
 import { rollLootRarity, type LearningField, type LootRarity } from "../data/nexusRegistry";
-import { CURRICULUM_BY_LF, applyLeitnerReview, type LeitnerCardState } from "../lib/learning/learningRegistry";
+import {
+  CURRICULUM_BY_LF,
+  applyLeitnerReview,
+  getBeginnerExerciseForLf,
+  type LeitnerCardState,
+} from "../lib/learning/learningRegistry";
 import {
   computeArchitectPersona,
   computePerformanceTrend,
@@ -982,6 +987,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set((state) => {
       const sectorZero = lf === 0;
       const lfC = sectorZero ? 0 : Math.max(1, Math.min(12, lf));
+      const lfKey = lfC === 0 ? null : (`LF${lfC}` as LearningField);
+      const preferredBeginnerExerciseId = lfKey ? getBeginnerExerciseForLf(lfKey)?.id ?? null : null;
       const tutorial = state.isTutorialCombatRun;
       const daily = getDailyIncursionDefinition();
       const applyDaily =
@@ -1086,7 +1093,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         learningMentorStreak: 0,
         learningMentorColdToken: 0,
         examLogicFlowToken: 0,
-        preferredLearningExerciseId: null,
+        preferredLearningExerciseId: preferredBeginnerExerciseId,
         archiveWorkbenchSnippet: null,
         mission: { lf: null, missionId: null, status: "idle" as const },
       };

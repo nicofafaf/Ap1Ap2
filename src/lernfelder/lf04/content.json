@@ -2,6 +2,42 @@
   "lf": "LF4",
   "ap": "AP1",
   "title": "Hardware und Systemintegration",
+  "beginnerPath": [
+    {
+      "id": "lf4-start",
+      "topic": "Hardware zusammensetzen",
+      "level": "beginner",
+      "title": "Komponenten müssen zusammenpassen",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Ein IT-System besteht aus Teilen wie CPU, RAM, Speicher, Mainboard und Betriebssystem"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Hardware einbauen reicht nicht. Sie muss kompatibel sein und getestet werden"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Frage zuerst: Was braucht der Nutzer, welches Teil erfüllt es"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Mehrere Programme gleichzeitig brauchen genügend RAM"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Welches Bauteil hilft besonders, wenn viele Programme gleichzeitig offen sind",
+        "options": [
+          { "text": "RAM", "correct": true },
+          { "text": "Monitorständer", "correct": false, "hint": "Der Ständer verbessert Ergonomie, nicht Arbeitsspeicher" },
+          { "text": "Netzwerkkabel", "correct": false, "hint": "Das Kabel hilft beim Netzwerk, nicht beim lokalen Speicherbedarf" },
+          { "text": "Mauspad", "correct": false, "hint": "Das hat keinen Einfluss auf parallele Programme" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf4-kern",

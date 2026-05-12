@@ -2,6 +2,42 @@
   "lf": "LF3",
   "ap": "AP1",
   "title": "Netzwerke und Dienste",
+  "beginnerPath": [
+    {
+      "id": "lf3-start",
+      "topic": "Netzwerk-Grundidee",
+      "level": "beginner",
+      "title": "Geräte finden sich über Adressen",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Ein Netzwerk verbindet Geräte, damit Daten von einem Punkt zum anderen kommen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "IP-Adresse findet das Gerät, Port findet den Dienst"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Du musst noch nicht rechnen. Unterscheide zuerst Gerät und Dienst"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Ein PC ruft eine Webseite auf: IP findet den Server, Port 443 steht für HTTPS"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Wofür steht ein Port am einfachsten erklärt",
+        "options": [
+          { "text": "Für einen bestimmten Dienst auf einem Gerät", "correct": true },
+          { "text": "Für die Farbe des Netzwerkkabels", "correct": false, "hint": "Die Kabelfarbe ist keine logische Dienstadresse" },
+          { "text": "Für den Preis eines Computers", "correct": false, "hint": "Preise gehören nicht zur Netzadressierung" },
+          { "text": "Für eine Benutzerrolle", "correct": false, "hint": "Rollen gehören eher zu Berechtigungen" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf3-kern",

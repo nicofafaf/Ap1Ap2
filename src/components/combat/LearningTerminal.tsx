@@ -109,6 +109,7 @@ export function LearningTerminal({
   const answerLf = exerciseLf ?? currentLF;
 
   const learningFocus = Boolean(visible && exercise);
+  const isBeginnerExercise = Boolean(exercise?.lessonCards?.length);
 
   useEffect(() => {
     setPickedId(null);
@@ -338,7 +339,8 @@ export function LearningTerminal({
                       color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-50)",
                     }}
                   >
-                    Aufgabe {mission.status === "cleared" ? "abgeschlossen" : "in Arbeit"}
+                    {isBeginnerExercise ? "Lektion" : "Aufgabe"}{" "}
+                    {mission.status === "cleared" ? "abgeschlossen" : "in Arbeit"}
                   </div>
                   <h2
                     style={{
@@ -355,9 +357,115 @@ export function LearningTerminal({
                   >
                     {exercise.title}
                   </h2>
+                  {learningFocus && exercise.lessonCards?.length ? (
+                    <div
+                      aria-label="Was lernst du"
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(min(220px, 100%), 1fr))",
+                        gap: "var(--nx-space-12)",
+                        marginTop: "var(--nx-space-24)",
+                      }}
+                    >
+                      {exercise.lessonCards.map((card) => (
+                        <article
+                          key={`${exercise.id}-${card.title}`}
+                          style={{
+                            minHeight: 150,
+                            borderRadius: 24,
+                            border: "1px solid rgba(22,32,25,0.1)",
+                            background:
+                              "linear-gradient(160deg, rgba(255,255,255,0.78), rgba(238,229,213,0.64))",
+                            padding: "var(--nx-space-20)",
+                            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7)",
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontFamily: typography.fontSans,
+                              fontSize: 20,
+                              fontWeight: 850,
+                              letterSpacing: "0.06em",
+                              textTransform: "uppercase",
+                              color: "rgba(22,32,25,0.52)",
+                            }}
+                          >
+                            {card.title}
+                          </div>
+                          <p
+                            style={{
+                              margin: "var(--nx-space-12) 0 0",
+                              fontFamily: typography.fontSans,
+                              fontSize: "clamp(22px, 2.4vw, 26px)",
+                              lineHeight: 1.5,
+                              fontWeight: 500,
+                              color: "var(--nx-learn-ink)",
+                            }}
+                          >
+                            {card.body}
+                          </p>
+                        </article>
+                      ))}
+                    </div>
+                  ) : null}
+                  {learningFocus && exercise.example ? (
+                    <section
+                      aria-label={exercise.example.label}
+                      style={{
+                        marginTop: "var(--nx-space-16)",
+                        padding: "var(--nx-space-20)",
+                        borderRadius: 24,
+                        border: "1px solid rgba(214,181,111,0.3)",
+                        background: "rgba(214,181,111,0.13)",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontFamily: typography.fontSans,
+                          fontSize: 20,
+                          fontWeight: 850,
+                          letterSpacing: "0.06em",
+                          textTransform: "uppercase",
+                          color: "rgba(22,32,25,0.55)",
+                        }}
+                      >
+                        {exercise.example.label}
+                      </div>
+                      <p
+                        style={{
+                          margin: "var(--nx-space-8) 0 0",
+                          fontFamily: typography.fontSans,
+                          fontSize: "clamp(24px, 2.4vw, 30px)",
+                          lineHeight: 1.55,
+                          fontWeight: 650,
+                          color: "var(--nx-learn-ink)",
+                          whiteSpace: "pre-wrap",
+                        }}
+                      >
+                        {exercise.example.body}
+                      </p>
+                    </section>
+                  ) : null}
+                  {learningFocus && isBeginnerExercise ? (
+                    <div
+                      style={{
+                        marginTop: "var(--nx-space-24)",
+                        fontFamily: typography.fontSans,
+                        fontSize: 20,
+                        fontWeight: 850,
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        color: "rgba(22,32,25,0.5)",
+                      }}
+                    >
+                      Jetzt du
+                    </div>
+                  ) : null}
                   <p
                     style={{
-                      margin: "var(--nx-space-16) 0 0",
+                      margin: isBeginnerExercise
+                        ? "var(--nx-space-8) 0 0"
+                        : "var(--nx-space-16) 0 0",
                       fontFamily: typography.fontSans,
                       fontSize: learningFocus
                         ? "clamp(24px, 2vw, 28px)"
@@ -483,6 +591,11 @@ export function LearningTerminal({
                                 selectedOptionId: opt.id,
                                 wasCorrect: opt.isCorrect,
                               });
+                              if (opt.isCorrect && isBeginnerExercise) {
+                                markMissionCleared(exercise.id);
+                                recordLearningExerciseMastery(answerLf, exercise.id);
+                                triggerBossHit(8);
+                              }
                             }}
                             style={{
                               textAlign: "left",
@@ -550,41 +663,47 @@ export function LearningTerminal({
                                   color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-90)",
                                 }}
                               >
-                                Richtig, jetzt die Zahlenantwort prüfen
+                                {isBeginnerExercise
+                                  ? "Richtig, diese Lektion ist geschafft"
+                                  : "Richtig, jetzt die Zahlenantwort prüfen"}
                               </div>
                             ) : null}
                           </button>
                         );
                       })}
                     </motion.div>
-                    <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
-                    <motion.div
-                      variants={streamChild}
-                      style={{
-                        fontFamily: typography.fontSans,
-                        fontSize: 20,
-                        fontWeight: 800,
-                        letterSpacing: "0.08em",
-                        textTransform: "uppercase",
-                        color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-50)",
-                        padding: "var(--nx-space-8) 0 0",
-                      }}
-                    >
-                      Zahlenantwort
-                    </motion.div>
-                    <motion.div
-                      variants={streamChild}
-                      style={{ padding: "var(--nx-space-8) 0 0", display: "flex", flexDirection: "column", gap: 0 }}
-                    >
-                      <InteractiveMissionInput
-                        expected={exercise.solutionCode}
-                        onSuccess={() => {
-                          markMissionCleared(exercise.id);
-                          recordLearningExerciseMastery(answerLf, exercise.id);
-                          triggerBossHit(12);
-                        }}
-                      />
-                    </motion.div>
+                    {!isBeginnerExercise ? (
+                      <>
+                        <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
+                        <motion.div
+                          variants={streamChild}
+                          style={{
+                            fontFamily: typography.fontSans,
+                            fontSize: 20,
+                            fontWeight: 800,
+                            letterSpacing: "0.08em",
+                            textTransform: "uppercase",
+                            color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-50)",
+                            padding: "var(--nx-space-8) 0 0",
+                          }}
+                        >
+                          Zahlenantwort
+                        </motion.div>
+                        <motion.div
+                          variants={streamChild}
+                          style={{ padding: "var(--nx-space-8) 0 0", display: "flex", flexDirection: "column", gap: 0 }}
+                        >
+                          <InteractiveMissionInput
+                            expected={exercise.solutionCode}
+                            onSuccess={() => {
+                              markMissionCleared(exercise.id);
+                              recordLearningExerciseMastery(answerLf, exercise.id);
+                              triggerBossHit(12);
+                            }}
+                          />
+                        </motion.div>
+                      </>
+                    ) : null}
                   </>
                 ) : null}
 
@@ -592,12 +711,7 @@ export function LearningTerminal({
                   <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
                 ) : null}
 
-                {exercise &&
-                !(
-                  learningFocus &&
-                  exercise.lang !== "sql" &&
-                  exercise.lang !== "csharp"
-                ) ? (
+                {exercise && !learningFocus ? (
                   <>
                     <motion.div
                       variants={streamChild}

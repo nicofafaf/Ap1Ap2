@@ -2,6 +2,42 @@
   "lf": "LF7",
   "ap": "AP2",
   "title": "Objektorientierte Programmierung",
+  "beginnerPath": [
+    {
+      "id": "lf7-start",
+      "topic": "Klasse und Objekt",
+      "level": "beginner",
+      "title": "Bauplan und echtes Ding unterscheiden",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Eine Klasse ist ein Bauplan. Ein Objekt ist ein konkretes Exemplar davon"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Klasse beschreibt, Objekt benutzt"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Suche zuerst Dinge mit Eigenschaften, zum Beispiel Ticket mit Nummer und Status"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Klasse Ticket beschreibt Nummer und Status. Ticket T100 ist ein konkretes Objekt"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist in diesem Beispiel das Objekt",
+        "options": [
+          { "text": "Ticket T100", "correct": true },
+          { "text": "Der allgemeine Bauplan Ticket", "correct": false, "hint": "Der Bauplan ist die Klasse" },
+          { "text": "Ein Netzwerkkabel", "correct": false, "hint": "Das passt nicht zum Ticket-Beispiel" },
+          { "text": "Eine Rabattrechnung", "correct": false, "hint": "Das gehört eher zu LF1" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf7-kern",

@@ -2,6 +2,42 @@
   "lf": "LF8",
   "ap": "AP2",
   "title": "Datenmodelle und Persistenz",
+  "beginnerPath": [
+    {
+      "id": "lf8-start",
+      "topic": "Datenmodell lesen",
+      "level": "beginner",
+      "title": "Dinge, Eigenschaften und Beziehungen",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Ein Datenmodell zeigt, welche Dinge gespeichert werden und wie sie zusammenhängen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Entität ist das Ding. Attribut ist eine Eigenschaft. Beziehung verbindet Dinge"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Markiere zuerst Nomen im Text. Daraus entstehen oft Entitäten"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Kunde hat Name und Kundennummer. Bestellung gehört zu einem Kunden"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist in 'Kunde hat Name' die Entität",
+        "options": [
+          { "text": "Kunde", "correct": true },
+          { "text": "Name", "correct": false, "hint": "Name ist eine Eigenschaft des Kunden" },
+          { "text": "Hat", "correct": false, "hint": "Das Wort beschreibt keine gespeicherte Sache" },
+          { "text": "Primärschlüssel", "correct": false, "hint": "Das ist ein eindeutiger Schlüssel, hier aber nicht die Entität" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf8-kern",

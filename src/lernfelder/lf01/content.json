@@ -2,6 +2,42 @@
   "lf": "LF1",
   "ap": "AP1",
   "title": "Wirtschaft und Recht",
+  "beginnerPath": [
+    {
+      "id": "lf1-start",
+      "topic": "Wirtschaftliche Entscheidungen",
+      "level": "beginner",
+      "title": "Betrieb, Bedarf und Vertrag verstehen",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Ein Betrieb kauft ein, verkauft etwas und muss dabei rechnen und Verträge beachten"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Bedarf sagt, was gebraucht wird. Vertrag sagt, was beide Seiten leisten müssen"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Du musst noch keine Formeln können. Erkenne zuerst Einkauf, Verkauf und Pflicht"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Ein Kunde bestellt Ware. Der Verkäufer liefert, der Kunde bezahlt"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was gehört zu einem einfachen Kaufvertrag",
+        "options": [
+          { "text": "Ware liefern und Geld bezahlen", "correct": true },
+          { "text": "Nur ein Werbeplakat ansehen", "correct": false, "hint": "Werbung allein ist noch kein erfüllter Vertrag" },
+          { "text": "Den Computer einschalten", "correct": false, "hint": "Das ist Technik, nicht Wirtschaft und Recht" },
+          { "text": "Eine IP-Adresse vergeben", "correct": false, "hint": "IP-Adressen gehören zu Netzwerken" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf1-kern",

@@ -58,30 +58,6 @@ export type TerminalCodeWorkbenchProps = {
   initialToken?: number;
 };
 
-const SQL_THEME_PRESETS: Record<
-  "starwars" | "anime" | "bodybuilding",
-  { title: string; preview: string; starter: string }
-> = {
-  starwars: {
-    title: "Star Wars",
-    preview:
-      "CREATE TABLE jedi id INT PRIMARY KEY name VARCHAR(120) rang VARCHAR(60)\nCREATE TABLE mission id INT PRIMARY KEY jedi_id INT planet VARCHAR(120)",
-    starter: "SELECT name rang FROM jedi WHERE rang = 'Master'",
-  },
-  anime: {
-    title: "Anime",
-    preview:
-      "CREATE TABLE anime_charaktere id INT AUTO_INCREMENT PRIMARY KEY name VARCHAR(100) serie VARCHAR(100) kraft_level INT rolle VARCHAR(50)\nINSERT INTO anime_charaktere name serie kraft_level rolle VALUES Son Goku Dragon Ball 9001 Protagonist",
-    starter: "SELECT name serie kraft_level FROM anime_charaktere WHERE kraft_level > 8000",
-  },
-  bodybuilding: {
-    title: "Bodybuilding",
-    preview:
-      "CREATE TABLE exercises id INT AUTO_INCREMENT PRIMARY KEY name VARCHAR(100) muskelgruppe VARCHAR(50) equipment VARCHAR(50) schwierigkeit INT\nINSERT INTO exercises name muskelgruppe equipment schwierigkeit VALUES Kniebeugen Beine Langhantel 9",
-    starter: "SELECT name muskelgruppe schwierigkeit FROM exercises WHERE schwierigkeit >= 8",
-  },
-};
-
 export function TerminalCodeWorkbench({
   lang,
   reference,
@@ -93,7 +69,6 @@ export function TerminalCodeWorkbench({
   const [draft, setDraft] = useState("");
   const [checked, setChecked] = useState<"idle" | "ok" | "diff">("idle");
   const [goldGlitch, setGoldGlitch] = useState(false);
-  const [sqlTheme, setSqlTheme] = useState<"starwars" | "anime" | "bodybuilding">("starwars");
   const triggerBossHit = useGameStore((s) => s.triggerBossHit);
   const triggerImpactFrames = useGameStore((s) => s.triggerImpactFrames);
 
@@ -130,10 +105,12 @@ export function TerminalCodeWorkbench({
 
   const hint =
     checked === "ok"
-      ? "Abgleich deckungsgleich"
+      ? "Richtig, du hast den Schritt geschafft"
       : checked === "diff"
-        ? "Abgleich noch nicht deckungsgleich"
-        : "Eingabe normalisieren und mit Musterlösung vergleichen";
+        ? "Noch nicht gleich, übernimm erst das Beispiel und lies es in Ruhe"
+        : lang === "sql"
+          ? "Du musst SQL noch nicht können, übernimm zuerst das Beispiel"
+          : "Eingabe mit Musterlösung vergleichen";
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -148,8 +125,73 @@ export function TerminalCodeWorkbench({
           paddingBottom: "var(--nx-space-8)",
         }}
       >
-        {lang === "sql" ? "SQL Arbeitsfläche" : "C Sharp Arbeitsfläche"}
+        {lang === "sql" ? "Geführter Datenbank-Start" : "Geführte Code-Übung"}
       </div>
+      {lang === "sql" ? (
+        <section
+          style={{
+            marginBottom: "var(--nx-space-16)",
+            borderRadius: 26,
+            border: "1px solid var(--nx-learn-line)",
+            background: "rgba(251,247,239,0.78)",
+            padding: 18,
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(220px, 100%), 1fr))",
+              gap: 12,
+            }}
+          >
+            {[
+              ["1", "Tabelle wählen", "FROM Kunden bedeutet: Nimm die Tabelle Kunden"],
+              ["2", "Filter setzen", "WHERE Stadt = Berlin bedeutet: Zeig nur Berlin"],
+              ["3", "Ergebnis ansehen", "SELECT * bedeutet: Zeig alle Spalten"],
+            ].map(([step, title, body]) => (
+              <div
+                key={step}
+                style={{
+                  borderRadius: 20,
+                  border: "1px solid var(--nx-learn-line)",
+                  background: "rgba(255,255,255,0.58)",
+                  padding: 16,
+                  color: "var(--nx-learn-ink)",
+                }}
+              >
+                <div style={{ fontFamily: typography.fontMono, fontSize: 20, opacity: 0.58 }}>
+                  Schritt {step}
+                </div>
+                <strong style={{ display: "block", marginTop: 8, fontSize: 24 }}>{title}</strong>
+                <p style={{ margin: "8px 0 0", fontSize: 20, lineHeight: 1.45, color: "var(--nx-learn-muted)" }}>
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              setDraft(reference);
+              setChecked("idle");
+            }}
+            style={{
+              marginTop: 14,
+              borderRadius: 999,
+              border: "1px solid rgba(214,181,111,0.55)",
+              background: "rgba(214,181,111,0.2)",
+              color: "var(--nx-learn-ink)",
+              fontFamily: typography.fontSans,
+              fontSize: 22,
+              fontWeight: 800,
+              padding: "14px 20px",
+              cursor: "pointer",
+            }}
+          >
+            Beispiel übernehmen
+          </button>
+        </section>
+      ) : null}
       <textarea
         spellCheck={false}
         autoComplete="off"
@@ -182,93 +224,6 @@ export function TerminalCodeWorkbench({
           transition: "box-shadow 180ms ease, border-color 180ms ease",
         }}
       />
-      {lang === "sql" ? (
-        <section
-          style={{
-            marginTop: "var(--nx-space-12)",
-            borderRadius: 26,
-            border: "1px solid var(--nx-learn-line)",
-            background: "rgba(251,247,239,0.76)",
-            padding: 18,
-          }}
-        >
-          <div
-            style={{
-              color: "var(--nx-learn-ink)",
-              fontFamily: "var(--nx-font-mono)",
-              fontSize: 20,
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-            }}
-          >
-            Themen Switcher
-          </div>
-          <div style={{ display: "flex", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
-            {(Object.keys(SQL_THEME_PRESETS) as Array<"starwars" | "anime" | "bodybuilding">).map((key) => (
-              <button
-                key={key}
-                type="button"
-                onClick={() => setSqlTheme(key)}
-                style={{
-                  borderRadius: 999,
-                  border:
-                    sqlTheme === key
-                      ? "1px solid rgba(255,214,165,0.68)"
-                      : "1px solid var(--nx-learn-line)",
-                  background: sqlTheme === key ? "rgba(214,181,111,0.2)" : "rgba(255,255,255,0.5)",
-                  color: "var(--nx-learn-ink)",
-                  fontFamily: "var(--nx-font-mono)",
-                  fontSize: 20,
-                  textTransform: "uppercase",
-                  padding: "10px 16px",
-                  cursor: "pointer",
-                }}
-              >
-                {SQL_THEME_PRESETS[key].title}
-              </button>
-            ))}
-          </div>
-          <div style={{ marginTop: 18, color: "var(--nx-learn-muted)", fontSize: 22 }}>Tabellen Vorschau</div>
-          <pre
-            style={{
-              margin: "8px 0 0",
-              minHeight: 146,
-              padding: 16,
-              borderRadius: 20,
-              border: "1px solid var(--nx-learn-line)",
-              background: "rgba(22,32,25,0.06)",
-              color: "var(--nx-learn-ink)",
-              overflowX: "auto",
-              fontFamily: "var(--nx-font-mono, Geist Mono, monospace)",
-              fontSize: 20,
-              lineHeight: 1.35,
-              whiteSpace: "pre-wrap",
-            }}
-          >
-            {SQL_THEME_PRESETS[sqlTheme].preview}
-          </pre>
-          <button
-            type="button"
-            onClick={() => {
-              setDraft(SQL_THEME_PRESETS[sqlTheme].starter);
-              setChecked("idle");
-            }}
-            style={{
-              marginTop: 8,
-              borderRadius: 999,
-              border: "1px solid rgba(214,181,111,0.55)",
-              background: "rgba(214,181,111,0.18)",
-              color: "var(--nx-learn-ink)",
-              fontSize: 20,
-              textTransform: "uppercase",
-              padding: "12px 18px",
-              cursor: "pointer",
-            }}
-          >
-            Starter Query laden
-          </button>
-        </section>
-      ) : null}
       <div style={{ display: "flex", alignItems: "center", gap: "var(--nx-space-16)", marginTop: "var(--nx-space-16)" }}>
         <button
           type="button"

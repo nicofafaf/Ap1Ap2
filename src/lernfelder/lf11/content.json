@@ -2,6 +2,42 @@
   "lf": "LF11",
   "ap": "AP2",
   "title": "Informationssicherheit",
+  "beginnerPath": [
+    {
+      "id": "lf11-start",
+      "topic": "Schutzziele",
+      "level": "beginner",
+      "title": "Was Sicherheit schützen soll",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Informationssicherheit schützt Daten und Systeme vor Verlust, Veränderung und Ausfall"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Vertraulichkeit, Integrität, Verfügbarkeit sind die drei Grundziele"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Ordne zuerst zu, welches Schutzziel verletzt wird"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Wenn Unbefugte eine Datei lesen, ist Vertraulichkeit betroffen"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Welches Schutzziel ist verletzt, wenn Fremde geheime Daten lesen",
+        "options": [
+          { "text": "Vertraulichkeit", "correct": true },
+          { "text": "Verfügbarkeit", "correct": false, "hint": "Verfügbarkeit betrifft, ob ein System erreichbar ist" },
+          { "text": "Projektplanung", "correct": false, "hint": "Das ist kein Security-Schutzziel" },
+          { "text": "Barrierefreiheit", "correct": false, "hint": "Barrierefreiheit gehört zu Bedienbarkeit" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf11-kern",

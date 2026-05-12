@@ -20,7 +20,18 @@ import {
   LF8_DATENMODELL,
   LF9_DIENSTE_PROTOKOLLE,
 } from "./expandedCurriculum";
+import lf01Content from "../../lernfelder/lf01/content.json";
+import lf02Content from "../../lernfelder/lf02/content.json";
+import lf03Content from "../../lernfelder/lf03/content.json";
+import lf04Content from "../../lernfelder/lf04/content.json";
 import lf05Content from "../../lernfelder/lf05/content.json";
+import lf06Content from "../../lernfelder/lf06/content.json";
+import lf07Content from "../../lernfelder/lf07/content.json";
+import lf08Content from "../../lernfelder/lf08/content.json";
+import lf09Content from "../../lernfelder/lf09/content.json";
+import lf10Content from "../../lernfelder/lf10/content.json";
+import lf11Content from "../../lernfelder/lf11/content.json";
+import lf12Content from "../../lernfelder/lf12/content.json";
 
 export type { LearningExercise, LearningMcOption } from "./learningExerciseTypes";
 export type { LeitnerCardState } from "./leitnerEngine";
@@ -381,11 +392,98 @@ type Lf5McMilestone = {
   answer: number;
 };
 
+type BeginnerPathOption = {
+  text: string;
+  correct?: boolean;
+  hint?: string;
+};
+
+type BeginnerPathEntry = {
+  id: string;
+  topic: string;
+  level: "beginner";
+  title: string;
+  lessonCards: Array<{
+    title: string;
+    body: string;
+  }>;
+  example?: {
+    label: string;
+    body: string;
+  };
+  practice: {
+    type: "mc" | "sql" | "csharp" | "javascript" | "markdown" | "plain-text";
+    question: string;
+    expected?: string;
+    options: BeginnerPathOption[];
+  };
+};
+
 type Lf5ContentShape = {
   lf: "LF5" | 5;
   title: string;
+  beginnerPath?: BeginnerPathEntry[];
   milestones: Array<Lf5WorkbenchMilestone | Lf5McMilestone>;
 };
+
+type BeginnerContentShape = {
+  lf: LearningField | number | string;
+  title: string;
+  beginnerPath?: BeginnerPathEntry[];
+};
+
+function normalizeLearningField(rawLf: BeginnerContentShape["lf"]): LearningField | null {
+  if (typeof rawLf === "number") {
+    return rawLf >= 1 && rawLf <= 12 ? (`LF${rawLf}` as LearningField) : null;
+  }
+  const normalized = rawLf.toString().toUpperCase();
+  return /^LF(?:[1-9]|1[0-2])$/.test(normalized) ? (normalized as LearningField) : null;
+}
+
+function practiceLang(type: BeginnerPathEntry["practice"]["type"]): LearningExercise["lang"] {
+  return type === "mc" ? "markdown" : type;
+}
+
+function buildBeginnerPathFromJson(raw: BeginnerContentShape): LearningExercise[] {
+  const lf = normalizeLearningField(raw.lf);
+  if (!lf || !raw.beginnerPath?.length) return [];
+
+  return raw.beginnerPath.map((path, pathIdx) => {
+    const options = path.practice.options.length
+      ? path.practice.options
+      : [{ text: "Ich habe den ersten Schritt verstanden", correct: true }];
+    const correctIdx = Math.max(0, options.findIndex((option) => option.correct));
+    const normalizedCorrectIdx = correctIdx === -1 ? 0 : correctIdx;
+    const optIds = ["a", "b", "c", "d", "e", "f"];
+    const mcOptions: LearningMcOption[] = options.map((option, idx) => ({
+      id: optIds[idx] ?? `o${idx + 1}`,
+      text: option.text,
+      isCorrect: idx === normalizedCorrectIdx,
+      whyWrongHint:
+        idx === normalizedCorrectIdx
+          ? undefined
+          : option.hint || "Schau noch einmal auf die Action-Cards über der Übung",
+    }));
+    const correctText = options[normalizedCorrectIdx]?.text ?? options[0]?.text ?? "";
+    const solutionCode = path.practice.expected ?? correctText;
+
+    return {
+      id: path.id || `${lf.toLowerCase()}-start-${pathIdx + 1}`,
+      title: path.title || `${raw.title} Einstieg`,
+      problem: path.practice.question,
+      solutionCode,
+      lang: practiceLang(path.practice.type),
+      mcQuestion: path.practice.question,
+      mcOptions,
+      lessonCards: path.lessonCards,
+      example: path.example,
+      solutionHint:
+        path.practice.type === "sql" || path.practice.type === "csharp"
+          ? "Nutze zuerst das Mini-Beispiel. Es ist erlaubt, die Struktur zu übernehmen und nur den Kern zu verstehen"
+          : path.example?.body || `Starte ruhig mit der ersten ${lf} Action-Card`,
+    } satisfies LearningExercise;
+  });
+}
 
 function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
   const workbench = raw.milestones.find((m): m is Lf5WorkbenchMilestone => m.type === "workbench");
@@ -405,17 +503,66 @@ function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
   return [
     {
       id: workbench.id,
-      title: raw.title,
-      problem: `${workbench.task}\n${workbench.context}`,
+      title: "Daten filtern ohne Vorwissen",
+      problem: `${workbench.task}\n\n${workbench.context}`,
       solutionCode: workbench.expected_query,
       lang: "sql",
       mcQuestion: mc.question,
       mcOptions,
+      solutionHint:
+        "Du musst dir SQL noch nicht merken. Lies zuerst: FROM sagt aus welcher Tabelle, WHERE ist der Filter",
     },
   ];
 }
 
-const SQL_EXAM_LF5 = buildLf5FromJson(lf05Content as Lf5ContentShape);
+const BEGINNER_CONTENT_BY_LF: Record<LearningField, BeginnerContentShape> = {
+  LF1: lf01Content as BeginnerContentShape,
+  LF2: lf02Content as BeginnerContentShape,
+  LF3: lf03Content as BeginnerContentShape,
+  LF4: lf04Content as BeginnerContentShape,
+  LF5: lf05Content as BeginnerContentShape,
+  LF6: lf06Content as BeginnerContentShape,
+  LF7: lf07Content as BeginnerContentShape,
+  LF8: lf08Content as BeginnerContentShape,
+  LF9: lf09Content as BeginnerContentShape,
+  LF10: lf10Content as BeginnerContentShape,
+  LF11: lf11Content as BeginnerContentShape,
+  LF12: lf12Content as BeginnerContentShape,
+};
+
+const BEGINNER_EXERCISES_BY_LF: Record<LearningField, LearningExercise[]> = Object.fromEntries(
+  Object.entries(BEGINNER_CONTENT_BY_LF).map(([lf, content]) => [
+    lf,
+    buildBeginnerPathFromJson(content),
+  ])
+) as Record<LearningField, LearningExercise[]>;
+
+export const BEGINNER_EXERCISE_IDS_BY_LF: Record<LearningField, Set<string>> = Object.fromEntries(
+  Object.entries(BEGINNER_EXERCISES_BY_LF).map(([lf, exercises]) => [
+    lf,
+    new Set(exercises.map((exercise) => exercise.id)),
+  ])
+) as Record<LearningField, Set<string>>;
+
+export function getBeginnerExerciseForLf(lf: LearningField): LearningExercise | null {
+  return BEGINNER_EXERCISES_BY_LF[lf][0] ?? null;
+}
+
+function withBeginnerPath(lf: LearningField, advanced: LearningExercise[]): LearningExercise[] {
+  return [...BEGINNER_EXERCISES_BY_LF[lf], ...advanced];
+}
+
+function getPendingBeginnerExercise(
+  lf: LearningField,
+  leitner?: Readonly<Record<string, LeitnerCardState>>
+): LearningExercise | null {
+  const beginner = BEGINNER_EXERCISES_BY_LF[lf][0];
+  if (!beginner) return null;
+  const state = leitner?.[beginner.id];
+  return !state || state.repetitions < 1 ? beginner : null;
+}
+
+const SQL_EXAM_LF5 = withBeginnerPath("LF5", buildLf5FromJson(lf05Content as Lf5ContentShape));
 
 /** 5 JS-Aufgaben — LF6 (HardwareNetworking): Variablen, Schleifen, Klasse */
 export const JAVASCRIPT_EXAM_LF6: LearningExercise[] = [
@@ -763,18 +910,18 @@ function stablePick<T>(arr: T[], seed: number, salt: number): T {
 
 /** Vollständiges Curriculum je Lernfeld (mind. 5 Aufgaben pro LF) */
 export const CURRICULUM_BY_LF: Record<LearningField, LearningExercise[]> = {
-  LF1: LF1_WIRTSCHAFT,
-  LF2: LF2_IT_GRUNDLAGEN,
-  LF3: LF3_NETZWERK,
-  LF4: LF4_NETZ_HARDWARE,
+  LF1: withBeginnerPath("LF1", LF1_WIRTSCHAFT),
+  LF2: withBeginnerPath("LF2", LF2_IT_GRUNDLAGEN),
+  LF3: withBeginnerPath("LF3", LF3_NETZWERK),
+  LF4: withBeginnerPath("LF4", LF4_NETZ_HARDWARE),
   LF5: SQL_EXAM_LF5,
-  LF6: JAVASCRIPT_EXAM_LF6,
-  LF7: CSHARP_EXAM_LF7,
-  LF8: LF8_DATENMODELL,
-  LF9: LF9_DIENSTE_PROTOKOLLE,
-  LF10: LF10_UI_BARREFREI,
-  LF11: LF11_INFO_SICHERHEIT,
-  LF12: LF12_AGILE_PM,
+  LF6: withBeginnerPath("LF6", JAVASCRIPT_EXAM_LF6),
+  LF7: withBeginnerPath("LF7", CSHARP_EXAM_LF7),
+  LF8: withBeginnerPath("LF8", LF8_DATENMODELL),
+  LF9: withBeginnerPath("LF9", LF9_DIENSTE_PROTOKOLLE),
+  LF10: withBeginnerPath("LF10", LF10_UI_BARREFREI),
+  LF11: withBeginnerPath("LF11", LF11_INFO_SICHERHEIT),
+  LF12: withBeginnerPath("LF12", LF12_AGILE_PM),
 };
 
 export function pickLearningExercise(
@@ -784,6 +931,8 @@ export function pickLearningExercise(
 ): LearningExercise | null {
   const bag = CURRICULUM_BY_LF[lf];
   if (!bag?.length) return null;
+  const beginner = getPendingBeginnerExercise(lf);
+  if (beginner) return beginner;
   const n = Number.parseInt(lf.replace("LF", ""), 10);
   const salt = Number.isFinite(n) ? n * 131 : 0;
   return stablePick(bag, seed, salt);
@@ -798,7 +947,14 @@ export function pickLearningExerciseFromLfAdaptive(
 ): LearningExercise | null {
   const bag = CURRICULUM_BY_LF[lf];
   if (!bag?.length) return null;
-  return pickWeightedExercise(bag, rng, (id) => leitnerPickWeight(id, leitner, now));
+  const pendingBeginner = getPendingBeginnerExercise(lf, leitner);
+  if (pendingBeginner) return pendingBeginner;
+
+  const beginnerIds = BEGINNER_EXERCISE_IDS_BY_LF[lf];
+  const reviewBag = bag.filter((exercise) => !beginnerIds.has(exercise.id));
+  return pickWeightedExercise(reviewBag.length ? reviewBag : bag, rng, (id) =>
+    leitnerPickWeight(id, leitner, now)
+  );
 }
 
 export function getLearningExerciseById(

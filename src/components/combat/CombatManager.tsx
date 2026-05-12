@@ -502,18 +502,21 @@ export function CombatManager({
         onClose={() => setSourceMirrorSkill(null)}
       />
 
-      {bossVisible && !learningModeActive && (
+      {bossVisible && (
         <motion.div
           animate={{
+            opacity: learningModeActive ? 0.22 : 1,
             scale: tokens.isVictory
               ? [storeSlice.cameraZoom, 1.06, 1]
-              : storeSlice.cameraZoom,
+              : learningModeActive
+                ? 0.92
+                : storeSlice.cameraZoom,
             x:
-              storeSlice.cameraShake > 0
+              !learningModeActive && storeSlice.cameraShake > 0
                 ? [0, -12, 12, -9, 9, -6, 0]
                 : 0,
             y:
-              storeSlice.cameraShake > 0
+              !learningModeActive && storeSlice.cameraShake > 0
                 ? [0, 5, -4, 3, -2, 0]
                 : 0,
           }}
@@ -527,9 +530,12 @@ export function CombatManager({
           style={{
             transformOrigin: "center center",
             willChange: "transform",
-            position: "relative",
+            position: learningModeActive ? "absolute" : "relative",
+            inset: learningModeActive ? 0 : undefined,
             width: "100%",
             minHeight: "min(72vh, 640px)",
+            pointerEvents: learningModeActive ? "none" : "auto",
+            filter: learningModeActive ? "saturate(0.62) contrast(0.78) blur(1.5px)" : undefined,
           }}
         >
           <DynamicFlowCameraRig
@@ -559,7 +565,7 @@ export function CombatManager({
                 timeScale={stageTimeScale}
                 particleDensity={storeSlice.particleDensity}
                 adaptivePulseToken={storeSlice.bossAdaptivePulseToken}
-                bossAggressionLevel={storeSlice.bossAggressionLevel}
+                bossAggressionLevel={learningModeActive ? 0.35 : storeSlice.bossAggressionLevel}
                 criticalHitToken={storeSlice.criticalHitToken}
                 cameraZoom={storeSlice.cameraZoom}
                 currentCombatPhase={storeSlice.currentCombatPhase}
@@ -698,7 +704,7 @@ export function CombatManager({
         />
       )}
 
-      {combatUnlocked && !tokens.isVictory && <ShieldOverlay />}
+      {combatUnlocked && !tokens.isVictory && !learningModeActive ? <ShieldOverlay /> : null}
 
       <PostProcessing
         playerHpRatio={playerHpRatio}

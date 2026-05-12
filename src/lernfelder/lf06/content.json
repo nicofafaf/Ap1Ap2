@@ -2,6 +2,42 @@
   "lf": "LF6",
   "ap": "AP1",
   "title": "Anwendungsentwicklung und Skripte",
+  "beginnerPath": [
+    {
+      "id": "lf6-start",
+      "topic": "Abläufe verstehen",
+      "level": "beginner",
+      "title": "Programme arbeiten Schritt für Schritt",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Ein Programm ist eine Reihenfolge von Anweisungen, Entscheidungen und Wiederholungen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Sequenz heißt der Reihe nach. Auswahl heißt wenn dann. Schleife heißt wiederholen"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Lies zuerst den Ablauf in Alltagssprache, dann erst Code"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Wenn ein Passwort stimmt, wird der Zugang erlaubt. Sonst erscheint eine Meldung"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was beschreibt eine Schleife am besten",
+        "options": [
+          { "text": "Einen Schritt, der mehrfach wiederholt wird", "correct": true },
+          { "text": "Ein festes Gehäusebauteil", "correct": false, "hint": "Das gehört zu Hardware, nicht zu Programmabläufen" },
+          { "text": "Eine einmalige Rechnung ohne Wiederholung", "correct": false, "hint": "Ohne Wiederholung ist es keine Schleife" },
+          { "text": "Eine Vertragsart", "correct": false, "hint": "Verträge gehören zu Wirtschaft und Recht" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf6-kern",

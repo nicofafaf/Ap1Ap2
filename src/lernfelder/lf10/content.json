@@ -2,6 +2,42 @@
   "lf": "LF10",
   "ap": "AP2",
   "title": "Benutzeroberflächen und Barrierefreiheit",
+  "beginnerPath": [
+    {
+      "id": "lf10-start",
+      "topic": "Gute Bedienung",
+      "level": "beginner",
+      "title": "Oberflächen müssen verständlich sein",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Eine gute Oberfläche zeigt klar, was man tun kann und was gerade passiert"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Lesbar, bedienbar, verständlich. Das hilft allen Nutzern"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Prüfe zuerst Schriftgröße, Kontrast, Beschriftung und Tastaturfokus"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Ein Formularfeld braucht ein klares Label wie E-Mail-Adresse"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was macht ein Formular sofort verständlicher",
+        "options": [
+          { "text": "Ein klares Label am Eingabefeld", "correct": true },
+          { "text": "Sehr kleine Schrift", "correct": false, "hint": "Kleine Schrift macht Lernen und Bedienung schwerer" },
+          { "text": "Versteckte Fehlermeldungen", "correct": false, "hint": "Feedback muss sichtbar und verständlich sein" },
+          { "text": "Kein Fokusrahmen", "correct": false, "hint": "Tastaturbedienung braucht sichtbaren Fokus" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf10-kern",

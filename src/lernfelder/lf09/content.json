@@ -2,6 +2,42 @@
   "lf": "LF9",
   "ap": "AP2",
   "title": "Dienste Protokolle und Schnittstellen",
+  "beginnerPath": [
+    {
+      "id": "lf9-start",
+      "topic": "Schnittstellen verstehen",
+      "level": "beginner",
+      "title": "Systeme sprechen über klare Regeln",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Eine Schnittstelle beschreibt, wie zwei Systeme Daten austauschen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "GET holt Daten. POST sendet neue Daten"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Frage zuerst: Will ich etwas lesen oder etwas neu anlegen"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Eine App ruft per GET die Liste aller offenen Tickets ab"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Welche HTTP-Methode passt zum reinen Abrufen von Daten",
+        "options": [
+          { "text": "GET", "correct": true },
+          { "text": "POST", "correct": false, "hint": "POST wird typischerweise zum Anlegen oder Senden genutzt" },
+          { "text": "DELETE", "correct": false, "hint": "DELETE entfernt Daten" },
+          { "text": "PATCH", "correct": false, "hint": "PATCH ändert vorhandene Daten teilweise" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf9-kern",

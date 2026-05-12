@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
+import type { LearningField } from "../../data/nexusRegistry";
+import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
+import { useGameStore } from "../../store/useGameStore";
 
 export type NeuralInitializerProps = {
   onBeginTraining: () => void;
@@ -29,7 +32,7 @@ const LEARNING_FIELDS = [
   { lf: 2, ap: "AP1", title: "IT-Systeme", focus: "Client, Server, DNS, DHCP" },
   { lf: 3, ap: "AP1", title: "Netzwerke", focus: "Subnetze, Dienste, Ports" },
   { lf: 4, ap: "AP1", title: "Hardware", focus: "Integration, Treiber, Tests" },
-  { lf: 5, ap: "AP1", title: "Datenbanken", focus: "SQL, SELECT, JOIN" },
+  { lf: 5, ap: "AP1", title: "Datenbanken", focus: "Listen verstehen, filtern, wiederfinden" },
   { lf: 6, ap: "AP1", title: "Skripte", focus: "Abläufe, Bedingungen, Schleifen" },
   { lf: 7, ap: "AP2", title: "OOP", focus: "Klassen, Objekte, Interfaces" },
   { lf: 8, ap: "AP2", title: "Datenmodelle", focus: "ERD, Schlüssel, Normalformen" },
@@ -46,6 +49,7 @@ export function NeuralInitializer({
 }: NeuralInitializerProps) {
   const ap1Count = LEARNING_FIELDS.filter((item) => item.ap === "AP1").length;
   const ap2Count = LEARNING_FIELDS.length - ap1Count;
+  const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
 
   return (
     <div
@@ -126,34 +130,43 @@ export function NeuralInitializer({
         </div>
 
         <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
-          {LEARNING_FIELDS.map((field) => (
-            <button
-              key={field.lf}
-              type="button"
-              onClick={() => onBeginLearningField(field.lf)}
-              style={fieldCardStyle}
-            >
-              <span style={fieldVisualStyle} aria-hidden="true">
-                <video
-                  src={`/assets/LF${field.lf}GIF.mp4`}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  style={fieldVideoStyle}
-                />
-              </span>
-              <span style={fieldMetaStyle}>
-                <span>Datenträger</span>
-                <b>
-                  LF{field.lf} · {field.ap}
-                </b>
-              </span>
-              <strong>{field.title}</strong>
-              <span>{field.focus}</span>
-            </button>
-          ))}
+          {LEARNING_FIELDS.map((field) => {
+            const lfKey = `LF${field.lf}` as LearningField;
+            const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
+            const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
+
+            return (
+              <button
+                key={field.lf}
+                type="button"
+                onClick={() => onBeginLearningField(field.lf)}
+                style={fieldCardStyle}
+              >
+                <span style={fieldVisualStyle} aria-hidden="true">
+                  <video
+                    src={`/assets/LF${field.lf}GIF.mp4`}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    style={fieldVideoStyle}
+                  />
+                </span>
+                <span style={fieldMetaStyle}>
+                  <span>Datenträger</span>
+                  <b>
+                    LF{field.lf} · {field.ap}
+                  </b>
+                </span>
+                <strong>{field.title}</strong>
+                <span>{field.focus}</span>
+                <span style={fieldProgressStyle}>
+                  Einsteiger · {solved}/{total} Übungen · Starten
+                </span>
+              </button>
+            );
+          })}
         </motion.div>
       </motion.div>
     </div>
@@ -312,6 +325,20 @@ const fieldMetaStyle: CSSProperties = {
   letterSpacing: "0.04em",
   textTransform: "uppercase",
   color: "rgba(22,32,25,0.48)",
+};
+
+const fieldProgressStyle: CSSProperties = {
+  marginTop: "auto",
+  alignSelf: "flex-start",
+  borderRadius: 999,
+  border: "1px solid rgba(214,181,111,0.32)",
+  background: "rgba(214,181,111,0.14)",
+  color: "var(--nx-learn-ink)",
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: 20,
+  fontWeight: 700,
+  letterSpacing: "0.02em",
+  padding: "10px 14px",
 };
 
 export default NeuralInitializer;

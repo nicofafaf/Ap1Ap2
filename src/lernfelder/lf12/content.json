@@ -2,6 +2,42 @@
   "lf": "LF12",
   "ap": "AP2",
   "title": "Agile Methoden und Projektsteuerung",
+  "beginnerPath": [
+    {
+      "id": "lf12-start",
+      "topic": "Agiles Arbeiten",
+      "level": "beginner",
+      "title": "In kleinen Schritten liefern",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Agile Teams planen kurz, liefern regelmäßig und lernen aus Feedback"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Sprintziel sagt, was im Sprint erreicht werden soll"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Unterscheide Rolle, Ereignis und Ergebnis"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Ein Team plant für zwei Wochen ein kleines, prüfbares Ergebnis"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was beschreibt ein Sprintziel",
+        "options": [
+          { "text": "Das wichtigste Ergebnis des nächsten Sprints", "correct": true },
+          { "text": "Eine zufällige Aufgabe ohne Planung", "correct": false, "hint": "Agil heißt nicht planlos" },
+          { "text": "Ein Netzwerkkabel", "correct": false, "hint": "Das gehört nicht zur Projektsteuerung" },
+          { "text": "Eine Datenbankspalte", "correct": false, "hint": "Das passt zu Datenmodellierung" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf12-kern",

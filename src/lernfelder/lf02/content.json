@@ -2,6 +2,42 @@
   "lf": "LF2",
   "ap": "AP1",
   "title": "IT Grundlagen und Infrastruktur",
+  "beginnerPath": [
+    {
+      "id": "lf2-start",
+      "topic": "Client und Server",
+      "level": "beginner",
+      "title": "Wer fragt und wer antwortet",
+      "lessonCards": [
+        {
+          "title": "Worum geht es",
+          "body": "Ein Client stellt eine Anfrage. Ein Server liefert einen Dienst oder eine Antwort"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Client fragt, Server antwortet"
+        },
+        {
+          "title": "Erster Schritt",
+          "body": "Ordne zuerst Rollen zu. Technikdetails kommen danach"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Dein Browser fragt eine Webseite an. Der Webserver sendet die Seite zurück"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist in diesem Beispiel der Client",
+        "options": [
+          { "text": "Der Browser auf deinem Gerät", "correct": true },
+          { "text": "Der Serverraum", "correct": false, "hint": "Der Serverraum enthält Server, ist aber nicht die anfragende Seite" },
+          { "text": "Das Stromkabel", "correct": false, "hint": "Das Kabel versorgt nur mit Energie" },
+          { "text": "Der Domainname allein", "correct": false, "hint": "Der Name hilft beim Finden, fragt aber nicht selbst an" }
+        ]
+      }
+    }
+  ],
   "reference": [
     {
       "id": "lf2-kern",

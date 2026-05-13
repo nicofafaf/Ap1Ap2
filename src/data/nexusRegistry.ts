@@ -81,6 +81,35 @@ function mentorPortraitPngUrl(mentorIndex: number): string {
   return publicAssetUrl(`/assets/characters/${mentorPortraitSlug(mentorIndex)}.png`);
 }
 
+/**
+ * Anfangsauswahl: 128×128 unter `assets/Portraits/25-waifus-128x128/` → nach Build `public/assets/…`
+ * Erwartete Dateien: `waifu-{n}.png` oder `.webp` (n = 1…24+)
+ */
+export function mentorPickPortraitCandidates(id: number): readonly string[] {
+  const n = Math.max(1, Math.min(100, Math.floor(id)));
+  const base = `/assets/Portraits/25-waifus-128x128/waifu-${n}`;
+  return [publicAssetUrl(`${base}.png`), publicAssetUrl(`${base}.webp`), mentorPortraitPngUrl(n)];
+}
+
+const WAIFU_IDLE_FOLDER_ENC = encodeURIComponent("100 Waifus - Idle Animation 64x64");
+
+/**
+ * Überall sonst: 64×64 Idle unter `assets/Characters/100 Waifus - Idle Animation 64x64/V1.0/`
+ * Erwartet u. a.: `waifu-{n}.webp`, `.gif`, `.webm` — danach Legacy-PNG
+ */
+export function mentorIdleAnimationCandidates(id: number): readonly string[] {
+  const n = Math.max(1, Math.min(100, Math.floor(id)));
+  const root = `/assets/Characters/${WAIFU_IDLE_FOLDER_ENC}/V1.0`;
+  return [
+    publicAssetUrl(`${root}/waifu-${n}.webp`),
+    publicAssetUrl(`${root}/waifu-${n}.gif`),
+    publicAssetUrl(`${root}/waifu-${n}.webm`),
+    publicAssetUrl(`${root}/${n}.webp`),
+    publicAssetUrl(`${root}/${n}.gif`),
+    mentorPortraitPngUrl(n),
+  ];
+}
+
 const makeBossVisual = (lfNumber: number) => {
   const stem = `LF${lfNumber}GIF`;
   const rel = (ext: string) => publicAssetUrl(`/assets/${stem}${ext}`);
@@ -348,6 +377,7 @@ export function getBossThumbnailCandidates(lf: LearningField): string[] {
 /** Mentor-IDs 1…24 → Dateien `waifu-1.png` … unter `public/assets/characters/` */
 export const MENTOR_WAIFU_IDS = Array.from({ length: 24 }, (_, i) => i + 1) as readonly number[];
 
+/** Legacy-PNG unter `public/assets/characters/` — für einfache `<img src>` ohne Kette */
 export function mentorWaifuUrl(id: number): string {
   return mentorPortraitPngUrl(id);
 }

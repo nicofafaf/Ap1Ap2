@@ -182,7 +182,29 @@ body::before {
   box-sizing: border-box;
 }
 
-html[data-nx-readability="on"] {
+html[data-nx-chrome="edtech"] {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 55%, #e2e8f0 100%);
+}
+
+html[data-nx-chrome="edtech"] body {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 40%, #eef2f7 100%);
+  color: #0f172a;
+}
+
+html[data-nx-chrome="edtech"] body::before {
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background: radial-gradient(ellipse 100% 70% at 50% 0%, rgba(37, 99, 235, 0.06), transparent 50%);
+}
+
+html[data-nx-chrome="edtech"] .nx-fractal-particle-layer {
+  opacity: 0.1;
+}
+
+html[data-nx-chrome="edtech"] .nx-volumetric-leaks {
+  opacity: 0.12;
+}
+
   --nx-readability-particles: 0;
 }
 

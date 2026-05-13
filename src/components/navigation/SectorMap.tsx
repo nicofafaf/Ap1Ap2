@@ -366,6 +366,24 @@ export function SectorMap({
     return () => window.clearInterval(id);
   }, []);
 
+  /** Deep-Link aus der Edtech-Hub-Navigation (NexusShell dispatch nach Karten-Mount) */
+  useEffect(() => {
+    const onDossier = () => setTechnicalDossierOpen(true);
+    const onHall = () => setHallRecordsOpen(true);
+    const onCodex = () => setCodexOpen(true);
+    const onDaily = () => setDailyPanelOpen(true);
+    window.addEventListener("nx:sector-open-dossier", onDossier);
+    window.addEventListener("nx:sector-open-hall-records", onHall);
+    window.addEventListener("nx:sector-open-codex", onCodex);
+    window.addEventListener("nx:sector-open-daily-panel", onDaily);
+    return () => {
+      window.removeEventListener("nx:sector-open-dossier", onDossier);
+      window.removeEventListener("nx:sector-open-hall-records", onHall);
+      window.removeEventListener("nx:sector-open-codex", onCodex);
+      window.removeEventListener("nx:sector-open-daily-panel", onDaily);
+    };
+  }, []);
+
   const dateKey = useMemo(() => getUtcDateKey(), [utcTick]);
   const dailyDef = useMemo(() => getDailyIncursionDefinition(dateKey), [dateKey]);
   const secToMidnight = useMemo(() => secondsUntilNextUtcMidnight(), [utcTick]);

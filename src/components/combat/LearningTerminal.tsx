@@ -1,7 +1,6 @@
 import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { motion, useAnimation, useReducedMotion } from "framer-motion";
 import type { LearningField, NexusRegistryEntry } from "../../data/nexusRegistry";
-import { mentorWaifuUrl } from "../../data/nexusRegistry";
 import { getFinalExamLearningBundle, getTerminalLearningBundle } from "../../lib/learning/terminalContent";
 import { highlightCode } from "../../lib/learning/codeHighlight";
 import { TerminalCodeWorkbench } from "../../lib/learning/terminalCodeWorkbench";
@@ -13,6 +12,7 @@ import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import type { LearningMcOption } from "../../lib/learning/learningExerciseTypes";
 import { resolveTerminalBossMode } from "../../lib/learning/learningRegistry";
 import { useBossAudioEngine } from "../../lib/audio/bossAudioEngine";
+import { MentorPortrait } from "../ui/MentorPortrait";
 
 export type LearningTerminalProps = {
   currentLF: LearningField;
@@ -201,12 +201,12 @@ function LearningMcOptionRow({
 function SafeLearningFigure({
   src,
   alt,
-  coachAvatarSrc,
+  coachMentorId,
   coachName,
 }: {
   src: string;
   alt: string;
-  coachAvatarSrc: string | null;
+  coachMentorId: number | null;
   coachName: string | null;
 }) {
   const errorOnceRef = useRef(false);
@@ -237,18 +237,13 @@ function SafeLearningFigure({
           WebkitBackdropFilter: "blur(14px)",
         }}
       >
-        {coachAvatarSrc ? (
-          <img
-            src={coachAvatarSrc}
-            alt=""
-            width={56}
-            height={56}
-            style={{
-              flexShrink: 0,
-              borderRadius: 16,
-              border: "1px solid rgba(214, 181, 111, 0.35)",
-              objectFit: "cover",
-            }}
+        {coachMentorId != null ? (
+          <MentorPortrait
+            mentorId={coachMentorId}
+            variant="idle"
+            size={56}
+            radius={16}
+            border="1px solid rgba(214, 181, 111, 0.35)"
           />
         ) : null}
         <div style={{ minWidth: 0 }}>
@@ -330,8 +325,7 @@ export function LearningTerminal({
   const panelShake = useAnimation();
   const [rimGold, setRimGold] = useState(false);
 
-  const coachAvatarSrc =
-    playerAvatar != null ? mentorWaifuUrl(playerAvatar) : mentorWaifuUrl(1);
+  const coachMentorId = playerAvatar ?? 1;
   const coachDisplayName = playerName?.trim() ? playerName : null;
 
   const triggerCodeSuccessFx = useCallback(() => {
@@ -738,18 +732,13 @@ export function LearningTerminal({
                           : { duration: 3.6, repeat: Infinity, ease: "easeInOut" }
                       }
                     >
-                      <img
-                        src={coachAvatarSrc}
-                        alt=""
-                        width={92}
-                        height={92}
-                        style={{
-                          borderRadius: 22,
-                          border: "1px solid rgba(214, 181, 111, 0.45)",
-                          objectFit: "cover",
-                          display: "block",
-                          boxShadow: "0 0 28px rgba(214, 181, 111, 0.18)",
-                        }}
+                      <MentorPortrait
+                        mentorId={coachMentorId}
+                        variant="idle"
+                        size={92}
+                        radius={22}
+                        border="1px solid rgba(214, 181, 111, 0.45)"
+                        boxShadow="0 0 28px rgba(214, 181, 111, 0.18)"
                       />
                     </motion.div>
                     <div style={{ minWidth: 0, flex: 1 }}>
@@ -989,7 +978,7 @@ export function LearningTerminal({
                     <SafeLearningFigure
                       src={exercise.illustrationSrc}
                       alt=""
-                      coachAvatarSrc={learningFocus ? coachAvatarSrc : null}
+                      coachMentorId={learningFocus ? coachMentorId : null}
                       coachName={learningFocus ? coachDisplayName : null}
                     />
                   ) : null}
@@ -1045,7 +1034,7 @@ export function LearningTerminal({
                         }
                       }}
                       onRunSuccessEffects={triggerCodeSuccessFx}
-                      coachAvatarSrc={coachAvatarSrc}
+                      coachMentorId={coachMentorId}
                       coachName={coachDisplayName}
                       learningField={answerLf}
                       initialDraft={

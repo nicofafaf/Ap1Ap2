@@ -110,6 +110,7 @@ export function InitialScan({
         >
             <MentorPortrait
               mentorId={mentorAvatarId}
+              variant="idle"
               size={160}
               radius={24}
               border="2px solid rgba(212, 175, 55, 0.45)"

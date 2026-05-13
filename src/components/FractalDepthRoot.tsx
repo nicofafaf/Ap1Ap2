@@ -257,12 +257,19 @@ const COLLAPSE_BLUR_PX = 100;
 export function FractalDepthRoot({ children }: FractalDepthRootProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const gameState = useGameStore((s) => s.gameState);
+  const nexusChrome = useGameStore((s) => s.nexusChrome);
   const victoryFinisherPhase = useGameStore((s) => s.victoryFinisherPhase);
   const victoryFinisherToken = useGameStore((s) => s.victoryFinisherToken);
   const victoryFinisherComplete = useGameStore((s) => s.victoryFinisherComplete);
 
   const combatHot =
     gameState === "STARTING" || gameState === "FIGHTING" || gameState === "VICTORY";
+
+  const edtechAtmosphere = nexusChrome === "edtech" && !combatHot;
+
+  useEffect(() => {
+    document.documentElement.dataset.nxChrome = nexusChrome;
+  }, [nexusChrome]);
 
   const fractalCollapse =
     gameState === "VICTORY" &&
@@ -421,6 +428,19 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
         animate={{ scale: fractalCollapse ? 0.2 : 1 }}
         transition={{ duration: 0.48, ease: [0.76, 0, 0.88, 0.12] }}
       >
+        {edtechAtmosphere ? (
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 1,
+              pointerEvents: "none",
+              background:
+                "linear-gradient(180deg, rgba(248,250,252,0.94) 0%, rgba(241,245,249,0.9) 40%, rgba(248,250,252,0.93) 100%)",
+            }}
+          />
+        ) : null}
         {fractalVideoMissing ? (
           <div
             aria-hidden

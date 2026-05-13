@@ -7,6 +7,7 @@ import lf11Content from "../../lernfelder/lf11/content.json";
 import { typography } from "../../theme/typography";
 import { useGameStore } from "../../store/useGameStore";
 import { useNexusI18n } from "../i18n/I18nProvider";
+import { MentorPortrait } from "../../components/ui/MentorPortrait";
 
 const SQL_KEYWORDS = [
   "select",
@@ -164,18 +165,18 @@ export type TerminalCodeWorkbenchProps = {
   onRunSuccessEffects?: () => void;
   initialDraft?: string;
   initialToken?: number;
-  coachAvatarSrc?: string | null;
+  coachMentorId?: number;
   coachName?: string | null;
   /** LF5 Multivers-Coach aus content.json */
   learningField?: LearningField | null;
 };
 
 function CoachDialoguePanel({
-  avatarSrc,
+  mentorId,
   name,
   line,
 }: {
-  avatarSrc: string | null;
+  mentorId: number | null;
   name: string | null;
   line: string;
 }) {
@@ -197,18 +198,13 @@ function CoachDialoguePanel({
         WebkitBackdropFilter: "blur(14px)",
       }}
     >
-      {avatarSrc ? (
-        <img
-          src={avatarSrc}
-          alt=""
-          width={56}
-          height={56}
-          style={{
-            flexShrink: 0,
-            borderRadius: 16,
-            border: "1px solid rgba(214, 181, 111, 0.35)",
-            objectFit: "cover",
-          }}
+      {mentorId != null ? (
+        <MentorPortrait
+          mentorId={mentorId}
+          variant="idle"
+          size={56}
+          radius={16}
+          border="1px solid rgba(214, 181, 111, 0.35)"
         />
       ) : (
         <div
@@ -261,7 +257,7 @@ export function TerminalCodeWorkbench({
   onRunSuccessEffects,
   initialDraft,
   initialToken,
-  coachAvatarSrc = null,
+  coachMentorId,
   coachName = null,
   learningField = null,
 }: TerminalCodeWorkbenchProps) {
@@ -647,7 +643,7 @@ export function TerminalCodeWorkbench({
             : t("learningTerminal.feedbackCodeDiff", "Noch nicht — Zeichen und Zeilen müssen exakt passen")}
         </div>
       ) : null}
-      <CoachDialoguePanel avatarSrc={coachAvatarSrc} name={coachName} line={coachLine} />
+      <CoachDialoguePanel mentorId={coachMentorId ?? null} name={coachName} line={coachLine} />
     </motion.div>
   );
 }

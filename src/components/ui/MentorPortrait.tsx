@@ -1,6 +1,13 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useCallback, useEffect, useState, type CSSProperties } from "react";
-import { mentorPortraitSlug, mentorWaifuUrl } from "../../data/nexusRegistry";
+import { useCallback, useEffect, useMemo, useState, type CSSProperties } from "react";
+import {
+  mentorIdleAnimationCandidates,
+  mentorPickPortraitCandidates,
+  mentorPortraitSlug,
+  mentorWaifuUrl,
+} from "../../data/nexusRegistry";
+
+export type MentorPortraitVariant = "default" | "pick" | "idle";
 
 type MentorPortraitProps = {
   mentorId: number;
@@ -8,12 +15,25 @@ type MentorPortraitProps = {
   radius?: number;
   border?: string;
   boxShadow?: string;
+  /** default: 64×64 Idle (Characters/…/V1.0) · pick: 128×128 Auswahl (Portraits/…) · idle: wie default */
+  variant?: MentorPortraitVariant;
 };
 
 type LoadState = "loading" | "ready" | "error";
 
+function candidateList(mentorId: number, variant: MentorPortraitVariant): readonly string[] {
+  switch (variant) {
+    case "pick":
+      return mentorPickPortraitCandidates(mentorId);
+    case "idle":
+      return mentorIdleAnimationCandidates(mentorId);
+    default:
+      return [mentorWaifuUrl(mentorId)];
+  }
+}
+
 /**
- * Mentor-PNG unter public/assets/characters/waifu-n.png — Ladezustand bis onLoad, Fehlerfall mit Gradient und Slug
+ * Mentor-Grafik: Anfang `variant="pick"` (128×128), sonst `idle`/`default` mit 64×64-Idle-Kette, Fallback Legacy-PNG
  */
 export function MentorPortrait({
   mentorId,
@@ -21,18 +41,32 @@ export function MentorPortrait({
   radius = 18,
   border = "1px solid rgba(214, 181, 111, 0.35)",
   boxShadow,
+  variant = "idle",
 }: MentorPortraitProps) {
-  const src = mentorWaifuUrl(mentorId);
+  const candidates = useMemo(() => [...candidateList(mentorId, variant)], [mentorId, variant]);
   const reduceMotion = useReducedMotion();
+  const [srcIndex, setSrcIndex] = useState(0);
   const [loadState, setLoadState] = useState<LoadState>("loading");
+
+  const src = candidates[Math.min(srcIndex, Math.max(0, candidates.length - 1))]!;
+
+  useEffect(() => {
+    setSrcIndex(0);
+    setLoadState("loading");
+  }, [mentorId, variant]);
 
   useEffect(() => {
     setLoadState("loading");
-  }, [src, mentorId]);
+  }, [src]);
 
   const onError = useCallback(() => {
-    setLoadState("error");
-  }, []);
+    setSrcIndex((i) => {
+      const next = i + 1;
+      if (next < candidates.length) return next;
+      setLoadState("error");
+      return i;
+    });
+  }, [candidates.length]);
 
   const onLoad = useCallback(() => {
     setLoadState("ready");
@@ -76,16 +110,8 @@ export function MentorPortrait({
       {loadState === "loading" ? (
         <motion.div
           initial={{ opacity: reduceMotion ? 0.65 : 0.45 }}
-          animate={
-            reduceMotion
-              ? { opacity: 0.65 }
-              : { opacity: [0.45, 0.85, 0.45] }
-          }
-          transition={
-            reduceMotion
-              ? { duration: 0 }
-              : { duration: 1.15, repeat: Infinity, ease: "easeInOut" }
-          }
+          animate={reduceMotion ? { opacity: 0.65 } : { opacity: [0.45, 0.85, 0.45] }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 1.15, repeat: Infinity, ease: "easeInOut" }}
           style={{
             position: "absolute",
             inset: 0,
@@ -97,6 +123,7 @@ export function MentorPortrait({
         />
       ) : null}
       <img
+        key={`${mentorId}-${variant}-${srcIndex}-${src}`}
         src={src}
         alt=""
         width={size}

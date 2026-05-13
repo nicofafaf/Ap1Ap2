@@ -1,13 +1,17 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
-import { getBossThumbnailCandidates, mentorWaifuUrl, MENTOR_WAIFU_IDS } from "../../data/nexusRegistry";
+import { getBossThumbnailCandidates, mentorPortraitSlug, mentorWaifuUrl, MENTOR_WAIFU_IDS } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../store/useGameStore";
+import type { NexusHubMapExtras } from "../../lib/ui/hubMapNavigation";
 import { InitialScan } from "../system/InitialScan";
 import { MentorPortrait } from "../ui/MentorPortrait";
+import { NexusCitadelBriefing } from "./NexusCitadelBriefing";
+import { NexusEdtechDashboard } from "./NexusEdtechDashboard";
+import { NexusTopChrome } from "./NexusTopChrome";
 
 export type NeuralInitializerProps = {
   onBeginTraining?: () => void;
@@ -15,6 +19,8 @@ export type NeuralInitializerProps = {
   /** Optional: gleicher Effekt wie onOpenOverview — SectorMap mit Scale-In aus dem Shell-Wrapper */
   onLaunchNexusMap?: () => void;
   onBeginLearningField: (lf: number) => void;
+  /** Nach Hub: Karte öffnen und optional Overlay / Sector-Panels (siehe hubMapNavigation) */
+  onNavigateFromHubToMap?: (extras: NexusHubMapExtras) => void;
   /** Wenn gesetzt: schließbare Variante über der Karte (zweiter Besuch) */
   onReturnToMap?: () => void;
 };
@@ -80,25 +86,30 @@ const leadStyle: CSSProperties = {
 };
 
 export function NeuralInitializer({
-  onBeginTraining: _onBeginTraining,
+  onBeginTraining,
   onOpenOverview,
   onLaunchNexusMap,
   onBeginLearningField,
+  onNavigateFromHubToMap,
   onReturnToMap,
 }: NeuralInitializerProps) {
-  void _onBeginTraining;
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
   const [profileDockCompact, setProfileDockCompact] = useState(false);
+  const [companionGridCols, setCompanionGridCols] = useState(8);
   const [fieldsExpanded, setFieldsExpanded] = useState(false);
   const [codenameDraft, setCodenameDraft] = useState("");
+  const initScrollRef = useRef<HTMLDivElement>(null);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const playerAvatar = useGameStore((s) => s.playerAvatar);
   const playerName = useGameStore((s) => s.playerName);
   const setPlayerAvatar = useGameStore((s) => s.setPlayerAvatar);
+  const clearCompanionSelection = useGameStore((s) => s.clearCompanionSelection);
   const setPlayerName = useGameStore((s) => s.setPlayerName);
   const initialSkillScanComplete = useGameStore((s) => s.initialSkillScanComplete);
   const submitInitialSkillScan = useGameStore((s) => s.submitInitialSkillScan);
+  const nexusChrome = useGameStore((s) => s.nexusChrome);
+  const setNexusChrome = useGameStore((s) => s.setNexusChrome);
 
   const phase = useMemo(() => {
     if (playerAvatar === null) return "avatar" as const;
@@ -108,6 +119,37 @@ export function NeuralInitializer({
   }, [playerAvatar, playerName, initialSkillScanComplete]);
 
   const goNexusMap = onLaunchNexusMap ?? onOpenOverview;
+
+  const openFieldListAndScroll = useCallback(() => {
+    setFieldsExpanded(true);
+    requestAnimationFrame(() => {
+      document.getElementById("nx-field-list-anchor")?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  }, [reduceMotion]);
+
+  const toggleNexusChrome = useCallback(() => {
+    setNexusChrome(nexusChrome === "edtech" ? "industrial" : "edtech");
+  }, [nexusChrome, setNexusChrome]);
+
+  const handleQuickTest = useCallback(() => {
+    if (phase === "avatar") {
+      const el = document.getElementById("nx-companion-deck");
+      el?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    } else {
+      goNexusMap();
+    }
+  }, [phase, goNexusMap, reduceMotion]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1020px)");
+    const fn = () => setCompanionGridCols(mq.matches ? 4 : 8);
+    fn();
+    mq.addEventListener("change", fn);
+    return () => mq.removeEventListener("change", fn);
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 780px), (max-height: 640px)");
@@ -123,24 +165,21 @@ export function NeuralInitializer({
         position: "absolute",
         inset: 0,
         zIndex: 1,
-        background:
-          "radial-gradient(ellipse 85% 55% at 50% 12%, rgba(34,211,238,0.05), transparent 52%), linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 48%, #050505 100%)",
         display: "flex",
         flexDirection: "column",
-        overflow: phase === "scan" ? "hidden" : "auto",
+        overflow: "hidden",
         pointerEvents: "auto",
+        background:
+          nexusChrome === "edtech"
+            ? "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 45%, #e2e8f0 100%)"
+            : "radial-gradient(ellipse 85% 55% at 50% 12%, rgba(34,211,238,0.05), transparent 52%), linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 48%, #050505 100%)",
       }}
     >
-      <motion.div
-        animate={{ opacity: [0.22, 0.3, 0.24] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "radial-gradient(circle at 50% 26%, rgba(251,247,239,0.09), transparent 28%), radial-gradient(circle at 18% 82%, rgba(73,112,87,0.18), transparent 34%)",
-          pointerEvents: "none",
-        }}
+      <NexusTopChrome
+        mode={nexusChrome}
+        onToggleMode={toggleNexusChrome}
+        onQuickTest={handleQuickTest}
+        onOpenMap={goNexusMap}
       />
       {onReturnToMap ? (
         <div
@@ -177,13 +216,38 @@ export function NeuralInitializer({
         </div>
       ) : null}
       <div
+        ref={initScrollRef}
+        style={{
+          position: "relative",
+          flex: 1,
+          minHeight: 0,
+          overflow: phase === "scan" ? "hidden" : "auto",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+      <motion.div
+        animate={{ opacity: nexusChrome === "edtech" ? [0.04, 0.08, 0.05] : [0.22, 0.3, 0.24] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            nexusChrome === "edtech"
+              ? "radial-gradient(circle at 50% 18%, rgba(37, 99, 235, 0.08), transparent 42%), radial-gradient(circle at 12% 88%, rgba(124, 58, 237, 0.06), transparent 38%)"
+              : "radial-gradient(circle at 50% 26%, rgba(251,247,239,0.09), transparent 28%), radial-gradient(circle at 18% 82%, rgba(73,112,87,0.18), transparent 34%)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
         style={{
           position: "relative",
           flex: 1,
           width: "100%",
           minHeight: "100dvh",
           display: "flex",
-          alignItems: phase === "scan" ? "stretch" : "center",
+          alignItems: phase === "scan" ? "stretch" : "flex-start",
           justifyContent: "center",
           padding: phase === "scan" ? 0 : "clamp(28px, 5vw, 72px)",
         }}
@@ -198,15 +262,22 @@ export function NeuralInitializer({
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               style={{ width: "min(1180px, 94vw)", margin: "0 auto" }}
             >
+              <NexusCitadelBriefing
+                scrollParentRef={initScrollRef}
+                companionAnchorId="nx-companion-deck"
+                onOpenMap={goNexusMap}
+                chrome={nexusChrome}
+              />
+              <div id="nx-companion-deck" style={{ scrollMarginTop: "max(96px, env(safe-area-inset-top))" }}>
               <h1
                 style={{
                   margin: 0,
                   fontFamily: "var(--nx-font-sans)",
-                  fontSize: 48,
+                  fontSize: "clamp(32px, 4.2vw, 48px)",
                   fontWeight: 200,
                   letterSpacing: "-0.04em",
                   lineHeight: 1.1,
-                  color: "rgba(251,247,239,0.96)",
+                  color: nexusChrome === "edtech" ? "#0f172a" : "rgba(251,247,239,0.96)",
                 }}
               >
                 {t("profile.pickTitle")}
@@ -216,49 +287,91 @@ export function NeuralInitializer({
                   margin: "16px 0 0",
                   maxWidth: 720,
                   fontFamily: "var(--nx-font-sans)",
-                  fontSize: 24,
+                  fontSize: "clamp(18px, 2.2vw, 24px)",
                   lineHeight: 1.45,
                   fontWeight: 500,
-                  color: "rgba(251,247,239,0.72)",
+                  color: nexusChrome === "edtech" ? "#475569" : "rgba(251,247,239,0.72)",
                 }}
               >
                 {t("profile.pickLead")}
               </p>
               <div
                 style={{
-                  marginTop: 28,
+                  marginTop: 32,
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))",
-                  gap: 16,
+                  gridTemplateColumns: `repeat(${companionGridCols}, minmax(0, 1fr))`,
+                  gap: 14,
+                  width: "100%",
+                  maxWidth: 1200,
+                  marginLeft: "auto",
+                  marginRight: "auto",
                 }}
               >
-                {MENTOR_WAIFU_IDS.map((id) => (
+                {MENTOR_WAIFU_IDS.map((id, ix) => (
                   <motion.button
                     key={id}
                     type="button"
-                    whileHover={{
-                      scale: 1.04,
-                      boxShadow:
-                        "0 0 32px rgba(214, 181, 111, 0.38), 0 0 1px rgba(184, 148, 48, 0.95)",
-                      borderColor: "rgba(212, 175, 55, 0.82)",
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.28,
+                      delay: reduceMotion ? 0 : Math.min(0.35, ix * 0.02),
+                      ease: [0.22, 1, 0.36, 1],
                     }}
-                    whileTap={{ scale: 0.97 }}
+                    whileHover={
+                      reduceMotion
+                        ? undefined
+                        : {
+                            scale: 1.03,
+                            boxShadow:
+                              "0 0 28px rgba(34, 211, 238, 0.22), 0 0 36px rgba(214, 181, 111, 0.2), inset 0 0 0 1px rgba(251,247,239,0.14)",
+                          }
+                    }
+                    whileTap={reduceMotion ? undefined : { scale: 0.98 }}
                     onClick={() => setPlayerAvatar(id)}
                     style={{
-                      padding: 8,
-                      borderRadius: 22,
-                      border: "1px solid rgba(251,247,239,0.1)",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: 10,
+                      padding: "12px 8px 14px",
+                      borderRadius: 14,
+                      border: nexusChrome === "edtech" ? "1px solid #e2e8f0" : "1px solid rgba(251,247,239,0.12)",
                       cursor: "pointer",
                       background:
-                        "linear-gradient(155deg, rgba(255,255,255,0.08) 0%, rgba(8,12,10,0.72) 100%)",
-                      backdropFilter: "blur(18px) saturate(120%)",
-                      WebkitBackdropFilter: "blur(18px) saturate(120%)",
-                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
+                        nexusChrome === "edtech"
+                          ? "linear-gradient(145deg, #ffffff 0%, #f8fafc 55%, #eef2ff 100%)"
+                          : "linear-gradient(145deg, rgba(34,211,238,0.14) 0%, rgba(8,10,12,0.88) 42%, rgba(214,181,111,0.12) 100%)",
+                      backdropFilter: nexusChrome === "edtech" ? "none" : "blur(14px) saturate(118%)",
+                      WebkitBackdropFilter: nexusChrome === "edtech" ? "none" : "blur(14px) saturate(118%)",
+                      boxShadow:
+                        nexusChrome === "edtech"
+                          ? "0 10px 28px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.9)"
+                          : "inset 0 1px 0 rgba(255,255,255,0.06)",
                     }}
                   >
-                    <MentorPortrait mentorId={id} size={120} radius={16} border="1px solid rgba(251,247,239,0.1)" />
+                    <MentorPortrait
+                      mentorId={id}
+                      variant="pick"
+                      size={companionGridCols >= 8 ? 104 : 96}
+                      radius={12}
+                      border="1px solid rgba(251,247,239,0.14)"
+                    />
+                    <span
+                      style={{
+                        fontFamily: "var(--nx-font-mono)",
+                        fontSize: companionGridCols >= 8 ? 13 : 12,
+                        fontWeight: 800,
+                        letterSpacing: "0.04em",
+                        color: nexusChrome === "edtech" ? "#0f172a" : "rgba(251,247,239,0.9)",
+                        textTransform: "lowercase",
+                      }}
+                    >
+                      {mentorPortraitSlug(id)}
+                    </span>
                   </motion.button>
                 ))}
+              </div>
               </div>
             </motion.div>
           ) : null}
@@ -383,18 +496,23 @@ export function NeuralInitializer({
                 position: "relative",
                 zIndex: 1,
                 width: "min(1440px, 100%)",
-                borderRadius: 8,
-                border: "1px solid rgba(34, 211, 238, 0.22)",
+                borderRadius: nexusChrome === "edtech" ? 16 : 8,
+                border:
+                  nexusChrome === "edtech" ? "1px solid #e2e8f0" : "1px solid rgba(34, 211, 238, 0.22)",
                 background:
-                  "linear-gradient(165deg, rgba(16, 18, 20, 0.92) 0%, rgba(8, 9, 10, 0.94) 100%)",
-                backdropFilter: "blur(24px) saturate(120%)",
-                WebkitBackdropFilter: "blur(24px) saturate(120%)",
-                color: "var(--nx-learn-ink)",
+                  nexusChrome === "edtech"
+                    ? "linear-gradient(165deg, #ffffff 0%, #f8fafc 100%)"
+                    : "linear-gradient(165deg, rgba(16, 18, 20, 0.92) 0%, rgba(8, 9, 10, 0.94) 100%)",
+                backdropFilter: nexusChrome === "edtech" ? "none" : "blur(24px) saturate(120%)",
+                WebkitBackdropFilter: nexusChrome === "edtech" ? "none" : "blur(24px) saturate(120%)",
+                color: nexusChrome === "edtech" ? "#0f172a" : "var(--nx-learn-ink)",
                 padding: profileDockCompact
                   ? "clamp(36px, 5vw, 56px) clamp(28px, 4vw, 48px)"
                   : "clamp(48px, 8dvh, 96px) clamp(36px, 4.8vw, 72px)",
                 boxShadow:
-                  "inset 0 1px 0 rgba(251,247,239,0.06), 0 40px 100px rgba(0,0,0,0.55)",
+                  nexusChrome === "edtech"
+                    ? "0 24px 60px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.9)"
+                    : "inset 0 1px 0 rgba(251,247,239,0.06), 0 40px 100px rgba(0,0,0,0.55)",
                 pointerEvents: "auto",
               }}
             >
@@ -408,31 +526,74 @@ export function NeuralInitializer({
                 }}
               >
                 <div style={{ flex: "1 1 auto", minWidth: 0 }}>
-                  <div style={{ ...heroGridStyle, gridTemplateColumns: "1fr", maxWidth: 920 }}>
-                    <motion.section variants={CARD}>
-                      <h1 style={{ ...hubHeadlineStyle, fontSize: 48 }}>{t("hub.headline")}</h1>
-                      <p style={{ ...leadStyle, fontSize: 24 }}>{t("hub.lead")}</p>
-                      <div style={actionRowStyle}>
-                        <motion.button
-                          type="button"
-                          onClick={goNexusMap}
-                          whileHover={{ scale: reduceMotion ? 1 : 1.02 }}
-                          whileTap={{ scale: reduceMotion ? 1 : 0.98 }}
-                          style={ctaStyle}
+                  {nexusChrome === "edtech" ? (
+                    <NexusEdtechDashboard
+                      scrollParentRef={initScrollRef}
+                      railCompact={profileDockCompact}
+                      onOpenMap={goNexusMap}
+                      onOpenFieldList={openFieldListAndScroll}
+                      onBeginLearningField={onBeginLearningField}
+                      onSwapCompanion={() => clearCompanionSelection()}
+                      onNavigateFromHubToMap={onNavigateFromHubToMap}
+                      onBlitzTraining={onBeginTraining}
+                    />
+                  ) : (
+                    <div style={{ ...heroGridStyle, gridTemplateColumns: "1fr", maxWidth: 920 }}>
+                      <motion.section variants={CARD}>
+                        <h1
+                          style={{
+                            ...hubHeadlineStyle,
+                            fontSize: 48,
+                            color: hubHeadlineStyle.color,
+                          }}
                         >
-                          {t("hub.launchNexusMap")}
-                        </motion.button>
-                      </div>
-                    </motion.section>
-                  </div>
+                          {t("hub.headline")}
+                        </h1>
+                        <p
+                          style={{
+                            ...leadStyle,
+                            fontSize: 24,
+                            color: leadStyle.color,
+                          }}
+                        >
+                          {t("hub.lead")}
+                        </p>
+                        <div style={actionRowStyle}>
+                          <motion.button
+                            type="button"
+                            onClick={goNexusMap}
+                            whileHover={{ scale: reduceMotion ? 1 : 1.02 }}
+                            whileTap={{ scale: reduceMotion ? 1 : 0.98 }}
+                            style={ctaStyle}
+                          >
+                            {t("hub.launchNexusMap")}
+                          </motion.button>
+                          <motion.button
+                            type="button"
+                            onClick={() => clearCompanionSelection()}
+                            whileHover={{ scale: reduceMotion ? 1 : 1.02 }}
+                            whileTap={{ scale: reduceMotion ? 1 : 0.98 }}
+                            style={companionChangeBtnStyle}
+                          >
+                            {t("profile.changeCompanion")}
+                          </motion.button>
+                        </div>
+                      </motion.section>
+                    </div>
+                  )}
 
+                  <div id="nx-field-list-anchor" style={{ scrollMarginTop: 20 }}>
                   {fieldsExpanded ? (
                     <>
                       <motion.button
                         type="button"
                         variants={CARD}
                         onClick={() => setFieldsExpanded(false)}
-                        style={collapseListBtnStyle}
+                        style={
+                          nexusChrome === "edtech"
+                            ? { ...collapseListBtnStyle, ...collapseListBtnEdtechStyle }
+                            : collapseListBtnStyle
+                        }
                       >
                         {t("hub.hideList")}
                       </motion.button>
@@ -449,7 +610,10 @@ export function NeuralInitializer({
                               key={field.lf}
                               type="button"
                               onClick={() => onBeginLearningField(field.lf)}
-                              style={fieldCardStyle}
+                              style={{
+                                ...fieldCardStyle,
+                                ...(nexusChrome === "edtech" ? fieldCardEdtechStyle : {}),
+                              }}
                               whileHover={
                                 reduceMotion
                                   ? undefined
@@ -475,17 +639,38 @@ export function NeuralInitializer({
                                   }}
                                 />
                               </span>
-                              <span style={fieldMetaStyle}>
+                              <span
+                                style={{
+                                  ...fieldMetaStyle,
+                                  ...(nexusChrome === "edtech" ? fieldMetaEdtechStyle : {}),
+                                }}
+                              >
                                 <span>Datenträger</span>
                                 <b>
                                   LF{field.lf} · {field.ap}
                                 </b>
                               </span>
-                              <strong style={{ color: "var(--nx-learn-ink)", fontWeight: 800 }}>
+                              <strong
+                                style={{
+                                  color: nexusChrome === "edtech" ? "#0f172a" : "var(--nx-learn-ink)",
+                                  fontWeight: 800,
+                                }}
+                              >
                                 {field.title}
                               </strong>
-                              <span>{field.focus}</span>
-                              <span style={fieldProgressStyle}>
+                              <span
+                                style={{
+                                  color: nexusChrome === "edtech" ? "#475569" : undefined,
+                                }}
+                              >
+                                {field.focus}
+                              </span>
+                              <span
+                                style={{
+                                  ...fieldProgressStyle,
+                                  ...(nexusChrome === "edtech" ? fieldProgressEdtechStyle : {}),
+                                }}
+                              >
                                 Einsteiger · {solved}/{total} Übungen · Starten
                               </span>
                             </motion.button>
@@ -498,11 +683,16 @@ export function NeuralInitializer({
                       type="button"
                       variants={CARD}
                       onClick={() => setFieldsExpanded(true)}
-                      style={showListBtnStyle}
+                      style={
+                        nexusChrome === "edtech"
+                          ? { ...showListBtnStyle, ...showListBtnEdtechStyle }
+                          : showListBtnStyle
+                      }
                     >
                       {t("hub.showList")}
                     </motion.button>
                   )}
+                  </div>
                 </div>
 
                 <aside
@@ -525,17 +715,26 @@ export function NeuralInitializer({
                       alignItems: profileDockCompact ? "center" : "stretch",
                       gap: profileDockCompact ? 14 : 12,
                       padding: "18px 18px 20px",
-                      borderRadius: 8,
-                      border: "1px solid rgba(214, 181, 111, 0.28)",
-                      background: "rgba(6, 8, 10, 0.58)",
-                      backdropFilter: "blur(22px) saturate(125%)",
-                      WebkitBackdropFilter: "blur(22px) saturate(125%)",
+                      borderRadius: nexusChrome === "edtech" ? 14 : 8,
+                      border:
+                        nexusChrome === "edtech"
+                          ? "1px solid #e2e8f0"
+                          : "1px solid rgba(214, 181, 111, 0.28)",
+                      background:
+                        nexusChrome === "edtech"
+                          ? "linear-gradient(165deg, #ffffff 0%, #f1f5f9 100%)"
+                          : "rgba(6, 8, 10, 0.58)",
+                      backdropFilter: nexusChrome === "edtech" ? "none" : "blur(22px) saturate(125%)",
+                      WebkitBackdropFilter: nexusChrome === "edtech" ? "none" : "blur(22px) saturate(125%)",
                       boxShadow:
-                        "inset 0 1px 0 rgba(251,247,239,0.06), 0 0 0 1px rgba(34,211,238,0.12), 0 20px 56px rgba(0,0,0,0.45)",
+                        nexusChrome === "edtech"
+                          ? "0 16px 40px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.9)"
+                          : "inset 0 1px 0 rgba(251,247,239,0.06), 0 0 0 1px rgba(34,211,238,0.12), 0 20px 56px rgba(0,0,0,0.45)",
                     }}
                   >
                     <MentorPortrait
                       mentorId={playerAvatar}
+                      variant="idle"
                       size={48}
                       radius={6}
                       border="1px solid rgba(34,211,238,0.25)"
@@ -549,7 +748,7 @@ export function NeuralInitializer({
                           fontSize: 20,
                           fontWeight: 650,
                           letterSpacing: ".1em",
-                          color: "rgba(210,208,200,0.55)",
+                          color: nexusChrome === "edtech" ? "#94a3b8" : "rgba(210,208,200,0.55)",
                           textTransform: "uppercase",
                         }}
                       >
@@ -560,7 +759,7 @@ export function NeuralInitializer({
                           margin: 0,
                           fontSize: 24,
                           fontWeight: 650,
-                          color: "var(--nx-learn-muted)",
+                          color: nexusChrome === "edtech" ? "#64748b" : "var(--nx-learn-muted)",
                           fontFamily: "var(--nx-font-sans)",
                           lineHeight: 1.25,
                         }}
@@ -572,7 +771,7 @@ export function NeuralInitializer({
                           margin: "8px 0 0",
                           fontSize: 20,
                           letterSpacing: ".12em",
-                          color: "rgba(210,208,200,0.5)",
+                          color: nexusChrome === "edtech" ? "#94a3b8" : "rgba(210,208,200,0.5)",
                           fontFamily: "var(--nx-font-mono)",
                           fontWeight: 650,
                           textTransform: "uppercase",
@@ -587,7 +786,7 @@ export function NeuralInitializer({
                           fontSize: 26,
                           fontWeight: 750,
                           letterSpacing: ".06em",
-                          color: "var(--nx-learn-ink)",
+                          color: nexusChrome === "edtech" ? "#0f172a" : "var(--nx-learn-ink)",
                         }}
                       >
                         {playerName}
@@ -599,7 +798,7 @@ export function NeuralInitializer({
                           fontSize: 22,
                           fontWeight: 650,
                           lineHeight: 1.35,
-                          color: "rgba(210,208,200,0.72)",
+                          color: nexusChrome === "edtech" ? "#475569" : "rgba(210,208,200,0.72)",
                         }}
                       >
                         {t("hub.statsOneLine")}
@@ -611,6 +810,7 @@ export function NeuralInitializer({
             </motion.div>
           ) : null}
         </AnimatePresence>
+      </div>
       </div>
     </div>
   );
@@ -647,6 +847,22 @@ const ctaStyle: CSSProperties = {
   boxShadow: "inset 0 1px 0 rgba(251,247,239,0.08), 0 0 0 1px rgba(214,181,111,0.15)",
 };
 
+const companionChangeBtnStyle: CSSProperties = {
+  minWidth: 200,
+  borderRadius: 6,
+  border: "1px solid rgba(214, 181, 111, 0.35)",
+  background: "linear-gradient(135deg, rgba(24, 18, 10, 0.88) 0%, rgba(12, 10, 8, 0.92) 100%)",
+  color: "rgba(251,247,239,0.92)",
+  letterSpacing: ".06em",
+  fontSize: 18,
+  fontWeight: 700,
+  padding: "18px 22px",
+  cursor: "pointer",
+  pointerEvents: "auto",
+  WebkitTapHighlightColor: "transparent",
+  touchAction: "manipulation",
+};
+
 const showListBtnStyle: CSSProperties = {
   marginTop: 40,
   width: "100%",
@@ -667,6 +883,17 @@ const showListBtnStyle: CSSProperties = {
   WebkitBackdropFilter: "blur(12px)",
 };
 
+const showListBtnEdtechStyle: CSSProperties = {
+  marginTop: 28,
+  borderRadius: 14,
+  border: "1px solid #e2e8f0",
+  background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)",
+  color: "#0f172a",
+  boxShadow: "0 10px 28px rgba(15,23,42,0.06)",
+  backdropFilter: "none",
+  WebkitBackdropFilter: "none",
+};
+
 const collapseListBtnStyle: CSSProperties = {
   marginTop: 32,
   marginBottom: 0,
@@ -682,6 +909,13 @@ const collapseListBtnStyle: CSSProperties = {
   cursor: "pointer",
   pointerEvents: "auto",
   touchAction: "manipulation",
+};
+
+const collapseListBtnEdtechStyle: CSSProperties = {
+  borderRadius: 12,
+  border: "1px solid #e2e8f0",
+  background: "#ffffff",
+  color: "#64748b",
 };
 
 const fieldGridStyle: CSSProperties = {
@@ -713,6 +947,16 @@ const fieldCardStyle: CSSProperties = {
   WebkitBackdropFilter: "blur(14px)",
 };
 
+const fieldCardEdtechStyle: CSSProperties = {
+  borderRadius: 14,
+  border: "1px solid #e2e8f0",
+  background: "linear-gradient(165deg, #ffffff 0%, #f8fafc 100%)",
+  color: "#64748b",
+  boxShadow: "0 12px 32px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.95)",
+  backdropFilter: "none",
+  WebkitBackdropFilter: "none",
+};
+
 const fieldVisualStyle: CSSProperties = {
   position: "relative",
   display: "block",
@@ -739,6 +983,10 @@ const fieldMetaStyle: CSSProperties = {
   color: "rgba(210, 208, 200, 0.52)",
 };
 
+const fieldMetaEdtechStyle: CSSProperties = {
+  color: "#94a3b8",
+};
+
 const fieldProgressStyle: CSSProperties = {
   marginTop: "auto",
   alignSelf: "flex-start",
@@ -751,6 +999,12 @@ const fieldProgressStyle: CSSProperties = {
   fontWeight: 700,
   letterSpacing: "0.04em",
   padding: "12px 16px",
+};
+
+const fieldProgressEdtechStyle: CSSProperties = {
+  border: "1px solid rgba(6, 182, 212, 0.35)",
+  background: "rgba(6, 182, 212, 0.08)",
+  color: "#0f172a",
 };
 
 export default NeuralInitializer;

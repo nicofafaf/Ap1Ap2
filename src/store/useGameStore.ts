@@ -60,6 +60,11 @@ import {
   loadReadabilityMode,
   persistReadabilityMode,
 } from "../lib/ui/readabilityMode";
+import {
+  persistNexusChrome,
+  readStoredNexusChrome,
+  type NexusChromeMode,
+} from "../lib/ui/nexusChromeTokens";
 import { computeAllSectorStabilities, isSectorReachable } from "../lib/math/mapLogic";
 import { appendRetentionSnapshot } from "../lib/math/learningAnalytics";
 import { persistEpilogueUnlocked } from "../lib/progression/nexusEpilogue";
@@ -694,12 +699,17 @@ type GameStore = {
   /** Persistiert: Leerlauf startet in Lernzentrale (hub) oder Sektor-Karte (map) */
   overworldLanding: OverworldLanding;
   setOverworldLanding: (landing: OverworldLanding) => void;
+  /** Helle EdTech-Shell vs industrieller Nexus (Hintergrund + Marketing-Deck) */
+  nexusChrome: NexusChromeMode;
+  setNexusChrome: (mode: NexusChromeMode) => void;
   /** Mentor-Avatar (lokales Waifu-Asset 1–100) */
   mentorWaifuIndex: number | null;
   setMentorWaifuIndex: (id: number) => void;
   /** Premium-Onboarding: gewählter Avatar (persistiert) */
   playerAvatar: number | null;
   setPlayerAvatar: (id: number) => void;
+  /** Zurück zur Begleiterinnen-Auswahl (Zentrale), ohne Scan oder Namen zu löschen */
+  clearCompanionSelection: () => void;
   playerName: string | null;
   setPlayerName: (name: string) => void;
   /** Diagnose-Scan: je LF erste MC richtig */
@@ -2183,6 +2193,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
   initialSkillScanComplete: false,
   isTutorialCombatRun: false,
   combatTutorialStep: 0,
+  nexusChrome: readStoredNexusChrome(),
+
+  setNexusChrome: (mode) => {
+    persistNexusChrome(mode);
+    set({ nexusChrome: mode });
+  },
 
   setOverworldLanding: (landing) => {
     try {
@@ -2213,6 +2229,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
     persistPlayerProfile({
       mentorWaifuIndex: n,
       playerAvatar: n,
+      playerName: s.playerName,
+      initialSkillScanByLf: s.initialSkillScanByLf,
+      initialSkillScanComplete: s.initialSkillScanComplete,
+    });
+  },
+
+  clearCompanionSelection: () => {
+    const s = get();
+    set({ playerAvatar: null, mentorWaifuIndex: null });
+    persistPlayerProfile({
+      mentorWaifuIndex: null,
+      playerAvatar: null,
       playerName: s.playerName,
       initialSkillScanByLf: s.initialSkillScanByLf,
       initialSkillScanComplete: s.initialSkillScanComplete,
@@ -2847,9 +2875,10 @@ try {
       initialSkillScanComplete: scanComplete,
     });
   } else if (localStorage.getItem(HAS_COMPLETED_INITIALIZATION_KEY) === "1") {
+    /** Legacy: Init-Flag ohne Profil — Begleiterinnen-Raster zeigen, nicht still Waifu 1 setzen */
     useGameStore.setState({
-      mentorWaifuIndex: 1,
-      playerAvatar: 1,
+      mentorWaifuIndex: null,
+      playerAvatar: null,
       playerName: "Pilot",
       initialSkillScanComplete: true,
     });

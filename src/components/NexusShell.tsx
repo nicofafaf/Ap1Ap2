@@ -10,6 +10,7 @@ import {
 } from "../lib/ui/textMotionPolicy";
 import type { LearningField } from "../data/nexusRegistry";
 import type { InitiateCombatOptions } from "../lib/dailyIncursion";
+import type { NexusHubMapExtras } from "../lib/ui/hubMapNavigation";
 import { useGameStore } from "../store/useGameStore";
 import { SectorMap } from "./navigation/SectorMap";
 import { MaintenanceOverlay } from "./system/MaintenanceOverlay";
@@ -177,6 +178,33 @@ export function NexusShell() {
     setSurface("overworld");
   }, [completeInitialization, resetCombat, recomputeMenuSystemMood, setOverworldLanding]);
 
+  /** Hub → Karte inkl. Overlay / Sector-Panels (resetCombat setzt Overlay zuerst auf NONE) */
+  const handleNavigateFromHubToMap = useCallback(
+    (extras: NexusHubMapExtras) => {
+      completeInitialization();
+      setOverworldLanding("map");
+      resetCombat();
+      recomputeMenuSystemMood();
+      setDiveBridgeLf(null);
+      setMapHoldCombat(false);
+      setSurface("overworld");
+
+      if (extras.overlay) {
+        queueMicrotask(() => {
+          useGameStore.getState().setOverlayOpenState(extras.overlay!);
+        });
+      }
+
+      window.setTimeout(() => {
+        if (extras.openDossier) window.dispatchEvent(new Event("nx:sector-open-dossier"));
+        if (extras.openHallRecords) window.dispatchEvent(new Event("nx:sector-open-hall-records"));
+        if (extras.openCodex) window.dispatchEvent(new Event("nx:sector-open-codex"));
+        if (extras.openDailyPanel) window.dispatchEvent(new Event("nx:sector-open-daily-panel"));
+      }, 220);
+    },
+    [completeInitialization, resetCombat, recomputeMenuSystemMood, setOverworldLanding]
+  );
+
   const handleBeginLearningField = useCallback(
     (lf: number) => {
       completeInitialization();
@@ -329,6 +357,7 @@ export function NexusShell() {
                 onOpenOverview={handleOpenOverview}
                 onLaunchNexusMap={handleOpenOverview}
                 onBeginLearningField={handleBeginLearningField}
+                onNavigateFromHubToMap={handleNavigateFromHubToMap}
               />
             </Suspense>
           </motion.div>

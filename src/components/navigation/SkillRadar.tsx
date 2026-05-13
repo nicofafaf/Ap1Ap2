@@ -202,6 +202,7 @@ export function SkillRadar({
         >
           <MentorPortrait
             mentorId={avatarN}
+            variant="idle"
             size={56}
             radius={18}
             border={

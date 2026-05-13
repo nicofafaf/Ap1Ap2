@@ -82,11 +82,11 @@ function mentorPortraitPngUrl(mentorIndex: number): string {
 }
 
 const makeBossVisual = (lfNumber: number) => {
-  const stem = `${ABS_ASSETS}/LF${lfNumber}GIF`;
-  // Real asset set is MP4 at the moment, but keep image fallbacks for future drops.
+  const stem = `LF${lfNumber}GIF`;
+  const rel = (ext: string) => publicAssetUrl(`/assets/${stem}${ext}`);
   return {
-    primaryPath: `${stem}.mp4`,
-    fallbackPaths: [`${stem}.gif`, `${stem}.webp`, `${stem}.png`],
+    primaryPath: rel(".mp4"),
+    fallbackPaths: [rel(".gif"), rel(".webp"), rel(".png")],
   };
 };
 
@@ -113,14 +113,14 @@ const phase2TrackFromPhase1 = (phase1: BossTrackId): BossTrackId => {
 };
 
 const trackPathById: Record<BossTrackId, string> = {
-  BossThemen: `${ABS_ASSETS}/BossThemen.mp3`,
-  BossThemen2: `${ABS_ASSETS}/BossThemen2.mp3`,
-  BossThemen3: `${ABS_ASSETS}/BossThemen3.mp3`,
-  BossThemen4: `${ABS_ASSETS}/BossThemen4.mp3`,
-  BossThemen5: `${ABS_ASSETS}/BossThemen5.mp3`,
+  BossThemen: publicAssetUrl(`${ABS_ASSETS}/BossThemen.mp3`),
+  BossThemen2: publicAssetUrl(`${ABS_ASSETS}/BossThemen2.mp3`),
+  BossThemen3: publicAssetUrl(`${ABS_ASSETS}/BossThemen3.mp3`),
+  BossThemen4: publicAssetUrl(`${ABS_ASSETS}/BossThemen4.mp3`),
+  BossThemen5: publicAssetUrl(`${ABS_ASSETS}/BossThemen5.mp3`),
 };
 
-const sharedVictoryPath = `${ABS_ASSETS}/lobbysound_2.mp3`;
+const sharedVictoryPath = publicAssetUrl(`${ABS_ASSETS}/lobbysound_2.mp3`);
 
 const loreByLF: Record<LearningField, string> = {
   LF1: "Der schlafende Wächter der Hardware-Ebene Er prüft ob dein Fundament stark genug ist um die Last der digitalen Welt zu tragen",
@@ -337,11 +337,11 @@ export function getBossThumbnailCandidates(lf: LearningField): string[] {
     if (/\.(mp4|webm|mov)$/i.test(u)) continue;
     if (/\.(webp|png|gif|jpe?g|svg|avif)$/i.test(u)) out.push(u);
   }
+  const n = lf.replace("LF", "");
+  out.push(publicAssetUrl(`/assets/LF${n}.webp`), publicAssetUrl(`/assets/LF${n}.png`));
   if (entry.loot.itemPath && !/\.(mp4|webm|mov)$/i.test(entry.loot.itemPath)) {
     out.push(entry.loot.itemPath);
   }
-  const n = lf.replace("LF", "");
-  out.push(`/assets/LF${n}.webp`, `/assets/LF${n}.png`);
   return [...new Set(out)];
 }
 

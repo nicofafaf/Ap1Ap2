@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import { NEXUS_DIVE_LAYOUT_ID } from "../../lib/ui/nexusLayoutBridge";
 import type { CombatRank } from "../../data/rankSoundConfig";
@@ -103,6 +103,7 @@ export function SectorNode({
   sectorMastered = false,
 }: SectorNodeProps) {
   const beat = useFractalBeat();
+  const reduceMotion = useReducedMotion();
   const [phase, setPhase] = useState<"idle" | "diving">("idle");
   const [shardGlassHover, setShardGlassHover] = useState(false);
   const [thumbIndex, setThumbIndex] = useState(0);
@@ -205,8 +206,8 @@ export function SectorNode({
           setShardGlassHover(false);
           setVideoArmed(false);
         }}
-        whileHover={unlocked && phase === "idle" ? { scale: 1.02 } : undefined}
-        whileTap={unlocked ? { scale: 0.98 } : undefined}
+        whileHover={unlocked && phase === "idle" ? { scale: reduceMotion ? 1 : 1.02 } : undefined}
+        whileTap={unlocked ? { scale: reduceMotion ? 1 : 0.98 } : undefined}
         animate={
           lfCurriculumMastered && unlocked && phase === "idle"
             ? {
@@ -324,6 +325,7 @@ export function SectorNode({
                 playsInline
                 loop
                 preload="none"
+                onError={() => setVideoArmed(false)}
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -386,6 +388,30 @@ export function SectorNode({
             }}
           />
         ) : null}
+        {unlocked && phase === "idle" ? (
+          <motion.div
+            aria-hidden
+            initial={false}
+            animate={
+              shardGlassHover && !reduceMotion
+                ? {
+                    opacity: 1,
+                    boxShadow: isDailyIncursion
+                      ? "0 0 0 2px rgba(214,181,111,0.55), 0 0 32px rgba(214,181,111,0.28)"
+                      : "0 0 0 1px rgba(34,211,238,0.45), 0 0 26px rgba(34,211,238,0.2), 0 0 20px rgba(214,181,111,0.12)",
+                  }
+                : { opacity: 0, boxShadow: "0 0 0 0px transparent" }
+            }
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            style={{
+              position: "absolute",
+              inset: -1,
+              borderRadius: 29,
+              pointerEvents: "none",
+              zIndex: 5,
+            }}
+          />
+        ) : null}
         <motion.div
           aria-hidden
           animate={
@@ -414,6 +440,12 @@ export function SectorNode({
             padding: "14px 12px",
             textAlign: "center",
             fontFamily: "var(--nx-font-sans)",
+            borderRadius: showBossMedia ? 14 : undefined,
+            background: showBossMedia
+              ? "linear-gradient(180deg, rgba(5,5,5,0) 0%, rgba(5,5,5,0.42) 38%, rgba(5,5,7,0.82) 100%)"
+              : undefined,
+            backdropFilter: showBossMedia ? "blur(10px)" : undefined,
+            WebkitBackdropFilter: showBossMedia ? "blur(10px)" : undefined,
           }}
         >
           <div

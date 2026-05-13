@@ -6,6 +6,7 @@ import lf08Content from "../../lernfelder/lf08/content.json";
 import lf11Content from "../../lernfelder/lf11/content.json";
 import { typography } from "../../theme/typography";
 import { useGameStore } from "../../store/useGameStore";
+import { useNexusI18n } from "../i18n/I18nProvider";
 
 const SQL_KEYWORDS = [
   "select",
@@ -264,6 +265,7 @@ export function TerminalCodeWorkbench({
   coachName = null,
   learningField = null,
 }: TerminalCodeWorkbenchProps) {
+  const { t } = useNexusI18n();
   const [draft, setDraft] = useState("");
   const [checked, setChecked] = useState<"idle" | "ok" | "diff">("idle");
   const [goldGlitch, setGoldGlitch] = useState(false);
@@ -617,6 +619,34 @@ export function TerminalCodeWorkbench({
           Abgleich starten
         </button>
       </div>
+      {checked !== "idle" ? (
+        <div
+          role="status"
+          aria-live="polite"
+          style={{
+            marginTop: "var(--nx-space-12)",
+            padding: "14px 18px",
+            borderRadius: 16,
+            fontFamily: typography.fontSans,
+            fontSize: "clamp(20px, 2.2vw, 24px)",
+            fontWeight: 800,
+            letterSpacing: "0.03em",
+            lineHeight: 1.4,
+            border:
+              checked === "ok"
+                ? "1px solid rgba(52, 211, 153, 0.55)"
+                : "1px solid rgba(248, 113, 113, 0.5)",
+            background:
+              checked === "ok" ? "rgba(6, 78, 59, 0.42)" : "rgba(127, 29, 29, 0.38)",
+            color:
+              checked === "ok" ? "rgba(209, 250, 229, 0.98)" : "rgba(254, 226, 226, 0.96)",
+          }}
+        >
+          {checked === "ok"
+            ? t("learningTerminal.feedbackCodeOk", "Treffer — Abgleich bestanden")
+            : t("learningTerminal.feedbackCodeDiff", "Noch nicht — Zeichen und Zeilen müssen exakt passen")}
+        </div>
+      ) : null}
       <CoachDialoguePanel avatarSrc={coachAvatarSrc} name={coachName} line={coachLine} />
     </motion.div>
   );

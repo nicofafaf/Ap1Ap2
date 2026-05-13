@@ -100,7 +100,17 @@
     "semanticDatabase": "Databases & logic",
     "ariaLearningPath": "Learning path",
     "ariaMc": "Multiple choice",
-    "sectorZeroMorph": "Sector Ø · Morph"
+    "sectorZeroMorph": "Sector Ø · Morph",
+    "feedbackMcWrongTitle": "Not a match",
+    "feedbackMcWrongPickOther": "Pick another option",
+    "feedbackMcHitLesson": "Hit — lesson cleared",
+    "feedbackMcHitNumeric": "Hit — verify the numeric answer next",
+    "feedbackMcHitCards": "Hit — continue with the skill cards below",
+    "feedbackNumericOk": "Hit — answer checks out",
+    "feedbackNumericRetry": "Not yet — check the number or format",
+    "feedbackNumericIdle": "Enter the number only",
+    "feedbackCodeOk": "Hit — diff cleared",
+    "feedbackCodeDiff": "Not yet — characters and lines must match exactly"
   },
   "dossier": {
     "portfolioKicker": "PORTFOLIO · TECH STACK",

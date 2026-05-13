@@ -41,11 +41,14 @@
     Consolas, monospace;
   --nx-font-sans-weight: 400;
   --nx-content-max: 1280px;
-  --nx-content-pad: clamp(20px, 4vw, 56px);
+  --nx-content-pad: clamp(24px, 4.8vw, 64px);
   --nx-type-display: clamp(48px, 5vw, 78px);
 
-  /* Calm AAA learning palette — deep garden, warm paper, soft brass */
-  --nx-vantablack: #080c0a;
+  /* Iridium void — forced AAA dark shell (no paper surfaces) */
+  --nx-void-deep: #050505;
+  --nx-void-mid: #0a0a0a;
+  --nx-void-top: #0f0f0f;
+  --nx-vantablack: #050505;
   --nx-bone: #fbf7ef;
   --nx-bone-90: rgba(251, 247, 239, 0.95);
   --nx-bone-55: rgba(251, 247, 239, 0.68);
@@ -54,13 +57,22 @@
   --nx-panel-frost: rgba(18, 24, 20, 0.78);
   --nx-tungsten: rgba(214, 181, 111, 0.62);
   --nx-tungsten-soft: rgba(214, 181, 111, 0.16);
-  --nx-learn-surface: rgba(251, 247, 239, 0.955);
-  --nx-learn-surface-soft: rgba(245, 238, 226, 0.92);
-  --nx-learn-ink: #162019;
-  --nx-learn-muted: rgba(22, 32, 25, 0.68);
-  --nx-learn-line: rgba(22, 32, 25, 0.12);
+  --nx-learn-surface: rgba(12, 12, 14, 0.86);
+  --nx-learn-surface-soft: rgba(18, 18, 20, 0.78);
+  --nx-learn-ink: rgba(251, 247, 239, 0.94);
+  --nx-learn-muted: rgba(210, 208, 200, 0.62);
+  --nx-learn-line: rgba(34, 211, 238, 0.2);
 
-  /* Atmospheric grading — slow, warm and almost still */
+  /* Nexus map — zwei Akzente, Lesbarkeit auf Void */
+  --nx-nexus-gold: rgba(214, 181, 111, 0.95);
+  --nx-nexus-gold-soft: rgba(214, 181, 111, 0.35);
+  --nx-nexus-cyan: rgba(34, 211, 238, 0.9);
+  --nx-nexus-cyan-soft: rgba(34, 211, 238, 0.22);
+  --nx-nexus-map-body-min: 15px;
+  --nx-nexus-map-muted: rgba(210, 208, 200, 0.72);
+  --nx-nexus-map-body: rgba(251, 247, 239, 0.88);
+  --nx-nexus-rail-max: min(380px, 32vw);
+  /* QA 1280×720 / 1440×900: SectorMap = mapStage flex + rail, kein Float über Grid; compact nur unter max 780px Breite oder max 640px Höhe */
   --nx-grade-teal-mist: rgba(58, 89, 70, 0.1);
   --nx-grade-orange-mist: rgba(130, 94, 54, 0.1);
 
@@ -106,8 +118,8 @@ html {
   font-family: var(--nx-font-sans);
   font-weight: var(--nx-font-sans-weight);
   background:
-    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(214, 181, 111, 0.12), transparent 48%),
-    linear-gradient(160deg, #0b110d 0%, #101812 46%, #070a08 100%);
+    radial-gradient(ellipse 100% 70% at 50% 0%, rgba(34, 211, 238, 0.05), transparent 45%),
+    linear-gradient(165deg, var(--nx-void-top) 0%, var(--nx-void-mid) 42%, var(--nx-void-deep) 100%);
   height: 100%;
   width: 100%;
   max-width: 100%;
@@ -124,9 +136,9 @@ body {
   overflow: hidden;
   overscroll-behavior: none;
   background:
-    radial-gradient(ellipse 95% 70% at 14% 6%, rgba(214, 181, 111, 0.12), transparent 52%),
-    radial-gradient(ellipse 80% 70% at 88% 92%, rgba(74, 112, 86, 0.18), transparent 54%),
-    var(--nx-vantablack);
+    radial-gradient(ellipse 90% 55% at 12% 8%, rgba(214, 181, 111, 0.06), transparent 48%),
+    radial-gradient(ellipse 70% 50% at 88% 88%, rgba(34, 211, 238, 0.04), transparent 52%),
+    linear-gradient(180deg, var(--nx-void-mid) 0%, var(--nx-void-deep) 55%, #080808 100%);
   color: var(--nx-text-primary);
   font-size: clamp(24px, 0.3vw + 22px, 26px);
   line-height: 1.5;
@@ -243,7 +255,11 @@ html[data-nx-readability="on"] .nx-backdrop-sweep {
   background: var(--nx-learn-surface);
   color: var(--nx-learn-ink);
   border: 1px solid var(--nx-learn-line);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(251, 247, 239, 0.05),
+    0 28px 80px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(18px) saturate(115%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
 }
 
 .nx-calm-chip {
@@ -251,7 +267,8 @@ html[data-nx-readability="on"] .nx-backdrop-sweep {
   align-items: center;
   border-radius: 999px;
   padding: 6px 12px;
-  background: rgba(214, 181, 111, 0.16);
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.22);
   color: var(--nx-learn-ink);
   font-size: 20px;
   font-weight: 700;

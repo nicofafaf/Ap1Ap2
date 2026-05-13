@@ -23,6 +23,180 @@ export type LearningTerminalProps = {
   visible: boolean;
 };
 
+type McRowVariant = "focusPanel" | "ambientPanel";
+
+function LearningMcOptionRow({
+  opt,
+  optIdx,
+  totalOpts,
+  pickedId,
+  isBeginnerExercise,
+  variant,
+  onPick,
+  t,
+  hitMessageOverride,
+}: {
+  opt: LearningMcOption;
+  optIdx: number;
+  totalOpts: number;
+  pickedId: string | null;
+  isBeginnerExercise: boolean;
+  variant: McRowVariant;
+  onPick: (opt: LearningMcOption) => void;
+  t: (key: string, fallback?: string) => string;
+  hitMessageOverride?: string | null;
+}) {
+  const learningFocus = variant === "focusPanel";
+  const showFeedback = pickedId === opt.id;
+  const isLast = optIdx === totalOpts - 1;
+  const hit = showFeedback && opt.isCorrect;
+  const miss = showFeedback && !opt.isCorrect;
+
+  const borderBottom = isLast
+    ? "none"
+    : learningFocus
+      ? "1px solid var(--nx-learn-line)"
+      : "1px solid rgba(232, 233, 240, 0.14)";
+
+  let background: string = "transparent";
+  if (showFeedback) {
+    background = hit
+      ? learningFocus
+        ? "rgba(52, 211, 153, 0.14)"
+        : "rgba(52, 211, 153, 0.12)"
+      : learningFocus
+        ? "rgba(248, 113, 113, 0.12)"
+        : "rgba(248, 113, 113, 0.1)";
+  }
+
+  const accentBorder = showFeedback
+    ? hit
+      ? "4px solid rgba(52, 211, 153, 0.85)"
+      : "4px solid rgba(248, 113, 113, 0.88)"
+    : "4px solid transparent";
+
+  return (
+    <button
+      type="button"
+      onPointerDown={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onPick(opt);
+      }}
+      onClick={() => onPick(opt)}
+      aria-pressed={showFeedback}
+      style={{
+        textAlign: "left",
+        width: "100%",
+        border: "none",
+        borderRadius: showFeedback ? 14 : 0,
+        borderBottom,
+        borderLeft: accentBorder,
+        background,
+        boxShadow: showFeedback
+          ? hit
+            ? "inset 0 0 0 1px rgba(52, 211, 153, 0.35)"
+            : "inset 0 0 0 1px rgba(248, 113, 113, 0.35)"
+          : undefined,
+        padding: learningFocus ? "18px 16px" : "var(--nx-space-8) var(--nx-space-16)",
+        cursor: "pointer",
+        fontFamily: typography.fontSans,
+        fontSize: learningFocus ? "clamp(1.02rem, 2.6vw, 1.28rem)" : typography.bodySize,
+        lineHeight: 1.45,
+        color: learningFocus ? "var(--nx-learn-ink)" : "var(--nx-bone-90)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "stretch",
+        gap: 0,
+      }}
+    >
+      <span
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "var(--nx-space-12)",
+          minWidth: 0,
+        }}
+      >
+        <span
+          aria-hidden
+          style={{
+            flexShrink: 0,
+            fontWeight: 700,
+            minWidth: "1.25em",
+            color: hit
+              ? "rgba(52, 211, 153, 0.95)"
+              : miss
+                ? "rgba(252, 165, 165, 0.95)"
+                : learningFocus
+                  ? "rgba(22,32,25,0.46)"
+                  : "var(--nx-bone-50)",
+          }}
+        >
+          {opt.id.toUpperCase()}
+        </span>
+        <span style={{ flex: 1, minWidth: 0 }}>{opt.text}</span>
+      </span>
+      {miss ? (
+        <div
+          role="status"
+          aria-live="polite"
+          style={{
+            marginTop: "var(--nx-space-16)",
+            padding: "12px 14px",
+            borderRadius: 12,
+            fontSize: learningFocus ? 20 : 18,
+            lineHeight: 1.45,
+            fontWeight: 700,
+            letterSpacing: "0.02em",
+            color: "rgba(254, 226, 226, 0.96)",
+            background: "rgba(127, 29, 29, 0.35)",
+            border: "1px solid rgba(248, 113, 113, 0.45)",
+          }}
+        >
+          <div>{t("learningTerminal.feedbackMcWrongTitle", "Nicht treffend")}</div>
+          <div
+            style={{
+              marginTop: 6,
+              fontWeight: 600,
+              fontSize: learningFocus ? 18 : 16,
+              color: "rgba(254, 202, 202, 0.92)",
+            }}
+          >
+            {opt.whyWrongHint
+              ? opt.whyWrongHint
+              : t("learningTerminal.feedbackMcWrongPickOther", "Wähle eine andere Option")}
+          </div>
+        </div>
+      ) : null}
+      {hit ? (
+        <div
+          role="status"
+          aria-live="polite"
+          style={{
+            marginTop: "var(--nx-space-16)",
+            padding: "12px 14px",
+            borderRadius: 12,
+            fontSize: learningFocus ? 20 : 18,
+            lineHeight: 1.45,
+            fontWeight: 800,
+            letterSpacing: "0.03em",
+            color: "rgba(209, 250, 229, 0.98)",
+            background: "rgba(6, 78, 59, 0.45)",
+            border: "1px solid rgba(52, 211, 153, 0.5)",
+          }}
+        >
+          {hitMessageOverride?.trim()
+            ? hitMessageOverride
+            : isBeginnerExercise
+              ? t("learningTerminal.feedbackMcHitLesson", "Treffer — Lektion geschafft")
+              : t("learningTerminal.feedbackMcHitNumeric", "Treffer — jetzt Zahlenantwort prüfen")}
+        </div>
+      ) : null}
+    </button>
+  );
+}
+
 /** Ein onError pro Asset — kein Retry, kein erneutes Setzen von src (verhindert Browser-Spam bei 404) */
 function SafeLearningFigure({
   src,
@@ -659,22 +833,25 @@ export function LearningTerminal({
                           key={`${exercise.id}-${card.title}`}
                           style={{
                             minHeight: 150,
-                            borderRadius: 24,
-                            border: "1px solid rgba(22,32,25,0.1)",
+                            borderRadius: 8,
+                            border: "1px solid rgba(34, 211, 238, 0.18)",
                             background:
-                              "linear-gradient(160deg, rgba(255,255,255,0.78), rgba(238,229,213,0.64))",
-                            padding: "var(--nx-space-20)",
-                            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7)",
+                              "linear-gradient(165deg, rgba(14, 16, 18, 0.88) 0%, rgba(8, 9, 10, 0.92) 100%)",
+                            padding: "var(--nx-space-24)",
+                            boxShadow:
+                              "inset 0 1px 0 rgba(251,247,239,0.05), 0 0 0 1px rgba(214,181,111,0.12), 0 16px 40px rgba(0,0,0,0.35)",
+                            backdropFilter: "blur(14px)",
+                            WebkitBackdropFilter: "blur(14px)",
                           }}
                         >
                           <div
                             style={{
-                              fontFamily: typography.fontSans,
+                              fontFamily: typography.fontMono,
                               fontSize: 20,
                               fontWeight: 850,
-                              letterSpacing: "0.06em",
+                              letterSpacing: "0.08em",
                               textTransform: "uppercase",
-                              color: "rgba(22,32,25,0.52)",
+                              color: "rgba(210, 208, 200, 0.55)",
                             }}
                           >
                             {card.title}
@@ -713,21 +890,24 @@ export function LearningTerminal({
                     <section
                       aria-label={exercise.example.label}
                       style={{
-                        marginTop: "var(--nx-space-16)",
-                        padding: "var(--nx-space-20)",
-                        borderRadius: 24,
-                        border: "1px solid rgba(214,181,111,0.3)",
-                        background: "rgba(214,181,111,0.13)",
+                        marginTop: "var(--nx-space-24)",
+                        padding: "var(--nx-space-24)",
+                        borderRadius: 8,
+                        border: "1px solid rgba(214, 181, 111, 0.28)",
+                        background: "rgba(10, 10, 12, 0.72)",
+                        backdropFilter: "blur(16px)",
+                        WebkitBackdropFilter: "blur(16px)",
+                        boxShadow: "inset 0 1px 0 rgba(251,247,239,0.04)",
                       }}
                     >
                       <div
                         style={{
-                          fontFamily: typography.fontSans,
+                          fontFamily: typography.fontMono,
                           fontSize: 20,
                           fontWeight: 850,
-                          letterSpacing: "0.06em",
+                          letterSpacing: "0.08em",
                           textTransform: "uppercase",
-                          color: "rgba(22,32,25,0.55)",
+                          color: "rgba(210, 208, 200, 0.55)",
                         }}
                       >
                         {exercise.example.label}
@@ -944,93 +1124,19 @@ export function LearningTerminal({
                         padding: "var(--nx-space-8) 0 0",
                       }}
                     >
-                      {exercise.mcOptions.map((opt, optIdx) => {
-                        const showFeedback = pickedId === opt.id;
-                        const isLast = optIdx === exercise.mcOptions.length - 1;
-                        return (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            onPointerDown={(event) => {
-                              event.preventDefault();
-                              event.stopPropagation();
-                              handleMcOption(opt);
-                            }}
-                            onClick={() => handleMcOption(opt)}
-                            style={{
-                              textAlign: "left",
-                              width: "100%",
-                              border: "none",
-                              borderRadius: 0,
-                              borderBottom: isLast
-                                ? "none"
-                                : `1px solid ${learningFocus ? "var(--nx-learn-line)" : "rgba(232, 233, 240, 0.14)"}`,
-                              background: showFeedback
-                                ? opt.isCorrect
-                                  ? "rgba(214, 181, 111, 0.18)"
-                                  : "rgba(172, 67, 55, 0.08)"
-                                : "transparent",
-                              padding: "18px 0",
-                              cursor: "pointer",
-                              fontFamily: typography.fontSans,
-                              fontSize: "clamp(1.02rem, 2.6vw, 1.28rem)",
-                              lineHeight: 1.45,
-                              color: learningFocus ? "var(--nx-learn-ink)" : "var(--nx-bone-90)",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "stretch",
-                              gap: 0,
-                            }}
-                          >
-                            <span
-                              style={{
-                                display: "flex",
-                                alignItems: "flex-start",
-                                gap: "var(--nx-space-12)",
-                                minWidth: 0,
-                              }}
-                            >
-                              <span
-                                aria-hidden
-                                style={{
-                                  flexShrink: 0,
-                                  fontWeight: 700,
-                                  minWidth: "1.25em",
-                                  color: learningFocus ? "rgba(22,32,25,0.46)" : "var(--nx-bone-50)",
-                                }}
-                              >
-                                {opt.id.toUpperCase()}
-                              </span>
-                              <span style={{ flex: 1, minWidth: 0 }}>{opt.text}</span>
-                            </span>
-                            {showFeedback && !opt.isCorrect && opt.whyWrongHint ? (
-                              <div
-                                style={{
-                                  marginTop: "var(--nx-space-16)",
-                                  fontSize: 20,
-                                  lineHeight: 1.5,
-                                  color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-90)",
-                                }}
-                              >
-                                Hinweis {opt.whyWrongHint}
-                              </div>
-                            ) : null}
-                            {showFeedback && opt.isCorrect ? (
-                              <div
-                                style={{
-                                  marginTop: "var(--nx-space-16)",
-                                  fontSize: 20,
-                                  color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-90)",
-                                }}
-                              >
-                                {isBeginnerExercise
-                                  ? "Richtig, diese Lektion ist geschafft"
-                                  : "Richtig, jetzt die Zahlenantwort prüfen"}
-                              </div>
-                            ) : null}
-                          </button>
-                        );
-                      })}
+                      {exercise.mcOptions.map((opt, optIdx) => (
+                        <LearningMcOptionRow
+                          key={opt.id}
+                          opt={opt}
+                          optIdx={optIdx}
+                          totalOpts={exercise.mcOptions.length}
+                          pickedId={pickedId}
+                          isBeginnerExercise={isBeginnerExercise}
+                          variant="focusPanel"
+                          onPick={handleMcOption}
+                          t={t}
+                        />
+                      ))}
                     </motion.div>
                     {!isBeginnerExercise ? (
                       <>
@@ -1134,95 +1240,23 @@ export function LearningTerminal({
                         padding: learningFocus ? "var(--nx-space-8) 0 0" : "var(--nx-space-8) 0",
                       }}
                     >
-                      {exercise.mcOptions.map((opt, optIdx) => {
-                        const showFeedback = pickedId === opt.id;
-                        const isLast = optIdx === exercise.mcOptions.length - 1;
-                        return (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            onPointerDown={(event) => {
-                              event.preventDefault();
-                              event.stopPropagation();
-                              handleMcOption(opt);
-                            }}
-                            onClick={() => handleMcOption(opt)}
-                            style={{
-                              textAlign: "left",
-                              width: "100%",
-                              border: "none",
-                              borderRadius: 0,
-                              borderBottom: isLast
-                                ? "none"
-                                : "1px solid rgba(232, 233, 240, 0.14)",
-                              background: showFeedback
-                                ? opt.isCorrect
-                                  ? "rgba(255, 214, 165, 0.07)"
-                                  : "rgba(248, 113, 113, 0.05)"
-                                : "transparent",
-                              padding: learningFocus
-                                ? "var(--nx-space-24) 0"
-                                : "var(--nx-space-8) var(--nx-space-16)",
-                              cursor: "pointer",
-                              fontFamily: typography.fontSans,
-                              fontSize: learningFocus
-                                ? "clamp(1.08rem, 2.8vw, 1.42rem)"
-                                : typography.bodySize,
-                              lineHeight: 1.45,
-                              color: "var(--nx-bone-90)",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "stretch",
-                              gap: 0,
-                            }}
-                          >
-                            <span
-                              style={{
-                                display: "flex",
-                                alignItems: "flex-start",
-                                gap: "var(--nx-space-12)",
-                                minWidth: 0,
-                              }}
-                            >
-                              <span
-                                aria-hidden
-                                style={{
-                                  flexShrink: 0,
-                                  fontWeight: 700,
-                                  minWidth: "1.25em",
-                                  color: "var(--nx-bone-50)",
-                                }}
-                              >
-                                {opt.id.toUpperCase()}
-                              </span>
-                              <span style={{ flex: 1, minWidth: 0 }}>{opt.text}</span>
-                            </span>
-                            {showFeedback && !opt.isCorrect && opt.whyWrongHint ? (
-                              <div
-                                style={{
-                                  marginTop: "var(--nx-space-16)",
-                                  fontSize: 20,
-                                  lineHeight: 1.5,
-                                  color: "var(--nx-bone-90)",
-                                }}
-                              >
-                                Hinweis {opt.whyWrongHint}
-                              </div>
-                            ) : null}
-                            {showFeedback && opt.isCorrect ? (
-                              <div
-                                style={{
-                                  marginTop: "var(--nx-space-16)",
-                                  fontSize: 20,
-                                  color: "var(--nx-bone-90)",
-                                }}
-                              >
-                                Passt weiter mit den Skill Karten unten
-                              </div>
-                            ) : null}
-                          </button>
-                        );
-                      })}
+                      {exercise.mcOptions.map((opt, optIdx) => (
+                        <LearningMcOptionRow
+                          key={opt.id}
+                          opt={opt}
+                          optIdx={optIdx}
+                          totalOpts={exercise.mcOptions.length}
+                          pickedId={pickedId}
+                          isBeginnerExercise={isBeginnerExercise}
+                          variant="ambientPanel"
+                          onPick={handleMcOption}
+                          t={t}
+                          hitMessageOverride={t(
+                            "learningTerminal.feedbackMcHitCards",
+                            "Treffer — weiter mit den Skill-Karten unten"
+                          )}
+                        />
+                      ))}
                     </motion.div>
                   </>
                 ) : null}

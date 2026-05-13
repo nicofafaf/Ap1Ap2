@@ -79,9 +79,14 @@ function weakestLfIndex(values: number[], mastered: boolean[]): number {
 
 export type SkillRadarProps = {
   epilogueActive?: boolean;
+  /** default: floating card · rail: right column on map · compact: bottom dock */
+  layoutVariant?: "default" | "rail" | "compact";
 };
 
-export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
+export function SkillRadar({
+  epilogueActive = false,
+  layoutVariant = "default",
+}: SkillRadarProps) {
   const uid = useId().replace(/:/g, "");
   const filterGold = `nx-skill-radar-gold-${uid}`;
   const filterNeon = `nx-skill-radar-neon-${uid}`;
@@ -146,6 +151,8 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
     : "rgba(10, 16, 20, 0.88)";
 
   const svgHeavyBlur = !reduceMotion;
+  const isRail = layoutVariant === "rail";
+  const isCompact = layoutVariant === "compact";
 
   return (
     <div
@@ -153,12 +160,13 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
       style={{
         pointerEvents: "none",
         display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-start",
-        gap: 14,
-        maxWidth: 420,
-        padding: "14px 16px 16px",
-        borderRadius: 24,
+        flexDirection: isRail ? "column" : "row",
+        alignItems: isRail ? "stretch" : "flex-start",
+        gap: isRail ? 14 : 14,
+        maxWidth: isRail ? "100%" : 420,
+        width: isRail ? "100%" : undefined,
+        padding: isRail ? "10px 8px 12px" : isCompact ? "12px 14px 14px" : "14px 16px 16px",
+        borderRadius: isRail ? 18 : 24,
         background: glassBg,
         backdropFilter: "blur(18px)",
         WebkitBackdropFilter: "blur(18px)",
@@ -170,10 +178,11 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
     >
       <div
         style={{
-          flex: "0 0 220px",
+          flex: isRail ? "0 0 auto" : "0 0 220px",
+          width: isRail ? "100%" : undefined,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          alignItems: isRail ? "stretch" : "center",
           gap: 8,
         }}
       >
@@ -217,9 +226,9 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
               ? "1px solid rgba(202, 165, 80, 0.35)"
               : "1px solid rgba(34, 211, 238, 0.22)",
             fontFamily: "var(--nx-font-mono)",
-            fontSize: 20,
+            fontSize: isRail ? "var(--nx-nexus-map-body-min)" : 20,
             fontWeight: 650,
-            lineHeight: 1.32,
+            lineHeight: 1.38,
             letterSpacing: "-0.02em",
             color: coachInk,
             textAlign: "left",
@@ -231,7 +240,7 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
         </div>
       </div>
 
-      <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+      <div style={{ flex: "1 1 auto", minWidth: 0, width: isRail ? "100%" : undefined }}>
         <div
           style={{
             fontFamily: "var(--nx-font-mono)",
@@ -239,7 +248,7 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
             fontWeight: 800,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: epilogueActive ? "rgba(120, 90, 40, 0.85)" : "rgba(34, 211, 238, 0.55)",
+            color: epilogueActive ? "rgba(120, 90, 40, 0.85)" : "var(--nx-nexus-cyan-soft)",
             marginBottom: 6,
           }}
         >
@@ -248,9 +257,9 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
         <div
           style={{
             fontFamily: "var(--nx-font-sans)",
-            fontSize: 13,
+            fontSize: isRail ? "var(--nx-nexus-map-body-min)" : 13,
             fontWeight: 600,
-            color: epilogueActive ? "rgba(80, 64, 38, 0.78)" : "rgba(251, 247, 239, 0.45)",
+            color: epilogueActive ? "rgba(80, 64, 38, 0.78)" : "var(--nx-nexus-map-muted)",
             marginBottom: 8,
             letterSpacing: "0.02em",
           }}
@@ -260,7 +269,7 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
         <svg
           width="100%"
           viewBox={`0 0 ${VB} ${VB}`}
-          style={{ display: "block", maxHeight: 220 }}
+          style={{ display: "block", maxHeight: isRail ? 200 : 220 }}
           aria-hidden
         >
           {svgHeavyBlur ? (

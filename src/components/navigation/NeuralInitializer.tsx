@@ -56,9 +56,9 @@ const headlineStyle: CSSProperties = {
   maxWidth: 720,
   fontFamily: "var(--nx-font-sans)",
   fontSize: "clamp(48px, 6vw, 90px)",
-  fontWeight: 100,
-  lineHeight: 0.95,
-  letterSpacing: "-0.07em",
+  fontWeight: 780,
+  lineHeight: 0.98,
+  letterSpacing: "-0.05em",
   color: "var(--nx-learn-ink)",
 };
 
@@ -70,12 +70,12 @@ const hubHeadlineStyle: CSSProperties = {
 };
 
 const leadStyle: CSSProperties = {
-  margin: "22px 0 0",
-  maxWidth: 640,
+  margin: "28px 0 0",
+  maxWidth: 680,
   fontFamily: "var(--nx-font-sans)",
   fontSize: "clamp(22px, 2.6vw, 30px)",
-  fontWeight: 400,
-  lineHeight: 1.45,
+  fontWeight: 500,
+  lineHeight: 1.5,
   color: "var(--nx-learn-muted)",
 };
 
@@ -124,7 +124,7 @@ export function NeuralInitializer({
         inset: 0,
         zIndex: 1,
         background:
-          "radial-gradient(ellipse 70% 48% at 50% 18%, rgba(214,181,111,0.16), transparent 58%), linear-gradient(160deg, #121a14 0%, #0b100d 52%, #070a08 100%)",
+          "radial-gradient(ellipse 85% 55% at 50% 12%, rgba(34,211,238,0.05), transparent 52%), linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 48%, #050505 100%)",
         display: "flex",
         flexDirection: "column",
         overflow: phase === "scan" ? "hidden" : "auto",
@@ -142,127 +142,6 @@ export function NeuralInitializer({
           pointerEvents: "none",
         }}
       />
-      {phase === "hub" && playerAvatar !== null && playerName ? (
-        <div
-          data-nx-profile-dock
-          style={
-            profileDockCompact
-              ? {
-                  position: "fixed",
-                  left: 10,
-                  right: 10,
-                  bottom: "max(88px, calc(env(safe-area-inset-bottom, 0px) + 72px))",
-                  top: "auto",
-                  zIndex: 20002,
-                  maxHeight: "min(36dvh, 340px)",
-                  overflowY: "auto",
-                  overflowX: "hidden",
-                  display: "flex",
-                  justifyContent: "center",
-                  pointerEvents: "none",
-                  paddingBottom: 4,
-                }
-              : {
-                  position: "fixed",
-                  top: "clamp(104px, 11.5dvh, 152px)",
-                  right: "max(12px, env(safe-area-inset-right))",
-                  bottom: "auto",
-                  left: "auto",
-                  zIndex: 20002,
-                  width: "min(360px, calc(100vw - 24px))",
-                  pointerEvents: "none",
-                }
-          }
-        >
-          <div
-            style={{
-              pointerEvents: "auto",
-              width: "100%",
-              display: "flex",
-              flexDirection: profileDockCompact ? "row" : "column",
-              alignItems: profileDockCompact ? "center" : "stretch",
-              gap: profileDockCompact ? 14 : 12,
-              padding: "14px 16px 16px",
-              borderRadius: 24,
-              border: "1px solid rgba(22,32,25,0.12)",
-              background:
-                "linear-gradient(155deg, rgba(255,255,255,0.92) 0%, rgba(248,244,236,0.88) 50%, rgba(255,252,246,0.9) 100%)",
-              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 18px 48px rgba(22,32,25,0.12)",
-            }}
-          >
-            <MentorPortrait
-              mentorId={playerAvatar}
-              size={48}
-              radius={24}
-              border="1px solid rgba(22,32,25,0.1)"
-              boxShadow="0 0 18px rgba(214, 181, 111, 0.2)"
-            />
-            <div style={{ flex: "1 1 auto", minWidth: 0 }}>
-              <div
-                style={{
-                  marginBottom: 4,
-                  fontFamily: "var(--nx-font-mono)",
-                  fontSize: 20,
-                  fontWeight: 650,
-                  letterSpacing: ".08em",
-                  color: "rgba(22,32,25,0.45)",
-                  textTransform: "uppercase",
-                }}
-              >
-                {t("hub.eyebrow")}
-              </div>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: 24,
-                  fontWeight: 650,
-                  color: "rgba(22,32,25,0.52)",
-                  fontFamily: "var(--nx-font-mono)",
-                  lineHeight: 1.25,
-                }}
-              >
-                {t("profile.activeMentor")}
-              </p>
-              <p
-                style={{
-                  margin: "6px 0 0",
-                  fontSize: 20,
-                  letterSpacing: ".08em",
-                  color: "rgba(22,32,25,0.48)",
-                  fontFamily: "var(--nx-font-mono)",
-                  fontWeight: 650,
-                }}
-              >
-                {t("profile.callsign")}
-              </p>
-              <p
-                style={{
-                  margin: "4px 0 0",
-                  fontFamily: "var(--nx-font-mono)",
-                  fontSize: 24,
-                  fontWeight: 700,
-                  letterSpacing: ".04em",
-                  color: "var(--nx-learn-ink)",
-                }}
-              >
-                {playerName}
-              </p>
-              <p
-                style={{
-                  margin: "10px 0 0",
-                  fontFamily: "var(--nx-font-mono)",
-                  fontSize: 24,
-                  fontWeight: 650,
-                  lineHeight: 1.35,
-                  color: "rgba(22,32,25,0.62)",
-                }}
-              >
-                {t("hub.statsOneLine")}
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : null}
       {onReturnToMap ? (
         <div
           style={{
@@ -306,7 +185,7 @@ export function NeuralInitializer({
           display: "flex",
           alignItems: phase === "scan" ? "stretch" : "center",
           justifyContent: "center",
-          padding: phase === "scan" ? 0 : "clamp(20px, 4vw, 64px)",
+          padding: phase === "scan" ? 0 : "clamp(28px, 5vw, 72px)",
         }}
       >
         <AnimatePresence mode="wait">
@@ -503,100 +382,232 @@ export function NeuralInitializer({
               style={{
                 position: "relative",
                 zIndex: 1,
-                width: "min(1340px, 100%)",
-                borderRadius: 40,
-                border: "1px solid rgba(251,247,239,0.18)",
-                background: "rgba(251,247,239,0.96)",
+                width: "min(1440px, 100%)",
+                borderRadius: 8,
+                border: "1px solid rgba(34, 211, 238, 0.22)",
+                background:
+                  "linear-gradient(165deg, rgba(16, 18, 20, 0.92) 0%, rgba(8, 9, 10, 0.94) 100%)",
+                backdropFilter: "blur(24px) saturate(120%)",
+                WebkitBackdropFilter: "blur(24px) saturate(120%)",
                 color: "var(--nx-learn-ink)",
                 padding: profileDockCompact
-                  ? "clamp(28px, 4vw, 48px) clamp(30px, 4.6vw, 64px) clamp(120px, 28dvh, 200px)"
-                  : "clamp(72px, 14dvh, 120px) clamp(30px, 4.6vw, 64px) clamp(30px, 4.6vw, 64px)",
-                boxShadow: "0 34px 100px rgba(0,0,0,0.28)",
+                  ? "clamp(36px, 5vw, 56px) clamp(28px, 4vw, 48px)"
+                  : "clamp(48px, 8dvh, 96px) clamp(36px, 4.8vw, 72px)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(251,247,239,0.06), 0 40px 100px rgba(0,0,0,0.55)",
                 pointerEvents: "auto",
               }}
             >
-              <div style={{ ...heroGridStyle, gridTemplateColumns: "1fr", maxWidth: 920 }}>
-                <motion.section variants={CARD}>
-                  <h1 style={{ ...hubHeadlineStyle, fontSize: 48 }}>{t("hub.headline")}</h1>
-                  <p style={{ ...leadStyle, fontSize: 24 }}>{t("hub.lead")}</p>
-                  <div style={actionRowStyle}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: profileDockCompact ? "column" : "row",
+                  gap: profileDockCompact ? 28 : 36,
+                  alignItems: "stretch",
+                  width: "100%",
+                }}
+              >
+                <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+                  <div style={{ ...heroGridStyle, gridTemplateColumns: "1fr", maxWidth: 920 }}>
+                    <motion.section variants={CARD}>
+                      <h1 style={{ ...hubHeadlineStyle, fontSize: 48 }}>{t("hub.headline")}</h1>
+                      <p style={{ ...leadStyle, fontSize: 24 }}>{t("hub.lead")}</p>
+                      <div style={actionRowStyle}>
+                        <motion.button
+                          type="button"
+                          onClick={goNexusMap}
+                          whileHover={{ scale: reduceMotion ? 1 : 1.02 }}
+                          whileTap={{ scale: reduceMotion ? 1 : 0.98 }}
+                          style={ctaStyle}
+                        >
+                          {t("hub.launchNexusMap")}
+                        </motion.button>
+                      </div>
+                    </motion.section>
+                  </div>
+
+                  {fieldsExpanded ? (
+                    <>
+                      <motion.button
+                        type="button"
+                        variants={CARD}
+                        onClick={() => setFieldsExpanded(false)}
+                        style={collapseListBtnStyle}
+                      >
+                        {t("hub.hideList")}
+                      </motion.button>
+                      <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
+                        {LEARNING_FIELDS.map((field) => {
+                          const lfKey = `LF${field.lf}` as LearningField;
+                          const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
+                          const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
+                          const thumb =
+                            getBossThumbnailCandidates(lfKey)[0] ?? mentorWaifuUrl(playerAvatar);
+
+                          return (
+                            <motion.button
+                              key={field.lf}
+                              type="button"
+                              onClick={() => onBeginLearningField(field.lf)}
+                              style={fieldCardStyle}
+                              whileHover={
+                                reduceMotion
+                                  ? undefined
+                                  : {
+                                      y: -4,
+                                      boxShadow:
+                                        "inset 0 1px 0 rgba(251,247,239,0.05), 0 0 0 1px rgba(34,211,238,0.45), 0 22px 52px rgba(0,0,0,0.5)",
+                                      transition: { type: "spring", stiffness: 420, damping: 26 },
+                                    }
+                              }
+                              whileTap={reduceMotion ? undefined : { scale: 0.99 }}
+                            >
+                              <span style={fieldVisualStyle} aria-hidden="true">
+                                <img
+                                  src={thumb}
+                                  alt=""
+                                  style={{
+                                    display: "block",
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    filter: "saturate(0.88) contrast(1.02)",
+                                  }}
+                                />
+                              </span>
+                              <span style={fieldMetaStyle}>
+                                <span>Datenträger</span>
+                                <b>
+                                  LF{field.lf} · {field.ap}
+                                </b>
+                              </span>
+                              <strong style={{ color: "var(--nx-learn-ink)", fontWeight: 800 }}>
+                                {field.title}
+                              </strong>
+                              <span>{field.focus}</span>
+                              <span style={fieldProgressStyle}>
+                                Einsteiger · {solved}/{total} Übungen · Starten
+                              </span>
+                            </motion.button>
+                          );
+                        })}
+                      </motion.div>
+                    </>
+                  ) : (
                     <motion.button
                       type="button"
-                      onClick={goNexusMap}
-                      whileHover={{ scale: reduceMotion ? 1 : 1.02 }}
-                      whileTap={{ scale: reduceMotion ? 1 : 0.98 }}
-                      style={ctaStyle}
+                      variants={CARD}
+                      onClick={() => setFieldsExpanded(true)}
+                      style={showListBtnStyle}
                     >
-                      {t("hub.launchNexusMap")}
+                      {t("hub.showList")}
                     </motion.button>
-                  </div>
-                </motion.section>
-              </div>
+                  )}
+                </div>
 
-              {fieldsExpanded ? (
-                <>
-                  <motion.button
-                    type="button"
-                    variants={CARD}
-                    onClick={() => setFieldsExpanded(false)}
-                    style={collapseListBtnStyle}
-                  >
-                    {t("hub.hideList")}
-                  </motion.button>
-                  <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
-                    {LEARNING_FIELDS.map((field) => {
-                      const lfKey = `LF${field.lf}` as LearningField;
-                      const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
-                      const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
-                      const thumb =
-                        getBossThumbnailCandidates(lfKey)[0] ?? mentorWaifuUrl(playerAvatar);
-
-                      return (
-                        <button
-                          key={field.lf}
-                          type="button"
-                          onClick={() => onBeginLearningField(field.lf)}
-                          style={fieldCardStyle}
-                        >
-                          <span style={fieldVisualStyle} aria-hidden="true">
-                            <img
-                              src={thumb}
-                              alt=""
-                              style={{
-                                display: "block",
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "cover",
-                                filter: "saturate(0.85) contrast(0.95)",
-                              }}
-                            />
-                          </span>
-                          <span style={fieldMetaStyle}>
-                            <span>Datenträger</span>
-                            <b>
-                              LF{field.lf} · {field.ap}
-                            </b>
-                          </span>
-                          <strong>{field.title}</strong>
-                          <span>{field.focus}</span>
-                          <span style={fieldProgressStyle}>
-                            Einsteiger · {solved}/{total} Übungen · Starten
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </motion.div>
-                </>
-              ) : (
-                <motion.button
-                  type="button"
-                  variants={CARD}
-                  onClick={() => setFieldsExpanded(true)}
-                  style={showListBtnStyle}
+                <aside
+                  data-nx-profile-dock
+                  style={{
+                    flexShrink: 0,
+                    width: profileDockCompact ? "100%" : 300,
+                    maxWidth: profileDockCompact ? "100%" : 340,
+                    position: profileDockCompact ? "relative" : "sticky",
+                    top: profileDockCompact ? undefined : 12,
+                    alignSelf: "flex-start",
+                  }}
                 >
-                  {t("hub.showList")}
-                </motion.button>
-              )}
+                  <div
+                    style={{
+                      pointerEvents: "auto",
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: profileDockCompact ? "row" : "column",
+                      alignItems: profileDockCompact ? "center" : "stretch",
+                      gap: profileDockCompact ? 14 : 12,
+                      padding: "18px 18px 20px",
+                      borderRadius: 8,
+                      border: "1px solid rgba(214, 181, 111, 0.28)",
+                      background: "rgba(6, 8, 10, 0.58)",
+                      backdropFilter: "blur(22px) saturate(125%)",
+                      WebkitBackdropFilter: "blur(22px) saturate(125%)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(251,247,239,0.06), 0 0 0 1px rgba(34,211,238,0.12), 0 20px 56px rgba(0,0,0,0.45)",
+                    }}
+                  >
+                    <MentorPortrait
+                      mentorId={playerAvatar}
+                      size={48}
+                      radius={6}
+                      border="1px solid rgba(34,211,238,0.25)"
+                      boxShadow="0 0 20px rgba(214, 181, 111, 0.18)"
+                    />
+                    <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+                      <div
+                        style={{
+                          marginBottom: 6,
+                          fontFamily: "var(--nx-font-mono)",
+                          fontSize: 20,
+                          fontWeight: 650,
+                          letterSpacing: ".1em",
+                          color: "rgba(210,208,200,0.55)",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {t("hub.eyebrow")}
+                      </div>
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: 24,
+                          fontWeight: 650,
+                          color: "var(--nx-learn-muted)",
+                          fontFamily: "var(--nx-font-sans)",
+                          lineHeight: 1.25,
+                        }}
+                      >
+                        {t("profile.activeMentor")}
+                      </p>
+                      <p
+                        style={{
+                          margin: "8px 0 0",
+                          fontSize: 20,
+                          letterSpacing: ".12em",
+                          color: "rgba(210,208,200,0.5)",
+                          fontFamily: "var(--nx-font-mono)",
+                          fontWeight: 650,
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {t("profile.callsign")}
+                      </p>
+                      <p
+                        style={{
+                          margin: "6px 0 0",
+                          fontFamily: "var(--nx-font-mono)",
+                          fontSize: 26,
+                          fontWeight: 750,
+                          letterSpacing: ".06em",
+                          color: "var(--nx-learn-ink)",
+                        }}
+                      >
+                        {playerName}
+                      </p>
+                      <p
+                        style={{
+                          margin: "12px 0 0",
+                          fontFamily: "var(--nx-font-mono)",
+                          fontSize: 22,
+                          fontWeight: 650,
+                          lineHeight: 1.35,
+                          color: "rgba(210,208,200,0.72)",
+                        }}
+                      >
+                        {t("hub.statsOneLine")}
+                      </p>
+                    </div>
+                  </div>
+                </aside>
+              </div>
             </motion.div>
           ) : null}
         </AnimatePresence>
@@ -608,63 +619,66 @@ export function NeuralInitializer({
 const heroGridStyle: CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
-  gap: "clamp(28px, 4vw, 56px)",
+  gap: "clamp(32px, 4.5vw, 64px)",
   alignItems: "stretch",
 };
 
 const actionRowStyle: CSSProperties = {
   display: "flex",
   flexWrap: "wrap",
-  gap: 14,
-  marginTop: 30,
+  gap: 16,
+  marginTop: 36,
 };
 
 const ctaStyle: CSSProperties = {
   minWidth: 230,
-  borderRadius: 999,
-  border: "1px solid rgba(22,32,25,0.12)",
-  background: "linear-gradient(135deg, #18251c 0%, #314832 100%)",
+  borderRadius: 6,
+  border: "1px solid rgba(34, 211, 238, 0.35)",
+  background: "linear-gradient(135deg, rgba(12, 22, 28, 0.95) 0%, rgba(18, 42, 36, 0.92) 100%)",
   color: "rgba(251,247,239,0.98)",
-  letterSpacing: ".02em",
+  letterSpacing: ".04em",
   fontSize: 22,
   fontWeight: 800,
-  padding: "18px 22px",
+  padding: "20px 26px",
   cursor: "pointer",
   pointerEvents: "auto",
   WebkitTapHighlightColor: "transparent",
   touchAction: "manipulation",
+  boxShadow: "inset 0 1px 0 rgba(251,247,239,0.08), 0 0 0 1px rgba(214,181,111,0.15)",
 };
 
 const showListBtnStyle: CSSProperties = {
-  marginTop: 36,
+  marginTop: 40,
   width: "100%",
   maxWidth: 520,
-  borderRadius: 999,
-  border: "1px solid rgba(22,32,25,0.14)",
-  background: "rgba(22,32,25,0.06)",
+  borderRadius: 6,
+  border: "1px solid rgba(34, 211, 238, 0.22)",
+  background: "rgba(8, 10, 12, 0.45)",
   color: "var(--nx-learn-ink)",
   letterSpacing: ".04em",
   fontSize: 22,
   fontWeight: 750,
-  padding: "16px 22px",
+  padding: "18px 24px",
   cursor: "pointer",
   pointerEvents: "auto",
   WebkitTapHighlightColor: "transparent",
   touchAction: "manipulation",
+  backdropFilter: "blur(12px)",
+  WebkitBackdropFilter: "blur(12px)",
 };
 
 const collapseListBtnStyle: CSSProperties = {
-  marginTop: 28,
+  marginTop: 32,
   marginBottom: 0,
   alignSelf: "flex-start",
-  borderRadius: 999,
-  border: "1px solid rgba(22,32,25,0.12)",
-  background: "transparent",
+  borderRadius: 6,
+  border: "1px solid rgba(214, 181, 111, 0.22)",
+  background: "rgba(8, 10, 12, 0.35)",
   color: "var(--nx-learn-muted)",
   letterSpacing: ".06em",
   fontSize: 18,
   fontWeight: 650,
-  padding: "10px 18px",
+  padding: "12px 20px",
   cursor: "pointer",
   pointerEvents: "auto",
   touchAction: "manipulation",
@@ -673,29 +687,30 @@ const collapseListBtnStyle: CSSProperties = {
 const fieldGridStyle: CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))",
-  gap: 18,
-  marginTop: 42,
+  gap: 24,
+  marginTop: 48,
 };
 
 const fieldCardStyle: CSSProperties = {
-  minHeight: 196,
+  minHeight: 204,
   position: "relative",
   overflow: "hidden",
   textAlign: "left",
-  border: "1px solid var(--nx-learn-line)",
-  borderRadius: 30,
-  background:
-    "linear-gradient(160deg, rgba(255,255,255,0.78), rgba(238,229,213,0.68)), radial-gradient(circle at 12% 10%, rgba(214,181,111,0.16), transparent 36%)",
+  border: "1px solid rgba(214, 181, 111, 0.28)",
+  borderRadius: 6,
+  background: "linear-gradient(165deg, rgba(14, 16, 18, 0.88) 0%, rgba(6, 7, 8, 0.92) 100%)",
   color: "var(--nx-learn-muted)",
-  padding: 24,
+  padding: 28,
   display: "flex",
   flexDirection: "column",
-  gap: 14,
+  gap: 16,
   fontFamily: "var(--nx-font-sans)",
   fontSize: 24,
   lineHeight: 1.32,
   cursor: "pointer",
-  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 18px 50px rgba(22,32,25,0.08)",
+  boxShadow: "inset 0 1px 0 rgba(251,247,239,0.04), 0 0 0 1px rgba(34,211,238,0.12), 0 16px 44px rgba(0,0,0,0.4)",
+  backdropFilter: "blur(14px)",
+  WebkitBackdropFilter: "blur(14px)",
 };
 
 const fieldVisualStyle: CSSProperties = {
@@ -705,10 +720,10 @@ const fieldVisualStyle: CSSProperties = {
   aspectRatio: "16 / 9",
   marginBottom: 4,
   overflow: "hidden",
-  borderRadius: 22,
+  borderRadius: 4,
   background:
-    "radial-gradient(circle at 50% 42%, rgba(214,181,111,0.2), rgba(22,32,25,0.08) 58%, rgba(22,32,25,0.16))",
-  boxShadow: "inset 0 0 0 1px rgba(22,32,25,0.08)",
+    "radial-gradient(circle at 50% 42%, rgba(34,211,238,0.08), rgba(8,10,12,0.5) 58%, rgba(4,5,6,0.85))",
+  boxShadow: "inset 0 0 0 1px rgba(214,181,111,0.2)",
   pointerEvents: "none",
 };
 
@@ -719,23 +734,23 @@ const fieldMetaStyle: CSSProperties = {
   fontFamily: "var(--nx-font-mono)",
   fontSize: 20,
   fontWeight: 650,
-  letterSpacing: "0.04em",
+  letterSpacing: "0.06em",
   textTransform: "uppercase",
-  color: "rgba(22,32,25,0.48)",
+  color: "rgba(210, 208, 200, 0.52)",
 };
 
 const fieldProgressStyle: CSSProperties = {
   marginTop: "auto",
   alignSelf: "flex-start",
-  borderRadius: 999,
-  border: "1px solid rgba(214,181,111,0.32)",
-  background: "rgba(214,181,111,0.14)",
+  borderRadius: 6,
+  border: "1px solid rgba(34, 211, 238, 0.22)",
+  background: "rgba(34, 211, 238, 0.08)",
   color: "var(--nx-learn-ink)",
   fontFamily: "var(--nx-font-mono)",
   fontSize: 20,
   fontWeight: 700,
-  letterSpacing: "0.02em",
-  padding: "10px 14px",
+  letterSpacing: "0.04em",
+  padding: "12px 16px",
 };
 
 export default NeuralInitializer;

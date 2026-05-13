@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { typography } from "../../theme/typography";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 
 function normalizeGeneric(raw: string): string {
   return raw.replace(/\s+/g, " ").trim().toLowerCase();
@@ -23,6 +24,7 @@ type InteractiveMissionInputProps = {
 };
 
 export function InteractiveMissionInput({ expected, onSuccess }: InteractiveMissionInputProps) {
+  const { t } = useNexusI18n();
   const [value, setValue] = useState("");
   const [state, setState] = useState<"idle" | "ok" | "retry">("idle");
   const expectedNorm = useMemo(() => normalizeGeneric(expected), [expected]);
@@ -47,10 +49,25 @@ export function InteractiveMissionInput({ expected, onSuccess }: InteractiveMiss
           width: "100%",
           minHeight: 72,
           borderRadius: 18,
-          border: "1px solid var(--nx-learn-line)",
+          border:
+            state === "ok"
+              ? "2px solid rgba(52, 211, 153, 0.65)"
+              : state === "retry"
+                ? "2px solid rgba(248, 113, 113, 0.55)"
+                : "1px solid var(--nx-learn-line)",
           outline: "none",
-          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.65)",
-          background: "rgba(255,255,255,0.74)",
+          boxShadow:
+            state === "ok"
+              ? "inset 0 1px 0 rgba(255,255,255,0.65), 0 0 0 3px rgba(52, 211, 153, 0.2)"
+              : state === "retry"
+                ? "inset 0 1px 0 rgba(255,255,255,0.5), 0 0 0 3px rgba(248, 113, 113, 0.18)"
+                : "inset 0 1px 0 rgba(255,255,255,0.65)",
+          background:
+            state === "ok"
+              ? "rgba(236, 253, 245, 0.88)"
+              : state === "retry"
+                ? "rgba(254, 242, 242, 0.9)"
+                : "rgba(255,255,255,0.74)",
           color: "var(--nx-learn-ink)",
           fontFamily: typography.fontSans,
           fontSize: "clamp(22px, 3vw, 28px)",
@@ -88,13 +105,43 @@ export function InteractiveMissionInput({ expected, onSuccess }: InteractiveMiss
         >
           Antwort prüfen
         </button>
-        <span style={{ color: "var(--nx-learn-muted)", fontFamily: typography.fontSans, fontSize: "20px", lineHeight: 1.4 }}>
-          {state === "ok"
-            ? "Richtig"
-            : state === "retry"
-              ? "Noch nicht, prüfe den Tipp"
-              : "Trage nur die Zahl ein"}
-        </span>
+      </div>
+      <div
+        role="status"
+        aria-live="polite"
+        style={{
+          padding: "14px 18px",
+          borderRadius: 16,
+          fontFamily: typography.fontSans,
+          fontSize: "clamp(20px, 2.4vw, 24px)",
+          fontWeight: 800,
+          lineHeight: 1.4,
+          letterSpacing: "0.02em",
+          border:
+            state === "ok"
+              ? "1px solid rgba(52, 211, 153, 0.55)"
+              : state === "retry"
+                ? "1px solid rgba(248, 113, 113, 0.5)"
+                : "1px solid rgba(232, 233, 240, 0.14)",
+          background:
+            state === "ok"
+              ? "rgba(6, 78, 59, 0.42)"
+              : state === "retry"
+                ? "rgba(127, 29, 29, 0.38)"
+                : "rgba(8, 10, 12, 0.35)",
+          color:
+            state === "ok"
+              ? "rgba(209, 250, 229, 0.98)"
+              : state === "retry"
+                ? "rgba(254, 226, 226, 0.96)"
+                : "var(--nx-learn-muted)",
+        }}
+      >
+        {state === "ok"
+          ? t("learningTerminal.feedbackNumericOk", "Treffer — Antwort stimmt")
+          : state === "retry"
+            ? t("learningTerminal.feedbackNumericRetry", "Noch nicht — Zahl oder Format prüfen")
+            : t("learningTerminal.feedbackNumericIdle", "Trage nur die Zahl ein")}
       </div>
     </div>
   );

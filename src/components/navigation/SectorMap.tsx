@@ -1,4 +1,11 @@
-import { AnimatePresence, motion, useMotionValue, useTransform, type MotionValue } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import ArtifactGallery from "../gallery/ArtifactGallery";
 import {
@@ -417,10 +424,11 @@ export function SectorMap({
   const gridShiftX2 = useTransform(panX, (v) => v * 0.02);
   const gridShiftY2 = useTransform(panY, (v) => v * 0.02);
 
-  const mapRootRef = useRef<HTMLDivElement>(null);
+  const mapStageRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const el = mapRootRef.current;
+    const el = mapStageRef.current;
     if (!el) return;
     const onWheelNative = (e: WheelEvent) => {
       e.preventDefault();
@@ -433,7 +441,7 @@ export function SectorMap({
 
   /** Karten-Bühne 900×640: ohne Auto-Fit wirkt die Oberwelt auf kleinen Screens „reingezoomt“ */
   useLayoutEffect(() => {
-    const el = mapRootRef.current;
+    const el = mapStageRef.current;
     if (!el) return;
     const STAGE_W = 900;
     const STAGE_H = 640;
@@ -441,7 +449,7 @@ export function SectorMap({
       const r = el.getBoundingClientRect();
       if (r.width < 96 || r.height < 96) return;
       const marginX = 48;
-      const marginY = 168;
+      const marginY = coachDockCompact ? 168 : 112;
       const zw = (r.width - marginX) / STAGE_W;
       const zh = (r.height - marginY) / STAGE_H;
       const fit = Math.min(1.12, Math.max(0.34, Math.min(zw, zh)));
@@ -451,7 +459,7 @@ export function SectorMap({
     const ro = new ResizeObserver(() => requestAnimationFrame(apply));
     ro.observe(el);
     return () => ro.disconnect();
-  }, [zoom]);
+  }, [zoom, coachDockCompact]);
 
   const hoverEntry = hoverLf
     ? getNexusEntryForLF(`LF${hoverLf}` as LearningField)
@@ -497,13 +505,14 @@ export function SectorMap({
 
   return (
     <div
-      ref={mapRootRef}
       data-nx-epilogue={epilogueActive ? "1" : undefined}
       style={{
         position: "relative",
         width: "100%",
         height: "100%",
         minHeight: "100dvh",
+        display: "flex",
+        flexDirection: "column",
         background: epilogueActive
           ? `radial-gradient(ellipse 82% 58% at 50% 36%, rgba(250, 204, 21, 0.34), rgba(255, 252, 245, 0.92) 52%, #f7f2e8), linear-gradient(165deg, #fffefb 0%, #f3ebe0 55%, #ebe4d4 100%)`
           : `radial-gradient(ellipse 80% 60% at 50% 20%, rgba(214,181,111,0.14), transparent 58%), radial-gradient(ellipse 70% 55% at 12% 88%, rgba(58,112,72,0.18), transparent 56%), rgba(8, 12, 10, 0.68)`,
@@ -528,16 +537,15 @@ export function SectorMap({
       ) : null}
       <div
         style={{
-          position: "absolute",
-          top: 20,
-          left: 24,
-          right: 24,
+          flexShrink: 0,
           zIndex: 20,
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "space-between",
-          gap: 16,
+          gap: 20,
           pointerEvents: "none",
+          padding: "10px clamp(16px, 3vw, 28px) 14px",
+          borderBottom: epilogueActive ? "1px solid rgba(212, 175, 55, 0.2)" : "1px solid rgba(34, 211, 238, 0.12)",
         }}
       >
         <div style={{ pointerEvents: "auto", maxWidth: 520 }}>
@@ -1086,6 +1094,291 @@ export function SectorMap({
         </div>
       </div>
 
+      <div
+        style={{
+          flex: 1,
+          minHeight: 0,
+          display: "flex",
+          flexDirection: "row",
+          position: "relative",
+          zIndex: 10,
+        }}
+      >
+        <div
+          ref={mapStageRef}
+          style={{
+            flex: 1,
+            minWidth: 0,
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {!epilogueActive && !reduceMotion ? (
+            <motion.div
+              key="nx-map-reveal"
+              aria-hidden
+              initial={{ opacity: 0.72 }}
+              animate={{ opacity: 0 }}
+              transition={{ duration: 0.52, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 12,
+                pointerEvents: "none",
+                background:
+                  "radial-gradient(ellipse 55% 48% at 50% 44%, rgba(214,181,111,0.22) 0%, rgba(34,211,238,0.12) 38%, transparent 68%)",
+                mixBlendMode: "screen",
+              }}
+            />
+          ) : null}
+          <motion.div
+            data-nx-tutorial="map"
+            drag
+            dragMomentum={false}
+            dragElastic={0.06}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+              x: panX,
+              y: panY,
+              scale: zoom,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "grab",
+              touchAction: "none",
+            }}
+            whileDrag={{ cursor: "grabbing" }}
+          >
+            <div
+              style={{
+                position: "relative",
+                width: 900,
+                height: 640,
+                perspective: 1400,
+                perspectiveOrigin: "50% 42%",
+                transformStyle: "preserve-3d",
+              }}
+            >
+              <GridLayer
+                patternId="nexusGridBack"
+                opacity={0.35}
+                scale={1.12}
+                shiftX={gridShiftX1}
+                shiftY={gridShiftY1}
+              />
+              <GridLayer
+                patternId="nexusGridFront"
+                opacity={0.55}
+                scale={1}
+                shiftX={gridShiftX2}
+                shiftY={gridShiftY2}
+              />
+              <ArchitectEchoLayer
+                echoPaths={architectEchoPaths}
+                nodeLayout={nodeLayout}
+                ghostSyncEnabled={ghostSyncDesktop}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                {sectorZeroGateOpen ? (
+                  <>
+                    <motion.div
+                      aria-hidden
+                      style={{
+                        position: "absolute",
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: 21,
+                        width: 18,
+                        height: 18,
+                        borderRadius: 999,
+                        pointerEvents: "none",
+                        background: "radial-gradient(circle, rgba(250,204,21,0.95), rgba(250,204,21,0.15))",
+                        boxShadow:
+                          "0 0 22px rgba(250, 204, 21, 0.75), 0 0 42px rgba(192, 132, 252, 0.35)",
+                      }}
+                      animate={{
+                        scale: [1, 1.35, 1],
+                        opacity: [0.85, 1, 0.85],
+                      }}
+                      transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <motion.button
+                      type="button"
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onEngage(0);
+                      }}
+                      whileHover={{ scale: 1.06 }}
+                      whileTap={{ scale: 0.96 }}
+                      style={{
+                        position: "absolute",
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%)",
+                        marginTop: 40,
+                        zIndex: 25,
+                        pointerEvents: "auto",
+                        cursor: "pointer",
+                        borderRadius: 999,
+                        border: "1px solid rgba(250, 204, 21, 0.55)",
+                        background:
+                          "radial-gradient(circle at 30% 30%, rgba(250,204,21,0.22), rgba(24, 10, 40, 0.92))",
+                        boxShadow: "0 0 20px rgba(250, 204, 21, 0.35)",
+                        color: "rgba(254, 243, 199, 0.98)",
+                        fontSize: 10,
+                        letterSpacing: ".28em",
+                        padding: "10px 16px",
+                      }}
+                    >
+                      SEKTOR Ø
+                    </motion.button>
+                  </>
+                ) : null}
+                <motion.button
+                  type="button"
+                  onPointerDown={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCoreAugOpen(true);
+                  }}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  animate={
+                    sectorZeroGateOpen
+                      ? {
+                          boxShadow: [
+                            "0 0 32px rgba(34,211,238,0.5), 0 0 28px rgba(250,204,21,0.42), 0 0 24px rgba(192,132,252,0.45), inset 0 0 14px rgba(248,113,113,0.12)",
+                            "0 0 36px rgba(192,132,252,0.52), 0 0 30px rgba(248,113,113,0.38), 0 0 26px rgba(34,211,238,0.48), inset 0 0 16px rgba(250,204,21,0.14)",
+                            "0 0 32px rgba(34,211,238,0.5), 0 0 28px rgba(250,204,21,0.42), 0 0 24px rgba(192,132,252,0.45), inset 0 0 14px rgba(248,113,113,0.12)",
+                          ],
+                        }
+                      : undefined
+                  }
+                  transition={
+                    sectorZeroGateOpen
+                      ? { duration: 3.4, repeat: Infinity, ease: "easeInOut" }
+                      : undefined
+                  }
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                    marginTop: sectorZeroGateOpen ? -40 : 0,
+                    zIndex: 24,
+                    pointerEvents: "auto",
+                    cursor: "pointer",
+                    borderRadius: 999,
+                    border: sectorZeroGateOpen
+                      ? "1px solid rgba(255,255,255,0.22)"
+                      : "1px solid color-mix(in srgb, var(--cyan, #22d3ee) 55%, transparent)",
+                    background: sectorZeroGateOpen
+                      ? "linear-gradient(125deg, color-mix(in srgb, var(--cyan, #22d3ee) 38%, transparent) 0%, color-mix(in srgb, var(--gold, #facc15) 32%, transparent) 34%, color-mix(in srgb, var(--violet, #a78bfa) 36%, transparent) 66%, color-mix(in srgb, #f87171 28%, transparent) 100%), radial-gradient(circle at 42% 32%, rgba(6, 14, 28, 0.72) 0%, rgba(8, 6, 22, 0.94) 72%)"
+                      : "radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--cyan, #22d3ee) 35%, transparent), rgba(6, 18, 32, 0.92))",
+                    boxShadow: sectorZeroGateOpen
+                      ? "0 0 32px rgba(34,211,238,0.45), 0 0 24px rgba(250,204,21,0.35)"
+                      : "0 0 28px color-mix(in srgb, var(--cyan, #22d3ee) 35%, transparent), inset 0 0 12px rgba(167, 139, 250, 0.15)",
+                    color: "rgba(224, 250, 255, 0.96)",
+                    fontSize: 10,
+                    letterSpacing: ".22em",
+                    padding: "14px 20px",
+                  }}
+                >
+                  CORE
+                </motion.button>
+                {nodeLayout.map(({ lf, offsetX, offsetY, parallaxZ }) => {
+                  const entry = getNexusEntryForLF(`LF${lf}` as LearningField);
+                  const lfKey = `LF${lf}` as LearningField;
+                  const stab = stabilities[lf] ?? 0;
+                  const tier = stabilityTier(stab);
+                  const unlocked = campaign.unlockedSectors.includes(lf);
+                  const last = lastReportForLf(history, lf);
+                  const isDaily = lf === dailyDef.targetLf;
+                  const displayAnomaly = dailyDef.anomalies[lf] ?? sectorAnomalies[lf] ?? null;
+                  const endlessOpts =
+                    !isDaily && endlessDeepDiveOptIn ? { endlessDeepDive: true } : null;
+                  const learn = learningByLfNum[lf] ?? { ratio: 0, mastered: false };
+                  return (
+                    <SectorNode
+                      key={lf}
+                      lf={lf}
+                      offsetX={offsetX}
+                      offsetY={offsetY}
+                      parallaxZ={parallaxZ}
+                      bossName={t(`lf.${lfKey}.boss`, entry.bossDisplayName)}
+                      unlocked={unlocked}
+                      stability={stab}
+                      tier={tier}
+                      lastRank={last?.combatRank ?? null}
+                      prestigeColor={prestige}
+                      onHoverChange={onHoverChange}
+                      onEngage={onEngage}
+                      anomalyType={displayAnomaly}
+                      engageOptions={isDaily ? dailyEngageOptions : endlessOpts}
+                      isDailyIncursion={isDaily}
+                      dailyRankedSlotOpen={isDaily && dailyRankedClearDateUtc !== dateKey}
+                      learningProgressRatio={learn.ratio}
+                      lfCurriculumMastered={learn.mastered}
+                      layoutBridgeLf={layoutBridgeLf}
+                      seamlessEngage={seamlessEngage}
+                      tierLabels={tierLabels}
+                      bossVideoSrc={entry.bossVisual.primaryPath}
+                      bossThumbnailUrls={getBossThumbnailCandidates(lfKey)}
+                      skillScanRing={skillScanRingForLf(lf)}
+                      sectorMastered={Boolean(campaign.masteryChecks[lfKey])}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+        {!coachDockCompact ? (
+          <aside
+            data-nx-rail-skill
+            style={{
+              flexShrink: 0,
+              width: "var(--nx-nexus-rail-max, min(380px, 32vw))",
+              minWidth: 260,
+              maxWidth: "min(420px, 36vw)",
+              display: "flex",
+              flexDirection: "column",
+              alignSelf: "stretch",
+              borderLeft: "1px solid rgba(251,247,239,0.08)",
+              background:
+                "linear-gradient(180deg, rgba(5,5,5,0.35) 0%, rgba(8,10,12,0.82) 48%, rgba(5,5,7,0.92) 100%)",
+              boxShadow: "inset 1px 0 0 rgba(34,211,238,0.06)",
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                minHeight: 0,
+                overflow: "auto",
+                padding: "12px 12px 16px",
+                pointerEvents: "auto",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <SkillRadar epilogueActive={epilogueActive} layoutVariant="rail" />
+            </div>
+          </aside>
+        ) : null}
+      </div>
+
       <nav
         aria-label="Direkte Lernfeldauswahl"
         style={{
@@ -1183,11 +1476,10 @@ export function SectorMap({
                     key={`direct-lf-${lf}`}
                     href={`/?startLf=${lf}`}
                     style={{
-                      minHeight: 54,
-                      borderRadius: 18,
-                      border: "1px solid rgba(214,181,111,0.3)",
-                      background:
-                        "linear-gradient(160deg, rgba(251,247,239,0.92), rgba(238,229,213,0.82))",
+                      minHeight: 56,
+                      borderRadius: 6,
+                      border: "1px solid rgba(214, 181, 111, 0.28)",
+                      background: "linear-gradient(165deg, rgba(14, 16, 18, 0.9) 0%, rgba(6, 7, 8, 0.94) 100%)",
                       color: "var(--nx-learn-ink)",
                       fontFamily: "var(--nx-font-mono)",
                       fontSize: 20,
@@ -1197,7 +1489,9 @@ export function SectorMap({
                       placeItems: "center",
                       textAlign: "center",
                       textDecoration: "none",
-                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.58)",
+                      boxShadow: "inset 0 1px 0 rgba(251,247,239,0.05), 0 0 0 1px rgba(34,211,238,0.1)",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
                     }}
                   >
                     LF{lf} starten
@@ -1220,12 +1514,13 @@ export function SectorMap({
             right: 20,
             width: "min(280px, calc(100vw - 40px))",
             zIndex: 30,
-            padding: "12px 14px",
-            borderRadius: 12,
-            border: "1px solid rgba(251,247,239,0.18)",
-            background:
-              "linear-gradient(168deg, rgba(251,247,239,0.94) 0%, rgba(238,229,213,0.92) 100%)",
-            boxShadow: "0 20px 54px rgba(0,0,0,0.22)",
+            padding: "14px 16px",
+            borderRadius: 8,
+            border: "1px solid rgba(34, 211, 238, 0.22)",
+            background: "rgba(8, 10, 12, 0.72)",
+            backdropFilter: "blur(20px) saturate(120%)",
+            WebkitBackdropFilter: "blur(20px) saturate(120%)",
+            boxShadow: "inset 0 1px 0 rgba(251,247,239,0.06), 0 24px 60px rgba(0,0,0,0.5)",
             pointerEvents: "none",
           }}
         >
@@ -1326,266 +1621,38 @@ export function SectorMap({
           </motion.div>
         ) : null}
       </AnimatePresence>
-
-      <motion.div
-        data-nx-tutorial="map"
-        drag
-        dragMomentum={false}
-        dragElastic={0.06}
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          right: 0,
-          bottom: 0,
-          x: panX,
-          y: panY,
-          scale: zoom,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "grab",
-          touchAction: "none",
-        }}
-        whileDrag={{ cursor: "grabbing" }}
-      >
+      {coachDockCompact ? (
         <div
+          data-nx-coach-dock
           style={{
-            position: "relative",
-            width: 900,
-            height: 640,
-            perspective: 1400,
-            perspectiveOrigin: "50% 42%",
-            transformStyle: "preserve-3d",
+            position: "fixed",
+            left: 10,
+            right: 10,
+            bottom: "max(88px, calc(env(safe-area-inset-bottom, 0px) + 72px))",
+            top: "auto",
+            zIndex: 28,
+            maxHeight: "min(36dvh, 340px)",
+            overflowY: "auto",
+            overflowX: "hidden",
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: 4,
+            pointerEvents: "none",
           }}
         >
-          <GridLayer
-            patternId="nexusGridBack"
-            opacity={0.35}
-            scale={1.12}
-            shiftX={gridShiftX1}
-            shiftY={gridShiftY1}
-          />
-          <GridLayer
-            patternId="nexusGridFront"
-            opacity={0.55}
-            scale={1}
-            shiftX={gridShiftX2}
-            shiftY={gridShiftY2}
-          />
-          <ArchitectEchoLayer
-            echoPaths={architectEchoPaths}
-            nodeLayout={nodeLayout}
-            ghostSyncEnabled={ghostSyncDesktop}
-          />
           <div
             style={{
-              position: "absolute",
-              inset: 0,
-              transformStyle: "preserve-3d",
+              pointerEvents: "auto",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              maxWidth: 520,
             }}
           >
-            {sectorZeroGateOpen ? (
-              <>
-                <motion.div
-                  aria-hidden
-                  style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 21,
-                    width: 18,
-                    height: 18,
-                    borderRadius: 999,
-                    pointerEvents: "none",
-                    background: "radial-gradient(circle, rgba(250,204,21,0.95), rgba(250,204,21,0.15))",
-                    boxShadow:
-                      "0 0 22px rgba(250, 204, 21, 0.75), 0 0 42px rgba(192, 132, 252, 0.35)",
-                  }}
-                  animate={{
-                    scale: [1, 1.35, 1],
-                    opacity: [0.85, 1, 0.85],
-                  }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.button
-                  type="button"
-                  onPointerDown={(e) => e.stopPropagation()}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onEngage(0);
-                  }}
-                  whileHover={{ scale: 1.06 }}
-                  whileTap={{ scale: 0.96 }}
-                  style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    marginTop: 40,
-                    zIndex: 25,
-                    pointerEvents: "auto",
-                    cursor: "pointer",
-                    borderRadius: 999,
-                    border: "1px solid rgba(250, 204, 21, 0.55)",
-                    background:
-                      "radial-gradient(circle at 30% 30%, rgba(250,204,21,0.22), rgba(24, 10, 40, 0.92))",
-                    boxShadow: "0 0 20px rgba(250, 204, 21, 0.35)",
-                    color: "rgba(254, 243, 199, 0.98)",
-                    fontSize: 10,
-                    letterSpacing: ".28em",
-                    padding: "10px 16px",
-                  }}
-                >
-                  SEKTOR Ø
-                </motion.button>
-              </>
-            ) : null}
-            <motion.button
-              type="button"
-              onPointerDown={(e) => e.stopPropagation()}
-              onClick={(e) => {
-                e.stopPropagation();
-                setCoreAugOpen(true);
-              }}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              animate={
-                sectorZeroGateOpen
-                  ? {
-                      boxShadow: [
-                        "0 0 32px rgba(34,211,238,0.5), 0 0 28px rgba(250,204,21,0.42), 0 0 24px rgba(192,132,252,0.45), inset 0 0 14px rgba(248,113,113,0.12)",
-                        "0 0 36px rgba(192,132,252,0.52), 0 0 30px rgba(248,113,113,0.38), 0 0 26px rgba(34,211,238,0.48), inset 0 0 16px rgba(250,204,21,0.14)",
-                        "0 0 32px rgba(34,211,238,0.5), 0 0 28px rgba(250,204,21,0.42), 0 0 24px rgba(192,132,252,0.45), inset 0 0 14px rgba(248,113,113,0.12)",
-                      ],
-                    }
-                  : undefined
-              }
-              transition={
-                sectorZeroGateOpen
-                  ? { duration: 3.4, repeat: Infinity, ease: "easeInOut" }
-                  : undefined
-              }
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                marginTop: sectorZeroGateOpen ? -40 : 0,
-                zIndex: 24,
-                pointerEvents: "auto",
-                cursor: "pointer",
-                borderRadius: 999,
-                border: sectorZeroGateOpen
-                  ? "1px solid rgba(255,255,255,0.22)"
-                  : "1px solid color-mix(in srgb, var(--cyan, #22d3ee) 55%, transparent)",
-                background: sectorZeroGateOpen
-                  ? "linear-gradient(125deg, color-mix(in srgb, var(--cyan, #22d3ee) 38%, transparent) 0%, color-mix(in srgb, var(--gold, #facc15) 32%, transparent) 34%, color-mix(in srgb, var(--violet, #a78bfa) 36%, transparent) 66%, color-mix(in srgb, #f87171 28%, transparent) 100%), radial-gradient(circle at 42% 32%, rgba(6, 14, 28, 0.72) 0%, rgba(8, 6, 22, 0.94) 72%)"
-                  : "radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--cyan, #22d3ee) 35%, transparent), rgba(6, 18, 32, 0.92))",
-                boxShadow: sectorZeroGateOpen
-                  ? "0 0 32px rgba(34,211,238,0.45), 0 0 24px rgba(250,204,21,0.35)"
-                  : "0 0 28px color-mix(in srgb, var(--cyan, #22d3ee) 35%, transparent), inset 0 0 12px rgba(167, 139, 250, 0.15)",
-                color: "rgba(224, 250, 255, 0.96)",
-                fontSize: 10,
-                letterSpacing: ".22em",
-                padding: "14px 20px",
-              }}
-            >
-              CORE
-            </motion.button>
-            {nodeLayout.map(({ lf, offsetX, offsetY, parallaxZ }) => {
-              const entry = getNexusEntryForLF(`LF${lf}` as LearningField);
-              const lfKey = `LF${lf}` as LearningField;
-              const stab = stabilities[lf] ?? 0;
-              const tier = stabilityTier(stab);
-              const unlocked = campaign.unlockedSectors.includes(lf);
-              const last = lastReportForLf(history, lf);
-              const isDaily = lf === dailyDef.targetLf;
-              const displayAnomaly = dailyDef.anomalies[lf] ?? sectorAnomalies[lf] ?? null;
-              const endlessOpts =
-                !isDaily && endlessDeepDiveOptIn ? { endlessDeepDive: true } : null;
-              const learn = learningByLfNum[lf] ?? { ratio: 0, mastered: false };
-              return (
-                <SectorNode
-                  key={lf}
-                  lf={lf}
-                  offsetX={offsetX}
-                  offsetY={offsetY}
-                  parallaxZ={parallaxZ}
-                  bossName={t(`lf.${lfKey}.boss`, entry.bossDisplayName)}
-                  unlocked={unlocked}
-                  stability={stab}
-                  tier={tier}
-                  lastRank={last?.combatRank ?? null}
-                  prestigeColor={prestige}
-                  onHoverChange={onHoverChange}
-                  onEngage={onEngage}
-                  anomalyType={displayAnomaly}
-                  engageOptions={isDaily ? dailyEngageOptions : endlessOpts}
-                  isDailyIncursion={isDaily}
-                  dailyRankedSlotOpen={isDaily && dailyRankedClearDateUtc !== dateKey}
-                  learningProgressRatio={learn.ratio}
-                  lfCurriculumMastered={learn.mastered}
-                  layoutBridgeLf={layoutBridgeLf}
-                  seamlessEngage={seamlessEngage}
-                  tierLabels={tierLabels}
-                  bossVideoSrc={entry.bossVisual.primaryPath}
-                  bossThumbnailUrls={getBossThumbnailCandidates(lfKey)}
-                  skillScanRing={skillScanRingForLf(lf)}
-                  sectorMastered={Boolean(campaign.masteryChecks[lfKey])}
-                />
-              );
-            })}
+            <SkillRadar epilogueActive={epilogueActive} layoutVariant="compact" />
           </div>
         </div>
-      </motion.div>
-
-      <div
-        data-nx-coach-dock
-        style={
-          coachDockCompact
-            ? {
-                position: "fixed",
-                left: 10,
-                right: 10,
-                bottom: "max(88px, calc(env(safe-area-inset-bottom, 0px) + 72px))",
-                top: "auto",
-                zIndex: 28,
-                maxHeight: "min(36dvh, 340px)",
-                overflowY: "auto",
-                overflowX: "hidden",
-                display: "flex",
-                justifyContent: "center",
-                paddingBottom: 4,
-                pointerEvents: "none",
-              }
-            : {
-                position: "fixed",
-                top: "clamp(104px, 11.5dvh, 152px)",
-                right: "max(12px, env(safe-area-inset-right))",
-                bottom: "auto",
-                left: "auto",
-                zIndex: 28,
-                width: "min(392px, calc(100vw - 20px))",
-                maxHeight: "min(50dvh, 432px)",
-                overflowY: "auto",
-                overflowX: "hidden",
-                pointerEvents: "none",
-              }
-        }
-      >
-        <div
-          style={{
-            pointerEvents: "auto",
-            width: "100%",
-            display: "flex",
-            justifyContent: coachDockCompact ? "center" : "flex-end",
-          }}
-        >
-          <SkillRadar epilogueActive={epilogueActive} />
-        </div>
-      </div>
+      ) : null}
     </div>
   );
 }

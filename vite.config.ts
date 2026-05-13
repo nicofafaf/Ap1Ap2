@@ -19,6 +19,29 @@ import { getAllNexusEntries } from "./src/data/nexusRegistry";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+/** Vite `config.base` — Dateiprüfungen unter `public/` ignorieren das URL-Präfix */
+let nexusResolvedViteBase = "/";
+
+function stripViteBaseToPublicRelative(fullPath: string): string {
+  const path = fullPath.startsWith("/") ? fullPath : `/${fullPath}`;
+  const baseRaw = nexusResolvedViteBase.endsWith("/")
+    ? nexusResolvedViteBase.slice(0, -1)
+    : nexusResolvedViteBase;
+  if (!baseRaw || baseRaw === "/") return path.replace(/^\//, "");
+  if (path === baseRaw) return "";
+  if (path.startsWith(`${baseRaw}/`)) return path.slice(baseRaw.length + 1);
+  return path.replace(/^\//, "");
+}
+
+function attachNexusBaseResolver(): Plugin {
+  return {
+    name: "nexus-resolve-base-for-asset-checks",
+    configResolved(config) {
+      nexusResolvedViteBase = config.base || "/";
+    },
+  };
+}
+
 const REQUIRED_DEPLOY_ASSETS = [
   ...Array.from({ length: 12 }, (_, idx) => `LF${idx + 1}GIF.mp4`),
   "BossThemen.mp3",
@@ -101,8 +124,11 @@ function nexusPrecacheManifestPlugin(): Plugin {
       const urls = collectNexusPrecacheUrls();
       const publicRoot = resolve(__dirname, "public");
       const filtered = urls.filter((path) => {
-        if (typeof path !== "string" || !path.startsWith("/")) return false;
-        const rel = path.slice(1);
+        if (typeof path !== "string") return false;
+        if (path.startsWith("data:")) return false;
+        if (!path.includes("/")) return false;
+        const rel = stripViteBaseToPublicRelative(path);
+        if (!rel) return false;
         return existsSync(join(publicRoot, rel));
       });
       if (filtered.length < urls.length) {
@@ -124,8 +150,10 @@ function requiredNexusMediaPlugin(): Plugin {
       const missingBossVideos = getAllNexusEntries()
         .map((entry) => entry.bossVisual.primaryPath)
         .filter((path) => {
-          if (!path.startsWith("/")) return true;
-          return !existsSync(join(publicRoot, path.slice(1)));
+          if (!path || path.startsWith("data:")) return false;
+          if (!path.includes("assets")) return true;
+          const rel = stripViteBaseToPublicRelative(path);
+          return !existsSync(join(publicRoot, rel));
         });
 
       if (missingBossVideos.length > 0) {
@@ -210,6 +238,7 @@ function openGraphInjectPlugin(mode: string): Plugin {
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
+    attachNexusBaseResolver(),
     ensurePublicAssetsPlugin(),
     requiredNexusMediaPlugin(),
     nexusPrecacheManifestPlugin(),

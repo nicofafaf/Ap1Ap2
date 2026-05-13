@@ -100,7 +100,17 @@
     "semanticDatabase": "Datenbanken & Logik",
     "ariaLearningPath": "Lernpfad",
     "ariaMc": "Multiple Choice",
-    "sectorZeroMorph": "Sektor Ø · Morph"
+    "sectorZeroMorph": "Sektor Ø · Morph",
+    "feedbackMcWrongTitle": "Nicht treffend",
+    "feedbackMcWrongPickOther": "Wähle eine andere Option",
+    "feedbackMcHitLesson": "Treffer — Lektion geschafft",
+    "feedbackMcHitNumeric": "Treffer — jetzt Zahlenantwort prüfen",
+    "feedbackMcHitCards": "Treffer — weiter mit den Skill-Karten unten",
+    "feedbackNumericOk": "Treffer — Antwort stimmt",
+    "feedbackNumericRetry": "Noch nicht — Zahl oder Format prüfen",
+    "feedbackNumericIdle": "Trage nur die Zahl ein",
+    "feedbackCodeOk": "Treffer — Abgleich bestanden",
+    "feedbackCodeDiff": "Noch nicht — Zeichen und Zeilen müssen exakt passen"
   },
   "dossier": {
     "portfolioKicker": "PORTFOLIO · TECH STACK",

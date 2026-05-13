@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
-import { getBossThumbnailCandidates, mentorPortraitSlug, mentorWaifuUrl, MENTOR_WAIFU_IDS } from "../../data/nexusRegistry";
+import { getBossThumbnailCandidates, mentorWaifuUrl, MENTOR_WAIFU_IDS } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../store/useGameStore";
@@ -364,10 +364,9 @@ export function NeuralInitializer({
                         fontWeight: 800,
                         letterSpacing: "0.04em",
                         color: nexusChrome === "edtech" ? "#0f172a" : "rgba(251,247,239,0.9)",
-                        textTransform: "lowercase",
                       }}
                     >
-                      {mentorPortraitSlug(id)}
+                      {t("profile.mentorGridPrefix")} {id}
                     </span>
                   </motion.button>
                 ))}

@@ -59,7 +59,8 @@
     "codenameLead": "Short name for logs and the hub",
     "codenamePlaceholder": "Enter callsign",
     "codenameConfirm": "Save and start scan",
-    "callsign": "CALLSIGN"
+    "callsign": "CALLSIGN",
+    "mentorGridPrefix": "Unit"
   },
   "scan": {
     "title": "Short scan before the dashboard",

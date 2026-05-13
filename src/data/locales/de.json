@@ -59,7 +59,8 @@
     "codenameLead": "Kurzer Name für Logs und Zentrale",
     "codenamePlaceholder": "Codename eingeben",
     "codenameConfirm": "Speichern und zum Scan",
-    "callsign": "CODENAME"
+    "callsign": "CODENAME",
+    "mentorGridPrefix": "Einheit"
   },
   "scan": {
     "title": "Kurz-Scan vor dem Dashboard",

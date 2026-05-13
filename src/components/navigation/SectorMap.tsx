@@ -260,11 +260,22 @@ export function SectorMap({
   const [epilogLoreOpen, setEpilogLoreOpen] = useState(false);
   const [legacyCreditsOpen, setLegacyCreditsOpen] = useState(false);
   const [dailyPanelOpen, setDailyPanelOpen] = useState(false);
+  /** Ruhe-Modus: weniger gleichzeitig auf der Karte */
+  const [heroGuideOpen, setHeroGuideOpen] = useState(false);
+  const [extrasMenuOpen, setExtrasMenuOpen] = useState(false);
+  const [quickStartOpen, setQuickStartOpen] = useState(false);
 
   const epilogueActive = useMemo(
     () => readEpilogueUnlocked() || Boolean(nexusMasterCertificateSealed),
     [nexusMasterCertificateSealed]
   );
+  const isFirstBoot = useGameStore((s) => s.isFirstBoot);
+
+  /** Erstes Mal auf der Karte: Menü offen, damit geführte Tour das Codex-Ziel findet */
+  useEffect(() => {
+    if (epilogueActive) return;
+    if (isFirstBoot) setExtrasMenuOpen(true);
+  }, [epilogueActive, isFirstBoot]);
 
   useEffect(() => {
     regenerateSectorAnomalies();
@@ -447,228 +458,388 @@ export function SectorMap({
               lineHeight: 1.15,
             }}
           >
-            {epilogueActive ? "Abschlussübersicht" : t("map.heroTitle")}
+            {epilogueActive
+              ? "Abschlussübersicht"
+              : heroGuideOpen
+                ? t("map.heroTitle")
+                : t("map.heroTitleCalm")}
           </div>
           {epilogueActive ? (
-            <div
-              style={{
-                marginTop: 6,
-                fontSize: 11,
-                opacity: 0.82,
-                maxWidth: 420,
-                lineHeight: 1.45,
-                color: "rgba(80, 64, 38, 0.9)",
-              }}
-            >
-              Der Kern ist gesichert — die Karte trägt dein Architekten-Siegel
-            </div>
-          ) : (
-            <motion.ol
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              style={{
-                margin: "12px 0 0",
-                paddingLeft: 22,
-                maxWidth: 480,
-                fontSize: 15,
-                lineHeight: 1.55,
-                color: "rgba(251,247,239,0.88)",
-                fontWeight: 500,
-              }}
-            >
-              <li style={{ marginBottom: 6 }}>{t("map.heroStep1")}</li>
-              <li style={{ marginBottom: 6 }}>{t("map.heroStep2")}</li>
-              <li>{t("map.heroStep3")}</li>
-            </motion.ol>
-          )}
-          {!epilogueActive ? (
-            <div
-              style={{
-                marginTop: 10,
-                fontSize: 13,
-                opacity: 0.72,
-                maxWidth: 440,
-                lineHeight: 1.45,
-                color: "rgba(251,247,239,0.78)",
-              }}
-            >
-              {t("map.heroMapHint")}
-            </div>
-          ) : null}
-          {epilogueActive ? (
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
-              style={{ marginTop: 12, maxWidth: 460 }}
-            >
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-                <button
-                  type="button"
-                  onClick={() => setEpilogLoreOpen((o) => !o)}
-                  style={{
-                    borderRadius: 12,
-                    border: "1px solid rgba(212, 175, 55, 0.55)",
-                    background:
-                      "linear-gradient(135deg, rgba(255,253,248,0.95) 0%, rgba(250,240,220,0.92) 100%)",
-                    color: "rgba(62, 48, 22, 0.94)",
-                    letterSpacing: ".14em",
-                    fontSize: 10,
-                    padding: "10px 14px",
-                    cursor: "pointer",
-                    boxShadow: "0 8px 28px rgba(180, 140, 60, 0.22)",
-                  }}
-                >
-                  {epilogLoreOpen ? "Epilog schließen" : "Epilog · Master-Architekt"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setLegacyCreditsOpen(true)}
-                  style={{
-                    borderRadius: 12,
-                    border: "1px solid rgba(34, 211, 238, 0.45)",
-                    background: "rgba(8, 22, 32, 0.55)",
-                    color: "rgba(186, 230, 253, 0.95)",
-                    letterSpacing: ".14em",
-                    fontSize: 10,
-                    padding: "10px 14px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Legacy · Credits
-                </button>
+            <>
+              <div
+                style={{
+                  marginTop: 6,
+                  fontSize: 11,
+                  opacity: 0.82,
+                  maxWidth: 420,
+                  lineHeight: 1.45,
+                  color: "rgba(80, 64, 38, 0.9)",
+                }}
+              >
+                Der Kern ist gesichert — die Karte trägt dein Architekten-Siegel
               </div>
-              {epilogLoreOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
+                style={{ marginTop: 12, maxWidth: 460 }}
+              >
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                  <button
+                    type="button"
+                    onClick={() => setEpilogLoreOpen((o) => !o)}
+                    style={{
+                      borderRadius: 12,
+                      border: "1px solid rgba(212, 175, 55, 0.55)",
+                      background:
+                        "linear-gradient(135deg, rgba(255,253,248,0.95) 0%, rgba(250,240,220,0.92) 100%)",
+                      color: "rgba(62, 48, 22, 0.94)",
+                      letterSpacing: ".14em",
+                      fontSize: 10,
+                      padding: "10px 14px",
+                      cursor: "pointer",
+                      boxShadow: "0 8px 28px rgba(180, 140, 60, 0.22)",
+                    }}
+                  >
+                    {epilogLoreOpen ? "Epilog schließen" : "Epilog · Master-Architekt"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLegacyCreditsOpen(true)}
+                    style={{
+                      borderRadius: 12,
+                      border: "1px solid rgba(34, 211, 238, 0.45)",
+                      background: "rgba(8, 22, 32, 0.55)",
+                      color: "rgba(186, 230, 253, 0.95)",
+                      letterSpacing: ".14em",
+                      fontSize: 10,
+                      padding: "10px 14px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Legacy · Credits
+                  </button>
+                </div>
+                {epilogLoreOpen ? (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    transition={{ duration: 0.35 }}
+                    style={{
+                      marginTop: 10,
+                      padding: "14px 16px",
+                      borderRadius: 12,
+                      border: "1px solid rgba(202, 165, 80, 0.42)",
+                      background: "rgba(255, 252, 246, 0.88)",
+                      color: "rgba(55, 44, 26, 0.92)",
+                      fontSize: 13,
+                      lineHeight: 1.65,
+                      boxShadow: "inset 0 0 24px rgba(250, 220, 160, 0.25)",
+                    }}
+                  >
+                    Du hast Sektor Ø entladen — vom Lehrling der Zelllogik zum Master-Architekten der
+                    Nexus-Lattice: Anomalien weichen, und das Raster leuchtet in Weißgold wie ein
+                    wiederhergestelltes System, das deinen Abschluss als echte Architektur-Signatur
+                    trägt
+                  </motion.div>
+                ) : null}
+              </motion.div>
+              {!sectorZeroGateOpen ? (
+                <div
+                  style={{
+                    marginTop: 10,
+                    fontSize: 10,
+                    letterSpacing: ".06em",
+                    color: "rgba(250, 204, 21, 0.72)",
+                    maxWidth: 440,
+                    lineHeight: 1.45,
+                  }}
+                >
+                  Finale Prüfung — alle 12 Lernfelder über {(SECTOR_ZERO_STABILITY_THRESHOLD * 100).toFixed(0)} %
+                  Stabilität
+                </div>
+              ) : null}
+              <button
+                type="button"
+                onClick={() => setDailyPanelOpen((o) => !o)}
+                style={{
+                  marginTop: 12,
+                  borderRadius: 10,
+                  border: "1px solid rgba(251,247,239,0.22)",
+                  background: "rgba(251,247,239,0.08)",
+                  color: "rgba(251,247,239,0.9)",
+                  letterSpacing: ".12em",
+                  fontSize: 10,
+                  padding: "8px 12px",
+                  cursor: "pointer",
+                }}
+              >
+                {dailyPanelOpen ? t("map.dailyCollapse") : t("map.dailyExpand")}
+              </button>
+              {dailyPanelOpen ? (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  transition={{ duration: 0.35 }}
+                  transition={{ duration: 0.28 }}
                   style={{
-                    marginTop: 10,
-                    padding: "14px 16px",
-                    borderRadius: 12,
-                    border: "1px solid rgba(202, 165, 80, 0.42)",
-                    background: "rgba(255, 252, 246, 0.88)",
-                    color: "rgba(55, 44, 26, 0.92)",
-                    fontSize: 13,
-                    lineHeight: 1.65,
-                    boxShadow: "inset 0 0 24px rgba(250, 220, 160, 0.25)",
+                    marginTop: 8,
+                    padding: "8px 12px",
+                    borderRadius: 10,
+                    border: `1px solid ${DAILY_PURPLE_BORDER}`,
+                    background: "rgba(255, 252, 246, 0.55)",
+                    maxWidth: 440,
                   }}
                 >
-                  Du hast Sektor Ø entladen — vom Lehrling der Zelllogik zum Master-Architekten der
-                  Nexus-Lattice: Anomalien weichen, und das Raster leuchtet in Weißgold wie ein
-                  wiederhergestelltes System, das deinen Abschluss als echte Architektur-Signatur
-                  trägt
+                  <div
+                    style={{
+                      fontSize: 9,
+                      letterSpacing: ".24em",
+                      color: "rgba(90, 60, 120, 0.85)",
+                    }}
+                  >
+                    Nächste Übungsrunde
+                  </div>
+                  <div
+                    style={{
+                      marginTop: 4,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      letterSpacing: ".08em",
+                      color: "rgba(55, 42, 18, 0.92)",
+                      fontFamily: "var(--nx-font-sans)",
+                    }}
+                  >
+                    {formatCountdownHMS(secToMidnight)} · Reset 00:00 UTC
+                  </div>
+                  <div
+                    style={{
+                      marginTop: 4,
+                      fontSize: 10,
+                      color: "rgba(80, 64, 38, 0.82)",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    Tages-Lernfeld LF{dailyDef.targetLf} · Startphase {dailyDef.startCombatPhase}
+                  </div>
                 </motion.div>
               ) : null}
-            </motion.div>
-          ) : null}
-          {!epilogueActive && onOpenLearningHub ? (
-            <motion.button
-              type="button"
-              onClick={onOpenLearningHub}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                marginTop: 14,
-                borderRadius: 999,
-                border: "1px solid rgba(214,181,111,0.45)",
-                background: "linear-gradient(135deg, rgba(251,247,239,0.14) 0%, rgba(58,112,72,0.22) 100%)",
-                color: "rgba(251,247,239,0.96)",
-                letterSpacing: ".04em",
-                fontSize: 15,
-                fontWeight: 700,
-                padding: "12px 18px",
-                cursor: "pointer",
-                boxShadow: "0 12px 36px rgba(0,0,0,0.22)",
-              }}
-            >
-              {t("map.openLearningHub")}
-            </motion.button>
-          ) : null}
-          {!sectorZeroGateOpen ? (
-            <div
-              style={{
-                marginTop: 10,
-                fontSize: epilogueActive ? 10 : 12,
-                letterSpacing: epilogueActive ? ".06em" : ".04em",
-                color: epilogueActive ? "rgba(250, 204, 21, 0.72)" : "rgba(250, 204, 21, 0.62)",
-                maxWidth: 440,
-                lineHeight: 1.45,
-              }}
-            >
-              {epilogueActive
-                ? `Finale Prüfung — alle 12 Lernfelder über ${(SECTOR_ZERO_STABILITY_THRESHOLD * 100).toFixed(0)} % Stabilität`
-                : t("map.heroFinalExamHint")}
-            </div>
-          ) : null}
-          <button
-            type="button"
-            onClick={() => setDailyPanelOpen((o) => !o)}
-            style={{
-              marginTop: 12,
-              borderRadius: 10,
-              border: "1px solid rgba(251,247,239,0.22)",
-              background: "rgba(251,247,239,0.08)",
-              color: "rgba(251,247,239,0.9)",
-              letterSpacing: ".12em",
-              fontSize: 10,
-              padding: "8px 12px",
-              cursor: "pointer",
-            }}
-          >
-            {dailyPanelOpen ? t("map.dailyCollapse") : t("map.dailyExpand")}
-          </button>
-          {dailyPanelOpen ? (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              transition={{ duration: 0.28 }}
-              style={{
-                marginTop: 8,
-                padding: "8px 12px",
-                borderRadius: 10,
-                border: `1px solid ${DAILY_PURPLE_BORDER}`,
-                background: epilogueActive
-                  ? "rgba(255, 252, 246, 0.55)"
-                  : "rgba(24,10,40,0.55)",
-                maxWidth: 440,
-              }}
-            >
-              <div
+            </>
+          ) : !heroGuideOpen ? (
+            <>
+              <p
                 style={{
-                  fontSize: 9,
-                  letterSpacing: ".24em",
-                  color: epilogueActive ? "rgba(90, 60, 120, 0.85)" : DAILY_PURPLE_MUTED,
+                  margin: "12px 0 0",
+                  maxWidth: 440,
+                  fontSize: 15,
+                  lineHeight: 1.5,
+                  color: "rgba(251,247,239,0.82)",
+                  fontWeight: 500,
                 }}
               >
-                Nächste Übungsrunde
-              </div>
+                {t("map.heroOneLine")}
+              </p>
               <div
                 style={{
-                  marginTop: 4,
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 10,
+                  marginTop: 14,
+                  alignItems: "center",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setHeroGuideOpen(true)}
+                  style={{
+                    borderRadius: 999,
+                    border: "1px solid rgba(251,247,239,0.28)",
+                    background: "rgba(251,247,239,0.1)",
+                    color: "rgba(251,247,239,0.95)",
+                    letterSpacing: ".04em",
+                    fontSize: 14,
+                    fontWeight: 700,
+                    padding: "10px 16px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {t("map.heroExpand")}
+                </button>
+                {onOpenLearningHub ? (
+                  <motion.button
+                    type="button"
+                    onClick={onOpenLearningHub}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{
+                      borderRadius: 999,
+                      border: "1px solid rgba(214,181,111,0.45)",
+                      background: "linear-gradient(135deg, rgba(251,247,239,0.14) 0%, rgba(58,112,72,0.22) 100%)",
+                      color: "rgba(251,247,239,0.96)",
+                      letterSpacing: ".04em",
+                      fontSize: 14,
+                      fontWeight: 700,
+                      padding: "10px 16px",
+                      cursor: "pointer",
+                      boxShadow: "0 12px 36px rgba(0,0,0,0.22)",
+                    }}
+                  >
+                    {t("map.openLearningHub")}
+                  </motion.button>
+                ) : null}
+              </div>
+            </>
+          ) : (
+            <>
+              <motion.ol
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35 }}
+                style={{
+                  margin: "12px 0 0",
+                  paddingLeft: 22,
+                  maxWidth: 480,
+                  fontSize: 15,
+                  lineHeight: 1.55,
+                  color: "rgba(251,247,239,0.88)",
+                  fontWeight: 500,
+                }}
+              >
+                <li style={{ marginBottom: 6 }}>{t("map.heroStep1")}</li>
+                <li style={{ marginBottom: 6 }}>{t("map.heroStep2")}</li>
+                <li>{t("map.heroStep3")}</li>
+              </motion.ol>
+              <div
+                style={{
+                  marginTop: 10,
                   fontSize: 13,
-                  fontWeight: 700,
-                  letterSpacing: ".08em",
-                  color: epilogueActive ? "rgba(55, 42, 18, 0.92)" : "rgba(251,247,239,0.9)",
-                  fontFamily: "var(--nx-font-sans)",
+                  opacity: 0.72,
+                  maxWidth: 440,
+                  lineHeight: 1.45,
+                  color: "rgba(251,247,239,0.78)",
                 }}
               >
-                {formatCountdownHMS(secToMidnight)} · Reset 00:00 UTC
+                {t("map.heroMapHint")}
               </div>
-              <div
+              {onOpenLearningHub ? (
+                <motion.button
+                  type="button"
+                  onClick={onOpenLearningHub}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{
+                    marginTop: 14,
+                    borderRadius: 999,
+                    border: "1px solid rgba(214,181,111,0.45)",
+                    background: "linear-gradient(135deg, rgba(251,247,239,0.14) 0%, rgba(58,112,72,0.22) 100%)",
+                    color: "rgba(251,247,239,0.96)",
+                    letterSpacing: ".04em",
+                    fontSize: 15,
+                    fontWeight: 700,
+                    padding: "12px 18px",
+                    cursor: "pointer",
+                    boxShadow: "0 12px 36px rgba(0,0,0,0.22)",
+                  }}
+                >
+                  {t("map.openLearningHub")}
+                </motion.button>
+              ) : null}
+              {!sectorZeroGateOpen ? (
+                <div
+                  style={{
+                    marginTop: 10,
+                    fontSize: 12,
+                    letterSpacing: ".04em",
+                    color: "rgba(250, 204, 21, 0.62)",
+                    maxWidth: 440,
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {t("map.heroFinalExamHint")}
+                </div>
+              ) : null}
+              <button
+                type="button"
+                onClick={() => setDailyPanelOpen((o) => !o)}
                 style={{
-                  marginTop: 4,
+                  marginTop: 12,
+                  borderRadius: 10,
+                  border: "1px solid rgba(251,247,239,0.22)",
+                  background: "rgba(251,247,239,0.08)",
+                  color: "rgba(251,247,239,0.9)",
+                  letterSpacing: ".12em",
                   fontSize: 10,
-                  color: epilogueActive ? "rgba(80, 64, 38, 0.82)" : "rgba(233,213,255,0.82)",
-                  lineHeight: 1.4,
+                  padding: "8px 12px",
+                  cursor: "pointer",
                 }}
               >
-                Tages-Lernfeld LF{dailyDef.targetLf} · Startphase {dailyDef.startCombatPhase}
-              </div>
-            </motion.div>
-          ) : null}
+                {dailyPanelOpen ? t("map.dailyCollapse") : t("map.dailyExpand")}
+              </button>
+              {dailyPanelOpen ? (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  transition={{ duration: 0.28 }}
+                  style={{
+                    marginTop: 8,
+                    padding: "8px 12px",
+                    borderRadius: 10,
+                    border: `1px solid ${DAILY_PURPLE_BORDER}`,
+                    background: "rgba(24,10,40,0.55)",
+                    maxWidth: 440,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 9,
+                      letterSpacing: ".24em",
+                      color: DAILY_PURPLE_MUTED,
+                    }}
+                  >
+                    Nächste Übungsrunde
+                  </div>
+                  <div
+                    style={{
+                      marginTop: 4,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      letterSpacing: ".08em",
+                      color: "rgba(251,247,239,0.9)",
+                      fontFamily: "var(--nx-font-sans)",
+                    }}
+                  >
+                    {formatCountdownHMS(secToMidnight)} · Reset 00:00 UTC
+                  </div>
+                  <div
+                    style={{
+                      marginTop: 4,
+                      fontSize: 10,
+                      color: "rgba(233,213,255,0.82)",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    Tages-Lernfeld LF{dailyDef.targetLf} · Startphase {dailyDef.startCombatPhase}
+                  </div>
+                </motion.div>
+              ) : null}
+              <button
+                type="button"
+                onClick={() => setHeroGuideOpen(false)}
+                style={{
+                  marginTop: 12,
+                  borderRadius: 10,
+                  border: "1px solid rgba(251,247,239,0.18)",
+                  background: "transparent",
+                  color: "rgba(251,247,239,0.65)",
+                  letterSpacing: ".08em",
+                  fontSize: 11,
+                  padding: "6px 10px",
+                  cursor: "pointer",
+                }}
+              >
+                {t("map.heroCollapse")}
+              </button>
+            </>
+          )}
         </div>
         <div
           style={{
@@ -679,96 +850,135 @@ export function SectorMap({
             pointerEvents: "auto",
           }}
         >
-          <NexusSyncStatus />
-          <label
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              cursor: "pointer",
-              fontSize: 10,
-              letterSpacing: ".14em",
-              color: "rgba(251,247,239,0.82)",
-              userSelect: "none",
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={endlessDeepDiveOptIn}
-              onChange={(e) => setEndlessDeepDiveOptIn(e.target.checked)}
-              style={{ accentColor: "#facc15" }}
-            />
-            Langlauf
-          </label>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" }}>
+          {epilogueActive || extrasMenuOpen ? (
+            <>
+              {epilogueActive ? null : (
+                <button
+                  type="button"
+                  onClick={() => setExtrasMenuOpen(false)}
+                  style={{
+                    borderRadius: 10,
+                    border: "1px solid rgba(251,247,239,0.22)",
+                    background: "rgba(251,247,239,0.08)",
+                    color: "rgba(251,247,239,0.88)",
+                    letterSpacing: ".1em",
+                    fontSize: 10,
+                    padding: "8px 12px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {t("map.closeExtrasMenu")}
+                </button>
+              )}
+              <NexusSyncStatus />
+              <label
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 10,
+                  cursor: "pointer",
+                  fontSize: 10,
+                  letterSpacing: ".14em",
+                  color: "rgba(251,247,239,0.82)",
+                  userSelect: "none",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={endlessDeepDiveOptIn}
+                  onChange={(e) => setEndlessDeepDiveOptIn(e.target.checked)}
+                  style={{ accentColor: "#facc15" }}
+                />
+                Langlauf
+              </label>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" }}>
+                <button
+                  type="button"
+                  data-nx-tutorial="codex"
+                  onClick={() => setCodexOpen(true)}
+                  style={{
+                    borderRadius: 10,
+                    border: "1px solid rgba(251,247,239,0.18)",
+                    background: "rgba(251,247,239,0.12)",
+                    color: "rgba(251,247,239,0.96)",
+                    letterSpacing: ".14em",
+                    fontSize: 11,
+                    padding: "10px 14px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Übungen
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTechnicalDossierOpen(true)}
+                  title={t("map.technicalPortfolioTitle")}
+                  aria-label={t("map.openDossierAria")}
+                  style={{
+                    borderRadius: 10,
+                    border: "1px solid rgba(251,247,239,0.18)",
+                    background: "rgba(251,247,239,0.12)",
+                    color: "rgba(251,247,239,0.96)",
+                    letterSpacing: ".14em",
+                    fontSize: 11,
+                    padding: "10px 14px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Info
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setHallRecordsOpen(true)}
+                  style={{
+                    borderRadius: 10,
+                    border: "1px solid rgba(251,247,239,0.18)",
+                    background: "rgba(251,247,239,0.12)",
+                    color: "rgba(251,247,239,0.96)",
+                    letterSpacing: ".14em",
+                    fontSize: 11,
+                    padding: "10px 14px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Verlauf
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setOverlayOpenState("GALLERY")}
+                  style={{
+                    borderRadius: 10,
+                    border: "1px solid rgba(251,247,239,0.18)",
+                    background: "rgba(251,247,239,0.12)",
+                    color: "rgba(251,247,239,0.96)",
+                    letterSpacing: ".14em",
+                    fontSize: 11,
+                    padding: "10px 14px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Sammlung
+                </button>
+              </div>
+            </>
+          ) : (
             <button
               type="button"
-              data-nx-tutorial="codex"
-              onClick={() => setCodexOpen(true)}
+              onClick={() => setExtrasMenuOpen(true)}
               style={{
                 borderRadius: 10,
-                border: "1px solid rgba(251,247,239,0.18)",
-                background: "rgba(251,247,239,0.12)",
-                color: "rgba(251,247,239,0.96)",
+                border: "1px solid rgba(251,247,239,0.22)",
+                background: "rgba(251,247,239,0.1)",
+                color: "rgba(251,247,239,0.92)",
                 letterSpacing: ".14em",
                 fontSize: 11,
-                padding: "10px 14px",
+                padding: "10px 16px",
                 cursor: "pointer",
               }}
             >
-              Übungen
+              {t("map.openExtrasMenu")}
             </button>
-            <button
-              type="button"
-              onClick={() => setTechnicalDossierOpen(true)}
-              title={t("map.technicalPortfolioTitle")}
-              aria-label={t("map.openDossierAria")}
-              style={{
-                borderRadius: 10,
-                border: "1px solid rgba(251,247,239,0.18)",
-                background: "rgba(251,247,239,0.12)",
-                color: "rgba(251,247,239,0.96)",
-                letterSpacing: ".14em",
-                fontSize: 11,
-                padding: "10px 14px",
-                cursor: "pointer",
-              }}
-            >
-              Info
-            </button>
-            <button
-              type="button"
-              onClick={() => setHallRecordsOpen(true)}
-              style={{
-                borderRadius: 10,
-                border: "1px solid rgba(251,247,239,0.18)",
-                background: "rgba(251,247,239,0.12)",
-                color: "rgba(251,247,239,0.96)",
-                letterSpacing: ".14em",
-                fontSize: 11,
-                padding: "10px 14px",
-                cursor: "pointer",
-              }}
-            >
-              Verlauf
-            </button>
-            <button
-              type="button"
-              onClick={() => setOverlayOpenState("GALLERY")}
-              style={{
-                borderRadius: 10,
-                border: "1px solid rgba(251,247,239,0.18)",
-                background: "rgba(251,247,239,0.12)",
-                color: "rgba(251,247,239,0.96)",
-                letterSpacing: ".14em",
-                fontSize: 11,
-                padding: "10px 14px",
-                cursor: "pointer",
-              }}
-            >
-              Sammlung
-            </button>
-          </div>
+          )}
         </div>
       </div>
 
@@ -781,8 +991,8 @@ export function SectorMap({
           bottom: "max(20px, env(safe-area-inset-bottom))",
           zIndex: 34,
           pointerEvents: "auto",
-          padding: 16,
-          borderRadius: 26,
+          padding: quickStartOpen ? 16 : 12,
+          borderRadius: quickStartOpen ? 26 : 18,
           border: "1px solid rgba(251,247,239,0.16)",
           background: "rgba(8, 12, 10, 0.76)",
           backdropFilter: "blur(18px)",
@@ -790,66 +1000,109 @@ export function SectorMap({
           boxShadow: "0 22px 70px rgba(0,0,0,0.26)",
         }}
       >
-        <div
-          style={{
-            marginBottom: 8,
-            fontFamily: "var(--nx-font-mono)",
-            fontSize: 20,
-            fontWeight: 700,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "rgba(251,247,239,0.72)",
-          }}
-        >
-          {t("map.directNavTitle")}
-        </div>
-        <div
-          style={{
-            marginBottom: 12,
-            fontSize: 13,
-            lineHeight: 1.4,
-            color: "rgba(251,247,239,0.62)",
-            fontWeight: 500,
-          }}
-        >
-          {t("map.directNavSubtitle")}
-        </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(112px, 1fr))",
-            gap: 10,
-          }}
-        >
-          {Array.from({ length: 12 }, (_, idx) => {
-            const lf = idx + 1;
-            return (
-              <a
-                key={`direct-lf-${lf}`}
-                href={`/?startLf=${lf}`}
+        {!quickStartOpen ? (
+          <button
+            type="button"
+            onClick={() => setQuickStartOpen(true)}
+            style={{
+              width: "100%",
+              borderRadius: 14,
+              border: "1px solid rgba(214,181,111,0.35)",
+              background: "linear-gradient(160deg, rgba(251,247,239,0.12), rgba(58,112,72,0.12))",
+              color: "rgba(251,247,239,0.94)",
+              letterSpacing: ".06em",
+              fontSize: 15,
+              fontWeight: 700,
+              padding: "14px 16px",
+              cursor: "pointer",
+            }}
+          >
+            {t("map.quickStartExpand")}
+          </button>
+        ) : (
+          <>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginBottom: 12 }}>
+              <div>
+                <div
+                  style={{
+                    fontFamily: "var(--nx-font-mono)",
+                    fontSize: 18,
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "rgba(251,247,239,0.72)",
+                  }}
+                >
+                  {t("map.directNavTitle")}
+                </div>
+                <div
+                  style={{
+                    marginTop: 4,
+                    fontSize: 12,
+                    lineHeight: 1.35,
+                    color: "rgba(251,247,239,0.58)",
+                    fontWeight: 500,
+                  }}
+                >
+                  {t("map.directNavSubtitle")}
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setQuickStartOpen(false)}
                 style={{
-                  minHeight: 54,
-                  borderRadius: 18,
-                  border: "1px solid rgba(214,181,111,0.3)",
-                  background:
-                    "linear-gradient(160deg, rgba(251,247,239,0.92), rgba(238,229,213,0.82))",
-                  color: "var(--nx-learn-ink)",
-                  fontFamily: "var(--nx-font-mono)",
-                  fontSize: 20,
-                  fontWeight: 800,
+                  flexShrink: 0,
+                  borderRadius: 10,
+                  border: "1px solid rgba(251,247,239,0.2)",
+                  background: "rgba(251,247,239,0.08)",
+                  color: "rgba(251,247,239,0.85)",
+                  letterSpacing: ".08em",
+                  fontSize: 10,
+                  padding: "8px 12px",
                   cursor: "pointer",
-                  display: "grid",
-                  placeItems: "center",
-                  textAlign: "center",
-                  textDecoration: "none",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.58)",
                 }}
               >
-                LF{lf} starten
-              </a>
-            );
-          })}
-        </div>
+                {t("map.quickStartCollapse")}
+              </button>
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(112px, 1fr))",
+                gap: 10,
+              }}
+            >
+              {Array.from({ length: 12 }, (_, idx) => {
+                const lf = idx + 1;
+                return (
+                  <a
+                    key={`direct-lf-${lf}`}
+                    href={`/?startLf=${lf}`}
+                    style={{
+                      minHeight: 54,
+                      borderRadius: 18,
+                      border: "1px solid rgba(214,181,111,0.3)",
+                      background:
+                        "linear-gradient(160deg, rgba(251,247,239,0.92), rgba(238,229,213,0.82))",
+                      color: "var(--nx-learn-ink)",
+                      fontFamily: "var(--nx-font-mono)",
+                      fontSize: 20,
+                      fontWeight: 800,
+                      cursor: "pointer",
+                      display: "grid",
+                      placeItems: "center",
+                      textAlign: "center",
+                      textDecoration: "none",
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.58)",
+                    }}
+                  >
+                    LF{lf} starten
+                  </a>
+                );
+              })}
+            </div>
+          </>
+        )}
       </nav>
 
       {hoverLf != null && hoverEntry ? (

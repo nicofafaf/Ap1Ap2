@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
+import { useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
@@ -52,6 +53,7 @@ export function NeuralInitializer({
   onReturnToMap,
 }: NeuralInitializerProps) {
   const { t } = useNexusI18n();
+  const [fieldsExpanded, setFieldsExpanded] = useState(false);
   const ap1Count = LEARNING_FIELDS.filter((item) => item.ap === "AP1").length;
   const ap2Count = LEARNING_FIELDS.length - ap1Count;
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
@@ -137,77 +139,101 @@ export function NeuralInitializer({
       >
         <div style={heroGridStyle}>
           <motion.section variants={CARD}>
-            <div style={eyebrowStyle}>LernenSchule</div>
-            <h1 style={headlineStyle}>Deine ruhige Lernzentrale</h1>
-            <p style={leadStyle}>
-              Alles im Blick: AP1, AP2, alle 12 Lernfelder und ein geführter Start ohne
-              Ablenkung
-            </p>
+            <div style={eyebrowStyle}>{t("hub.eyebrow")}</div>
+            <h1 style={hubHeadlineStyle}>{t("hub.headline")}</h1>
+            <p style={leadStyle}>{t("hub.lead")}</p>
             <div style={actionRowStyle}>
               <button type="button" onClick={onOpenOverview} style={ctaStyle}>
-                Lernübersicht öffnen
+                {t("hub.ctaMap")}
               </button>
               <button type="button" onClick={onBeginTraining} style={secondaryCtaStyle}>
-                Geführtes Beispiel starten
+                {t("hub.ctaDemo")}
               </button>
             </div>
           </motion.section>
 
-          <motion.aside variants={CARD} style={statsPanelStyle} aria-label="Lernstatus Übersicht">
-            <div style={statStyle}>
-              <strong>{LEARNING_FIELDS.length}</strong>
-              <span>Lernfelder</span>
-            </div>
-            <div style={statStyle}>
-              <strong>{ap1Count}</strong>
-              <span>AP1 Fokus</span>
-            </div>
-            <div style={statStyle}>
-              <strong>{ap2Count}</strong>
-              <span>AP2 Fokus</span>
-            </div>
-          </motion.aside>
+          {fieldsExpanded ? (
+            <motion.aside variants={CARD} style={statsPanelStyle} aria-label="Lernstatus Übersicht">
+              <div style={statStyle}>
+                <strong>{LEARNING_FIELDS.length}</strong>
+                <span>Lernfelder</span>
+              </div>
+              <div style={statStyle}>
+                <strong>{ap1Count}</strong>
+                <span>AP1 Fokus</span>
+              </div>
+              <div style={statStyle}>
+                <strong>{ap2Count}</strong>
+                <span>AP2 Fokus</span>
+              </div>
+            </motion.aside>
+          ) : (
+            <motion.aside variants={CARD} style={statsOneLineAsideStyle} aria-hidden>
+              <p style={statsOneLineTextStyle}>{t("hub.statsOneLine")}</p>
+            </motion.aside>
+          )}
         </div>
 
-        <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
-          {LEARNING_FIELDS.map((field) => {
-            const lfKey = `LF${field.lf}` as LearningField;
-            const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
-            const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
+        {fieldsExpanded ? (
+          <>
+            <motion.button
+              type="button"
+              variants={CARD}
+              onClick={() => setFieldsExpanded(false)}
+              style={collapseListBtnStyle}
+            >
+              {t("hub.hideList")}
+            </motion.button>
+            <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
+              {LEARNING_FIELDS.map((field) => {
+                const lfKey = `LF${field.lf}` as LearningField;
+                const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
+                const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
 
-            return (
-              <button
-                key={field.lf}
-                type="button"
-                onClick={() => onBeginLearningField(field.lf)}
-                style={fieldCardStyle}
-              >
-                <span style={fieldVisualStyle} aria-hidden="true">
-                  <video
-                    src={`/assets/LF${field.lf}GIF.mp4`}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    style={fieldVideoStyle}
-                  />
-                </span>
-                <span style={fieldMetaStyle}>
-                  <span>Datenträger</span>
-                  <b>
-                    LF{field.lf} · {field.ap}
-                  </b>
-                </span>
-                <strong>{field.title}</strong>
-                <span>{field.focus}</span>
-                <span style={fieldProgressStyle}>
-                  Einsteiger · {solved}/{total} Übungen · Starten
-                </span>
-              </button>
-            );
-          })}
-        </motion.div>
+                return (
+                  <button
+                    key={field.lf}
+                    type="button"
+                    onClick={() => onBeginLearningField(field.lf)}
+                    style={fieldCardStyle}
+                  >
+                    <span style={fieldVisualStyle} aria-hidden="true">
+                      <video
+                        src={`/assets/LF${field.lf}GIF.mp4`}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        style={fieldVideoStyle}
+                      />
+                    </span>
+                    <span style={fieldMetaStyle}>
+                      <span>Datenträger</span>
+                      <b>
+                        LF{field.lf} · {field.ap}
+                      </b>
+                    </span>
+                    <strong>{field.title}</strong>
+                    <span>{field.focus}</span>
+                    <span style={fieldProgressStyle}>
+                      Einsteiger · {solved}/{total} Übungen · Starten
+                    </span>
+                  </button>
+                );
+              })}
+            </motion.div>
+          </>
+        ) : (
+          <motion.button
+            type="button"
+            variants={CARD}
+            onClick={() => setFieldsExpanded(true)}
+            style={showListBtnStyle}
+          >
+            {t("hub.showList")}
+          </motion.button>
+        )}
       </motion.div>
     </div>
   );
@@ -229,6 +255,13 @@ const headlineStyle: CSSProperties = {
   lineHeight: 0.95,
   letterSpacing: "-0.07em",
   color: "var(--nx-learn-ink)",
+};
+
+const hubHeadlineStyle: CSSProperties = {
+  ...headlineStyle,
+  fontSize: "clamp(34px, 4.5vw, 56px)",
+  lineHeight: 1.05,
+  letterSpacing: "-0.05em",
 };
 
 const leadStyle: CSSProperties = {
@@ -287,6 +320,62 @@ const statsPanelStyle: CSSProperties = {
   borderRadius: 32,
   background: "rgba(22,32,25,0.06)",
   border: "1px solid var(--nx-learn-line)",
+};
+
+const statsOneLineAsideStyle: CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "20px 22px",
+  borderRadius: 32,
+  background: "rgba(22,32,25,0.05)",
+  border: "1px solid var(--nx-learn-line)",
+  alignSelf: "stretch",
+};
+
+const statsOneLineTextStyle: CSSProperties = {
+  margin: 0,
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: "clamp(18px, 2vw, 22px)",
+  fontWeight: 650,
+  letterSpacing: ".04em",
+  color: "var(--nx-learn-muted)",
+  textAlign: "center",
+};
+
+const showListBtnStyle: CSSProperties = {
+  marginTop: 36,
+  width: "100%",
+  maxWidth: 520,
+  borderRadius: 999,
+  border: "1px solid rgba(22,32,25,0.14)",
+  background: "rgba(22,32,25,0.06)",
+  color: "var(--nx-learn-ink)",
+  letterSpacing: ".04em",
+  fontSize: 22,
+  fontWeight: 750,
+  padding: "16px 22px",
+  cursor: "pointer",
+  pointerEvents: "auto",
+  WebkitTapHighlightColor: "transparent",
+  touchAction: "manipulation",
+};
+
+const collapseListBtnStyle: CSSProperties = {
+  marginTop: 28,
+  marginBottom: 0,
+  alignSelf: "flex-start",
+  borderRadius: 999,
+  border: "1px solid rgba(22,32,25,0.12)",
+  background: "transparent",
+  color: "var(--nx-learn-muted)",
+  letterSpacing: ".06em",
+  fontSize: 18,
+  fontWeight: 650,
+  padding: "10px 18px",
+  cursor: "pointer",
+  pointerEvents: "auto",
+  touchAction: "manipulation",
 };
 
 const statStyle: CSSProperties = {

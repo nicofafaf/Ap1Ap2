@@ -20,7 +20,25 @@
     "dailyExpand": "Daily goal & timer",
     "dailyCollapse": "Hide daily goal",
     "directNavTitle": "Quick start",
-    "directNavSubtitle": "One tap starts your learning field"
+    "directNavSubtitle": "One tap starts your learning field",
+    "heroTitleCalm": "Tap one card — then learn",
+    "heroOneLine": "The map is your entry — order is up to you",
+    "heroExpand": "Show steps & tips",
+    "heroCollapse": "Show less",
+    "openExtrasMenu": "Menu",
+    "closeExtrasMenu": "Close menu",
+    "quickStartExpand": "Quick-start all fields",
+    "quickStartCollapse": "Hide quick start"
+  },
+  "hub": {
+    "eyebrow": "LernenSchule",
+    "headline": "Your calm learning hub",
+    "lead": "Use the map for overview — or pick a topic right here",
+    "statsOneLine": "12 fields · 6× AP1 · 6× AP2",
+    "ctaMap": "Open field map",
+    "ctaDemo": "Guided example",
+    "showList": "Show all 12 topics as a list",
+    "hideList": "Collapse list"
   },
   "lf": {
     "LF1": { "boss": "Archivist of the Void", "discipline": "Planning and control" },

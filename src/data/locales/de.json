@@ -20,7 +20,25 @@
     "dailyExpand": "Tagesziel & Timer",
     "dailyCollapse": "Tagesziel ausblenden",
     "directNavTitle": "Schnellstart",
-    "directNavSubtitle": "Ein Tipp startet dein Lernfeld sofort"
+    "directNavSubtitle": "Ein Tipp startet dein Lernfeld sofort",
+    "heroTitleCalm": "Eine Karte antippen — dann lernen",
+    "heroOneLine": "Die Karte ist dein Einstieg — Reihenfolge ist frei",
+    "heroExpand": "Schritte & Tipps anzeigen",
+    "heroCollapse": "Weniger anzeigen",
+    "openExtrasMenu": "Menü",
+    "closeExtrasMenu": "Menü zu",
+    "quickStartExpand": "Alle LFs schnell starten",
+    "quickStartCollapse": "Schnellstart ausblenden"
+  },
+  "hub": {
+    "eyebrow": "LernenSchule",
+    "headline": "Deine ruhige Lernzentrale",
+    "lead": "Karte für Überblick — oder hier direkt ein Thema wählen",
+    "statsOneLine": "12 Lernfelder · 6× AP1 · 6× AP2",
+    "ctaMap": "Zur Lernfelder-Karte",
+    "ctaDemo": "Geführtes Beispiel",
+    "showList": "Alle 12 Themen als Liste",
+    "hideList": "Liste einklappen"
   },
   "lf": {
     "LF1": { "boss": "Lernfeld 1", "discipline": "Planung und Steuerung" },

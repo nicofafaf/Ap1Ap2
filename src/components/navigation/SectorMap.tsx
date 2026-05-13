@@ -49,6 +49,8 @@ type SectorMapProps = {
   layoutBridgeLf?: number | null;
   /** Sofortiger Kampfstart ohne Zoom-Out-Animation — für Layout-Morph */
   seamlessEngage?: boolean;
+  /** Ruhe-Übersicht (NeuralInitializer) über der Karte */
+  onOpenLearningHub?: () => void;
 };
 
 function useGhostSyncDesktop(): boolean {
@@ -228,6 +230,7 @@ export function SectorMap({
   onEngage,
   layoutBridgeLf = null,
   seamlessEngage = false,
+  onOpenLearningHub,
 }: SectorMapProps) {
   const { t, locale } = useNexusI18n();
   const tierLabels = useMemo(
@@ -256,6 +259,7 @@ export function SectorMap({
   const [codexOpen, setCodexOpen] = useState(false);
   const [epilogLoreOpen, setEpilogLoreOpen] = useState(false);
   const [legacyCreditsOpen, setLegacyCreditsOpen] = useState(false);
+  const [dailyPanelOpen, setDailyPanelOpen] = useState(false);
 
   const epilogueActive = useMemo(
     () => readEpilogueUnlocked() || Boolean(nexusMasterCertificateSealed),
@@ -422,7 +426,7 @@ export function SectorMap({
           pointerEvents: "none",
         }}
       >
-        <div>
+        <div style={{ pointerEvents: "auto", maxWidth: 520 }}>
           <div
             style={{
               fontSize: 11,
@@ -430,34 +434,68 @@ export function SectorMap({
               color: epilogueActive ? "rgba(180, 130, 40, 0.88)" : "rgba(251,247,239,0.68)",
             }}
           >
-            {epilogueActive ? "Lernstand gesichert" : "Lernfelder"}
+            {epilogueActive ? "Lernstand gesichert" : t("map.heroKicker")}
           </div>
           <div
             className={epilogueActive ? undefined : "nx-title-ultra"}
             style={{
               marginTop: 6,
-              fontSize: 20,
+              fontSize: epilogueActive ? 20 : 22,
               fontWeight: epilogueActive ? 700 : undefined,
               letterSpacing: ".04em",
               color: epilogueActive ? "rgba(55, 42, 18, 0.94)" : "rgba(251,247,239,0.96)",
+              lineHeight: 1.15,
             }}
           >
-            {epilogueActive ? "Abschlussübersicht" : "Wähle dein nächstes Lernfeld"}
+            {epilogueActive ? "Abschlussübersicht" : t("map.heroTitle")}
           </div>
-          <div
-            style={{
-              marginTop: 6,
-              fontSize: 11,
-              opacity: epilogueActive ? 0.82 : 0.72,
-              maxWidth: 420,
-              lineHeight: 1.45,
-              color: epilogueActive ? "rgba(80, 64, 38, 0.9)" : undefined,
-            }}
-          >
-            {epilogueActive
-              ? "Der Kern ist gesichert — die Karte trägt dein Architekten-Siegel"
-              : "Ziehe zum Verschieben · Scrollen zum Zoomen · Fortschritt steht direkt auf jeder Karte"}
-          </div>
+          {epilogueActive ? (
+            <div
+              style={{
+                marginTop: 6,
+                fontSize: 11,
+                opacity: 0.82,
+                maxWidth: 420,
+                lineHeight: 1.45,
+                color: "rgba(80, 64, 38, 0.9)",
+              }}
+            >
+              Der Kern ist gesichert — die Karte trägt dein Architekten-Siegel
+            </div>
+          ) : (
+            <motion.ol
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35 }}
+              style={{
+                margin: "12px 0 0",
+                paddingLeft: 22,
+                maxWidth: 480,
+                fontSize: 15,
+                lineHeight: 1.55,
+                color: "rgba(251,247,239,0.88)",
+                fontWeight: 500,
+              }}
+            >
+              <li style={{ marginBottom: 6 }}>{t("map.heroStep1")}</li>
+              <li style={{ marginBottom: 6 }}>{t("map.heroStep2")}</li>
+              <li>{t("map.heroStep3")}</li>
+            </motion.ol>
+          )}
+          {!epilogueActive ? (
+            <div
+              style={{
+                marginTop: 10,
+                fontSize: 13,
+                opacity: 0.72,
+                maxWidth: 440,
+                lineHeight: 1.45,
+                color: "rgba(251,247,239,0.78)",
+              }}
+            >
+              {t("map.heroMapHint")}
+            </div>
+          ) : null}
           {epilogueActive ? (
             <motion.div
               initial={{ opacity: 0, y: 6 }}
@@ -526,62 +564,111 @@ export function SectorMap({
               ) : null}
             </motion.div>
           ) : null}
+          {!epilogueActive && onOpenLearningHub ? (
+            <motion.button
+              type="button"
+              onClick={onOpenLearningHub}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                marginTop: 14,
+                borderRadius: 999,
+                border: "1px solid rgba(214,181,111,0.45)",
+                background: "linear-gradient(135deg, rgba(251,247,239,0.14) 0%, rgba(58,112,72,0.22) 100%)",
+                color: "rgba(251,247,239,0.96)",
+                letterSpacing: ".04em",
+                fontSize: 15,
+                fontWeight: 700,
+                padding: "12px 18px",
+                cursor: "pointer",
+                boxShadow: "0 12px 36px rgba(0,0,0,0.22)",
+              }}
+            >
+              {t("map.openLearningHub")}
+            </motion.button>
+          ) : null}
           {!sectorZeroGateOpen ? (
             <div
               style={{
+                marginTop: 10,
+                fontSize: epilogueActive ? 10 : 12,
+                letterSpacing: epilogueActive ? ".06em" : ".04em",
+                color: epilogueActive ? "rgba(250, 204, 21, 0.72)" : "rgba(250, 204, 21, 0.62)",
+                maxWidth: 440,
+                lineHeight: 1.45,
+              }}
+            >
+              {epilogueActive
+                ? `Finale Prüfung — alle 12 Lernfelder über ${(SECTOR_ZERO_STABILITY_THRESHOLD * 100).toFixed(0)} % Stabilität`
+                : t("map.heroFinalExamHint")}
+            </div>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => setDailyPanelOpen((o) => !o)}
+            style={{
+              marginTop: 12,
+              borderRadius: 10,
+              border: "1px solid rgba(251,247,239,0.22)",
+              background: "rgba(251,247,239,0.08)",
+              color: "rgba(251,247,239,0.9)",
+              letterSpacing: ".12em",
+              fontSize: 10,
+              padding: "8px 12px",
+              cursor: "pointer",
+            }}
+          >
+            {dailyPanelOpen ? t("map.dailyCollapse") : t("map.dailyExpand")}
+          </button>
+          {dailyPanelOpen ? (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              transition={{ duration: 0.28 }}
+              style={{
                 marginTop: 8,
-                fontSize: 10,
-                letterSpacing: ".06em",
-                color: "rgba(250, 204, 21, 0.72)",
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: `1px solid ${DAILY_PURPLE_BORDER}`,
+                background: epilogueActive
+                  ? "rgba(255, 252, 246, 0.55)"
+                  : "rgba(24,10,40,0.55)",
                 maxWidth: 440,
               }}
             >
-              Finale Prüfung — alle 12 Lernfelder über {(SECTOR_ZERO_STABILITY_THRESHOLD * 100).toFixed(0)} %
-              Stabilität
-            </div>
+              <div
+                style={{
+                  fontSize: 9,
+                  letterSpacing: ".24em",
+                  color: epilogueActive ? "rgba(90, 60, 120, 0.85)" : DAILY_PURPLE_MUTED,
+                }}
+              >
+                Nächste Übungsrunde
+              </div>
+              <div
+                style={{
+                  marginTop: 4,
+                  fontSize: 13,
+                  fontWeight: 700,
+                  letterSpacing: ".08em",
+                  color: epilogueActive ? "rgba(55, 42, 18, 0.92)" : "rgba(251,247,239,0.9)",
+                  fontFamily: "var(--nx-font-sans)",
+                }}
+              >
+                {formatCountdownHMS(secToMidnight)} · Reset 00:00 UTC
+              </div>
+              <div
+                style={{
+                  marginTop: 4,
+                  fontSize: 10,
+                  color: epilogueActive ? "rgba(80, 64, 38, 0.82)" : "rgba(233,213,255,0.82)",
+                  lineHeight: 1.4,
+                }}
+              >
+                Tages-Lernfeld LF{dailyDef.targetLf} · Startphase {dailyDef.startCombatPhase}
+              </div>
+            </motion.div>
           ) : null}
-          <div
-            style={{
-              marginTop: 10,
-              padding: "8px 12px",
-              borderRadius: 10,
-              border: `1px solid ${DAILY_PURPLE_BORDER}`,
-              background: "rgba(24,10,40,0.55)",
-              maxWidth: 440,
-            }}
-          >
-            <div
-              style={{
-                fontSize: 9,
-                letterSpacing: ".24em",
-                color: DAILY_PURPLE_MUTED,
-              }}
-            >
-              Nächste Übungsrunde
-            </div>
-            <div
-              style={{
-                marginTop: 4,
-                fontSize: 13,
-                fontWeight: 700,
-                letterSpacing: ".08em",
-                color: "rgba(251,247,239,0.9)",
-                fontFamily: "var(--nx-font-sans)",
-              }}
-            >
-              {formatCountdownHMS(secToMidnight)} · Reset 00:00 UTC
-            </div>
-            <div
-              style={{
-                marginTop: 4,
-                fontSize: 10,
-                color: "rgba(233,213,255,0.82)",
-                lineHeight: 1.4,
-              }}
-            >
-              Tages-Lernfeld LF{dailyDef.targetLf} · Startphase {dailyDef.startCombatPhase}
-            </div>
-          </div>
         </div>
         <div
           style={{
@@ -705,7 +792,7 @@ export function SectorMap({
       >
         <div
           style={{
-            marginBottom: 12,
+            marginBottom: 8,
             fontFamily: "var(--nx-font-mono)",
             fontSize: 20,
             fontWeight: 700,
@@ -714,7 +801,18 @@ export function SectorMap({
             color: "rgba(251,247,239,0.72)",
           }}
         >
-          Direkt starten
+          {t("map.directNavTitle")}
+        </div>
+        <div
+          style={{
+            marginBottom: 12,
+            fontSize: 13,
+            lineHeight: 1.4,
+            color: "rgba(251,247,239,0.62)",
+            fontWeight: 500,
+          }}
+        >
+          {t("map.directNavSubtitle")}
         </div>
         <div
           style={{

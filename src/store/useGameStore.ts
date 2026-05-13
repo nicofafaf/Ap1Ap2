@@ -187,6 +187,8 @@ function persistArchitectPersonaProfile(persona: ArchitectPersona, reportId: str
 }
 const NEXUS_NEURAL_AUGMENTS_KEY = "nexus.neuralAugments.v1";
 const HAS_COMPLETED_INITIALIZATION_KEY = "nexus.hasCompletedInitialization.v1";
+const OVERWORLD_LANDING_KEY = "nexus.overworldLanding.v1";
+export type OverworldLanding = "hub" | "map";
 const DAILY_INCURSION_STORAGE_KEY = "nexus.dailyIncursion.v1";
 const LEARNING_MASTERY_STORAGE_KEY = "nexus.learningMastery.v1";
 
@@ -668,6 +670,9 @@ type GameStore = {
   regenerateSectorAnomalies: () => void;
   /** Persistiert: Erstnutzer-Onboarding (Neural Init + Trainingskampf) abgeschlossen */
   hasCompletedInitialization: boolean;
+  /** Persistiert: Leerlauf startet in Lernzentrale (hub) oder Sektor-Karte (map) */
+  overworldLanding: OverworldLanding;
+  setOverworldLanding: (landing: OverworldLanding) => void;
   /** LF1-Trainingskampf mit reduzierter Boss-Aggression */
   isTutorialCombatRun: boolean;
   /** 0…3 — erwartete Karten: Encrypt → Overclock → Recursion; 3 = alle Schritte erledigt */
@@ -2111,8 +2116,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
   dataTurbulenceStamina: 0,
   handAnomalyCosts: [],
   hasCompletedInitialization: false,
+  overworldLanding: "hub",
   isTutorialCombatRun: false,
   combatTutorialStep: 0,
+
+  setOverworldLanding: (landing) => {
+    try {
+      localStorage.setItem(OVERWORLD_LANDING_KEY, landing);
+    } catch {
+      // no-op
+    }
+    set({ overworldLanding: landing });
+  },
 
   completeInitialization: () => {
     try {
@@ -2655,6 +2670,15 @@ try {
 try {
   if (localStorage.getItem(HAS_COMPLETED_INITIALIZATION_KEY) === "1") {
     useGameStore.setState({ hasCompletedInitialization: true });
+  }
+} catch {
+  // no-op
+}
+
+try {
+  const landingRaw = localStorage.getItem(OVERWORLD_LANDING_KEY);
+  if (landingRaw === "map" || landingRaw === "hub") {
+    useGameStore.setState({ overworldLanding: landingRaw });
   }
 } catch {
   // no-op

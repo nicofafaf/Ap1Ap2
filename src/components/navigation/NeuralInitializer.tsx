@@ -2,12 +2,15 @@ import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../store/useGameStore";
 
 export type NeuralInitializerProps = {
   onBeginTraining: () => void;
   onOpenOverview: () => void;
   onBeginLearningField: (lf: number) => void;
+  /** Wenn gesetzt: schließbare Variante über der Karte (zweiter Besuch) */
+  onReturnToMap?: () => void;
 };
 
 const STAGGER = {
@@ -46,7 +49,9 @@ export function NeuralInitializer({
   onBeginTraining,
   onOpenOverview,
   onBeginLearningField,
+  onReturnToMap,
 }: NeuralInitializerProps) {
+  const { t } = useNexusI18n();
   const ap1Count = LEARNING_FIELDS.filter((item) => item.ap === "AP1").length;
   const ap2Count = LEARNING_FIELDS.length - ap1Count;
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
@@ -77,6 +82,41 @@ export function NeuralInitializer({
           pointerEvents: "none",
         }}
       />
+
+      {onReturnToMap ? (
+        <div
+          style={{
+            position: "fixed",
+            top: "max(16px, env(safe-area-inset-top))",
+            right: "max(16px, env(safe-area-inset-right))",
+            zIndex: 20001,
+            pointerEvents: "auto",
+          }}
+        >
+          <motion.button
+            type="button"
+            onClick={onReturnToMap}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            style={{
+              borderRadius: 999,
+              border: "1px solid rgba(251,247,239,0.35)",
+              background: "rgba(8, 12, 10, 0.72)",
+              color: "rgba(251,247,239,0.96)",
+              letterSpacing: ".06em",
+              fontSize: 20,
+              fontWeight: 700,
+              padding: "14px 20px",
+              cursor: "pointer",
+              backdropFilter: "blur(14px)",
+              WebkitBackdropFilter: "blur(14px)",
+              boxShadow: "0 18px 48px rgba(0,0,0,0.35)",
+            }}
+          >
+            {t("map.backToMap")}
+          </motion.button>
+        </div>
+      ) : null}
 
       <motion.div
         variants={STAGGER}

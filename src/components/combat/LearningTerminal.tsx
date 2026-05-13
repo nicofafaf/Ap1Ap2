@@ -8,6 +8,7 @@ import { InteractiveMissionInput } from "./InteractiveMissionInput";
 import { typography } from "../../theme/typography";
 import { useGameStore } from "../../store/useGameStore";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
+import type { LearningMcOption } from "../../lib/learning/learningExerciseTypes";
 
 export type LearningTerminalProps = {
   currentLF: LearningField;
@@ -89,6 +90,7 @@ export function LearningTerminal({
   const mission = useGameStore((s) => s.mission);
   const archiveWorkbenchSnippet = useGameStore((s) => s.archiveWorkbenchSnippet);
   const [pickedId, setPickedId] = useState<string | null>(null);
+  const selectionDebounceRef = useRef<string | null>(null);
 
   const bundle = useMemo(() => {
     const leitner = useGameStore.getState().learningLeitnerByExerciseId;
@@ -158,6 +160,45 @@ export function LearningTerminal({
     : `${currentLF} · ${semanticLabel}`;
 
   const interactiveMc = Boolean(exercise);
+
+  const handleMcOption = useCallback(
+    (opt: LearningMcOption) => {
+      if (!exercise) return;
+      const selectionKey = `${exercise.id}:${opt.id}`;
+      if (selectionDebounceRef.current === selectionKey) return;
+      selectionDebounceRef.current = selectionKey;
+      window.setTimeout(() => {
+        if (selectionDebounceRef.current === selectionKey) {
+          selectionDebounceRef.current = null;
+        }
+      }, 300);
+
+      setPickedId(opt.id);
+      recordCombatLearningAttempt({
+        lf: answerLf,
+        exerciseId: exercise.id,
+        title: exercise.title,
+        problem: exercise.problem,
+        mcQuestion: exercise.mcQuestion,
+        selectedOptionId: opt.id,
+        wasCorrect: opt.isCorrect,
+      });
+      if (opt.isCorrect && isBeginnerExercise) {
+        markMissionCleared(exercise.id);
+        recordLearningExerciseMastery(answerLf, exercise.id);
+        triggerBossHit(8);
+      }
+    },
+    [
+      answerLf,
+      exercise,
+      isBeginnerExercise,
+      markMissionCleared,
+      recordCombatLearningAttempt,
+      recordLearningExerciseMastery,
+      triggerBossHit,
+    ]
+  );
 
   const streamEase = [0.22, 1, 0.36, 1] as const;
   const dur = reduceMotion ? 0.01 : 0.44;
@@ -580,23 +621,12 @@ export function LearningTerminal({
                           <button
                             key={opt.id}
                             type="button"
-                            onClick={() => {
-                              setPickedId(opt.id);
-                              recordCombatLearningAttempt({
-                                lf: answerLf,
-                                exerciseId: exercise.id,
-                                title: exercise.title,
-                                problem: exercise.problem,
-                                mcQuestion: exercise.mcQuestion,
-                                selectedOptionId: opt.id,
-                                wasCorrect: opt.isCorrect,
-                              });
-                              if (opt.isCorrect && isBeginnerExercise) {
-                                markMissionCleared(exercise.id);
-                                recordLearningExerciseMastery(answerLf, exercise.id);
-                                triggerBossHit(8);
-                              }
+                            onPointerDown={(event) => {
+                              event.preventDefault();
+                              event.stopPropagation();
+                              handleMcOption(opt);
                             }}
+                            onClick={() => handleMcOption(opt)}
                             style={{
                               textAlign: "left",
                               width: "100%",
@@ -759,18 +789,12 @@ export function LearningTerminal({
                           <button
                             key={opt.id}
                             type="button"
-                            onClick={() => {
-                              setPickedId(opt.id);
-                              recordCombatLearningAttempt({
-                                lf: answerLf,
-                                exerciseId: exercise.id,
-                                title: exercise.title,
-                                problem: exercise.problem,
-                                mcQuestion: exercise.mcQuestion,
-                                selectedOptionId: opt.id,
-                                wasCorrect: opt.isCorrect,
-                              });
+                            onPointerDown={(event) => {
+                              event.preventDefault();
+                              event.stopPropagation();
+                              handleMcOption(opt);
                             }}
+                            onClick={() => handleMcOption(opt)}
                             style={{
                               textAlign: "left",
                               width: "100%",

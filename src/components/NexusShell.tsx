@@ -138,6 +138,8 @@ export function NexusShell() {
   const sectorZeroMorphLf = useGameStore((s) => s.sectorZeroMorphLf);
   const gameState = useGameStore((s) => s.gameState);
   const hasCompletedInitialization = useGameStore((s) => s.hasCompletedInitialization);
+  const overworldLanding = useGameStore((s) => s.overworldLanding);
+  const setOverworldLanding = useGameStore((s) => s.setOverworldLanding);
   const beginNeuralTrainingCombat = useGameStore((s) => s.beginNeuralTrainingCombat);
   const completeInitialization = useGameStore((s) => s.completeInitialization);
   const initiateCombat = useGameStore((s) => s.initiateCombat);
@@ -166,20 +168,44 @@ export function NexusShell() {
 
   const handleOpenOverview = useCallback(() => {
     completeInitialization();
+    setOverworldLanding("map");
     resetCombat();
     recomputeMenuSystemMood();
     setDiveBridgeLf(null);
     setMapHoldCombat(false);
     setSurface("overworld");
-  }, [completeInitialization, resetCombat, recomputeMenuSystemMood]);
+  }, [completeInitialization, resetCombat, recomputeMenuSystemMood, setOverworldLanding]);
 
   const handleBeginLearningField = useCallback(
     (lf: number) => {
       completeInitialization();
+      setOverworldLanding("map");
       handleEngage(lf);
     },
-    [completeInitialization, handleEngage]
+    [completeInitialization, handleEngage, setOverworldLanding]
   );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("welcome") !== "1") return;
+
+    params.delete("welcome");
+    const nextSearch = params.toString();
+    const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ""}${window.location.hash}`;
+    window.history.replaceState(null, "", nextUrl);
+    setOverworldLanding("hub");
+  }, [setOverworldLanding]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("map") !== "1") return;
+
+    params.delete("map");
+    const nextSearch = params.toString();
+    const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ""}${window.location.hash}`;
+    window.history.replaceState(null, "", nextUrl);
+    setOverworldLanding("map");
+  }, [setOverworldLanding]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -194,8 +220,9 @@ export function NexusShell() {
     const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ""}${window.location.hash}`;
     window.history.replaceState(null, "", nextUrl);
     completeInitialization();
+    setOverworldLanding("map");
     handleEngage(lf);
-  }, [completeInitialization, handleEngage]);
+  }, [completeInitialization, handleEngage, setOverworldLanding]);
 
   useEffect(() => {
     if (surface !== "combat" || !mapHoldCombat) return;
@@ -243,10 +270,13 @@ export function NexusShell() {
       ? (`LF${Math.max(1, Math.min(12, sectorZeroMorphLf))}` as LearningField)
       : (`LF${Math.max(1, Math.min(12, activeLfNum))}` as LearningField);
 
-  /** Erstkontakt-Sequenz nur im Leerlauf — sobald Trainingskampf startet, dieselbe Shell wie nach Init */
-  const showNeuralIntroOnly = !hasCompletedInitialization && gameState === "IDLE";
+  /** Lernzentrale (Dashboard): Erststart oder bewusst hub — Sektor-Karte nur nach Wahl / Deep-Link */
+  const showNeuralHub =
+    gameState === "IDLE" &&
+    surface === "overworld" &&
+    (!hasCompletedInitialization || overworldLanding === "hub");
 
-  if (showNeuralIntroOnly) {
+  if (showNeuralHub) {
     return (
       <div style={{ width: "100%", height: "100%", minHeight: "100dvh", overflow: "hidden" }}>
         <Suspense fallback={<InitializationFallback />}>
@@ -298,6 +328,7 @@ export function NexusShell() {
                   onEngage={handleEngage}
                   layoutBridgeLf={diveBridgeLf}
                   seamlessEngage
+                  onOpenLearningHub={() => setOverworldLanding("hub")}
                 />
               </div>
             )}

@@ -5,9 +5,22 @@
   "map": {
     "technicalPortfolioTitle": "Technical Portfolio",
     "openDossierAria": "Technical Portfolio öffnen",
-    "tierStable": "STABIL",
-    "tierUnstable": "DRIFT",
-    "tierCritical": "KRITISCH"
+    "tierStable": "Gut",
+    "tierUnstable": "Offen",
+    "tierCritical": "Einstieg",
+    "heroKicker": "LERNKARTE",
+    "heroTitle": "So startest du ohne Rätselraten",
+    "heroStep1": "Wähle unten ein Feld oder tippe auf der Karte",
+    "heroStep2": "Lies die Kurzkarten und wähle dann deine Antwort",
+    "heroStep3": "Richtig weiter — falsch kurz Feedback, dann noch einmal",
+    "heroMapHint": "Karte schieben: ziehen · Zoomen: Mausrad oder zwei Finger",
+    "heroFinalExamHint": "Später: große Prüfung, wenn alle zwölf Felder stabil sind",
+    "openLearningHub": "Ruhe-Übersicht aller Themen",
+    "backToMap": "Zurück zur Karte",
+    "dailyExpand": "Tagesziel & Timer",
+    "dailyCollapse": "Tagesziel ausblenden",
+    "directNavTitle": "Schnellstart",
+    "directNavSubtitle": "Ein Tipp startet dein Lernfeld sofort"
   },
   "lf": {
     "LF1": { "boss": "Lernfeld 1", "discipline": "Planung und Steuerung" },

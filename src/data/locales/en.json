@@ -5,9 +5,22 @@
   "map": {
     "technicalPortfolioTitle": "Technical Portfolio",
     "openDossierAria": "Open technical portfolio",
-    "tierStable": "STABLE",
-    "tierUnstable": "DRIFT",
-    "tierCritical": "CRITICAL"
+    "tierStable": "Solid",
+    "tierUnstable": "Open",
+    "tierCritical": "Start",
+    "heroKicker": "LEARNING MAP",
+    "heroTitle": "Three steps, no guesswork",
+    "heroStep1": "Pick a field below or tap a card on the map",
+    "heroStep2": "Read the short cards, then pick your answer",
+    "heroStep3": "Correct moves you on — wrong gives brief feedback, try again",
+    "heroMapHint": "Pan: drag · Zoom: wheel or pinch",
+    "heroFinalExamHint": "Later: final exam once all twelve fields are stable",
+    "openLearningHub": "Calm overview of all topics",
+    "backToMap": "Back to map",
+    "dailyExpand": "Daily goal & timer",
+    "dailyCollapse": "Hide daily goal",
+    "directNavTitle": "Quick start",
+    "directNavSubtitle": "One tap starts your learning field"
   },
   "lf": {
     "LF1": { "boss": "Archivist of the Void", "discipline": "Planning and control" },

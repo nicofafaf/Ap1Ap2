@@ -58,7 +58,28 @@ export interface NexusRegistryEntry {
 }
 
 const ABS_ASSETS = "/assets";
-const WAIFU_ITEMS_BASE = "/assets/Characters/100_Waifus_Static_128x128/V1.0";
+
+/** Vite `base` — GitLab Pages Root bleibt `/`, Unterpfad-Deploys brauchen Präfix */
+export function publicAssetUrl(absolutePath: string): string {
+  const path = absolutePath.startsWith("/") ? absolutePath : `/${absolutePath}`;
+  const base =
+    typeof import.meta !== "undefined" && import.meta.env && typeof import.meta.env.BASE_URL === "string"
+      ? import.meta.env.BASE_URL
+      : "/";
+  if (base === "/" || base === "") return path;
+  const trimmed = base.endsWith("/") ? base.slice(0, -1) : base;
+  return `${trimmed}${path}`;
+}
+
+/** Dateiname `waifu-{n}.png` unter `public/assets/characters/` */
+export function mentorPortraitSlug(id: number): string {
+  const n = Math.max(1, Math.min(100, Math.floor(id)));
+  return `waifu-${n}`;
+}
+
+function mentorPortraitPngUrl(mentorIndex: number): string {
+  return publicAssetUrl(`/assets/characters/${mentorPortraitSlug(mentorIndex)}.png`);
+}
 
 const makeBossVisual = (lfNumber: number) => {
   const stem = `${ABS_ASSETS}/LF${lfNumber}GIF`;
@@ -274,10 +295,7 @@ export const nexusRegistry: Record<LearningField, NexusRegistryEntry> =
     const lfNumber = index + 1;
     const trackId = pickTrackForLF(lfNumber);
     const phase2TrackId = phase2TrackFromPhase1(trackId);
-    const itemPath =
-      lfNumber <= 11
-        ? `${WAIFU_ITEMS_BASE}/${lfNumber}.png`
-        : comingSoonSvgDataUri;
+    const itemPath = lfNumber <= 11 ? mentorPortraitPngUrl(lfNumber) : comingSoonSvgDataUri;
 
     acc[currentLF] = {
       currentLF,
@@ -327,10 +345,9 @@ export function getBossThumbnailCandidates(lf: LearningField): string[] {
   return [...new Set(out)];
 }
 
-/** Mentor-Avatare (128×128 unter public/assets/Characters/…) */
+/** Mentor-IDs 1…24 → Dateien `waifu-1.png` … unter `public/assets/characters/` */
 export const MENTOR_WAIFU_IDS = Array.from({ length: 24 }, (_, i) => i + 1) as readonly number[];
 
 export function mentorWaifuUrl(id: number): string {
-  const n = Math.max(1, Math.min(100, Math.floor(id)));
-  return `${WAIFU_ITEMS_BASE}/${n}.png`;
+  return mentorPortraitPngUrl(id);
 }

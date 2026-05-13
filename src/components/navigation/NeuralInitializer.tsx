@@ -1,20 +1,19 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
-import {
-  getBossThumbnailCandidates,
-  mentorWaifuUrl,
-  MENTOR_WAIFU_IDS,
-} from "../../data/nexusRegistry";
+import { getBossThumbnailCandidates, mentorWaifuUrl, MENTOR_WAIFU_IDS } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../store/useGameStore";
 import { InitialScan } from "../system/InitialScan";
+import { MentorPortrait } from "../ui/MentorPortrait";
 
 export type NeuralInitializerProps = {
   onBeginTraining?: () => void;
   onOpenOverview: () => void;
+  /** Optional: gleicher Effekt wie onOpenOverview — SectorMap mit Scale-In aus dem Shell-Wrapper */
+  onLaunchNexusMap?: () => void;
   onBeginLearningField: (lf: number) => void;
   /** Wenn gesetzt: schließbare Variante über der Karte (zweiter Besuch) */
   onReturnToMap?: () => void;
@@ -47,7 +46,7 @@ const LEARNING_FIELDS = [
   { lf: 7, ap: "AP2", title: "OOP", focus: "Klassen, Objekte, Interfaces" },
   { lf: 8, ap: "AP2", title: "Datenmodelle", focus: "ERD, Schlüssel, Normalformen" },
   { lf: 9, ap: "AP2", title: "Schnittstellen", focus: "REST, HTTP, Statuscodes" },
-  { lf: 10, ap: "AP2", title: "UX & Barrierefreiheit", focus: "Kontrast, Fokus, Formulare" },
+  { lf: 10, ap: "AP2", title: "Projektmanagement", focus: "Netzplan, Scrum, Kanban, Sprint Backlog" },
   { lf: 11, ap: "AP2", title: "Security", focus: "CIA, Risiko, Maßnahmen" },
   { lf: 12, ap: "AP2", title: "Projekt", focus: "Scrum, Planung, Risiken" },
 ] as const;
@@ -80,28 +79,19 @@ const leadStyle: CSSProperties = {
   color: "var(--nx-learn-muted)",
 };
 
-const eyebrowStyle: CSSProperties = {
-  marginBottom: 18,
-  fontFamily: "var(--nx-font-mono)",
-  fontSize: 20,
-  fontWeight: 650,
-  letterSpacing: ".08em",
-  color: "rgba(22,32,25,0.58)",
-  textTransform: "uppercase",
-};
-
 export function NeuralInitializer({
   onBeginTraining: _onBeginTraining,
   onOpenOverview,
+  onLaunchNexusMap,
   onBeginLearningField,
   onReturnToMap,
 }: NeuralInitializerProps) {
   void _onBeginTraining;
   const { t } = useNexusI18n();
+  const reduceMotion = useReducedMotion();
+  const [profileDockCompact, setProfileDockCompact] = useState(false);
   const [fieldsExpanded, setFieldsExpanded] = useState(false);
   const [codenameDraft, setCodenameDraft] = useState("");
-  const ap1Count = LEARNING_FIELDS.filter((item) => item.ap === "AP1").length;
-  const ap2Count = LEARNING_FIELDS.length - ap1Count;
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const playerAvatar = useGameStore((s) => s.playerAvatar);
   const playerName = useGameStore((s) => s.playerName);
@@ -117,12 +107,22 @@ export function NeuralInitializer({
     return "hub" as const;
   }, [playerAvatar, playerName, initialSkillScanComplete]);
 
+  const goNexusMap = onLaunchNexusMap ?? onOpenOverview;
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 780px), (max-height: 640px)");
+    const fn = () => setProfileDockCompact(mq.matches);
+    fn();
+    mq.addEventListener("change", fn);
+    return () => mq.removeEventListener("change", fn);
+  }, []);
+
   return (
     <div
       style={{
-        position: "fixed",
+        position: "absolute",
         inset: 0,
-        zIndex: 20000,
+        zIndex: 1,
         background:
           "radial-gradient(ellipse 70% 48% at 50% 18%, rgba(214,181,111,0.16), transparent 58%), linear-gradient(160deg, #121a14 0%, #0b100d 52%, #070a08 100%)",
         display: "flex",
@@ -142,6 +142,127 @@ export function NeuralInitializer({
           pointerEvents: "none",
         }}
       />
+      {phase === "hub" && playerAvatar !== null && playerName ? (
+        <div
+          data-nx-profile-dock
+          style={
+            profileDockCompact
+              ? {
+                  position: "fixed",
+                  left: 10,
+                  right: 10,
+                  bottom: "max(88px, calc(env(safe-area-inset-bottom, 0px) + 72px))",
+                  top: "auto",
+                  zIndex: 20002,
+                  maxHeight: "min(36dvh, 340px)",
+                  overflowY: "auto",
+                  overflowX: "hidden",
+                  display: "flex",
+                  justifyContent: "center",
+                  pointerEvents: "none",
+                  paddingBottom: 4,
+                }
+              : {
+                  position: "fixed",
+                  top: "clamp(104px, 11.5dvh, 152px)",
+                  right: "max(12px, env(safe-area-inset-right))",
+                  bottom: "auto",
+                  left: "auto",
+                  zIndex: 20002,
+                  width: "min(360px, calc(100vw - 24px))",
+                  pointerEvents: "none",
+                }
+          }
+        >
+          <div
+            style={{
+              pointerEvents: "auto",
+              width: "100%",
+              display: "flex",
+              flexDirection: profileDockCompact ? "row" : "column",
+              alignItems: profileDockCompact ? "center" : "stretch",
+              gap: profileDockCompact ? 14 : 12,
+              padding: "14px 16px 16px",
+              borderRadius: 24,
+              border: "1px solid rgba(22,32,25,0.12)",
+              background:
+                "linear-gradient(155deg, rgba(255,255,255,0.92) 0%, rgba(248,244,236,0.88) 50%, rgba(255,252,246,0.9) 100%)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 18px 48px rgba(22,32,25,0.12)",
+            }}
+          >
+            <MentorPortrait
+              mentorId={playerAvatar}
+              size={48}
+              radius={24}
+              border="1px solid rgba(22,32,25,0.1)"
+              boxShadow="0 0 18px rgba(214, 181, 111, 0.2)"
+            />
+            <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+              <div
+                style={{
+                  marginBottom: 4,
+                  fontFamily: "var(--nx-font-mono)",
+                  fontSize: 20,
+                  fontWeight: 650,
+                  letterSpacing: ".08em",
+                  color: "rgba(22,32,25,0.45)",
+                  textTransform: "uppercase",
+                }}
+              >
+                {t("hub.eyebrow")}
+              </div>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: 24,
+                  fontWeight: 650,
+                  color: "rgba(22,32,25,0.52)",
+                  fontFamily: "var(--nx-font-mono)",
+                  lineHeight: 1.25,
+                }}
+              >
+                {t("profile.activeMentor")}
+              </p>
+              <p
+                style={{
+                  margin: "6px 0 0",
+                  fontSize: 20,
+                  letterSpacing: ".08em",
+                  color: "rgba(22,32,25,0.48)",
+                  fontFamily: "var(--nx-font-mono)",
+                  fontWeight: 650,
+                }}
+              >
+                {t("profile.callsign")}
+              </p>
+              <p
+                style={{
+                  margin: "4px 0 0",
+                  fontFamily: "var(--nx-font-mono)",
+                  fontSize: 24,
+                  fontWeight: 700,
+                  letterSpacing: ".04em",
+                  color: "var(--nx-learn-ink)",
+                }}
+              >
+                {playerName}
+              </p>
+              <p
+                style={{
+                  margin: "10px 0 0",
+                  fontFamily: "var(--nx-font-mono)",
+                  fontSize: 24,
+                  fontWeight: 650,
+                  lineHeight: 1.35,
+                  color: "rgba(22,32,25,0.62)",
+                }}
+              >
+                {t("hub.statsOneLine")}
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null}
       {onReturnToMap ? (
         <div
           style={{
@@ -256,19 +377,7 @@ export function NeuralInitializer({
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
                     }}
                   >
-                    <img
-                      src={mentorWaifuUrl(id)}
-                      alt=""
-                      width={120}
-                      height={120}
-                      style={{
-                        display: "block",
-                        width: "100%",
-                        height: "auto",
-                        borderRadius: 16,
-                        objectFit: "cover",
-                      }}
-                    />
+                    <MentorPortrait mentorId={id} size={120} radius={16} border="1px solid rgba(251,247,239,0.1)" />
                   </motion.button>
                 ))}
               </div>
@@ -375,7 +484,7 @@ export function NeuralInitializer({
               transition={{ duration: 0.28 }}
             >
               <InitialScan
-                mentorAvatarSrc={mentorWaifuUrl(playerAvatar)}
+                mentorAvatarId={playerAvatar}
                 onComplete={(m) => submitInitialSkillScan(m)}
                 title={t("scan.title")}
                 subtitle={t("scan.subtitle")}
@@ -399,85 +508,29 @@ export function NeuralInitializer({
                 border: "1px solid rgba(251,247,239,0.18)",
                 background: "rgba(251,247,239,0.96)",
                 color: "var(--nx-learn-ink)",
-                padding: "clamp(30px, 4.6vw, 64px)",
+                padding: profileDockCompact
+                  ? "clamp(28px, 4vw, 48px) clamp(30px, 4.6vw, 64px) clamp(120px, 28dvh, 200px)"
+                  : "clamp(72px, 14dvh, 120px) clamp(30px, 4.6vw, 64px) clamp(30px, 4.6vw, 64px)",
                 boxShadow: "0 34px 100px rgba(0,0,0,0.28)",
                 pointerEvents: "auto",
               }}
             >
-              <div style={{ display: "flex", gap: 20, alignItems: "center", marginBottom: 18 }}>
-                <img
-                  src={mentorWaifuUrl(playerAvatar)}
-                  alt=""
-                  width={72}
-                  height={72}
-                  style={{
-                    borderRadius: 20,
-                    border: "1px solid rgba(22,32,25,0.12)",
-                    objectFit: "cover",
-                  }}
-                />
-                <div>
-                  <div style={eyebrowStyle}>{t("hub.eyebrow")}</div>
-                  <p style={{ margin: "6px 0 0", fontSize: 20, color: "var(--nx-learn-muted)" }}>
-                    {t("profile.activeMentor")}
-                  </p>
-                  <p
-                    style={{
-                      margin: "6px 0 0",
-                      fontFamily: "var(--nx-font-mono)",
-                      fontSize: 20,
-                      fontWeight: 650,
-                      letterSpacing: ".06em",
-                      color: "var(--nx-learn-muted)",
-                    }}
-                  >
-                    {t("profile.callsign")}
-                  </p>
-                  <p
-                    style={{
-                      margin: "4px 0 0",
-                      fontFamily: "var(--nx-font-mono)",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      letterSpacing: ".04em",
-                      color: "var(--nx-learn-ink)",
-                    }}
-                  >
-                    {playerName}
-                  </p>
-                </div>
-              </div>
-              <div style={heroGridStyle}>
+              <div style={{ ...heroGridStyle, gridTemplateColumns: "1fr", maxWidth: 920 }}>
                 <motion.section variants={CARD}>
                   <h1 style={{ ...hubHeadlineStyle, fontSize: 48 }}>{t("hub.headline")}</h1>
                   <p style={{ ...leadStyle, fontSize: 24 }}>{t("hub.lead")}</p>
                   <div style={actionRowStyle}>
-                    <button type="button" onClick={onOpenOverview} style={ctaStyle}>
-                      {t("hub.ctaMap")}
-                    </button>
+                    <motion.button
+                      type="button"
+                      onClick={goNexusMap}
+                      whileHover={{ scale: reduceMotion ? 1 : 1.02 }}
+                      whileTap={{ scale: reduceMotion ? 1 : 0.98 }}
+                      style={ctaStyle}
+                    >
+                      {t("hub.launchNexusMap")}
+                    </motion.button>
                   </div>
                 </motion.section>
-
-                {fieldsExpanded ? (
-                  <motion.aside variants={CARD} style={statsPanelStyle} aria-label="Lernstatus Übersicht">
-                    <div style={statStyle}>
-                      <strong>{LEARNING_FIELDS.length}</strong>
-                      <span>Lernfelder</span>
-                    </div>
-                    <div style={statStyle}>
-                      <strong>{ap1Count}</strong>
-                      <span>AP1 Fokus</span>
-                    </div>
-                    <div style={statStyle}>
-                      <strong>{ap2Count}</strong>
-                      <span>AP2 Fokus</span>
-                    </div>
-                  </motion.aside>
-                ) : (
-                  <motion.aside variants={CARD} style={statsOneLineAsideStyle} aria-hidden>
-                    <p style={statsOneLineTextStyle}>{t("hub.statsOneLine")}</p>
-                  </motion.aside>
-                )}
               </div>
 
               {fieldsExpanded ? (
@@ -582,36 +635,6 @@ const ctaStyle: CSSProperties = {
   touchAction: "manipulation",
 };
 
-const statsPanelStyle: CSSProperties = {
-  display: "grid",
-  gap: 18,
-  padding: 22,
-  borderRadius: 32,
-  background: "rgba(22,32,25,0.06)",
-  border: "1px solid var(--nx-learn-line)",
-};
-
-const statsOneLineAsideStyle: CSSProperties = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: "20px 22px",
-  borderRadius: 32,
-  background: "rgba(22,32,25,0.05)",
-  border: "1px solid var(--nx-learn-line)",
-  alignSelf: "stretch",
-};
-
-const statsOneLineTextStyle: CSSProperties = {
-  margin: 0,
-  fontFamily: "var(--nx-font-mono)",
-  fontSize: "clamp(18px, 2vw, 22px)",
-  fontWeight: 650,
-  letterSpacing: ".04em",
-  color: "var(--nx-learn-muted)",
-  textAlign: "center",
-};
-
 const showListBtnStyle: CSSProperties = {
   marginTop: 36,
   width: "100%",
@@ -645,20 +668,6 @@ const collapseListBtnStyle: CSSProperties = {
   cursor: "pointer",
   pointerEvents: "auto",
   touchAction: "manipulation",
-};
-
-const statStyle: CSSProperties = {
-  display: "flex",
-  alignItems: "baseline",
-  justifyContent: "space-between",
-  gap: 18,
-  padding: "18px 20px",
-  borderRadius: 24,
-  background: "rgba(255,255,255,0.46)",
-  color: "var(--nx-learn-muted)",
-  fontFamily: "var(--nx-font-mono)",
-  fontSize: 22,
-  lineHeight: 1.2,
 };
 
 const fieldGridStyle: CSSProperties = {

@@ -4,61 +4,188 @@
   "title": "Wirtschaft und Recht",
   "beginnerPath": [
     {
-      "id": "lf1-start",
-      "topic": "Wirtschaftliche Entscheidungen",
+      "id": "lf1-mission-kuat",
+      "topic": "Corporate Espionage · Kuat",
       "level": "beginner",
-      "title": "Betrieb, Bedarf und Vertrag verstehen",
+      "title": "Mission Kuat · Eigentumsstruktur im Schatten der Werften",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Ein Betrieb kauft ein, verkauft etwas und muss dabei rechnen und Verträge beachten"
+          "title": "Einsatzlage",
+          "body": "Wir infiltrieren die Kuat Triebwerkswerke Ziel ist die Eigentums und Kapitalstruktur ohne Alarm zu analysieren"
         },
         {
-          "title": "Merksatz",
-          "body": "Bedarf sagt, was gebraucht wird. Vertrag sagt, was beide Seiten leisten müssen"
+          "title": "Merksatz Rechtsform",
+          "body": "Eine Kommanditgesellschaft KG verbindet Komplementär oft unbeschränkt mit Kommanditisten begrenzt Eine Aktiengesellschaft AG teilt das Kapital in Aktien und eignet sich für große Kapitalgesellschaften"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Du musst noch keine Formeln können. Erkenne zuerst Einkauf, Verkauf und Pflicht"
+          "title": "Spurensuche",
+          "body": "Prüfe ob das Kapital in Aktien zerlegt ist und ob ein Börsenhandel zur typischen Ausprägung passt"
         }
       ],
       "example": {
-        "label": "Mini-Beispiel",
-        "body": "Ein Kunde bestellt Ware. Der Verkäufer liefert, der Kunde bezahlt"
+        "label": "Geheimbriefing",
+        "body": "Geheimdaten empfangen die Konkurrenz nutzt eine komplexe Unternehmensstruktur wir müssen die Haftungsbeschränkung und die Kapitalform sauber zuordnen"
       },
       "practice": {
         "type": "mc",
-        "question": "Was gehört zu einem einfachen Kaufvertrag",
+        "coachLine": "Geheimdaten empfangen die Konkurrenz nutzt eine komplexe Unternehmensstruktur wir müssen die Haftungsbeschränkung knacken",
+        "question": "Kuat Triebwerkswerke Kapital in Aktien große Öffentlichkeit welche Rechtsform liegt hier typischerweise vor",
         "options": [
-          { "text": "Ware liefern und Geld bezahlen", "correct": true },
-          { "text": "Nur ein Werbeplakat ansehen", "correct": false, "hint": "Werbung allein ist noch kein erfüllter Vertrag" },
-          { "text": "Den Computer einschalten", "correct": false, "hint": "Das ist Technik, nicht Wirtschaft und Recht" },
-          { "text": "Eine IP-Adresse vergeben", "correct": false, "hint": "IP-Adressen gehören zu Netzwerken" }
+          { "text": "Aktiengesellschaft weil Kapital in Aktien und Börsenhandel typisch sind", "correct": true },
+          { "text": "Kommanditgesellschaft weil zwei Namen auf dem Schild stehen", "correct": false, "hint": "KG hat Komplementär und Kommanditisten nicht zwingend Aktien an der Börse" },
+          { "text": "GmbH weil jede große Werft automatisch GmbH heißen muss", "correct": false, "hint": "GmbH hat Gesellschafter und Geschäftsanteile nicht Aktien als Standard" },
+          { "text": "Offene Handelsgesellschaft weil viele Lieferanten sichtbar sind", "correct": false, "hint": "OHG haftet Gesellschafter unbeschränkt das passt selten zu Mega Konzernen" }
+        ]
+      }
+    },
+    {
+      "id": "lf1-mission-shinra",
+      "topic": "Corporate Espionage · Shinra",
+      "level": "beginner",
+      "title": "Mission Midgar · Sozialversicherung im Reaktor Schatten",
+      "lessonCards": [
+        {
+          "title": "Einsatzlage",
+          "body": "Die Shinra Electric Power Company hat Lücken in der Mitarbeiter Absicherung wir analysieren den Unfall im Reaktor Sektor 7 unter deutschen Sozialrecht Ideen"
+        },
+        {
+          "title": "Merksatz Sozialversicherung",
+          "body": "Die gesetzliche Unfallversicherung schützt bei Arbeitsunfällen und Wegen der Berufskrankheit Träger sind die Berufsgenossenschaften Kranken und Rente sind andere Zweige"
+        },
+        {
+          "title": "Fokus",
+          "body": "Wir suchen den Zweig der bei anerkannten Arbeitsunfällen im Betrieb einspringt nicht die Krankenbehandlung an sich"
+        }
+      ],
+      "example": {
+        "label": "Geheimbriefing",
+        "body": "Agentenstatus stabil Shinra dokumentiert Unfälle verschleiert wir brauchen den korrekten Versicherungszweig für die Akte"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "Signal aus Sektor 7 wir brauchen den Sozialversicherungszweig der Arbeitsunfälle trägt sonst blockiert die Zentrale unsere Spur",
+        "question": "Arbeitsunfall im Betrieb anerkannt welcher Zweig der Sozialversicherung ist hier in Deutschland typischerweise zuständig",
+        "options": [
+          { "text": "Gesetzliche Unfallversicherung über die Berufsgenossenschaft", "correct": true },
+          { "text": "Krankenversicherung weil jeder Arztbesuch gleich Unfall ist", "correct": false, "hint": "Krankenversicherung finanziert medizinische Versorgung nicht den Unfallversicherungs Zweig" },
+          { "text": "Rentenversicherung weil ein Unfall sofort Rente auslöst", "correct": false, "hint": "Rente ist ein anderer Zweig und folgt später über eigene Wege" },
+          { "text": "Arbeitslosenversicherung weil der Reaktor ein Jobrisiko ist", "correct": false, "hint": "ALV schützt bei Arbeitslosigkeit nicht bei Unfall im laufenden Job" }
+        ]
+      }
+    },
+    {
+      "id": "lf1-mission-ironforge",
+      "topic": "Corporate Espionage · Ironforge Gym",
+      "level": "beginner",
+      "title": "Mission Ironforge · Rechtsfähigkeit und Haftung der Kette",
+      "lessonCards": [
+        {
+          "title": "Einsatzlage",
+          "body": "Eine neue Fitness Kette drängt auf den Markt wir prüfen Rechtsfähigkeit des Gründers und Haftungsrisiken der gewählten Rechtsform GmbH"
+        },
+        {
+          "title": "Merksatz GmbH",
+          "body": "Die GmbH ist rechtsfähig und kann selbst tragen Haftung für Geschäftsschulden liegt in der Regel nur beim Gesellschaftsvermögen Gesellschafter haften nicht automatisch privat mit allem Vermögen"
+        },
+        {
+          "title": "Person und Firma",
+          "body": "Natürliche Personen sind rechtsfähig die GmbH ist eine eigene juristische Person mit eigenem Vermögensstock"
+        }
+      ],
+      "example": {
+        "label": "Geheimbriefing",
+        "body": "Der Gründer wirbt mit persönlicher Marke die Verträge laufen über die GmbH wir trennen Privat und Gesellschaft"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "Neue Kette am Markt wir prüfen ob die Haftung an der Theke hängt oder an der juristischen Person klebt",
+        "question": "Fitness Kette als GmbH welches Haftungsbild trifft im Regelfall für Geschäftsschulden der GmbH zu",
+        "options": [
+          { "text": "Gläubiger können sich in der Regel nur an das Gesellschaftsvermögen der GmbH halten", "correct": true },
+          { "text": "Jeder Trainer haftet unbeschränkt mit dem Privatvermögen für jeden Vertrag", "correct": false, "hint": "Privathaftung aller Trainer ist nicht der Standard der GmbH Haftung" },
+          { "text": "Die GmbH hat keine Rechtsfähigkeit bis der erste Kunde zahlt", "correct": false, "hint": "Die GmbH ist mit Eintragung rechtsfähig nicht erst nach erstem Umsatz" },
+          { "text": "Nur der Geschäftsführer haftet immer privat für jeden Lieferanten", "correct": false, "hint": "Geschäftsführer haftet nicht pauschal privat für normale GmbH Schulden aus Geschäftsbetrieb" }
         ]
       }
     }
   ],
+  "bossPhase": {
+    "id": "lf1-boss",
+    "title": "Boss Finale · Obsidian Akte",
+    "problemLead": "Schadensersatzforderung gegen die GmbH und gegen den geschäftsführenden Gesellschafter persönlich gleiche Summe gleiche Sache Vertrag nur mit GmbH Briefkopf und GmbH Bankkonto die Gegenseite will die Rechtsfähigkeit verwischen",
+    "epicCoach": {
+      "starwars": "Die Allianz steht vor einem juristischen Embargo wir müssen die juristische Person sauber schützen sonst klemmt der Frachtvertrag im Hyperraum",
+      "anime": "Shinra droht mit einer Milliardenklage wir müssen Haftung und Sozialversicherungsfäden gleichzeitig zerschneiden sonst bricht die Akte",
+      "gym": "Die gesamte Kette hängt an einem Formfehler in der Rechtsform wir retten nur wenn die Verteidigungslinie exakt zwischen Person und GmbH sitzt"
+    },
+    "practice": {
+      "type": "mc",
+      "question": "Welche erste strategische Einordnung ist für die Abwehr der Schadensersatzforderung gegenüber dem Geschäftsführer persönlich am treffendsten wenn nur die GmbH Vertragspartnerin war",
+      "options": [
+        {
+          "text": "Die GmbH haftet mit ihrem Gesellschaftsvermögen eine automatische unbeschränkte persönliche Haftung des Geschäftsführers aus normalem Geschäftsbetrieb folgt daraus nicht",
+          "correct": true
+        },
+        {
+          "text": "Wer unterschreibt haftet immer wie ein Einzelkaufmann unbeschränkt mit dem Privatkonto unabhängig vom Briefkopf",
+          "correct": false,
+          "hint": "Unterschrift allein macht nicht jeden Posten zur unbeschränkten Privathaftung wenn die GmbH Vertragspartnerin bleibt"
+        },
+        {
+          "text": "Die Gläubigerin darf frei wählen ob sie die GmbH oder den Geschäftsführer vollstreckt gleichberechtigt ohne weiteres Prüfen",
+          "correct": false,
+          "hint": "Zuständigkeit und Adressat hängen am Vertrag und der Rolle nicht an freier Wahl der Gegenseite"
+        },
+        {
+          "text": "Schadensersatz aus Arbeitsverhältnis lässt sich vollständig über die Krankenversicherung abwehren",
+          "correct": false,
+          "hint": "Krankenversicherung ist ein anderer Zweig und ersetzt keine pauschale Schadensersatzlogik der GmbH Haftung"
+        }
+      ]
+    }
+  },
   "reference": [
     {
       "id": "lf1-kern",
       "chapter": "Grundlagen",
       "type": "note",
       "title": "Kern Konzept",
-      "body": "Betrieb Bedarf Beschaffung Verkauf bilden den Wertstrom Wirtschaftliche Entscheidungen folgen Recht und Vertrag"
+      "body": "GmbH und KG sind typische Formen im WiSo Alltag Rechtsfähigkeit trennt Person und Firma Sozialversicherung hat Zweige wie Unfall Kranken und Rente"
     },
     {
-      "id": "lf1-code",
-      "chapter": "Grundlagen",
-      "type": "sql",
-      "title": "Code Beispiel",
-      "code": "SELECT Artikel Nummer Menge Preis FROM Einkauf WHERE Menge > 10"
+      "id": "lf1-corp-line",
+      "chapter": "Corporate Espionage",
+      "type": "note",
+      "title": "Agenten Modus",
+      "body": "Jede Mission endet mit einer strategischen Multiple Choice Entscheidung Coach Lines bleiben knapp und ohne Satzzeichen am Ende"
+    },
+    {
+      "id": "lf1-sw-note",
+      "chapter": "Multiversum · Star Wars",
+      "type": "note",
+      "title": "Kuat Spur",
+      "body": "Große Börsen und Aktienstruktur weisen oft auf AG hin KG ist Partnerschaft mit Kommanditisten und Komplementär"
+    },
+    {
+      "id": "lf1-anime-note",
+      "chapter": "Multiversum · Anime",
+      "type": "note",
+      "title": "Shinra Spur",
+      "body": "Arbeitsunfall Pfad führt zur gesetzlichen Unfallversicherung Berufsgenossenschaften tragen nicht die Krankenversicherung für den Unfallzweig"
+    },
+    {
+      "id": "lf1-gym-note",
+      "chapter": "Multiversum · Gym",
+      "type": "note",
+      "title": "Ironforge Spur",
+      "body": "GmbH schützt in der Regel das Privatvermögen der Gesellschafter Gläubiger richten sich gegen Gesellschaftsvermögen"
     },
     {
       "id": "lf1-check",
       "chapter": "Prüfung",
       "type": "note",
       "title": "Prüfungs Check",
-      "body": "Nenne Kaufvertrag Pflichten rechne Rabatt und Skonto korrekt erkläre Eigentum und Besitz klar"
+      "body": "Nenne GmbH und KG klar ordne Unfallversicherung zu erkläre Rechtsfähigkeit der GmbH in einem Satz ohne Punkt am Ende"
     }
   ]
 }

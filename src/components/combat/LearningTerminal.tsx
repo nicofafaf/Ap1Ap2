@@ -6,6 +6,7 @@ import { getFinalExamLearningBundle, getTerminalLearningBundle } from "../../lib
 import { highlightCode } from "../../lib/learning/codeHighlight";
 import { TerminalCodeWorkbench } from "../../lib/learning/terminalCodeWorkbench";
 import { InteractiveMissionInput } from "./InteractiveMissionInput";
+import { NetplanVisualizer, resolveLf10Netplan } from "./NetplanVisualizer";
 import { typography } from "../../theme/typography";
 import { useGameStore } from "../../store/useGameStore";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
@@ -242,6 +243,10 @@ export function LearningTerminal({
 
   const interactiveMc = Boolean(exercise);
   const bossUi = useMemo(() => resolveTerminalBossMode(answerLf, exercise?.id), [answerLf, exercise?.id]);
+  const lf10NetplanSpec = useMemo(
+    () => (answerLf === "LF10" && exercise?.id ? resolveLf10Netplan(exercise.id, semantic) : null),
+    [answerLf, exercise?.id, semantic],
+  );
   const isBossMode = learningFocus && bossUi.isBoss;
   const bossEpicLine = useMemo(() => {
     if (!isBossMode) return null;
@@ -688,6 +693,20 @@ export function LearningTerminal({
                           </p>
                         </article>
                       ))}
+                    </div>
+                  ) : null}
+                  {learningFocus && lf10NetplanSpec ? (
+                    <div
+                      style={{
+                        marginTop: "var(--nx-space-20)",
+                        width: "100%",
+                        maxWidth: 760,
+                      }}
+                    >
+                      <NetplanVisualizer
+                        scenario={lf10NetplanSpec.scenario}
+                        multiverse={lf10NetplanSpec.multiverse}
+                      />
                     </div>
                   ) : null}
                   {learningFocus && exercise.example ? (

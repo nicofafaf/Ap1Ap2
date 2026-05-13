@@ -21,7 +21,7 @@ export const RAHMENLEHRPLAN_MASTERY: Record<LearningField, RahmenlehrplanMastery
   LF7: { lf: "LF7", title: "Objektorientierung", masteryCheck: "Klassen Methoden und Typen sauber modellieren" },
   LF8: { lf: "LF8", title: "Datenmodell", masteryCheck: "Normalformen und Schlüsselkonzepte sicher anwenden" },
   LF9: { lf: "LF9", title: "Dienste und Protokolle", masteryCheck: "Netzdienste und Ports korrekt differenzieren" },
-  LF10: { lf: "LF10", title: "UI und Barrierefreiheit", masteryCheck: "WCAG Kriterien im Interface umsetzen" },
+  LF10: { lf: "LF10", title: "Projektmanagement und agile Steuerung", masteryCheck: "Netzplan Scrum Rollen und Sprint Backlog sicher anwenden" },
   LF11: { lf: "LF11", title: "Informationssicherheit", masteryCheck: "CIA Backup MFA und Risikoanalyse beherrschen" },
   LF12: { lf: "LF12", title: "Agile Projektarbeit", masteryCheck: "Scrum Rollen Events und DoD sicher anwenden" },
 };

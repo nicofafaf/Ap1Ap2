@@ -1099,177 +1099,181 @@ export const LF9_DIENSTE_PROTOKOLLE: LearningExercise[] = [
   },
 ];
 
-/** LF10 — UI, Barrierefreiheit, UX */
-export const LF10_UI_BARREFREI: LearningExercise[] = [
+/** LF10 — Projektmanagement und agile Steuerung (Scrum · Kanban · Netzplan) */
+export const LF10_PROJEKT_AGIL: LearningExercise[] = [
   {
-    id: "ux-wcag-levels",
-    title: "WCAG — Konformitätsstufen",
-    problem: "Welche Stufe ist in öffentlichem Sektor Deutschland oft die relevante Planungsgröße (BITV 2.0 / EU-weit ähnlich)?",
-    solutionCode: `### WCAG 2.x — Stufen\n\n- **A** — Basisforderungen\n- **AA** — gängige Zielmarke (u.a. Kontrast Normaltext)\n- **AAA** — maximale Anforderungen (nicht immer vollständig erreichbar)\n\n| Stufe | typische Nutzung        |\n|-------|-------------------------|\n| AA    | Referenz vieler Gesetze |`,
+    id: "pm-scrum-rollen-po",
+    title: "Scrum Rollen — Product Owner",
+    problem: "Wer ist im Scrum-Framework für die Maximierung des Produktwerts und die Priorisierung des Product Backlogs verantwortlich",
+    solutionCode: `### Scrum Rollen (Auszug)\n\n- **Product Owner** — Product Backlog, Priorität, Wert\n- **Scrum Master** — Prozess, Hindernisse\n- **Developers** — Lieferung des Increments`,
     lang: "markdown",
-    mcQuestion: "Welche Stufe wird in der Praxis häufig als verbindliches Ziel genannt?",
+    mcQuestion: "Wem gehört die inhaltliche Priorisierung des Product Backlogs",
     mcOptions: [
-      { id: "a", text: "AA", isCorrect: true },
+      { id: "a", text: "Product Owner", isCorrect: true },
       {
         id: "b",
-        text: "Nur A reicht immer",
+        text: "Scrum Master",
         isCorrect: false,
         whyWrongHint:
-          "A ist Minimum — viele Anforderungen (Kontrast) sitzen in AA",
+          "Scrum Master schützt den Prozess und entfernt Blockaden nicht die Backlog-Priorisierung",
       },
       {
         id: "c",
-        text: "AAA ist Pflicht für alle Privatblogs",
+        text: "Nur das Entwicklungsteam ohne Abstimmung",
         isCorrect: false,
         whyWrongHint:
-          "AAA ist streng und kontextabhängig — nicht pauschal Pflicht",
+          "Das Team zieht Arbeit aus dem Backlog die Reihenfolge des Inhalts steuert der Product Owner",
       },
       {
         id: "d",
-        text: "WCAG gilt nur für native Apps, nicht Web",
+        text: "Externe Stakeholder immer direkt ohne PO",
         isCorrect: false,
         whyWrongHint:
-          "WCAG adressiert Webtechnologien — Apps haben verwandte Standards",
+          "Anforderungen laufen über den Product Owner als Single Point of Truth für Priorisierung",
       },
     ],
   },
   {
-    id: "ux-contrast",
-    title: "Kontrast — Normaltext",
-    problem: "Ungefähres Mindestkontrastverhältnis für normalen Text nach WCAG 2.1 AA?",
-    solutionCode: `### Kontrast (AA, Auszug)\n\n- Normaltext: **4,5 : 1**\n- Großer Text: **3 : 1**\n\n| Inhalt    | AA-Kontrast |\n|-----------|-------------|\n| Body-Text | 4,5 : 1     |`,
+    id: "pm-sprint-backlog-inhalt",
+    title: "Sprint Backlog — Plan des Teams",
+    problem: "Was beschreibt das Sprint Backlog im Scrum am treffendsten",
+    solutionCode: `### Sprint Backlog\n\n- **Auszug** aus dem Product Backlog plus **Plan**\n- Nur für den **aktuellen Sprint**\n- Lebt und wird vom **Dev Team** angepasst`,
     lang: "markdown",
-    mcQuestion: "Welches Verhältnis ist die AA-Vorgabe für normalen Text?",
-    mcOptions: [
-      { id: "a", text: "4,5 : 1", isCorrect: true },
-      {
-        id: "b",
-        text: "2 : 1",
-        isCorrect: false,
-        whyWrongHint:
-          "2:1 reicht nicht für Normaltext-AA — zu niedrig für Lesbarkeit",
-      },
-      {
-        id: "c",
-        text: "10 : 1 Minimum immer",
-        isCorrect: false,
-        whyWrongHint:
-          "10:1 ist nicht generelles AA-Minimum — 4,5:1 ist die Regelgröße",
-      },
-      {
-        id: "d",
-        text: "Kontrast ist nur Empfehlung ohne Messung",
-        isCorrect: false,
-        whyWrongHint:
-          "WCAG definiert messbare Kontrastverhältnisse — Tools prüfen relativ luminance",
-      },
-    ],
-  },
-  {
-    id: "ux-focus",
-    title: "Tastatur — Fokus sichtbar",
-    problem: "Warum dürfen Fokusrahmen bei Tastaturbedienung nicht „designbedingt“ komplett entfernt werden?",
-    solutionCode: `### WCAG 2.4.7 Focus Visible (AA)\n\n- Nutzer:innen müssen **sehen**, wo sie sind\n- outline:none ohne sichtbaren Ersatz = Barriere\n\nTipp: sichtbaren Fokus-Stil definieren, der zum Theme passt`,
-    lang: "markdown",
-    mcQuestion: "Kernproblem bei unsichtbarem Fokus?",
+    mcQuestion: "Welche Aussage trifft auf das Sprint Backlog zu",
     mcOptions: [
       {
         id: "a",
-        text: "Tastatur-Nutzer:innen verlieren Orientierung — AA-Forderung verletzt",
+        text: "Es ist der Plan des Teams für den Sprint inklusive ausgewählter Product-Backlog-Items und Umsetzungsschritten",
         isCorrect: true,
       },
       {
         id: "b",
-        text: "Mausnutzer sind alle farbenblind",
+        text: "Es ist die vollständige Produkt-Roadmap für alle Jahre",
         isCorrect: false,
         whyWrongHint:
-          "Fokus betrifft Eingabemodalität — nicht alle Mausnutzer sind farbenblind",
+          "Die Roadmap bleibt im Product Backlog der Sprint-Fokus ist kurzfristig",
       },
       {
         id: "c",
-        text: "Fokus ist nur SEO",
+        text: "Es ersetzt das Product Backlog vollständig",
         isCorrect: false,
         whyWrongHint:
-          "SEO und Barrierefreiheit sind verschiedene Ziele — hier Usability/A11y",
+          "Sprint Backlog ist eine Teilmenge und Plandetail nicht der gesamte Produktumfang",
       },
       {
         id: "d",
-        text: "Browser erzwingen Fokus automatisch, CSS kann nichts ändern",
+        text: "Es darf nur vom Scrum Master geändert werden",
         isCorrect: false,
         whyWrongHint:
-          "CSS kann Outline stark beeinflussen — Verantwortung bei Entwicklung",
+          "Das Entwicklungsteam besitzt typischerweise das Sprint Backlog während des Sprints",
       },
     ],
   },
   {
-    id: "ux-color-alone",
-    title: "Farbe allein",
-    problem: "Fehlerzustände nur rot einfärben ohne Text/Ikon — Bewertung?",
-    solutionCode: `### WCAG 1.4.1 Use of Color\n\n- Information nicht **nur durch Farbe** vermitteln\n- Zusatz: Text, Muster, Icon, Position\n\nSchlecht: nur roter Rand\nBesser: „Fehler: E-Mail ungültig“ + Icon`,
+    id: "pm-definition-of-done",
+    title: "Definition of Done — Qualitätstor",
+    problem: "Wozu dient die Definition of Done im Scrum",
+    solutionCode: `### Definition of Done\n\n- **Gemeinsames** Qualitätskriterium für ein fertiges Backlog-Item\n- Transparent wann etwas **inkrementfähig** ist\n- Reduziert technische Schuld durch klare Standards`,
     lang: "markdown",
-    mcQuestion: "Warum ist reines Rot ohne Zusatz kritisch?",
+    mcQuestion: "Welche Beschreibung passt zur DoD",
     mcOptions: [
       {
         id: "a",
-        text: "Farbenblinde und Graustufen-Nutzer erkennen die Information nicht zuverlässig",
+        text: "Sie ist ein gemeinsames Qualitätskriterium wann Arbeit als fertig für das Inkrement gilt",
         isCorrect: true,
       },
       {
         id: "b",
-        text: "Rot ist in Deutschland verboten",
+        text: "Sie ersetzt alle Akzeptanzkriterien einzelner Stories vollständig",
         isCorrect: false,
         whyWrongHint:
-          "Es geht um Wahrnehmbarkeit — nicht um Verbotsfarbe",
+          "Akzeptanzkriterien beschreiben fachlich die Story DoD beschreibt Fertigung und Qualität auf Team-Ebene",
       },
       {
         id: "c",
-        text: "Nur Kontrast zählt, nicht Farbinformation",
+        text: "Sie gilt nur für das Marketing-Team",
         isCorrect: false,
         whyWrongHint:
-          "Beides zählt — hier zusätzlich „nicht nur Farbe“",
+          "DoD bindet typischerweise das gesamte Scrum-Team am Inkrement",
       },
       {
         id: "d",
-        text: "Screenreader lesen Farben automatisch vor",
+        text: "Sie verbietet Retrospektiven",
         isCorrect: false,
         whyWrongHint:
-          "Farbe wird nicht zuverlässig semantisch vorgelesen ohne Text",
+          "Retrospektiven sind eigenes Event DoD regelt Fertigungsqualität nicht Verbesserungszyklen",
       },
     ],
   },
   {
-    id: "ux-nielsen",
-    title: "Usability — Erwartungskonformität",
-    problem: "Welche Nielsen-Heuristik wird verletzt, wenn ein „X“ oben rechts nicht schließt, sondern löscht?",
-    solutionCode: `### Heuristik: Match real world / Konsistenz\n\n- Nutzer:innen erwarten **Konventionen** (X schließt)\n- Überraschung = Fehlerquote\n\n| Muster | Erwartung |\n|--------|-----------|\n| X      | Schließen |`,
+    id: "pm-daily-scrum-zweck",
+    title: "Daily Scrum — Inspektion",
+    problem: "Was ist der Kernzweck des Daily Scrum",
+    solutionCode: `### Daily Scrum\n\n- **15 Minuten** Timebox empfohlen\n- **Inspektion** des Fortschritts zum Sprint Goal\n- **Adaptation** des Sprint-Backlog-Plans`,
     lang: "markdown",
-    mcQuestion: "Welches UX-Prinzip ist primär verletzt?",
+    mcQuestion: "Wofür ist das Daily Scrum primär da",
     mcOptions: [
       {
         id: "a",
-        text: "Konsistenz und Übereinstimmung mit realen Konventionen / Erwartungskonformität",
+        text: "Fortschritt zum Sprint Goal prüfen und den Plan für den Rest des Sprints anpassen",
         isCorrect: true,
       },
       {
         id: "b",
-        text: "Ästhetik und minimalistisches Design",
+        text: "Detailliertes Status-Reporting an die Geschäftsführung",
         isCorrect: false,
         whyWrongHint:
-          "Minimalismus ist andere Heuristik — hier Bruch der erlernten Bedeutung von X",
+          "Daily ist für das Team zur Synchronisation nicht als klassisches Management-Reporting gedacht",
       },
       {
         id: "c",
-        text: "Flexibility — mehr Wege zum Ziel",
+        text: "Komplette Architekturplanung für das ganze Produkt",
         isCorrect: false,
         whyWrongHint:
-          "Es geht nicht um alternative Pfade, sondern um falsche Metapher",
+          "Architektur kann thematisiert werden Fokus bleibt Sprint und Impediments auf Team-Ebene",
       },
       {
         id: "d",
-        text: "Lokalisierung — nur Englischproblem",
+        text: "Ersatz für Sprint Planning",
         isCorrect: false,
         whyWrongHint:
-          "X ist kulturweit „close“ konnotiert — nicht Sprachproblem allein",
+          "Sprint Planning plant den Sprint Daily synchronisiert innerhalb des Sprints",
+      },
+    ],
+  },
+  {
+    id: "pm-kanban-pull-prinzip",
+    title: "Kanban — Pull statt Push",
+    problem: "Welches Prinzip beschreibt typisches Kanban beim Start neuer Arbeit am treffendsten",
+    solutionCode: `### Kanban Pull\n\n- Arbeit wird **gezogen** wenn Kapazität frei ist\n- **WIP-Limits** begrenzen gleichzeitige Arbeit\n- Fluss steht im Mittelpunkt`,
+    lang: "markdown",
+    mcQuestion: "Was ist das Pull-Prinzip im Kanban-Sinne",
+    mcOptions: [
+      {
+        id: "a",
+        text: "Neue Arbeit startet wenn Downstream-Kapazität signalisiert dass Platz da ist",
+        isCorrect: true,
+      },
+      {
+        id: "b",
+        text: "So viele Tickets wie möglich gleichzeitig in Arbeit schieben",
+        isCorrect: false,
+        whyWrongHint:
+          "Das ist Push ohne Limit Kanban begrenzt WIP und steuert Fluss",
+      },
+      {
+        id: "c",
+        text: "Pull gilt nur in Fabriken nicht für Softwareteams",
+        isCorrect: false,
+        whyWrongHint:
+          "Kanban wird breit in Wissensarbeit genutzt Pull bleibt dasselbe Prinzip",
+      },
+      {
+        id: "d",
+        text: "Pull bedeutet dass nur der Product Owner Code schreibt",
+        isCorrect: false,
+        whyWrongHint:
+          "Pull bezieht sich auf Arbeitsfluss und Kapazität nicht auf eine Rolle beim Codieren",
       },
     ],
   },

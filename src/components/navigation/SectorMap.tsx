@@ -321,6 +321,7 @@ export function SectorMap({
   const [heroGuideOpen, setHeroGuideOpen] = useState(false);
   const [extrasMenuOpen, setExtrasMenuOpen] = useState(false);
   const [quickStartOpen, setQuickStartOpen] = useState(false);
+  const [coachDockCompact, setCoachDockCompact] = useState(false);
 
   const epilogueActive = useMemo(
     () => readEpilogueUnlocked() || Boolean(nexusMasterCertificateSealed),
@@ -334,6 +335,14 @@ export function SectorMap({
       setCodexOpen(false);
     }
   }, [codexCloseToken]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 780px), (max-height: 640px)");
+    const fn = () => setCoachDockCompact(mq.matches);
+    fn();
+    mq.addEventListener("change", fn);
+    return () => mq.removeEventListener("change", fn);
+  }, []);
 
   /** Erstes Mal auf der Karte: Menü offen, damit geführte Tour das Codex-Ziel findet */
   useEffect(() => {
@@ -1372,17 +1381,6 @@ export function SectorMap({
           <div
             style={{
               position: "absolute",
-              right: 14,
-              bottom: 196,
-              zIndex: 9,
-              maxWidth: 420,
-            }}
-          >
-            <SkillRadar epilogueActive={epilogueActive} />
-          </div>
-          <div
-            style={{
-              position: "absolute",
               inset: 0,
               transformStyle: "preserve-3d",
             }}
@@ -1542,6 +1540,52 @@ export function SectorMap({
           </div>
         </div>
       </motion.div>
+
+      <div
+        data-nx-coach-dock
+        style={
+          coachDockCompact
+            ? {
+                position: "fixed",
+                left: 10,
+                right: 10,
+                bottom: "max(88px, calc(env(safe-area-inset-bottom, 0px) + 72px))",
+                top: "auto",
+                zIndex: 28,
+                maxHeight: "min(36dvh, 340px)",
+                overflowY: "auto",
+                overflowX: "hidden",
+                display: "flex",
+                justifyContent: "center",
+                paddingBottom: 4,
+                pointerEvents: "none",
+              }
+            : {
+                position: "fixed",
+                top: "clamp(104px, 11.5dvh, 152px)",
+                right: "max(12px, env(safe-area-inset-right))",
+                bottom: "auto",
+                left: "auto",
+                zIndex: 28,
+                width: "min(392px, calc(100vw - 20px))",
+                maxHeight: "min(50dvh, 432px)",
+                overflowY: "auto",
+                overflowX: "hidden",
+                pointerEvents: "none",
+              }
+        }
+      >
+        <div
+          style={{
+            pointerEvents: "auto",
+            width: "100%",
+            display: "flex",
+            justifyContent: coachDockCompact ? "center" : "flex-end",
+          }}
+        >
+          <SkillRadar epilogueActive={epilogueActive} />
+        </div>
+      </div>
     </div>
   );
 }

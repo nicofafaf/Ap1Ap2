@@ -113,16 +113,18 @@ const MENTOR_BY_ID: Record<string, string> = {
   "srv-client-server":
     "Client-Server trennt Rollen: Server bietet Dienst, Client konsumiert. Peer-to-peer ist symmetrischer. In Prüfungen geht es um Verantwortungsteilung und Skalierung. Frag: wo läuft die Geschäftslogik typischerweise zentral",
 
-  "ux-wcag-levels":
-    "WCAG kennt Konformitätsstufen A, AA, AAA — AA ist der gängige Zielkorridor für Behörden und viele Firmen. Nicht jede AAA-Anforderung ist für jedes Produktisch verpflichtend. Die MC will oft „was ist der übliche Zielstandard“",
-  "ux-contrast":
-    "Kontrastverhältnis Text/Hintergrund sichert Lesbarkeit — Rechner und Richtlinien geben Zahlen wie 4,5:1 für normalen Text. Farbblindheit macht „nur Farbe“ riskant. Kombiniere Farbe mit Form oder Text. Teste mit echten Farbwerten, nicht Bauchgefühl",
-  "ux-focus":
-    "Fokuszustände machen Bedienung per Tastatur sichtbar — versteckte Outlines sind ein Barrierefreiheitsproblem. Sichtbarer Fokus ist Pflicht, nicht Dekoration. Denk an Nutzer ohne Maus: ohne Focus-Ring navigieren sie blind",
-  "ux-color-alone":
-    "Information ausschließlich über Farbe zu kodieren schließt viele Nutzer aus — ergänze Symbole, Text oder Muster. Rot/Grün allein ist klassisch riskant. Die Richtlinie ist: nie nur Farbe als einziges Signal",
-  "ux-nielsen":
-    "Nielsens Heuristiken sind Faustregeln für Usability — Fehlervermeidung, Konsistenz, Hilfe und Dokumentation u. a. Sie ersetzen kein User Testing, strukturieren aber Reviews. Ordne eine konkrete UI-Sünde der passenden Heuristik zu",
+  "pm-scrum-rollen-po":
+    "Product Owner maximiert Wert und priorisiert das Product Backlog — Scrum Master moderiert Prozess, Team liefert. Verwechsel nicht: wer entscheidet über Reihenfolge und Scope auf Product-Ebene",
+  "pm-sprint-backlog-inhalt":
+    "Sprint Backlog ist der Sprint-Schnitt plus konkreter Umsetzungsplan des Teams — nicht die ganze Roadmap. Es lebt im Sprint und wird vom Team gepflegt. Die MC testet oft den Unterschied zwischen Product Backlog und Sprint Backlog",
+  "pm-definition-of-done":
+    "Definition of Done ist die gemeinsame Qualitätsleiste — erst wenn DoD erfüllt ist, gilt Arbeit als fertig fürs Inkrement. Akzeptanzkriterien beschreiben die Story, DoD beschreibt Team-Standard. Ohne DoD driftet fertig zwischen Köpfen",
+  "pm-daily-scrum-zweck":
+    "Daily synchronisiert das Team kurz — Inspektion aufs Sprint Goal, dann Anpassung des Plans. Kein Management-Statusmarathon. Zu lange Dailies deuten auf falsche Themen oder fehlende Vorbereitung",
+  "pm-kanban-pull-prinzip":
+    "Kanban zieht Arbeit wenn Kapazität frei wird — WIP-Limits machen Engpässe sichtbar. Push ohne Limit erzeugt Halbfertiges. Die MC will oft den Unterschied zwischen Pull-Fluss und blindem Mehr-parallel",
+  "lf10-boss":
+    "Puffer schützt vor Verschiebung des Enddatums solange Verzug auf dem Nebenpfad kleiner bleibt als der freie Spielraum bis zum Merge. Kritischer Pfad entscheidet über den Endtermin — Nebenpfad-Verzug frisst zuerst Reserve",
 
   "sec-cia":
     "CIA trias: Vertraulichkeit, Integrität, Verfügbarkeit — jede Maßnahme lässt sich dort einordnen. Verschlüsselung schützt Vertraulichkeit, Checksummen Integrität, Redundanz Verfügbarkeit. Wenn eine Option „alles auf einmal“ verspricht, ist Skepsis gesund",

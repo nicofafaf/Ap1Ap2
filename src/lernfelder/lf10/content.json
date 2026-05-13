@@ -1,64 +1,206 @@
 {
   "lf": "LF10",
   "ap": "AP2",
-  "title": "Benutzeroberflächen und Barrierefreiheit",
+  "title": "Projektmanagement und agile Steuerung",
   "beginnerPath": [
     {
-      "id": "lf10-start",
-      "topic": "Gute Bedienung",
+      "id": "lf10-mission-destroyer",
+      "topic": "Multiversum · Star Wars",
       "level": "beginner",
-      "title": "Oberflächen müssen verständlich sein",
+      "title": "Mission Sternzerstörer · Kritischer Pfad bis Launch",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Eine gute Oberfläche zeigt klar, was man tun kann und was gerade passiert"
+          "title": "Einsatzlage",
+          "body": "Die Reparatur des Sternzerstörers verzögert sich wir müssen den kritischen Pfad im Netzplan finden um den Launch Termin zu halten"
         },
         {
-          "title": "Merksatz",
-          "body": "Lesbar, bedienbar, verständlich. Das hilft allen Nutzern"
+          "title": "Netzplan Logik",
+          "body": "Parallel laufende Arbeiten enden wenn die langsamste Spur fertig ist Danach startet die nächste Kette Der kritische Pfad ist die längste Pfadkette ohne Puffer"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Prüfe zuerst Schriftgröße, Kontrast, Beschriftung und Tastaturfokus"
+          "title": "Ohne Taschenrechner",
+          "body": "Zähle nur die längste Vorlaufzeit plus die Nachfolge alles im Kopf mit kleinen Zahlen"
         }
       ],
       "example": {
-        "label": "Mini-Beispiel",
-        "body": "Ein Formularfeld braucht ein klares Label wie E-Mail-Adresse"
+        "label": "Mini Netz",
+        "body": "Triebwerk Test vier Tage und Panzerung fünf Tage parallel Waffenkalibrierung drei Tage startet erst wenn beide Vorläufe fertig sind"
       },
       "practice": {
         "type": "mc",
-        "question": "Was macht ein Formular sofort verständlicher",
+        "coachLine": "wir verlieren wertvolle zeit im zeitplan der kritische pfad ist blockiert wir müssen die ressourcen sofort umverteilen",
+        "question": "Von Start bis Ende der Waffenkalibrierung wie viele Tage mindestens wenn Triebwerk vier Tage und Panzerung fünf Tage parallel laufen und Waffen drei Tage erst danach starten",
         "options": [
-          { "text": "Ein klares Label am Eingabefeld", "correct": true },
-          { "text": "Sehr kleine Schrift", "correct": false, "hint": "Kleine Schrift macht Lernen und Bedienung schwerer" },
-          { "text": "Versteckte Fehlermeldungen", "correct": false, "hint": "Feedback muss sichtbar und verständlich sein" },
-          { "text": "Kein Fokusrahmen", "correct": false, "hint": "Tastaturbedienung braucht sichtbaren Fokus" }
+          { "text": "8 Tage weil fünf plus drei die längste Kette bilden", "correct": true },
+          { "text": "12 Tage weil vier plus fünf plus drei alles hintereinander gerechnet", "correct": false, "hint": "Parallel heißt nicht alles addieren nur die langsamste Spur bis zum Start der Waffen" },
+          { "text": "7 Tage weil vier plus drei reichen", "correct": false, "hint": "Panzerung blockiert länger als das Triebwerk vor dem Waffenschritt" },
+          { "text": "11 Tage weil fünf plus vier plus zwei Puffer", "correct": false, "hint": "Keinen Puffer erfinden die Zahlen stehen fest" }
+        ]
+      }
+    },
+    {
+      "id": "lf10-mission-mecha",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Mission Mecha Studio · Kanban und WIP",
+      "lessonCards": [
+        {
+          "title": "Einsatzlage",
+          "body": "Die Produktion der neuen Mecha Serie stockt wir setzen Kanban mit klaren Work in Progress Grenzen ein"
+        },
+        {
+          "title": "Kanban Kern",
+          "body": "WIP begrenzt wie viele Tickets gleichzeitig in Arbeit sind Scrum nutzt Sprints und feste Ziele Kanban fließt stärker über Limit und Pull"
+        },
+        {
+          "title": "Ziel",
+          "body": "Wir wollen Engpässe sichtbar machen statt alles halbfertig zu stapeln"
+        }
+      ],
+      "example": {
+        "label": "Board Regel",
+        "body": "Spalte In Arbeit maximal drei Episoden gleichzeitig neue ziehen erst wenn eine Spalte Done erreicht"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das board quillt über wir ziehen den wip deckel zu sonst bleibt jede episode bei halbglanz hängen",
+        "question": "Welche Aussage trifft den Kern einer strengen WIP Grenze im Kanban am treffendsten",
+        "options": [
+          {
+            "text": "Weniger parallele halbfertige Teile machen Flaschenhälse sichtbar und stabilisieren den Durchlauf",
+            "correct": true
+          },
+          {
+            "text": "Mehr parallele Tickets erzeugen automatisch höhere Qualität ohne Review",
+            "correct": false,
+            "hint": "Mehr Parallelität ohne Limit versteckt oft Blockaden hinter Scheinfortschritt"
+          },
+          {
+            "text": "Kanban verbietet jede Priorisierung weil nur FIFO zählt",
+            "correct": false,
+            "hint": "Priorisierung bleibt möglich Pull und Limit steuern Fluss nicht die Priorität aus"
+          },
+          {
+            "text": "Scrum und Kanban sind identisch weil beide Post its nutzen",
+            "correct": false,
+            "hint": "Scrum Sprint und Rollen Kanban WIP und kontinuierlicher Fluss sind unterschiedlich gelagert"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lf10-mission-flagship",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "Mission Flagship Studio · frühester Endzeitpunkt",
+      "lessonCards": [
+        {
+          "title": "Einsatzlage",
+          "body": "Die Eröffnung des neuen Flagship Studios muss koordiniert werden wir suchen den frühestmöglichen Endzeitpunkt im Projektplan"
+        },
+        {
+          "title": "Netzplan Merge",
+          "body": "Wenn zwei Stränge parallel laufen und beide einen gemeinsamen Nachfolger brauchen zählt die längere Spur bis zum Merge plus die Dauer danach"
+        },
+        {
+          "title": "Ohne Taschenrechner",
+          "body": "Vergleiche zwei kleine Dauern nimm das Maximum addiere einen kurzen Nachlauf"
+        }
+      ],
+      "example": {
+        "label": "Mini Netz",
+        "body": "Abnahme A zwei Tage und Abnahme B fünf Tage parallel danach gemeinsame Abnahme C vier Tage"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "eröffnung steht die countdown uhr tickt wir brauchen den frühesten endpunkt sonst verpasst die presse den ersten satz",
+        "question": "Frühester Endzeitpunkt in Tagen vom Start wenn A zwei Tage und B fünf Tage parallel laufen und C vier Tage erst nach beiden startet",
+        "options": [
+          { "text": "9 Tage weil fünf plus vier die längste Kette bilden", "correct": true },
+          { "text": "6 Tage weil zwei plus vier reichen", "correct": false, "hint": "B dauert länger als A vor dem gemeinsamen Schritt C" },
+          { "text": "11 Tage weil zwei plus fünf plus vier alles addiert", "correct": false, "hint": "A und B laufen parallel nicht hintereinander" },
+          { "text": "4 Tage weil nur C zählt", "correct": false, "hint": "C kann nicht starten bevor die längere parallele Spur fertig ist" }
         ]
       }
     }
   ],
+  "bossPhase": {
+    "id": "lf10-boss",
+    "title": "Boss Finale · Puffer auf dem Nebenpfad",
+    "problemLead": "Der kritische Pfad endet in zwölf Tagen ein paralleler Nebenpfad mündet in denselben Meilenstein und hatte fünf Tage Puffer bevor er den Endtermin gefährden würde jetzt melden die Teams zwei Tage Verzug ausschließlich auf dem Nebenpfad",
+    "epicCoach": {
+      "starwars": "Zweiter Todesstern Materialengpass wir müssen ohne Taschenrechner entscheiden ob wir den Bau trotzdem terminieren oder ob der Sequenzpfad noch Luft hat bevor das Imperium die Lieferkette kippt",
+      "anime": "Mecha Finale droht den Sendetermin zu reißen wir müssen prüfen ob der Puffer die Story rettet oder ob die Postproduktion wackelt",
+      "gym": "Globale Franchise Expansion steht vor dem Logistik Kollaps wir müssen sehen ob Verzug auf der Nebenroute den Launch noch schlägt oder ob das Netz hält"
+    },
+    "practice": {
+      "type": "mc",
+      "question": "Zwei Tage Verzug nur auf dem Nebenpfad bei fünf Tagen Puffer bis zum gemeinsamen Meilenstein verschiebt sich das Projektende",
+      "options": [
+        {
+          "text": "Nein der Endtermin bleibt voraussichtlich gleich weil zwei kleiner ist als fünf",
+          "correct": true
+        },
+        {
+          "text": "Ja das Ende rutscht immer um zwei Tage nach hinten egal welcher Pfad stockt",
+          "correct": false,
+          "hint": "Nur wenn der Puffer nicht reicht oder der kritische Pfad länger wird verschiebt sich der Endtermin typischerweise"
+        },
+        {
+          "text": "Ja um genau fünf Tage weil der Puffer komplett verbrannt ist",
+          "correct": false,
+          "hint": "Fünf war der Puffer die Verzögerung ist nur zwei Tage also bleibt noch reserve"
+        },
+        {
+          "text": "Nein weil Nebenpfade im Netzplan nie echte Arbeit tragen",
+          "correct": false,
+          "hint": "Nebenpfade tragen Arbeit haben aber freie Reserve bis sie den gleichen Meilenstein treffen"
+        }
+      ]
+    }
+  },
   "reference": [
     {
       "id": "lf10-kern",
-      "chapter": "UX Basis",
+      "chapter": "Projektmanagement",
       "type": "note",
       "title": "Kern Konzept",
-      "body": "Kontrast Fokus Reihenfolge und klare Labels senken Fehler Tastaturbedienung bleibt für alle Pflicht"
+      "body": "Kritischer Pfad ist die längste Pfadkette Kanban begrenzt WIP Scrum strukturiert Iterationen Netzplan zeigt Parallelität und Nachfolger klar"
     },
     {
-      "id": "lf10-code",
-      "chapter": "UX Basis",
-      "type": "csharp",
-      "title": "Code Beispiel",
-      "code": "var label = \"E Mail\";\nvar required = true;\nvar aria = required ? \"required\" : \"optional\";"
+      "id": "lf10-netz",
+      "chapter": "Netzplan",
+      "type": "note",
+      "title": "Pfad ohne Rechner",
+      "body": "Parallel max wählen dann Nachlauf addieren kleine Zahlen reichen für Prüfungsnahe Logik"
+    },
+    {
+      "id": "lf10-sw-ref",
+      "chapter": "Multiversum · Star Wars",
+      "type": "note",
+      "title": "Launch Disziplin",
+      "body": "Wenn zwei Werften parallel arbeiten bestimmt die langsamste den Start der nächsten großen Integration"
+    },
+    {
+      "id": "lf10-anime-ref",
+      "chapter": "Multiversum · Anime",
+      "type": "note",
+      "title": "Kanban Disziplin",
+      "body": "WIP Limit zwingt zum Abschluss bevor neue Arbeit reingezogen wird sonst bleibt jede Episode in halbem Render hängen"
+    },
+    {
+      "id": "lf10-gym-ref",
+      "chapter": "Multiversum · Gym",
+      "type": "note",
+      "title": "Eröffnung Disziplin",
+      "body": "Flagship Termine hängen am Merge wenn Elektrik und Boden parallel laufen zählt die längere Spur vor der gemeinsamen Abnahme"
     },
     {
       "id": "lf10-check",
       "chapter": "Prüfung",
       "type": "note",
       "title": "Prüfungs Check",
-      "body": "Prüfe WCAG Kontrast beachte Fokus sichtbar strukturiere Formulare mit klarer Rückmeldung"
+      "body": "Erkläre kritischen Pfad nenne einen Kanban WIP Nutzen und ordne einen Sprint in Scrum ein alles ohne Punkt am Ende der mündlichen Antwort"
     }
   ]
 }

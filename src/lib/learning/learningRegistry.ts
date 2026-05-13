@@ -10,7 +10,7 @@ import {
   type LeitnerCardState,
 } from "./leitnerEngine";
 import {
-  LF10_UI_BARREFREI,
+  LF10_PROJEKT_AGIL,
   LF11_INFO_SICHERHEIT,
   LF12_AGILE_PM,
   LF1_WIRTSCHAFT,
@@ -700,14 +700,19 @@ function withBeginnerPath(lf: LearningField, advanced: LearningExercise[]): Lear
 
 const LF2_MC_BOSS = buildOptionalBossMcExercise(lf02Content as BeginnerContentShape);
 const LF3_MC_BOSS = buildOptionalBossMcExercise(lf03Content as BeginnerContentShape);
+const LF1_BOSS = buildOptionalBossMcExercise(lf01Content as BeginnerContentShape);
+const LF10_BOSS = buildOptionalBossMcExercise(lf10Content as BeginnerContentShape);
 
-/** LF11 Finale · C# Logic-Repair aus lf11/content.json bossPhase */
+/** LF1 Finale · WiSo Corporate Espionage MC aus lf01/content.json bossPhase */
+export { LF1_BOSS };
+/** LF10 Finale · PM Netzplan Puffer MC aus lf10/content.json bossPhase */
+export { LF10_BOSS };
 export const LF11_BOSS = buildOptionalBossCodeExercise(lf11Content as BeginnerContentShape);
 
 /** LF8 Finale · Bash System-Rettung aus lf08/content.json bossPhase */
 export const LF8_BOSS = buildOptionalBossCodeExercise(lf08Content as BeginnerContentShape);
 
-/** Terminal: Obsidian-Rot-Puls und Boss-Epic — LF5 SQL-Boss, LF8 Bash-Boss, LF11 C#-Boss, optionale JSON-MC-Bosse (z. B. LF3) */
+/** Terminal: Obsidian-Rot-Puls und Boss-Epic — LF1/LF5/LF10 MC-Boss, LF8 Bash-Boss, LF11 C#-Boss, optionale JSON-MC-Bosse (LF2/LF3) */
 export function resolveTerminalBossMode(
   lf: LearningField,
   exerciseId: string | undefined
@@ -1089,7 +1094,9 @@ function stablePick<T>(arr: T[], seed: number, salt: number): T {
 
 /** Vollständiges Curriculum je Lernfeld (mind. 5 Aufgaben pro LF) */
 export const CURRICULUM_BY_LF: Record<LearningField, LearningExercise[]> = {
-  LF1: withBeginnerPath("LF1", LF1_WIRTSCHAFT),
+  LF1: LF1_BOSS
+    ? [...withBeginnerPath("LF1", LF1_WIRTSCHAFT), LF1_BOSS]
+    : withBeginnerPath("LF1", LF1_WIRTSCHAFT),
   LF2: LF2_MC_BOSS
     ? [...withBeginnerPath("LF2", LF2_IT_GRUNDLAGEN), LF2_MC_BOSS]
     : withBeginnerPath("LF2", LF2_IT_GRUNDLAGEN),
@@ -1104,7 +1111,9 @@ export const CURRICULUM_BY_LF: Record<LearningField, LearningExercise[]> = {
     ? [...withBeginnerPath("LF8", LF8_DATENMODELL), LF8_BOSS]
     : withBeginnerPath("LF8", LF8_DATENMODELL),
   LF9: withBeginnerPath("LF9", LF9_DIENSTE_PROTOKOLLE),
-  LF10: withBeginnerPath("LF10", LF10_UI_BARREFREI),
+  LF10: LF10_BOSS
+    ? [...withBeginnerPath("LF10", LF10_PROJEKT_AGIL), LF10_BOSS]
+    : withBeginnerPath("LF10", LF10_PROJEKT_AGIL),
   LF11: LF11_BOSS
     ? [...withBeginnerPath("LF11", LF11_INFO_SICHERHEIT), LF11_BOSS]
     : withBeginnerPath("LF11", LF11_INFO_SICHERHEIT),

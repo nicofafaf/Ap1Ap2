@@ -72,6 +72,7 @@
     "lead": "Karte für Überblick — oder hier direkt ein Thema wählen",
     "statsOneLine": "12 Lernfelder · 6× AP1 · 6× AP2",
     "ctaMap": "Zur Lernfelder-Karte",
+    "launchNexusMap": "Nexus-Karte starten",
     "ctaDemo": "Geführtes Beispiel",
     "showList": "Alle 12 Themen als Liste",
     "hideList": "Liste einklappen"
@@ -86,7 +87,7 @@
     "LF7": { "boss": "Lernfeld 7", "discipline": "Überwachung und Steuerung" },
     "LF8": { "boss": "Lernfeld 8", "discipline": "Daten und Geschäftsprozesse" },
     "LF9": { "boss": "Lernfeld 9", "discipline": "Netzwerke und IT-Sicherheit" },
-    "LF10": { "boss": "Lernfeld 10", "discipline": "Schutzbedarfsanalyse" },
+    "LF10": { "boss": "Lernfeld 10", "discipline": "Projektmanagement und agile Steuerung" },
     "LF11": { "boss": "Lernfeld 11", "discipline": "Informationssicherheit" },
     "LF12": { "boss": "Lernfeld 12", "discipline": "Projektmanagement" }
   },

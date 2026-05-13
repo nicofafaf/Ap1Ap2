@@ -2,9 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useMemo, useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
 import { INITIAL_SKILL_SCAN_QUESTIONS } from "../../lib/learning/initialSkillScanQuestions";
+import { MentorPortrait } from "../ui/MentorPortrait";
 
 export type InitialScanProps = {
-  mentorAvatarSrc: string;
+  mentorAvatarId: number;
   onComplete: (byLf: Partial<Record<LearningField, boolean>>) => void;
   title: string;
   subtitle: string;
@@ -13,7 +14,7 @@ export type InitialScanProps = {
 };
 
 export function InitialScan({
-  mentorAvatarSrc,
+  mentorAvatarId,
   onComplete,
   title,
   subtitle,
@@ -107,17 +108,12 @@ export function InitialScan({
             gap: 16,
           }}
         >
-            <img
-              src={mentorAvatarSrc}
-              alt=""
-              width={160}
-              height={160}
-              style={{
-                borderRadius: 24,
-                border: "2px solid rgba(212, 175, 55, 0.45)",
-                objectFit: "cover",
-                boxShadow: "0 0 32px rgba(214, 181, 111, 0.22)",
-              }}
+            <MentorPortrait
+              mentorId={mentorAvatarId}
+              size={160}
+              radius={24}
+              border="2px solid rgba(212, 175, 55, 0.45)"
+              boxShadow="0 0 32px rgba(214, 181, 111, 0.22)"
             />
             <p
               id="initial-scan-title"

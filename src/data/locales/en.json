@@ -72,6 +72,7 @@
     "lead": "Use the map for overview — or pick a topic right here",
     "statsOneLine": "12 fields · 6× AP1 · 6× AP2",
     "ctaMap": "Open field map",
+    "launchNexusMap": "Launch Nexus map",
     "ctaDemo": "Guided example",
     "showList": "Show all 12 topics as a list",
     "hideList": "Collapse list"
@@ -86,7 +87,7 @@
     "LF7": { "boss": "Lightcatcher Spider", "discipline": "Monitoring and operations" },
     "LF8": { "boss": "Neon Requiem", "discipline": "Data and business processes" },
     "LF9": { "boss": "Clockwork Inquisitor", "discipline": "Networks and security" },
-    "LF10": { "boss": "Obsidian Swarm", "discipline": "Protection requirements" },
+    "LF10": { "boss": "Obsidian Swarm", "discipline": "Project management and agile control" },
     "LF11": { "boss": "Gravity Siren", "discipline": "Information security" },
     "LF12": { "boss": "The Final Key", "discipline": "Project management" }
   },

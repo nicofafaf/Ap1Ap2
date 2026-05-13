@@ -1,8 +1,9 @@
 import { lazy, Suspense, useCallback, useEffect, useState, type ReactNode } from "react";
-import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
+import { LayoutGroup, AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   NX_PANEL_ENTRANCE_ANIMATE,
   NX_PANEL_ENTRANCE_INITIAL,
+  NX_UI_EASE_OUT,
   NX_UI_INSTANT,
   NX_UI_SPRING,
   nxHudPulseTransition,
@@ -291,77 +292,119 @@ export function NexusShell() {
     surface === "overworld" &&
     (!hasCompletedInitialization || overworldLanding === "hub");
 
-  if (showNeuralHub) {
-    return (
-      <div style={{ width: "100%", height: "100%", minHeight: "100dvh", overflow: "hidden" }}>
-        <Suspense fallback={<InitializationFallback />}>
-          <NeuralInitializerLazy
-            onBeginTraining={handleBeginTraining}
-            onOpenOverview={handleOpenOverview}
-            onBeginLearningField={handleBeginLearningField}
-          />
-        </Suspense>
-      </div>
-    );
-  }
-
   return (
-    <div style={{ width: "100%", height: "100%", minHeight: "100dvh", overflow: "hidden" }}>
-      <LayoutGroup id="nexus-dive-bridge">
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            minHeight: "100dvh",
-            overflow: "hidden",
-          }}
-        >
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        minHeight: "100dvh",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      <AnimatePresence mode="wait">
+        {showNeuralHub ? (
           <motion.div
-            key={surface}
-            initial={NX_PANEL_ENTRANCE_INITIAL}
-            animate={NX_PANEL_ENTRANCE_ANIMATE}
-            transition={reduceMotionShell ? NX_UI_INSTANT : NX_UI_SPRING}
+            key="nexus-shell-hub"
             style={{
-              position: "absolute",
+              position: "fixed",
               inset: 0,
-              transformOrigin: "50% 50%",
+              zIndex: 20000,
+              width: "100%",
+              height: "100%",
+              minHeight: "100dvh",
             }}
+            initial={reduceMotionShell ? false : { opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={reduceMotionShell ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+            transition={
+              reduceMotionShell
+                ? NX_UI_INSTANT
+                : { duration: 0.34, ease: NX_UI_EASE_OUT }
+            }
           >
-            {(surface === "overworld" || mapHoldCombat) && (
+            <Suspense fallback={<InitializationFallback />}>
+              <NeuralInitializerLazy
+                onBeginTraining={handleBeginTraining}
+                onOpenOverview={handleOpenOverview}
+                onLaunchNexusMap={handleOpenOverview}
+                onBeginLearningField={handleBeginLearningField}
+              />
+            </Suspense>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="nexus-shell-overworld"
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              minHeight: "100dvh",
+              overflow: "hidden",
+            }}
+            initial={reduceMotionShell ? false : { opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={reduceMotionShell ? NX_UI_INSTANT : { type: "spring", stiffness: 320, damping: 28, mass: 0.88 }}
+          >
+            <LayoutGroup id="nexus-dive-bridge">
               <div
                 style={{
-                  position: "absolute",
-                  inset: 0,
-                  zIndex: surface === "overworld" ? 1 : 0,
-                  opacity: surface === "overworld" ? 1 : 0,
-                  pointerEvents: surface === "overworld" ? "auto" : "none",
-                  transition: "opacity 0.38s ease",
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                  minHeight: "100dvh",
+                  overflow: "hidden",
                 }}
               >
-                <SectorMap
-                  onEngage={handleEngage}
-                  layoutBridgeLf={diveBridgeLf}
-                  seamlessEngage
-                  onOpenLearningHub={() => setOverworldLanding("hub")}
-                />
+                <motion.div
+                  key={surface}
+                  initial={NX_PANEL_ENTRANCE_INITIAL}
+                  animate={NX_PANEL_ENTRANCE_ANIMATE}
+                  transition={reduceMotionShell ? NX_UI_INSTANT : NX_UI_SPRING}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    transformOrigin: "50% 50%",
+                  }}
+                >
+                  {(surface === "overworld" || mapHoldCombat) && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        zIndex: surface === "overworld" ? 1 : 0,
+                        opacity: surface === "overworld" ? 1 : 0,
+                        pointerEvents: surface === "overworld" ? "auto" : "none",
+                        transition: "opacity 0.38s ease",
+                      }}
+                    >
+                      <SectorMap
+                        onEngage={handleEngage}
+                        layoutBridgeLf={diveBridgeLf}
+                        seamlessEngage
+                        onOpenLearningHub={() => setOverworldLanding("hub")}
+                      />
+                    </div>
+                  )}
+                  {surface === "combat" && (
+                    <div style={{ position: "absolute", inset: 0, zIndex: 2 }}>
+                      <Suspense fallback={<CombatSurfaceFallback label={t("shell.loading")} />}>
+                        <CombatManagerLazy
+                          key="nexus-combat-session"
+                          currentLF={lfKey}
+                          diveLayoutBridgeLf={diveBridgeLf}
+                          onLootScreenReady={handleExitCombat}
+                        />
+                      </Suspense>
+                    </div>
+                  )}
+                </motion.div>
               </div>
-            )}
-            {surface === "combat" && (
-              <div style={{ position: "absolute", inset: 0, zIndex: 2 }}>
-                <Suspense fallback={<CombatSurfaceFallback label={t("shell.loading")} />}>
-                  <CombatManagerLazy
-                    key="nexus-combat-session"
-                    currentLF={lfKey}
-                    diveLayoutBridgeLf={diveBridgeLf}
-                    onLootScreenReady={handleExitCombat}
-                  />
-                </Suspense>
-              </div>
-            )}
+            </LayoutGroup>
           </motion.div>
-        </div>
-      </LayoutGroup>
+        )}
+      </AnimatePresence>
       <MaintenanceOverlay />
     </div>
   );

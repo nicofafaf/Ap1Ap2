@@ -106,12 +106,12 @@ export const INITIAL_SKILL_SCAN_QUESTIONS = [
   },
   {
     lf: "LF10",
-    question: "Was verbessert hoher Kontrast in UIs vor allem",
+    question: "Was gehört typischerweise in das Sprint Backlog im Scrum",
     options: [
-      { id: "a", text: "Lesbarkeit und Wahrnehmbarkeit für viele Nutzer:innen", isCorrect: true },
-      { id: "b", text: "Die Taktrate der CPU", isCorrect: false },
-      { id: "c", text: "Die Kabellänge im Rack", isCorrect: false },
-      { id: "d", text: "Automatisches Sharding", isCorrect: false },
+      { id: "a", text: "Ausgewählte Product-Backlog-Items plus Plan des Teams für den Sprint", isCorrect: true },
+      { id: "b", text: "Die komplette Marketing-Website ohne Priorisierung", isCorrect: false },
+      { id: "c", text: "Nur die Liste aller Bugs aus dem letzten Jahr", isCorrect: false },
+      { id: "d", text: "Ausschließlich Architekturdiagramme ohne Backlog-Bezug", isCorrect: false },
     ],
   },
   {

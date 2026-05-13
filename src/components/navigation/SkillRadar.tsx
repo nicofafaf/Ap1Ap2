@@ -1,10 +1,10 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useId, useMemo } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
-import { mentorWaifuUrl } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../store/useGameStore";
+import { MentorPortrait } from "../ui/MentorPortrait";
 
 const N = 12;
 const VB = 300;
@@ -90,7 +90,6 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
   const playerAvatar = useGameStore((s) => s.playerAvatar);
   const mentorWaifuIndex = useGameStore((s) => s.mentorWaifuIndex);
   const avatarN = playerAvatar ?? mentorWaifuIndex ?? 1;
-  const avatarSrc = mentorWaifuUrl(avatarN);
 
   const { values, mastered } = useRadarSeries();
   const weakIx = useMemo(() => weakestLfIndex(values, mastered), [values, mastered]);
@@ -146,6 +145,8 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
     ? "rgba(255, 252, 246, 0.82)"
     : "rgba(10, 16, 20, 0.88)";
 
+  const svgHeavyBlur = !reduceMotion;
+
   return (
     <div
       aria-label={t("map.skillRadarAria", "Holovektor zwölf Lernfelder")}
@@ -190,7 +191,21 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
               : "0 0 22px rgba(34, 211, 238, 0.18)",
           }}
         >
-          <img src={avatarSrc} alt="" width={56} height={56} style={{ display: "block", objectFit: "cover" }} />
+          <MentorPortrait
+            mentorId={avatarN}
+            size={56}
+            radius={18}
+            border={
+              epilogueActive
+                ? "1px solid rgba(212, 175, 55, 0.45)"
+                : "1px solid rgba(214, 181, 111, 0.35)"
+            }
+            boxShadow={
+              epilogueActive
+                ? "0 0 18px rgba(212, 175, 55, 0.35)"
+                : "0 0 22px rgba(34, 211, 238, 0.18)"
+            }
+          />
         </div>
         <div
           style={{
@@ -248,22 +263,24 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
           style={{ display: "block", maxHeight: 220 }}
           aria-hidden
         >
-          <defs>
-            <filter id={filterGold} x="-80%" y="-80%" width="260%" height="260%">
-              <feGaussianBlur stdDeviation="2.4" result="b" />
-              <feMerge>
-                <feMergeNode in="b" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <filter id={filterNeon} x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="1.2" result="n" />
-              <feMerge>
-                <feMergeNode in="n" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
+          {svgHeavyBlur ? (
+            <defs>
+              <filter id={filterGold} x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="2.4" result="b" />
+                <feMerge>
+                  <feMergeNode in="b" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id={filterNeon} x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="1.2" result="n" />
+                <feMerge>
+                  <feMergeNode in="n" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+          ) : null}
 
           <motion.g
             animate={reduceMotion ? undefined : { opacity: [0.38, 0.72, 0.38] }}
@@ -305,7 +322,7 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
             fill={NEON_FILL}
             stroke={NEON_STROKE}
             strokeWidth={1.4}
-            filter={`url(#${filterNeon})`}
+            filter={svgHeavyBlur ? `url(#${filterNeon})` : undefined}
             initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
@@ -321,7 +338,7 @@ export function SkillRadar({ epilogueActive = false }: SkillRadarProps) {
                 fill={TUNGSTEN_GOLD}
                 stroke={TUNGSTEN_GOLD_SOFT}
                 strokeWidth={1.2}
-                filter={`url(#${filterGold})`}
+                filter={svgHeavyBlur ? `url(#${filterGold})` : undefined}
                 animate={reduceMotion ? undefined : { opacity: [0.82, 1, 0.82], r: [5.2, 6.4, 5.2] }}
                 transition={reduceMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
               />

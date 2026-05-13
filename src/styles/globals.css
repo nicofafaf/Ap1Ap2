@@ -184,6 +184,7 @@ body::before {
 
 html[data-nx-chrome="edtech"] {
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 55%, #e2e8f0 100%);
+  --nx-readability-particles: 0;
 }
 
 html[data-nx-chrome="edtech"] body {
@@ -203,9 +204,6 @@ html[data-nx-chrome="edtech"] .nx-fractal-particle-layer {
 
 html[data-nx-chrome="edtech"] .nx-volumetric-leaks {
   opacity: 0.12;
-}
-
-  --nx-readability-particles: 0;
 }
 
 /* Reiner Lernfokus: Welt dimmen, Partikel fast aus */

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type HighlightLang = "sql" | "csharp" | "javascript" | "plain-text" | "markdown";
+export type HighlightLang = "sql" | "csharp" | "javascript" | "bash" | "plain-text" | "markdown";
 type Lang = HighlightLang;
 
 const JS_KW =
@@ -209,7 +209,7 @@ export function highlightCode(code: string, lang: Lang): ReactNode[] {
           ? highlightJavaScript(line, key)
           : lang === "markdown"
             ? highlightMarkdownLine(line, key)
-            : lang === "plain-text"
+            : lang === "plain-text" || lang === "bash"
               ? highlightPlainTextLine(line, key)
               : highlightCSharp(line, key);
     key += parts.length + 1;

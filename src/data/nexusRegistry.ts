@@ -310,3 +310,27 @@ export const getAllNexusEntries = (): NexusRegistryEntry[] =>
   learningFields.map((lf) => nexusRegistry[lf]);
 
 export const getComingSoonLootPlaceholder = (): string => comingSoonSvgDataUri;
+
+/** Statische Boss-/Loot-Bilder für Karten (keine MP4), Video erst bei Hover */
+export function getBossThumbnailCandidates(lf: LearningField): string[] {
+  const entry = getNexusEntryForLF(lf);
+  const out: string[] = [];
+  for (const u of entry.bossVisual.fallbackPaths) {
+    if (/\.(mp4|webm|mov)$/i.test(u)) continue;
+    if (/\.(webp|png|gif|jpe?g|svg|avif)$/i.test(u)) out.push(u);
+  }
+  if (entry.loot.itemPath && !/\.(mp4|webm|mov)$/i.test(entry.loot.itemPath)) {
+    out.push(entry.loot.itemPath);
+  }
+  const n = lf.replace("LF", "");
+  out.push(`/assets/LF${n}.webp`, `/assets/LF${n}.png`);
+  return [...new Set(out)];
+}
+
+/** Mentor-Avatare (128×128 unter public/assets/Characters/…) */
+export const MENTOR_WAIFU_IDS = Array.from({ length: 24 }, (_, i) => i + 1) as readonly number[];
+
+export function mentorWaifuUrl(id: number): string {
+  const n = Math.max(1, Math.min(100, Math.floor(id)));
+  return `${WAIFU_ITEMS_BASE}/${n}.png`;
+}

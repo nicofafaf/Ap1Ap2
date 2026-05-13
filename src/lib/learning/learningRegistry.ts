@@ -412,17 +412,43 @@ type BeginnerPathEntry = {
     body: string;
   };
   practice: {
-    type: "mc" | "sql" | "csharp" | "javascript" | "markdown" | "plain-text";
+    type: "mc" | "sql" | "csharp" | "bash" | "javascript" | "markdown" | "plain-text";
     question: string;
+    coachLine?: string;
     expected?: string;
+    /** Defekter Editor-Start für C#/SQL-Workbench (Referenz bleibt expected/solutionCode) */
+    brokenCode?: string;
+    solutionHint?: string;
     options: BeginnerPathOption[];
   };
+};
+
+type BeginnerBossPhaseJson = {
+  id?: string;
+  title?: string;
+  problemLead?: string;
+  epicCoach?: {
+    starwars?: string;
+    anime?: string;
+    gym?: string;
+  };
+  practice?: BeginnerPathEntry["practice"];
 };
 
 type Lf5ContentShape = {
   lf: "LF5" | 5;
   title: string;
   beginnerPath?: BeginnerPathEntry[];
+  bossPhase?: {
+    id?: string;
+    title?: string;
+    epicCoach?: {
+      starwars?: string;
+      anime?: string;
+      gym?: string;
+    };
+    expected?: Record<string, string>;
+  };
   milestones: Array<Lf5WorkbenchMilestone | Lf5McMilestone>;
 };
 
@@ -430,6 +456,7 @@ type BeginnerContentShape = {
   lf: LearningField | number | string;
   title: string;
   beginnerPath?: BeginnerPathEntry[];
+  bossPhase?: BeginnerBossPhaseJson;
 };
 
 function normalizeLearningField(rawLf: BeginnerContentShape["lf"]): LearningField | null {
@@ -442,6 +469,95 @@ function normalizeLearningField(rawLf: BeginnerContentShape["lf"]): LearningFiel
 
 function practiceLang(type: BeginnerPathEntry["practice"]["type"]): LearningExercise["lang"] {
   return type === "mc" ? "markdown" : type;
+}
+
+/** C#/SQL/Bash-Boss aus beginnerPath-JSON (brokenCode + expected + MC) */
+function buildOptionalBossCodeExercise(raw: BeginnerContentShape): LearningExercise | null {
+  const lf = normalizeLearningField(raw.lf);
+  const bp = raw.bossPhase;
+  if (!lf || !bp?.practice) return null;
+  const p = bp.practice;
+  if (p.type !== "csharp" && p.type !== "sql" && p.type !== "bash") return null;
+  const options = p.options ?? [];
+  if (options.length < 2) return null;
+  const expected = p.expected?.trim();
+  const broken = p.brokenCode?.trim();
+  if (!expected || !broken) return null;
+
+  const correctIdx = Math.max(0, options.findIndex((option) => option.correct));
+  const normalizedCorrectIdx = correctIdx === -1 ? 0 : correctIdx;
+  const optIds = ["a", "b", "c", "d", "e", "f"];
+  const mcOptions: LearningMcOption[] = options.map((option, idx) => ({
+    id: optIds[idx] ?? `o${idx + 1}`,
+    text: option.text,
+    isCorrect: idx === normalizedCorrectIdx,
+    whyWrongHint:
+      idx === normalizedCorrectIdx
+        ? undefined
+        : option.hint || "Schau noch einmal auf die Action-Cards über der Übung",
+  }));
+  const bossId = bp.id?.trim() ? bp.id.trim() : `${lf.toLowerCase()}-boss`;
+  const bossTitle = bp.title?.trim() ? bp.title.trim() : "Boss Phase";
+  const q = p.question.trim();
+  const lead = bp.problemLead?.trim();
+  const problem = lead ? `${lead}\n\n${q}` : q;
+  const coachLineEpic =
+    bp.epicCoach?.starwars?.trim() ||
+    bp.epicCoach?.anime?.trim() ||
+    bp.epicCoach?.gym?.trim();
+  const coachLine = p.coachLine?.trim() || coachLineEpic;
+
+  return {
+    id: bossId,
+    title: bossTitle,
+    problem,
+    solutionCode: expected,
+    lang: practiceLang(p.type),
+    mcQuestion: q,
+    mcOptions,
+    ...(coachLine ? { coachLine } : {}),
+    workbenchInitialDraft: broken,
+    solutionHint:
+      p.solutionHint?.trim() ||
+      "Nutze zuerst das Mini-Beispiel. Es ist erlaubt, die Struktur zu übernehmen und nur den Kern zu verstehen",
+  } satisfies LearningExercise;
+}
+
+function buildOptionalBossMcExercise(raw: BeginnerContentShape): LearningExercise | null {
+  const lf = normalizeLearningField(raw.lf);
+  const bp = raw.bossPhase;
+  if (!lf || !bp?.practice || bp.practice.type !== "mc") return null;
+  const options = bp.practice.options ?? [];
+  if (options.length < 2) return null;
+  const correctIdx = Math.max(0, options.findIndex((option) => option.correct));
+  const normalizedCorrectIdx = correctIdx === -1 ? 0 : correctIdx;
+  const optIds = ["a", "b", "c", "d", "e", "f"];
+  const mcOptions: LearningMcOption[] = options.map((option, idx) => ({
+    id: optIds[idx] ?? `o${idx + 1}`,
+    text: option.text,
+    isCorrect: idx === normalizedCorrectIdx,
+    whyWrongHint:
+      idx === normalizedCorrectIdx
+        ? undefined
+        : option.hint || "Prüfe Hostbits Netz und Broadcast ziehen sich von der Gesamtzahl ab",
+  }));
+  const correctText = options[normalizedCorrectIdx]?.text ?? options[0]?.text ?? "";
+  const solutionCode = bp.practice.expected ?? correctText;
+  const bossId = bp.id?.trim() ? bp.id.trim() : `${lf.toLowerCase()}-boss`;
+  const bossTitle = bp.title?.trim() ? bp.title.trim() : "Boss Phase";
+  const q = bp.practice.question.trim();
+  const lead = bp.problemLead?.trim();
+  const problem = lead ? `${lead}\n\n${q}` : q;
+  return {
+    id: bossId,
+    title: bossTitle,
+    problem,
+    solutionCode,
+    lang: "markdown",
+    mcQuestion: q,
+    mcOptions,
+    solutionHint: undefined,
+  } satisfies LearningExercise;
 }
 
 function buildBeginnerPathFromJson(raw: BeginnerContentShape): LearningExercise[] {
@@ -467,6 +583,9 @@ function buildBeginnerPathFromJson(raw: BeginnerContentShape): LearningExercise[
     const correctText = options[normalizedCorrectIdx]?.text ?? options[0]?.text ?? "";
     const solutionCode = path.practice.expected ?? correctText;
 
+    const coachLine = path.practice.coachLine?.trim();
+    const workbenchInitialDraft = path.practice.brokenCode?.trim();
+
     return {
       id: path.id || `${lf.toLowerCase()}-start-${pathIdx + 1}`,
       title: path.title || `${raw.title} Einstieg`,
@@ -477,10 +596,17 @@ function buildBeginnerPathFromJson(raw: BeginnerContentShape): LearningExercise[
       mcOptions,
       lessonCards: path.lessonCards,
       example: path.example,
+      ...(coachLine ? { coachLine } : {}),
+      ...(workbenchInitialDraft ? { workbenchInitialDraft } : {}),
       solutionHint:
-        path.practice.type === "sql" || path.practice.type === "csharp"
+        path.practice.solutionHint?.trim() ||
+        (path.practice.type === "sql" ||
+        path.practice.type === "csharp" ||
+        path.practice.type === "bash"
           ? "Nutze zuerst das Mini-Beispiel. Es ist erlaubt, die Struktur zu übernehmen und nur den Kern zu verstehen"
-          : path.example?.body || `Starte ruhig mit der ersten ${lf} Action-Card`,
+          : coachLine && !path.example?.body
+            ? undefined
+            : path.example?.body || `Starte ruhig mit der ersten ${lf} Action-Card`),
     } satisfies LearningExercise;
   });
 }
@@ -500,6 +626,9 @@ function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
       idx === normalizedAnswer ? undefined : workbench.hint || "Prüfe Join Semantik und Ergebnisumfang",
   }));
 
+  const bossId = raw.bossPhase?.id?.trim() ? raw.bossPhase.id.trim() : "lf5-boss";
+  const bossTitle = raw.bossPhase?.title?.trim() ? raw.bossPhase.title.trim() : "Boss Phase";
+
   return [
     {
       id: workbench.id,
@@ -511,6 +640,23 @@ function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
       mcOptions,
       solutionHint:
         "Du musst dir SQL noch nicht merken. Lies zuerst: FROM sagt aus welcher Tabelle, WHERE ist der Filter",
+    },
+    {
+      id: bossId,
+      title: bossTitle,
+      problem:
+        "Finale Abfrage im Boss Mode\n\nNutze SELECT und WHERE zusammen und halte die Struktur sauber",
+      /** Referenz wird im Workbench je Multiversum aus content.json geladen */
+      solutionCode: "SELECT * FROM Kunden WHERE Stadt = 'Berlin'",
+      lang: "sql",
+      mcQuestion: "Welche Clause begrenzt die Zeilenmenge in SQL",
+      mcOptions: [
+        { id: "a", text: "WHERE", isCorrect: true },
+        { id: "b", text: "FROM", isCorrect: false, whyWrongHint: "FROM wählt die Tabelle" },
+        { id: "c", text: "SELECT", isCorrect: false, whyWrongHint: "SELECT wählt Spalten" },
+        { id: "d", text: "ORDER BY", isCorrect: false, whyWrongHint: "ORDER BY sortiert Ergebnisse" },
+      ],
+      solutionHint: "SELECT zuerst dann FROM dann WHERE als Filter",
     },
   ];
 }
@@ -550,6 +696,39 @@ export function getBeginnerExerciseForLf(lf: LearningField): LearningExercise | 
 
 function withBeginnerPath(lf: LearningField, advanced: LearningExercise[]): LearningExercise[] {
   return [...BEGINNER_EXERCISES_BY_LF[lf], ...advanced];
+}
+
+const LF2_MC_BOSS = buildOptionalBossMcExercise(lf02Content as BeginnerContentShape);
+const LF3_MC_BOSS = buildOptionalBossMcExercise(lf03Content as BeginnerContentShape);
+
+/** LF11 Finale · C# Logic-Repair aus lf11/content.json bossPhase */
+export const LF11_BOSS = buildOptionalBossCodeExercise(lf11Content as BeginnerContentShape);
+
+/** LF8 Finale · Bash System-Rettung aus lf08/content.json bossPhase */
+export const LF8_BOSS = buildOptionalBossCodeExercise(lf08Content as BeginnerContentShape);
+
+/** Terminal: Obsidian-Rot-Puls und Boss-Epic — LF5 SQL-Boss, LF8 Bash-Boss, LF11 C#-Boss, optionale JSON-MC-Bosse (z. B. LF3) */
+export function resolveTerminalBossMode(
+  lf: LearningField,
+  exerciseId: string | undefined
+): { isBoss: boolean; epicLine: string | null } {
+  if (!exerciseId) return { isBoss: false, epicLine: null };
+  if (lf === "LF5") {
+    const raw = lf05Content as Lf5ContentShape;
+    const bossId = raw.bossPhase?.id?.trim() || "lf5-boss";
+    if (exerciseId === bossId) {
+      const e = raw.bossPhase?.epicCoach;
+      return { isBoss: true, epicLine: e?.starwars ?? e?.anime ?? e?.gym ?? null };
+    }
+    return { isBoss: false, epicLine: null };
+  }
+  const raw = BEGINNER_CONTENT_BY_LF[lf];
+  const bossId = raw.bossPhase?.id?.trim();
+  if (bossId && exerciseId === bossId) {
+    const e = raw.bossPhase?.epicCoach;
+    return { isBoss: true, epicLine: e?.starwars ?? e?.anime ?? e?.gym ?? null };
+  }
+  return { isBoss: false, epicLine: null };
 }
 
 function getPendingBeginnerExercise(
@@ -911,16 +1090,24 @@ function stablePick<T>(arr: T[], seed: number, salt: number): T {
 /** Vollständiges Curriculum je Lernfeld (mind. 5 Aufgaben pro LF) */
 export const CURRICULUM_BY_LF: Record<LearningField, LearningExercise[]> = {
   LF1: withBeginnerPath("LF1", LF1_WIRTSCHAFT),
-  LF2: withBeginnerPath("LF2", LF2_IT_GRUNDLAGEN),
-  LF3: withBeginnerPath("LF3", LF3_NETZWERK),
+  LF2: LF2_MC_BOSS
+    ? [...withBeginnerPath("LF2", LF2_IT_GRUNDLAGEN), LF2_MC_BOSS]
+    : withBeginnerPath("LF2", LF2_IT_GRUNDLAGEN),
+  LF3: LF3_MC_BOSS
+    ? [...withBeginnerPath("LF3", LF3_NETZWERK), LF3_MC_BOSS]
+    : withBeginnerPath("LF3", LF3_NETZWERK),
   LF4: withBeginnerPath("LF4", LF4_NETZ_HARDWARE),
   LF5: SQL_EXAM_LF5,
   LF6: withBeginnerPath("LF6", JAVASCRIPT_EXAM_LF6),
   LF7: withBeginnerPath("LF7", CSHARP_EXAM_LF7),
-  LF8: withBeginnerPath("LF8", LF8_DATENMODELL),
+  LF8: LF8_BOSS
+    ? [...withBeginnerPath("LF8", LF8_DATENMODELL), LF8_BOSS]
+    : withBeginnerPath("LF8", LF8_DATENMODELL),
   LF9: withBeginnerPath("LF9", LF9_DIENSTE_PROTOKOLLE),
   LF10: withBeginnerPath("LF10", LF10_UI_BARREFREI),
-  LF11: withBeginnerPath("LF11", LF11_INFO_SICHERHEIT),
+  LF11: LF11_BOSS
+    ? [...withBeginnerPath("LF11", LF11_INFO_SICHERHEIT), LF11_BOSS]
+    : withBeginnerPath("LF11", LF11_INFO_SICHERHEIT),
   LF12: withBeginnerPath("LF12", LF12_AGILE_PM),
 };
 

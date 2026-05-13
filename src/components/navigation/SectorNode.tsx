@@ -63,8 +63,16 @@ export type SectorNodeProps = {
   layoutBridgeLf?: number | null;
   /** Direkter Dive ohne Karten-Zoom-Out */
   seamlessEngage?: boolean;
+  /** Erst-Scan: Kartenrand nach stabilem / offenem LF */
+  skillScanRing?: "stable" | "gap" | "neutral";
   /** Optional übersetzte Stabilitäts-Labels (i18n) */
   tierLabels?: Partial<Record<StabilityTier, string>>;
+  /** Boss-Loop (MP4) — wird erst bei Hover geladen */
+  bossVideoSrc?: string;
+  /** Statische Kandidaten-Bilder (webp/png/…) bis eines lädt */
+  bossThumbnailUrls?: string[];
+  /** Persistierte Mastery (Boss Clear) — permanent Goldrahmen + Badge */
+  sectorMastered?: boolean;
 };
 
 export function SectorNode({
@@ -87,15 +95,44 @@ export function SectorNode({
   learningProgressRatio = 0,
   lfCurriculumMastered = false,
   layoutBridgeLf = null,
+  seamlessEngage = false,
+  skillScanRing,
   tierLabels,
+  bossVideoSrc,
+  bossThumbnailUrls,
+  sectorMastered = false,
 }: SectorNodeProps) {
   const beat = useFractalBeat();
   const [phase, setPhase] = useState<"idle" | "diving">("idle");
   const [shardGlassHover, setShardGlassHover] = useState(false);
+  const [thumbIndex, setThumbIndex] = useState(0);
+  const [thumbFailedAll, setThumbFailedAll] = useState(false);
+  const [videoArmed, setVideoArmed] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const engagedRef = useRef(false);
+
+  const thumbs = bossThumbnailUrls ?? [];
+  const thumbSrc = !thumbFailedAll && thumbs.length > 0 ? thumbs[Math.min(thumbIndex, thumbs.length - 1)]! : null;
+  const showBossMedia = thumbs.length > 0;
+
+  useEffect(() => {
+    if (!videoArmed || !videoRef.current || !bossVideoSrc) return;
+    void videoRef.current.play().catch(() => {});
+    return () => {
+      videoRef.current?.pause();
+    };
+  }, [videoArmed, bossVideoSrc]);
 
   const tierCopy = { ...TIER_LABEL, ...tierLabels };
   const rankAccent = lastRank ? RANK_ACCENT_VAR[lastRank] : "var(--cyan, #22d3ee)";
+  const scanRingBorder =
+    skillScanRing === "stable"
+      ? "2px solid rgba(52, 211, 153, 0.62)"
+      : skillScanRing === "gap"
+        ? "2px solid rgba(251, 113, 133, 0.78)"
+        : skillScanRing === "neutral"
+          ? "2px solid rgba(214, 181, 111, 0.42)"
+          : null;
   const ringColor = isDailyIncursion ? DAILY_PURPLE_NEON : rankAccent;
   const outerGlow = isDailyIncursion
     ? `0 26px 60px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.54)`
@@ -161,9 +198,13 @@ export function SectorNode({
         onPointerEnter={() => {
           if (!unlocked || phase !== "idle") return;
           setShardGlassHover(true);
+          if (showBossMedia && bossVideoSrc) setVideoArmed(true);
           void playHoverResonancePing();
         }}
-        onPointerLeave={() => setShardGlassHover(false)}
+        onPointerLeave={() => {
+          setShardGlassHover(false);
+          setVideoArmed(false);
+        }}
         whileHover={unlocked && phase === "idle" ? { scale: 1.02 } : undefined}
         whileTap={unlocked ? { scale: 0.98 } : undefined}
         animate={
@@ -190,23 +231,123 @@ export function SectorNode({
           clipPath: NODE_SHARD_CLIP,
           border: isDailyIncursion
             ? `2px solid ${DAILY_PURPLE_BORDER}`
-            : lfCurriculumMastered
-              ? `2px solid rgba(214,181,111,0.58)`
-              : `1px solid rgba(251,247,239,0.2)`,
+            : sectorMastered
+              ? "2px solid rgba(212, 175, 55, 0.85)"
+              : scanRingBorder
+                ? scanRingBorder
+                : lfCurriculumMastered
+                  ? `2px solid rgba(214,181,111,0.58)`
+                  : `1px solid rgba(251,247,239,0.2)`,
           cursor: unlocked ? "pointer" : "not-allowed",
           padding: 0,
           touchAction: "manipulation",
           overflow: anomalyType ? "visible" : "hidden",
           background: isDailyIncursion
             ? "linear-gradient(155deg, rgba(251,247,239,0.94) 0%, rgba(230,218,240,0.86) 100%)"
-            : "linear-gradient(155deg, rgba(251,247,239,0.93) 0%, rgba(238,229,213,0.84) 100%)",
+            : showBossMedia
+              ? "rgba(6, 12, 10, 0.92)"
+              : "linear-gradient(155deg, rgba(251,247,239,0.93) 0%, rgba(238,229,213,0.84) 100%)",
           backdropFilter: "blur(18px) saturate(105%)",
           WebkitBackdropFilter: "blur(18px) saturate(105%)",
           boxShadow: unlocked
-            ? `${outerGlow}, inset 0 0 ${8 + beat * 6}px rgba(214,181,111,${0.08 + beat * 0.08})`
+            ? sectorMastered
+              ? `0 0 0 2px rgba(212, 175, 55, 0.22), 0 0 44px rgba(212, 175, 55, 0.28), ${outerGlow}`
+              : `${outerGlow}, inset 0 0 ${8 + beat * 6}px rgba(214,181,111,${0.08 + beat * 0.08})`
             : "inset 0 0 12px rgba(0,0,0,0.5)",
         }}
       >
+        {sectorMastered ? (
+          <div
+            style={{
+              position: "absolute",
+              top: 10,
+              right: 10,
+              zIndex: 12,
+              padding: "8px 10px",
+              borderRadius: 12,
+              border: "1px solid rgba(212, 175, 55, 0.65)",
+              background: "rgba(8,12,10,0.72)",
+              color: "rgba(251,247,239,0.95)",
+              fontFamily: "var(--nx-font-mono)",
+              fontSize: 18,
+              fontWeight: 800,
+              letterSpacing: ".1em",
+              textTransform: "uppercase",
+              boxShadow: "0 0 22px rgba(212, 175, 55, 0.22)",
+              pointerEvents: "none",
+            }}
+          >
+            MASTERED
+          </div>
+        ) : null}
+        {showBossMedia ? (
+          <>
+            {thumbSrc ? (
+              <img
+                alt=""
+                src={thumbSrc}
+                onError={() => {
+                  if (thumbIndex + 1 < thumbs.length) setThumbIndex((i) => i + 1);
+                  else setThumbFailedAll(true);
+                }}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  zIndex: 0,
+                  opacity: videoArmed ? 0.15 : 1,
+                  transition: "opacity 0.35s ease",
+                  pointerEvents: "none",
+                }}
+              />
+            ) : (
+              <div
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  zIndex: 0,
+                  background:
+                    "linear-gradient(145deg, rgba(8,18,14,0.92) 0%, rgba(34,211,238,0.12) 48%, rgba(214,181,111,0.18) 100%)",
+                  pointerEvents: "none",
+                }}
+              />
+            )}
+            {videoArmed && bossVideoSrc ? (
+              <video
+                ref={videoRef}
+                key={`boss-${lf}-${bossVideoSrc}`}
+                src={bossVideoSrc}
+                muted
+                playsInline
+                loop
+                preload="none"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  zIndex: 1,
+                  pointerEvents: "none",
+                }}
+              />
+            ) : null}
+            <div
+              aria-hidden
+              style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 2,
+                pointerEvents: "none",
+                background:
+                  "linear-gradient(180deg, transparent 0%, rgba(6,10,8,0.55) 55%, rgba(6,10,8,0.88) 100%)",
+              }}
+            />
+          </>
+        ) : null}
         <motion.div
           aria-hidden
           animate={{
@@ -216,7 +357,7 @@ export function SectorNode({
           style={{
             position: "absolute",
             inset: 0,
-            zIndex: 2,
+            zIndex: 4,
             pointerEvents: "none",
             backgroundImage: NX_GLASS_NOISE_BG,
             mixBlendMode: "overlay",
@@ -269,7 +410,7 @@ export function SectorNode({
         <div
           style={{
             position: "relative",
-            zIndex: 3,
+            zIndex: 10,
             padding: "14px 12px",
             textAlign: "center",
             fontFamily: "var(--nx-font-sans)",
@@ -279,7 +420,7 @@ export function SectorNode({
             style={{
               fontSize: 20,
               letterSpacing: ".04em",
-              color: "var(--nx-learn-muted)",
+              color: showBossMedia ? "rgba(251,247,239,0.92)" : "var(--nx-learn-muted)",
             }}
           >
             LF{lf}
@@ -290,10 +431,11 @@ export function SectorNode({
               fontSize: 22,
               fontWeight: 850,
               letterSpacing: "-0.03em",
-              color: "var(--nx-learn-ink)",
+              color: showBossMedia ? "rgba(251,247,239,0.98)" : "var(--nx-learn-ink)",
               lineHeight: 1.2,
               maxHeight: 54,
               overflow: "hidden",
+              textShadow: showBossMedia ? "0 2px 12px rgba(0,0,0,0.75)" : undefined,
             }}
           >
             {bossName}
@@ -305,10 +447,17 @@ export function SectorNode({
               letterSpacing: ".04em",
               color:
                 tier === "critical"
-                  ? "rgba(150, 56, 48, 0.88)"
+                  ? showBossMedia
+                    ? "rgba(252, 165, 165, 0.95)"
+                    : "rgba(150, 56, 48, 0.88)"
                   : tier === "unstable"
-                    ? "rgba(132, 92, 42, 0.88)"
-                    : "rgba(48, 92, 60, 0.88)",
+                    ? showBossMedia
+                      ? "rgba(253, 224, 200, 0.95)"
+                      : "rgba(132, 92, 42, 0.88)"
+                    : showBossMedia
+                      ? "rgba(187, 247, 208, 0.95)"
+                      : "rgba(48, 92, 60, 0.88)",
+              textShadow: showBossMedia ? "0 1px 10px rgba(0,0,0,0.8)" : undefined,
             }}
           >
             {shardLabel(tierCopy[tier])} {(stability * 100).toFixed(0)}

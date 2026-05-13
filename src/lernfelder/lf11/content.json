@@ -36,8 +36,109 @@
           { "text": "Barrierefreiheit", "correct": false, "hint": "Barrierefreiheit gehört zu Bedienbarkeit" }
         ]
       }
+    },
+    {
+      "id": "lf11-sw-shield-debug",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Schild-Generator Patch",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "Der Generator prüft Gefahr mit einem boolschen Ausdruck Ein falscher Operator blockiert die Schilde"
+        }
+      ],
+      "practice": {
+        "type": "csharp",
+        "coachLine": "die schild-logik hat einen syntax-fehler wir brauchen sofort den korrekten vergleichs-operator bevor wir getroffen werden",
+        "question": "Der Schild-Generator-Code hat einen Bug in der if-Bedingung Repariere den Operator damit die Schilde bei Gefahr aktivieren",
+        "brokenCode": "bool danger = true;\nbool shields = false;\nif (danger = false)\n    shields = true;\nreturn shields;",
+        "expected": "bool danger = true;\nbool shields = false;\nif (danger)\n    shields = true;\nreturn shields;",
+        "solutionHint": "Patch den Editor dann Prüfen klicken bis die Referenz exakt passt",
+        "options": [
+          { "text": "Zuweisung in der if-Bedingung statt Vergleich oder bool-Check", "correct": true },
+          { "text": "Falsche Klammern um return", "correct": false, "hint": "return ist hier nicht das Hauptproblem" },
+          { "text": "Falscher Datentyp für shields", "correct": false, "hint": "bool bleibt bool der Fehler sitzt in der Bedingung" },
+          { "text": "Fehlendes Semikolon nach return", "correct": false, "hint": "C# toleriert hier oft eine Zeile ohne Block" }
+        ]
+      }
+    },
+    {
+      "id": "lf11-an-power-debug",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Kraftlevel Sync Fix",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "Kraft skaliert mit core mal layer Zähle die Reihenfolge der Operatoren im Ausdruck"
+        }
+      ],
+      "practice": {
+        "type": "csharp",
+        "coachLine": "die kraftlevel-pipeline spinnt der multiplier sitzt falsch wir müssen die formel retten bevor der arc einfriert",
+        "question": "Die Kraftlevel-Berechnung gibt falsche Werte aus Korrigiere den mathematischen Fehler im Multiplikator",
+        "brokenCode": "int core = 20;\nint layer = 5;\nint total = core + layer * 2;\nreturn total;",
+        "expected": "int core = 20;\nint layer = 5;\nint total = core * layer * 2;\nreturn total;",
+        "solutionHint": "Patch den Editor dann Prüfen klicken bis die Referenz exakt passt",
+        "options": [
+          { "text": "Addition statt Produkt der beiden Faktoren vor dem letzten Mal zwei", "correct": true },
+          { "text": "layer sollte vor core stehen", "correct": false, "hint": "Die Reihenfolge der Faktoren ändert das Produkt nicht" },
+          { "text": "return muss total++ sein", "correct": false, "hint": "Es geht um die Summenformel nicht um Inkrement" },
+          { "text": "core sollte 200 sein", "correct": false, "hint": "Die Aufgabenstellung bleibt bei zwanzig und fünf" }
+        ]
+      }
+    },
+    {
+      "id": "lf11-gym-calorie-debug",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "Kalorien-String Fix",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "C# vergleicht Strings mit Equals und Vergleichsmodus Case ignorieren braucht OrdinalIgnoreCase"
+        }
+      ],
+      "practice": {
+        "type": "csharp",
+        "coachLine": "der kalorien-logger sieht doppelte einträge der string-match ist blind wir müssen den vergleich retten bevor die biometrie kippt",
+        "question": "Der Kalorien-Tracker vergleicht die Strings falsch Korrigiere die Syntax für den C# String-Vergleich",
+        "brokenCode": "string meal = \"Shake\";\nstring plan = \"shake\";\nreturn meal == plan;",
+        "expected": "string meal = \"Shake\";\nstring plan = \"shake\";\nreturn string.Equals(meal, plan, System.StringComparison.OrdinalIgnoreCase);",
+        "solutionHint": "Patch den Editor dann Prüfen klicken bis die Referenz exakt passt",
+        "options": [
+          { "text": "Case-sensitiver Operator statt kultur-sicherem Equals", "correct": true },
+          { "text": "meal sollte char[] sein", "correct": false, "hint": "string bleibt richtig der Fehler ist der Vergleich" },
+          { "text": "plan braucht TrimEnd nur", "correct": false, "hint": "Hier fehlt Case-Logik nicht nur Leerzeichen" },
+          { "text": "return braucht ToUpperInvariant auf beiden", "correct": false, "hint": "Equals mit OrdinalIgnoreCase ist der saubere Fix laut Referenz" }
+        ]
+      }
     }
   ],
+  "bossPhase": {
+    "id": "lf11-boss",
+    "title": "Boss Kern · Multivers-Logic Siege",
+    "problemLead": "obsidian krit der nexus-core meldet cascading latch failure der freigabe-stack blockt wir müssen den boolean-split sofort retten",
+    "epicCoach": {
+      "starwars": "die boden-logik nutzt ein falsches und statt oder die zielerfassung bleibt schwarz wir brauchen sofort den korrekten boolean-split bevor der hangar komplett blind fliegt",
+      "anime": "der mecha-sync hängt in einer todes-schleife der kernel wiederholt den falschen zweig wir müssen den operator wechseln bevor der frame komplett einfriert",
+      "gym": "der stack-rechner feuert nur bei doppel-signal der algorithmus übersieht not-stops mit falscher kombi wir müssen die oder-kante ziehen bevor die supplement-mengen toxisch werden"
+    },
+    "practice": {
+      "type": "csharp",
+      "question": "Die Freigabe-Logik prüft zwei Sensor-Kanäle Im Trümmerfeld reicht ein gültiger Kanal für engage Repariere die if-Bedingung damit true zurückkommt sobald mindestens ein Kanal true ist",
+      "solutionHint": "Der Fehler ist ein boolescher Verbinder in der if-Zeile ersetze das falsche und durch das richtige oder laut Referenz",
+      "brokenCode": "bool primA = true;\nbool primB = false;\nbool engage = false;\nif (primA && primB)\n    engage = true;\nelse\n    engage = false;\nreturn engage;",
+      "expected": "bool primA = true;\nbool primB = false;\nbool engage = false;\nif (primA || primB)\n    engage = true;\nelse\n    engage = false;\nreturn engage;",
+      "options": [
+        { "text": "UND verknüpft beide Kanäle obwohl ein reichender Kanal ein ODER braucht", "correct": true },
+        { "text": "Die else-Zweige sind vertauscht", "correct": false, "hint": "Der Fehler sitzt in der if-Bedingung nicht im else-Zweig" },
+        { "text": "return muss ohne Semikolon stehen", "correct": false, "hint": "Syntax ist hier nicht das Problem sondern die Logik" },
+        { "text": "primA und primB müssen vertauscht werden", "correct": false, "hint": "Die Werte sind absichtlich so gesetzt der Operator ist falsch" }
+      ]
+    }
+  },
   "reference": [
     {
       "id": "lf11-kern",

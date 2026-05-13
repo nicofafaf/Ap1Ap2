@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect, useCallback, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useAnimation, useReducedMotion } from "framer-motion";
 import type { LearningField, NexusRegistryEntry } from "../../data/nexusRegistry";
+import { mentorWaifuUrl } from "../../data/nexusRegistry";
 import { getFinalExamLearningBundle, getTerminalLearningBundle } from "../../lib/learning/terminalContent";
 import { highlightCode } from "../../lib/learning/codeHighlight";
 import { TerminalCodeWorkbench } from "../../lib/learning/terminalCodeWorkbench";
@@ -9,6 +10,8 @@ import { typography } from "../../theme/typography";
 import { useGameStore } from "../../store/useGameStore";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import type { LearningMcOption } from "../../lib/learning/learningExerciseTypes";
+import { resolveTerminalBossMode } from "../../lib/learning/learningRegistry";
+import { useBossAudioEngine } from "../../lib/audio/bossAudioEngine";
 
 export type LearningTerminalProps = {
   currentLF: LearningField;
@@ -20,7 +23,17 @@ export type LearningTerminalProps = {
 };
 
 /** Ein onError pro Asset — kein Retry, kein erneutes Setzen von src (verhindert Browser-Spam bei 404) */
-function SafeLearningFigure({ src, alt }: { src: string; alt: string }) {
+function SafeLearningFigure({
+  src,
+  alt,
+  coachAvatarSrc,
+  coachName,
+}: {
+  src: string;
+  alt: string;
+  coachAvatarSrc: string | null;
+  coachName: string | null;
+}) {
   const errorOnceRef = useRef(false);
   const [failed, setFailed] = useState(false);
 
@@ -32,20 +45,64 @@ function SafeLearningFigure({ src, alt }: { src: string; alt: string }) {
 
   if (failed) {
     return (
-      <p
+      <div
+        role="alert"
         style={{
           margin: "var(--nx-space-16) 0 0",
-          padding: "var(--nx-space-16) var(--nx-space-8)",
-          fontFamily: typography.fontSans,
-          fontSize: 20,
-          lineHeight: 1.55,
-          color: "var(--nx-bone-50)",
-          background: "color-mix(in srgb, var(--nx-vantablack) 92%, transparent)",
-          borderLeft: "2px solid var(--nx-bone-25)",
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "var(--nx-space-16)",
+          padding: "var(--nx-space-16) var(--nx-space-20)",
+          borderRadius: 22,
+          border: "1px solid rgba(251, 247, 239, 0.12)",
+          background:
+            "linear-gradient(145deg, rgba(8, 10, 12, 0.94) 0%, rgba(18, 22, 26, 0.9) 100%)",
+          boxShadow: "inset 0 1px 0 rgba(251, 247, 239, 0.06)",
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
         }}
       >
-        Abbildung nicht verfügbar Medien Asset fehlt oder Netzwerkfehler kein erneuter Ladevorgang
-      </p>
+        {coachAvatarSrc ? (
+          <img
+            src={coachAvatarSrc}
+            alt=""
+            width={56}
+            height={56}
+            style={{
+              flexShrink: 0,
+              borderRadius: 16,
+              border: "1px solid rgba(214, 181, 111, 0.35)",
+              objectFit: "cover",
+            }}
+          />
+        ) : null}
+        <div style={{ minWidth: 0 }}>
+          <div
+            style={{
+              fontFamily: typography.fontMono,
+              fontSize: 20,
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "rgba(251, 247, 239, 0.42)",
+            }}
+          >
+            {coachName?.trim() ? `${coachName} · Coach` : "Coach"}
+          </div>
+          <p
+            style={{
+              margin: "8px 0 0",
+              fontFamily: typography.fontSans,
+              fontSize: 24,
+              lineHeight: 1.5,
+              fontWeight: 500,
+              color: "rgba(251, 247, 239, 0.92)",
+            }}
+          >
+            Ich sehe kein Bild das Asset fehlt oder das Netzwerk stockt wir überspringen die Abbildung
+          </p>
+        </div>
+      </div>
     );
   }
 
@@ -78,6 +135,7 @@ export function LearningTerminal({
 }: LearningTerminalProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
+  const { playVictoryFinisherSequence } = useBossAudioEngine();
   const entryToken = useGameStore((s) => s.entryToken);
   const preferredLearningExerciseId = useGameStore((s) => s.preferredLearningExerciseId);
   const sectorZeroMorphToken = useGameStore((s) => s.sectorZeroMorphToken);
@@ -89,8 +147,31 @@ export function LearningTerminal({
   const clearActiveMissionContext = useGameStore((s) => s.clearActiveMissionContext);
   const mission = useGameStore((s) => s.mission);
   const archiveWorkbenchSnippet = useGameStore((s) => s.archiveWorkbenchSnippet);
+  const unlockSectorMastery = useGameStore((s) => s.unlockSectorMastery);
+  const playerAvatar = useGameStore((s) => s.playerAvatar);
+  const playerName = useGameStore((s) => s.playerName);
   const [pickedId, setPickedId] = useState<string | null>(null);
   const selectionDebounceRef = useRef<string | null>(null);
+  const panelShake = useAnimation();
+  const [rimGold, setRimGold] = useState(false);
+
+  const coachAvatarSrc =
+    playerAvatar != null ? mentorWaifuUrl(playerAvatar) : mentorWaifuUrl(1);
+  const coachDisplayName = playerName?.trim() ? playerName : null;
+
+  const triggerCodeSuccessFx = useCallback(() => {
+    if (!reduceMotion) {
+      void panelShake
+        .start({
+          x: [0, -9, 9, -6, 6, -4, 4, 0],
+          y: [0, 4, -4, 3, -3, 0, 0, 0],
+          transition: { duration: 0.52, ease: "easeInOut" },
+        })
+        .then(() => panelShake.start({ x: 0, y: 0, transition: { duration: 0 } }));
+    }
+    setRimGold(true);
+    window.setTimeout(() => setRimGold(false), 840);
+  }, [panelShake, reduceMotion]);
 
   const bundle = useMemo(() => {
     const leitner = useGameStore.getState().learningLeitnerByExerciseId;
@@ -160,6 +241,12 @@ export function LearningTerminal({
     : `${currentLF} · ${semanticLabel}`;
 
   const interactiveMc = Boolean(exercise);
+  const bossUi = useMemo(() => resolveTerminalBossMode(answerLf, exercise?.id), [answerLf, exercise?.id]);
+  const isBossMode = learningFocus && bossUi.isBoss;
+  const bossEpicLine = useMemo(() => {
+    if (!isBossMode) return null;
+    return bossUi.epicLine ?? "Alarm Boss Modus aktiv";
+  }, [bossUi.epicLine, isBossMode]);
 
   const handleMcOption = useCallback(
     (opt: LearningMcOption) => {
@@ -183,7 +270,15 @@ export function LearningTerminal({
         selectedOptionId: opt.id,
         wasCorrect: opt.isCorrect,
       });
-      if (opt.isCorrect && isBeginnerExercise) {
+      const bossActive = resolveTerminalBossMode(answerLf, exercise.id).isBoss;
+      if (opt.isCorrect && bossActive) {
+        markMissionCleared(exercise.id);
+        recordLearningExerciseMastery(answerLf, exercise.id);
+        unlockSectorMastery(answerLf);
+        void playVictoryFinisherSequence();
+        window.dispatchEvent(new CustomEvent("nx:boss-clear-map"));
+        triggerBossHit(8);
+      } else if (opt.isCorrect && isBeginnerExercise) {
         markMissionCleared(exercise.id);
         recordLearningExerciseMastery(answerLf, exercise.id);
         triggerBossHit(8);
@@ -197,6 +292,8 @@ export function LearningTerminal({
       recordCombatLearningAttempt,
       recordLearningExerciseMastery,
       triggerBossHit,
+      unlockSectorMastery,
+      playVictoryFinisherSequence,
     ]
   );
 
@@ -303,8 +400,9 @@ export function LearningTerminal({
           pointerEvents: interactiveMc ? "auto" : "none",
         }}
       >
-        <div
+        <motion.div
           className={learningFocus ? "nx-calm-card" : undefined}
+          animate={panelShake}
           style={{
             borderRadius: learningFocus ? 32 : 22,
             padding: learningFocus
@@ -312,14 +410,39 @@ export function LearningTerminal({
               : "var(--nx-space-24) var(--nx-space-32)",
             background: learningFocus ? "var(--nx-learn-surface)" : "var(--nx-panel-frost)",
             border: learningFocus
-              ? "1px solid var(--nx-learn-line)"
+              ? rimGold
+                ? "1px solid rgba(214, 181, 111, 0.65)"
+                : "1px solid var(--nx-learn-line)"
               : "1px solid var(--nx-border-readable)",
             boxShadow: learningFocus
-              ? "0 36px 110px rgba(0,0,0,0.28)"
+              ? rimGold
+                ? "0 0 0 2px rgba(255, 214, 165, 0.35), 0 0 64px rgba(214, 181, 111, 0.42), 0 36px 110px rgba(0,0,0,0.28)"
+                : "0 36px 110px rgba(0,0,0,0.28)"
               : "0 var(--nx-space-24) var(--nx-space-64) var(--nx-shadow-deep), inset 0 1px 0 var(--nx-bone-25)",
             color: learningFocus ? "var(--nx-learn-ink)" : undefined,
+            transition: "box-shadow 0.25s ease, border-color 0.25s ease",
           }}
         >
+          {isBossMode ? (
+            <motion.div
+              aria-hidden
+              animate={
+                reduceMotion
+                  ? { opacity: 0.22 }
+                  : { opacity: [0.18, 0.48, 0.22] }
+              }
+              transition={reduceMotion ? { duration: 0 } : { duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                position: "absolute",
+                inset: -2,
+                borderRadius: learningFocus ? 34 : 24,
+                pointerEvents: "none",
+                background:
+                  "radial-gradient(circle at 50% 32%, rgba(248, 113, 113, 0.22), transparent 55%), linear-gradient(180deg, rgba(88, 12, 12, 0.22), transparent 68%)",
+                boxShadow: "0 0 60px rgba(248, 113, 113, 0.22)",
+              }}
+            />
+          ) : null}
           <motion.div
             key={streamKey}
             variants={streamParent}
@@ -360,6 +483,124 @@ export function LearningTerminal({
 
             {exercise ? (
               <>
+                {isBossMode ? (
+                  <motion.div
+                    variants={streamChild}
+                    style={{
+                      marginBottom: "var(--nx-space-16)",
+                      padding: "var(--nx-space-16) var(--nx-space-20)",
+                      borderRadius: 24,
+                      border: "1px solid rgba(248, 113, 113, 0.35)",
+                      background: "rgba(18, 8, 8, 0.78)",
+                      color: "rgba(251, 247, 239, 0.95)",
+                      boxShadow: "0 0 42px rgba(248, 113, 113, 0.18), inset 0 1px 0 rgba(251,247,239,0.06)",
+                      backdropFilter: "blur(14px)",
+                      WebkitBackdropFilter: "blur(14px)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: typography.fontMono,
+                        fontSize: 20,
+                        fontWeight: 850,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "rgba(248, 113, 113, 0.85)",
+                      }}
+                    >
+                      Boss Mode
+                    </div>
+                    <p
+                      style={{
+                        margin: "10px 0 0",
+                        fontFamily: typography.fontSans,
+                        fontSize: "clamp(24px, 3vw, 30px)",
+                        lineHeight: 1.48,
+                        fontWeight: 650,
+                        letterSpacing: "-0.02em",
+                      }}
+                    >
+                      {bossEpicLine ?? "Alarm Boss Modus aktiv"}
+                    </p>
+                  </motion.div>
+                ) : null}
+                {learningFocus ? (
+                  <motion.div
+                    variants={streamChild}
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: "var(--nx-space-20)",
+                      marginBottom: "var(--nx-space-20)",
+                      padding: "var(--nx-space-18) var(--nx-space-22)",
+                      borderRadius: 26,
+                      border: "1px solid rgba(251, 247, 239, 0.1)",
+                      background:
+                        "linear-gradient(150deg, rgba(10, 12, 14, 0.94) 0%, rgba(22, 26, 30, 0.9) 100%)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(251, 247, 239, 0.07), 0 18px 48px rgba(0,0,0,0.22)",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                    }}
+                  >
+                    <motion.div
+                      animate={
+                        reduceMotion
+                          ? {}
+                          : {
+                              scale: [1, 1.045, 1],
+                              y: [0, -3, 0],
+                            }
+                      }
+                      transition={
+                        reduceMotion
+                          ? { duration: 0 }
+                          : { duration: 3.6, repeat: Infinity, ease: "easeInOut" }
+                      }
+                    >
+                      <img
+                        src={coachAvatarSrc}
+                        alt=""
+                        width={92}
+                        height={92}
+                        style={{
+                          borderRadius: 22,
+                          border: "1px solid rgba(214, 181, 111, 0.45)",
+                          objectFit: "cover",
+                          display: "block",
+                          boxShadow: "0 0 28px rgba(214, 181, 111, 0.18)",
+                        }}
+                      />
+                    </motion.div>
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div
+                        style={{
+                          fontFamily: typography.fontMono,
+                          fontSize: 20,
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                          color: "rgba(251, 247, 239, 0.42)",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Nexus-Cockpit · {coachDisplayName ?? "Pilot"}
+                      </div>
+                      <p
+                        style={{
+                          margin: "10px 0 0",
+                          fontFamily: typography.fontSans,
+                          fontSize: 24,
+                          lineHeight: 1.45,
+                          fontWeight: 500,
+                          color: "rgba(251, 247, 239, 0.92)",
+                        }}
+                      >
+                        Ich bin an Bord halte den Fokus auf Aufgabe und Terminal
+                      </p>
+                    </div>
+                  </motion.div>
+                ) : null}
                 <motion.div
                   variants={streamChild}
                   style={{
@@ -502,23 +743,30 @@ export function LearningTerminal({
                       Jetzt du
                     </div>
                   ) : null}
-                  <p
-                    style={{
-                      margin: isBeginnerExercise
-                        ? "var(--nx-space-8) 0 0"
-                        : "var(--nx-space-16) 0 0",
-                      fontFamily: typography.fontSans,
-                      fontSize: learningFocus
-                        ? "clamp(24px, 2vw, 28px)"
-                        : typography.bodySize,
-                      lineHeight: learningFocus ? 1.72 : typography.bodyLineHeight,
-                      color: learningFocus ? "var(--nx-learn-muted)" : typography.fgMuted,
-                      whiteSpace: "pre-wrap",
-                      maxWidth: "72ch",
-                    }}
-                  >
-                    {exercise.problem}
-                  </p>
+                  {!(
+                    learningFocus &&
+                    exercise.coachLine &&
+                    exercise.lang === "markdown" &&
+                    exercise.mcOptions.length > 0
+                  ) ? (
+                    <p
+                      style={{
+                        margin: isBeginnerExercise
+                          ? "var(--nx-space-8) 0 0"
+                          : "var(--nx-space-16) 0 0",
+                        fontFamily: typography.fontSans,
+                        fontSize: learningFocus
+                          ? "clamp(24px, 2vw, 28px)"
+                          : typography.bodySize,
+                        lineHeight: learningFocus ? 1.72 : typography.bodyLineHeight,
+                        color: learningFocus ? "var(--nx-learn-muted)" : typography.fgMuted,
+                        whiteSpace: "pre-wrap",
+                        maxWidth: "72ch",
+                      }}
+                    >
+                      {exercise.problem}
+                    </p>
+                  ) : null}
                   {learningFocus && exercise.solutionHint ? (
                     <p
                       style={{
@@ -539,36 +787,75 @@ export function LearningTerminal({
                     </p>
                   ) : null}
                   {exercise.illustrationSrc ? (
-                    <SafeLearningFigure src={exercise.illustrationSrc} alt="" />
+                    <SafeLearningFigure
+                      src={exercise.illustrationSrc}
+                      alt=""
+                      coachAvatarSrc={learningFocus ? coachAvatarSrc : null}
+                      coachName={learningFocus ? coachDisplayName : null}
+                    />
                   ) : null}
                 </motion.div>
 
                 <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
 
-                {learningFocus && (exercise.lang === "sql" || exercise.lang === "csharp") ? (
+                {learningFocus && (exercise.lang === "sql" || exercise.lang === "csharp" || exercise.lang === "bash") ? (
                   <motion.div
                     variants={streamChild}
                     style={{
                       padding: "var(--nx-space-8) 0",
                       display: "flex",
                       flexDirection: "column",
-                      gap: 0,
+                      gap: "var(--nx-space-12)",
                     }}
                   >
+                    {exercise.coachLine ? (
+                      <p
+                        style={{
+                          margin: 0,
+                          padding: "var(--nx-space-16) var(--nx-space-20)",
+                          borderRadius: 20,
+                          fontFamily: typography.fontSans,
+                          fontSize: "clamp(24px, 2.6vw, 30px)",
+                          fontWeight: 750,
+                          lineHeight: 1.45,
+                          letterSpacing: "-0.02em",
+                          color: "rgba(248, 244, 232, 0.96)",
+                          background:
+                            "linear-gradient(145deg, rgba(10, 16, 20, 0.94) 0%, rgba(18, 28, 24, 0.9) 100%)",
+                          border: "1px solid rgba(214, 181, 111, 0.24)",
+                          boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.04)",
+                          whiteSpace: "pre-wrap",
+                          maxWidth: "72ch",
+                        }}
+                      >
+                        {exercise.coachLine}
+                      </p>
+                    ) : null}
                     <TerminalCodeWorkbench
+                      key={exercise.id}
                       lang={exercise.lang}
                       reference={exercise.solutionCode}
                       milestoneId={exercise.id}
                       onSuccess={() => {
                         markMissionCleared(exercise.id);
                         recordLearningExerciseMastery(answerLf, exercise.id);
+                        if (isBossMode) {
+                          unlockSectorMastery(answerLf);
+                          void playVictoryFinisherSequence();
+                          window.dispatchEvent(new CustomEvent("nx:boss-clear-map"));
+                        }
                       }}
+                      onRunSuccessEffects={triggerCodeSuccessFx}
+                      coachAvatarSrc={coachAvatarSrc}
+                      coachName={coachDisplayName}
+                      learningField={answerLf}
                       initialDraft={
-                        archiveWorkbenchSnippet &&
+                        exercise.workbenchInitialDraft ??
+                        (archiveWorkbenchSnippet &&
                         archiveWorkbenchSnippet.lf === answerLf &&
                         archiveWorkbenchSnippet.lang === exercise.lang
                           ? archiveWorkbenchSnippet.code
-                          : undefined
+                          : undefined)
                       }
                       initialToken={archiveWorkbenchSnippet?.updatedAt}
                     />
@@ -577,7 +864,8 @@ export function LearningTerminal({
 
                 {learningFocus &&
                 exercise.lang !== "sql" &&
-                exercise.lang !== "csharp" ? (
+                exercise.lang !== "csharp" &&
+                exercise.lang !== "bash" ? (
                   <>
                     <motion.div
                       variants={streamChild}
@@ -585,9 +873,32 @@ export function LearningTerminal({
                         padding: "var(--nx-space-8) 0",
                         display: "flex",
                         flexDirection: "column",
-                        gap: 0,
+                        gap: "var(--nx-space-12)",
                       }}
                     >
+                      {exercise.coachLine ? (
+                        <p
+                          style={{
+                            margin: 0,
+                            padding: "var(--nx-space-16) var(--nx-space-20)",
+                            borderRadius: 20,
+                            fontFamily: typography.fontSans,
+                            fontSize: "clamp(24px, 2.6vw, 30px)",
+                            fontWeight: 750,
+                            lineHeight: 1.45,
+                            letterSpacing: "-0.02em",
+                            color: "rgba(248, 244, 232, 0.96)",
+                            background:
+                              "linear-gradient(145deg, rgba(10, 16, 20, 0.94) 0%, rgba(18, 28, 24, 0.9) 100%)",
+                            border: "1px solid rgba(214, 181, 111, 0.24)",
+                            boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.04)",
+                            whiteSpace: "pre-wrap",
+                            maxWidth: "72ch",
+                          }}
+                        >
+                          {exercise.coachLine}
+                        </p>
+                      ) : null}
                       <p
                         style={{
                           margin: 0,
@@ -737,7 +1048,7 @@ export function LearningTerminal({
                   </>
                 ) : null}
 
-                {learningFocus && (exercise.lang === "sql" || exercise.lang === "csharp") ? (
+                {learningFocus && (exercise.lang === "sql" || exercise.lang === "csharp" || exercise.lang === "bash") ? (
                   <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
                 ) : null}
 
@@ -749,9 +1060,31 @@ export function LearningTerminal({
                         padding: learningFocus ? "var(--nx-space-8) 0" : "var(--nx-space-8) 0",
                         display: "flex",
                         flexDirection: "column",
-                        gap: 0,
+                        gap: exercise.coachLine ? "var(--nx-space-12)" : 0,
                       }}
                     >
+                      {exercise.coachLine ? (
+                        <p
+                          style={{
+                            margin: 0,
+                            padding: "var(--nx-space-12) var(--nx-space-16)",
+                            borderRadius: 16,
+                            fontFamily: typography.fontSans,
+                            fontSize: 24,
+                            fontWeight: 720,
+                            lineHeight: 1.42,
+                            letterSpacing: "-0.015em",
+                            color: "rgba(248, 244, 232, 0.94)",
+                            background:
+                              "linear-gradient(145deg, rgba(10, 16, 20, 0.88) 0%, rgba(18, 28, 24, 0.82) 100%)",
+                            border: "1px solid rgba(214, 181, 111, 0.2)",
+                            boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.035)",
+                            whiteSpace: "pre-wrap",
+                          }}
+                        >
+                          {exercise.coachLine}
+                        </p>
+                      ) : null}
                       <p
                         style={{
                           margin: 0,
@@ -946,6 +1279,8 @@ export function LearningTerminal({
                       maxHeight: learningFocus ? "min(22vh, 200px)" : "min(28vh, 224px)",
                       overflowY: "auto",
                       fontFamily: "var(--nx-font-mono, JetBrains Mono, monospace)",
+                      fontSize: 20,
+                      lineHeight: 1.5,
                     }}
                   >
                     <code>{highlighted}</code>
@@ -992,7 +1327,7 @@ export function LearningTerminal({
               </>
             ) : null}
           </motion.div>
-        </div>
+        </motion.div>
       </motion.aside>
     </>
   );

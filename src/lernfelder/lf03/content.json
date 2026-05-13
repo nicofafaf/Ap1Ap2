@@ -36,8 +36,120 @@
           { "text": "Für eine Benutzerrolle", "correct": false, "hint": "Rollen gehören eher zu Berechtigungen" }
         ]
       }
+    },
+    {
+      "id": "lf3-ccna-em-1",
+      "topic": "CCNA Ethernet Concepts",
+      "level": "beginner",
+      "title": "Medium gegen EMI",
+      "lessonCards": [
+        {
+          "title": "CCNA Modul 4 bis 7",
+          "body": "Ethernet, Kabeltypen und physikalische Grundlagen — hier geht es um Störsicherheit des Mediums"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "wir haben massive interferenzen auf der leitung wir müssen das medium wechseln um emi zu blockieren",
+        "question": "Welches Netzwerkkabel bietet absolute Immunität gegen elektromagnetische Störungen (EMI)",
+        "options": [
+          { "text": "Glasfaserkabel", "correct": true },
+          { "text": "UTP-Kupferkabel", "correct": false, "hint": "Kupfer leitet und kann Störungen aufnehmen" },
+          { "text": "Koaxialkabel", "correct": false, "hint": "Koax ist abgeschirmt, aber nicht immun gegen alle EMI" },
+          { "text": "STP-Kabel", "correct": false, "hint": "Schirmung hilft, bietet aber keine absolute Immunität" }
+        ]
+      }
+    },
+    {
+      "id": "lf3-ccna-em-2",
+      "topic": "CCNA Ethernet Concepts",
+      "level": "beginner",
+      "title": "MAC-Länge",
+      "lessonCards": [
+        {
+          "title": "Ethernet-Adresse",
+          "body": "Die MAC-Adresse identifiziert die Netzwerkschnittstelle auf Schicht 2"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "ein unbekanntes gerät pingt unseren server an ich brauche die genaue länge der physikalischen adresse um den angreifer im switch zu isolieren",
+        "question": "Wie lang ist eine gültige MAC-Adresse in einem Ethernet-Netzwerk",
+        "options": [
+          { "text": "48 Bit", "correct": true },
+          { "text": "32 Bit", "correct": false, "hint": "32 Bit kennst du eher von IPv4-Adressen" },
+          { "text": "128 Bit", "correct": false, "hint": "128 Bit ist typisch für IPv6, nicht für klassische Ethernet-MAC" },
+          { "text": "64 Bit", "correct": false, "hint": "Ethernet-MAC ist fest auf 48 Bit definiert (EUI-48)" }
+        ]
+      }
+    },
+    {
+      "id": "lf3-ccna-em-3",
+      "topic": "CCNA Ethernet Concepts",
+      "level": "beginner",
+      "title": "Switch lernt aus Frames",
+      "lessonCards": [
+        {
+          "title": "CAM-Tabelle",
+          "body": "Der Switch merkt sich, welche MAC an welchem Port gesehen wurde"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "der switch hat sein gedächtnis verloren welche adresse liest die hardware aus dem datenstrom um ihre tabelle wieder aufzubauen",
+        "question": "Welche Information nutzt ein Switch aus einem eingehenden Frame um seine MAC-Tabelle (CAM-Table) aufzubauen",
+        "options": [
+          { "text": "Quell-MAC-Adresse", "correct": true },
+          { "text": "Ziel-MAC-Adresse", "correct": false, "hint": "Das Ziel steuert die Weiterleitung, nicht das Lernen des Ports" },
+          { "text": "Quell-IP-Adresse", "correct": false, "hint": "IP gehört zu Schicht 3 — der Switch arbeitet auf Schicht 2" },
+          { "text": "Ziel-IP-Adresse", "correct": false, "hint": "IP wird vom Switch für normales Bridging nicht ausgewertet" }
+        ]
+      }
+    },
+    {
+      "id": "lf3-ccna-em-4",
+      "topic": "CCNA Ethernet Concepts",
+      "level": "beginner",
+      "title": "Unbekannte Ziel-MAC",
+      "lessonCards": [
+        {
+          "title": "Flooding",
+          "body": "Ohne Tabelleneintrag kennt der Switch den Zielport nicht und verteilt vorsichtig"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "die zieladresse ist nicht in der tabelle des switches wie reagiert das system auf diesen unbekannten frame",
+        "question": "Was macht ein Switch mit einem Frame dessen Ziel-MAC-Adresse nicht in der MAC-Tabelle steht",
+        "options": [
+          { "text": "Er leitet den Frame an alle aktiven Ports außer dem Eingangsport weiter (Flooding)", "correct": true },
+          { "text": "Er verwirft den Frame sofort (Drop)", "correct": false, "hint": "Verwerfen wäre Datenverlust — Standard ist unkastiges Weiterleiten" },
+          { "text": "Er schickt den Frame an den Router zurück", "correct": false, "hint": "Ein Layer-2-Switch leitet nicht automatisch an einen Router" },
+          { "text": "Er sendet einen ARP-Request an den Absender", "correct": false, "hint": "ARP löst IP zu MAC auf — das ist kein Switch-Standard bei unbekannter Ziel-MAC" }
+        ]
+      }
     }
   ],
+  "bossPhase": {
+    "id": "lf3-boss",
+    "title": "Boss Kern · Routing Blackout",
+    "problemLead": "totalausfall am kernrouter alle uplinks kippen broadcast stürzt mask und gateway brennen weg das ganze gitternetz kippt in null ohne deine zahl stirbt jeder frame",
+    "epicCoach": {
+      "starwars": "alarm hyperraum routing tot der clipper frisst jedes segment weg subnetz retten oder alles löscht sich",
+      "anime": "kompletter nullroute kollaps alle chakra leitungen explodieren subnetz ohne gnade nur deine wahl rettet den spawn",
+      "gym": "max blackout auf der kernleitung jeder rack uplift bricht weg subnetz platzt rechnen oder tier one aus"
+    },
+    "practice": {
+      "type": "mc",
+      "question": "Core-Router meldet einen vollen 172.16.48.0/27 ohne Split wie viele nutzbare Host-IPs stehen im Block",
+      "options": [
+        { "text": "30", "correct": true },
+        { "text": "32", "correct": false, "hint": "32 Adressen gesamt Netz und Broadcast zählen nicht als nutzbare Hosts" },
+        { "text": "28", "correct": false, "hint": "28 wäre eng an /30 gedacht hier sind fünf Hostbits" },
+        { "text": "62", "correct": false, "hint": "62 passt zu /26 mit sechs Hostbits nicht zu /27" }
+      ]
+    }
+  },
   "reference": [
     {
       "id": "lf3-kern",

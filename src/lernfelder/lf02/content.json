@@ -36,8 +36,166 @@
           { "text": "Der Domainname allein", "correct": false, "hint": "Der Name hilft beim Finden, fragt aber nicht selbst an" }
         ]
       }
+    },
+    {
+      "id": "lf2-sw-bandwidth",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Transfer der Baupläne",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "Rechne Nutzlast in Megabit gegen die Mbit/s-Leitung Der Holotable braucht eine Sekundenprognose"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "die hyperlane glüht die sturmtruppen warten jede sekunde kostet deckung wir müssen die transferzeit exakt kennen",
+        "question": "Holotable meldet 1200 Megabit Nutzlast Der Uplink bleibt stabil bei 300 Mbit/s Wie viele Sekunden braucht der reine Transfer",
+        "options": [
+          { "text": "4 Sekunden", "correct": true },
+          { "text": "40 Sekunden", "correct": false, "hint": "Noch einmal Megabit durch Mbit/s rechnen" },
+          { "text": "12 Sekunden", "correct": false, "hint": "1200 geteilt durch 300 ergibt keine Zwölf" },
+          { "text": "0,25 Sekunden", "correct": false, "hint": "Das wäre viel zu schnell für diese Nutzlast" }
+        ]
+      }
+    },
+    {
+      "id": "lf2-sw-raid0",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Imperiale Speicherbank",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "RAID 0 streift ohne Parity Zähle die Rohscheiben für die nutzbare Summe"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "die speicherbänke laufen voll wir müssen die raid kapazität exakt berechnen bevor das system crasht",
+        "question": "Vier gleiche 2-TB-Platten laufen als RAID 0 ohne Hotspare Wie viele Terabyte nutzbarer Rohspeicher stehen ohne Redundanz",
+        "options": [
+          { "text": "8 TB", "correct": true },
+          { "text": "6 TB", "correct": false, "hint": "RAID 0 addiert die Scheiben hier sind vier mal zwei" },
+          { "text": "4 TB", "correct": false, "hint": "Das wäre nur eine Platte oder falsches Streifen" },
+          { "text": "16 TB", "correct": false, "hint": "Doppelt so viel wäre unrealistisch ohne mehr Spindeln" }
+        ]
+      }
+    },
+    {
+      "id": "lf2-an-raid5",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Flotten-Kampfdaten",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "RAID 5 frisst eine Parity-Platte Ziehe eine Scheibe aus der Summe für Netto-Payload"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "die synchronisierten kampfdaten quellen über wir müssen den raid 5 netto klar haben bevor der arc überläuft",
+        "question": "Fünf gleiche 4-TiB-Laufwerke als RAID 5 ohne Hotspare Wie viele nutzbare TiB bleiben für die synchronisierte Flottenlast",
+        "options": [
+          { "text": "16 TiB", "correct": true },
+          { "text": "20 TiB", "correct": false, "hint": "Parity kostet eine Scheibe also fünf minus eins mal vier" },
+          { "text": "12 TiB", "correct": false, "hint": "Zu wenig das wäre mehr als eine Parity-Scheibe abgezogen" },
+          { "text": "4 TiB", "correct": false, "hint": "Das wäre nur eine Platte denk an n minus eins" }
+        ]
+      }
+    },
+    {
+      "id": "lf2-an-bandwidth",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Sync-Kanal der Flotte",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "Teile Megabit-Paket durch Mbit/s Der Kanal darf nicht stauen"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "der chakra uplink flackert die flotte brüllt nach ack wir müssen die flush zeit in sekunden treffen",
+        "question": "Kontrollschiff streamt 1920 Megabit Kampfdatenpaket Der synchrone Kanal fasst 480 Mbit/s Wie viele Sekunden bis der Block durch ist",
+        "options": [
+          { "text": "4 Sekunden", "correct": true },
+          { "text": "8 Sekunden", "correct": false, "hint": "1920 geteilt durch 480 ist kleiner als acht" },
+          { "text": "2 Sekunden", "correct": false, "hint": "Doppelt so schnell wäre unrealistisch bei dieser Nutzlast" },
+          { "text": "10 Sekunden", "correct": false, "hint": "Noch einmal die Megabit durch die Mbit/s teilen" }
+        ]
+      }
+    },
+    {
+      "id": "lf2-gym-yearstore",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "Jahres-Tracking Roh",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "MiB pro Tag mal 365 Tage Dann grob in GiB denken ohne Kompression tricksen"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "die logfiles ballonieren jeder satz bleibt roh wir müssen die jahreskapazität kennen bevor der rack abstürzt",
+        "question": "250 MiB unkomprimiertes Workout-Tracking pro Tag über 365 Tage Wie viele GiB Jahreslast ergeben sich grob gerundet auf ganze GiB",
+        "options": [
+          { "text": "89 GiB", "correct": true },
+          { "text": "66 GiB", "correct": false, "hint": "250 mal 365 MiB durch 1024 ist deutlich höher" },
+          { "text": "102 GiB", "correct": false, "hint": "Das wäre deutlich mehr als 91250 MiB geteilt durch 1024" },
+          { "text": "250 GiB", "correct": false, "hint": "250 ist nur der Tageswert nicht das Jahr" }
+        ]
+      }
+    },
+    {
+      "id": "lf2-gym-raid1",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "NAS im Kraftbereich",
+      "lessonCards": [
+        {
+          "title": "Action Card",
+          "body": "RAID 1 spiegelt zwei Laufwerke Nutzbar ist effektiv eine Platte"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "die platten spiegeln sich der pr bricht ein wir müssen den netto raid 1 raum kennen bevor die uploads stoppen",
+        "question": "Zwei gleiche 8-TB-Platten laufen als RAID 1 ohne Hotspare Wie viele Terabyte nutzbarer Speicher bleiben nach Spiegelung",
+        "options": [
+          { "text": "8 TB", "correct": true },
+          { "text": "16 TB", "correct": false, "hint": "Spiegel verdoppelt nicht die nutzbare Kapazität" },
+          { "text": "4 TB", "correct": false, "hint": "Halbe Scheibe wäre kein klassisches RAID 1 mit zwei Platten" },
+          { "text": "12 TB", "correct": false, "hint": "Zwischenwert passt nicht zur Spiegelarithmetik" }
+        ]
+      }
     }
   ],
+  "bossPhase": {
+    "id": "lf2-boss",
+    "title": "Boss Kern · RAID 10 Recovery",
+    "problemLead": "der raid controller flackert rot alle lüfter sprinten auf max wir müssen die netto kapazität sofort liefern bevor die platine den hardware tod feuert",
+    "epicCoach": {
+      "starwars": "der hyperantrieb speicher glüht weißglut der hangar timer tickt runter ohne diese zahl stirbt die ganze staffel",
+      "anime": "der mecha kern kollabiert die sync achse reißt weg nur die raid zahl hält noch eine runde",
+      "gym": "der hauptserver für biometrie kocht über die pulse droht blackout rett die raid zahl oder die athleten verlieren alles"
+    },
+    "practice": {
+      "type": "mc",
+      "question": "Acht gleiche 1-TB-Platten bilden RAID 10 ohne Hotspare ein Spindle meldet tot aber der Spiegel hält noch der Controller will die nutzbare Nutzdatenfläche sofort Wie viele Terabyte bleiben für Nutzdaten",
+      "options": [
+        { "text": "4 TB", "correct": true },
+        { "text": "8 TB", "correct": false, "hint": "RAID 10 halbiert die Rohsumme bei acht Scheiben mit Spiegelstreifen" },
+        { "text": "2 TB", "correct": false, "hint": "Zu wenig das wäre nur ein Streifenbein ohne Spiegel" },
+        { "text": "6 TB", "correct": false, "hint": "Zwischenwert passt nicht zur halben Rohkapazität" }
+      ]
+    }
+  },
   "reference": [
     {
       "id": "lf2-kern",

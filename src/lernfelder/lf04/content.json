@@ -1,7 +1,7 @@
 {
   "lf": "LF4",
   "ap": "AP1",
-  "title": "Hardware und Systemintegration",
+  "title": "Hardware, Systemintegration und Elektrotechnik",
   "beginnerPath": [
     {
       "id": "lf4-start",
@@ -34,6 +34,102 @@
           { "text": "Monitorständer", "correct": false, "hint": "Der Ständer verbessert Ergonomie, nicht Arbeitsspeicher" },
           { "text": "Netzwerkkabel", "correct": false, "hint": "Das Kabel hilft beim Netzwerk, nicht beim lokalen Speicherbedarf" },
           { "text": "Mauspad", "correct": false, "hint": "Das hat keinen Einfluss auf parallele Programme" }
+        ]
+      }
+    },
+    {
+      "id": "lf4-sw-ion",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Ionen-Kanone · Strom aus Leistung",
+      "lessonCards": [
+        {
+          "title": "Action · Leistung",
+          "body": "Gleichstrom-Näherung P gleich U mal I damit dimensionierst du Leitungen und Sicherungen"
+        },
+        {
+          "title": "Action · Umstellen",
+          "body": "Strom I gleich P durch U wenn U und P bekannt sind"
+        },
+        {
+          "title": "Action · Netz",
+          "body": "Wenn I zu groß wird schmelzen Sicherungen bevor die Kanone stabil feuert"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "energiespitze im primär-reaktor wir müssen sofort den strom I ausrechnen bevor die sicherungen als popcorn springen",
+        "question": "Die ionen-kanone zieht P = 4800 W bei einer Versorgungsspannung U = 400 V wie groß ist der Strom I wenn du P gleich U mal I anwendest",
+        "solutionHint": "I gleich P durch U einsetzen und kürzen",
+        "options": [
+          { "text": "12 A", "correct": true },
+          { "text": "8 A", "correct": false, "hint": "4800 geteilt durch 400 ist nicht 8" },
+          { "text": "19,2 A", "correct": false, "hint": "I gleich P durch U nicht P mal U" },
+          { "text": "0,12 A", "correct": false, "hint": "Kontrolliere die Einheiten Watt durch Volt gibt Ampere" }
+        ]
+      }
+    },
+    {
+      "id": "lf4-an-usv",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Mecha-Hangar · USV-Laufzeit",
+      "lessonCards": [
+        {
+          "title": "Action · Energie",
+          "body": "Nutzbare Energie E in Wh geteilt durch Lastleistung P in Watt ergibt die Zeit in Stunden näherungsweise ohne Wirkungsgrad"
+        },
+        {
+          "title": "Action · USV",
+          "body": "Die USV puffert zwischen Netz und kritischen Lasten bis der Generator greift"
+        },
+        {
+          "title": "Action · Volllast",
+          "body": "Volllast bedeutet P maximal dann wird E am schnellsten verbraucht"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "die mecha-hangar-usv blinkt rot der akku leert wir müssen die laufzeit aus E und P rechnen bevor der notbetrieb die sync killt",
+        "question": "Der Hangar nutzt eine USV mit nutzbarer Energie E = 2400 Wh die Mecha-Linie zieht Volllast P = 800 W wie lange hält der Puffer näherungsweise wenn du t gleich E durch P setzt",
+        "solutionHint": "Stunden gleich Wattstunden durch Watt die Einheiten kürzen sich",
+        "options": [
+          { "text": "3 h", "correct": true },
+          { "text": "2 h", "correct": false, "hint": "2400 durch 800 ist nicht 2" },
+          { "text": "4 h", "correct": false, "hint": "Zu viel Zeit die Division ist kleiner" },
+          { "text": "30 min", "correct": false, "hint": "2400 Wh durch 800 W sind drei Stunden nicht eine halbe Stunde" }
+        ]
+      }
+    },
+    {
+      "id": "lf4-gym-ohm",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "Smart-Rack · Widerstand",
+      "lessonCards": [
+        {
+          "title": "Action · Ohmsches Gesetz",
+          "body": "U gleich I mal R bei ohmschem Verhalten in der Zuleitung"
+        },
+        {
+          "title": "Action · Umstellen",
+          "body": "R gleich U durch I wenn du Spannung und Strom am gleichen Zweig kennst"
+        },
+        {
+          "title": "Action · Spannungsfall",
+          "body": "Zu hoher Widerstand bei gleichem I erzeugt mehr Abfall über die Leitung"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "die smart-geräte flackern im rack wir müssen R aus U und I prüfen bevor die zuleitung den hub grillt",
+        "question": "Die smarten Trainingsgeräte ziehen I = 10 A Messung am Strang zeigt U = 48 V wie groß ist der ohmsche Widerstand R wenn du R gleich U durch I rechnest",
+        "solutionHint": "R gleich U durch I Volt durch Ampere ergibt Ohm",
+        "options": [
+          { "text": "4,8 Ω", "correct": true },
+          { "text": "480 Ω", "correct": false, "hint": "48 durch 10 ist nicht 480" },
+          { "text": "0,21 Ω", "correct": false, "hint": "Das wäre I durch U vertauscht" },
+          { "text": "58 Ω", "correct": false, "hint": "Rechne 48 geteilt durch 10 noch einmal" }
         ]
       }
     }

@@ -19,6 +19,8 @@ export type CodexReferenceItem =
       type: "sql" | "csharp";
       title: string;
       code: string;
+      /** Kurzer Coach-Hinweis Bone-White 24px über dem Block */
+      coachLine?: string;
     }
   | {
       id: string;
@@ -134,6 +136,20 @@ export function CodexContent({ lf, chapter, items }: CodexContentProps) {
             </div>
             {activeCard.type === "sql" || activeCard.type === "csharp" ? (
               <div style={{ marginTop: 12 }}>
+                {"coachLine" in activeCard && activeCard.coachLine ? (
+                  <p
+                    style={{
+                      margin: "0 0 14px",
+                      color: "rgba(251, 247, 239, 0.92)",
+                      fontSize: 24,
+                      lineHeight: 1.45,
+                      fontWeight: 500,
+                      maxWidth: 820,
+                    }}
+                  >
+                    {activeCard.coachLine}
+                  </p>
+                ) : null}
                 <CodeBlock lf={lf} title={activeCard.title} lang={activeCard.type} code={activeCard.code} />
               </div>
             ) : null}

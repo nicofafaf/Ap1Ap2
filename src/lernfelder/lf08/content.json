@@ -1,7 +1,99 @@
 {
   "lf": "LF8",
   "ap": "AP2",
-  "title": "Datenmodelle und Persistenz",
+  "title": "Datenmodelle und Linux-Server",
+  "linuxCoachFlair": {
+    "lf8-sw-chmod": {
+      "starwars": "die imperialen spione haben die zugriffsrechte manipuliert wir müssen sofort chmod setzen bevor die baupläne offen liegen",
+      "anime": "die hangar-git hat falsche mod-bits der mecha-bauplan hängt wir müssen chmod korrekt setzen bevor der sync abreißt",
+      "gym": "die rack-config ist world-writable der server loggt jeden touch wir müssen chmod ziehen bevor die biometrie-daten leaken"
+    },
+    "lf8-an-systemctl": {
+      "starwars": "der träger-daemon für die zielcomputer ist tot wir müssen systemctl restart feuern bevor die staffel blind fliegt",
+      "anime": "der mecha-sync-daemon ist abgestürzt systemctl muss den dienst sofort neu starten sonst bleibt die todes-schleife aktiv",
+      "gym": "der pulse-daemon für die gerätebank antwortet nicht wir brauchen systemctl restart damit die station wieder heartbeats sendet"
+    },
+    "lf8-gym-grep": {
+      "starwars": "die holo-logs sind voll wir müssen grep nutzen um den saboteur-string zu isolieren bevor der hangar flutet",
+      "anime": "die telemetrie spammt frames wir müssen grep auf den fehler-token setzen bevor der arc einfriert",
+      "gym": "wir müssen die logs nach fehlerhaften biometrie-daten filtern grep isoliert ERR_SPIKE bevor der stack toxische mengen plant"
+    },
+    "lf8-boss": {
+      "starwars": "die kommunikation zum todesstern bricht ab der hyperkanal flutet mit noise wir müssen core-rechte und sync-dienst in einem zug retten",
+      "anime": "die basis wird von einem virus infiltriert der daemon hängt wir müssen config härten und den sync sofort neu starten",
+      "gym": "alle trainingspläne sind durch einen root-exploit verschlüsselt wir müssen die toml retten und den scheduler-dienst hart neu starten"
+    }
+  },
+  "linuxMultiverseSteps": {
+    "lf8-sw-chmod": {
+      "starwars": [
+        { "step": "1", "title": "Geheimordner", "body": "chmod arbeitet auf exakten Pfaden unter /etc wie bei imperialen bauplänen" },
+        { "step": "2", "title": "Ziffernblock", "body": "6 ist rw für owner 4 ist r für gruppe 0 sperrt alle anderen accounts" },
+        { "step": "3", "title": "Harter Cut", "body": "777 ist ein offenes tor 640 ist rw-r----- und stoppt spione" }
+      ],
+      "anime": [
+        { "step": "1", "title": "Lab-Pfad", "body": "chmod hält die werkstatt-datei geschlossen wie ein siegel auf einem mecha-core" },
+        { "step": "2", "title": "Panel-Logik", "body": "Owner braucht rw gruppe nur lesebits world bleibt zu" },
+        { "step": "3", "title": "Kein Overdraw", "body": "Keine 777 explosion setze die numerische maske exakt wie referenz" }
+      ],
+      "gym": [
+        { "step": "1", "title": "Rack-Pfad", "body": "chmod schützt die config unter /etc wie ein schloss am squat-rack" },
+        { "step": "2", "title": "Team-Lesen", "body": "Owner schreibt gruppe liest guests bleiben draußen" },
+        { "step": "3", "title": "PR sauber", "body": "Ein sauberer chmod-call ist wie ein sauberer lockout ohne cheat-reps" }
+      ]
+    },
+    "lf8-an-systemctl": {
+      "starwars": [
+        { "step": "1", "title": "Dienstname", "body": "systemctl spricht den unit-namen mit suffix wie bei einem träger-subsystem" },
+        { "step": "2", "title": "Restart", "body": "restart killt den hängenden prozess und hebt die unit sofort wieder" },
+        { "step": "3", "title": "Privileg", "body": "sudo vor systemctl ist standard auf servern mit geschütztem socket" }
+      ],
+      "anime": [
+        { "step": "1", "title": "Unit Arc", "body": "systemctl adressiert den mecha-sync service direkt am systemd-bus" },
+        { "step": "2", "title": "Cold Boot", "body": "restart ist schneller als manuelles kill und start im todes-loop" },
+        { "step": "3", "title": "Pilot sudo", "body": "sudo öffnet die policy damit der dienstmanager die unit anfasst" }
+      ],
+      "gym": [
+        { "step": "1", "title": "Unit Tag", "body": "systemctl kennt deinen pulse-daemon am exakten unit-string" },
+        { "step": "2", "title": "Hard Reset", "body": "restart flusht hängende sockets wie ein deload nach failure-reps" },
+        { "step": "3", "title": "Elevate", "body": "sudo ist der spotter der dem befehl root-kraft gibt" }
+      ]
+    },
+    "lf8-gym-grep": {
+      "starwars": [
+        { "step": "1", "title": "Logfile", "body": "grep liest große logs ohne die ganze holo-kaskade zu catten" },
+        { "step": "2", "title": "Literal", "body": "-F hält den fehler-token exakt wie ein codeschloss" },
+        { "step": "3", "title": "Pfad fix", "body": "Der pfad bleibt unter /var/log wie bei einem server-blackbox" }
+      ],
+      "anime": [
+        { "step": "1", "title": "Frame-Scan", "body": "grep filtert zeilen wie ein suchscheinwerfer über telemetrie" },
+        { "step": "2", "title": "Token lock", "body": "-F verhindert regex-drift beim fehler-string" },
+        { "step": "3", "title": "Sauberer cut", "body": "Kein cat-spam nur die trefferzeilen" }
+      ],
+      "gym": [
+        { "step": "1", "title": "Log-Stripe", "body": "grep zieht nur die biometrie-fehler aus dem log-strom" },
+        { "step": "2", "title": "Literal set", "body": "-F matcht ERR_SPIKE exakt ohne side hits" },
+        { "step": "3", "title": "Kein noise", "body": "So bleibt der terminal-output lesbar wie ein sauberes set-protokoll" }
+      ]
+    },
+    "lf8-boss": {
+      "starwars": [
+        { "step": "1", "title": "Dual-Fix", "body": "Verbinde chmod und systemctl mit && damit nichts halb offen bleibt" },
+        { "step": "2", "title": "Geheimniveau", "body": "600 schließt world aus und hält den todesstern-link-string trocken" },
+        { "step": "3", "title": "Träger-Bus", "body": "sudo restart statt start hebt eine hängende unit wirklich wieder" }
+      ],
+      "anime": [
+        { "step": "1", "title": "Kaskade", "body": "Erst harte rechte dann dienst sonst springt der virus zurück" },
+        { "step": "2", "title": "Kernel-Tor", "body": "600 auf core.toml ist wie ein siegel auf dem basis-arc" },
+        { "step": "3", "title": "Cold sync", "body": "restart plus sudo ist der harte cut aus der infiltrier-schleife" }
+      ],
+      "gym": [
+        { "step": "1", "title": "Superset", "body": "Zwei befehle eine zeile wie superset ohne pause" },
+        { "step": "2", "title": "PR-Lock", "body": "600 auf toml ist owner-only wie ein verschlossenes rack" },
+        { "step": "3", "title": "Deload", "body": "restart statt start ist der forced deload für den scheduler" }
+      ]
+    }
+  },
   "beginnerPath": [
     {
       "id": "lf8-start",
@@ -36,8 +128,133 @@
           { "text": "Primärschlüssel", "correct": false, "hint": "Das ist ein eindeutiger Schlüssel, hier aber nicht die Entität" }
         ]
       }
+    },
+    {
+      "id": "lf8-sw-chmod",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Bauplan-Rechte · chmod",
+      "lessonCards": [
+        {
+          "title": "Action · Pfad",
+          "body": "Imperialische Pläne liegen unter /etc/imperial/ nur root darf schreiben die crew nur lesen"
+        },
+        {
+          "title": "Action · Maske",
+          "body": "Numerische chmod maske 640 bedeutet rw für owner r für gruppe kein recht für andere"
+        },
+        {
+          "title": "Action · Befehl",
+          "body": "chmod <maske> <datei> setzt bits atomar ohne editor wie ein schnelles schott"
+        }
+      ],
+      "practice": {
+        "type": "bash",
+        "coachLine": "wir haben einen unautorisierten root-zugriff wir müssen sofort die berechtigungen der config-datei mit chmod anpassen",
+        "question": "Die imperialen spione haben die zugriffsrechte manipuliert Setze chmod 640 auf die geheimen baupläne wie in der referenz",
+        "brokenCode": "chmod 777 /etc/imperial/blueprints.conf",
+        "expected": "chmod 640 /etc/imperial/blueprints.conf",
+        "solutionHint": "Ersetze die dreistellige maske exakt wie referenz kein extra whitespace",
+        "options": [
+          { "text": "777 ist viel zu offen 640 entspricht rw-r----- für owner und gruppe", "correct": true },
+          { "text": "chmod braucht immer -R für eine datei", "correct": false, "hint": "Rekursion ist hier nicht gefragt und steht nicht in der referenz" },
+          { "text": "640 bedeutet world read write", "correct": false, "hint": "640 sperrt andere komplett" },
+          { "text": "Der pfad sollte relativ ohne slash sein", "correct": false, "hint": "Server-configs liegen absolut unter /etc" }
+        ]
+      }
+    },
+    {
+      "id": "lf8-an-systemctl",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Mecha-Sync · systemctl",
+      "lessonCards": [
+        {
+          "title": "Action · Unit",
+          "body": "systemd verwaltet den mecha-sync als unit mit .service suffix"
+        },
+        {
+          "title": "Action · restart",
+          "body": "systemctl restart stoppt und startet den dienst in einem rutsch"
+        },
+        {
+          "title": "Action · sudo",
+          "body": "Auf servern braucht systemctl oft sudo wegen des protected sockets"
+        }
+      ],
+      "practice": {
+        "type": "bash",
+        "coachLine": "der sync-daemon für die mecha-einheiten ist abgestürzt wir müssen systemctl restart feuern bevor die synchronisation kollabiert",
+        "question": "Der mecha-sync-daemon hängt Nutze systemctl mit sudo um den dienst sofort neu zu starten wie in der referenz",
+        "brokenCode": "systemctl status mecha-sync.service",
+        "expected": "sudo systemctl restart mecha-sync.service",
+        "solutionHint": "status zeigt nur restart hebt den dienst wirklich sudo bleibt vorne",
+        "options": [
+          { "text": "status zeigt nur restart hebt den dienst wirklich", "correct": true },
+          { "text": "systemctl enable reicht für einen sofortigen fix", "correct": false, "hint": "enable bootet nur restart ist jetzt" },
+          { "text": "Ohne sudo ist immer sicherer auf produktion", "correct": false, "hint": "Die referenz verlangt sudo vor systemctl" },
+          { "text": "Der suffix .service ist optional und falsch", "correct": false, "hint": "Die referenz nutzt den vollen unit-namen" }
+        ]
+      }
+    },
+    {
+      "id": "lf8-gym-grep",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "Biometrie-Log · grep",
+      "lessonCards": [
+        {
+          "title": "Action · Logpfad",
+          "body": "Server-logs liegen typisch unter /var/log hier biometrie.log"
+        },
+        {
+          "title": "Action · grep",
+          "body": "grep filtert zeilen die einen token enthalten cat würde alles spammen"
+        },
+        {
+          "title": "Action · -F",
+          "body": "grep -F behandelt den suchstring literal ohne regex-nebenwirkungen"
+        }
+      ],
+      "practice": {
+        "type": "bash",
+        "coachLine": "die telemetrie flutet wir müssen grep nutzen um ERR_SPIKE zu isolieren bevor falsche biometrie den stack kippt",
+        "question": "Wir müssen die logs nach fehlerhaften biometrie-daten filtern Nutze grep -F wie in der referenz",
+        "brokenCode": "cat /var/log/biometrie.log",
+        "expected": "grep -F \"ERR_SPIKE\" /var/log/biometrie.log",
+        "solutionHint": "grep mit -F und dem token in doppelten quotes exakt wie referenz",
+        "options": [
+          { "text": "cat listet alles grep filtert gezielt auf den fehler-token", "correct": true },
+          { "text": "head reicht um spikes zu finden", "correct": false, "hint": "head schneidet nur oben filtert aber nicht nach token" },
+          { "text": "grep ohne -F ist hier immer besser", "correct": false, "hint": "Die referenz nutzt -F für literal match" },
+          { "text": "Der logpfad sollte unter /tmp liegen", "correct": false, "hint": "Die referenz zeigt /var/log/biometrie.log" }
+        ]
+      }
     }
   ],
+  "bossPhase": {
+    "id": "lf8-boss",
+    "title": "Boss Kern · Nexus-System-Rettung",
+    "problemLead": "obsidian krit der nexus-core verliert signale wir müssen core.toml härten und den sync-dienst in einem schlag wieder hochfahren",
+    "epicCoach": {
+      "starwars": "die kommunikation zum todesstern bricht ab alle routing-tables flattern wir müssen die config mit chmod abschotten und den fleet-sync sofort per systemctl neu starten",
+      "anime": "die basis wird von einem virus infiltriert der mecha-daemon hängt in einer todes-schleife wir müssen die toml mit chmod sperren und den dienst mit sudo systemctl restart retten",
+      "gym": "alle trainingspläne sind durch einen root-exploit verschlüsselt der scheduler antwortet nicht wir müssen die toml auf 600 setzen und den plan-dienst mit sudo systemctl restart zurückholen"
+    },
+    "practice": {
+      "type": "bash",
+      "question": "Kombiniere in einer zeile zuerst chmod 600 auf /etc/nexus/core.toml dann per && sudo systemctl restart nexus-sync.service Die referenz ist exakt so gebaut",
+      "solutionHint": "Ersetze die falsche maske ersetze start durch restart setze sudo vor systemctl behalte && exakt",
+      "brokenCode": "chmod 755 /etc/nexus/core.toml && systemctl start nexus-sync.service",
+      "expected": "chmod 600 /etc/nexus/core.toml && sudo systemctl restart nexus-sync.service",
+      "options": [
+        { "text": "755 plus start ohne sudo lässt world zu und hebt keine hängende unit restart mit sudo ist der fix", "correct": true },
+        { "text": "chmod +x auf die toml reicht als härte", "correct": false, "hint": "Numerische maske und 600 stehen in der referenz" },
+        { "text": "systemctl enable ersetzt restart hier", "correct": false, "hint": "enable bootet nur restart ist jetzt" },
+        { "text": "Zwei zeilen ohne && sind identisch zur referenz", "correct": false, "hint": "Die referenz nutzt genau ein && zwischen den befehlen" }
+      ]
+    }
+  },
   "reference": [
     {
       "id": "lf8-kern",

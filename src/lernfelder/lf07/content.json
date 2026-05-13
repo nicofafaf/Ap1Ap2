@@ -1,7 +1,7 @@
 {
   "lf": "LF7",
   "ap": "AP2",
-  "title": "Objektorientierte Programmierung",
+  "title": "Objektorientierte Programmierung und Cyber-Security",
   "beginnerPath": [
     {
       "id": "lf7-start",
@@ -34,6 +34,102 @@
           { "text": "Der allgemeine Bauplan Ticket", "correct": false, "hint": "Der Bauplan ist die Klasse" },
           { "text": "Ein Netzwerkkabel", "correct": false, "hint": "Das passt nicht zum Ticket-Beispiel" },
           { "text": "Eine Rabattrechnung", "correct": false, "hint": "Das gehört eher zu LF1" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-sw-rsa",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Rebellen-Uplink · RSA",
+      "lessonCards": [
+        {
+          "title": "Action · Asymmetrie",
+          "body": "RSA arbeitet mit einem schlüsselpaar aus public und private der private bleibt bei der rebellion"
+        },
+        {
+          "title": "Action · AES vs RSA",
+          "body": "AES ist symmetrisch gleicher key auf beiden seiten RSA trennt verschlüsseln und geheim halten des private keys"
+        },
+        {
+          "title": "Action · Uplink",
+          "body": "Die basis sendet nur den public key zum chiffrieren geheime orders kommen nur mit dem passenden private zurück"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "system-einbruch erkannt ein unautorisierter rsa-key wurde in den keychain injiziert wir müssen die verschlüsselung sofort validieren",
+        "question": "Die rebellen-übertragung muss asymmetrisch mit RSA abgesichert werden Welches schlüsselpaar-verhalten ist korrekt",
+        "solutionHint": "Public darf fliegen private bleibt geheim und entschlüsselt was der zugehörige public chiffriert hat",
+        "options": [
+          { "text": "Der public key der basis chiffriert nachrichten nur der passende private key der rebellion entschlüsselt sie der private key verlässt nie den rebellion-core", "correct": true },
+          { "text": "AES-256 mit festem master-key im hyperraum-script ersetzt RSA vollständig für diesen uplink", "correct": false, "hint": "AES ist symmetrisch die aufgabe verlangt asymmetrisches schlüsselpaar-verhalten" },
+          { "text": "Beide flotten tauschen den private key per holo-kanal damit jeder entschlüsseln kann", "correct": false, "hint": "Der private key darf nicht offen ausgetauscht werden" },
+          { "text": "Der death-star public key entschlüsselt rebellion traffic weil er größer ist", "correct": false, "hint": "Entschlüsseln gehört zum private key des empfängers nicht zum gegner-public" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-an-mitm",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Gedanken-Sync · MITM",
+      "lessonCards": [
+        {
+          "title": "Action · TLS-Kette",
+          "body": "Der client prüft ob das server-zertifikat zu einer vertrauten CA kettet"
+        },
+        {
+          "title": "Action · MITM",
+          "body": "Man-in-the-middle schiebt oft ein falsches zertifikat ein das nicht zur erwarteten kette passt"
+        },
+        {
+          "title": "Action · Pinning",
+          "body": "Public-key-pinning oder bekannte issuer-liste fällt auf wenn ein fremdes issuer-feld auftaucht"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "der gedanken-sync zeigt eine fremde CA in der kette wir müssen das zertifikat sofort blocken bevor die session gekapert wird",
+        "question": "Ein man-in-the-middle greift den gedanken-sync der mechas an Welches signal zeigt den angriff am ehesten",
+        "solutionHint": "Issuer oder chain-break zur echten basis-CA ist der klassische mitm-hinweis",
+        "options": [
+          { "text": "Das server-zertifikat kettet nicht zur bekannten trust-anchor-CA oder der issuer passt nicht zur erwarteten sync-basis", "correct": true },
+          { "text": "Nur weil das zertifikat in drei tagen abläuft liegt immer MITM vor", "correct": false, "hint": "Ablauf allein ist oft konfig-thema nicht automatisch mitm" },
+          { "text": "Self-signed staging-zertifikate sind in jedem lab immer ein angriff ohne kontext", "correct": false, "hint": "Kontext zählt die chain zur erwarteten CA ist entscheidend" },
+          { "text": "Längere RSA-modulus-bits allein beweisen dass jemand mithört", "correct": false, "hint": "Key-länge sagt nichts über issuer-integrität" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-gym-brute",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "Biometrie-Login · Brute-Force",
+      "lessonCards": [
+        {
+          "title": "Action · Brute-Force",
+          "body": "Angreifer testen millionen passwords offline wenn die datenbank nur schnelle hashes ohne salt hat"
+        },
+        {
+          "title": "Action · Salt",
+          "body": "Ein zufälliger salt pro user macht rainbow-tables wertlos"
+        },
+        {
+          "title": "Action · KDF",
+          "body": "Langsame kdf wie PBKDF2 bcrypt oder argon2 machen jeden guess teuer"
+        }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "brute-force last auf dem biometrie-login wir brauchen salt und kdf sonst knacken die passes die performance records",
+        "question": "Der login-server für die biometrie-daten wird per brute-force attackiert Wie schützt du passwörter in der datenbank richtig",
+        "solutionHint": "Salt pro user plus langsamer passwort-hash-algorithmus nicht nur ein schneller digest",
+        "options": [
+          { "text": "Zufälligen salt pro user speichern und passwort mit langsamem kdf hashen z B PBKDF2 bcrypt oder argon2", "correct": true },
+          { "text": "SHA256 password ohne salt reicht wenn der gym-server TLS nutzt", "correct": false, "hint": "TLS schützt transport nicht die datenbank wenn hashes geleakt werden" },
+          { "text": "MD5 mit einem globalen app-weiten salt reicht für alle athlete-accounts", "correct": false, "hint": "Globaler salt teilt sich alle user rainbow-tables bleiben teilweise möglich" },
+          { "text": "Passwörter im klartext speichern damit support schnell resetten kann", "correct": false, "hint": "Klartext ist nie akzeptabel" }
         ]
       }
     }

@@ -10,7 +10,7 @@ import {
 } from "./learningRegistry";
 
 export type TerminalSnippet = {
-  lang: "sql" | "csharp" | "javascript" | "plain-text" | "markdown";
+  lang: "sql" | "csharp" | "bash" | "javascript" | "plain-text" | "markdown";
   code: string;
   caption: string;
 };

@@ -10,7 +10,7 @@ export type LearningExercise = {
   title: string;
   problem: string;
   solutionCode: string;
-  lang: "sql" | "javascript" | "csharp" | "plain-text" | "markdown";
+  lang: "sql" | "javascript" | "csharp" | "bash" | "plain-text" | "markdown";
   mcQuestion: string;
   mcOptions: LearningMcOption[];
   /** Kurze Lektion vor der Aufgabe — Lern-App-Flow statt Prüfungs-Sprung */
@@ -27,4 +27,8 @@ export type LearningExercise = {
   illustrationSrc?: string;
   /** Optional: Kurz-Hilfe unter der Aufgabe (ADHD-freundlich, ohne Extra-Scroll) */
   solutionHint?: string;
+  /** Optional: Coach-Flavour vor MC-Frage (aus beginnerPath JSON) */
+  coachLine?: string;
+  /** Optional: kaputter Startcode für SQL/C#/Bash-Workbench (aus JSON practice.brokenCode) */
+  workbenchInitialDraft?: string;
 };

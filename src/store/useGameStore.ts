@@ -188,6 +188,7 @@ function persistArchitectPersonaProfile(persona: ArchitectPersona, reportId: str
 const NEXUS_NEURAL_AUGMENTS_KEY = "nexus.neuralAugments.v1";
 const HAS_COMPLETED_INITIALIZATION_KEY = "nexus.hasCompletedInitialization.v1";
 const OVERWORLD_LANDING_KEY = "nexus.overworldLanding.v1";
+const PLAYER_PROFILE_KEY = "nexus.playerProfile.v2";
 export type OverworldLanding = "hub" | "map";
 const DAILY_INCURSION_STORAGE_KEY = "nexus.dailyIncursion.v1";
 const LEARNING_MASTERY_STORAGE_KEY = "nexus.learningMastery.v1";
@@ -298,6 +299,24 @@ type DailyIncursionPersisted = {
 function persistDailySlice(slice: DailyIncursionPersisted) {
   try {
     localStorage.setItem(DAILY_INCURSION_STORAGE_KEY, JSON.stringify(slice));
+  } catch {
+    // no-op
+  }
+}
+
+type PlayerProfilePersisted = {
+  mentorWaifuIndex: number | null;
+  /** Gewählter Coach-Avatar (lokal 1–100), spiegelbildlich zu mentorWaifuIndex */
+  playerAvatar: number | null;
+  /** Operativer Codename, persistiert für Terminal-Coach */
+  playerName: string | null;
+  initialSkillScanByLf: Partial<Record<LearningField, boolean>>;
+  initialSkillScanComplete: boolean;
+};
+
+function persistPlayerProfile(slice: PlayerProfilePersisted) {
+  try {
+    localStorage.setItem(PLAYER_PROFILE_KEY, JSON.stringify(slice));
   } catch {
     // no-op
   }
@@ -425,7 +444,7 @@ type GameStore = {
   mission: MissionState;
   archiveWorkbenchSnippet: {
     lf: LearningField;
-    lang: "sql" | "csharp";
+    lang: "sql" | "csharp" | "bash";
     code: string;
     updatedAt: number;
   } | null;
@@ -641,6 +660,8 @@ type GameStore = {
   }) => void;
   /** LF-Mastery / Abzeichen — nur nach Code- oder Zahlen-Lösung (nicht schon nach MC) */
   recordLearningExerciseMastery: (lf: LearningField, exerciseId: string) => void;
+  /** Sektor-Mastery per Boss Event, persistiert über LearningMastery-Slice */
+  unlockSectorMastery: (lf: LearningField) => void;
   /** Leitner + Ebbinghaus je Übungs-ID (Spaced Repetition) */
   learningLeitnerByExerciseId: Record<string, LeitnerCardState>;
   sourceMirrorSkillId: SkillId | null;
@@ -673,6 +694,18 @@ type GameStore = {
   /** Persistiert: Leerlauf startet in Lernzentrale (hub) oder Sektor-Karte (map) */
   overworldLanding: OverworldLanding;
   setOverworldLanding: (landing: OverworldLanding) => void;
+  /** Mentor-Avatar (lokales Waifu-Asset 1–100) */
+  mentorWaifuIndex: number | null;
+  setMentorWaifuIndex: (id: number) => void;
+  /** Premium-Onboarding: gewählter Avatar (persistiert) */
+  playerAvatar: number | null;
+  setPlayerAvatar: (id: number) => void;
+  playerName: string | null;
+  setPlayerName: (name: string) => void;
+  /** Diagnose-Scan: je LF erste MC richtig */
+  initialSkillScanByLf: Partial<Record<LearningField, boolean>>;
+  initialSkillScanComplete: boolean;
+  submitInitialSkillScan: (byLf: Partial<Record<LearningField, boolean>>) => void;
   /** LF1-Trainingskampf mit reduzierter Boss-Aggression */
   isTutorialCombatRun: boolean;
   /** 0…3 — erwartete Karten: Encrypt → Overclock → Recursion; 3 = alle Schritte erledigt */
@@ -685,10 +718,13 @@ type GameStore = {
   markMissionCleared: (missionId: string) => void;
   setArchiveWorkbenchSnippet: (payload: {
     lf: LearningField;
-    lang: "sql" | "csharp";
+    lang: "sql" | "csharp" | "bash";
     code: string;
   }) => void;
   clearArchiveWorkbenchSnippet: () => void;
+  /** Codex-Overlay nach Workbench-Laden aus Archiv schließen */
+  codexCloseToken: number;
+  requestCodexClose: () => void;
   completeCodexCard: (cardId: string) => void;
   isFirstBoot: boolean;
   tutorialStepIndex: number;
@@ -703,6 +739,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   campaign: { unlockedSectors: [1], masteryChecks: {} },
   mission: { lf: null, missionId: null, status: "idle" },
   archiveWorkbenchSnippet: null,
+  codexCloseToken: 0,
   codexXp: 0,
   codexCompletedCards: {},
   isFirstBoot: true,
@@ -863,6 +900,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       mission: { lf: payload.lf, missionId: payload.lang, status: "active" },
     }),
   clearArchiveWorkbenchSnippet: () => set({ archiveWorkbenchSnippet: null }),
+  requestCodexClose: () => set((s) => ({ codexCloseToken: s.codexCloseToken + 1 })),
   completeCodexCard: (cardId) =>
     set((state) => {
       if (state.codexCompletedCards[cardId]) return {};
@@ -2069,6 +2107,27 @@ export const useGameStore = create<GameStore>((set, get) => ({
     });
   },
 
+  unlockSectorMastery: (lf) => {
+    set((state) => {
+      if (state.campaign.masteryChecks[lf]) return {};
+      const nextBadges = { ...state.lfArchitectBadgeGranted, [lf]: true };
+      const masteryChecks = { ...state.campaign.masteryChecks, [lf]: true };
+      const unlockedSectors = deriveUnlockedSectorsFromMastery(masteryChecks);
+      persistLearningMastery({
+        correctByLf: state.learningCorrectByLf,
+        badgeGranted: nextBadges,
+        leitner: state.learningLeitnerByExerciseId,
+      });
+      return {
+        lfArchitectBadgeGranted: nextBadges,
+        campaign: {
+          masteryChecks,
+          unlockedSectors,
+        },
+      };
+    });
+  },
+
   combatArchitectHistory: [],
   menuSystemMood: null,
   nexusFragments: 0,
@@ -2117,6 +2176,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
   handAnomalyCosts: [],
   hasCompletedInitialization: false,
   overworldLanding: "hub",
+  mentorWaifuIndex: null,
+  playerAvatar: null,
+  playerName: null,
+  initialSkillScanByLf: {},
+  initialSkillScanComplete: false,
   isTutorialCombatRun: false,
   combatTutorialStep: 0,
 
@@ -2127,6 +2191,64 @@ export const useGameStore = create<GameStore>((set, get) => ({
       // no-op
     }
     set({ overworldLanding: landing });
+  },
+
+  setMentorWaifuIndex: (id) => {
+    const n = Math.max(1, Math.min(100, Math.floor(id)));
+    set({ mentorWaifuIndex: n, playerAvatar: n });
+    const s = get();
+    persistPlayerProfile({
+      mentorWaifuIndex: n,
+      playerAvatar: n,
+      playerName: s.playerName,
+      initialSkillScanByLf: s.initialSkillScanByLf,
+      initialSkillScanComplete: s.initialSkillScanComplete,
+    });
+  },
+
+  setPlayerAvatar: (id) => {
+    const n = Math.max(1, Math.min(100, Math.floor(id)));
+    set({ playerAvatar: n, mentorWaifuIndex: n });
+    const s = get();
+    persistPlayerProfile({
+      mentorWaifuIndex: n,
+      playerAvatar: n,
+      playerName: s.playerName,
+      initialSkillScanByLf: s.initialSkillScanByLf,
+      initialSkillScanComplete: s.initialSkillScanComplete,
+    });
+  },
+
+  setPlayerName: (raw) => {
+    const name = raw.trim().slice(0, 32);
+    if (name.length < 1) return;
+    set({ playerName: name });
+    const s = get();
+    const av = s.playerAvatar ?? s.mentorWaifuIndex;
+    persistPlayerProfile({
+      mentorWaifuIndex: av,
+      playerAvatar: av,
+      playerName: name,
+      initialSkillScanByLf: s.initialSkillScanByLf,
+      initialSkillScanComplete: s.initialSkillScanComplete,
+    });
+  },
+
+  submitInitialSkillScan: (byLf) => {
+    const s = get();
+    const merged = { ...s.initialSkillScanByLf, ...byLf };
+    const av = s.playerAvatar ?? s.mentorWaifuIndex;
+    set({
+      initialSkillScanByLf: merged,
+      initialSkillScanComplete: true,
+    });
+    persistPlayerProfile({
+      mentorWaifuIndex: av,
+      playerAvatar: av,
+      playerName: s.playerName,
+      initialSkillScanByLf: merged,
+      initialSkillScanComplete: true,
+    });
   },
 
   completeInitialization: () => {
@@ -2679,6 +2801,58 @@ try {
   const landingRaw = localStorage.getItem(OVERWORLD_LANDING_KEY);
   if (landingRaw === "map" || landingRaw === "hub") {
     useGameStore.setState({ overworldLanding: landingRaw });
+  }
+} catch {
+  // no-op
+}
+
+try {
+  const rawProfile = localStorage.getItem(PLAYER_PROFILE_KEY);
+  if (rawProfile) {
+    const p = JSON.parse(rawProfile) as Record<string, unknown>;
+    const wi =
+      typeof p.mentorWaifuIndex === "number" && Number.isFinite(p.mentorWaifuIndex)
+        ? Math.max(1, Math.min(100, Math.floor(p.mentorWaifuIndex)))
+        : null;
+    const paFromFile =
+      typeof p.playerAvatar === "number" && Number.isFinite(p.playerAvatar)
+        ? Math.max(1, Math.min(100, Math.floor(p.playerAvatar)))
+        : null;
+    const avatar = paFromFile ?? wi;
+    const mentorIdx = wi ?? paFromFile;
+    const scanComplete = p.initialSkillScanComplete === true;
+    let pn: string | null = null;
+    if (typeof p.playerName === "string") {
+      const trimmed = p.playerName.trim().slice(0, 32);
+      if (trimmed.length > 0) pn = trimmed;
+    }
+    if (!pn && scanComplete && avatar != null) {
+      pn = "Pilot";
+    }
+    const scanRaw = p.initialSkillScanByLf;
+    const scanLf: Partial<Record<LearningField, boolean>> = {};
+    if (scanRaw && typeof scanRaw === "object" && !Array.isArray(scanRaw)) {
+      for (const k of Object.keys(scanRaw)) {
+        if (!/^LF(1[0-2]|[1-9])$/.test(k)) continue;
+        const lf = k as LearningField;
+        const v = (scanRaw as Record<string, unknown>)[k];
+        if (typeof v === "boolean") scanLf[lf] = v;
+      }
+    }
+    useGameStore.setState({
+      mentorWaifuIndex: mentorIdx,
+      playerAvatar: avatar,
+      playerName: pn,
+      initialSkillScanByLf: scanLf,
+      initialSkillScanComplete: scanComplete,
+    });
+  } else if (localStorage.getItem(HAS_COMPLETED_INITIALIZATION_KEY) === "1") {
+    useGameStore.setState({
+      mentorWaifuIndex: 1,
+      playerAvatar: 1,
+      playerName: "Pilot",
+      initialSkillScanComplete: true,
+    });
   }
 } catch {
   // no-op

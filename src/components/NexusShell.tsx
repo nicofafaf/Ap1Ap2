@@ -185,6 +185,21 @@ export function NexusShell() {
     [completeInitialization, handleEngage, setOverworldLanding]
   );
 
+  /** Boss-Clear: sofort zurück zur Map mit Audio-Finisher im Terminal */
+  useEffect(() => {
+    const onBossClear = () => {
+      completeInitialization();
+      setOverworldLanding("map");
+      resetCombat();
+      recomputeMenuSystemMood();
+      setDiveBridgeLf(null);
+      setMapHoldCombat(false);
+      setSurface("overworld");
+    };
+    window.addEventListener("nx:boss-clear-map", onBossClear);
+    return () => window.removeEventListener("nx:boss-clear-map", onBossClear);
+  }, [completeInitialization, recomputeMenuSystemMood, resetCombat, setOverworldLanding]);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("welcome") !== "1") return;

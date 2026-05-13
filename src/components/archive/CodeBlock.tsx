@@ -5,12 +5,13 @@ import { useGameStore } from "../../store/useGameStore";
 type CodeBlockProps = {
   lf: LearningField;
   title: string;
-  lang: Extract<HighlightLang, "sql" | "csharp">;
+  lang: Extract<HighlightLang, "sql" | "csharp" | "bash">;
   code: string;
 };
 
 export function CodeBlock({ lf, title, lang, code }: CodeBlockProps) {
   const setArchiveWorkbenchSnippet = useGameStore((s) => s.setArchiveWorkbenchSnippet);
+  const requestCodexClose = useGameStore((s) => s.requestCodexClose);
 
   return (
     <section
@@ -24,8 +25,8 @@ export function CodeBlock({ lf, title, lang, code }: CodeBlockProps) {
     >
       <div
         style={{
-          fontSize: 11,
-          letterSpacing: "0.12em",
+          fontSize: 12,
+          letterSpacing: "0.1em",
           textTransform: "uppercase",
           color: "var(--nx-bone-50)",
           marginBottom: 8,
@@ -43,7 +44,7 @@ export function CodeBlock({ lf, title, lang, code }: CodeBlockProps) {
           color: "var(--nx-bone-90)",
           overflowX: "auto",
           fontFamily: "var(--nx-font-mono, Geist Mono, monospace)",
-          fontSize: "max(12px, 0.76rem)",
+          fontSize: 20,
           lineHeight: 1.5,
         }}
       >
@@ -51,17 +52,20 @@ export function CodeBlock({ lf, title, lang, code }: CodeBlockProps) {
       </pre>
       <button
         type="button"
-        onClick={() => setArchiveWorkbenchSnippet({ lf, lang, code })}
+        onClick={() => {
+          setArchiveWorkbenchSnippet({ lf, lang, code });
+          requestCodexClose();
+        }}
         style={{
           marginTop: 10,
-          borderRadius: 6,
+          borderRadius: 8,
           border: "1px solid rgba(255, 214, 165, 0.55)",
           background: "rgba(255, 214, 165, 0.1)",
           color: "var(--nx-bone-90)",
-          fontSize: 11,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          padding: "8px 12px",
+          fontSize: 20,
+          letterSpacing: "0.06em",
+          fontWeight: 700,
+          padding: "10px 16px",
           cursor: "pointer",
         }}
       >

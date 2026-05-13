@@ -1,13 +1,19 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import type { CSSProperties } from "react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
+import {
+  getBossThumbnailCandidates,
+  mentorWaifuUrl,
+  MENTOR_WAIFU_IDS,
+} from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../store/useGameStore";
+import { InitialScan } from "../system/InitialScan";
 
 export type NeuralInitializerProps = {
-  onBeginTraining: () => void;
+  onBeginTraining?: () => void;
   onOpenOverview: () => void;
   onBeginLearningField: (lf: number) => void;
   /** Wenn gesetzt: schließbare Variante über der Karte (zweiter Besuch) */
@@ -46,17 +52,70 @@ const LEARNING_FIELDS = [
   { lf: 12, ap: "AP2", title: "Projekt", focus: "Scrum, Planung, Risiken" },
 ] as const;
 
+const headlineStyle: CSSProperties = {
+  margin: 0,
+  maxWidth: 720,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: "clamp(48px, 6vw, 90px)",
+  fontWeight: 100,
+  lineHeight: 0.95,
+  letterSpacing: "-0.07em",
+  color: "var(--nx-learn-ink)",
+};
+
+const hubHeadlineStyle: CSSProperties = {
+  ...headlineStyle,
+  fontSize: "clamp(34px, 4.5vw, 56px)",
+  lineHeight: 1.05,
+  letterSpacing: "-0.05em",
+};
+
+const leadStyle: CSSProperties = {
+  margin: "22px 0 0",
+  maxWidth: 640,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: "clamp(22px, 2.6vw, 30px)",
+  fontWeight: 400,
+  lineHeight: 1.45,
+  color: "var(--nx-learn-muted)",
+};
+
+const eyebrowStyle: CSSProperties = {
+  marginBottom: 18,
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: 20,
+  fontWeight: 650,
+  letterSpacing: ".08em",
+  color: "rgba(22,32,25,0.58)",
+  textTransform: "uppercase",
+};
+
 export function NeuralInitializer({
-  onBeginTraining,
+  onBeginTraining: _onBeginTraining,
   onOpenOverview,
   onBeginLearningField,
   onReturnToMap,
 }: NeuralInitializerProps) {
+  void _onBeginTraining;
   const { t } = useNexusI18n();
   const [fieldsExpanded, setFieldsExpanded] = useState(false);
+  const [codenameDraft, setCodenameDraft] = useState("");
   const ap1Count = LEARNING_FIELDS.filter((item) => item.ap === "AP1").length;
   const ap2Count = LEARNING_FIELDS.length - ap1Count;
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
+  const playerAvatar = useGameStore((s) => s.playerAvatar);
+  const playerName = useGameStore((s) => s.playerName);
+  const setPlayerAvatar = useGameStore((s) => s.setPlayerAvatar);
+  const setPlayerName = useGameStore((s) => s.setPlayerName);
+  const initialSkillScanComplete = useGameStore((s) => s.initialSkillScanComplete);
+  const submitInitialSkillScan = useGameStore((s) => s.submitInitialSkillScan);
+
+  const phase = useMemo(() => {
+    if (playerAvatar === null) return "avatar" as const;
+    if (!playerName || playerName.trim().length < 1) return "codename" as const;
+    if (!initialSkillScanComplete) return "scan" as const;
+    return "hub" as const;
+  }, [playerAvatar, playerName, initialSkillScanComplete]);
 
   return (
     <div
@@ -66,10 +125,9 @@ export function NeuralInitializer({
         zIndex: 20000,
         background:
           "radial-gradient(ellipse 70% 48% at 50% 18%, rgba(214,181,111,0.16), transparent 58%), linear-gradient(160deg, #121a14 0%, #0b100d 52%, #070a08 100%)",
-        display: "grid",
-        placeItems: "center",
-        padding: "clamp(20px, 4vw, 64px)",
-        overflow: "auto",
+        display: "flex",
+        flexDirection: "column",
+        overflow: phase === "scan" ? "hidden" : "auto",
         pointerEvents: "auto",
       }}
     >
@@ -84,7 +142,6 @@ export function NeuralInitializer({
           pointerEvents: "none",
         }}
       />
-
       {onReturnToMap ? (
         <div
           style={{
@@ -119,122 +176,378 @@ export function NeuralInitializer({
           </motion.button>
         </div>
       ) : null}
-
-      <motion.div
-        variants={STAGGER}
-        initial="hidden"
-        animate="show"
+      <div
         style={{
           position: "relative",
-          zIndex: 1,
-          width: "min(1340px, 100%)",
-          borderRadius: 40,
-          border: "1px solid rgba(251,247,239,0.18)",
-          background: "rgba(251,247,239,0.96)",
-          color: "var(--nx-learn-ink)",
-          padding: "clamp(30px, 4.6vw, 64px)",
-          boxShadow: "0 34px 100px rgba(0,0,0,0.28)",
-          pointerEvents: "auto",
+          flex: 1,
+          width: "100%",
+          minHeight: "100dvh",
+          display: "flex",
+          alignItems: phase === "scan" ? "stretch" : "center",
+          justifyContent: "center",
+          padding: phase === "scan" ? 0 : "clamp(20px, 4vw, 64px)",
         }}
       >
-        <div style={heroGridStyle}>
-          <motion.section variants={CARD}>
-            <div style={eyebrowStyle}>{t("hub.eyebrow")}</div>
-            <h1 style={hubHeadlineStyle}>{t("hub.headline")}</h1>
-            <p style={leadStyle}>{t("hub.lead")}</p>
-            <div style={actionRowStyle}>
-              <button type="button" onClick={onOpenOverview} style={ctaStyle}>
-                {t("hub.ctaMap")}
-              </button>
-              <button type="button" onClick={onBeginTraining} style={secondaryCtaStyle}>
-                {t("hub.ctaDemo")}
-              </button>
-            </div>
-          </motion.section>
-
-          {fieldsExpanded ? (
-            <motion.aside variants={CARD} style={statsPanelStyle} aria-label="Lernstatus Übersicht">
-              <div style={statStyle}>
-                <strong>{LEARNING_FIELDS.length}</strong>
-                <span>Lernfelder</span>
-              </div>
-              <div style={statStyle}>
-                <strong>{ap1Count}</strong>
-                <span>AP1 Fokus</span>
-              </div>
-              <div style={statStyle}>
-                <strong>{ap2Count}</strong>
-                <span>AP2 Fokus</span>
-              </div>
-            </motion.aside>
-          ) : (
-            <motion.aside variants={CARD} style={statsOneLineAsideStyle} aria-hidden>
-              <p style={statsOneLineTextStyle}>{t("hub.statsOneLine")}</p>
-            </motion.aside>
-          )}
-        </div>
-
-        {fieldsExpanded ? (
-          <>
-            <motion.button
-              type="button"
-              variants={CARD}
-              onClick={() => setFieldsExpanded(false)}
-              style={collapseListBtnStyle}
+        <AnimatePresence mode="wait">
+          {phase === "avatar" ? (
+            <motion.div
+              key="nx-avatar"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              style={{ width: "min(1180px, 94vw)", margin: "0 auto" }}
             >
-              {t("hub.hideList")}
-            </motion.button>
-            <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
-              {LEARNING_FIELDS.map((field) => {
-                const lfKey = `LF${field.lf}` as LearningField;
-                const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
-                const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
-
-                return (
-                  <button
-                    key={field.lf}
+              <h1
+                style={{
+                  margin: 0,
+                  fontFamily: "var(--nx-font-sans)",
+                  fontSize: 48,
+                  fontWeight: 200,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1.1,
+                  color: "rgba(251,247,239,0.96)",
+                }}
+              >
+                {t("profile.pickTitle")}
+              </h1>
+              <p
+                style={{
+                  margin: "16px 0 0",
+                  maxWidth: 720,
+                  fontFamily: "var(--nx-font-sans)",
+                  fontSize: 24,
+                  lineHeight: 1.45,
+                  fontWeight: 500,
+                  color: "rgba(251,247,239,0.72)",
+                }}
+              >
+                {t("profile.pickLead")}
+              </p>
+              <div
+                style={{
+                  marginTop: 28,
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))",
+                  gap: 16,
+                }}
+              >
+                {MENTOR_WAIFU_IDS.map((id) => (
+                  <motion.button
+                    key={id}
                     type="button"
-                    onClick={() => onBeginLearningField(field.lf)}
-                    style={fieldCardStyle}
+                    whileHover={{
+                      scale: 1.04,
+                      boxShadow:
+                        "0 0 32px rgba(214, 181, 111, 0.38), 0 0 1px rgba(184, 148, 48, 0.95)",
+                      borderColor: "rgba(212, 175, 55, 0.82)",
+                    }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={() => setPlayerAvatar(id)}
+                    style={{
+                      padding: 8,
+                      borderRadius: 22,
+                      border: "1px solid rgba(251,247,239,0.1)",
+                      cursor: "pointer",
+                      background:
+                        "linear-gradient(155deg, rgba(255,255,255,0.08) 0%, rgba(8,12,10,0.72) 100%)",
+                      backdropFilter: "blur(18px) saturate(120%)",
+                      WebkitBackdropFilter: "blur(18px) saturate(120%)",
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
+                    }}
                   >
-                    <span style={fieldVisualStyle} aria-hidden="true">
-                      <video
-                        src={`/assets/LF${field.lf}GIF.mp4`}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                        style={fieldVideoStyle}
-                      />
-                    </span>
-                    <span style={fieldMetaStyle}>
-                      <span>Datenträger</span>
-                      <b>
-                        LF{field.lf} · {field.ap}
-                      </b>
-                    </span>
-                    <strong>{field.title}</strong>
-                    <span>{field.focus}</span>
-                    <span style={fieldProgressStyle}>
-                      Einsteiger · {solved}/{total} Übungen · Starten
-                    </span>
-                  </button>
-                );
-              })}
+                    <img
+                      src={mentorWaifuUrl(id)}
+                      alt=""
+                      width={120}
+                      height={120}
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        height: "auto",
+                        borderRadius: 16,
+                        objectFit: "cover",
+                      }}
+                    />
+                  </motion.button>
+                ))}
+              </div>
             </motion.div>
-          </>
-        ) : (
-          <motion.button
-            type="button"
-            variants={CARD}
-            onClick={() => setFieldsExpanded(true)}
-            style={showListBtnStyle}
-          >
-            {t("hub.showList")}
-          </motion.button>
-        )}
-      </motion.div>
+          ) : null}
+
+          {phase === "codename" && playerAvatar !== null ? (
+            <motion.div
+              key="nx-codename"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 260, damping: 28 }}
+              style={{
+                width: "min(520px, 92vw)",
+                margin: "0 auto",
+                padding: 40,
+                borderRadius: 28,
+                border: "1px solid rgba(251,247,239,0.12)",
+                background:
+                  "linear-gradient(165deg, rgba(255,255,255,0.08) 0%, rgba(6,10,9,0.86) 100%)",
+                backdropFilter: "blur(22px) saturate(118%)",
+                WebkitBackdropFilter: "blur(22px) saturate(118%)",
+                boxShadow: "inset 0 1px 0 rgba(251,247,239,0.08), 0 40px 100px rgba(0,0,0,0.55)",
+              }}
+            >
+              <h1
+                style={{
+                  margin: 0,
+                  fontFamily: "var(--nx-font-sans)",
+                  fontSize: 48,
+                  fontWeight: 200,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1.1,
+                  color: "rgba(251,247,239,0.96)",
+                }}
+              >
+                {t("profile.codenameTitle")}
+              </h1>
+              <p
+                style={{
+                  margin: "16px 0 0",
+                  fontSize: 24,
+                  lineHeight: 1.45,
+                  fontWeight: 500,
+                  color: "rgba(251,247,239,0.72)",
+                }}
+              >
+                {t("profile.codenameLead")}
+              </p>
+              <input
+                value={codenameDraft}
+                onChange={(e) => setCodenameDraft(e.target.value.slice(0, 32))}
+                placeholder={t("profile.codenamePlaceholder")}
+                autoComplete="username"
+                style={{
+                  marginTop: 28,
+                  width: "100%",
+                  boxSizing: "border-box",
+                  borderRadius: 16,
+                  border: "1px solid rgba(251,247,239,0.18)",
+                  background: "rgba(0,0,0,0.35)",
+                  color: "rgba(251,247,239,0.95)",
+                  fontSize: 24,
+                  padding: "16px 18px",
+                  outline: "none",
+                  fontFamily: "var(--nx-font-sans)",
+                }}
+              />
+              <motion.button
+                type="button"
+                whileHover={{ scale: codenameDraft.trim().length < 1 ? 1 : 1.02 }}
+                whileTap={{ scale: codenameDraft.trim().length < 1 ? 1 : 0.98 }}
+                disabled={codenameDraft.trim().length < 1}
+                onClick={() => setPlayerName(codenameDraft)}
+                style={{
+                  marginTop: 22,
+                  width: "100%",
+                  borderRadius: 999,
+                  border: "1px solid rgba(214,181,111,0.4)",
+                  background:
+                    codenameDraft.trim().length < 1
+                      ? "rgba(255,255,255,0.06)"
+                      : "linear-gradient(125deg, rgba(214,181,111,0.35) 0%, rgba(24,37,28,0.95) 100%)",
+                  color: "rgba(251,247,239,0.96)",
+                  fontSize: 24,
+                  fontWeight: 800,
+                  padding: "16px 22px",
+                  cursor: codenameDraft.trim().length < 1 ? "not-allowed" : "pointer",
+                }}
+              >
+                {t("profile.codenameConfirm")}
+              </motion.button>
+            </motion.div>
+          ) : null}
+
+          {phase === "scan" && playerAvatar !== null ? (
+            <motion.div
+              key="nx-scan"
+              style={{ position: "absolute", inset: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28 }}
+            >
+              <InitialScan
+                mentorAvatarSrc={mentorWaifuUrl(playerAvatar)}
+                onComplete={(m) => submitInitialSkillScan(m)}
+                title={t("scan.title")}
+                subtitle={t("scan.subtitle")}
+                ctaLabel={t("scan.cta")}
+                nextLabel={t("scan.next")}
+              />
+            </motion.div>
+          ) : null}
+
+          {phase === "hub" && playerAvatar !== null && playerName ? (
+            <motion.div
+              key="nx-hub"
+              variants={STAGGER}
+              initial="hidden"
+              animate="show"
+              style={{
+                position: "relative",
+                zIndex: 1,
+                width: "min(1340px, 100%)",
+                borderRadius: 40,
+                border: "1px solid rgba(251,247,239,0.18)",
+                background: "rgba(251,247,239,0.96)",
+                color: "var(--nx-learn-ink)",
+                padding: "clamp(30px, 4.6vw, 64px)",
+                boxShadow: "0 34px 100px rgba(0,0,0,0.28)",
+                pointerEvents: "auto",
+              }}
+            >
+              <div style={{ display: "flex", gap: 20, alignItems: "center", marginBottom: 18 }}>
+                <img
+                  src={mentorWaifuUrl(playerAvatar)}
+                  alt=""
+                  width={72}
+                  height={72}
+                  style={{
+                    borderRadius: 20,
+                    border: "1px solid rgba(22,32,25,0.12)",
+                    objectFit: "cover",
+                  }}
+                />
+                <div>
+                  <div style={eyebrowStyle}>{t("hub.eyebrow")}</div>
+                  <p style={{ margin: "6px 0 0", fontSize: 20, color: "var(--nx-learn-muted)" }}>
+                    {t("profile.activeMentor")}
+                  </p>
+                  <p
+                    style={{
+                      margin: "6px 0 0",
+                      fontFamily: "var(--nx-font-mono)",
+                      fontSize: 20,
+                      fontWeight: 650,
+                      letterSpacing: ".06em",
+                      color: "var(--nx-learn-muted)",
+                    }}
+                  >
+                    {t("profile.callsign")}
+                  </p>
+                  <p
+                    style={{
+                      margin: "4px 0 0",
+                      fontFamily: "var(--nx-font-mono)",
+                      fontSize: 24,
+                      fontWeight: 700,
+                      letterSpacing: ".04em",
+                      color: "var(--nx-learn-ink)",
+                    }}
+                  >
+                    {playerName}
+                  </p>
+                </div>
+              </div>
+              <div style={heroGridStyle}>
+                <motion.section variants={CARD}>
+                  <h1 style={{ ...hubHeadlineStyle, fontSize: 48 }}>{t("hub.headline")}</h1>
+                  <p style={{ ...leadStyle, fontSize: 24 }}>{t("hub.lead")}</p>
+                  <div style={actionRowStyle}>
+                    <button type="button" onClick={onOpenOverview} style={ctaStyle}>
+                      {t("hub.ctaMap")}
+                    </button>
+                  </div>
+                </motion.section>
+
+                {fieldsExpanded ? (
+                  <motion.aside variants={CARD} style={statsPanelStyle} aria-label="Lernstatus Übersicht">
+                    <div style={statStyle}>
+                      <strong>{LEARNING_FIELDS.length}</strong>
+                      <span>Lernfelder</span>
+                    </div>
+                    <div style={statStyle}>
+                      <strong>{ap1Count}</strong>
+                      <span>AP1 Fokus</span>
+                    </div>
+                    <div style={statStyle}>
+                      <strong>{ap2Count}</strong>
+                      <span>AP2 Fokus</span>
+                    </div>
+                  </motion.aside>
+                ) : (
+                  <motion.aside variants={CARD} style={statsOneLineAsideStyle} aria-hidden>
+                    <p style={statsOneLineTextStyle}>{t("hub.statsOneLine")}</p>
+                  </motion.aside>
+                )}
+              </div>
+
+              {fieldsExpanded ? (
+                <>
+                  <motion.button
+                    type="button"
+                    variants={CARD}
+                    onClick={() => setFieldsExpanded(false)}
+                    style={collapseListBtnStyle}
+                  >
+                    {t("hub.hideList")}
+                  </motion.button>
+                  <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
+                    {LEARNING_FIELDS.map((field) => {
+                      const lfKey = `LF${field.lf}` as LearningField;
+                      const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
+                      const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
+                      const thumb =
+                        getBossThumbnailCandidates(lfKey)[0] ?? mentorWaifuUrl(playerAvatar);
+
+                      return (
+                        <button
+                          key={field.lf}
+                          type="button"
+                          onClick={() => onBeginLearningField(field.lf)}
+                          style={fieldCardStyle}
+                        >
+                          <span style={fieldVisualStyle} aria-hidden="true">
+                            <img
+                              src={thumb}
+                              alt=""
+                              style={{
+                                display: "block",
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                                filter: "saturate(0.85) contrast(0.95)",
+                              }}
+                            />
+                          </span>
+                          <span style={fieldMetaStyle}>
+                            <span>Datenträger</span>
+                            <b>
+                              LF{field.lf} · {field.ap}
+                            </b>
+                          </span>
+                          <strong>{field.title}</strong>
+                          <span>{field.focus}</span>
+                          <span style={fieldProgressStyle}>
+                            Einsteiger · {solved}/{total} Übungen · Starten
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                </>
+              ) : (
+                <motion.button
+                  type="button"
+                  variants={CARD}
+                  onClick={() => setFieldsExpanded(true)}
+                  style={showListBtnStyle}
+                >
+                  {t("hub.showList")}
+                </motion.button>
+              )}
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
@@ -244,44 +557,6 @@ const heroGridStyle: CSSProperties = {
   gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
   gap: "clamp(28px, 4vw, 56px)",
   alignItems: "stretch",
-};
-
-const headlineStyle: CSSProperties = {
-  margin: 0,
-  maxWidth: 720,
-  fontFamily: "var(--nx-font-sans)",
-  fontSize: "clamp(48px, 6vw, 90px)",
-  fontWeight: 100,
-  lineHeight: 0.95,
-  letterSpacing: "-0.07em",
-  color: "var(--nx-learn-ink)",
-};
-
-const hubHeadlineStyle: CSSProperties = {
-  ...headlineStyle,
-  fontSize: "clamp(34px, 4.5vw, 56px)",
-  lineHeight: 1.05,
-  letterSpacing: "-0.05em",
-};
-
-const leadStyle: CSSProperties = {
-  margin: "22px 0 0",
-  maxWidth: 640,
-  fontFamily: "var(--nx-font-sans)",
-  fontSize: "clamp(24px, 2.5vw, 30px)",
-  fontWeight: 400,
-  lineHeight: 1.45,
-  color: "var(--nx-learn-muted)",
-};
-
-const eyebrowStyle: CSSProperties = {
-  marginBottom: 18,
-  fontFamily: "var(--nx-font-mono)",
-  fontSize: 20,
-  fontWeight: 650,
-  letterSpacing: ".08em",
-  color: "rgba(22,32,25,0.58)",
-  textTransform: "uppercase",
 };
 
 const actionRowStyle: CSSProperties = {
@@ -305,12 +580,6 @@ const ctaStyle: CSSProperties = {
   pointerEvents: "auto",
   WebkitTapHighlightColor: "transparent",
   touchAction: "manipulation",
-};
-
-const secondaryCtaStyle: CSSProperties = {
-  ...ctaStyle,
-  background: "rgba(22,32,25,0.06)",
-  color: "var(--nx-learn-ink)",
 };
 
 const statsPanelStyle: CSSProperties = {
@@ -432,16 +701,6 @@ const fieldVisualStyle: CSSProperties = {
     "radial-gradient(circle at 50% 42%, rgba(214,181,111,0.2), rgba(22,32,25,0.08) 58%, rgba(22,32,25,0.16))",
   boxShadow: "inset 0 0 0 1px rgba(22,32,25,0.08)",
   pointerEvents: "none",
-};
-
-const fieldVideoStyle: CSSProperties = {
-  display: "block",
-  width: "100%",
-  height: "100%",
-  objectFit: "contain",
-  filter: "saturate(0.72) contrast(0.92) brightness(0.9)",
-  mixBlendMode: "multiply",
-  opacity: 0.84,
 };
 
 const fieldMetaStyle: CSSProperties = {

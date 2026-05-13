@@ -3,6 +3,32 @@
   "title": "Software zur Verwaltung von Daten anpassen",
   "ap_relevance": 1,
   "ap": "AP1",
+  "coachWorkbench": {
+    "selectSuccess": {
+      "starwars": "Perfekter Treffer Zielvektor im Hyperraum gescannt",
+      "anime": "Volltreffer Chakra stabil die Abfrage sitzt",
+      "gym": "Perfekter Treffer Kraftlevel in der Datenbank geloggt"
+    },
+    "genericSuccess": {
+      "starwars": "Sektorenlink bestätigt Weiter im Archiv",
+      "anime": "Combo durch Mission erfüllt",
+      "gym": "Satz sauber abgeschlossen PR steht"
+    }
+  },
+  "bossPhase": {
+    "id": "lf5-boss",
+    "title": "Boss Phase · Letzter Scan",
+    "epicCoach": {
+      "starwars": "Alarm Das Imperium ortet uns jetzt Filter die Piloten sofort oder der Hangar brennt",
+      "anime": "Alarm Der Arc kippt jetzt Setz den Filter sofort oder das Team fällt",
+      "gym": "Alarm Das Set ist live Jetzt PRs filtern oder der Run bricht"
+    },
+    "expected": {
+      "starwars": "SELECT * FROM Piloten WHERE Rang = 'Ace' AND Status = 'Einsatz'",
+      "anime": "SELECT * FROM Missionen WHERE Rang = 'S' AND Status = 'Offen'",
+      "gym": "SELECT * FROM Athleten WHERE Status = 'Aufbau' AND PRKg > 200"
+    }
+  },
   "beginnerPath": [
     {
       "id": "lf5-start",
@@ -16,11 +42,11 @@
         },
         {
           "title": "Merksatz",
-          "body": "SELECT zeigt Daten. FROM wählt die Tabelle. WHERE setzt den Filter"
+          "body": "SELECT zeigt Daten FROM wählt die Tabelle WHERE setzt den Filter"
         },
         {
           "title": "Erster Schritt",
-          "body": "Du musst SQL noch nicht auswendig können. Übernimm zuerst das Beispiel und erkenne den Filter"
+          "body": "Du musst SQL noch nicht auswendig können Übernimm zuerst das Beispiel und erkenne den Filter"
         }
       ],
       "example": {
@@ -33,9 +59,9 @@
         "expected": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'",
         "options": [
           { "text": "WHERE Stadt = 'Berlin' filtert die Kundenliste", "correct": true },
-          { "text": "WHERE löscht Berliner Kunden", "correct": false, "hint": "WHERE zeigt nur passende Zeilen, es löscht nichts" },
+          { "text": "WHERE löscht Berliner Kunden", "correct": false, "hint": "WHERE zeigt nur passende Zeilen es löscht nichts" },
           { "text": "FROM sortiert nach Stadt", "correct": false, "hint": "FROM wählt die Tabelle" },
-          { "text": "SELECT verbindet zwei Tabellen", "correct": false, "hint": "SELECT bestimmt, was angezeigt wird" }
+          { "text": "SELECT verbindet zwei Tabellen", "correct": false, "hint": "SELECT bestimmt was angezeigt wird" }
         ]
       }
     }
@@ -46,45 +72,120 @@
       "chapter": "SQL Basics",
       "type": "note",
       "title": "Datenbank ganz einfach",
-      "body": "Eine Tabelle ist wie eine Excel-Liste. Mit einem Filter zeigst du nur die Zeilen, die du brauchst"
+      "body": "Eine Tabelle ist wie eine Excel Liste Mit einem Filter zeigst du nur die Zeilen die du brauchst"
     },
     {
       "id": "lf5-code-filter",
       "chapter": "SQL Basics",
       "type": "sql",
-      "title": "Mini Beispiel",
+      "title": "Mini Beispiel · Kundenfilter",
+      "coachLine": "Waifu sagt Übernimm den FROM WHERE Rhythmus dann feuern",
       "code": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'"
+    },
+    {
+      "id": "lf5-sw-1",
+      "chapter": "Multiversum · Star Wars",
+      "type": "sql",
+      "title": "Action · Hole alle Piloten von Corellia",
+      "coachLine": "Direkt flach ziehen Hyperantrieb läuft heiß",
+      "code": "SELECT * FROM Piloten WHERE Heimat = 'Corellia'"
+    },
+    {
+      "id": "lf5-sw-2",
+      "chapter": "Multiversum · Star Wars",
+      "type": "sql",
+      "title": "Action · Liste sämtlicher Sternzerstörer im Status Werft",
+      "coachLine": "Filter setzen wie Schildfrequenz kein Umweg",
+      "code": "SELECT * FROM Sternzerstoerer WHERE Status = 'Werft'"
+    },
+    {
+      "id": "lf5-sw-3",
+      "chapter": "Multiversum · Star Wars",
+      "type": "sql",
+      "title": "Action · Nur Kontakte der Fraktion Allianz",
+      "coachLine": "WHERE ist dein Traktorstrahl zieh nur Rebellen rein",
+      "code": "SELECT * FROM Kontakte WHERE Fraktion = 'Allianz'"
+    },
+    {
+      "id": "lf5-an-1",
+      "chapter": "Multiversum · Anime",
+      "type": "sql",
+      "title": "Action · Ninjas aus Dorf Konoha",
+      "coachLine": "Schneller Sweep die Mission wartet",
+      "code": "SELECT * FROM Ninjas WHERE Dorf = 'Konoha'"
+    },
+    {
+      "id": "lf5-an-2",
+      "chapter": "Multiversum · Anime",
+      "type": "sql",
+      "title": "Action · Offene Missionen Rang A",
+      "coachLine": "Nur starke Zeilen Chakra fokussieren",
+      "code": "SELECT * FROM Missionen WHERE Rang = 'A' AND Status = 'Offen'"
+    },
+    {
+      "id": "lf5-an-3",
+      "chapter": "Multiversum · Anime",
+      "type": "sql",
+      "title": "Action · Trainer mit Spezialfeuer",
+      "coachLine": "Ein Ziel ein Filter wie ein sauberer Panel-Schnitt",
+      "code": "SELECT * FROM Trainer WHERE Element = 'Feuer'"
+    },
+    {
+      "id": "lf5-gym-1",
+      "chapter": "Multiversum · Gym",
+      "type": "sql",
+      "title": "Action · Athleten in der Disziplin Kreuzheben",
+      "coachLine": "Maximale Klarheit kein Slop in der Abfrage",
+      "code": "SELECT * FROM Athleten WHERE Disziplin = 'Kreuzheben'"
+    },
+    {
+      "id": "lf5-gym-2",
+      "chapter": "Multiversum · Gym",
+      "type": "sql",
+      "title": "Action · Aktive Mitglieder im Status Aufbau",
+      "coachLine": "Halte die WHERE Linie stramm wie die Stange",
+      "code": "SELECT * FROM Athleten WHERE Status = 'Aufbau'"
+    },
+    {
+      "id": "lf5-gym-3",
+      "chapter": "Multiversum · Gym",
+      "type": "sql",
+      "title": "Action · PRs über 200 Kilogramm markieren",
+      "coachLine": "Grenze setzen wie Plate Loader nur schwere Sätze",
+      "code": "SELECT * FROM Athleten WHERE PRKg > 200"
     },
     {
       "id": "lf5-code-join",
       "chapter": "Joins",
       "type": "sql",
-      "title": "Späteres Beispiel",
-      "code": "SELECT k.Name b.Betrag FROM Kunden k INNER JOIN Bestellungen b ON b.KundenID = k.ID"
+      "title": "Späteres Beispiel · Join",
+      "coachLine": "Zwei Tabellen koppeln erst FROM dann JOIN ON üben",
+      "code": "SELECT k.Name, b.Betrag FROM Kunden k INNER JOIN Bestellungen b ON b.KundenID = k.ID"
     },
     {
       "id": "lf5-check",
       "chapter": "Prüfung",
       "type": "note",
       "title": "Prüfungs Check",
-      "body": "Erst verstehen, dann schreiben: Welche Tabelle, welcher Filter, welches Ergebnis"
+      "body": "Erst verstehen dann schreiben Welche Tabelle welcher Filter welches Ergebnis"
     },
     {
       "id": "lf5-code-csharp",
       "chapter": "Anbindung",
       "type": "csharp",
       "title": "Code Beispiel",
-      "code": "using var cmd = new SqlCommand(\"SELECT * FROM Kunden WHERE Stadt = @stadt\" conn)\ncmd.Parameters.AddWithValue(\"@stadt\" \"Berlin\")"
+      "coachLine": "Parameter sauber der Pool bleibt geschützt",
+      "code": "using var cmd = new SqlCommand(\"SELECT * FROM Kunden WHERE Stadt = @stadt\", conn);\ncmd.Parameters.AddWithValue(\"@stadt\", \"Berlin\");"
     }
   ],
   "milestones": [
     {
       "id": "sql_select_basic",
       "type": "workbench",
-      "task": "Du hast eine Kundenliste. Zeige nur die Kunden aus Berlin",
+      "task": "Du hast eine Kundenliste Zeige nur die Kunden aus Berlin",
       "context": "Tabelle Kunden: ID, Name, Stadt, Umsatz",
       "expected_query": "SELECT * FROM Kunden WHERE Stadt = 'Berlin'",
-      "hint": "WHERE ist nur ein Filter. Es bedeutet hier: Stadt muss Berlin sein"
+      "hint": "WHERE ist nur ein Filter Es bedeutet hier Stadt muss Berlin sein"
     },
     {
       "id": "sql_join_order",

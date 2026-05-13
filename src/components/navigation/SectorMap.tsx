@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform, type MotionValue } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useTransform, type MotionValue } from "framer-motion";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import ArtifactGallery from "../gallery/ArtifactGallery";
 import {
@@ -6,7 +6,7 @@ import {
   achievementRegistry,
   type AchievementType,
 } from "../../data/achievementRegistry";
-import { getNexusEntryForLF, type LearningField } from "../../data/nexusRegistry";
+import { getBossThumbnailCandidates, getNexusEntryForLF, type LearningField } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
 import { useGameStore } from "../../store/useGameStore";
 import type { GlobalCollectionEntry } from "../../store/useGameStore";
@@ -17,6 +17,7 @@ import {
   stabilityTier,
 } from "../../lib/math/mapLogic";
 import { SectorNode } from "./SectorNode";
+import { SkillRadar } from "./SkillRadar";
 import { CoreAugmentations } from "./CoreAugmentations";
 import { SectorInstabilityBanner } from "./AnomalyOverlay";
 import { HallOfRecords } from "../menu/HallOfRecords";
@@ -137,92 +138,131 @@ function GridLayer({
   );
 }
 
-function BossPreview({ lf }: { lf: number }) {
-  const lfKey = `LF${Math.max(1, Math.min(12, lf))}` as LearningField;
-  const entry = getNexusEntryForLF(lfKey);
-  /** 0 = Primär-Video, 1…n = Registry-Fallbacks, danach Loot-Still */
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    setStep(0);
-  }, [lf, entry.bossVisual.primaryPath]);
-
-  const advance = useCallback(() => setStep((s) => s + 1), []);
-
-  const fallbackUrls = entry.bossVisual.fallbackPaths;
-  const maxStep = 1 + fallbackUrls.length;
-
-  if (step === 0) {
+function SkillGapStrip({ t }: { t: (key: string, fallback?: string) => string }) {
+  const scan = useGameStore((s) => s.initialSkillScanByLf);
+  const done = useGameStore((s) => s.initialSkillScanComplete);
+  if (!done) return null;
+  const dot = (lf: number) => {
+    const k = `LF${lf}` as LearningField;
+    const v = scan[k];
+    const bg =
+      v === true ? "rgba(52,211,153,0.92)" : v === false ? "rgba(248,113,113,0.92)" : "rgba(251,247,239,0.2)";
     return (
-      <video
-        key={`${lf}-primary`}
-        src={entry.bossVisual.primaryPath}
-        muted
-        playsInline
-        loop
-        autoPlay
-        onError={advance}
+      <div
+        key={k}
+        title={`LF${lf}`}
         style={{
-          width: "100%",
-          maxHeight: 160,
-          borderRadius: 10,
-          objectFit: "cover",
-          background: "rgba(0,0,0,0.4)",
+          width: 22,
+          height: 22,
+          borderRadius: 6,
+          background: bg,
+          border: "1px solid rgba(251,247,239,0.28)",
         }}
       />
     );
-  }
+  };
+  return (
+    <div
+      style={{
+        marginBottom: 12,
+        padding: "12px 14px",
+        borderRadius: 14,
+        border: "1px solid rgba(251,247,239,0.2)",
+        background: "rgba(8,12,10,0.55)",
+        maxWidth: 480,
+      }}
+    >
+      <div
+        style={{
+          fontSize: 20,
+          fontWeight: 750,
+          color: "rgba(251,247,239,0.95)",
+          letterSpacing: ".04em",
+        }}
+      >
+        {t("map.skillGapTitle")}
+      </div>
+      <div style={{ marginTop: 10, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
+        <span style={{ fontSize: 20, color: "rgba(251,247,239,0.72)", fontWeight: 650 }}>
+          {t("map.skillGapAp1")}
+        </span>
+        {[1, 2, 3, 4, 5, 6].map(dot)}
+      </div>
+      <div style={{ marginTop: 8, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
+        <span style={{ fontSize: 20, color: "rgba(251,247,239,0.72)", fontWeight: 650 }}>
+          {t("map.skillGapAp2")}
+        </span>
+        {[7, 8, 9, 10, 11, 12].map(dot)}
+      </div>
+    </div>
+  );
+}
 
-  if (step < maxStep) {
-    const url = fallbackUrls[step - 1]!;
-    const isVideo = /\.(mp4|webm|mov)$/i.test(url);
-    if (isVideo) {
-      return (
-        <video
-          key={`${lf}-fb-${step}`}
-          src={url}
-          muted
-          playsInline
-          loop
-          autoPlay
-          onError={advance}
-          style={{
-            width: "100%",
-            maxHeight: 160,
-            borderRadius: 10,
-            objectFit: "cover",
-            background: "rgba(0,0,0,0.4)",
-          }}
-        />
-      );
-    }
-    return (
+function BossPreview({ lf }: { lf: number }) {
+  const lfKey = `LF${Math.max(1, Math.min(12, lf))}` as LearningField;
+  const entry = getNexusEntryForLF(lfKey);
+  const [step, setStep] = useState(0);
+  const [hoverVideo, setHoverVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    setStep(0);
+    setHoverVideo(false);
+  }, [lf, entry.bossVisual.primaryPath]);
+
+  useEffect(() => {
+    if (!hoverVideo || !videoRef.current) return;
+    void videoRef.current.play().catch(() => {});
+    return () => videoRef.current?.pause();
+  }, [hoverVideo]);
+
+  const thumbCandidates = useMemo(() => getBossThumbnailCandidates(lfKey), [lfKey]);
+  const thumbSrc = thumbCandidates[Math.min(step, thumbCandidates.length - 1)]!;
+
+  const advance = useCallback(() => setStep((s) => s + 1), []);
+
+  return (
+    <div
+      onPointerEnter={() => setHoverVideo(true)}
+      onPointerLeave={() => setHoverVideo(false)}
+      style={{ position: "relative", width: "100%", borderRadius: 10, overflow: "hidden" }}
+    >
       <img
-        key={`${lf}-fb-${step}`}
-        src={url}
+        key={`${lf}-thumb-${step}`}
+        src={thumbSrc}
         alt=""
         onError={advance}
         style={{
           width: "100%",
           maxHeight: 160,
-          borderRadius: 10,
+          minHeight: 120,
           objectFit: "cover",
+          display: "block",
+          opacity: hoverVideo ? 0.2 : 1,
+          transition: "opacity 0.3s ease",
+          background: "rgba(0,0,0,0.35)",
         }}
       />
-    );
-  }
-
-  return (
-    <img
-      src={entry.loot.itemPath}
-      alt=""
-      style={{
-        width: "100%",
-        maxHeight: 160,
-        borderRadius: 10,
-        objectFit: "cover",
-      }}
-    />
+      {hoverVideo ? (
+        <video
+          ref={videoRef}
+          src={entry.bossVisual.primaryPath}
+          muted
+          playsInline
+          loop
+          preload="none"
+          onError={() => setHoverVideo(false)}
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      ) : null}
+    </div>
   );
 }
 
@@ -242,6 +282,7 @@ export function SectorMap({
     [locale, t]
   );
   const history = useGameStore((s) => s.combatArchitectHistory);
+  const campaign = useGameStore((s) => s.campaign);
   const globalCollection = useGameStore((s) => s.globalCollection);
   const setOverlayOpenState = useGameStore((s) => s.setOverlayOpenState);
   const sectorAnomalies = useGameStore((s) => s.sectorAnomalies);
@@ -249,6 +290,20 @@ export function SectorMap({
   const dailyRankedClearDateUtc = useGameStore((s) => s.dailyRankedClearDateUtc);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const nexusMasterCertificateSealed = useGameStore((s) => s.nexusMasterCertificateSealed);
+  const initialSkillScanByLf = useGameStore((s) => s.initialSkillScanByLf);
+  const initialSkillScanComplete = useGameStore((s) => s.initialSkillScanComplete);
+
+  const skillScanRingForLf = useCallback(
+    (lf: number): "stable" | "gap" | "neutral" | undefined => {
+      if (!initialSkillScanComplete) return undefined;
+      const k = `LF${lf}` as LearningField;
+      const v = initialSkillScanByLf[k];
+      if (v === true) return "stable";
+      if (v === false) return "gap";
+      return "neutral";
+    },
+    [initialSkillScanByLf, initialSkillScanComplete]
+  );
 
   const [utcTick, setUtcTick] = useState(0);
   const [hoverLf, setHoverLf] = useState<number | null>(null);
@@ -257,6 +312,8 @@ export function SectorMap({
   const [endlessDeepDiveOptIn, setEndlessDeepDiveOptIn] = useState(false);
   const [technicalDossierOpen, setTechnicalDossierOpen] = useState(false);
   const [codexOpen, setCodexOpen] = useState(false);
+  const codexCloseToken = useGameStore((s) => s.codexCloseToken);
+  const lastCodexCloseTokenRef = useRef(0);
   const [epilogLoreOpen, setEpilogLoreOpen] = useState(false);
   const [legacyCreditsOpen, setLegacyCreditsOpen] = useState(false);
   const [dailyPanelOpen, setDailyPanelOpen] = useState(false);
@@ -270,6 +327,13 @@ export function SectorMap({
     [nexusMasterCertificateSealed]
   );
   const isFirstBoot = useGameStore((s) => s.isFirstBoot);
+
+  useEffect(() => {
+    if (codexCloseToken > lastCodexCloseTokenRef.current) {
+      lastCodexCloseTokenRef.current = codexCloseToken;
+      setCodexOpen(false);
+    }
+  }, [codexCloseToken]);
 
   /** Erstes Mal auf der Karte: Menü offen, damit geführte Tour das Codex-Ziel findet */
   useEffect(() => {
@@ -406,6 +470,22 @@ export function SectorMap({
     setHoverLf(lf);
   }, []);
 
+  const premiumAmbient = useMemo(() => {
+    if (epilogueActive) return "";
+    const parts: string[] = [];
+    for (let i = 1; i <= 12; i += 1) {
+      const e = getNexusEntryForLF(`LF${i}` as LearningField);
+      const c = e.combatPalette.primary
+        .replace("0.98", "0.16")
+        .replace("0.95", "0.14")
+        .replace("0.9", "0.12");
+      const xp = 6 + ((i * 73) % 88);
+      const yp = 10 + ((i * 47) % 72);
+      parts.push(`radial-gradient(ellipse 42% 32% at ${xp}% ${yp}%, ${c}, transparent 58%)`);
+    }
+    return parts.join(", ");
+  }, [epilogueActive]);
+
   return (
     <div
       ref={mapRootRef}
@@ -423,6 +503,20 @@ export function SectorMap({
         transition: "background 1.1s ease",
       }}
     >
+      {!epilogueActive && premiumAmbient ? (
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            pointerEvents: "none",
+            background: premiumAmbient,
+            opacity: 0.55,
+            mixBlendMode: "screen",
+          }}
+        />
+      ) : null}
       <div
         style={{
           position: "absolute",
@@ -438,6 +532,7 @@ export function SectorMap({
         }}
       >
         <div style={{ pointerEvents: "auto", maxWidth: 520 }}>
+          {!epilogueActive ? <SkillGapStrip t={t} /> : null}
           <div
             style={{
               fontSize: 11,
@@ -1182,39 +1277,46 @@ export function SectorMap({
       <LegacyCredits open={legacyCreditsOpen} onClose={() => setLegacyCreditsOpen(false)} />
       <HallOfRecords open={hallRecordsOpen} onClose={() => setHallRecordsOpen(false)} />
       <CoreAugmentations open={coreAugOpen} onClose={() => setCoreAugOpen(false)} />
-      {codexOpen ? (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 70,
-            background: "rgba(5,5,7,0.8)",
-            padding: "min(5vh, 32px) min(4vw, 28px)",
-            overflow: "auto",
-          }}
-        >
-          <div style={{ position: "absolute", top: 18, right: 20 }}>
-            <button
-              type="button"
-              onClick={() => setCodexOpen(false)}
-              style={{
-                borderRadius: 8,
-                border: "1px solid rgba(255,214,165,0.55)",
-                background: "rgba(20,16,10,0.72)",
-                color: "var(--nx-bone-90)",
-                letterSpacing: ".12em",
-                fontSize: 11,
-                padding: "8px 12px",
-                cursor: "pointer",
-                textTransform: "uppercase",
-              }}
-            >
-              Schließen
-            </button>
-          </div>
-          <CodexIridium />
-        </div>
-      ) : null}
+      <AnimatePresence>
+        {codexOpen ? (
+          <motion.div
+            key="codex-root"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 70,
+              background: "rgba(5,5,7,0.8)",
+              padding: "min(5vh, 32px) min(4vw, 28px)",
+              overflow: "auto",
+            }}
+          >
+            <div style={{ position: "absolute", top: 18, right: 20 }}>
+              <button
+                type="button"
+                onClick={() => setCodexOpen(false)}
+                style={{
+                  borderRadius: 8,
+                  border: "1px solid rgba(255,214,165,0.55)",
+                  background: "rgba(20,16,10,0.72)",
+                  color: "var(--nx-bone-90)",
+                  letterSpacing: ".12em",
+                  fontSize: 11,
+                  padding: "8px 12px",
+                  cursor: "pointer",
+                  textTransform: "uppercase",
+                }}
+              >
+                Schließen
+              </button>
+            </div>
+            <CodexIridium />
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       <motion.div
         data-nx-tutorial="map"
@@ -1267,6 +1369,17 @@ export function SectorMap({
             nodeLayout={nodeLayout}
             ghostSyncEnabled={ghostSyncDesktop}
           />
+          <div
+            style={{
+              position: "absolute",
+              right: 14,
+              bottom: 196,
+              zIndex: 9,
+              maxWidth: 420,
+            }}
+          >
+            <SkillRadar epilogueActive={epilogueActive} />
+          </div>
           <div
             style={{
               position: "absolute",
@@ -1388,7 +1501,7 @@ export function SectorMap({
               const lfKey = `LF${lf}` as LearningField;
               const stab = stabilities[lf] ?? 0;
               const tier = stabilityTier(stab);
-              const unlocked = true;
+              const unlocked = campaign.unlockedSectors.includes(lf);
               const last = lastReportForLf(history, lf);
               const isDaily = lf === dailyDef.targetLf;
               const displayAnomaly = dailyDef.anomalies[lf] ?? sectorAnomalies[lf] ?? null;
@@ -1419,6 +1532,10 @@ export function SectorMap({
                   layoutBridgeLf={layoutBridgeLf}
                   seamlessEngage={seamlessEngage}
                   tierLabels={tierLabels}
+                  bossVideoSrc={entry.bossVisual.primaryPath}
+                  bossThumbnailUrls={getBossThumbnailCandidates(lfKey)}
+                  skillScanRing={skillScanRingForLf(lf)}
+                  sectorMastered={Boolean(campaign.masteryChecks[lfKey])}
                 />
               );
             })}

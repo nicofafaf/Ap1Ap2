@@ -88,6 +88,7 @@ export function MentorPortrait({
     return (
       <div
         aria-hidden
+        title={mentorPortraitSlug(mentorId)}
         style={{
           ...shell,
           background:
@@ -95,12 +96,13 @@ export function MentorPortrait({
           display: "grid",
           placeItems: "center",
           fontFamily: "var(--nx-font-mono, monospace)",
-          fontSize: Math.max(12, Math.round(size * 0.22)),
+          fontSize: Math.max(11, Math.round(size * 0.2)),
           fontWeight: 800,
-          color: "rgba(251, 247, 239, 0.92)",
+          color: "rgba(251, 247, 239, 0.55)",
+          letterSpacing: "0.12em",
         }}
       >
-        {mentorPortraitSlug(mentorId)}
+        ···
       </div>
     );
   }

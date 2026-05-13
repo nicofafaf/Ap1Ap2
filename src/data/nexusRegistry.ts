@@ -87,8 +87,13 @@ function mentorPortraitPngUrl(mentorIndex: number): string {
  */
 export function mentorPickPortraitCandidates(id: number): readonly string[] {
   const n = Math.max(1, Math.min(100, Math.floor(id)));
-  const base = `/assets/Portraits/25-waifus-128x128/waifu-${n}`;
-  return [publicAssetUrl(`${base}.png`), publicAssetUrl(`${base}.webp`), mentorPortraitPngUrl(n)];
+  const pick128 = `/assets/Portraits/25-waifus-128x128`;
+  return [
+    publicAssetUrl(`${pick128}/${n}.png`),
+    publicAssetUrl(`${pick128}/waifu-${n}.png`),
+    publicAssetUrl(`${pick128}/${n}.webp`),
+    mentorPortraitPngUrl(n),
+  ];
 }
 
 const WAIFU_IDLE_FOLDER_ENC = encodeURIComponent("100 Waifus - Idle Animation 64x64");
@@ -100,7 +105,11 @@ const WAIFU_IDLE_FOLDER_ENC = encodeURIComponent("100 Waifus - Idle Animation 64
 export function mentorIdleAnimationCandidates(id: number): readonly string[] {
   const n = Math.max(1, Math.min(100, Math.floor(id)));
   const root = `/assets/Characters/${WAIFU_IDLE_FOLDER_ENC}/V1.0`;
+  const static128 = publicAssetUrl(`/assets/Portraits/25-waifus-128x128/${n}.png`);
+  const static64 = publicAssetUrl(`/assets/Portraits/25-waifus-64x64/${n}.png`);
   return [
+    static128,
+    static64,
     publicAssetUrl(`${root}/waifu-${n}.webp`),
     publicAssetUrl(`${root}/waifu-${n}.gif`),
     publicAssetUrl(`${root}/waifu-${n}.webm`),

@@ -81,8 +81,21 @@ function ensurePublicAssetsPlugin(): Plugin {
           }
           copyFileSync(srcFile, join(destDir, fileName));
         }
+        const portraitDirs = ["25-waifus-128x128", "25-waifus-64x64"] as const;
+        let portraitCount = 0;
+        for (const dir of portraitDirs) {
+          const srcPortraitDir = join(srcDir, "Portraits", dir);
+          if (!existsSync(srcPortraitDir)) continue;
+          const destPortraitDir = join(destDir, "Portraits", dir);
+          mkdirSync(destPortraitDir, { recursive: true });
+          for (const name of readdirSync(srcPortraitDir)) {
+            if (!name.toLowerCase().endsWith(".png")) continue;
+            copyFileSync(join(srcPortraitDir, name), join(destPortraitDir, name));
+            portraitCount += 1;
+          }
+        }
         console.warn(
-          `[ensure-public-assets] CI Slim Deploy — ${REQUIRED_DEPLOY_ASSETS.length} Kern-Assets kopiert`
+          `[ensure-public-assets] CI Slim Deploy — ${REQUIRED_DEPLOY_ASSETS.length} Kern-Assets + ${portraitCount} Portrait-PNGs kopiert`,
         );
         return;
       }

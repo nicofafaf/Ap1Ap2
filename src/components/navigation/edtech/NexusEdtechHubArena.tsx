@@ -1,16 +1,14 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties } from "react";
-import { useMemo, useRef } from "react";
-import {
-  getBossThumbnailCandidates,
-  publicAssetUrl,
-  type LearningField,
-} from "../../../data/nexusRegistry";
+import { useMemo } from "react";
+import { publicAssetUrl, type LearningField } from "../../../data/nexusRegistry";
 import type { NexusHubMapExtras } from "../../../lib/ui/hubMapNavigation";
 import { FRACTAL_COMMAND_BG_MP4 } from "../../../lib/ui/fractalConstants";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
 import { useGameStore } from "../../../store/useGameStore";
+import { EdtechLazyVideo } from "./EdtechLazyVideo";
+import { EdtechLfThumb } from "./EdtechLfThumb";
 import {
   cyanAccent,
   EDTECH_CARD,
@@ -62,7 +60,6 @@ export function NexusEdtechHubArena({
 }: NexusEdtechHubArenaProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
 
   const playerName = useGameStore((s) => s.playerName);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
@@ -154,16 +151,11 @@ export function NexusEdtechHubArena({
         style={heroShellStyle}
         aria-labelledby="nx-edtech-hero-title"
       >
-        <video
-          ref={heroVideoRef}
+        <EdtechLazyVideo
           src={FRACTAL_COMMAND_BG_MP4}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+          mode="viewport"
+          priority
           style={heroVideoStyle}
-          aria-hidden
         />
         <motion.div style={heroOverlayStyle} aria-hidden />
         <div style={heroContentStyle}>
@@ -233,7 +225,6 @@ export function NexusEdtechHubArena({
           {FEATURED_LFS.map((lf) => {
             const lfKey = `LF${lf}` as LearningField;
             const meta = FIELD_META[lf];
-            const thumb = getBossThumbnailCandidates(lfKey)[0];
             const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
             const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
             const title = FIELD_TITLES_DE[meta.titleKey] ?? meta.titleKey;
@@ -247,7 +238,7 @@ export function NexusEdtechHubArena({
                 style={{ ...glassPanel, ...courseCardStyle, padding: 0, overflow: "hidden", textAlign: "left", cursor: "pointer" }}
               >
                 <span style={courseThumbWrapStyle}>
-                  <img src={thumb} alt="" style={courseThumbImgStyle} />
+                  <EdtechLfThumb lf={lf} />
                   <span style={courseLfBadgeStyle}>LF{lf}</span>
                 </span>
                 <span style={courseBodyStyle}>
@@ -297,7 +288,7 @@ export function NexusEdtechHubArena({
               whileHover={reduceMotion ? undefined : { y: -3 }}
               style={{ ...glassPanel, ...simCardStyle, padding: 0, overflow: "hidden", cursor: "pointer", flex: "0 0 220px" }}
             >
-              <video src={sim.video} muted loop playsInline autoPlay preload="metadata" style={simVideoStyle} aria-hidden />
+              <EdtechLazyVideo src={sim.video} mode="hover" style={simVideoStyle} />
               <span style={simLabelStyle}>{sim.label}</span>
             </motion.button>
           ))}
@@ -504,7 +495,6 @@ const heroVideoStyle: CSSProperties = {
   inset: 0,
   width: "100%",
   height: "100%",
-  objectFit: "cover",
   filter: "saturate(1.05) contrast(1.08)",
 };
 

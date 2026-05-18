@@ -1,24 +1,20 @@
 ﻿import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { CodexIridium } from "../../archive/CodexIridium";
 import ArtifactGallery from "../../gallery/ArtifactGallery";
 import { getNexusEntryForLF, type LearningField } from "../../../data/nexusRegistry";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
 import { computeAllSectorStabilities, stabilityTier } from "../../../lib/math/mapLogic";
-import {
-  formatCountdownHMS,
-  getDailyIncursionDefinition,
-  getUtcDateKey,
-  secondsUntilNextUtcMidnight,
-  type InitiateCombatOptions,
-} from "../../../lib/dailyIncursion";
+import { getDailyIncursionDefinition, getUtcDateKey, type InitiateCombatOptions } from "../../../lib/dailyIncursion";
+import { EdtechDailyCountdown } from "./EdtechDailyCountdown";
 import { useGameStore } from "../../../store/useGameStore";
 import { HallOfRecords } from "../../menu/HallOfRecords";
 import { LegacyCredits } from "../../menu/LegacyCredits";
 import { TechnicalDossier } from "../../menu/TechnicalDossier";
 import { CoreAugmentations } from "../CoreAugmentations";
 import { EdtechLfThumb } from "./EdtechLfThumb";
+import "./edtechSectorMap.css";
 import {
   cyanAccent,
   edtechGhostBtn,
@@ -26,17 +22,21 @@ import {
   edtechMenuBtn,
   edtechPageBackground,
   edtechPrimaryBtn,
-  glassPanel,
+  edtechCardPanel,
   goldAccent,
 } from "./edtechHubTokens";
 import {
   edtechCourseAp,
   edtechCourseBody,
   edtechCourseCardShell,
-  edtechCourseGridStyle,
   edtechCourseLfBadge,
   edtechCourseMeta,
   edtechCourseTitle,
+  edtechLfFooterRow,
+  edtechLfProgressFill,
+  edtechLfProgressTrack,
+  edtechLfSectionTitle,
+  edtechLfTierPill,
 } from "./edtechCourseCardStyles";
 
 export type EdtechSectorMapProps = {
@@ -46,6 +46,28 @@ export type EdtechSectorMapProps = {
 
 function apLabel(lf: number): string {
   return lf <= 6 ? "AP1" : "AP2";
+}
+
+function tierPillStyle(tier: "stable" | "unstable" | "critical"): CSSProperties {
+  if (tier === "stable") {
+    return {
+      color: "#166534",
+      background: "rgba(34, 197, 94, 0.12)",
+      borderColor: "rgba(34, 197, 94, 0.38)",
+    };
+  }
+  if (tier === "unstable") {
+    return {
+      color: "#9a3412",
+      background: "rgba(245, 158, 11, 0.12)",
+      borderColor: "rgba(245, 158, 11, 0.45)",
+    };
+  }
+  return {
+    color: "#475569",
+    background: "rgba(148, 163, 184, 0.14)",
+    borderColor: "rgba(148, 163, 184, 0.45)",
+  };
 }
 
 export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMapProps) {
@@ -62,7 +84,6 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   const setOverlayOpenState = useGameStore((s) => s.setOverlayOpenState);
   const codexCloseToken = useGameStore((s) => s.codexCloseToken);
 
-  const [utcTick, setUtcTick] = useState(0);
   const [extrasOpen, setExtrasOpen] = useState(false);
   const [codexOpen, setCodexOpen] = useState(false);
   const [technicalDossierOpen, setTechnicalDossierOpen] = useState(false);
@@ -70,11 +91,6 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   const [coreAugOpen, setCoreAugOpen] = useState(false);
   const [legacyCreditsOpen, setLegacyCreditsOpen] = useState(false);
   const lastCodexCloseRef = useRef(0);
-
-  useEffect(() => {
-    const id = window.setInterval(() => setUtcTick((n) => n + 1), 1000);
-    return () => window.clearInterval(id);
-  }, []);
 
   useEffect(() => {
     if (codexCloseToken > lastCodexCloseRef.current) {
@@ -97,9 +113,8 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
     };
   }, []);
 
-  const dateKey = useMemo(() => getUtcDateKey(), [utcTick]);
+  const dateKey = useMemo(() => getUtcDateKey(), []);
   const dailyDef = useMemo(() => getDailyIncursionDefinition(dateKey), [dateKey]);
-  const secToMidnight = useMemo(() => secondsUntilNextUtcMidnight(), [utcTick]);
   const stabilities = useMemo(() => computeAllSectorStabilities(history), [history]);
 
   const dailyEngageOptions = useMemo<InitiateCombatOptions>(
@@ -151,6 +166,133 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
     t,
   ]);
 
+  const renderLfCard = (field: (typeof fields)[number]) => {
+    const tier = stabilityTier(stabilities[field.lf] ?? 0);
+    const tierLabel =
+      tier === "stable"
+        ? t("map.tierStable")
+        : tier === "unstable"
+          ? t("map.tierUnstable")
+          : t("map.tierCritical");
+
+    const border = field.isDaily
+      ? `2px solid ${cyanAccent}`
+      : field.mastered
+        ? `2px solid ${goldAccent}`
+        : field.scanRing === "stable"
+          ? "2px solid rgba(34, 197, 94, 0.55)"
+          : field.scanRing === "gap"
+            ? "2px solid rgba(245, 158, 11, 0.6)"
+            : "1px solid rgba(226, 232, 240, 0.92)";
+
+    const pct = field.total > 0 ? Math.min(100, Math.round((field.solved / field.total) * 100)) : 0;
+    const ariaLabel = t("map.edtechLfAria").replace("{lf}", String(field.lf)).replace("{title}", field.title);
+    const disciplineLine = field.discipline.trim();
+
+    return (
+      <motion.button
+        key={field.lf}
+        type="button"
+        layout={false}
+        aria-label={ariaLabel}
+        onClick={() => onEngage(field.lf, field.isDaily ? dailyEngageOptions : undefined)}
+        whileHover={reduceMotion ? undefined : { y: -2 }}
+        whileTap={reduceMotion ? undefined : { scale: 0.995 }}
+        style={{
+          ...edtechCardPanel,
+          ...edtechCourseCardShell,
+          border,
+          cursor: "pointer",
+          touchAction: "manipulation",
+          contentVisibility: "auto",
+          containIntrinsicSize: "0 320px",
+          position: "relative",
+          height: "100%",
+          textAlign: "left",
+        }}
+      >
+        <span className="nx-edtech-lf-thumb-wrap">
+          <EdtechLfThumb lf={field.lf} fillContainer />
+          <span style={edtechCourseLfBadge}>LF{field.lf}</span>
+          {field.isDaily ? (
+            <span
+              style={{
+                position: "absolute",
+                top: 10,
+                right: 10,
+                fontSize: 10,
+                fontWeight: 800,
+                letterSpacing: ".1em",
+                textTransform: "uppercase",
+                color: "#0f172a",
+                background: "rgba(255,255,255,0.96)",
+                padding: "5px 9px",
+                borderRadius: 8,
+                border: `1px solid ${cyanAccent}`,
+                zIndex: 2,
+                boxShadow: "0 4px 12px rgba(15,23,42,0.08)",
+              }}
+            >
+              {t("map.edtechToday")}
+            </span>
+          ) : null}
+          {field.mastered ? (
+            <span
+              style={{
+                position: "absolute",
+                bottom: 10,
+                right: 10,
+                fontFamily: "var(--nx-font-mono)",
+                fontSize: 10,
+                fontWeight: 800,
+                letterSpacing: ".08em",
+                color: "#0f172a",
+                background: "rgba(255,255,255,0.94)",
+                padding: "5px 9px",
+                borderRadius: 8,
+                border: `1px solid ${goldAccent}`,
+                zIndex: 2,
+                boxShadow: "0 4px 12px rgba(15,23,42,0.08)",
+              }}
+            >
+              {t("map.edtechMastered")}
+            </span>
+          ) : null}
+        </span>
+        <span style={{ ...edtechCourseBody, flex: "1 1 auto" }}>
+          <span style={edtechCourseAp}>{apLabel(field.lf)}</span>
+          <strong style={edtechCourseTitle}>{field.title}</strong>
+          {disciplineLine ? (
+            <span style={{ ...edtechCourseMeta, marginTop: 0 }} title={disciplineLine}>
+              {disciplineLine}
+            </span>
+          ) : null}
+          <span style={edtechLfProgressTrack} aria-hidden>
+            <span style={{ ...edtechLfProgressFill, width: `${pct}%` }} />
+          </span>
+          <div style={edtechLfFooterRow} className="nx-edtech-lf-footer">
+            <span
+              style={{
+                fontFamily: "var(--nx-font-mono)",
+                fontSize: 11,
+                fontWeight: 650,
+                color: "#64748b",
+                flex: "1 1 auto",
+                minWidth: 0,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {field.solved}/{field.total} {t("hub.edtech.feed.exercises")}
+            </span>
+            <span style={{ ...edtechLfTierPill, ...tierPillStyle(tier) }}>{tierLabel}</span>
+          </div>
+        </span>
+      </motion.button>
+    );
+  };
+
   return (
     <div
       data-nx-edtech-sector-map="1"
@@ -167,6 +309,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
       }}
     >
       <header
+        className="nx-edtech-sector-header"
         style={{
           ...edtechHeaderBar,
           position: "relative",
@@ -205,7 +348,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
             style={{
               margin: "8px 0 0",
               maxWidth: 520,
-              fontSize: 15,
+              fontSize: "clamp(14px, 3.8vw, 15px)",
               lineHeight: 1.45,
               color: "#475569",
               fontFamily: "var(--nx-font-sans)",
@@ -213,15 +356,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
           >
             {t("map.edtechLead")}
           </p>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 10,
-              marginTop: 14,
-              alignItems: "center",
-            }}
-          >
+          <div className="nx-edtech-header-actions">
             {onOpenLearningHub ? (
               <motion.button
                 type="button"
@@ -240,29 +375,14 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
               style={edtechGhostBtn}
             >
-              {t("map.edtechDailyCta")} Â· LF{dailyDef.targetLf}
+              {t("map.edtechDailyCta")} · LF{dailyDef.targetLf}
             </motion.button>
           </div>
         </motion.div>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-            gap: 8,
-            flexShrink: 0,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--nx-font-mono)",
-              fontSize: 12,
-              color: "#64748b",
-              letterSpacing: ".06em",
-            }}
-          >
-            {formatCountdownHMS(secToMidnight)} Â· {t("map.edtechDailyReset")}
+        <div className="nx-edtech-header-aside">
+          <span className="nx-edtech-countdown-wrap">
+            <EdtechDailyCountdown />
           </span>
           {!extrasOpen ? (
             <button type="button" onClick={() => setExtrasOpen(true)} style={edtechMenuBtn}>
@@ -270,6 +390,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
             </button>
           ) : (
             <motion.div
+              className="nx-edtech-extras-menu"
               initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
               style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}
@@ -299,146 +420,48 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         </div>
       </header>
 
-      <main
-        style={{
-          flex: 1,
-          minHeight: 0,
-          overflowY: "auto",
-          overflowX: "hidden",
-          WebkitOverflowScrolling: "touch",
-          padding: "clamp(12px, 2vw, 20px) clamp(16px, 3vw, 28px) max(28px, env(safe-area-inset-bottom))",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
-        <div style={{ maxWidth: 1180, margin: "0 auto", width: "100%" }}>
-          <h2
-            style={{
-              margin: "0 0 14px",
-              fontFamily: "var(--nx-font-sans)",
-              fontSize: 18,
-              fontWeight: 800,
-              letterSpacing: "-0.02em",
-              color: "#0f172a",
-            }}
-          >
-            {t("map.edtechGridTitle")}
-          </h2>
+      <main className="nx-edtech-sector-main">
+        <div className="nx-edtech-inner">
+          <div style={{ marginBottom: 24 }}>
+            <h2
+              style={{
+                margin: 0,
+                fontFamily: "var(--nx-font-sans)",
+                fontSize: "clamp(20px, 2.2vw, 24px)",
+                fontWeight: 800,
+                letterSpacing: "-0.02em",
+                color: "#0f172a",
+              }}
+            >
+              {t("map.edtechGridTitle")}
+            </h2>
+            <p
+              style={{
+                margin: "8px 0 0",
+                maxWidth: 680,
+                fontSize: "clamp(13px, 3.5vw, 14px)",
+                lineHeight: 1.5,
+                color: "#64748b",
+                fontFamily: "var(--nx-font-sans)",
+              }}
+            >
+              {t("map.edtechGridSubtitle")}
+            </p>
+          </div>
 
-          <motion.div
-            style={edtechCourseGridStyle}
-            data-nx-tutorial="map"
-            initial={false}
-            animate={{ opacity: 1 }}
-          >
-            {fields.map((field) => {
-              const tier = stabilityTier(stabilities[field.lf] ?? 0);
-              const tierLabel =
-                tier === "stable"
-                  ? t("map.tierStable")
-                  : tier === "unstable"
-                    ? t("map.tierUnstable")
-                    : t("map.tierCritical");
+          <div className="nx-edtech-section-block" data-nx-tutorial="map">
+            <h3 className="nx-edtech-section-title" style={edtechLfSectionTitle}>
+              {t("map.edtechAp1Title")}
+            </h3>
+            <div className="nx-edtech-lf-grid">{fields.slice(0, 6).map(renderLfCard)}</div>
+          </div>
 
-              const border = field.isDaily
-                ? `2px solid ${cyanAccent}`
-                : field.mastered
-                  ? `2px solid ${goldAccent}`
-                  : field.scanRing === "stable"
-                    ? "2px solid rgba(34, 197, 94, 0.55)"
-                    : field.scanRing === "gap"
-                      ? "2px solid rgba(245, 158, 11, 0.6)"
-                      : "1px solid rgba(226, 232, 240, 0.92)";
-
-              return (
-                <motion.button
-                  key={field.lf}
-                  type="button"
-                  layout={false}
-                  onClick={() =>
-                    onEngage(field.lf, field.isDaily ? dailyEngageOptions : undefined)
-                  }
-                  whileHover={
-                    reduceMotion
-                      ? undefined
-                      : {
-                          y: -3,
-                          boxShadow: "0 18px 44px rgba(15,23,42,0.1), 0 0 0 1px rgba(6,182,212,0.12)",
-                        }
-                  }
-                  whileTap={reduceMotion ? undefined : { scale: 0.99 }}
-                  style={{
-                    ...glassPanel,
-                    ...edtechCourseCardShell,
-                    border,
-                    cursor: "pointer",
-                    touchAction: "manipulation",
-                    contentVisibility: "auto",
-                    containIntrinsicSize: "0 200px",
-                    position: "relative",
-                  }}
-                >
-                  <span style={{ position: "relative", display: "block" }}>
-                    <EdtechLfThumb lf={field.lf} priority={field.isDaily} />
-                    <span style={edtechCourseLfBadge}>LF{field.lf}</span>
-                    {field.isDaily ? (
-                      <span
-                        style={{
-                          position: "absolute",
-                          top: 10,
-                          right: 10,
-                          fontSize: 10,
-                          fontWeight: 800,
-                          letterSpacing: ".1em",
-                          textTransform: "uppercase",
-                          color: "#0f172a",
-                          background: "rgba(255,255,255,0.94)",
-                          padding: "4px 8px",
-                          borderRadius: 6,
-                          border: `1px solid ${cyanAccent}`,
-                          zIndex: 2,
-                        }}
-                      >
-                        {t("map.edtechToday")}
-                      </span>
-                    ) : null}
-                    {field.mastered ? (
-                      <span
-                        style={{
-                          position: "absolute",
-                          bottom: 10,
-                          right: 10,
-                          fontFamily: "var(--nx-font-mono)",
-                          fontSize: 10,
-                          fontWeight: 800,
-                          letterSpacing: ".08em",
-                          color: "#0f172a",
-                          background: "rgba(255,255,255,0.92)",
-                          padding: "4px 8px",
-                          borderRadius: 6,
-                          border: `1px solid ${goldAccent}`,
-                          zIndex: 2,
-                        }}
-                      >
-                        {t("map.edtechMastered")}
-                      </span>
-                    ) : null}
-                  </span>
-                  <span style={edtechCourseBody}>
-                    <span style={edtechCourseAp}>{apLabel(field.lf)}</span>
-                    <strong style={edtechCourseTitle}>{field.title}</strong>
-                    <span style={edtechCourseMeta}>
-                      {field.discipline}
-                      {" Â· "}
-                      {field.solved}/{field.total} {t("hub.edtech.feed.exercises")}
-                      {" Â· "}
-                      {tierLabel}
-                    </span>
-                  </span>
-                </motion.button>
-              );
-            })}
-          </motion.div>
+          <div className="nx-edtech-section-block nx-edtech-section-block--last">
+            <h3 className="nx-edtech-section-title" style={edtechLfSectionTitle}>
+              {t("map.edtechAp2Title")}
+            </h3>
+            <div className="nx-edtech-lf-grid">{fields.slice(6, 12).map(renderLfCard)}</div>
+          </div>
         </div>
       </main>
 

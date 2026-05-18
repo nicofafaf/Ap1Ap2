@@ -1,0 +1,144 @@
+/* Responsives Layout — Sektor-Karte (LF1–LF12) */
+
+.nx-edtech-sector-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(12px, 3vw, 20px);
+}
+
+.nx-edtech-header-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nx-edtech-countdown-wrap {
+  max-width: min(100%, 520px);
+}
+
+.nx-edtech-countdown-wrap > span {
+  display: block;
+}
+
+.nx-edtech-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.nx-edtech-sector-main {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-top: max(clamp(12px, 2vw, 20px), env(safe-area-inset-top));
+  padding-right: max(clamp(16px, 3vw, 28px), env(safe-area-inset-right));
+  padding-bottom: max(clamp(12px, 2vw, 24px), env(safe-area-inset-bottom));
+  padding-left: max(clamp(16px, 3vw, 28px), env(safe-area-inset-left));
+  position: relative;
+  z-index: 1;
+}
+
+.nx-edtech-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nx-edtech-lf-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(12px, 2.4vw, 18px);
+  align-items: stretch;
+}
+
+@media (min-width: 440px) {
+  .nx-edtech-lf-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 880px) {
+  .nx-edtech-lf-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 719px) {
+  .nx-edtech-sector-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nx-edtech-header-aside {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .nx-edtech-countdown-wrap > span {
+    font-size: clamp(10px, 3.2vw, 12px) !important;
+    line-height: 1.45 !important;
+    letter-spacing: 0.04em !important;
+    white-space: normal !important;
+  }
+
+  .nx-edtech-header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nx-edtech-header-actions > * {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.nx-edtech-lf-thumb-wrap {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  height: clamp(100px, 36vw, 132px);
+  overflow: hidden;
+}
+
+@media (max-width: 380px) {
+  .nx-edtech-lf-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+.nx-edtech-section-block {
+  margin-bottom: clamp(20px, 4vw, 28px);
+}
+
+.nx-edtech-section-block--last {
+  margin-bottom: 0;
+}
+
+.nx-edtech-section-title {
+  margin: 0 0 12px;
+  word-break: break-word;
+}
+
+@media (max-width: 400px) {
+  .nx-edtech-section-title {
+    font-size: 11px !important;
+    letter-spacing: 0.06em !important;
+  }
+}
+
+@media (max-width: 719px) {
+  .nx-edtech-extras-menu {
+    justify-content: flex-start !important;
+  }
+}

@@ -28,6 +28,14 @@ export const glassPanel: CSSProperties = {
   WebkitBackdropFilter: "blur(12px)",
 };
 
+/** Karten-Grid: ohne backdrop-blur — spart GPU auf der Lernseite */
+export const edtechCardPanel: CSSProperties = {
+  borderRadius: 16,
+  border: "1px solid rgba(226, 232, 240, 0.92)",
+  background: "linear-gradient(165deg, #ffffff 0%, #f8fafc 100%)",
+  boxShadow: "0 10px 32px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,1)",
+};
+
 export const sectionH2: CSSProperties = {
   margin: "0 0 16px",
   fontFamily: "var(--nx-font-sans)",

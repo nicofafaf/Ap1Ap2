@@ -61,6 +61,7 @@ import {
   persistReadabilityMode,
 } from "../lib/ui/readabilityMode";
 import {
+  NEXUS_CHROME_STORAGE_KEY,
   persistNexusChrome,
   readStoredNexusChrome,
   type NexusChromeMode,
@@ -2815,6 +2816,47 @@ try {
 } catch {
   // no-op
 }
+
+/** ?fresh=1 — kompletter Onboarding-Reset (Profil, Scan, Init-Flags) für Tests und Demos */
+function stripFreshOnboardingParam(): void {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("fresh") !== "1") return;
+
+    for (const key of [
+      PLAYER_PROFILE_KEY,
+      HAS_COMPLETED_INITIALIZATION_KEY,
+      OVERWORLD_LANDING_KEY,
+      "nexus.hubDefault.v2",
+      NEXUS_CHROME_STORAGE_KEY,
+      FIRST_BOOT_COMPLETE_KEY,
+    ]) {
+      localStorage.removeItem(key);
+    }
+
+    params.delete("fresh");
+    const nextSearch = params.toString();
+    const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ""}${window.location.hash}`;
+    window.history.replaceState(null, "", nextUrl);
+
+    useGameStore.setState({
+      playerAvatar: null,
+      mentorWaifuIndex: null,
+      playerName: null,
+      initialSkillScanByLf: {},
+      initialSkillScanComplete: false,
+      hasCompletedInitialization: false,
+      overworldLanding: "hub",
+      nexusChrome: "edtech",
+    });
+    persistNexusChrome("edtech");
+    localStorage.setItem(OVERWORLD_LANDING_KEY, "hub");
+  } catch {
+    // no-op
+  }
+}
+
+stripFreshOnboardingParam();
 
 try {
   const sealedCert = localStorage.getItem("nexus.masterCertificate.sealed.v1");

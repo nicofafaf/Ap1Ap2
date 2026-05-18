@@ -1,4 +1,4 @@
-import {
+﻿import {
   AnimatePresence,
   motion,
   useMotionValue,
@@ -23,6 +23,7 @@ import {
   sectorCorruptionRate,
   stabilityTier,
 } from "../../lib/math/mapLogic";
+import { EdtechSectorMap } from "./edtech/EdtechSectorMap";
 import { SectorNode } from "./SectorNode";
 import { SkillRadar } from "./SkillRadar";
 import { CoreAugmentations } from "./CoreAugmentations";
@@ -53,11 +54,11 @@ import {
 
 type SectorMapProps = {
   onEngage: (lf: number, opts?: InitiateCombatOptions) => void;
-  /** LF-Nummer für gemeinsames layoutId mit Boss-Stage (nur kurz nach Dive) */
+  /** LF-Nummer fÃ¼r gemeinsames layoutId mit Boss-Stage (nur kurz nach Dive) */
   layoutBridgeLf?: number | null;
-  /** Sofortiger Kampfstart ohne Zoom-Out-Animation — für Layout-Morph */
+  /** Sofortiger Kampfstart ohne Zoom-Out-Animation â€” fÃ¼r Layout-Morph */
   seamlessEngage?: boolean;
-  /** Ruhe-Übersicht (NeuralInitializer) über der Karte */
+  /** Ruhe-Ãœbersicht (NeuralInitializer) Ã¼ber der Karte */
   onOpenLearningHub?: () => void;
 };
 
@@ -299,6 +300,7 @@ export function SectorMap({
   const nexusMasterCertificateSealed = useGameStore((s) => s.nexusMasterCertificateSealed);
   const initialSkillScanByLf = useGameStore((s) => s.initialSkillScanByLf);
   const initialSkillScanComplete = useGameStore((s) => s.initialSkillScanComplete);
+  const nexusChrome = useGameStore((s) => s.nexusChrome);
 
   const skillScanRingForLf = useCallback(
     (lf: number): "stable" | "gap" | "neutral" | undefined => {
@@ -334,6 +336,7 @@ export function SectorMap({
     () => readEpilogueUnlocked() || Boolean(nexusMasterCertificateSealed),
     [nexusMasterCertificateSealed]
   );
+  const edtechCalm = nexusChrome === "edtech" && !epilogueActive;
   const isFirstBoot = useGameStore((s) => s.isFirstBoot);
 
   useEffect(() => {
@@ -351,11 +354,11 @@ export function SectorMap({
     return () => mq.removeEventListener("change", fn);
   }, []);
 
-  /** Erstes Mal auf der Karte: Menü offen, damit geführte Tour das Codex-Ziel findet */
+  /** Erstes Mal auf der Karte: MenÃ¼ offen, damit gefÃ¼hrte Tour das Codex-Ziel findet */
   useEffect(() => {
-    if (epilogueActive) return;
+    if (epilogueActive || edtechCalm) return;
     if (isFirstBoot) setExtrasMenuOpen(true);
-  }, [epilogueActive, isFirstBoot]);
+  }, [edtechCalm, epilogueActive, isFirstBoot]);
 
   useEffect(() => {
     regenerateSectorAnomalies();
@@ -457,7 +460,7 @@ export function SectorMap({
     return () => el.removeEventListener("wheel", onWheelNative);
   }, [zoom]);
 
-  /** Karten-Bühne 900×640: ohne Auto-Fit wirkt die Oberwelt auf kleinen Screens „reingezoomt“ */
+  /** Karten-BÃ¼hne 900Ã—640: ohne Auto-Fit wirkt die Oberwelt auf kleinen Screens â€žreingezoomtâ€œ */
   useLayoutEffect(() => {
     const el = mapStageRef.current;
     if (!el) return;
@@ -521,8 +524,14 @@ export function SectorMap({
     return parts.join(", ");
   }, [epilogueActive]);
 
+  if (edtechCalm) {
+    return (
+      <EdtechSectorMap onEngage={onEngage} onOpenLearningHub={onOpenLearningHub} />
+    );
+  }
+
   return (
-    <div
+    <motion.div
       data-nx-epilogue={epilogueActive ? "1" : undefined}
       style={{
         position: "relative",
@@ -589,7 +598,7 @@ export function SectorMap({
             }}
           >
             {epilogueActive
-              ? "Abschlussübersicht"
+              ? "AbschlussÃ¼bersicht"
               : heroGuideOpen
                 ? t("map.heroTitle")
                 : t("map.heroTitleCalm")}
@@ -606,7 +615,7 @@ export function SectorMap({
                   color: "rgba(80, 64, 38, 0.9)",
                 }}
               >
-                Der Kern ist gesichert — die Karte trägt dein Architekten-Siegel
+                Der Kern ist gesichert â€” die Karte trÃ¤gt dein Architekten-Siegel
               </div>
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
@@ -631,7 +640,7 @@ export function SectorMap({
                       boxShadow: "0 8px 28px rgba(180, 140, 60, 0.22)",
                     }}
                   >
-                    {epilogLoreOpen ? "Epilog schließen" : "Epilog · Master-Architekt"}
+                    {epilogLoreOpen ? "Epilog schlieÃŸen" : "Epilog Â· Master-Architekt"}
                   </button>
                   <button
                     type="button"
@@ -647,7 +656,7 @@ export function SectorMap({
                       cursor: "pointer",
                     }}
                   >
-                    Legacy · Credits
+                    Legacy Â· Credits
                   </button>
                 </div>
                 {epilogLoreOpen ? (
@@ -667,10 +676,10 @@ export function SectorMap({
                       boxShadow: "inset 0 0 24px rgba(250, 220, 160, 0.25)",
                     }}
                   >
-                    Du hast Sektor Ø entladen — vom Lehrling der Zelllogik zum Master-Architekten der
-                    Nexus-Lattice: Anomalien weichen, und das Raster leuchtet in Weißgold wie ein
+                    Du hast Sektor Ã˜ entladen â€” vom Lehrling der Zelllogik zum Master-Architekten der
+                    Nexus-Lattice: Anomalien weichen, und das Raster leuchtet in WeiÃŸgold wie ein
                     wiederhergestelltes System, das deinen Abschluss als echte Architektur-Signatur
-                    trägt
+                    trÃ¤gt
                   </motion.div>
                 ) : null}
               </motion.div>
@@ -685,8 +694,8 @@ export function SectorMap({
                     lineHeight: 1.45,
                   }}
                 >
-                  Finale Prüfung — alle 12 Lernfelder über {(SECTOR_ZERO_STABILITY_THRESHOLD * 100).toFixed(0)} %
-                  Stabilität
+                  Finale PrÃ¼fung â€” alle 12 Lernfelder Ã¼ber {(SECTOR_ZERO_STABILITY_THRESHOLD * 100).toFixed(0)} %
+                  StabilitÃ¤t
                 </div>
               ) : null}
               <button
@@ -727,7 +736,7 @@ export function SectorMap({
                       color: "rgba(90, 60, 120, 0.85)",
                     }}
                   >
-                    Nächste Übungsrunde
+                    NÃ¤chste Ãœbungsrunde
                   </div>
                   <div
                     style={{
@@ -739,7 +748,7 @@ export function SectorMap({
                       fontFamily: "var(--nx-font-sans)",
                     }}
                   >
-                    {formatCountdownHMS(secToMidnight)} · Reset 00:00 UTC
+                    {formatCountdownHMS(secToMidnight)} Â· Reset 00:00 UTC
                   </div>
                   <div
                     style={{
@@ -749,7 +758,7 @@ export function SectorMap({
                       lineHeight: 1.4,
                     }}
                   >
-                    Tages-Lernfeld LF{dailyDef.targetLf} · Startphase {dailyDef.startCombatPhase}
+                    Tages-Lernfeld LF{dailyDef.targetLf} Â· Startphase {dailyDef.startCombatPhase}
                   </div>
                 </motion.div>
               ) : null}
@@ -925,7 +934,7 @@ export function SectorMap({
                       color: DAILY_PURPLE_MUTED,
                     }}
                   >
-                    Nächste Übungsrunde
+                    NÃ¤chste Ãœbungsrunde
                   </div>
                   <div
                     style={{
@@ -937,7 +946,7 @@ export function SectorMap({
                       fontFamily: "var(--nx-font-sans)",
                     }}
                   >
-                    {formatCountdownHMS(secToMidnight)} · Reset 00:00 UTC
+                    {formatCountdownHMS(secToMidnight)} Â· Reset 00:00 UTC
                   </div>
                   <div
                     style={{
@@ -947,7 +956,7 @@ export function SectorMap({
                       lineHeight: 1.4,
                     }}
                   >
-                    Tages-Lernfeld LF{dailyDef.targetLf} · Startphase {dailyDef.startCombatPhase}
+                    Tages-Lernfeld LF{dailyDef.targetLf} Â· Startphase {dailyDef.startCombatPhase}
                   </div>
                 </motion.div>
               ) : null}
@@ -1037,7 +1046,7 @@ export function SectorMap({
                     cursor: "pointer",
                   }}
                 >
-                  Übungen
+                  Ãœbungen
                 </button>
                 <button
                   type="button"
@@ -1195,11 +1204,13 @@ export function SectorMap({
                 shiftX={gridShiftX2}
                 shiftY={gridShiftY2}
               />
-              <ArchitectEchoLayer
-                echoPaths={architectEchoPaths}
-                nodeLayout={nodeLayout}
-                ghostSyncEnabled={ghostSyncDesktop}
-              />
+              {!edtechCalm ? (
+                <ArchitectEchoLayer
+                  echoPaths={architectEchoPaths}
+                  nodeLayout={nodeLayout}
+                  ghostSyncEnabled={ghostSyncDesktop}
+                />
+              ) : null}
               <div
                 style={{
                   position: "absolute",
@@ -1260,7 +1271,7 @@ export function SectorMap({
                         padding: "10px 16px",
                       }}
                     >
-                      SEKTOR Ø
+                      SEKTOR Ã˜
                     </motion.button>
                   </>
                 ) : null}
@@ -1363,7 +1374,7 @@ export function SectorMap({
             </div>
           </motion.div>
         </div>
-        {!coachDockCompact ? (
+        {!coachDockCompact && !edtechCalm ? (
           <aside
             data-nx-rail-skill
             style={{
@@ -1397,6 +1408,7 @@ export function SectorMap({
         ) : null}
       </div>
 
+      {!edtechCalm ? (
       <nav
         aria-label="Direkte Lernfeldauswahl"
         style={{
@@ -1520,6 +1532,7 @@ export function SectorMap({
           </>
         )}
       </nav>
+      ) : null}
 
       {hoverLf != null && hoverEntry ? (
         <motion.div
@@ -1576,7 +1589,7 @@ export function SectorMap({
             }}
           >
             {hoverEntry.lore.slice(0, 160)}
-            {hoverEntry.lore.length > 160 ? "…" : ""}
+            {hoverEntry.lore.length > 160 ? "â€¦" : ""}
           </div>
           <div
             style={{
@@ -1586,7 +1599,7 @@ export function SectorMap({
               color: "rgba(132, 92, 42, 0.9)",
             }}
           >
-            Wiederholbedarf · {(hoverCorruption * 100).toFixed(0)}%
+            Wiederholbedarf Â· {(hoverCorruption * 100).toFixed(0)}%
           </div>
         </motion.div>
       ) : null}
@@ -1632,14 +1645,14 @@ export function SectorMap({
                   textTransform: "uppercase",
                 }}
               >
-                Schließen
+                SchlieÃŸen
               </button>
             </div>
             <CodexIridium />
           </motion.div>
         ) : null}
       </AnimatePresence>
-      {coachDockCompact ? (
+      {coachDockCompact && !edtechCalm ? (
         <div
           data-nx-coach-dock
           style={{
@@ -1671,7 +1684,7 @@ export function SectorMap({
           </div>
         </div>
       ) : null}
-    </div>
+    </motion.div>
   );
 }
 

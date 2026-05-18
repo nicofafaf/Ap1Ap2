@@ -208,6 +208,10 @@ export function NexusShell() {
   const handleBeginLearningField = useCallback(
     (lf: number) => {
       completeInitialization();
+      if (useGameStore.getState().nexusChrome === "edtech") {
+        handleEngage(lf);
+        return;
+      }
       setOverworldLanding("map");
       handleEngage(lf);
     },
@@ -218,7 +222,7 @@ export function NexusShell() {
   useEffect(() => {
     const onBossClear = () => {
       completeInitialization();
-      setOverworldLanding("map");
+      setOverworldLanding(useGameStore.getState().nexusChrome === "edtech" ? "hub" : "map");
       resetCombat();
       recomputeMenuSystemMood();
       setDiveBridgeLf(null);
@@ -306,8 +310,11 @@ export function NexusShell() {
     recomputeMenuSystemMood();
     setDiveBridgeLf(null);
     setMapHoldCombat(false);
+    if (s.nexusChrome === "edtech") {
+      setOverworldLanding("hub");
+    }
     setSurface("overworld");
-  }, [completeInitialization, resetCombat, recomputeMenuSystemMood]);
+  }, [completeInitialization, resetCombat, recomputeMenuSystemMood, setOverworldLanding]);
 
   const lfKey =
     activeLfNum === 0 || activeCombatIsSectorZero

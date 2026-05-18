@@ -46,3 +46,20 @@ export const sectionH3: CSSProperties = {
 
 export const goldAccent = "rgba(214, 181, 111, 0.95)";
 export const cyanAccent = "rgba(6, 182, 212, 0.95)";
+
+export const edtechPageBackground =
+  "linear-gradient(165deg, #f8fafc 0%, #f1f5f9 42%, #e8eef4 100%)";
+
+export const edtechHeaderBar: CSSProperties = {
+  flexShrink: 0,
+  zIndex: 20,
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+  gap: 16,
+  padding: "clamp(12px, 2vw, 18px) clamp(16px, 3vw, 28px)",
+  borderBottom: "1px solid rgba(226, 232, 240, 0.95)",
+  background: "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.78) 100%)",
+  backdropFilter: "blur(14px)",
+  WebkitBackdropFilter: "blur(14px)",
+};

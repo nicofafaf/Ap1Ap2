@@ -3,8 +3,8 @@ import { cyanAccent } from "./edtechHubTokens";
 
 export const edtechCourseGridStyle: CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 200px), 1fr))",
-  gap: 14,
+  gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 220px), 1fr))",
+  gap: 16,
 };
 
 export const edtechCourseCardShell: CSSProperties = {
@@ -74,41 +74,4 @@ export const edtechCourseMeta: CSSProperties = {
   marginTop: 2,
 };
 
-export const edtechPrimaryBtn: CSSProperties = {
-  borderRadius: 12,
-  border: "1px solid rgba(37, 99, 235, 0.35)",
-  background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
-  color: "#fff",
-  fontFamily: "var(--nx-font-sans)",
-  fontSize: 14,
-  fontWeight: 800,
-  padding: "10px 18px",
-  cursor: "pointer",
-  boxShadow: "0 12px 32px rgba(37, 99, 235, 0.22)",
-};
-
-export const edtechGhostBtn: CSSProperties = {
-  borderRadius: 12,
-  border: "1px solid rgba(148, 163, 184, 0.55)",
-  background: "rgba(255,255,255,0.92)",
-  color: "#0f172a",
-  fontFamily: "var(--nx-font-sans)",
-  fontSize: 14,
-  fontWeight: 750,
-  padding: "10px 18px",
-  cursor: "pointer",
-  boxShadow: "0 8px 24px rgba(15,23,42,0.06)",
-};
-
-export const edtechMenuBtn: CSSProperties = {
-  borderRadius: 10,
-  border: "1px solid rgba(148, 163, 184, 0.55)",
-  background: "rgba(255,255,255,0.94)",
-  color: "#0f172a",
-  letterSpacing: ".06em",
-  fontSize: 12,
-  fontWeight: 700,
-  padding: "10px 14px",
-  cursor: "pointer",
-  boxShadow: "0 8px 24px rgba(15,23,42,0.06)",
-};
+export { edtechPrimaryBtn, edtechGhostBtn, edtechMenuBtn } from "./edtechHubTokens";

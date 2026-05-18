@@ -50,7 +50,45 @@ export const goldAccent = "rgba(214, 181, 111, 0.95)";
 export const cyanAccent = "rgba(6, 182, 212, 0.95)";
 
 export const edtechPageBackground =
-  "linear-gradient(165deg, #f8fafc 0%, #f1f5f9 42%, #e8eef4 100%)";
+  "radial-gradient(ellipse 70% 50% at 8% 0%, rgba(6,182,212,0.08), transparent 55%), radial-gradient(ellipse 60% 45% at 92% 8%, rgba(214,181,111,0.1), transparent 52%), linear-gradient(165deg, #f8fafc 0%, #f1f5f9 42%, #e8eef4 100%)";
+
+export const edtechPrimaryBtn: CSSProperties = {
+  borderRadius: 999,
+  border: "1px solid rgba(214,181,111,0.55)",
+  background: "linear-gradient(125deg, rgba(214,181,111,0.95) 0%, rgba(180,140,70,0.9) 100%)",
+  color: "#0f172a",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 14,
+  fontWeight: 800,
+  padding: "10px 20px",
+  cursor: "pointer",
+  boxShadow: "0 12px 32px rgba(214,181,111,0.28)",
+};
+
+export const edtechGhostBtn: CSSProperties = {
+  borderRadius: 999,
+  border: `1px solid ${cyanAccent}`,
+  background: "linear-gradient(90deg, rgba(6,182,212,0.12) 0%, rgba(214,181,111,0.08) 100%)",
+  color: "#0f172a",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 13,
+  fontWeight: 750,
+  padding: "8px 16px",
+  cursor: "pointer",
+};
+
+export const edtechMenuBtn: CSSProperties = {
+  borderRadius: 10,
+  border: "1px solid rgba(148, 163, 184, 0.45)",
+  background: "rgba(255,255,255,0.96)",
+  color: "#0f172a",
+  letterSpacing: ".04em",
+  fontSize: 12,
+  fontWeight: 700,
+  padding: "10px 14px",
+  cursor: "pointer",
+  boxShadow: "0 6px 20px rgba(15,23,42,0.05)",
+};
 
 export const edtechHeaderBar: CSSProperties = {
   flexShrink: 0,

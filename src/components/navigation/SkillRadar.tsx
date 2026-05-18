@@ -28,7 +28,10 @@ function polar(ix: number, radius: number): { x: number; y: number } {
   return { x: CX + radius * Math.cos(a), y: CY + radius * Math.sin(a) };
 }
 
-function useRadarSeries(): { values: number[]; mastered: boolean[] } {
+function useRadarSeries(scanPreview?: Partial<Record<LearningField, boolean>>): {
+  values: number[];
+  mastered: boolean[];
+} {
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const masteryChecks = useGameStore((s) => s.campaign.masteryChecks);
   const initialSkillScanByLf = useGameStore((s) => s.initialSkillScanByLf);
@@ -50,20 +53,26 @@ function useRadarSeries(): { values: number[]; mastered: boolean[] } {
       const correct = curriculum.filter((e) => have.has(e.id)).length;
       const total = curriculum.length;
       let ratio = total > 0 ? correct / total : 0;
-      if (initialSkillScanComplete) {
-        const scan = initialSkillScanByLf[key];
-        if (scan === false) {
-          ratio = Math.max(0.06, ratio * 0.68 - 0.06);
-        } else if (scan === true) {
-          ratio = Math.max(ratio, 0.36 + ratio * 0.42);
-        }
+      const preview = scanPreview?.[key];
+      const scan =
+        preview !== undefined ? preview : initialSkillScanComplete ? initialSkillScanByLf[key] : undefined;
+      if (scan !== undefined) {
+        ratio = scan ? Math.max(0.42, ratio * 0.35 + 0.38) : Math.max(0.06, ratio * 0.25);
+      } else if (initialSkillScanComplete) {
+        ratio = Math.max(0.1, ratio * 0.92 + 0.04);
       } else {
         ratio = Math.max(0.1, ratio * 0.92 + 0.04);
       }
       values.push(Math.min(0.98, Math.max(0.07, ratio)));
     }
     return { values, mastered };
-  }, [learningCorrectByLf, masteryChecks, initialSkillScanByLf, initialSkillScanComplete]);
+  }, [
+    learningCorrectByLf,
+    masteryChecks,
+    initialSkillScanByLf,
+    initialSkillScanComplete,
+    scanPreview,
+  ]);
 }
 
 function weakestLfIndex(values: number[], mastered: boolean[]): number {
@@ -81,11 +90,14 @@ export type SkillRadarProps = {
   epilogueActive?: boolean;
   /** default: floating card · rail: right column on map · compact: bottom dock */
   layoutVariant?: "default" | "rail" | "compact";
+  /** Live-Scan vor dem Speichern (InitialScan-Auswertung) */
+  scanPreview?: Partial<Record<LearningField, boolean>>;
 };
 
 export function SkillRadar({
   epilogueActive = false,
   layoutVariant = "default",
+  scanPreview,
 }: SkillRadarProps) {
   const uid = useId().replace(/:/g, "");
   const filterGold = `nx-skill-radar-gold-${uid}`;
@@ -96,7 +108,7 @@ export function SkillRadar({
   const mentorWaifuIndex = useGameStore((s) => s.mentorWaifuIndex);
   const avatarN = playerAvatar ?? mentorWaifuIndex ?? 1;
 
-  const { values, mastered } = useRadarSeries();
+  const { values, mastered } = useRadarSeries(scanPreview);
   const weakIx = useMemo(() => weakestLfIndex(values, mastered), [values, mastered]);
   const weakLf = weakIx + 1;
   const allMastered = mastered.every(Boolean);

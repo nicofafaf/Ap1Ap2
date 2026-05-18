@@ -314,11 +314,9 @@ export function NexusShell() {
       ? (`LF${Math.max(1, Math.min(12, sectorZeroMorphLf))}` as LearningField)
       : (`LF${Math.max(1, Math.min(12, activeLfNum))}` as LearningField);
 
-  /** Lernzentrale (Dashboard): Erststart oder bewusst hub — Sektor-Karte nur nach Wahl / Deep-Link */
+  /** Lernzentrale (Dashboard): Standard nach Scan — Sektor-Karte nur bei expliziter Wahl */
   const showNeuralHub =
-    gameState === "IDLE" &&
-    surface === "overworld" &&
-    (!hasCompletedInitialization || overworldLanding === "hub");
+    gameState === "IDLE" && surface === "overworld" && overworldLanding !== "map";
 
   return (
     <div

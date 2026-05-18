@@ -2269,7 +2269,15 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set({
       initialSkillScanByLf: merged,
       initialSkillScanComplete: true,
+      overworldLanding: "hub",
+      nexusChrome: "edtech",
     });
+    persistNexusChrome("edtech");
+    try {
+      localStorage.setItem(OVERWORLD_LANDING_KEY, "hub");
+    } catch {
+      // no-op
+    }
     persistPlayerProfile({
       mentorWaifuIndex: av,
       playerAvatar: av,
@@ -2826,9 +2834,17 @@ try {
 }
 
 try {
-  const landingRaw = localStorage.getItem(OVERWORLD_LANDING_KEY);
-  if (landingRaw === "map" || landingRaw === "hub") {
-    useGameStore.setState({ overworldLanding: landingRaw });
+  const HUB_DEFAULT_MIGRATION = "nexus.hubDefault.v2";
+  if (localStorage.getItem(HUB_DEFAULT_MIGRATION) !== "1") {
+    localStorage.setItem(HUB_DEFAULT_MIGRATION, "1");
+    localStorage.setItem(OVERWORLD_LANDING_KEY, "hub");
+    persistNexusChrome("edtech");
+    useGameStore.setState({ overworldLanding: "hub", nexusChrome: "edtech" });
+  } else {
+    const landingRaw = localStorage.getItem(OVERWORLD_LANDING_KEY);
+    if (landingRaw === "map" || landingRaw === "hub") {
+      useGameStore.setState({ overworldLanding: landingRaw });
+    }
   }
 } catch {
   // no-op

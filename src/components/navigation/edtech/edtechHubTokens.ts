@@ -1,0 +1,48 @@
+import type { CSSProperties } from "react";
+
+export const EDTECH_STAGGER = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06, delayChildren: 0.04 },
+  },
+};
+
+export const EDTECH_CARD = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 320, damping: 28 },
+  },
+};
+
+export const glassPanel: CSSProperties = {
+  borderRadius: 16,
+  border: "1px solid rgba(226, 232, 240, 0.95)",
+  background: "linear-gradient(165deg, rgba(255,255,255,0.94) 0%, rgba(248,250,252,0.88) 100%)",
+  boxShadow: "0 16px 48px rgba(15,23,42,0.07), inset 0 1px 0 rgba(255,255,255,0.98)",
+  backdropFilter: "blur(12px)",
+  WebkitBackdropFilter: "blur(12px)",
+};
+
+export const sectionH2: CSSProperties = {
+  margin: "0 0 16px",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: "clamp(22px, 2.4vw, 28px)",
+  fontWeight: 800,
+  letterSpacing: "-0.03em",
+  color: "#0f172a",
+};
+
+export const sectionH3: CSSProperties = {
+  margin: "0 0 12px",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 20,
+  fontWeight: 800,
+  letterSpacing: "-0.02em",
+  color: "#0f172a",
+};
+
+export const goldAccent = "rgba(214, 181, 111, 0.95)";
+export const cyanAccent = "rgba(6, 182, 212, 0.95)";

@@ -48,7 +48,7 @@
     "skillRadarCoachLF9": "LF9 zuerst stärken — APIs, Statuscodes und typische Integrationsfallen",
     "skillRadarCoachLF10": "LF10 zuerst stärken — Planung, Netzplan und agiles Vorgehen unter Zeitdruck",
     "skillRadarCoachLF11": "LF11 zuerst stärken — Risiko, Schutzziele und Maßnahmen sauber begründen",
-    "skillRadarCoachLF12": "LF12 zuerst stärken — Projektphasen, Stakeholder und Lessons Learned bündeln",
+    "skillRadarCoachLF12": "LF12 zuerst stärken — Projektphasen, Stakeholder und Lessons Learned bündeln"
   },
   "profile": {
     "pickTitle": "Wähle deine Begleiterin für den Nexus",
@@ -64,9 +64,17 @@
   },
   "scan": {
     "title": "Kurz-Scan vor dem Dashboard",
-    "subtitle": "Eine Frage pro Lernfeld — danach siehst du direkt wo es hakt",
-    "cta": "Scan abschließen und zur Karte",
-    "next": "Weiter"
+    "subtitle": "Eine Frage pro Lernfeld — danach siehst du Stärken und Lücken auf einen Blick",
+    "cta": "Zur Lernzentrale",
+    "next": "Weiter",
+    "showResults": "Auswertung anzeigen",
+    "feedbackCorrect": "Richtig — gut erkannt",
+    "feedbackWrong": "Nicht korrekt — merk dir die Lösung",
+    "feedbackSolution": "Lösung:",
+    "summaryTitle": "Dein Holovektor-Scan",
+    "summaryLead": "Grün zeigt Stärken, rot zeigt Felder mit Übungsbedarf — die Zentrale bündelt deine nächsten Schritte",
+    "strengthsTitle": "Stärken",
+    "weaknessesTitle": "Schwerpunkte trainieren"
   },
   "hub": {
     "eyebrow": "LernenSchule",
@@ -110,6 +118,31 @@
       "tileLeitnerBody": "LF5 Datenbanken — Spaced Repetition für Übungs-IDs",
       "trustTitle": "Kein Abo, kein Tracking in der Basis",
       "trustBody": "Kern läuft offline im Service Worker — optional versiegeltes Cloud-Backup ist ein bewusster Schalter, kein Profil-Zwang",
+      "feed": {
+        "livePulse": "Arena live",
+        "liveSub": "lokal · PWA",
+        "popularTitle": "Beliebte Lernfelder",
+        "exercises": "Übungen",
+        "leaderTitle": "Dein Nexus-Rang",
+        "leaderOpen": "Bestenliste öffnen",
+        "leaderHint": "Fragmente und Sektoren auf der Karte zählen — volle Rangliste in der Bestenliste",
+        "simTitle": "Simulatoren & Terminal",
+        "dailyTitle": "Tages-Mission",
+        "dailyLead": "Daily-Streak: {streak} Tage — öffne das Daily-Panel auf der Karte",
+        "dailyCta": "Daily-Panel öffnen",
+        "examTitle": "Prüfungsbereiche",
+        "examAp1": "AP1 · Grundlagen",
+        "examAp1Body": "LF1–LF6: Wirtschaft, Systeme, Netz, Hardware, DB, Skripte",
+        "examAp2": "AP2 · Vertiefung",
+        "examAp2Body": "LF7–LF12: OOP, Modelle, APIs, PM, Security, Projekt",
+        "changelogTitle": "Was neu ist",
+        "trustPwa": "Fractal-Command-Video · Gold/Cyan-Chrome · Hub ↔ Karte Deep-Links",
+        "changelog": {
+          "c1": "AAA Edtech-Hub mit Video-Hero, Simulator-Reihe und Kurs-Kacheln",
+          "c2": "Mentor-Portraits auf CI-Pfad, keine waifu-Slug-Fallbacks mehr",
+          "c3": "Hub-Navigation öffnet Karte mit Daily, Codex, Dossier und Overlays"
+        }
+      },
       "mega": {
         "allAreas": "Alle Bereiche",
         "unavailable": "In LernenSchule noch nicht angebunden",
@@ -162,7 +195,7 @@
     }
   },
   "citadel": {
-    "sticky": { "link": "Zu den Mentorinnen", "map": "Karte ohne Scan" },
+    "sticky": { "link": "Zu den Mentorinnen", "map": "Direkt zur Zentrale" },
     "heroEyebrow": "Nexus Path · LernenSchule",
     "heroTitle": "Dein Weg durch AP1 und AP2 — als Hochleistungs-PWA",
     "heroLead": "Zwölf Lernfelder, Boss-Terminal, Leitner-Intervalle und ein versiegeltes Dossier — alles in einer installierbaren Arena, die offline bleibt und dich nicht ausspioniert",

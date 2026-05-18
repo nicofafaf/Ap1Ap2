@@ -48,7 +48,7 @@
     "skillRadarCoachLF9": "Strengthen LF9 first — APIs, status codes, and typical integration traps",
     "skillRadarCoachLF10": "Strengthen LF10 first — planning, network diagrams, and agile flow under time pressure",
     "skillRadarCoachLF11": "Strengthen LF11 first — risk, protection goals, and controls with crisp reasoning",
-    "skillRadarCoachLF12": "Strengthen LF12 first — project phases, stakeholders, and lessons learned in one arc",
+    "skillRadarCoachLF12": "Strengthen LF12 first — project phases, stakeholders, and lessons learned in one arc"
   },
   "profile": {
     "pickTitle": "Choose your Nexus companion",
@@ -64,9 +64,17 @@
   },
   "scan": {
     "title": "Short scan before the dashboard",
-    "subtitle": "One question per field — then you see where gaps are",
-    "cta": "Finish scan and open the map",
-    "next": "Next"
+    "subtitle": "One question per field — then you see strengths and gaps at a glance",
+    "cta": "Open learning hub",
+    "next": "Next",
+    "showResults": "Show results",
+    "feedbackCorrect": "Correct — well spotted",
+    "feedbackWrong": "Not correct — note the solution",
+    "feedbackSolution": "Solution:",
+    "summaryTitle": "Your holovector scan",
+    "summaryLead": "Green shows strengths, red shows fields to drill — the hub bundles your next steps",
+    "strengthsTitle": "Strengths",
+    "weaknessesTitle": "Focus areas to train"
   },
   "hub": {
     "eyebrow": "LernenSchule",
@@ -110,6 +118,31 @@
       "tileLeitnerBody": "LF5 databases — spaced repetition for exercise IDs",
       "trustTitle": "No subscription, no baseline tracking",
       "trustBody": "Core runs offline in the service worker — optional sealed cloud backup is an explicit switch, not a profile mandate",
+      "feed": {
+        "livePulse": "Arena live",
+        "liveSub": "local · PWA",
+        "popularTitle": "Popular learning fields",
+        "exercises": "exercises",
+        "leaderTitle": "Your Nexus rank",
+        "leaderOpen": "Open leaderboard",
+        "leaderHint": "Fragments and sectors on the map count — full ranking in the leaderboard overlay",
+        "simTitle": "Simulators & terminal",
+        "dailyTitle": "Daily mission",
+        "dailyLead": "Daily streak: {streak} days — open the daily panel on the map",
+        "dailyCta": "Open daily panel",
+        "examTitle": "Exam areas",
+        "examAp1": "AP1 · foundations",
+        "examAp1Body": "LF1–LF6: business, systems, network, hardware, DB, scripts",
+        "examAp2": "AP2 · depth",
+        "examAp2Body": "LF7–LF12: OOP, models, APIs, PM, security, project",
+        "changelogTitle": "What is new",
+        "trustPwa": "Fractal command video · gold/cyan chrome · hub ↔ map deep links",
+        "changelog": {
+          "c1": "AAA edtech hub with video hero, simulator row, and course tiles",
+          "c2": "Mentor portraits on CI path, no more waifu slug fallbacks",
+          "c3": "Hub navigation opens map with daily, codex, dossier, and overlays"
+        }
+      },
       "mega": {
         "allAreas": "All areas",
         "unavailable": "Not wired in LernenSchule yet",
@@ -162,7 +195,7 @@
     }
   },
   "citadel": {
-    "sticky": { "link": "Jump to mentors", "map": "Map without scan" },
+    "sticky": { "link": "Jump to mentors", "map": "Skip to hub" },
     "heroEyebrow": "Nexus Path · LernenSchule",
     "heroTitle": "Your AP1 and AP2 path — as a high-end PWA arena",
     "heroLead": "Twelve fields, boss terminal, Leitner cadence and a sealed dossier — one installable shell that stays offline and does not spy on you",

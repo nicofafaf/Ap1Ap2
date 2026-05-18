@@ -1,18 +1,20 @@
 import type { CSSProperties } from "react";
 
 export const EDTECH_STAGGER = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, pointerEvents: "none" as const },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.06, delayChildren: 0.04 },
+    pointerEvents: "auto" as const,
+    transition: { staggerChildren: 0.05, delayChildren: 0.02 },
   },
 };
 
 export const EDTECH_CARD = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 12, pointerEvents: "none" as const },
   show: {
     opacity: 1,
     y: 0,
+    pointerEvents: "auto" as const,
     transition: { type: "spring" as const, stiffness: 320, damping: 28 },
   },
 };

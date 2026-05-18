@@ -2,12 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CodexIridium } from "../../archive/CodexIridium";
 import ArtifactGallery from "../../gallery/ArtifactGallery";
-import {
-  getBossThumbnailCandidates,
-  getNexusEntryForLF,
-  type LearningField,
-} from "../../../data/nexusRegistry";
-import { FRACTAL_COMMAND_BG_MP4 } from "../../../lib/ui/fractalConstants";
+import { getNexusEntryForLF, publicAssetUrl, type LearningField } from "../../../data/nexusRegistry";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
 import { computeAllSectorStabilities, stabilityTier } from "../../../lib/math/mapLogic";
@@ -21,7 +16,6 @@ import {
 import { useGameStore } from "../../../store/useGameStore";
 import { HallOfRecords } from "../../menu/HallOfRecords";
 import { LegacyCredits } from "../../menu/LegacyCredits";
-import { NexusSyncStatus } from "../../menu/NexusSyncStatus";
 import { TechnicalDossier } from "../../menu/TechnicalDossier";
 import { CoreAugmentations } from "../CoreAugmentations";
 import {
@@ -32,7 +26,6 @@ import {
   edtechPageBackground,
   glassPanel,
   goldAccent,
-  sectionH2,
 } from "./edtechHubTokens";
 import {
   edtechCourseAp,
@@ -58,82 +51,28 @@ function apLabel(lf: number): string {
   return lf <= 6 ? "AP1" : "AP2";
 }
 
-function EdtechScanStrip({ t }: { t: (key: string, fallback?: string) => string }) {
-  const scan = useGameStore((s) => s.initialSkillScanByLf);
-  const done = useGameStore((s) => s.initialSkillScanComplete);
-  if (!done) return null;
-
-  const dot = (lf: number) => {
-    const k = `LF${lf}` as LearningField;
-    const v = scan[k];
-    const stable = v === true;
-    const gap = v === false;
-    return (
-      <span
-        key={lf}
-        title={`LF${lf}`}
-        style={{
-          width: 14,
-          height: 14,
-          borderRadius: 4,
-          flexShrink: 0,
-          background: stable
-            ? "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)"
-            : gap
-              ? "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"
-              : "rgba(148, 163, 184, 0.35)",
-          boxShadow: stable
-            ? "0 0 10px rgba(34, 197, 94, 0.35)"
-            : gap
-              ? "0 0 10px rgba(245, 158, 11, 0.3)"
-              : "none",
-        }}
-      />
-    );
-  };
+function EdtechLfThumb({ lf }: { lf: number }) {
+  const lfKey = `LF${lf}` as LearningField;
+  const entry = getNexusEntryForLF(lfKey);
+  const videoSrc = entry.bossVisual.primaryPath || publicAssetUrl(`/assets/LF${lf}GIF.mp4`);
 
   return (
-    <motion.div
-      variants={EDTECH_CARD}
-      style={{
-        ...glassPanel,
-        padding: "14px 18px",
-        marginBottom: 18,
-      }}
-    >
-      <motion.div
-        style={{
-          fontFamily: "var(--nx-font-sans)",
-          fontSize: 13,
-          fontWeight: 800,
-          color: "#0f172a",
-          marginBottom: 10,
-        }}
-      >
-        {t("map.edtechScanTitle")}
-      </motion.div>
-      <motion.div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        <motion.div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-          <span style={{ fontSize: 11, fontWeight: 700, color: "#64748b", minWidth: 88 }}>
-            {t("map.skillGapAp1")}
-          </span>
-          {[1, 2, 3, 4, 5, 6].map(dot)}
-        </motion.div>
-        <motion.div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-          <span style={{ fontSize: 11, fontWeight: 700, color: "#64748b", minWidth: 88 }}>
-            {t("map.skillGapAp2")}
-          </span>
-          {[7, 8, 9, 10, 11, 12].map(dot)}
-        </motion.div>
-      </motion.div>
-    </motion.div>
+    <video
+      src={videoSrc}
+      muted
+      loop
+      playsInline
+      autoPlay
+      preload="metadata"
+      aria-hidden
+      style={edtechCourseThumbImg}
+    />
   );
 }
 
 export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMapProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const campaign = useGameStore((s) => s.campaign);
   const history = useGameStore((s) => s.combatArchitectHistory);
@@ -208,18 +147,16 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
       const lf = i + 1;
       const lfKey = `LF${lf}` as LearningField;
       const entry = getNexusEntryForLF(lfKey);
-      const thumb = getBossThumbnailCandidates(lfKey)[0];
       const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
       const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
       const mastered = Boolean(campaign.masteryChecks[lfKey]);
-      const unlocked = campaign.unlockedSectors.includes(lf);
+      const unlocked = true;
       const isDaily = lf === dailyDef.targetLf;
       const scanRing = scanRingForLf(lf);
       return {
         lf,
         lfKey,
         entry,
-        thumb,
         solved,
         total,
         mastered,
@@ -231,7 +168,6 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
     });
   }, [
     campaign.masteryChecks,
-    campaign.unlockedSectors,
     dailyDef.targetLf,
     initialSkillScanByLf,
     initialSkillScanComplete,
@@ -242,9 +178,8 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   return (
     <motion.div
       data-nx-edtech-sector-map="1"
-      initial={reduceMotion ? false : { opacity: 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
       style={{
         position: "relative",
         width: "100%",
@@ -254,40 +189,10 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         flexDirection: "column",
         background: edtechPageBackground,
         overflow: "hidden",
+        isolation: "isolate",
       }}
     >
-      <video
-        ref={videoRef}
-        src={FRACTAL_COMMAND_BG_MP4}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          opacity: 0.14,
-          pointerEvents: "none",
-          filter: "saturate(1.05) contrast(1.02)",
-        }}
-      />
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          background:
-            "linear-gradient(180deg, rgba(248,250,252,0.88) 0%, rgba(241,245,249,0.94) 55%, rgba(226,232,240,0.96) 100%)",
-        }}
-      />
-
-      <header style={edtechHeaderBar}>
+      <header style={{ ...edtechHeaderBar, position: "relative", zIndex: 2 }}>
         <div style={{ flex: "1 1 auto", minWidth: 0 }}>
           <p
             style={{
@@ -348,7 +253,6 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
             flexShrink: 0,
           }}
         >
-          <NexusSyncStatus />
           {!extrasOpen ? (
             <button type="button" onClick={() => setExtrasOpen(true)} style={edtechMenuBtn}>
               {t("map.openExtrasMenu")}
@@ -390,81 +294,35 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
           overflowX: "hidden",
           WebkitOverflowScrolling: "touch",
           padding: "clamp(14px, 2.5vw, 24px) clamp(16px, 3vw, 28px) max(24px, env(safe-area-inset-bottom))",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <motion.div
           variants={EDTECH_STAGGER}
-          initial="hidden"
+          initial={reduceMotion ? false : "hidden"}
           animate="show"
-          style={{ maxWidth: 1120, margin: "0 auto", width: "100%" }}
+          style={{ maxWidth: 1120, margin: "0 auto", width: "100%", position: "relative" }}
         >
-          <motion.div
-            variants={EDTECH_CARD}
+          <p
             style={{
-              ...glassPanel,
-              padding: "16px 18px",
-              marginBottom: 18,
-              border: `1px solid ${cyanAccent}`,
-              background:
-                "linear-gradient(135deg, rgba(6,182,212,0.08) 0%, rgba(255,255,255,0.94) 48%, rgba(214,181,111,0.06) 100%)",
+              margin: "0 0 16px",
+              fontFamily: "var(--nx-font-sans)",
+              fontSize: 14,
+              color: "#64748b",
+              lineHeight: 1.45,
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 12,
-              }}
-            >
-              <motion.div>
-                <span
-                  style={{
-                    fontFamily: "var(--nx-font-mono)",
-                    fontSize: 11,
-                    fontWeight: 800,
-                    letterSpacing: ".14em",
-                    textTransform: "uppercase",
-                    color: cyanAccent,
-                  }}
-                >
-                  {t("map.edtechDailyBadge")}
-                </span>
-                <p
-                  style={{
-                    margin: "6px 0 0",
-                    fontFamily: "var(--nx-font-sans)",
-                    fontSize: 16,
-                    fontWeight: 800,
-                    color: "#0f172a",
-                  }}
-                >
-                  {t("map.edtechDailyLead").replace("{lf}", String(dailyDef.targetLf))}
-                </p>
-                <p style={{ margin: "4px 0 0", fontSize: 13, color: "#64748b" }}>
-                  {formatCountdownHMS(secToMidnight)} · {t("map.edtechDailyReset")}
-                </p>
-              </motion.div>
-              <motion.button
-                type="button"
-                onClick={() => onEngage(dailyDef.targetLf, dailyEngageOptions ?? undefined)}
-                whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-                style={edtechGhostBtn}
-              >
-                {t("map.edtechDailyCta")}
-              </motion.button>
-            </div>
-          </motion.div>
+            {t("map.edtechDailyLead").replace("{lf}", String(dailyDef.targetLf))}
+            {" · "}
+            {formatCountdownHMS(secToMidnight)}
+          </p>
 
-          <EdtechScanStrip t={t} />
-
-          <motion.h2 variants={EDTECH_CARD} style={{ ...sectionH2, marginBottom: 14 }}>
-            {t("map.edtechGridTitle")}
-          </motion.h2>
-
-          <motion.div variants={EDTECH_CARD} style={edtechCourseGridStyle} data-nx-tutorial="map">
+          <motion.div
+            style={edtechCourseGridStyle}
+            data-nx-tutorial="map"
+            variants={EDTECH_CARD}
+          >
             {fields.map((field) => {
               const tier = stabilityTier(stabilities[field.lf] ?? 0);
               const tierLabel =
@@ -489,29 +347,24 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
                 <motion.button
                   key={field.lf}
                   type="button"
-                  disabled={!field.unlocked}
                   onClick={() =>
                     onEngage(
                       field.lf,
                       field.isDaily ? dailyEngageOptions ?? undefined : undefined
                     )
                   }
-                  whileHover={
-                    field.unlocked && !reduceMotion ? { y: -4, boxShadow: "0 20px 48px rgba(15,23,42,0.12)" } : undefined
-                  }
-                  whileTap={field.unlocked && !reduceMotion ? { scale: 0.99 } : undefined}
+                  whileHover={!reduceMotion ? { y: -4, boxShadow: "0 20px 48px rgba(15,23,42,0.12)" } : undefined}
+                  whileTap={!reduceMotion ? { scale: 0.99 } : undefined}
                   style={{
                     ...glassPanel,
                     ...edtechCourseCardShell,
                     border,
-                    opacity: field.unlocked ? 1 : 0.52,
-                    cursor: field.unlocked ? "pointer" : "not-allowed",
+                    cursor: "pointer",
+                    touchAction: "manipulation",
                   }}
                 >
                   <span style={edtechCourseThumbWrap}>
-                    {field.thumb ? (
-                      <img src={field.thumb} alt="" style={edtechCourseThumbImg} />
-                    ) : null}
+                    <EdtechLfThumb lf={field.lf} />
                     <span style={edtechCourseLfBadge}>LF{field.lf}</span>
                     {field.isDaily ? (
                       <span

@@ -21,13 +21,14 @@ export function NexusSyncStatus() {
         if (!Array.isArray(urls) || urls.length === 0) throw new Error("empty");
         const cache = await caches.open(CACHE_NAME);
         let hits = 0;
-        for (const u of urls) {
-          if (typeof u !== "string") continue;
+        const sample = urls.filter((u): u is string => typeof u === "string").slice(0, 48);
+        for (const u of sample) {
           const m = await cache.match(u);
           if (m) hits += 1;
         }
         if (!cancelled) {
-          setSync(hits >= urls.length ? "synced" : "degraded");
+          const ratio = sample.length > 0 ? hits / sample.length : 1;
+          setSync(ratio >= 0.85 ? "synced" : "degraded");
         }
       } catch {
         if (!cancelled) setSync("degraded");
@@ -48,7 +49,7 @@ export function NexusSyncStatus() {
 
     const id = window.setInterval(() => {
       void verifyCache();
-    }, 12000);
+    }, 45000);
 
     return () => {
       cancelled = true;

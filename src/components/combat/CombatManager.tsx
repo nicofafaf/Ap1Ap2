@@ -43,6 +43,7 @@ import {
   playParryVibration,
 } from "../../lib/combat/vibrationEngine";
 import { SECTOR_ZERO_ORIGIN_LORE } from "../../lib/dailyIncursion";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { AssetDataStreamOverlay } from "./AssetDataStreamOverlay";
 import { LogicFlow } from "./LogicFlow";
 
@@ -110,6 +111,7 @@ export function CombatManager({
   onLootScreenReady,
   diveLayoutBridgeLf = null,
 }: CombatManagerProps) {
+  const { t } = useNexusI18n();
   const nexusChrome = useGameStore((s) => s.nexusChrome);
   const edtechLearn = nexusChrome === "edtech";
 
@@ -605,7 +607,7 @@ export function CombatManager({
         }
         protocolHeading={
           storeSlice.activeCombatIsSectorZero
-            ? "Sektor Ø · Shape-Shifter-Protokoll"
+            ? t("ui.combat.sectorZeroProtocol", "Abschlusstest · alle Lernfelder")
             : undefined
         }
         visible={loreVisible}

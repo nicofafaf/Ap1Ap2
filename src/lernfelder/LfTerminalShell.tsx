@@ -2,6 +2,7 @@ import type { LearningField } from "../data/nexusRegistry";
 import veilUrl from "./_shared/iridium-veil.svg?url";
 import { LfMilestoneTracker, type LfMilestone } from "../components/navigation/LfMilestoneTracker";
 import { useGameStore } from "../store/useGameStore";
+import { useNexusI18n } from "../lib/i18n/I18nProvider";
 import { RAHMENLEHRPLAN_MASTERY } from "../lib/learning/rahmenlehrplanMastery";
 import lf01 from "./lf01/content.json";
 import lf02 from "./lf02/content.json";
@@ -65,6 +66,7 @@ export function LfTerminalShell({ lf }: LfTerminalShellProps) {
   const mastery = RAHMENLEHRPLAN_MASTERY[lf];
   const lfNum = Number.parseInt(lf.replace("LF", ""), 10);
   const unlocked = campaign.unlockedSectors.includes(lfNum);
+  const { t } = useNexusI18n();
 
   return (
     <section
@@ -94,7 +96,9 @@ export function LfTerminalShell({ lf }: LfTerminalShellProps) {
             color: unlocked ? "var(--nx-bone-90)" : "rgba(232,233,240,0.42)",
           }}
         >
-          {unlocked ? "Sektor freigeschaltet" : "Sektor gesperrt"}
+          {unlocked
+            ? t("ui.lfShell.unlocked", "Thema freigeschaltet")
+            : t("ui.lfShell.locked", "Noch gesperrt")}
         </div>
         {trackerMilestones.length > 0 ? (
           <div style={{ marginTop: 14 }}>

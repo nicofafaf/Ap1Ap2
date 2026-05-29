@@ -13,6 +13,16 @@ import { NexusErrorBoundary } from "./components/system/NexusErrorBoundary";
 attachNexusHealthToWindow();
 syncOpenGraphMetaFromLocalState();
 
+/** Einmal pro Inhalts-Release: alte PWA-Caches leeren (veraltete Texte / fehlendes Hero-Video) */
+const CONTENT_REV = "2026-05-29-edtech-copy-v2";
+const CONTENT_REV_KEY = "nexus.contentRev.v1";
+if (typeof localStorage !== "undefined" && localStorage.getItem(CONTENT_REV_KEY) !== CONTENT_REV) {
+  localStorage.setItem(CONTENT_REV_KEY, CONTENT_REV);
+  if ("caches" in window) {
+    void caches.keys().then((names) => Promise.all(names.map((name) => caches.delete(name))));
+  }
+}
+
 async function clearStaleNexusShellAndReload(reason: string) {
   const key = `nexus.reload.${reason}.v1`;
   if (sessionStorage.getItem(key) === "1") return;

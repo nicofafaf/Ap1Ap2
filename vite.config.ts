@@ -43,6 +43,7 @@ function attachNexusBaseResolver(): Plugin {
 }
 
 const REQUIRED_DEPLOY_ASSETS = [
+  "hintergrund-atmosphäre-q-epn-7i.mp4",
   ...Array.from({ length: 12 }, (_, idx) => `LF${idx + 1}GIF.mp4`),
   "BossThemen.mp3",
   "BossThemen2.mp3",

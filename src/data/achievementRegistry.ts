@@ -64,7 +64,7 @@ export const achievementRegistry: Record<AchievementType, AchievementDefinition>
     color: "var(--gold, #facc15)",
     rarity: "LEGENDARY",
     priority: 88,
-    boost: "Meisterleuchten auf der Sektor-Karte",
+    boost: "Thema auf der Lernfelder-Karte als gemeistert markiert",
     passive: true,
   },
 };

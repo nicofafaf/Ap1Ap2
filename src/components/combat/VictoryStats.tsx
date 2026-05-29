@@ -14,6 +14,7 @@ import {
   downloadMasterCertPdfDossier,
   openCertVerifyHash,
 } from "../../lib/security/certExporter";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 
 type VictoryStatsProps = {
   elapsedSec: number;
@@ -167,6 +168,7 @@ export function VictoryStats({
   onContinue,
   embeddedInVictoryScreen = false,
 }: VictoryStatsProps) {
+  const { t } = useNexusI18n();
   const accuracyPercent = Math.round(Math.max(0, Math.min(1, accuracyRate)) * 100);
   const rankStyle = RANK_COLORS[rank];
   const activeLF = useGameStore((state) => state.activeLF);
@@ -225,7 +227,7 @@ export function VictoryStats({
 
   const architectLine = useMemo(
     () =>
-      `Platz ${architect.place} · ${architect.stratum} · ${architect.distribution} · Sektor LF${activeLF}`,
+      `Platz ${architect.place} · ${architect.stratum} · ${architect.distribution} · LF${activeLF}`,
     [architect, activeLF]
   );
 
@@ -233,11 +235,14 @@ export function VictoryStats({
     const raw = combatBossRawDamageAttempted;
     const abs = combatShieldDamageAbsorbedTotal;
     if (raw <= 0) {
-      return "Kein Boss-Rohschaden — 0 % Shield Mitigation Efficiency";
+      return t(
+        "ui.victory.noBossDamage",
+        "Keine Abschluss-Schadenstatistik — reiner Übungslauf"
+      );
     }
     const pct = Math.max(0, Math.min(100, Math.round((abs / raw) * 100)));
     return `${pct} % Efficiency · ${abs} absorbiert / ${raw} Roh`;
-  }, [combatBossRawDamageAttempted, combatShieldDamageAbsorbedTotal]);
+  }, [combatBossRawDamageAttempted, combatShieldDamageAbsorbedTotal, t]);
 
   const shieldEfficiencyPct = useMemo(() => {
     const raw = combatBossRawDamageAttempted;
@@ -402,7 +407,7 @@ export function VictoryStats({
             key="wissen-overlay"
             role="dialog"
             aria-modal="true"
-            aria-label="Wissens-Analyse"
+            aria-label={t("ui.victory.analysisAria", "Auswertung")}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -507,7 +512,10 @@ export function VictoryStats({
                         marginBottom: 6,
                       }}
                     >
-                      {ev.wasCorrect ? "Treffer" : "Fehlzündung"} · {ev.title}
+                      {ev.wasCorrect
+                        ? t("ui.victory.correct", "Richtig")
+                        : t("ui.victory.wrong", "Falsch")}{" "}
+                      · {ev.title}
                     </div>
                     <div
                       style={{
@@ -727,10 +735,10 @@ export function VictoryStats({
             }}
           >
             {hardcoreDriftEnabled
-              ? "Nexus Intelligence · HARDCORE DRIFT"
+              ? t("ui.victory.reportHardcore", "Schwerer Modus · Auswertung")
               : ascension
-                ? "ASCENSION DATA CORE"
-                : "Nexus Intelligence Report"}
+                ? t("ui.victory.reportAscension", "Abschluss · alle Lernfelder")
+                : t("ui.victory.reportTitle", "Deine Übungs-Auswertung")}
           </motion.div>
           <motion.div
             variants={statsChildVariants}
@@ -788,7 +796,7 @@ export function VictoryStats({
               Schadensintegral
             </span>
             <TypewriterValue
-              text={`${totalDamage} Nexus-Einheiten`}
+              text={`${totalDamage} ${t("ui.victory.nexusUnits", "Punkte")}`}
               startDelayMs={baseTw + 200}
               charMs={24}
             />
@@ -1007,7 +1015,9 @@ export function VictoryStats({
                   fontFamily: typography.fontSans,
                 }}
               >
-                {pdfBusy ? "PDF wird erzeugt…" : "PDF-Dossier exportieren"}
+                {pdfBusy
+                  ? t("ui.victory.exportPdfBusy", "PDF wird erzeugt…")
+                  : t("ui.victory.exportPdf", "PDF exportieren")}
               </motion.button>
               <motion.button
                 variants={statsChildVariants}

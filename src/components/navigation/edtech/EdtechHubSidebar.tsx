@@ -41,8 +41,8 @@ export function EdtechHubSidebar({
         <div style={brandRowStyle}>
           <span style={brandGlyphStyle} aria-hidden />
           <div>
-            <div style={brandTitleStyle}>Nexus Path</div>
-            <div style={brandSubStyle}>LernenSchule</div>
+            <div style={brandTitleStyle}>{t("chrome.brand", "LernenSchule")}</div>
+            <div style={brandSubStyle}>{t("chrome.tagline", "AP1 & AP2 üben")}</div>
           </div>
         </div>
 

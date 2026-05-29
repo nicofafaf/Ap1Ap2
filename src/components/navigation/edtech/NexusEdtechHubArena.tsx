@@ -1,7 +1,8 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties } from "react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { publicAssetUrl, type LearningField } from "../../../data/nexusRegistry";
+import { FRACTAL_COMMAND_BG_MP4 } from "../../../lib/ui/fractalConstants";
 import type { NexusHubMapExtras } from "../../../lib/ui/hubMapNavigation";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
@@ -59,6 +60,7 @@ export function NexusEdtechHubArena({
 }: NexusEdtechHubArenaProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
+  const [heroVideoOk, setHeroVideoOk] = useState(true);
 
   const playerName = useGameStore((s) => s.playerName);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
@@ -150,14 +152,28 @@ export function NexusEdtechHubArena({
         style={heroShellStyle}
         aria-labelledby="nx-edtech-hero-title"
       >
-        <span
-          aria-hidden
-          style={{
-            ...heroVideoStyle,
-            background:
-              "linear-gradient(145deg, #0f172a 0%, #1e3a5f 42%, rgba(6, 182, 212, 0.18) 100%)",
-          }}
-        />
+        {!reduceMotion && heroVideoOk ? (
+          <video
+            src={FRACTAL_COMMAND_BG_MP4}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden
+            style={heroVideoStyle}
+            onError={() => setHeroVideoOk(false)}
+          />
+        ) : (
+          <span
+            aria-hidden
+            style={{
+              ...heroVideoStyle,
+              background:
+                "linear-gradient(145deg, #0f172a 0%, #1e3a5f 42%, rgba(6, 182, 212, 0.18) 100%)",
+            }}
+          />
+        )}
         <motion.div style={heroOverlayStyle} aria-hidden />
         <div style={heroContentStyle}>
           <span style={heroBadgeStyle}>{t("hub.edtech.heroBadge")}</span>

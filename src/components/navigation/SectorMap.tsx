@@ -676,10 +676,10 @@ export function SectorMap({
                       boxShadow: "inset 0 0 24px rgba(250, 220, 160, 0.25)",
                     }}
                   >
-                    Du hast Sektor Ã˜ entladen â€” vom Lehrling der Zelllogik zum Master-Architekten der
-                    Nexus-Lattice: Anomalien weichen, und das Raster leuchtet in WeiÃŸgold wie ein
-                    wiederhergestelltes System, das deinen Abschluss als echte Architektur-Signatur
-                    trÃ¤gt
+                    {t(
+                      "ui.sectorEpilogue",
+                      "Du hast den Abschlusstest geschafft — alle zwölf Lernfelder liegen hinter dir. Gut gemacht."
+                    )}
                   </motion.div>
                 ) : null}
               </motion.div>

@@ -499,7 +499,7 @@ function buildOptionalBossCodeExercise(raw: BeginnerContentShape): LearningExerc
         : option.hint || "Schau noch einmal auf die Action-Cards über der Übung",
   }));
   const bossId = bp.id?.trim() ? bp.id.trim() : `${lf.toLowerCase()}-boss`;
-  const bossTitle = bp.title?.trim() ? bp.title.trim() : "Boss Phase";
+  const bossTitle = bp.title?.trim() ? bp.title.trim() : "Abschlussübung";
   const q = p.question.trim();
   const lead = bp.problemLead?.trim();
   const problem = lead ? `${lead}\n\n${q}` : q;
@@ -546,7 +546,7 @@ function buildOptionalBossMcExercise(raw: BeginnerContentShape): LearningExercis
   const correctText = options[normalizedCorrectIdx]?.text ?? options[0]?.text ?? "";
   const solutionCode = bp.practice.expected ?? correctText;
   const bossId = bp.id?.trim() ? bp.id.trim() : `${lf.toLowerCase()}-boss`;
-  const bossTitle = bp.title?.trim() ? bp.title.trim() : "Boss Phase";
+  const bossTitle = bp.title?.trim() ? bp.title.trim() : "Abschlussübung";
   const q = bp.practice.question.trim();
   const lead = bp.problemLead?.trim();
   const problem = lead ? `${lead}\n\n${q}` : q;
@@ -629,7 +629,7 @@ function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
   }));
 
   const bossId = raw.bossPhase?.id?.trim() ? raw.bossPhase.id.trim() : "lf5-boss";
-  const bossTitle = raw.bossPhase?.title?.trim() ? raw.bossPhase.title.trim() : "Boss Phase";
+  const bossTitle = raw.bossPhase?.title?.trim() ? raw.bossPhase.title.trim() : "Abschlussübung";
 
   return [
     {
@@ -647,7 +647,7 @@ function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
       id: bossId,
       title: bossTitle,
       problem:
-        "Finale Abfrage im Boss Mode\n\nNutze SELECT und WHERE zusammen und halte die Struktur sauber",
+        "Abschlussübung: SQL-Abfrage\n\nNutze SELECT und WHERE zusammen und halte die Struktur sauber",
       /** Referenz wird im Workbench je Multiversum aus content.json geladen */
       solutionCode: "SELECT * FROM Kunden WHERE Stadt = 'Berlin'",
       lang: "sql",

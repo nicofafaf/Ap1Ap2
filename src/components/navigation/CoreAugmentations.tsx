@@ -8,6 +8,7 @@ import {
   type TalentPathId,
 } from "../../store/useGameStore";
 import { ARCHITECT_CHROMA_LABELS } from "../../lib/ui/architectChromas";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 
 type PathMeta = {
   label: string;
@@ -29,6 +30,7 @@ type Props = {
 };
 
 export function CoreAugmentations({ open, onClose }: Props) {
+  const { t } = useNexusI18n();
   const { playCoreAugment } = useBossAudioEngine();
   const nexusFragments = useGameStore((s) => s.nexusFragments);
   const hardcoreDriftEnabled = useGameStore((s) => s.hardcoreDriftEnabled);
@@ -100,7 +102,7 @@ export function CoreAugmentations({ open, onClose }: Props) {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label="Neural Core Augmentations"
+            aria-label={t("ui.talents.aria", "Lern-Bonusse")}
             initial={{ scale: 0.94, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.96, opacity: 0 }}
@@ -148,7 +150,7 @@ export function CoreAugmentations({ open, onClose }: Props) {
                   color: "rgba(103, 232, 249, 0.78)",
                 }}
               >
-                Neural Augmentation System
+                BONUSSE
               </div>
               <div
                 style={{
@@ -159,7 +161,7 @@ export function CoreAugmentations({ open, onClose }: Props) {
                   color: "rgba(224, 250, 255, 0.96)",
                 }}
               >
-                Core-Schaltkreis
+                {t("ui.talents.title", "Dauerhafte Lern-Bonusse")}
               </div>
               <div
                 style={{
@@ -170,7 +172,10 @@ export function CoreAugmentations({ open, onClose }: Props) {
                   color: "rgba(186, 230, 253, 0.88)",
                 }}
               >
-                Verbundene Pfade: Overclock, Firewall, Throughput — Nexus-Fragmente für permanente Buffs
+                {t(
+                  "ui.talents.lead",
+                  "Mit Lernpunkten schaltest du kleine Hilfen frei"
+                )}
               </div>
               <div
                 style={{
@@ -184,7 +189,9 @@ export function CoreAugmentations({ open, onClose }: Props) {
                   background: "rgba(15, 23, 42, 0.45)",
                 }}
               >
-                <span style={{ fontSize: 10, letterSpacing: ".2em", opacity: 0.75 }}>Nexus-Fragmente</span>
+                <span style={{ fontSize: 10, letterSpacing: ".2em", opacity: 0.75 }}>
+                  {t("ui.talents.points", "Lernpunkte")}
+                </span>
                 <strong style={{ fontSize: 16, letterSpacing: ".06em", color: "#e9d5ff" }}>
                   {nexusFragments}
                 </strong>
@@ -215,7 +222,10 @@ export function CoreAugmentations({ open, onClose }: Props) {
                     color: "rgba(254,226,225,0.82)",
                   }}
                 >
-                  Niederlage: −5 % permanente Nexus-Fragmente · Sieg: doppelter Fragment-Gewinn
+                  {t(
+                    "ui.talents.hardcore",
+                    "Bei Niederlage −5 % Lernpunkte · bei Erfolg doppelter Gewinn"
+                  )}
                 </div>
                 <button
                   type="button"

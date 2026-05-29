@@ -115,7 +115,7 @@ export function SkillRadar({
 
   const coachLine = useMemo(() => {
     if (allMastered) {
-      return t("map.skillRadarCoachClear", "Alle zwölf Strahlen im Zielkorridor");
+      return t("map.skillRadarCoachClear", "Alle zwölf Lernfelder im grünen Bereich");
     }
     const lfSpecificKey = `map.skillRadarCoachLF${weakLf}`;
     const specific = t(lfSpecificKey);
@@ -124,7 +124,7 @@ export function SkillRadar({
     }
     const raw = t(
       "map.skillRadarCoachWeak",
-      "Schwächster Strahl LF{lf} dort Fokus setzen oder Sektor scannen"
+      "Am schwächsten: LF{lf} — dort am besten weiter üben"
     );
     return raw.replace(/\{lf\}/g, String(weakLf));
   }, [allMastered, t, weakLf]);
@@ -168,7 +168,7 @@ export function SkillRadar({
 
   return (
     <div
-      aria-label={t("map.skillRadarAria", "Holovektor zwölf Lernfelder")}
+      aria-label={t("map.skillRadarAria", "Lernstand aller zwölf Lernfelder")}
       style={{
         pointerEvents: "none",
         display: "flex",
@@ -265,7 +265,7 @@ export function SkillRadar({
             marginBottom: 6,
           }}
         >
-          {t("map.skillRadarTitle", "Holovektor")}
+          {t("map.skillRadarTitle", "Lernstand-Übersicht")}
         </div>
         <div
           style={{

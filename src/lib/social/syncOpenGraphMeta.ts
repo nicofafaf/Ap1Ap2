@@ -41,19 +41,19 @@ function readFragments(): number | null {
   }
 }
 
-export function syncOpenGraphMetaFromLocalState(siteName = "Nexus Path") {
+export function syncOpenGraphMetaFromLocalState(siteName = "LernenSchule") {
   if (typeof document === "undefined") return;
 
   const persona = readPersonaTitle();
   const fr = readFragments();
   const mastery =
-    fr != null ? `Nexus-Fragmente: ${fr}` : "Spaced-Repetition & IHK-Operator-Stack";
+    fr != null ? `Lernpunkte: ${fr}` : "AP1 & AP2 · alle zwölf Lernfelder";
 
   const title = persona
     ? `${siteName} · ${persona}`
-    : `${siteName} · Architect Progression`;
+    : `${siteName} · AP1 & AP2`;
 
-  const description = [persona ? `Persona: ${persona}` : null, mastery, "PWA · AES-GCM · Web Audio"]
+  const description = [persona ? `Name: ${persona}` : null, mastery, "PWA · offline · kostenlos"]
     .filter(Boolean)
     .join(" — ");
 

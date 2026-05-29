@@ -154,7 +154,7 @@ function LearningMcOptionRow({
             border: "1px solid rgba(248, 113, 113, 0.45)",
           }}
         >
-          <div>{t("learningTerminal.feedbackMcWrongTitle", "Nicht treffend")}</div>
+          <div>{t("learningTerminal.feedbackMcWrongTitle")}</div>
           <div
             style={{
               marginTop: 6,
@@ -165,7 +165,7 @@ function LearningMcOptionRow({
           >
             {opt.whyWrongHint
               ? opt.whyWrongHint
-              : t("learningTerminal.feedbackMcWrongPickOther", "Wähle eine andere Option")}
+              : t("learningTerminal.feedbackMcWrongPickOther")}
           </div>
         </div>
       ) : null}
@@ -189,8 +189,8 @@ function LearningMcOptionRow({
           {hitMessageOverride?.trim()
             ? hitMessageOverride
             : isBeginnerExercise
-              ? t("learningTerminal.feedbackMcHitLesson", "Treffer — Lektion geschafft")
-              : t("learningTerminal.feedbackMcHitNumeric", "Treffer — jetzt Zahlenantwort prüfen")}
+              ? t("learningTerminal.feedbackMcHitLesson")
+              : t("learningTerminal.feedbackMcHitNumeric")}
         </div>
       ) : null}
     </button>
@@ -421,8 +421,11 @@ export function LearningTerminal({
   const isBossMode = learningFocus && bossUi.isBoss;
   const bossEpicLine = useMemo(() => {
     if (!isBossMode) return null;
-    return bossUi.epicLine ?? "Alarm Boss Modus aktiv";
-  }, [bossUi.epicLine, isBossMode]);
+    return (
+      bossUi.epicLine ??
+      t("learningTerminal.bossActive", "Letzte Aufgabe in diesem Thema")
+    );
+  }, [bossUi.epicLine, isBossMode, t]);
 
   const handleMcOption = useCallback(
     (opt: LearningMcOption) => {
@@ -727,7 +730,9 @@ export function LearningTerminal({
                         color: "rgba(248, 113, 113, 0.85)",
                       }}
                     >
-                      Boss Mode
+                      {edtechFlow
+                        ? t("learningTerminal.sectionBoss", "Abschlussübung")
+                        : t("learningTerminal.sectionBoss", "Boss-Modus")}
                     </div>
                     <p
                       style={{
@@ -739,7 +744,7 @@ export function LearningTerminal({
                         letterSpacing: "-0.02em",
                       }}
                     >
-                      {bossEpicLine ?? "Alarm Boss Modus aktiv"}
+                      {bossEpicLine}
                     </p>
                   </motion.div>
                 ) : null}
@@ -798,7 +803,9 @@ export function LearningTerminal({
                           fontWeight: 700,
                         }}
                       >
-                        Nexus-Cockpit · {coachDisplayName ?? "Pilot"}
+                        {edtechFlow
+                          ? `${coachDisplayName ?? t("profile.activeMentor", "Deine Begleiterin")} · Lernhilfe`
+                          : `Cockpit · ${coachDisplayName ?? "Pilot"}`}
                       </div>
                       <p
                         style={{
@@ -810,7 +817,12 @@ export function LearningTerminal({
                           color: "rgba(251, 247, 239, 0.92)",
                         }}
                       >
-                        Ich bin an Bord halte den Fokus auf Aufgabe und Terminal
+                        {edtechFlow
+                          ? t(
+                              "ui.combat.mentorHint",
+                              "Lies die Aufgabe in Ruhe — bei Unsicherheit zuerst die Erklärung oben"
+                            )
+                          : t("ui.combat.mentorHintIndustrial", "Fokus auf die Aufgabe")}
                       </p>
                     </div>
                   </motion.div>
@@ -974,7 +986,7 @@ export function LearningTerminal({
                         color: "rgba(22,32,25,0.5)",
                       }}
                     >
-                      Jetzt du
+                      {t("learningTerminal.sectionYourTurn", "Deine Aufgabe")}
                     </div>
                   ) : null}
                   {!(
@@ -1177,8 +1189,7 @@ export function LearningTerminal({
                           hitMessageOverride={
                             edtechFlow
                               ? t(
-                                  "learningTerminal.feedbackMcHitNext",
-                                  "Treffer — nächste Aufgabe kommt gleich"
+                                  "learningTerminal.feedbackMcHitNext"
                                 )
                               : null
                           }
@@ -1303,8 +1314,7 @@ export function LearningTerminal({
                           onPick={handleMcOption}
                           t={t}
                           hitMessageOverride={t(
-                            "learningTerminal.feedbackMcHitCards",
-                            "Treffer — weiter mit den Skill-Karten unten"
+                            "learningTerminal.feedbackMcHitCards"
                           )}
                         />
                       ))}
@@ -1328,7 +1338,10 @@ export function LearningTerminal({
                       color: typography.fg,
                     }}
                   >
-                    Ordne die passende Fähigkeit der aktuellen Bedrohung zu
+                    {t(
+                      "learningTerminal.pickSkillTitle",
+                      "Welche Antwort passt?"
+                    )}
                   </h2>
                   <p
                     style={{
@@ -1339,8 +1352,10 @@ export function LearningTerminal({
                       color: typography.fgMuted,
                     }}
                   >
-                    Nutze die Karten unten wie Antwortoptionen — richtige Karte bringt dich weiter,
-                    Fehlwahl kostet Fokus
+                    {t(
+                      "learningTerminal.pickSkillLead",
+                      "Lies die Frage und wähle die beste Option unten"
+                    )}
                   </p>
                 </motion.div>
               </>

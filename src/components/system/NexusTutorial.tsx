@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import tutorialContent from "../../lernfelder/lf05/tutorial_content.json";
 import { useGameStore } from "../../store/useGameStore";
 import { playNexusUiClickSound, playNexusUiGlitchSound } from "../../lib/audio/nexusUiAudio";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 
 type SpotlightTarget = {
   id: "codex" | "terminal" | "map";
@@ -10,29 +11,41 @@ type SpotlightTarget = {
   text: string;
 };
 
-const SPOTLIGHTS: SpotlightTarget[] = [
-  {
-    id: "codex",
-    label: "Codex",
-    text: "Hier startest du mit kurzen Karten statt Textwüsten — ein Tipp pro Karte, dann weiter",
-  },
-  {
-    id: "map",
-    label: "Sektoren-Karte",
-    text: "So siehst du, welche Lernfelder als Nächstes dran sind — später klickst du einen Sektor für die Mission",
-  },
-  {
-    id: "terminal",
-    label: "SQL-Terminal",
-    text: "Hier tippst du echte Abfragen wie in der Prüfung — wir führen dich in drei Mini-Schritten an SELECT, FROM und WHERE",
-  },
-];
-
 function normalizeSql(raw: string): string {
   return raw.replace(/\s+/g, " ").replace(/;/g, "").trim().toLowerCase();
 }
 
 export function NexusTutorial() {
+  const { t } = useNexusI18n();
+  const spotlights = useMemo<SpotlightTarget[]>(
+    () => [
+      {
+        id: "codex",
+        label: t("ui.tutorial.codexLabel", "Theorie"),
+        text: t(
+          "ui.tutorial.codexText",
+          "Kurze Karten statt langer Textblöcke — ein Schritt nach dem anderen"
+        ),
+      },
+      {
+        id: "map",
+        label: t("ui.tutorial.mapLabel", "Lernfelder-Karte"),
+        text: t(
+          "ui.tutorial.mapText",
+          "Alle zwölf Themen auf einen Blick — antippen und üben starten"
+        ),
+      },
+      {
+        id: "terminal",
+        label: t("ui.tutorial.terminalLabel", "SQL-Übungen"),
+        text: t(
+          "ui.tutorial.terminalText",
+          "Echte Abfragen wie in der Prüfung — wir führen dich an SELECT, FROM und WHERE"
+        ),
+      },
+    ],
+    [t]
+  );
   const tutorialStepIndex = useGameStore((s) => s.tutorialStepIndex);
   const isFirstBoot = useGameStore((s) => s.isFirstBoot);
   const hasCompletedInitialization = useGameStore((s) => s.hasCompletedInitialization);
@@ -49,7 +62,7 @@ export function NexusTutorial() {
   const [showAnimeUnlockCard, setShowAnimeUnlockCard] = useState(false);
   const [showAnimeTrack, setShowAnimeTrack] = useState(false);
 
-  const spotlight = SPOTLIGHTS[tutorialStepIndex] ?? SPOTLIGHTS[0];
+  const spotlight = spotlights[tutorialStepIndex] ?? spotlights[0];
   const tutorialData = tutorialContent as {
     steps: Array<{ title: string; body: string; example: string }>;
     anime_steps?: Array<{ title: string; body: string; example: string }>;
@@ -63,10 +76,10 @@ export function NexusTutorial() {
   const animeLocked = tutorialData.anime_locked ?? true;
   const animeUnlockCardText = tutorialData.anime_unlock_card ?? "Zugriff auf Anime Datenbank freigeschaltet";
   const activeTutorialSql = tutorialSteps[Math.min(tutorialStepIndex, tutorialSteps.length - 1)];
-  const canFinish = tutorialStepIndex >= SPOTLIGHTS.length - 1;
+  const canFinish = tutorialStepIndex >= spotlights.length - 1;
   const activeAnimeSql = animeSteps[Math.min(tutorialStepIndex, Math.max(animeSteps.length - 1, 0))];
   const stepHuman = tutorialStepIndex + 1;
-  const stepTotal = SPOTLIGHTS.length;
+  const stepTotal = spotlights.length;
 
   useEffect(() => {
     const updateRect = () => {

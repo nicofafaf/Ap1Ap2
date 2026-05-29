@@ -318,7 +318,7 @@ export function TerminalCodeWorkbench({
 
   const coachLine = useMemo(() => {
     if (checked === "diff") {
-      return "Noch nicht gleich übernimm das Beispiel und gleiche Zeichen für Zeichen ab";
+      return t("ui.codeWorkbench.diff", "Noch nicht gleich — übernimm das Beispiel und vergleiche Zeile für Zeile");
     }
     if (checked === "ok") {
       if (learningField === "LF5") {
@@ -327,19 +327,28 @@ export function TerminalCodeWorkbench({
           return (
             LF5_COACH.bossPhase?.epicCoach?.[multiverse] ??
             pack?.genericSuccess?.[multiverse] ??
-            "Richtig der Nexus hat deine Eingabe bestätigt"
+            t("ui.codeWorkbench.ok", "Richtig — deine Eingabe stimmt")
           );
         }
         if (lang === "sql" && refIsSelect) {
           return (
-            pack?.selectSuccess?.[multiverse] ?? "Richtig der Nexus hat deine Eingabe bestätigt"
+            pack?.selectSuccess?.[multiverse] ??
+            t("ui.codeWorkbench.ok", "Richtig — deine Eingabe stimmt")
           );
         }
-        return pack?.genericSuccess?.[multiverse] ?? "Richtig der Nexus hat deine Eingabe bestätigt";
+        return (
+          pack?.genericSuccess?.[multiverse] ??
+          t("ui.codeWorkbench.ok", "Richtig — deine Eingabe stimmt")
+        );
       }
-      return "Richtig der Nexus hat deine Eingabe bestätigt";
+      return t("ui.codeWorkbench.ok", "Richtig — deine Eingabe stimmt");
     }
-    if (lang === "sql") return "Du musst SQL noch nicht können starte mit dem Beispiel unten";
+    if (lang === "sql") {
+      return t(
+        "ui.codeWorkbench.sqlStart",
+        "Du musst SQL noch nicht auswendig — starte mit dem Beispiel unten"
+      );
+    }
     if (lang === "bash") {
       if (learningField === "LF8" && milestoneId) {
         const flair = LF8_LINUX.linuxCoachFlair?.[milestoneId]?.[multiverse]?.trim();
@@ -351,7 +360,7 @@ export function TerminalCodeWorkbench({
       return LF11_COACH.bossPhase?.epicCoach?.[multiverse] ?? CSHARP_FLAVOR[multiverse];
     }
     return CSHARP_FLAVOR[multiverse];
-  }, [checked, lang, multiverse, learningField, refIsSelect, milestoneId, bossId]);
+  }, [checked, lang, multiverse, learningField, refIsSelect, milestoneId, bossId, t]);
 
   const runCheck = useCallback(() => {
     const a = norm(draft);
@@ -639,8 +648,8 @@ export function TerminalCodeWorkbench({
           }}
         >
           {checked === "ok"
-            ? t("learningTerminal.feedbackCodeOk", "Treffer — Abgleich bestanden")
-            : t("learningTerminal.feedbackCodeDiff", "Noch nicht — Zeichen und Zeilen müssen exakt passen")}
+            ? t("learningTerminal.feedbackCodeOk")
+            : t("learningTerminal.feedbackCodeDiff")}
         </div>
       ) : null}
       <CoachDialoguePanel mentorId={coachMentorId ?? null} name={coachName} line={coachLine} />

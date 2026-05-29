@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 
 const CACHE_NAME = "nexus-media-v1";
 
 type SyncState = "checking" | "synced" | "degraded";
 
 export function NexusSyncStatus() {
+  const { t } = useNexusI18n();
   const [sync, setSync] = useState<SyncState>("checking");
 
   useEffect(() => {
@@ -60,18 +62,13 @@ export function NexusSyncStatus() {
     };
   }, []);
 
-  const label =
-    sync === "synced"
-      ? "Nexus-Sync"
-      : sync === "degraded"
-        ? "Nexus-Sync"
-        : "Nexus-Sync";
+  const label = t("ui.sync.label", "Offline-Paket");
   const sub =
     sync === "synced"
-      ? "Offline-Bundle bereit"
+      ? t("ui.sync.synced", "Bereit für offline")
       : sync === "degraded"
-        ? "Cache wird aufgebaut"
-        : "Prüfe Medien-Archive";
+        ? t("ui.sync.building", "Paket wird geladen")
+        : t("ui.sync.checking", "Prüfe Offline-Paket");
   const dot =
     sync === "synced"
       ? "rgba(34, 197, 94, 0.98)"

@@ -22,38 +22,38 @@ type LxpertBlock = {
 const LXPERT: Record<AchievementType, LxpertBlock> = {
   PERFECT_SYNC: {
     definition:
-      "Perfect Sync bedeutet: keine Datenkorruption im Kampf — Timing und Kartenwahl bleiben konsistent",
+      "Perfekte Serie: viele richtige Antworten hintereinander ohne lange Pause",
     example:
-      "Wenn alle Treffer sauber sitzen, bleibt der Datenfluss stabil und der Boss kann keine Korruptions-Sekunden erzwingen",
-    quizCheck: "Frage: Welche Auswirkung hat Perfect Sync passiv auf kritischen Schaden",
+      "Wenn du konzentriert bleibst, merkst du Muster schneller und machst weniger Flüchtigkeitsfehler",
+    quizCheck: "Frage: Was zählt für eine perfekte Serie — nur richtige MC-Antworten in Folge",
   },
   IMMORTAL: {
     definition:
-      "Immortal markiert einen Lauf ohne HP-Verlust — vollständige defensive Kontrolle über den Encounter",
+      "Ohne Fehlserie: ein Übungsdurchlauf ohne falsche Antworten",
     example:
-      "Schild, Parry und korrekte Verteidigungskarten verhindern jede Boss-Störung auf deiner Lebensleiste",
-    quizCheck: "Frage: Wann wird Immortal im Run gewertet — nur bei Sieg oder auch bei Timeout",
+      "Lies die Frage, schließe falsche Optionen aus, dann erst klicken",
+    quizCheck: "Frage: Zählen nur Multiple-Choice-Aufgaben oder auch Code-Abgaben",
   },
   FAST_TRACK: {
     definition:
-      "Lightning Code ist Geschwindigkeit unter Präzision — der Boss fällt unter einer harten Zeitgrenze",
+      "Schnell fertig: ein Lernfeld in kurzer Zeit mit gutem Ergebnis abgeschlossen",
     example:
-      "Übe feste Öffnungssequenzen: erste Karte setzt Schwächung, zweite nutzt Fenster ohne Überhang",
-    quizCheck: "Frage: Welche Metrik definiert Fast Track in diesem Nexus-Build",
+      "Kurz die Theorie lesen, dann direkt üben — ohne langes Grübeln bei jeder Zeile",
+    quizCheck: "Frage: Was zählt beim Schnell-Durchlauf — Zeit und Mindestquote richtig",
   },
   OVERKILL: {
     definition:
-      "Brute Force entsteht, wenn der letzte Schlag die Rest-HP des Bosses klar übersteigt",
+      "Übererfüllung: deutlich mehr richtige Antworten als nötig für den Abschluss",
     example:
-      "Buffs und kritische Multiplikatoren vor dem Finisher erhöhen Overkill ohne Timing zu verlieren",
-    quizCheck: "Frage: Ab welchem Schaden über Rest-HP gilt Overkill hier",
+      "Extra-Übungen nach dem Pflichtumfang festigen das Wissen für die Prüfung",
+    quizCheck: "Frage: Ab wann gilt Übererfüllung — mehr als der Mindestumfang des LF",
   },
   ARCHITECT_BADGE: {
     definition:
-      "Architekt-Abzeichen heißt: du hast alle Prüfungsaufgaben eines Lernfelds mindestens einmal korrekt gelöst — das Curriculum für dieses LF ist vollständig grün",
+      "Lernfeld gemeistert: alle Pflicht-Übungen mindestens einmal richtig gelöst",
     example:
-      "Der Fortschritt kommt aus dem Lernterminal im Kampf; raten ohne Verstehen füllt den Balken nicht nachhaltig",
-    quizCheck: "Frage: Zählt nur der erste Sieg oder jede korrekt beantwortete Übung mindestens einmal",
+      "Fortschritt kommt aus echtem Verstehen — raten ohne Lesen bringt langfristig wenig",
+    quizCheck: "Frage: Reicht einmal richtig pro Übung oder muss jede mehrfach sitzen",
   },
 };
 

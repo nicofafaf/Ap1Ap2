@@ -6,6 +6,7 @@ import {
   verifyNexusMasterSealed,
   type NexusCertVerifyOutcome,
 } from "../../lib/security/certExporter";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 
 function hashIsVerify(): boolean {
   const h = window.location.hash.replace(/^#/, "");
@@ -13,6 +14,7 @@ function hashIsVerify(): boolean {
 }
 
 export function CertificateVerifyPage() {
+  const { t } = useNexusI18n();
   const [open, setOpen] = useState(hashIsVerify);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -48,7 +50,7 @@ export function CertificateVerifyPage() {
         <motion.div
           role="dialog"
           aria-modal="true"
-          aria-label="Nexus Zertifikat Verify"
+          aria-label={t("ui.certificate.aria", "Lernnachweis prüfen")}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -110,7 +112,7 @@ export function CertificateVerifyPage() {
                     color: "rgba(248, 250, 252, 0.96)",
                   }}
                 >
-                  Nexus Master — Authentizitäts-Check
+                  {t("ui.certificate.title", "Lernnachweis — Echtheit prüfen")}
                 </h2>
                 <p
                   style={{
@@ -238,7 +240,9 @@ export function CertificateVerifyPage() {
                     marginBottom: 10,
                   }}
                 >
-                  {result.structureOk ? "Struktur: gültiger Nexus-Umschlag" : "Struktur: abgelehnt"}
+                  {result.structureOk
+                    ? t("ui.certificate.structureOk", "Struktur: gültiger verschlüsselter Nachweis")
+                    : t("ui.certificate.structureFail", "Struktur: abgelehnt")}
                 </div>
                 {result.errors.length > 0 ? (
                   <ul style={{ margin: "0 0 10px 16px", padding: 0, color: "rgba(254, 202, 202, 0.92)" }}>

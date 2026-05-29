@@ -1,4 +1,4 @@
-import { getAllNexusEntries } from "../data/nexusRegistry";
+import { getAllNexusEntries, mentorPickPortraitCandidates } from "../data/nexusRegistry";
 import { FRACTAL_COMMAND_BG_MP4 } from "./ui/fractalConstants";
 
 /**
@@ -21,6 +21,9 @@ export function collectNexusPrecacheUrls(): string[] {
     add(e.audio.victoryPath);
     add(e.audio.lootRevealPath);
     add(e.loot.itemPath);
+  }
+  for (let n = 1; n <= 24; n += 1) {
+    add(mentorPickPortraitCandidates(n)[0]!);
   }
   return [...set];
 }

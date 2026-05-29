@@ -380,6 +380,7 @@ export function NeuralInitializer({
                       size={companionGridCols >= 8 ? 104 : 96}
                       radius={12}
                       border="1px solid rgba(251,247,239,0.14)"
+                      loading={ix < 8 ? "eager" : "lazy"}
                     />
                     <span
                       style={{

@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useCallback, useEffect, useMemo, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import {
   mentorIdleAnimationCandidates,
   mentorPickPortraitCandidates,
@@ -17,6 +17,8 @@ type MentorPortraitProps = {
   boxShadow?: string;
   /** default: 64×64 Idle (Characters/…/V1.0) · pick: 128×128 Auswahl (Portraits/…) · idle: wie default */
   variant?: MentorPortraitVariant;
+  /** pick-Grid: erste Reihe eager, Rest lazy — entlastet parallele Requests */
+  loading?: "eager" | "lazy";
 };
 
 type LoadState = "loading" | "ready" | "error";
@@ -32,6 +34,18 @@ function candidateList(mentorId: number, variant: MentorPortraitVariant): readon
   }
 }
 
+function syncImgLoadState(
+  img: HTMLImageElement | null,
+  onReady: () => void,
+  onBroken: () => void
+): void {
+  if (!img) return;
+  if (img.complete) {
+    if (img.naturalWidth > 0) onReady();
+    else onBroken();
+  }
+}
+
 /**
  * Mentor-Grafik: Anfang `variant="pick"` (128×128), sonst `idle`/`default` mit 64×64-Idle-Kette, Fallback Legacy-PNG
  */
@@ -42,9 +56,11 @@ export function MentorPortrait({
   border = "1px solid rgba(214, 181, 111, 0.35)",
   boxShadow,
   variant = "idle",
+  loading = "eager",
 }: MentorPortraitProps) {
   const candidates = useMemo(() => [...candidateList(mentorId, variant)], [mentorId, variant]);
   const reduceMotion = useReducedMotion();
+  const imgRef = useRef<HTMLImageElement>(null);
   const [srcIndex, setSrcIndex] = useState(0);
   const [loadState, setLoadState] = useState<LoadState>("loading");
 
@@ -58,6 +74,22 @@ export function MentorPortrait({
   useEffect(() => {
     setLoadState("loading");
   }, [src]);
+
+  /** SW-/Browser-Cache: Bild oft schon complete bevor onLoad hängt — sonst bleibt Skeleton stehen */
+  useEffect(() => {
+    syncImgLoadState(
+      imgRef.current,
+      () => setLoadState("ready"),
+      () => {
+        setSrcIndex((i) => {
+          const next = i + 1;
+          if (next < candidates.length) return next;
+          setLoadState("error");
+          return i;
+        });
+      }
+    );
+  }, [src, srcIndex, candidates.length]);
 
   const onError = useCallback(() => {
     setSrcIndex((i) => {
@@ -125,12 +157,13 @@ export function MentorPortrait({
         />
       ) : null}
       <img
+        ref={imgRef}
         key={`${mentorId}-${variant}-${srcIndex}-${src}`}
         src={src}
         alt=""
         width={size}
         height={size}
-        loading="eager"
+        loading={loading}
         decoding="async"
         onLoad={onLoad}
         onError={onError}

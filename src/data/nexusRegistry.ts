@@ -90,8 +90,10 @@ function mentorPortraitPngUrl(mentorIndex: number): string {
 export function mentorPickPortraitCandidates(id: number): readonly string[] {
   const n = Math.max(1, Math.min(100, Math.floor(id)));
   const pick128 = `/assets/Portraits/25-waifus-128x128`;
+  const pick64 = `/assets/Portraits/25-waifus-64x64`;
   return [
     publicAssetUrl(`${pick128}/${n}.png`),
+    publicAssetUrl(`${pick64}/${n}.png`),
     publicAssetUrl(`${pick128}/waifu-${n}.png`),
     publicAssetUrl(`${pick128}/${n}.webp`),
   ];

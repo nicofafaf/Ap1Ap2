@@ -19,7 +19,6 @@ pages:
   stage: deploy
   script:
     - apt-get update -qq && apt-get install -y -qq git-lfs
-    - git lfs install
     - git lfs pull
     - test -f assets/hintergrund-atmosphäre-q-epn-7i.mp4
     - test "$(wc -c < assets/hintergrund-atmosphäre-q-epn-7i.mp4)" -gt 1000000

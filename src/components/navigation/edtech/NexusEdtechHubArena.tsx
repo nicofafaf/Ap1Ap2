@@ -5,39 +5,37 @@ import { publicAssetUrl, type LearningField } from "../../../data/nexusRegistry"
 import { FRACTAL_COMMAND_BG_MP4 } from "../../../lib/ui/fractalConstants";
 import type { NexusHubMapExtras } from "../../../lib/ui/hubMapNavigation";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
+import {
+  getHubContinueTarget,
+  getHubLearningTip,
+  getHubPlatformStats,
+} from "../../../lib/learning/hubDashboardInsights";
+import { getAllLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
+import { getDailyIncursionDefinition, getUtcDateKey } from "../../../lib/dailyIncursion";
 import { useGameStore } from "../../../store/useGameStore";
 import { EdtechLazyVideo } from "./EdtechLazyVideo";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import {
+  edtechCourseAp,
+  edtechCourseBody,
+  edtechCourseCardShell,
+  edtechCourseGridStyle,
+  edtechCourseLfBadge,
+  edtechCourseMeta,
+  edtechCourseThumbWrap,
+  edtechCourseTitle,
+} from "./edtechCourseCardStyles";
+import {
   cyanAccent,
   EDTECH_CARD,
   EDTECH_STAGGER,
+  edtechCardPanel,
   glassPanel,
   goldAccent,
   sectionH2,
   sectionH3,
 } from "./edtechHubTokens";
-
-const FEATURED_LFS = [1, 3, 5, 10, 11, 12] as const;
-
-const FIELD_META: Record<number, { ap: string; titleKey: string }> = {
-  1: { ap: "AP1", titleKey: "LF1" },
-  3: { ap: "AP1", titleKey: "LF3" },
-  5: { ap: "AP1", titleKey: "LF5" },
-  10: { ap: "AP2", titleKey: "LF10" },
-  11: { ap: "AP2", titleKey: "LF11" },
-  12: { ap: "AP2", titleKey: "LF12" },
-};
-
-const FIELD_TITLES_DE: Record<string, string> = {
-  LF1: "Wirtschaft & Recht",
-  LF3: "Netzwerke",
-  LF5: "Datenbanken",
-  LF10: "Projektmanagement",
-  LF11: "Security",
-  LF12: "Projekt",
-};
 
 const CHANGELOG = [
   { version: "2.4", tag: "hub.edtech.feed.changelog.c1" },
@@ -68,6 +66,62 @@ export function NexusEdtechHubArena({
   const dailyParticipationStreak = useGameStore((s) => s.dailyParticipationStreak);
   const unlockedSectors = useGameStore((s) => s.campaign.unlockedSectors);
   const lastEvents = useGameStore((s) => s.lastCombatLearningEvents);
+  const learningLeitnerByExerciseId = useGameStore((s) => s.learningLeitnerByExerciseId);
+
+  const dateKey = getUtcDateKey();
+  const dailyLf = useMemo(() => getDailyIncursionDefinition(dateKey).targetLf, [dateKey]);
+  const platformStats = useMemo(() => getHubPlatformStats(), []);
+  const allLfMeta = useMemo(() => getAllLfCourseMeta(), []);
+  const continueTarget = useMemo(
+    () => getHubContinueTarget(lastEvents[0], learningCorrectByLf),
+    [lastEvents, learningCorrectByLf],
+  );
+  const learningTip = useMemo(
+    () => getHubLearningTip(learningLeitnerByExerciseId, learningCorrectByLf),
+    [learningLeitnerByExerciseId, learningCorrectByLf],
+  );
+
+  const learningModes = useMemo(
+    () => [
+      {
+        title: t("hub.edtech.modeLearn"),
+        body: t("hub.edtech.modeLearnBody"),
+        accent: goldAccent,
+        onClick: onOpenMap,
+      },
+      {
+        title: t("hub.edtech.modeExam"),
+        body: t("hub.edtech.modeExamBody"),
+        accent: "rgba(239, 68, 68, 0.92)",
+        onClick: () => onBeginLearningField(1),
+      },
+      {
+        title: t("hub.edtech.modeMap"),
+        body: t("hub.edtech.modeMapBody"),
+        accent: cyanAccent,
+        onClick: onOpenMap,
+      },
+      {
+        title: t("hub.edtech.modeDaily"),
+        body: t("hub.edtech.modeDailyBody"),
+        accent: "rgba(139, 92, 246, 0.95)",
+        onClick: () => mapWithExtras({ openDailyPanel: true }),
+      },
+      {
+        title: t("hub.edtech.modeReview"),
+        body: t("hub.edtech.modeReviewBody"),
+        accent: goldAccent,
+        onClick: () => onBeginLearningField(5),
+      },
+      {
+        title: t("hub.edtech.modeTheory"),
+        body: t("hub.edtech.modeTheoryBody"),
+        accent: cyanAccent,
+        onClick: () => mapWithExtras({ openCodex: true }),
+      },
+    ],
+    [mapWithExtras, onBeginLearningField, onOpenMap, t],
+  );
 
   const { totalCorrect, totalCurriculum } = useMemo(() => {
     let correct = 0;
@@ -189,7 +243,12 @@ export function NexusEdtechHubArena({
             </motion.button>
             <motion.button
               type="button"
-              onClick={onOpenFieldList}
+              onClick={() => {
+                document.getElementById("nx-edtech-all-fields")?.scrollIntoView({
+                  behavior: reduceMotion ? "auto" : "smooth",
+                  block: "start",
+                });
+              }}
               whileHover={reduceMotion ? undefined : { scale: 1.02 }}
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
               style={heroGhostBtnStyle}
@@ -198,6 +257,132 @@ export function NexusEdtechHubArena({
             </motion.button>
           </motion.div>
         </div>
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-platform">
+        <h2 id="nx-edtech-platform" style={sectionH2}>
+          {t("hub.edtech.platformTitle")}
+        </h2>
+        <motion.div style={platformGridStyle}>
+          <PlatformStat
+            value={String(platformStats.totalExercises)}
+            label={t("hub.edtech.platformExercises")}
+            sub={t("hub.edtech.platformExercisesSub")}
+            accent="cyan"
+          />
+          <PlatformStat
+            value={String(platformStats.learningFieldCount)}
+            label={t("hub.edtech.platformFields")}
+            sub={t("hub.edtech.platformFieldsSub")}
+            accent="gold"
+          />
+          <PlatformStat
+            value={`${platformStats.practiceToolCount}+`}
+            label={t("hub.edtech.platformTools")}
+            sub={t("hub.edtech.platformToolsSub")}
+            accent="violet"
+          />
+          <PlatformStat
+            value={String(platformStats.examTrackCount)}
+            label={t("hub.edtech.platformExams")}
+            sub={t("hub.edtech.platformExamsSub")}
+            accent="gold"
+          />
+        </motion.div>
+      </motion.section>
+
+      <motion.section
+        variants={EDTECH_CARD}
+        style={continueShellStyle}
+        aria-labelledby="nx-edtech-continue"
+      >
+        <div style={sectionHeadRowStyle}>
+          <h2 id="nx-edtech-continue" style={{ ...sectionH2, margin: 0, color: "#f8fafc" }}>
+            {t("hub.edtech.continueTitle")}
+          </h2>
+          {continueTarget ? (
+            <span style={continueLfBadgeStyle}>LF{continueTarget.lf}</span>
+          ) : null}
+        </div>
+        {continueTarget ? (
+          <>
+            <p style={continueTitleStyle}>{continueTarget.title}</p>
+            <p style={continueMetaStyle}>
+              {t("hub.edtech.continueProgress")
+                .replace("{solved}", String(continueTarget.solved))
+                .replace("{total}", String(continueTarget.total))
+                .replace("{lf}", String(continueTarget.lf))}
+            </p>
+            <motion.button
+              type="button"
+              onClick={() => onBeginLearningField(continueTarget.lf)}
+              whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              style={continueCtaStyle}
+            >
+              {t("hub.edtech.continueCta")}
+            </motion.button>
+          </>
+        ) : (
+          <>
+            <p style={continueTitleStyle}>{t("hub.edtech.continueNoneTitle")}</p>
+            <p style={continueMetaStyle}>{t("hub.edtech.continueNoneBody")}</p>
+            <motion.button
+              type="button"
+              onClick={onOpenMap}
+              whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+              style={continueCtaStyle}
+            >
+              {t("hub.edtech.continueNoneCta")}
+            </motion.button>
+          </>
+        )}
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-modes">
+        <h2 id="nx-edtech-modes" style={sectionH2}>
+          {t("hub.edtech.modesTitle")}
+        </h2>
+        <motion.div style={modeGridStyle}>
+          {learningModes.map((mode) => (
+            <motion.button
+              key={mode.title}
+              type="button"
+              onClick={mode.onClick}
+              whileHover={reduceMotion ? undefined : { y: -4 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.99 }}
+              style={{ ...edtechCardPanel, ...modeCardStyle }}
+            >
+              <span style={{ ...modeAccentBarStyle, background: mode.accent }} aria-hidden />
+              <strong style={modeTitleStyle}>{mode.title}</strong>
+              <span style={modeBodyStyle}>{mode.body}</span>
+            </motion.button>
+          ))}
+        </motion.div>
+      </motion.section>
+
+      <motion.section
+        variants={EDTECH_CARD}
+        style={{ ...edtechCardPanel, padding: "22px 24px" }}
+        aria-labelledby="nx-edtech-tip"
+      >
+        <div style={sectionHeadRowStyle}>
+          <h2 id="nx-edtech-tip" style={{ ...sectionH2, margin: 0 }}>
+            {t("hub.edtech.tipTitle")}
+          </h2>
+          <span style={tipScoreStyle}>
+            {t("hub.edtech.tipExamLabel")}: {learningTip.examReadyPct}%
+          </span>
+        </div>
+        <p style={tipBodyStyle}>{learningTip.message}</p>
+        <motion.button
+          type="button"
+          onClick={() => onBeginLearningField(learningTip.lf)}
+          whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+          style={tipCtaStyle}
+        >
+          {t("hub.edtech.tipCta")} · LF{learningTip.lf}
+        </motion.button>
       </motion.section>
 
       <motion.div
@@ -218,47 +403,62 @@ export function NexusEdtechHubArena({
         <StatChip label={t("hub.edtech.feed.livePulse")} value="●" accent="gold" sub={t("hub.edtech.feed.liveSub")} />
       </motion.div>
 
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-start">
-        <h3 id="nx-edtech-start" style={sectionH3}>
-          {t("hub.edtech.startTitle")}
-        </h3>
-        <motion.div style={startGridStyle}>
-          <StartCard title={t("hub.edtech.tileTerminalTitle")} body={t("hub.edtech.tileTerminalBody")} onClick={onOpenMap} reduceMotion={!!reduceMotion} />
-          <StartCard title={t("hub.edtech.tileFieldsTitle")} body={t("hub.edtech.tileFieldsBody")} onClick={onOpenFieldList} reduceMotion={!!reduceMotion} />
-          <StartCard title={t("hub.edtech.tileBossTitle")} body={t("hub.edtech.tileBossBody")} onClick={onOpenMap} reduceMotion={!!reduceMotion} />
-          <StartCard title={t("hub.edtech.tileLeitnerTitle")} body={t("hub.edtech.tileLeitnerBody")} onClick={() => onBeginLearningField(5)} reduceMotion={!!reduceMotion} />
-        </motion.div>
+      <motion.section
+        variants={EDTECH_CARD}
+        style={{ ...glassPanel, padding: "22px 24px", display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center" }}
+        aria-labelledby="nx-edtech-daily-inline"
+      >
+        <span style={dailyThumbWrapStyle}>
+          <EdtechLfThumb lf={dailyLf} />
+        </span>
+        <div style={{ flex: "1 1 220px", minWidth: 0 }}>
+          <h2 id="nx-edtech-daily-inline" style={{ ...sectionH2, marginBottom: 6 }}>
+            {t("hub.edtech.feed.dailyTitle")}
+          </h2>
+          <p style={dailyLeadStyle}>
+            {t("hub.edtech.dailyTodayLf").replace("{dailyLf}", String(dailyLf))} ·{" "}
+            {t("hub.edtech.feed.dailyLead").replace("{streak}", String(dailyParticipationStreak))}
+          </p>
+          <motion.button
+            type="button"
+            onClick={() => onBeginLearningField(dailyLf)}
+            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+            style={{ ...dailyCtaStyle, marginTop: 12 }}
+          >
+            {t("hub.edtech.feed.dailyCta")}
+          </motion.button>
+        </div>
       </motion.section>
 
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-courses">
-        <h2 id="nx-edtech-courses" style={sectionH2}>
-          {t("hub.edtech.feed.popularTitle")}
+      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-all-fields">
+        <h2 id="nx-edtech-all-fields" style={sectionH2}>
+          {t("hub.edtech.allFieldsTitle")}
         </h2>
-        <motion.div style={courseGridStyle}>
-          {FEATURED_LFS.map((lf) => {
-            const lfKey = `LF${lf}` as LearningField;
-            const meta = FIELD_META[lf];
+        <p style={allFieldsLeadStyle}>{t("hub.edtech.allFieldsAp1")} · {t("hub.edtech.allFieldsAp2")}</p>
+        <motion.div style={edtechCourseGridStyle}>
+          {allLfMeta.map((meta) => {
+            const lfKey = meta.lfKey;
             const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
-            const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
-            const title = FIELD_TITLES_DE[meta.titleKey] ?? meta.titleKey;
+            const total = meta.totalExercises;
+            const pct = total > 0 ? Math.min(100, Math.round((solved / total) * 100)) : 0;
             return (
               <motion.button
-                key={lf}
+                key={meta.lf}
                 type="button"
-                onClick={() => onBeginLearningField(lf)}
+                onClick={() => onBeginLearningField(meta.lf)}
                 whileHover={reduceMotion ? undefined : { y: -4 }}
                 whileTap={reduceMotion ? undefined : { scale: 0.99 }}
-                style={{ ...glassPanel, ...courseCardStyle, padding: 0, overflow: "hidden", textAlign: "left", cursor: "pointer" }}
+                style={{ ...edtechCardPanel, ...edtechCourseCardShell }}
               >
-                <span style={courseThumbWrapStyle}>
-                  <EdtechLfThumb lf={lf} />
-                  <span style={courseLfBadgeStyle}>LF{lf}</span>
+                <span style={edtechCourseThumbWrap}>
+                  <EdtechLfThumb lf={meta.lf} />
+                  <span style={edtechCourseLfBadge}>LF{meta.lf}</span>
                 </span>
-                <span style={courseBodyStyle}>
-                  <span style={courseApStyle}>{meta.ap}</span>
-                  <strong style={courseTitleStyle}>{title}</strong>
-                  <span style={courseProgressStyle}>
-                    {solved}/{total} {t("hub.edtech.feed.exercises")}
+                <span style={edtechCourseBody}>
+                  <span style={edtechCourseAp}>{meta.ap}</span>
+                  <strong style={edtechCourseTitle}>{meta.title}</strong>
+                  <span style={edtechCourseMeta}>
+                    {solved}/{total} · {pct}%
                   </span>
                 </span>
               </motion.button>
@@ -267,24 +467,31 @@ export function NexusEdtechHubArena({
         </motion.div>
       </motion.section>
 
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-leaderboard">
-        <div style={sectionHeadRowStyle}>
-          <h2 id="nx-edtech-leaderboard" style={{ ...sectionH2, margin: 0 }}>
-            {t("hub.edtech.feed.leaderTitle")}
-          </h2>
-          <motion.button type="button" onClick={() => mapWithExtras({ overlay: "LEADERBOARD" })} style={sectionLinkBtnStyle}>
-            {t("hub.edtech.feed.leaderOpen")}
-          </motion.button>
-        </div>
-        <motion.div style={{ ...glassPanel, padding: "18px 20px" }}>
-          <motion.div style={leaderRowStyle}>
-            <span style={leaderRankStyle}>#1</span>
-            <span style={leaderNameStyle}>{playerName}</span>
-            <span style={leaderScoreStyle}>
-              {nexusFragments} {t("hub.edtech.statFragments")}
-            </span>
-          </motion.div>
-          <p style={leaderHintStyle}>{t("hub.edtech.feed.leaderHint")}</p>
+      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-focus">
+        <h2 id="nx-edtech-focus" style={sectionH2}>
+          {t("hub.edtech.focusTitle")}
+        </h2>
+        <motion.div style={focusGridStyle}>
+          <div style={{ ...edtechCardPanel, ...focusCardStyle }}>
+            <span style={focusLabelStyle}>{t("hub.edtech.focusExamReady")}</span>
+            <strong style={focusValueStyle}>{learningTip.examReadyPct}%</strong>
+          </div>
+          <div style={{ ...edtechCardPanel, ...focusCardStyle }}>
+            <span style={focusLabelStyle}>{t("hub.edtech.focusWeakest")}</span>
+            <strong style={focusValueStyle}>LF{learningTip.lf}</strong>
+            <span style={focusSubStyle}>{learningTip.lfTitle}</span>
+          </div>
+          <div style={{ ...edtechCardPanel, ...focusCardStyle }}>
+            <span style={focusLabelStyle}>{t("hub.edtech.statFragments")}</span>
+            <strong style={focusValueStyle}>{nexusFragments}</strong>
+            <motion.button
+              type="button"
+              onClick={() => mapWithExtras({ overlay: "LEADERBOARD" })}
+              style={sectionLinkBtnStyle}
+            >
+              {t("hub.edtech.feed.leaderOpen")}
+            </motion.button>
+          </div>
         </motion.div>
       </motion.section>
 
@@ -306,23 +513,6 @@ export function NexusEdtechHubArena({
             </motion.button>
           ))}
         </motion.div>
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD} style={{ ...glassPanel, padding: "22px 24px" }} aria-labelledby="nx-edtech-daily">
-        <h2 id="nx-edtech-daily" style={{ ...sectionH2, marginBottom: 8 }}>
-          {t("hub.edtech.feed.dailyTitle")}
-        </h2>
-        <p style={dailyLeadStyle}>
-          {t("hub.edtech.feed.dailyLead").replace("{streak}", String(dailyParticipationStreak))}
-        </p>
-        <motion.button
-          type="button"
-          onClick={() => mapWithExtras({ openDailyPanel: true })}
-          whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-          style={dailyCtaStyle}
-        >
-          {t("hub.edtech.feed.dailyCta")}
-        </motion.button>
       </motion.section>
 
       <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-exams">
@@ -404,28 +594,25 @@ function StatChip({
   );
 }
 
-function StartCard({
-  title,
-  body,
-  onClick,
-  reduceMotion,
+function PlatformStat({
+  value,
+  label,
+  sub,
+  accent,
 }: {
-  title: string;
-  body: string;
-  onClick: () => void;
-  reduceMotion: boolean;
+  value: string;
+  label: string;
+  sub: string;
+  accent: "gold" | "cyan" | "violet";
 }) {
+  const color =
+    accent === "gold" ? goldAccent : accent === "cyan" ? cyanAccent : "rgba(139, 92, 246, 0.95)";
   return (
-    <motion.button
-      type="button"
-      onClick={onClick}
-      whileHover={reduceMotion ? undefined : { y: -3 }}
-      whileTap={reduceMotion ? undefined : { scale: 0.99 }}
-      style={{ ...glassPanel, ...startCardStyle, cursor: "pointer", textAlign: "left" }}
-    >
-      <strong style={startCardTitleStyle}>{title}</strong>
-      <span style={startCardBodyStyle}>{body}</span>
-    </motion.button>
+    <div style={platformStatCardStyle}>
+      <div style={{ ...platformStatValueStyle, color }}>{value}</div>
+      <div style={platformStatLabelStyle}>{label}</div>
+      <div style={platformStatSubStyle}>{sub}</div>
+    </div>
   );
 }
 
@@ -633,6 +820,206 @@ const statSubStyle: CSSProperties = {
   fontFamily: "var(--nx-font-mono)",
   fontSize: 12,
   color: "#94a3b8",
+};
+
+const platformGridStyle: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+  gap: 14,
+};
+
+const platformStatCardStyle: CSSProperties = {
+  ...edtechCardPanel,
+  padding: "20px 18px",
+  textAlign: "center",
+};
+
+const platformStatValueStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: "clamp(32px, 4vw, 42px)",
+  fontWeight: 800,
+  lineHeight: 1,
+};
+
+const platformStatLabelStyle: CSSProperties = {
+  marginTop: 8,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 16,
+  fontWeight: 800,
+  color: "#0f172a",
+};
+
+const platformStatSubStyle: CSSProperties = {
+  marginTop: 4,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 13,
+  fontWeight: 550,
+  color: "#64748b",
+  lineHeight: 1.35,
+};
+
+const continueShellStyle: CSSProperties = {
+  position: "relative",
+  borderRadius: 20,
+  overflow: "hidden",
+  padding: "clamp(22px, 4vw, 32px)",
+  background: "linear-gradient(125deg, #0f172a 0%, #1e3a5f 55%, rgba(6,182,212,0.35) 100%)",
+  border: "1px solid rgba(214,181,111,0.45)",
+  boxShadow: "0 24px 56px rgba(15,23,42,0.22)",
+};
+
+const continueLfBadgeStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: 12,
+  fontWeight: 800,
+  letterSpacing: "0.1em",
+  color: goldAccent,
+  border: `1px solid rgba(214,181,111,0.5)`,
+  borderRadius: 999,
+  padding: "6px 12px",
+};
+
+const continueTitleStyle: CSSProperties = {
+  margin: "12px 0 6px",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: "clamp(20px, 2.5vw, 26px)",
+  fontWeight: 800,
+  color: "#f8fafc",
+  lineHeight: 1.25,
+};
+
+const continueMetaStyle: CSSProperties = {
+  margin: "0 0 16px",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 16,
+  fontWeight: 550,
+  color: "rgba(248,250,252,0.82)",
+  lineHeight: 1.45,
+};
+
+const continueCtaStyle: CSSProperties = {
+  ...heroPrimaryBtnStyle,
+  border: "1px solid rgba(214,181,111,0.65)",
+};
+
+const modeGridStyle: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: 14,
+};
+
+const modeCardStyle: CSSProperties = {
+  padding: "18px 18px 20px",
+  display: "flex",
+  flexDirection: "column",
+  gap: 8,
+  textAlign: "left",
+  cursor: "pointer",
+  overflow: "hidden",
+};
+
+const modeAccentBarStyle: CSSProperties = {
+  width: 48,
+  height: 4,
+  borderRadius: 999,
+  marginBottom: 4,
+};
+
+const modeTitleStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 18,
+  fontWeight: 800,
+  color: "#0f172a",
+};
+
+const modeBodyStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 15,
+  fontWeight: 550,
+  color: "#64748b",
+  lineHeight: 1.45,
+};
+
+const tipScoreStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: 13,
+  fontWeight: 750,
+  color: cyanAccent,
+  whiteSpace: "nowrap",
+};
+
+const tipBodyStyle: CSSProperties = {
+  margin: "10px 0 16px",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 17,
+  fontWeight: 550,
+  color: "#334155",
+  lineHeight: 1.55,
+};
+
+const tipCtaStyle: CSSProperties = {
+  borderRadius: 999,
+  border: `1px solid rgba(6,182,212,0.45)`,
+  background: "linear-gradient(125deg, rgba(6,182,212,0.18) 0%, rgba(15,23,42,0.06) 100%)",
+  color: "#0f172a",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 15,
+  fontWeight: 800,
+  padding: "11px 20px",
+  cursor: "pointer",
+};
+
+const dailyThumbWrapStyle: CSSProperties = {
+  width: 120,
+  height: 80,
+  borderRadius: 14,
+  overflow: "hidden",
+  flexShrink: 0,
+  border: "1px solid rgba(6,182,212,0.35)",
+  boxShadow: "0 12px 28px rgba(15,23,42,0.12)",
+};
+
+const allFieldsLeadStyle: CSSProperties = {
+  margin: "0 0 16px",
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 15,
+  fontWeight: 600,
+  color: "#64748b",
+};
+
+const focusGridStyle: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+  gap: 14,
+};
+
+const focusCardStyle: CSSProperties = {
+  padding: "18px 20px",
+  display: "flex",
+  flexDirection: "column",
+  gap: 6,
+};
+
+const focusLabelStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 14,
+  fontWeight: 650,
+  color: "#64748b",
+};
+
+const focusValueStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: 28,
+  fontWeight: 800,
+  color: "#0f172a",
+};
+
+const focusSubStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 14,
+  fontWeight: 600,
+  color: "#334155",
+  lineHeight: 1.35,
 };
 
 const startGridStyle: CSSProperties = {

@@ -32,6 +32,7 @@ public/assets/
 # large media
 assets/*.mp4
 !assets/LF*GIF.mp4
+!assets/hintergrund-atmosphäre-q-epn-7i.mp4
 public/assets/
 dist/
 *.map

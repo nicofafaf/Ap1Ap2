@@ -42,10 +42,8 @@ function attachNexusBaseResolver(): Plugin {
   };
 }
 
-/** Fractal-Hero (~185MB) liegt lokal unter assets/, ist per .gitignore nicht im Repo — optional kopieren */
-const OPTIONAL_DEPLOY_ASSETS = ["hintergrund-atmosphäre-q-epn-7i.mp4"];
-
 const REQUIRED_DEPLOY_ASSETS = [
+  "hintergrund-atmosphäre-q-epn-7i.mp4",
   ...Array.from({ length: 12 }, (_, idx) => `LF${idx + 1}GIF.mp4`),
   "BossThemen.mp3",
   "BossThemen2.mp3",
@@ -81,16 +79,6 @@ function ensurePublicAssetsPlugin(): Plugin {
           const srcFile = join(srcDir, fileName);
           if (!existsSync(srcFile)) {
             throw new Error(`[ensure-public-assets] Fehlendes Deploy-Asset: assets/${fileName}`);
-          }
-          copyFileSync(srcFile, join(destDir, fileName));
-        }
-        for (const fileName of OPTIONAL_DEPLOY_ASSETS) {
-          const srcFile = join(srcDir, fileName);
-          if (!existsSync(srcFile)) {
-            console.warn(
-              `[ensure-public-assets] Optionales Asset fehlt (Hero-Fallback auf LF-Video): assets/${fileName}`,
-            );
-            continue;
           }
           copyFileSync(srcFile, join(destDir, fileName));
         }

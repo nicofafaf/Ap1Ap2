@@ -60,9 +60,6 @@ export function NexusEdtechHubArena({
 }: NexusEdtechHubArenaProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
-  const heroVideoPrimary = FRACTAL_COMMAND_BG_MP4;
-  const heroVideoFallback = publicAssetUrl("/assets/LF1GIF.mp4");
-  const [heroVideoSrc, setHeroVideoSrc] = useState(heroVideoPrimary);
   const [heroVideoOk, setHeroVideoOk] = useState(true);
 
   const playerName = useGameStore((s) => s.playerName);
@@ -157,8 +154,7 @@ export function NexusEdtechHubArena({
       >
         {!reduceMotion && heroVideoOk ? (
           <video
-            key={heroVideoSrc}
-            src={heroVideoSrc}
+            src={FRACTAL_COMMAND_BG_MP4}
             autoPlay
             muted
             loop
@@ -166,13 +162,7 @@ export function NexusEdtechHubArena({
             preload="auto"
             aria-hidden
             style={heroVideoStyle}
-            onError={() => {
-              if (heroVideoSrc === heroVideoPrimary) {
-                setHeroVideoSrc(heroVideoFallback);
-                return;
-              }
-              setHeroVideoOk(false);
-            }}
+            onError={() => setHeroVideoOk(false)}
           />
         ) : (
           <span

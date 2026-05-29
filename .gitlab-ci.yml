@@ -18,6 +18,8 @@ cache:
 pages:
   stage: deploy
   script:
+    - "git lfs pull"
+    - "test -f assets/hintergrund-atmosphäre-q-epn-7i.mp4"
     - "npm ci"
     - "npm run build"
     - "test -d dist && test -d dist/assets"

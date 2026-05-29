@@ -464,12 +464,20 @@ export function CombatManager({
     [storeSlice.playerHP, storeSlice.maxPlayerHP]
   );
 
+  const combatLive =
+    storeSlice.gameState === "FIGHTING" || storeSlice.gameState === "STARTING";
+
+  /** EdTech: immer Lern-Terminal während Kampf — kein Skill-Bar-Zwischenscreen */
+  const edtechPureLearn =
+    edtechLearn && combatUnlocked && !tokens.isVictory && combatLive;
+
   const learningModeActive =
-    combatUnlocked &&
-    !tokens.isVictory &&
-    !loreVisible &&
-    (edtechLearn || storeSlice.missionStatus !== "cleared") &&
-    (storeSlice.gameState === "FIGHTING" || storeSlice.gameState === "STARTING");
+    edtechPureLearn ||
+    (combatUnlocked &&
+      !tokens.isVictory &&
+      !loreVisible &&
+      storeSlice.missionStatus !== "cleared" &&
+      combatLive);
 
   return (
     <div
@@ -491,9 +499,9 @@ export function CombatManager({
           height: "100%",
         }}
       >
-      {!learningModeActive ? <HUD /> : null}
+      {!learningModeActive && !edtechLearn ? <HUD /> : null}
       <TutorialCombatOverlay visible={false} step={storeSlice.combatTutorialStep} />
-      {!learningModeActive ? <FlowIndicator /> : null}
+      {!learningModeActive && !edtechLearn ? <FlowIndicator /> : null}
       <LearningTerminal
         currentLF={effectiveLF}
         combatPhase={storeSlice.currentCombatPhase}

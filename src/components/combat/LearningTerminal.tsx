@@ -456,7 +456,9 @@ export function LearningTerminal({
         triggerBossHit(8);
       } else if (opt.isCorrect) {
         recordLearningExerciseMastery(answerLf, exercise.id);
-        triggerBossHit(8);
+        if (!edtechFlow) {
+          triggerBossHit(8);
+        }
         if (edtechFlow) {
           window.setTimeout(() => advanceEdtechLearningTurn(), 1200);
         } else if (isBeginnerExercise) {
@@ -480,12 +482,13 @@ export function LearningTerminal({
   );
 
   const streamEase = [0.22, 1, 0.36, 1] as const;
-  const dur = reduceMotion ? 0.01 : 0.44;
-  const stagger = reduceMotion ? 0 : 0.055;
-  const delayCh = reduceMotion ? 0 : 0.045;
+  const streamInstant = edtechFlow || reduceMotion;
+  const dur = streamInstant ? 0.01 : 0.44;
+  const stagger = streamInstant ? 0 : 0.055;
+  const delayCh = streamInstant ? 0 : 0.045;
 
   const streamParent = {
-    hidden: { opacity: reduceMotion ? 1 : 0 },
+    hidden: { opacity: streamInstant ? 1 : 0 },
     show: {
       opacity: 1,
       transition: { staggerChildren: stagger, delayChildren: delayCh },
@@ -494,9 +497,9 @@ export function LearningTerminal({
 
   const streamChild = {
     hidden: {
-      opacity: reduceMotion ? 1 : 0,
-      y: reduceMotion ? 0 : 5,
-      filter: reduceMotion ? "none" : "blur(5px)",
+      opacity: streamInstant ? 1 : 0,
+      y: streamInstant ? 0 : 5,
+      filter: streamInstant ? "none" : "blur(5px)",
     },
     show: {
       opacity: 1,
@@ -526,6 +529,40 @@ export function LearningTerminal({
       } as const);
 
   if (!visible) return null;
+
+  if (!exercise && edtechFlow) {
+    return (
+      <motion.aside
+        data-nx-edtech-terminal-empty="1"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        style={{
+          position: "fixed",
+          inset: "max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left))",
+          zIndex: "var(--nx-z-learning-focus-panel)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          className="nx-calm-card"
+          style={{
+            padding: 32,
+            borderRadius: 24,
+            maxWidth: 480,
+            textAlign: "center",
+            color: "var(--nx-learn-ink)",
+            fontFamily: "var(--nx-font-sans)",
+          }}
+        >
+          <p style={{ margin: 0, fontSize: 18, fontWeight: 700 }}>
+            {t("learningTerminal.edtechNoExercise", "Aufgabe wird geladen…")}
+          </p>
+        </div>
+      </motion.aside>
+    );
+  }
 
   return (
     <>
@@ -1173,10 +1210,10 @@ export function LearningTerminal({
                             expected={exercise.solutionCode}
                             onSuccess={() => {
                               recordLearningExerciseMastery(answerLf, exercise.id);
-                              triggerBossHit(12);
                               if (edtechFlow) {
                                 window.setTimeout(() => advanceEdtechLearningTurn(), 1200);
                               } else {
+                                triggerBossHit(12);
                                 markMissionCleared(exercise.id);
                               }
                             }}

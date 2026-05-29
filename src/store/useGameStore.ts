@@ -594,6 +594,8 @@ type GameStore = {
   sRankStreak: number;
   bossAdaptivePulseToken: number;
   entryToken: number;
+  /** EdTech: zuletzt gelöste Übung — nächste Auswahl überspringt diese ID */
+  edtechExcludeExerciseId: string | null;
   preferredLearningExerciseId: string | null;
   damagePulseToken: number;
   criticalHitToken: number;
@@ -746,7 +748,7 @@ type GameStore = {
   beginNeuralTrainingCombat: () => void;
   setPreferredLearningExerciseId: (exerciseId: string | null) => void;
   /** EdTech: nächste Übung laden, Mission bleibt aktiv (kein Skill-Bar-Zwischenscreen) */
-  advanceEdtechLearningTurn: () => void;
+  advanceEdtechLearningTurn: (completedExerciseId?: string) => void;
   setActiveMissionContext: (lf: LearningField, missionId: string | null) => void;
   clearActiveMissionContext: () => void;
   markMissionCleared: (missionId: string) => void;
@@ -879,6 +881,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   sRankStreak: 0,
   bossAdaptivePulseToken: 0,
   entryToken: 0,
+  edtechExcludeExerciseId: null,
   preferredLearningExerciseId: null,
   damagePulseToken: 0,
   criticalHitToken: 0,
@@ -913,8 +916,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
   setIdentifiedSkill: (id) => set({ identifiedSkillId: id }),
 
   setPreferredLearningExerciseId: (exerciseId) => set({ preferredLearningExerciseId: exerciseId }),
-  advanceEdtechLearningTurn: () =>
+  advanceEdtechLearningTurn: (completedExerciseId) =>
     set((state) => {
+      const excludePatch = { edtechExcludeExerciseId: completedExerciseId ?? null };
       if (state.isBlitzSession && state.blitzQueue.length > 0) {
         const nextIndex = state.blitzIndex + 1;
         if (nextIndex >= state.blitzQueue.length) {
@@ -924,17 +928,20 @@ export const useGameStore = create<GameStore>((set, get) => ({
             blitzIndex: 0,
             entryToken: state.entryToken + 1,
             preferredLearningExerciseId: null,
+            edtechExcludeExerciseId: null,
           };
         }
         return {
           blitzIndex: nextIndex,
           preferredLearningExerciseId: state.blitzQueue[nextIndex] ?? null,
           entryToken: state.entryToken + 1,
+          edtechExcludeExerciseId: null,
         };
       }
       return {
         entryToken: state.entryToken + 1,
         preferredLearningExerciseId: null,
+        ...excludePatch,
         mission:
           state.mission.missionId != null
             ? { ...state.mission, status: "active" as const }

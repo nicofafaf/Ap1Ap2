@@ -247,7 +247,8 @@ export function getTerminalLearningBundle(
   semantic: keyof (typeof SNIPPETS)["LF1"],
   seed: number,
   leitner?: Readonly<Record<string, LeitnerCardState>>,
-  preferredExerciseId?: string | null
+  preferredExerciseId?: string | null,
+  excludeExerciseId?: string | null
 ): TerminalLearningBundle {
   if (preferredExerciseId) {
     const preferred = getLearningExerciseById(lf, preferredExerciseId);
@@ -265,7 +266,7 @@ export function getTerminalLearningBundle(
   }
   const now = Date.now();
   const exercise = leitner
-    ? pickLearningExerciseFromLfAdaptive(lf, createSeededRandom(seed >>> 0), leitner, now)
+    ? pickLearningExerciseFromLfAdaptive(lf, createSeededRandom(seed >>> 0), leitner, now, excludeExerciseId)
     : pickLearningExercise(lf, semantic, seed);
   if (exercise) {
     return {

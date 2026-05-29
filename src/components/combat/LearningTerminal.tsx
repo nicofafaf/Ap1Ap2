@@ -313,6 +313,7 @@ export function LearningTerminal({
   const { playVictoryFinisherSequence } = useBossAudioEngine();
   const entryToken = useGameStore((s) => s.entryToken);
   const preferredLearningExerciseId = useGameStore((s) => s.preferredLearningExerciseId);
+  const edtechExcludeExerciseId = useGameStore((s) => s.edtechExcludeExerciseId);
   const sectorZeroMorphToken = useGameStore((s) => s.sectorZeroMorphToken);
   const recordCombatLearningAttempt = useGameStore((s) => s.recordCombatLearningAttempt);
   const triggerBossHit = useGameStore((s) => s.triggerBossHit);
@@ -367,9 +368,10 @@ export function LearningTerminal({
       semantic,
       entryToken,
       leitner,
-      preferredLearningExerciseId
+      preferredLearningExerciseId,
+      edtechExcludeExerciseId
     );
-  }, [sectorZero, sectorZeroMorphToken, currentLF, semantic, entryToken, preferredLearningExerciseId]);
+  }, [sectorZero, sectorZeroMorphToken, currentLF, semantic, entryToken, preferredLearningExerciseId, edtechExcludeExerciseId]);
 
   const { snippet, exercise, exerciseLf } = bundle;
   const answerLf = exerciseLf ?? currentLF;
@@ -380,6 +382,16 @@ export function LearningTerminal({
   useEffect(() => {
     setPickedId(null);
   }, [entryToken, currentLF, semantic, visible, sectorZero, sectorZeroMorphToken]);
+
+  useEffect(() => {
+    if (
+      edtechExcludeExerciseId &&
+      exercise?.id &&
+      exercise.id !== edtechExcludeExerciseId
+    ) {
+      useGameStore.setState({ edtechExcludeExerciseId: null });
+    }
+  }, [exercise?.id, edtechExcludeExerciseId]);
 
   useEffect(() => {
     if (!learningFocus) {
@@ -474,7 +486,7 @@ export function LearningTerminal({
           triggerBossHit(8);
         }
         if (edtechFlow) {
-          window.setTimeout(() => advanceEdtechLearningTurn(), 1200);
+          window.setTimeout(() => advanceEdtechLearningTurn(exercise.id), 1200);
         } else if (isBeginnerExercise) {
           markMissionCleared(exercise.id);
         }
@@ -1126,7 +1138,7 @@ export function LearningTerminal({
                           void playVictoryFinisherSequence();
                           window.dispatchEvent(new CustomEvent("nx:boss-clear-map"));
                         } else if (edtechFlow) {
-                          window.setTimeout(() => advanceEdtechLearningTurn(), 1200);
+                          window.setTimeout(() => advanceEdtechLearningTurn(exercise.id), 1200);
                         } else {
                           markMissionCleared(exercise.id);
                         }
@@ -1259,7 +1271,7 @@ export function LearningTerminal({
                             onSuccess={() => {
                               recordLearningExerciseMastery(answerLf, exercise.id);
                               if (edtechFlow) {
-                                window.setTimeout(() => advanceEdtechLearningTurn(), 1200);
+                                window.setTimeout(() => advanceEdtechLearningTurn(exercise.id), 1200);
                               } else {
                                 triggerBossHit(12);
                                 markMissionCleared(exercise.id);

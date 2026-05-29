@@ -1165,15 +1165,20 @@ export function pickLearningExerciseFromLfAdaptive(
   lf: LearningField,
   rng: () => number,
   leitner: Readonly<Record<string, LeitnerCardState>>,
-  now: number
+  now: number,
+  excludeExerciseId?: string | null
 ): LearningExercise | null {
   const bag = CURRICULUM_BY_LF[lf];
   if (!bag?.length) return null;
   const pendingBeginner = getPendingBeginnerExercise(lf, leitner);
-  if (pendingBeginner) return pendingBeginner;
+  if (pendingBeginner && pendingBeginner.id !== excludeExerciseId) return pendingBeginner;
 
   const beginnerIds = BEGINNER_EXERCISE_IDS_BY_LF[lf];
-  const reviewBag = bag.filter((exercise) => !beginnerIds.has(exercise.id));
+  let reviewBag = bag.filter((exercise) => !beginnerIds.has(exercise.id));
+  if (excludeExerciseId) {
+    const withoutLast = reviewBag.filter((exercise) => exercise.id !== excludeExerciseId);
+    if (withoutLast.length) reviewBag = withoutLast;
+  }
   return pickWeightedExercise(reviewBag.length ? reviewBag : bag, rng, (id) =>
     leitnerPickWeight(id, leitner, now)
   );

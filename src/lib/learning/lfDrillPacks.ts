@@ -1,5 +1,22 @@
 import type { LearningField } from "../../data/nexusRegistry";
 import type { LearningExercise } from "./learningExerciseTypes";
+import { loadApExamDrills } from "./drills/loadApExamDrills";
+
+const AP_EXAM_DRILLS = loadApExamDrills();
+
+function mergeDrillPacks(
+  base: LearningExercise[],
+  ap: LearningExercise[]
+): LearningExercise[] {
+  const seen = new Set(base.map((ex) => ex.id));
+  const merged = [...base];
+  for (const ex of ap) {
+    if (seen.has(ex.id)) continue;
+    seen.add(ex.id);
+    merged.push(ex);
+  }
+  return merged;
+}
 
 /** Zusätzliche IHK-nahe Übungen je LF — ergänzt expandedCurriculum + Codex-Referenz */
 const LF1: LearningExercise[] = [
@@ -411,16 +428,16 @@ const LF11: LearningExercise[] = [
 ];
 
 export const LF_DRILL_PACKS: Record<LearningField, LearningExercise[]> = {
-  LF1,
-  LF2: [],
-  LF3,
-  LF4,
-  LF5: [],
-  LF6,
-  LF7,
-  LF8,
-  LF9,
-  LF10,
-  LF11,
-  LF12,
+  LF1: mergeDrillPacks(LF1, AP_EXAM_DRILLS.LF1),
+  LF2: mergeDrillPacks([], AP_EXAM_DRILLS.LF2),
+  LF3: mergeDrillPacks(LF3, AP_EXAM_DRILLS.LF3),
+  LF4: mergeDrillPacks(LF4, AP_EXAM_DRILLS.LF4),
+  LF5: mergeDrillPacks([], AP_EXAM_DRILLS.LF5),
+  LF6: mergeDrillPacks(LF6, AP_EXAM_DRILLS.LF6),
+  LF7: mergeDrillPacks(LF7, AP_EXAM_DRILLS.LF7),
+  LF8: mergeDrillPacks(LF8, AP_EXAM_DRILLS.LF8),
+  LF9: mergeDrillPacks(LF9, AP_EXAM_DRILLS.LF9),
+  LF10: mergeDrillPacks(LF10, AP_EXAM_DRILLS.LF10),
+  LF11: mergeDrillPacks(LF11, AP_EXAM_DRILLS.LF11),
+  LF12: mergeDrillPacks(LF12, AP_EXAM_DRILLS.LF12),
 };

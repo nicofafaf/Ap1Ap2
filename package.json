@@ -12,6 +12,7 @@
     "test:watch": "vitest",
     "check:assets": "vitest run src/lib/nexusAssetManifest.test.ts",
     "prune:assets": "node scripts/prune-nexus-assets.mjs",
+    "generate:ap-drills": "node scripts/generate-ap-exam-drills.mjs",
     "verify": "npm run typecheck && npm test && npm run build"
   },
   "dependencies": {

@@ -17,7 +17,6 @@ import { useGameStore } from "../../../store/useGameStore";
 import { SkillRadar } from "../SkillRadar";
 import { EdtechLazyVideo } from "./EdtechLazyVideo";
 import { EdtechLfThumb } from "./EdtechLfThumb";
-import { EdtechSpotlightRow, type SpotlightCard } from "./EdtechSpotlightRow";
 import { StreakCelebration } from "./StreakCelebration";
 import {
   edtechCourseAp,
@@ -39,12 +38,6 @@ import {
   sectionH2,
   sectionH3,
 } from "./edtechHubTokens";
-
-const CHANGELOG = [
-  { version: "2.4", tag: "hub.edtech.feed.changelog.c1" },
-  { version: "2.3", tag: "hub.edtech.feed.changelog.c2" },
-  { version: "2.2", tag: "hub.edtech.feed.changelog.c3" },
-] as const;
 
 export type NexusEdtechHubArenaProps = {
   onOpenMap: () => void;
@@ -110,10 +103,10 @@ export function NexusEdtechHubArena({
         },
       },
       {
-        title: t("hub.edtech.modeMap"),
-        body: t("hub.edtech.modeMapBody"),
+        title: t("hub.edtech.modeBlitz"),
+        body: t("hub.edtech.modeBlitzBody"),
         accent: cyanAccent,
-        onClick: onOpenMap,
+        onClick: () => onBlitzTraining?.(),
       },
       {
         title: t("hub.edtech.modeDaily"),
@@ -121,70 +114,9 @@ export function NexusEdtechHubArena({
         accent: "rgba(139, 92, 246, 0.95)",
         onClick: () => mapWithExtras({ openDailyPanel: true }),
       },
-      {
-        title: t("hub.edtech.modeReview"),
-        body: t("hub.edtech.modeReviewBody"),
-        accent: goldAccent,
-        onClick: () => onBeginLearningField(5),
-      },
-      {
-        title: t("hub.edtech.modeTheory"),
-        body: t("hub.edtech.modeTheoryBody"),
-        accent: cyanAccent,
-        onClick: () => mapWithExtras({ openCodex: true }),
-      },
     ],
-    [beginExamForLf, continueTarget?.lf, learningTip.lf, mapWithExtras, onBeginExamField, onBeginLearningField, onOpenMap, t],
+    [beginExamForLf, continueTarget?.lf, learningTip.lf, mapWithExtras, onBeginExamField, onBlitzTraining, t],
   );
-
-  const spotlightCards = useMemo((): SpotlightCard[] => {
-    const examLf = continueTarget?.lf ?? learningTip.lf;
-    return [
-      {
-        id: "exam",
-        tag: t("hub.edtech.spotlightExamTag"),
-        title: t("hub.edtech.spotlightExamTitle"),
-        body: t("hub.edtech.spotlightExamBody"),
-        steps: [
-          t("hub.edtech.spotlightExamStep1"),
-          t("hub.edtech.spotlightExamStep2"),
-          t("hub.edtech.spotlightExamStep3"),
-        ],
-        cta: t("hub.edtech.spotlightExamCta"),
-        accent: "rgba(239, 68, 68, 0.92)",
-        onClick: () => {
-          if (onBeginExamField) onBeginExamField(examLf);
-          else beginExamForLf(examLf);
-        },
-      },
-      {
-        id: "blitz",
-        tag: t("hub.edtech.spotlightBlitzTag"),
-        title: t("hub.edtech.spotlightBlitzTitle"),
-        body: t("hub.edtech.spotlightBlitzBody"),
-        cta: t("hub.edtech.spotlightBlitzCta"),
-        accent: cyanAccent,
-        onClick: () => onBlitzTraining?.(),
-      },
-      {
-        id: "radar",
-        tag: t("hub.edtech.spotlightRadarTag"),
-        title: t("hub.edtech.spotlightRadarTitle"),
-        body: t("hub.edtech.spotlightRadarBody"),
-        cta: t("hub.edtech.spotlightRadarCta"),
-        accent: goldAccent,
-        onClick: onOpenMap,
-      },
-    ];
-  }, [
-    beginExamForLf,
-    continueTarget?.lf,
-    learningTip.lf,
-    onBeginExamField,
-    onBlitzTraining,
-    onOpenMap,
-    t,
-  ]);
 
   const { totalCorrect, totalCurriculum } = useMemo(() => {
     let correct = 0;
@@ -243,11 +175,6 @@ export function NexusEdtechHubArena({
     ],
     [mapWithExtras, onBeginLearningField, onOpenMap, t]
   );
-
-  const startExam = (lf: number) => {
-    if (onBeginExamField) onBeginExamField(lf);
-    else beginExamForLf(lf);
-  };
 
   return (
     <motion.div
@@ -433,10 +360,6 @@ export function NexusEdtechHubArena({
         </motion.div>
       </motion.section>
 
-      <motion.div variants={EDTECH_CARD}>
-        <EdtechSpotlightRow title={t("hub.edtech.spotlightTitle")} cards={spotlightCards} />
-      </motion.div>
-
       <motion.section
         variants={EDTECH_CARD}
         style={{ ...edtechCardPanel, padding: "22px 24px" }}
@@ -553,34 +476,6 @@ export function NexusEdtechHubArena({
         </motion.div>
       </motion.section>
 
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-focus">
-        <h2 id="nx-edtech-focus" style={sectionH2}>
-          {t("hub.edtech.focusTitle")}
-        </h2>
-        <motion.div style={focusGridStyle}>
-          <div style={{ ...edtechCardPanel, ...focusCardStyle }}>
-            <span style={focusLabelStyle}>{t("hub.edtech.focusExamReady")}</span>
-            <strong style={focusValueStyle}>{learningTip.examReadyPct}%</strong>
-          </div>
-          <div style={{ ...edtechCardPanel, ...focusCardStyle }}>
-            <span style={focusLabelStyle}>{t("hub.edtech.focusWeakest")}</span>
-            <strong style={focusValueStyle}>LF{learningTip.lf}</strong>
-            <span style={focusSubStyle}>{learningTip.lfTitle}</span>
-          </div>
-          <div style={{ ...edtechCardPanel, ...focusCardStyle }}>
-            <span style={focusLabelStyle}>{t("hub.edtech.statFragments")}</span>
-            <strong style={focusValueStyle}>{nexusFragments}</strong>
-            <motion.button
-              type="button"
-              onClick={() => mapWithExtras({ overlay: "LEADERBOARD" })}
-              style={sectionLinkBtnStyle}
-            >
-              {t("hub.edtech.feed.leaderOpen")}
-            </motion.button>
-          </div>
-        </motion.div>
-      </motion.section>
-
       <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-sim">
         <h2 id="nx-edtech-sim" style={sectionH2}>
           {t("hub.edtech.feed.simTitle")}
@@ -597,54 +492,6 @@ export function NexusEdtechHubArena({
               <EdtechLazyVideo src={sim.video} mode="hover" style={simVideoStyle} />
               <span style={simLabelStyle}>{sim.label}</span>
             </motion.button>
-          ))}
-        </motion.div>
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-exams">
-        <h2 id="nx-edtech-exams" style={sectionH2}>
-          {t("hub.edtech.feed.examTitle")}
-        </h2>
-        <motion.div style={examGridStyle}>
-          <ExamCard
-            title={t("hub.edtech.feed.examAp1")}
-            body={t("hub.edtech.feed.examAp1Body")}
-            onClick={() => startExam(1)}
-            reduceMotion={!!reduceMotion}
-          />
-          <ExamCard
-            title={t("hub.edtech.feed.examAp2")}
-            body={t("hub.edtech.feed.examAp2Body")}
-            onClick={() => startExam(7)}
-            reduceMotion={!!reduceMotion}
-          />
-        </motion.div>
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-changelog">
-        <h2 id="nx-edtech-changelog" style={sectionH2}>
-          {t("hub.edtech.feed.changelogTitle")}
-        </h2>
-        <motion.div style={{ ...glassPanel, padding: "16px 20px", display: "flex", flexDirection: "column", gap: 12 }}>
-          {CHANGELOG.map((entry) => (
-            <motion.div key={entry.version} style={changelogRowStyle}>
-              <span style={changelogVerStyle}>v{entry.version}</span>
-              <span style={changelogTextStyle}>{t(entry.tag)}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-community">
-        <h2 id="nx-edtech-community" style={sectionH2}>
-          {t("hub.edtech.mega.secCommunity")}
-        </h2>
-        <motion.div style={communityGridStyle}>
-          {[t("hub.edtech.mega.chat"), t("hub.edtech.mega.forum"), t("hub.edtech.mega.questions")].map((label) => (
-            <motion.div key={label} style={{ ...glassPanel, ...communityTileStyle, opacity: 0.55 }}>
-              <span>{label}</span>
-              <span style={communitySoonStyle}>{t("hub.edtech.mega.unavailable")}</span>
-            </motion.div>
           ))}
         </motion.div>
       </motion.section>
@@ -699,30 +546,6 @@ function PlatformStat({
       <div style={platformStatLabelStyle}>{label}</div>
       <div style={platformStatSubStyle}>{sub}</div>
     </div>
-  );
-}
-
-function ExamCard({
-  title,
-  body,
-  onClick,
-  reduceMotion,
-}: {
-  title: string;
-  body: string;
-  onClick: () => void;
-  reduceMotion: boolean;
-}) {
-  return (
-    <motion.button
-      type="button"
-      onClick={onClick}
-      whileHover={reduceMotion ? undefined : { y: -3 }}
-      style={{ ...glassPanel, ...examCardStyle, cursor: "pointer", textAlign: "left" }}
-    >
-      <strong style={examTitleStyle}>{title}</strong>
-      <span style={examBodyStyle}>{body}</span>
-    </motion.button>
   );
 }
 

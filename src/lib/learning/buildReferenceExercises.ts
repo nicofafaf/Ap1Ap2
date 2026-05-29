@@ -23,6 +23,19 @@ type RefItem = {
   coachLine?: string;
 };
 
+/** Platzhalter in content.json — erzeugen identische MC ohne Lernwert */
+const REF_TITLE_BLOCKLIST = new Set(["Kern Konzept", "Code Beispiel", "Prüfungs Check"]);
+
+const MAX_CODE_REF_PER_LF = 6;
+
+function shouldSkipReferenceItem(item: RefItem): boolean {
+  const title = item.title?.trim() ?? "";
+  const chapter = item.chapter?.trim() ?? "";
+  if (REF_TITLE_BLOCKLIST.has(title)) return true;
+  if (/multiversum/i.test(chapter)) return true;
+  return false;
+}
+
 type ContentWithRef = { lf?: string | number; reference?: RefItem[] };
 
 const CONTENT_BY_LF: Record<LearningField, ContentWithRef> = {
@@ -81,7 +94,7 @@ function exerciseFromCodeRef(lf: LearningField, item: RefItem): LearningExercise
   let options: LearningMcOption[];
 
   if (hasJoin) {
-    mcQuestion = `${title}: Was koppeln JOIN und ON in dieser Abfrage?`;
+    mcQuestion = `„${title}“: Was koppeln JOIN und ON in dieser Abfrage?`;
     options = mc(
       mcQuestion,
       "Zwei Tabellen über den passenden Schlüssel verbinden",
@@ -113,8 +126,7 @@ function exerciseFromCodeRef(lf: LearningField, item: RefItem): LearningExercise
       ]
     );
   } else if (hasWhere) {
-    const filterHint = code.match(/WHERE\s+(.+)/i)?.[1]?.slice(0, 48) ?? "Filter";
-    mcQuestion = `${title}: Was bewirkt der Filter (${filterHint}…)?`;
+    mcQuestion = `„${title}“: Was bewirkt die WHERE-Bedingung in dieser Abfrage?`;
     options = mc(
       mcQuestion,
       "Es werden nur Zeilen angezeigt, die die Bedingung erfüllen",
@@ -213,15 +225,21 @@ export function buildReferenceExercisesForLf(lf: LearningField): LearningExercis
   const raw = CONTENT_BY_LF[lf];
   const refs = raw.reference ?? [];
   const out: LearningExercise[] = [];
+  let codeRefCount = 0;
 
   for (const item of refs) {
+    if (shouldSkipReferenceItem(item)) continue;
     const type = (item.type ?? "note").toLowerCase();
     if (type === "note") {
       const ex = exerciseFromNoteRef(lf, item);
       if (ex) out.push(ex);
     } else if (type === "sql" || type === "csharp" || type === "bash") {
+      if (codeRefCount >= MAX_CODE_REF_PER_LF) continue;
       const ex = exerciseFromCodeRef(lf, item);
-      if (ex) out.push(ex);
+      if (ex) {
+        out.push(ex);
+        codeRefCount += 1;
+      }
     }
   }
   return out;

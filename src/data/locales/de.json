@@ -166,6 +166,8 @@
       "modeLearnBody": "Thema lesen, Fragen lösen, sofort Feedback",
       "modeExam": "Prüfungsmodus",
       "modeExamBody": "Timer, weniger Hilfen, Prüfungsdruck",
+      "modeBlitz": "Schnell üben",
+      "modeBlitzBody": "10 Fragen aus deinem schwächsten Lernfeld",
       "modeMap": "Lernfelder-Karte",
       "modeMapBody": "Alle zwölf Felder mit Fortschritt",
       "modeDaily": "Aufgabe des Tages",

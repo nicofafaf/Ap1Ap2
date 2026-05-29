@@ -20,12 +20,31 @@ const LF_NUM: Record<LearningField, number> = {
 
 const LF_KEYS = Object.keys(LF_NUM) as LearningField[];
 
+/** Pro LF: kuratierte Prüfungs-Drills statt ~50 generischer Karten */
+const MAX_AP_DRILLS_PER_LF = 28;
+const MIN_DRILL_QUESTION_CHARS = 12;
+
+function pickCuratedApDrills(items: CompactDrill[]): CompactDrill[] {
+  const seenQuestions = new Set<string>();
+  const out: CompactDrill[] = [];
+  for (const drill of items) {
+    const q = drill.question.trim();
+    if (q.length < MIN_DRILL_QUESTION_CHARS) continue;
+    if (seenQuestions.has(q)) continue;
+    seenQuestions.add(q);
+    out.push(drill);
+    if (out.length >= MAX_AP_DRILLS_PER_LF) break;
+  }
+  return out;
+}
+
 /** AP1/AP2-Drills als LearningExercise (IDs: lf{n}-drill-…). */
 export function loadApExamDrills(): Record<LearningField, LearningExercise[]> {
   const out = {} as Record<LearningField, LearningExercise[]>;
   for (const lf of LF_KEYS) {
     const n = LF_NUM[lf];
-    out[lf] = drillsForLf(n, (AP_EXAM_DRILLS_BY_LF[lf] ?? []) as CompactDrill[]);
+    const raw = (AP_EXAM_DRILLS_BY_LF[lf] ?? []) as CompactDrill[];
+    out[lf] = drillsForLf(n, pickCuratedApDrills(raw));
   }
   return out;
 }

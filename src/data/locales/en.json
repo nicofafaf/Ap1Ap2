@@ -166,6 +166,8 @@
       "modeLearnBody": "Read, answer, get instant feedback",
       "modeExam": "Exam mode",
       "modeExamBody": "Timer, fewer hints, exam pressure",
+      "modeBlitz": "Quick practice",
+      "modeBlitzBody": "10 questions from your weakest learning field",
       "modeMap": "Learning field map",
       "modeMapBody": "All twelve fields with progress",
       "modeDaily": "Task of the day",

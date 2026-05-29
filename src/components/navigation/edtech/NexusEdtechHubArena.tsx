@@ -134,23 +134,10 @@ export function NexusEdtechHubArena({
       animate="show"
       style={{ flex: "1 1 auto", minWidth: 0, display: "flex", flexDirection: "column", gap: 28 }}
     >
-      <motion.div variants={EDTECH_CARD} style={bannerStyle}>
-        <span style={bannerDot} aria-hidden />
-        <span style={{ flex: "1 1 auto", minWidth: 0 }}>{t("hub.edtech.localBanner")}</span>
-      </motion.div>
-
-      <motion.header variants={EDTECH_CARD}>
-        <h1 style={welcomeH1Style}>
-          {t("hub.edtech.welcomeBefore")} {playerName}
-          {t("hub.edtech.welcomeAfter")}
-        </h1>
-        <p style={welcomeSubStyle}>{lastLine}</p>
-      </motion.header>
-
       <motion.section
         variants={EDTECH_CARD}
         style={heroShellStyle}
-        aria-labelledby="nx-edtech-hero-title"
+        aria-labelledby="nx-edtech-welcome-title nx-edtech-hero-title"
       >
         {!reduceMotion && heroVideoOk ? (
           <video
@@ -176,6 +163,15 @@ export function NexusEdtechHubArena({
         )}
         <motion.div style={heroOverlayStyle} aria-hidden />
         <div style={heroContentStyle}>
+          <div style={heroBannerOnVideoStyle}>
+            <span style={bannerDot} aria-hidden />
+            <span style={{ flex: "1 1 auto", minWidth: 0 }}>{t("hub.edtech.localBanner")}</span>
+          </div>
+          <h1 id="nx-edtech-welcome-title" style={welcomeOnVideoStyle}>
+            {t("hub.edtech.welcomeBefore")} {playerName}
+            {t("hub.edtech.welcomeAfter")}
+          </h1>
+          <p style={welcomeSubOnVideoStyle}>{lastLine}</p>
           <span style={heroBadgeStyle}>{t("hub.edtech.heroBadge")}</span>
           <h2 id="nx-edtech-hero-title" style={heroTitleStyle}>
             {t("hub.edtech.heroTitle")}
@@ -457,18 +453,22 @@ function ExamCard({
   );
 }
 
-const bannerStyle: CSSProperties = {
+const heroBannerOnVideoStyle: CSSProperties = {
   display: "flex",
   alignItems: "center",
   gap: 10,
   padding: "10px 14px",
   borderRadius: 12,
-  border: "1px solid rgba(6, 182, 212, 0.25)",
-  background: "linear-gradient(90deg, rgba(6,182,212,0.08) 0%, rgba(214,181,111,0.06) 100%)",
+  border: "1px solid rgba(6, 182, 212, 0.35)",
+  background: "rgba(15, 23, 42, 0.45)",
+  backdropFilter: "blur(10px)",
+  WebkitBackdropFilter: "blur(10px)",
   fontFamily: "var(--nx-font-sans)",
   fontSize: 15,
   fontWeight: 650,
-  color: "#334155",
+  color: "rgba(248, 250, 252, 0.92)",
+  marginBottom: 16,
+  maxWidth: 720,
 };
 
 const bannerDot: CSSProperties = {
@@ -480,31 +480,37 @@ const bannerDot: CSSProperties = {
   flexShrink: 0,
 };
 
-const welcomeH1Style: CSSProperties = {
+const welcomeOnVideoStyle: CSSProperties = {
   margin: 0,
   fontFamily: "var(--nx-font-sans)",
   fontSize: "clamp(28px, 3.2vw, 40px)",
   fontWeight: 800,
   letterSpacing: "-0.03em",
-  color: "#0f172a",
+  color: "#f8fafc",
+  textShadow: "0 2px 24px rgba(15, 23, 42, 0.65)",
 };
 
-const welcomeSubStyle: CSSProperties = {
-  margin: "8px 0 0",
+const welcomeSubOnVideoStyle: CSSProperties = {
+  margin: "8px 0 20px",
   fontFamily: "var(--nx-font-sans)",
   fontSize: 17,
   fontWeight: 550,
-  color: "#64748b",
+  color: "rgba(248, 250, 252, 0.82)",
   lineHeight: 1.45,
+  textShadow: "0 1px 16px rgba(15, 23, 42, 0.55)",
 };
 
 const heroShellStyle: CSSProperties = {
   position: "relative",
   borderRadius: 20,
   overflow: "hidden",
-  minHeight: 280,
+  minHeight: "clamp(380px, 52vh, 560px)",
+  width: "100%",
   border: "1px solid rgba(214, 181, 111, 0.35)",
   boxShadow: "0 28px 64px rgba(15,23,42,0.18), inset 0 1px 0 rgba(255,255,255,0.12)",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
 };
 
 const heroVideoStyle: CSSProperties = {
@@ -512,21 +518,27 @@ const heroVideoStyle: CSSProperties = {
   inset: 0,
   width: "100%",
   height: "100%",
-  filter: "saturate(1.05) contrast(1.08)",
+  objectFit: "cover",
+  objectPosition: "center center",
+  minWidth: "100%",
+  minHeight: "100%",
+  transform: "scale(1.04)",
+  filter: "saturate(1.08) contrast(1.1)",
 };
 
 const heroOverlayStyle: CSSProperties = {
   position: "absolute",
   inset: 0,
   background:
-    "linear-gradient(125deg, rgba(15,23,42,0.82) 0%, rgba(15,23,42,0.45) 45%, rgba(6,182,212,0.22) 100%)",
+    "linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(15,23,42,0.38) 42%, rgba(15,23,42,0.62) 100%)",
 };
 
 const heroContentStyle: CSSProperties = {
   position: "relative",
   zIndex: 1,
-  padding: "clamp(24px, 4vw, 40px)",
-  maxWidth: 640,
+  padding: "clamp(24px, 4vw, 44px)",
+  maxWidth: 720,
+  width: "100%",
 };
 
 const heroBadgeStyle: CSSProperties = {

@@ -268,9 +268,13 @@ export function NexusShell() {
     const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ""}${window.location.hash}`;
     window.history.replaceState(null, "", nextUrl);
     completeInitialization();
+    if (useGameStore.getState().nexusChrome === "edtech") {
+      handleBeginLearningField(lf);
+      return;
+    }
     setOverworldLanding("map");
     handleEngage(lf);
-  }, [completeInitialization, handleEngage, setOverworldLanding]);
+  }, [completeInitialization, handleBeginLearningField, handleEngage, setOverworldLanding]);
 
   useEffect(() => {
     if (surface !== "combat" || !mapHoldCombat) return;
@@ -322,8 +326,11 @@ export function NexusShell() {
       : (`LF${Math.max(1, Math.min(12, activeLfNum))}` as LearningField);
 
   /** Lernzentrale (Dashboard): Standard nach Scan — Sektor-Karte nur bei expliziter Wahl */
-  const showNeuralHub =
+  const showHubOverlay =
     gameState === "IDLE" && surface === "overworld" && overworldLanding !== "map";
+
+  /** Karte/Kampf sofort mounten wenn Nutzer lernt — Hub darf nicht blockieren */
+  const showMapCombatLayer = surface === "combat" || !showHubOverlay;
 
   return (
     <div
@@ -335,8 +342,8 @@ export function NexusShell() {
         position: "relative",
       }}
     >
-      <AnimatePresence mode="wait">
-        {showNeuralHub ? (
+      <AnimatePresence>
+        {showHubOverlay ? (
           <motion.div
             key="nexus-shell-hub"
             style={{
@@ -366,7 +373,21 @@ export function NexusShell() {
               />
             </Suspense>
           </motion.div>
-        ) : (
+        ) : null}
+      </AnimatePresence>
+
+      {showMapCombatLayer ? (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: surface === "combat" ? 20001 : 1,
+            width: "100%",
+            height: "100%",
+            minHeight: "100dvh",
+            overflow: "hidden",
+          }}
+        >
           <motion.div
             key="nexus-shell-overworld"
             style={{
@@ -376,10 +397,9 @@ export function NexusShell() {
               minHeight: "100dvh",
               overflow: "hidden",
             }}
-            initial={reduceMotionShell ? false : { opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={reduceMotionShell ? NX_UI_INSTANT : { type: "spring", stiffness: 320, damping: 28, mass: 0.88 }}
+            initial={reduceMotionShell ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={reduceMotionShell ? NX_UI_INSTANT : { duration: 0.22, ease: NX_UI_EASE_OUT }}
           >
             <LayoutGroup id="nexus-dive-bridge">
               <div
@@ -437,8 +457,8 @@ export function NexusShell() {
               </div>
             </LayoutGroup>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      ) : null}
       <MaintenanceOverlay />
     </div>
   );

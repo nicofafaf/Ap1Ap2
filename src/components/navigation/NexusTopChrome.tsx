@@ -92,48 +92,52 @@ export function NexusTopChrome({ mode, onToggleMode, onQuickTest, onOpenMap }: N
           aria-label={t("chrome.navAria")}
           style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" }}
         >
-          <motion.button
-            type="button"
-            onClick={onToggleMode}
-            whileHover={reduceMotion ? undefined : { scale: 1.04 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-            title={ed ? t("chrome.themeIndustrialHint") : t("chrome.themeEdtechHint")}
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 12,
-              border: ed ? "1px solid #e2e8f0" : "1px solid rgba(251,247,239,0.18)",
-              background: ed ? "#f8fafc" : "rgba(0,0,0,0.35)",
-              cursor: "pointer",
-              fontSize: 20,
-              lineHeight: 1,
-              display: "grid",
-              placeItems: "center",
-              color: ed ? "#0f172a" : "rgba(251,247,239,0.9)",
-            }}
-          >
-            {ed ? "☀" : "◐"}
-          </motion.button>
+          {!ed ? (
+            <motion.button
+              type="button"
+              onClick={onToggleMode}
+              whileHover={reduceMotion ? undefined : { scale: 1.04 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.97 }}
+              title={t("chrome.themeIndustrialHint")}
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                border: "1px solid rgba(251,247,239,0.18)",
+                background: "rgba(0,0,0,0.35)",
+                cursor: "pointer",
+                fontSize: 20,
+                lineHeight: 1,
+                display: "grid",
+                placeItems: "center",
+                color: "rgba(251,247,239,0.9)",
+              }}
+            >
+              ◐
+            </motion.button>
+          ) : null}
 
-          <motion.button
-            type="button"
-            onClick={onQuickTest}
-            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            style={{
-              borderRadius: 999,
-              padding: "10px 16px",
-              fontWeight: 700,
-              fontSize: 15,
-              cursor: "pointer",
-              border: ed ? "1px solid rgba(37, 99, 235, 0.35)" : "1px solid rgba(34,211,238,0.35)",
-              background: ed ? "#ffffff" : "rgba(0,0,0,0.22)",
-              color: ed ? "#1d4ed8" : "rgba(251,247,239,0.92)",
-              fontFamily: "var(--nx-font-sans)",
-            }}
-          >
-            {t("chrome.test")}
-          </motion.button>
+          {!ed ? (
+            <motion.button
+              type="button"
+              onClick={onQuickTest}
+              whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              style={{
+                borderRadius: 999,
+                padding: "10px 16px",
+                fontWeight: 700,
+                fontSize: 15,
+                cursor: "pointer",
+                border: "1px solid rgba(34,211,238,0.35)",
+                background: "rgba(0,0,0,0.22)",
+                color: "rgba(251,247,239,0.92)",
+                fontFamily: "var(--nx-font-sans)",
+              }}
+            >
+              {t("chrome.test")}
+            </motion.button>
+          ) : null}
 
           <motion.button
             type="button"

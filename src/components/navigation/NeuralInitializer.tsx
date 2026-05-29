@@ -140,14 +140,13 @@ export function NeuralInitializer({
   );
 
   const openFieldListAndScroll = useCallback(() => {
-    setFieldsExpanded(true);
-    requestAnimationFrame(() => {
-      document.getElementById("nx-field-list-anchor")?.scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start",
-      });
-    });
-  }, [reduceMotion]);
+    goNexusMap();
+  }, [goNexusMap]);
+
+  useEffect(() => {
+    if (phase !== "hub") return;
+    void import("../combat/CombatManager");
+  }, [phase]);
 
   const toggleNexusChrome = useCallback(() => {
     setNexusChrome(nexusChrome === "edtech" ? "industrial" : "edtech");
@@ -566,17 +565,13 @@ export function NeuralInitializer({
                     />
 
                   <div id="nx-field-list-anchor" style={{ scrollMarginTop: 20 }}>
-                  {fieldsExpanded ? (
+                  {nexusChrome !== "edtech" && fieldsExpanded ? (
                     <>
                       <motion.button
                         type="button"
                         variants={CARD}
                         onClick={() => setFieldsExpanded(false)}
-                        style={
-                          nexusChrome === "edtech"
-                            ? { ...collapseListBtnStyle, ...collapseListBtnEdtechStyle }
-                            : collapseListBtnStyle
-                        }
+                        style={collapseListBtnStyle}
                       >
                         {t("hub.hideList")}
                       </motion.button>
@@ -593,10 +588,7 @@ export function NeuralInitializer({
                               key={field.lf}
                               type="button"
                               onClick={() => onBeginLearningField(field.lf)}
-                              style={{
-                                ...fieldCardStyle,
-                                ...(nexusChrome === "edtech" ? fieldCardEdtechStyle : {}),
-                              }}
+                              style={fieldCardStyle}
                               whileHover={
                                 reduceMotion
                                   ? undefined
@@ -622,12 +614,7 @@ export function NeuralInitializer({
                                   }}
                                 />
                               </span>
-                              <span
-                                style={{
-                                  ...fieldMetaStyle,
-                                  ...(nexusChrome === "edtech" ? fieldMetaEdtechStyle : {}),
-                                }}
-                              >
+                              <span style={fieldMetaStyle}>
                                 <span>Datenträger</span>
                                 <b>
                                   LF{field.lf} · {field.ap}
@@ -635,25 +622,14 @@ export function NeuralInitializer({
                               </span>
                               <strong
                                 style={{
-                                  color: nexusChrome === "edtech" ? "#0f172a" : "var(--nx-learn-ink)",
+                                  color: "var(--nx-learn-ink)",
                                   fontWeight: 800,
                                 }}
                               >
                                 {field.title}
                               </strong>
-                              <span
-                                style={{
-                                  color: nexusChrome === "edtech" ? "#475569" : undefined,
-                                }}
-                              >
-                                {field.focus}
-                              </span>
-                              <span
-                                style={{
-                                  ...fieldProgressStyle,
-                                  ...(nexusChrome === "edtech" ? fieldProgressEdtechStyle : {}),
-                                }}
-                              >
+                              <span>{field.focus}</span>
+                              <span style={fieldProgressStyle}>
                                 Einsteiger · {solved}/{total} Übungen · Starten
                               </span>
                             </motion.button>
@@ -661,20 +637,16 @@ export function NeuralInitializer({
                         })}
                       </motion.div>
                     </>
-                  ) : (
+                  ) : nexusChrome !== "edtech" ? (
                     <motion.button
                       type="button"
                       variants={CARD}
                       onClick={() => setFieldsExpanded(true)}
-                      style={
-                        nexusChrome === "edtech"
-                          ? { ...showListBtnStyle, ...showListBtnEdtechStyle }
-                          : showListBtnStyle
-                      }
+                      style={showListBtnStyle}
                     >
                       {t("hub.showList")}
                     </motion.button>
-                  )}
+                  ) : null}
                   </div>
                 </div>
 

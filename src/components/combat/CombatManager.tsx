@@ -110,6 +110,9 @@ export function CombatManager({
   onLootScreenReady,
   diveLayoutBridgeLf = null,
 }: CombatManagerProps) {
+  const nexusChrome = useGameStore((s) => s.nexusChrome);
+  const edtechLearn = nexusChrome === "edtech";
+
   const storeSlice = useGameStore(
     useShallow((state) => ({
       activeLF: state.activeLF,
@@ -270,6 +273,14 @@ export function CombatManager({
     setVictoryFlashToken(0);
     setOverlayOpenState("NONE");
     clearAchievementBuffer();
+
+    if (useGameStore.getState().nexusChrome === "edtech") {
+      setLoreVisible(false);
+      setBossVisible(false);
+      setCombatUnlocked(true);
+      onCombatUnlocked?.();
+      return;
+    }
 
     // Phase 1: Lore focus
     const showBossTimer = window.setTimeout(() => {
@@ -593,7 +604,7 @@ export function CombatManager({
       />
       ) : null}
 
-      <AssetDataStreamOverlay visible={!bossVisible} lines={assetStreamLines} />
+      <AssetDataStreamOverlay visible={!bossVisible && !edtechLearn} lines={assetStreamLines} />
 
       {!learningModeActive ? (
       <div
@@ -706,6 +717,7 @@ export function CombatManager({
 
       {combatUnlocked && !tokens.isVictory && !learningModeActive ? <ShieldOverlay /> : null}
 
+      {(!edtechLearn || !learningModeActive) && (
       <PostProcessing
         playerHpRatio={playerHpRatio}
         hitPulseToken={tokens.damagePulseToken}
@@ -728,6 +740,7 @@ export function CombatManager({
         learningAscensionMix={Math.min(1, storeSlice.learningMentorStreak / 9)}
         learningMentorColdToken={storeSlice.learningMentorColdToken}
       />
+      )}
 
       {combatUnlocked &&
         storeSlice.examPresentationMode &&

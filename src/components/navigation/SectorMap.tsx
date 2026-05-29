@@ -336,7 +336,7 @@ export function SectorMap({
     () => readEpilogueUnlocked() || Boolean(nexusMasterCertificateSealed),
     [nexusMasterCertificateSealed]
   );
-  const edtechCalm = nexusChrome === "edtech" && !epilogueActive;
+  const edtechCalm = nexusChrome === "edtech";
   const isFirstBoot = useGameStore((s) => s.isFirstBoot);
 
   useEffect(() => {

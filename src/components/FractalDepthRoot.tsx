@@ -265,7 +265,7 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
   const combatHot =
     gameState === "STARTING" || gameState === "FIGHTING" || gameState === "VICTORY";
 
-  const edtechAtmosphere = nexusChrome === "edtech" && !combatHot;
+  const edtechAtmosphere = nexusChrome === "edtech";
 
   useEffect(() => {
     document.documentElement.dataset.nxChrome = nexusChrome;

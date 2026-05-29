@@ -16,6 +16,7 @@ export type NexusEdtechDashboardProps = {
   onSwapCompanion: () => void;
   onNavigateFromHubToMap?: (extras: NexusHubMapExtras) => void;
   onBlitzTraining?: () => void;
+  onBeginExamField?: (lf: number) => void;
 };
 
 export function NexusEdtechDashboard({
@@ -28,6 +29,7 @@ export function NexusEdtechDashboard({
   onSwapCompanion,
   onNavigateFromHubToMap,
   onBlitzTraining,
+  onBeginExamField,
 }: NexusEdtechDashboardProps) {
   const reduceMotion = useReducedMotion();
   const playerName = useGameStore((s) => s.playerName);
@@ -72,6 +74,8 @@ export function NexusEdtechDashboard({
         onOpenMap={onOpenMap}
         onOpenFieldList={onOpenFieldList}
         onBeginLearningField={onBeginLearningField}
+        onBeginExamField={onBeginExamField}
+        onBlitzTraining={onBlitzTraining}
         mapWithExtras={mapWithExtras}
       />
     </div>

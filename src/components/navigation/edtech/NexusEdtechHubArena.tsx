@@ -14,8 +14,11 @@ import { getAllLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
 import { getDailyIncursionDefinition, getUtcDateKey } from "../../../lib/dailyIncursion";
 import { useGameStore } from "../../../store/useGameStore";
+import { SkillRadar } from "../SkillRadar";
 import { EdtechLazyVideo } from "./EdtechLazyVideo";
 import { EdtechLfThumb } from "./EdtechLfThumb";
+import { EdtechSpotlightRow, type SpotlightCard } from "./EdtechSpotlightRow";
+import { StreakCelebration } from "./StreakCelebration";
 import {
   edtechCourseAp,
   edtechCourseBody,
@@ -47,6 +50,8 @@ export type NexusEdtechHubArenaProps = {
   onOpenMap: () => void;
   onOpenFieldList: () => void;
   onBeginLearningField: (lf: number) => void;
+  onBeginExamField?: (lf: number) => void;
+  onBlitzTraining?: () => void;
   mapWithExtras: (extras: NexusHubMapExtras) => void;
 };
 
@@ -54,6 +59,8 @@ export function NexusEdtechHubArena({
   onOpenMap,
   onOpenFieldList,
   onBeginLearningField,
+  onBeginExamField,
+  onBlitzTraining,
   mapWithExtras,
 }: NexusEdtechHubArenaProps) {
   const { t } = useNexusI18n();
@@ -67,6 +74,9 @@ export function NexusEdtechHubArena({
   const unlockedSectors = useGameStore((s) => s.campaign.unlockedSectors);
   const lastEvents = useGameStore((s) => s.lastCombatLearningEvents);
   const learningLeitnerByExerciseId = useGameStore((s) => s.learningLeitnerByExerciseId);
+  const streakCelebrationMilestone = useGameStore((s) => s.streakCelebrationMilestone);
+  const clearStreakCelebration = useGameStore((s) => s.clearStreakCelebration);
+  const beginExamForLf = useGameStore((s) => s.beginExamForLf);
 
   const dateKey = getUtcDateKey();
   const dailyLf = useMemo(() => getDailyIncursionDefinition(dateKey).targetLf, [dateKey]);
@@ -93,7 +103,11 @@ export function NexusEdtechHubArena({
         title: t("hub.edtech.modeExam"),
         body: t("hub.edtech.modeExamBody"),
         accent: "rgba(239, 68, 68, 0.92)",
-        onClick: () => onBeginLearningField(1),
+        onClick: () => {
+          const lf = continueTarget?.lf ?? learningTip.lf;
+          if (onBeginExamField) onBeginExamField(lf);
+          else beginExamForLf(lf);
+        },
       },
       {
         title: t("hub.edtech.modeMap"),
@@ -120,8 +134,57 @@ export function NexusEdtechHubArena({
         onClick: () => mapWithExtras({ openCodex: true }),
       },
     ],
-    [mapWithExtras, onBeginLearningField, onOpenMap, t],
+    [beginExamForLf, continueTarget?.lf, learningTip.lf, mapWithExtras, onBeginExamField, onBeginLearningField, onOpenMap, t],
   );
+
+  const spotlightCards = useMemo((): SpotlightCard[] => {
+    const examLf = continueTarget?.lf ?? learningTip.lf;
+    return [
+      {
+        id: "exam",
+        tag: t("hub.edtech.spotlightExamTag"),
+        title: t("hub.edtech.spotlightExamTitle"),
+        body: t("hub.edtech.spotlightExamBody"),
+        steps: [
+          t("hub.edtech.spotlightExamStep1"),
+          t("hub.edtech.spotlightExamStep2"),
+          t("hub.edtech.spotlightExamStep3"),
+        ],
+        cta: t("hub.edtech.spotlightExamCta"),
+        accent: "rgba(239, 68, 68, 0.92)",
+        onClick: () => {
+          if (onBeginExamField) onBeginExamField(examLf);
+          else beginExamForLf(examLf);
+        },
+      },
+      {
+        id: "blitz",
+        tag: t("hub.edtech.spotlightBlitzTag"),
+        title: t("hub.edtech.spotlightBlitzTitle"),
+        body: t("hub.edtech.spotlightBlitzBody"),
+        cta: t("hub.edtech.spotlightBlitzCta"),
+        accent: cyanAccent,
+        onClick: () => onBlitzTraining?.(),
+      },
+      {
+        id: "radar",
+        tag: t("hub.edtech.spotlightRadarTag"),
+        title: t("hub.edtech.spotlightRadarTitle"),
+        body: t("hub.edtech.spotlightRadarBody"),
+        cta: t("hub.edtech.spotlightRadarCta"),
+        accent: goldAccent,
+        onClick: onOpenMap,
+      },
+    ];
+  }, [
+    beginExamForLf,
+    continueTarget?.lf,
+    learningTip.lf,
+    onBeginExamField,
+    onBlitzTraining,
+    onOpenMap,
+    t,
+  ]);
 
   const { totalCorrect, totalCurriculum } = useMemo(() => {
     let correct = 0;
@@ -181,6 +244,11 @@ export function NexusEdtechHubArena({
     [mapWithExtras, onBeginLearningField, onOpenMap, t]
   );
 
+  const startExam = (lf: number) => {
+    if (onBeginExamField) onBeginExamField(lf);
+    else beginExamForLf(lf);
+  };
+
   return (
     <motion.div
       variants={EDTECH_STAGGER}
@@ -188,6 +256,10 @@ export function NexusEdtechHubArena({
       animate="show"
       style={{ flex: "1 1 auto", minWidth: 0, display: "flex", flexDirection: "column", gap: 28 }}
     >
+      <StreakCelebration
+        milestone={streakCelebrationMilestone}
+        onDismiss={clearStreakCelebration}
+      />
       <motion.section
         variants={EDTECH_CARD}
         style={heroShellStyle}
@@ -361,6 +433,10 @@ export function NexusEdtechHubArena({
         </motion.div>
       </motion.section>
 
+      <motion.div variants={EDTECH_CARD}>
+        <EdtechSpotlightRow title={t("hub.edtech.spotlightTitle")} cards={spotlightCards} />
+      </motion.div>
+
       <motion.section
         variants={EDTECH_CARD}
         style={{ ...edtechCardPanel, padding: "22px 24px" }}
@@ -383,6 +459,16 @@ export function NexusEdtechHubArena({
         >
           {t("hub.edtech.tipCta")} · LF{learningTip.lf}
         </motion.button>
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-radar">
+        <h2 id="nx-edtech-radar" style={sectionH2}>
+          {t("hub.edtech.radarTitle")}
+        </h2>
+        <p style={allFieldsLeadStyle}>{t("hub.edtech.radarLead")}</p>
+        <div style={radarWrapStyle}>
+          <SkillRadar layoutVariant="compact" epilogueActive />
+        </div>
       </motion.section>
 
       <motion.div
@@ -523,13 +609,13 @@ export function NexusEdtechHubArena({
           <ExamCard
             title={t("hub.edtech.feed.examAp1")}
             body={t("hub.edtech.feed.examAp1Body")}
-            onClick={() => onBeginLearningField(1)}
+            onClick={() => startExam(1)}
             reduceMotion={!!reduceMotion}
           />
           <ExamCard
             title={t("hub.edtech.feed.examAp2")}
             body={t("hub.edtech.feed.examAp2Body")}
-            onClick={() => onBeginLearningField(7)}
+            onClick={() => startExam(7)}
             reduceMotion={!!reduceMotion}
           />
         </motion.div>
@@ -985,6 +1071,14 @@ const allFieldsLeadStyle: CSSProperties = {
   fontSize: 15,
   fontWeight: 600,
   color: "#64748b",
+};
+
+const radarWrapStyle: CSSProperties = {
+  display: "flex",
+  justifyContent: "center",
+  padding: "8px 0 4px",
+  maxWidth: 440,
+  margin: "0 auto",
 };
 
 const focusGridStyle: CSSProperties = {

@@ -14,7 +14,7 @@ attachNexusHealthToWindow();
 syncOpenGraphMetaFromLocalState();
 
 /** Einmal pro Inhalts-Release: alte PWA-Caches leeren (veraltete Texte / fehlendes Hero-Video) */
-const CONTENT_REV = "2026-05-29-ap-exam-drills-v1";
+const CONTENT_REV = "2026-05-29-aaa-hub-v2";
 const CONTENT_REV_KEY = "nexus.contentRev.v1";
 if (typeof localStorage !== "undefined" && localStorage.getItem(CONTENT_REV_KEY) !== CONTENT_REV) {
   localStorage.setItem(CONTENT_REV_KEY, CONTENT_REV);

@@ -13,6 +13,7 @@ import type { LearningMcOption } from "../../lib/learning/learningExerciseTypes"
 import { resolveTerminalBossMode } from "../../lib/learning/learningRegistry";
 import { useBossAudioEngine } from "../../lib/audio/bossAudioEngine";
 import { MentorPortrait } from "../ui/MentorPortrait";
+import { EdtechExamTimerBar } from "../navigation/edtech/EdtechExamTimerBar";
 
 export type LearningTerminalProps = {
   currentLF: LearningField;
@@ -35,6 +36,7 @@ function LearningMcOptionRow({
   onPick,
   t,
   hitMessageOverride,
+  examStrict,
 }: {
   opt: LearningMcOption;
   optIdx: number;
@@ -45,6 +47,7 @@ function LearningMcOptionRow({
   onPick: (opt: LearningMcOption) => void;
   t: (key: string, fallback?: string) => string;
   hitMessageOverride?: string | null;
+  examStrict?: boolean;
 }) {
   const learningFocus = variant === "focusPanel";
   const showFeedback = pickedId === opt.id;
@@ -163,9 +166,11 @@ function LearningMcOptionRow({
               color: "rgba(254, 202, 202, 0.92)",
             }}
           >
-            {opt.whyWrongHint
-              ? opt.whyWrongHint
-              : t("learningTerminal.feedbackMcWrongPickOther")}
+            {examStrict
+              ? t("learningTerminal.feedbackExamNoHint")
+              : opt.whyWrongHint
+                ? opt.whyWrongHint
+                : t("learningTerminal.feedbackMcWrongPickOther")}
           </div>
         </div>
       ) : null}
@@ -316,6 +321,12 @@ export function LearningTerminal({
   const advanceEdtechLearningTurn = useGameStore((s) => s.advanceEdtechLearningTurn);
   const nexusChrome = useGameStore((s) => s.nexusChrome);
   const edtechFlow = nexusChrome === "edtech";
+  const examPresentationMode = useGameStore((s) => s.examPresentationMode);
+  const examSessionEndsAt = useGameStore((s) => s.examSessionEndsAt);
+  const isBlitzSession = useGameStore((s) => s.isBlitzSession);
+  const blitzIndex = useGameStore((s) => s.blitzIndex);
+  const blitzQueue = useGameStore((s) => s.blitzQueue);
+  const examStrict = edtechFlow && examPresentationMode;
   const setActiveMissionContext = useGameStore((s) => s.setActiveMissionContext);
   const clearActiveMissionContext = useGameStore((s) => s.clearActiveMissionContext);
   const mission = useGameStore((s) => s.mission);
@@ -672,6 +683,30 @@ export function LearningTerminal({
             animate="show"
             style={{ display: "flex", flexDirection: "column", gap: 0 }}
           >
+            {learningFocus && examStrict && examSessionEndsAt ? (
+              <EdtechExamTimerBar endsAt={examSessionEndsAt} compact />
+            ) : null}
+            {learningFocus && isBlitzSession && blitzQueue.length > 0 ? (
+              <motion.div
+                variants={streamChild}
+                style={{
+                  marginBottom: 12,
+                  padding: "10px 14px",
+                  borderRadius: 12,
+                  background: "linear-gradient(90deg, rgba(6,182,212,0.12), rgba(214,181,111,0.08))",
+                  border: "1px solid rgba(6,182,212,0.35)",
+                  fontFamily: "var(--nx-font-mono)",
+                  fontSize: 13,
+                  fontWeight: 800,
+                  letterSpacing: "0.08em",
+                  color: "var(--nx-learn-muted)",
+                }}
+              >
+                {t("learningTerminal.blitzProgress")
+                  .replace("{current}", String(blitzIndex + 1))
+                  .replace("{total}", String(blitzQueue.length))}
+              </motion.div>
+            ) : null}
             {!learningFocus ? (
               <motion.nav
                 variants={streamChild}
@@ -991,6 +1026,7 @@ export function LearningTerminal({
                   ) : null}
                   {!(
                     learningFocus &&
+                    !examStrict &&
                     exercise.coachLine &&
                     exercise.lang === "markdown" &&
                     exercise.mcOptions.length > 0
@@ -1054,7 +1090,7 @@ export function LearningTerminal({
                       gap: "var(--nx-space-12)",
                     }}
                   >
-                    {exercise.coachLine ? (
+                    {!examStrict && exercise.coachLine ? (
                       <p
                         style={{
                           margin: 0,
@@ -1126,7 +1162,7 @@ export function LearningTerminal({
                         gap: "var(--nx-space-12)",
                       }}
                     >
-                      {exercise.coachLine ? (
+                      {!examStrict && exercise.coachLine ? (
                         <p
                           style={{
                             margin: 0,
@@ -1193,6 +1229,7 @@ export function LearningTerminal({
                                 )
                               : null
                           }
+                          examStrict={examStrict}
                         />
                       ))}
                     </motion.div>
@@ -1250,7 +1287,7 @@ export function LearningTerminal({
                         gap: exercise.coachLine ? "var(--nx-space-12)" : 0,
                       }}
                     >
-                      {exercise.coachLine ? (
+                      {!examStrict && exercise.coachLine ? (
                         <p
                           style={{
                             margin: 0,
@@ -1316,6 +1353,7 @@ export function LearningTerminal({
                           hitMessageOverride={t(
                             "learningTerminal.feedbackMcHitCards"
                           )}
+                          examStrict={examStrict}
                         />
                       ))}
                     </motion.div>

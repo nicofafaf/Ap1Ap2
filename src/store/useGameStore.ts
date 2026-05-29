@@ -14,6 +14,13 @@ import {
 } from "../data/achievementRegistry";
 import { rollLootRarity, type LearningField, type LootRarity } from "../data/nexusRegistry";
 import {
+  BLITZ_QUESTION_COUNT,
+  EXAM_SESSION_MS,
+  buildBlitzQueue,
+  pickWeakestLf,
+  streakMilestoneFor,
+} from "../lib/learning/blitzSession";
+import {
   CURRICULUM_BY_LF,
   applyLeitnerReview,
   getBeginnerExerciseForLf,
@@ -553,6 +560,20 @@ type GameStore = {
   /** Präsentationsmodus: Pattern-Tooltips im Technical Dossier */
   examPresentationMode: boolean;
   setExamPresentationMode: (enabled: boolean) => void;
+  /** Prüfungsmodus: Session-Ende (Unix ms) */
+  examSessionEndsAt: number | null;
+  startExamSession: () => void;
+  clearExamSession: () => void;
+  /** Schnell üben: feste Übungs-Warteschlange */
+  isBlitzSession: boolean;
+  blitzQueue: string[];
+  blitzIndex: number;
+  blitzTargetLf: number;
+  beginBlitzTraining: () => void;
+  beginExamForLf: (lf: number) => void;
+  streakCelebrationMilestone: number | null;
+  clearStreakCelebration: () => void;
+  checkStreakCelebration: (streak: number) => void;
   /** Exam-Mode: Live-Logic-Flow Visualisierung — inkrementiert pro gespielter Karte */
   examLogicFlowToken: number;
   /** Aufeinanderfolgende korrekte Lernantworten (MC) im laufenden Kampf */
@@ -838,6 +859,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
   readabilityMode: false,
   examPresentationMode: false,
+  examSessionEndsAt: null,
+  isBlitzSession: false,
+  blitzQueue: [],
+  blitzIndex: 0,
+  blitzTargetLf: 1,
+  streakCelebrationMilestone: null,
   examLogicFlowToken: 0,
   learningMentorStreak: 0,
   learningMentorColdToken: 0,
@@ -887,14 +914,33 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   setPreferredLearningExerciseId: (exerciseId) => set({ preferredLearningExerciseId: exerciseId }),
   advanceEdtechLearningTurn: () =>
-    set((state) => ({
-      entryToken: state.entryToken + 1,
-      preferredLearningExerciseId: null,
-      mission:
-        state.mission.missionId != null
-          ? { ...state.mission, status: "active" as const }
-          : state.mission,
-    })),
+    set((state) => {
+      if (state.isBlitzSession && state.blitzQueue.length > 0) {
+        const nextIndex = state.blitzIndex + 1;
+        if (nextIndex >= state.blitzQueue.length) {
+          return {
+            isBlitzSession: false,
+            blitzQueue: [],
+            blitzIndex: 0,
+            entryToken: state.entryToken + 1,
+            preferredLearningExerciseId: null,
+          };
+        }
+        return {
+          blitzIndex: nextIndex,
+          preferredLearningExerciseId: state.blitzQueue[nextIndex] ?? null,
+          entryToken: state.entryToken + 1,
+        };
+      }
+      return {
+        entryToken: state.entryToken + 1,
+        preferredLearningExerciseId: null,
+        mission:
+          state.mission.missionId != null
+            ? { ...state.mission, status: "active" as const }
+            : state.mission,
+      };
+    }),
   setActiveMissionContext: (lf, missionId) =>
     set((state) => ({
       mission: {
@@ -2317,13 +2363,68 @@ export const useGameStore = create<GameStore>((set, get) => ({
     get().initiateCombat(1, 72);
   },
 
+  startExamSession: () => set({ examSessionEndsAt: Date.now() + EXAM_SESSION_MS }),
+  clearExamSession: () => set({ examSessionEndsAt: null }),
+  clearStreakCelebration: () => set({ streakCelebrationMilestone: null }),
+  checkStreakCelebration: (streak) => {
+    const milestone = streakMilestoneFor(streak);
+    if (milestone) set({ streakCelebrationMilestone: milestone });
+  },
+  beginExamForLf: (lf) => {
+    const queue = buildBlitzQueue(lf, BLITZ_QUESTION_COUNT);
+    const first = queue[0] ?? null;
+    set({
+      examPresentationMode: true,
+      examSessionEndsAt: Date.now() + EXAM_SESSION_MS,
+      isBlitzSession: false,
+      blitzQueue: [],
+      blitzIndex: 0,
+      blitzTargetLf: lf,
+      preferredLearningExerciseId: first,
+      isTutorialCombatRun: false,
+      combatTutorialStep: 0,
+    });
+    try {
+      localStorage.setItem("nexus.examPresentationMode.v1", "1");
+    } catch {
+      // no-op
+    }
+    get().initiateCombat(lf, 100);
+  },
+  beginBlitzTraining: () => {
+    const s = get();
+    const lf = pickWeakestLf(s.learningLeitnerByExerciseId, s.learningCorrectByLf);
+    const queue = buildBlitzQueue(lf, BLITZ_QUESTION_COUNT);
+    const first = queue[0] ?? null;
+    set({
+      examPresentationMode: false,
+      examSessionEndsAt: null,
+      isBlitzSession: true,
+      blitzQueue: queue,
+      blitzIndex: 0,
+      blitzTargetLf: lf,
+      preferredLearningExerciseId: first,
+      isTutorialCombatRun: false,
+      combatTutorialStep: 0,
+    });
+    try {
+      localStorage.setItem("nexus.examPresentationMode.v1", "0");
+    } catch {
+      // no-op
+    }
+    get().initiateCombat(lf, 100);
+  },
   setExamPresentationMode: (enabled) => {
     try {
       localStorage.setItem("nexus.examPresentationMode.v1", enabled ? "1" : "0");
     } catch {
       // no-op
     }
-    set({ examPresentationMode: enabled });
+    if (enabled) {
+      set({ examPresentationMode: true, examSessionEndsAt: Date.now() + EXAM_SESSION_MS });
+    } else {
+      set({ examPresentationMode: false, examSessionEndsAt: null });
+    }
   },
 
   mergeLocalKnowledgeWithRegistry: async (registryFingerprint) => {
@@ -2521,6 +2622,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       dailyParticipationStreak: nextStreak,
       playerDailyBest: nextPlayerBest,
     });
+    get().checkStreakCelebration(nextStreak);
     persistDailySlice({
       dailyRankedClearDateUtc: nextDailyClear,
       dailyParticipationStreak: nextStreak,

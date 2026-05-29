@@ -161,12 +161,26 @@ export function NexusShell() {
     [initiateCombat]
   );
 
+  const beginBlitzTraining = useGameStore((s) => s.beginBlitzTraining);
+  const beginExamForLf = useGameStore((s) => s.beginExamForLf);
+
   const handleBeginTraining = useCallback(() => {
-    beginNeuralTrainingCombat();
-    setDiveBridgeLf(1);
+    beginBlitzTraining();
+    setDiveBridgeLf(useGameStore.getState().blitzTargetLf);
     setMapHoldCombat(true);
     setSurface("combat");
-  }, [beginNeuralTrainingCombat]);
+  }, [beginBlitzTraining]);
+
+  const handleBeginExamField = useCallback(
+    (lf: number) => {
+      completeInitialization();
+      beginExamForLf(lf);
+      setDiveBridgeLf(lf);
+      setMapHoldCombat(true);
+      setSurface("combat");
+    },
+    [beginExamForLf, completeInitialization],
+  );
 
   const handleOpenOverview = useCallback(() => {
     completeInitialization();
@@ -369,6 +383,7 @@ export function NexusShell() {
                 onOpenOverview={handleOpenOverview}
                 onLaunchNexusMap={handleOpenOverview}
                 onBeginLearningField={handleBeginLearningField}
+                onBeginExamField={handleBeginExamField}
                 onNavigateFromHubToMap={handleNavigateFromHubToMap}
               />
             </Suspense>

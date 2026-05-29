@@ -19,6 +19,7 @@ export type NeuralInitializerProps = {
   /** Optional: gleicher Effekt wie onOpenOverview — SectorMap mit Scale-In aus dem Shell-Wrapper */
   onLaunchNexusMap?: () => void;
   onBeginLearningField: (lf: number) => void;
+  onBeginExamField?: (lf: number) => void;
   /** Nach Hub: Karte öffnen und optional Overlay / Sector-Panels (siehe hubMapNavigation) */
   onNavigateFromHubToMap?: (extras: NexusHubMapExtras) => void;
   /** Wenn gesetzt: schließbare Variante über der Karte (zweiter Besuch) */
@@ -90,6 +91,7 @@ export function NeuralInitializer({
   onOpenOverview,
   onLaunchNexusMap,
   onBeginLearningField,
+  onBeginExamField,
   onNavigateFromHubToMap,
   onReturnToMap,
 }: NeuralInitializerProps) {
@@ -560,6 +562,7 @@ export function NeuralInitializer({
                       onOpenMap={goNexusMap}
                       onOpenFieldList={openFieldListAndScroll}
                       onBeginLearningField={onBeginLearningField}
+                      onBeginExamField={onBeginExamField}
                       onSwapCompanion={() => clearCompanionSelection()}
                       onNavigateFromHubToMap={onNavigateFromHubToMap}
                       onBlitzTraining={onBeginTraining}

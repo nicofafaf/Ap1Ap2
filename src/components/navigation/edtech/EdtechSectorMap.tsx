@@ -13,6 +13,7 @@ import { HallOfRecords } from "../../menu/HallOfRecords";
 import { LegacyCredits } from "../../menu/LegacyCredits";
 import { TechnicalDossier } from "../../menu/TechnicalDossier";
 import { CoreAugmentations } from "../CoreAugmentations";
+import { EdtechLfCourseSheet } from "./EdtechLfCourseSheet";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import "./edtechSectorMap.css";
 import {
@@ -82,9 +83,12 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   const dailyRankedClearDateUtc = useGameStore((s) => s.dailyRankedClearDateUtc);
   const overlayOpenState = useGameStore((s) => s.overlayOpenState);
   const setOverlayOpenState = useGameStore((s) => s.setOverlayOpenState);
+  const setExamPresentationMode = useGameStore((s) => s.setExamPresentationMode);
   const codexCloseToken = useGameStore((s) => s.codexCloseToken);
 
   const [extrasOpen, setExtrasOpen] = useState(false);
+  const [selectedLf, setSelectedLf] = useState<number | null>(null);
+  const [codexLf, setCodexLf] = useState<LearningField | undefined>(undefined);
   const [codexOpen, setCodexOpen] = useState(false);
   const [technicalDossierOpen, setTechnicalDossierOpen] = useState(false);
   const [hallRecordsOpen, setHallRecordsOpen] = useState(false);
@@ -124,6 +128,19 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
     }),
     [dailyRankedClearDateUtc, dateKey]
   );
+
+  const handleCourseEngage = (lf: number, mode: "learn" | "exam") => {
+    setSelectedLf(null);
+    setExamPresentationMode(mode === "exam");
+    const opts =
+      lf === dailyDef.targetLf && mode === "learn" ? dailyEngageOptions : undefined;
+    onEngage(lf, opts);
+  };
+
+  const openCodexForLf = (lf: number) => {
+    setCodexLf(`LF${lf}` as LearningField);
+    setCodexOpen(true);
+  };
 
   const scanRingForLf = (lf: number): "stable" | "gap" | "neutral" | undefined => {
     if (!initialSkillScanComplete) return undefined;
@@ -195,7 +212,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         type="button"
         layout={false}
         aria-label={ariaLabel}
-        onClick={() => onEngage(field.lf, field.isDaily ? dailyEngageOptions : undefined)}
+        onClick={() => setSelectedLf(field.lf)}
         whileHover={reduceMotion ? undefined : { y: -2 }}
         whileTap={reduceMotion ? undefined : { scale: 0.995 }}
         style={{
@@ -401,7 +418,10 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
               <button
                 type="button"
                 data-nx-tutorial="codex"
-                onClick={() => setCodexOpen(true)}
+                onClick={() => {
+                  setCodexLf(undefined);
+                  setCodexOpen(true);
+                }}
                 style={edtechMenuBtn}
               >
                 {t("map.edtechMenuExercises")}
@@ -473,6 +493,14 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
       <LegacyCredits open={legacyCreditsOpen} onClose={() => setLegacyCreditsOpen(false)} />
       <HallOfRecords open={hallRecordsOpen} onClose={() => setHallRecordsOpen(false)} />
       <CoreAugmentations open={coreAugOpen} onClose={() => setCoreAugOpen(false)} />
+      <EdtechLfCourseSheet
+        lf={selectedLf}
+        onClose={() => setSelectedLf(null)}
+        onEngage={handleCourseEngage}
+        onOpenCodex={() => {
+          if (selectedLf != null) openCodexForLf(selectedLf);
+        }}
+      />
       <AnimatePresence>
         {codexOpen ? (
           <motion.div
@@ -497,7 +525,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
                 {t("map.edtechClose")}
               </button>
             </div>
-            <CodexIridium />
+            <CodexIridium initialLf={codexLf} />
           </motion.div>
         ) : null}
       </AnimatePresence>

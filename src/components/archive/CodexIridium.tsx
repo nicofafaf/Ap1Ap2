@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
 import { useGameStore } from "../../store/useGameStore";
@@ -52,8 +52,16 @@ const ALL_LF: LearningField[] = [
   "LF12",
 ];
 
-export function CodexIridium() {
-  const [activeLf, setActiveLf] = useState<LearningField>("LF1");
+export type CodexIridiumProps = {
+  initialLf?: LearningField;
+};
+
+export function CodexIridium({ initialLf }: CodexIridiumProps = {}) {
+  const [activeLf, setActiveLf] = useState<LearningField>(initialLf ?? "LF1");
+
+  useEffect(() => {
+    if (initialLf) setActiveLf(initialLf);
+  }, [initialLf]);
   const [activeChapter, setActiveChapter] = useState<string | null>(null);
   const codexXp = useGameStore((s) => s.codexXp);
   const meta = CONTENT[activeLf];

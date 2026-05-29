@@ -20,6 +20,8 @@ import {
   LF8_DATENMODELL,
   LF9_DIENSTE_PROTOKOLLE,
 } from "./expandedCurriculum";
+import { REFERENCE_EXERCISES_BY_LF } from "./buildReferenceExercises";
+import { LF_DRILL_PACKS } from "./lfDrillPacks";
 import lf01Content from "../../lernfelder/lf01/content.json";
 import lf02Content from "../../lernfelder/lf02/content.json";
 import lf03Content from "../../lernfelder/lf03/content.json";
@@ -695,7 +697,28 @@ export function getBeginnerExerciseForLf(lf: LearningField): LearningExercise | 
 }
 
 function withBeginnerPath(lf: LearningField, advanced: LearningExercise[]): LearningExercise[] {
-  return [...BEGINNER_EXERCISES_BY_LF[lf], ...advanced];
+  return mergeFullCurriculum(lf, advanced);
+}
+
+/** Beginner + Advanced + Codex-Referenz + Drill-Packs — ohne doppelte IDs */
+function mergeFullCurriculum(
+  lf: LearningField,
+  advanced: LearningExercise[],
+  extra: LearningExercise[] = []
+): LearningExercise[] {
+  const seen = new Set<string>();
+  const out: LearningExercise[] = [];
+  const push = (ex: LearningExercise) => {
+    if (seen.has(ex.id)) return;
+    seen.add(ex.id);
+    out.push(ex);
+  };
+  for (const ex of BEGINNER_EXERCISES_BY_LF[lf]) push(ex);
+  for (const ex of advanced) push(ex);
+  for (const ex of REFERENCE_EXERCISES_BY_LF[lf] ?? []) push(ex);
+  for (const ex of LF_DRILL_PACKS[lf] ?? []) push(ex);
+  for (const ex of extra) push(ex);
+  return out;
 }
 
 const LF2_MC_BOSS = buildOptionalBossMcExercise(lf02Content as BeginnerContentShape);
@@ -746,7 +769,14 @@ function getPendingBeginnerExercise(
   return !state || state.repetitions < 1 ? beginner : null;
 }
 
-const SQL_EXAM_LF5 = withBeginnerPath("LF5", buildLf5FromJson(lf05Content as Lf5ContentShape));
+const LF5_JSON_CORE = buildLf5FromJson(lf05Content as Lf5ContentShape);
+const LF5_BOSS = LF5_JSON_CORE.find((ex) => /boss/i.test(ex.id));
+const LF5_NON_BOSS = LF5_JSON_CORE.filter((ex) => !/boss/i.test(ex.id));
+const SQL_EXAM_LF5 = mergeFullCurriculum("LF5", [
+  ...LF5_NON_BOSS,
+  ...SQL_EXAM_LF5_DEPRECATED,
+  ...(LF5_BOSS ? [LF5_BOSS] : []),
+]);
 
 /** 5 JS-Aufgaben — LF6 (HardwareNetworking): Variablen, Schleifen, Klasse */
 export const JAVASCRIPT_EXAM_LF6: LearningExercise[] = [
@@ -1093,31 +1123,27 @@ function stablePick<T>(arr: T[], seed: number, salt: number): T {
 }
 
 /** Vollständiges Curriculum je Lernfeld (mind. 5 Aufgaben pro LF) */
+function curriculumWithOptionalBoss(
+  lf: LearningField,
+  advanced: LearningExercise[],
+  boss: LearningExercise | null
+): LearningExercise[] {
+  return boss ? mergeFullCurriculum(lf, advanced, [boss]) : mergeFullCurriculum(lf, advanced);
+}
+
 export const CURRICULUM_BY_LF: Record<LearningField, LearningExercise[]> = {
-  LF1: LF1_BOSS
-    ? [...withBeginnerPath("LF1", LF1_WIRTSCHAFT), LF1_BOSS]
-    : withBeginnerPath("LF1", LF1_WIRTSCHAFT),
-  LF2: LF2_MC_BOSS
-    ? [...withBeginnerPath("LF2", LF2_IT_GRUNDLAGEN), LF2_MC_BOSS]
-    : withBeginnerPath("LF2", LF2_IT_GRUNDLAGEN),
-  LF3: LF3_MC_BOSS
-    ? [...withBeginnerPath("LF3", LF3_NETZWERK), LF3_MC_BOSS]
-    : withBeginnerPath("LF3", LF3_NETZWERK),
-  LF4: withBeginnerPath("LF4", LF4_NETZ_HARDWARE),
+  LF1: curriculumWithOptionalBoss("LF1", LF1_WIRTSCHAFT, LF1_BOSS),
+  LF2: curriculumWithOptionalBoss("LF2", LF2_IT_GRUNDLAGEN, LF2_MC_BOSS),
+  LF3: curriculumWithOptionalBoss("LF3", LF3_NETZWERK, LF3_MC_BOSS),
+  LF4: mergeFullCurriculum("LF4", LF4_NETZ_HARDWARE),
   LF5: SQL_EXAM_LF5,
-  LF6: withBeginnerPath("LF6", JAVASCRIPT_EXAM_LF6),
-  LF7: withBeginnerPath("LF7", CSHARP_EXAM_LF7),
-  LF8: LF8_BOSS
-    ? [...withBeginnerPath("LF8", LF8_DATENMODELL), LF8_BOSS]
-    : withBeginnerPath("LF8", LF8_DATENMODELL),
-  LF9: withBeginnerPath("LF9", LF9_DIENSTE_PROTOKOLLE),
-  LF10: LF10_BOSS
-    ? [...withBeginnerPath("LF10", LF10_PROJEKT_AGIL), LF10_BOSS]
-    : withBeginnerPath("LF10", LF10_PROJEKT_AGIL),
-  LF11: LF11_BOSS
-    ? [...withBeginnerPath("LF11", LF11_INFO_SICHERHEIT), LF11_BOSS]
-    : withBeginnerPath("LF11", LF11_INFO_SICHERHEIT),
-  LF12: withBeginnerPath("LF12", LF12_AGILE_PM),
+  LF6: mergeFullCurriculum("LF6", JAVASCRIPT_EXAM_LF6),
+  LF7: mergeFullCurriculum("LF7", CSHARP_EXAM_LF7),
+  LF8: curriculumWithOptionalBoss("LF8", LF8_DATENMODELL, LF8_BOSS),
+  LF9: mergeFullCurriculum("LF9", LF9_DIENSTE_PROTOKOLLE),
+  LF10: curriculumWithOptionalBoss("LF10", LF10_PROJEKT_AGIL, LF10_BOSS),
+  LF11: curriculumWithOptionalBoss("LF11", LF11_INFO_SICHERHEIT, LF11_BOSS),
+  LF12: mergeFullCurriculum("LF12", LF12_AGILE_PM),
 };
 
 export function pickLearningExercise(

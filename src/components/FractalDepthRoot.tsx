@@ -441,7 +441,7 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
             }}
           />
         ) : null}
-        {fractalVideoMissing ? (
+        {(fractalVideoMissing || edtechAtmosphere) ? (
           <div
             aria-hidden
             className="nx-fractal-bg-fallback"
@@ -450,11 +450,17 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
               inset: 0,
               width: "100%",
               height: "100%",
-              filter: `brightness(${litBrightness}) contrast(${ct}) blur(${blurPx}px) ${voidAtmosphereFilter}`,
+              filter: edtechAtmosphere
+                ? "none"
+                : `brightness(${litBrightness}) contrast(${ct}) blur(${blurPx}px) ${voidAtmosphereFilter}`,
               transition: `filter ${bgFilterTransitionMs}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+              background: edtechAtmosphere
+                ? "linear-gradient(165deg, #f8fafc 0%, #e2e8f0 48%, #f1f5f9 100%)"
+                : undefined,
             }}
           />
         ) : null}
+        {!edtechAtmosphere ? (
         <video
           ref={videoRef}
           className="nx-fractal-bg-video"
@@ -479,6 +485,7 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
             setFractalVideoMissing(true);
           }}
         />
+        ) : null}
       </motion.div>
       <VolumetricLightLeaks />
       {showVictoryShards ? (

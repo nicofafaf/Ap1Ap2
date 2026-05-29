@@ -1,0 +1,104 @@
+.nx-edtech-course-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20010;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+}
+
+@media (min-width: 720px) {
+  .nx-edtech-course-sheet-backdrop {
+    align-items: center;
+    padding: 24px;
+  }
+}
+
+.nx-edtech-course-sheet {
+  width: min(100%, 560px);
+  max-height: min(92dvh, 820px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px 20px 0 0;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.22);
+}
+
+@media (min-width: 720px) {
+  .nx-edtech-course-sheet {
+    border-radius: 20px;
+  }
+}
+
+.nx-edtech-course-sheet-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 20px 12px;
+}
+
+.nx-edtech-course-sheet-actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 20px max(16px, env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(226, 232, 240, 0.95);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.nx-edtech-course-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.nx-edtech-course-chapter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  background: #fff;
+}
+
+.nx-edtech-course-missions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.nx-edtech-course-mission {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(214, 181, 111, 0.28);
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.06) 0%, rgba(214, 181, 111, 0.05) 100%);
+}
+
+.nx-edtech-course-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.nx-edtech-course-tool-pill {
+  font-family: var(--nx-font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  background: rgba(6, 182, 212, 0.08);
+  color: #0f172a;
+}

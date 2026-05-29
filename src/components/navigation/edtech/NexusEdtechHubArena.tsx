@@ -3,7 +3,6 @@ import type { CSSProperties } from "react";
 import { useMemo } from "react";
 import { publicAssetUrl, type LearningField } from "../../../data/nexusRegistry";
 import type { NexusHubMapExtras } from "../../../lib/ui/hubMapNavigation";
-import { FRACTAL_COMMAND_BG_MP4 } from "../../../lib/ui/fractalConstants";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
 import { useGameStore } from "../../../store/useGameStore";
@@ -151,11 +150,13 @@ export function NexusEdtechHubArena({
         style={heroShellStyle}
         aria-labelledby="nx-edtech-hero-title"
       >
-        <EdtechLazyVideo
-          src={FRACTAL_COMMAND_BG_MP4}
-          mode="viewport"
-          priority
-          style={heroVideoStyle}
+        <span
+          aria-hidden
+          style={{
+            ...heroVideoStyle,
+            background:
+              "linear-gradient(145deg, #0f172a 0%, #1e3a5f 42%, rgba(6, 182, 212, 0.18) 100%)",
+          }}
         />
         <motion.div style={heroOverlayStyle} aria-hidden />
         <div style={heroContentStyle}>

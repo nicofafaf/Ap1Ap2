@@ -468,7 +468,7 @@ export function CombatManager({
     combatUnlocked &&
     !tokens.isVictory &&
     !loreVisible &&
-    storeSlice.missionStatus !== "cleared" &&
+    (edtechLearn || storeSlice.missionStatus !== "cleared") &&
     (storeSlice.gameState === "FIGHTING" || storeSlice.gameState === "STARTING");
 
   return (
@@ -513,7 +513,7 @@ export function CombatManager({
         onClose={() => setSourceMirrorSkill(null)}
       />
 
-      {bossVisible && (
+      {bossVisible && !(edtechLearn && learningModeActive) && (
         <motion.div
           animate={{
             opacity: learningModeActive ? 0.22 : 1,
@@ -754,6 +754,7 @@ export function CombatManager({
           storeSlice.victoryFinisherComplete &&
           storeSlice.isLootErupting && <LootEruption />}
         {combatUnlocked &&
+          !edtechLearn &&
           !learningModeActive &&
           (!tokens.isVictory ||
             (storeSlice.victoryFinisherComplete &&

@@ -724,6 +724,8 @@ type GameStore = {
   completeInitialization: () => void;
   beginNeuralTrainingCombat: () => void;
   setPreferredLearningExerciseId: (exerciseId: string | null) => void;
+  /** EdTech: nächste Übung laden, Mission bleibt aktiv (kein Skill-Bar-Zwischenscreen) */
+  advanceEdtechLearningTurn: () => void;
   setActiveMissionContext: (lf: LearningField, missionId: string | null) => void;
   clearActiveMissionContext: () => void;
   markMissionCleared: (missionId: string) => void;
@@ -884,6 +886,15 @@ export const useGameStore = create<GameStore>((set, get) => ({
   setIdentifiedSkill: (id) => set({ identifiedSkillId: id }),
 
   setPreferredLearningExerciseId: (exerciseId) => set({ preferredLearningExerciseId: exerciseId }),
+  advanceEdtechLearningTurn: () =>
+    set((state) => ({
+      entryToken: state.entryToken + 1,
+      preferredLearningExerciseId: null,
+      mission:
+        state.mission.missionId != null
+          ? { ...state.mission, status: "active" as const }
+          : state.mission,
+    })),
   setActiveMissionContext: (lf, missionId) =>
     set((state) => ({
       mission: {

@@ -36,6 +36,80 @@
           { "text": "Eine Vertragsart", "correct": false, "hint": "Verträge gehören zu Wirtschaft und Recht" }
         ]
       }
+    },
+    {
+      "id": "lf6-sw-variables",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Hyperantrieb-Variablen",
+      "lessonCards": [
+        { "title": "Action Card", "body": "Speichere Treibstoff und Temperatur in Variablen bevor der Sprung startet" }
+      ],
+      "practice": {
+        "type": "mc",
+        "coachLine": "der hyperantrieb braucht stabile werte bevor wir springen",
+        "question": "let fuel = 80; const maxTemp = 1200; — Was darf später geändert werden",
+        "options": [
+          { "text": "fuel mit let", "correct": true },
+          { "text": "maxTemp mit const", "correct": false, "hint": "const bleibt fest nach der ersten Zuweisung" },
+          { "text": "Beides nie", "correct": false, "hint": "let ist genau für Änderungen gedacht" },
+          { "text": "Nur Kommentare", "correct": false, "hint": "Variablen sind Werte im Programm" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-an-loop",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Trainings-Schleife",
+      "lessonCards": [
+        { "title": "Action Card", "body": "Wiederhole einen Trainingsblock bis das Ziel erreicht ist" }
+      ],
+      "practice": {
+        "type": "mc",
+        "question": "for (let i = 0; i < 5; i++) { train(); } — Wie oft läuft train()",
+        "options": [
+          { "text": "5 Mal", "correct": true },
+          { "text": "4 Mal", "correct": false, "hint": "i geht von 0 bis 4 das sind fünf Durchläufe" },
+          { "text": "Unendlich", "correct": false, "hint": "Die Bedingung i < 5 stoppt die Schleife" },
+          { "text": "Gar nicht", "correct": false, "hint": "Der Schleifenkörper wird ausgeführt" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-gym-function",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "PR-Funktion",
+      "lessonCards": [
+        { "title": "Action Card", "body": "Kapsle die Berechnung in eine Funktion und rufe sie mehrfach auf" }
+      ],
+      "practice": {
+        "type": "mc",
+        "question": "function calcPlate(load) { return load * 2; } — Wozu dient calcPlate",
+        "options": [
+          { "text": "Wiederverwendbare Logik mit Parameter", "correct": true },
+          { "text": "Nur ein Kommentar", "correct": false, "hint": "function führt Code aus" },
+          { "text": "Ein Netzwerkkabel", "correct": false, "hint": "Das ist Hardware" },
+          { "text": "Eine Datenbanktabelle", "correct": false, "hint": "SQL ist ein anderes Thema" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-sw-if",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Schild-Entscheidung",
+      "practice": {
+        "type": "mc",
+        "question": "if (shield < 20) { raiseShield(); } — Wann wird raiseShield ausgeführt",
+        "options": [
+          { "text": "Nur wenn shield kleiner 20 ist", "correct": true },
+          { "text": "Immer", "correct": false, "hint": "if prüft die Bedingung zuerst" },
+          { "text": "Nur wenn shield gleich 20", "correct": false, "hint": "Kleiner 20, nicht gleich" },
+          { "text": "Nie", "correct": false, "hint": "Bei true läuft der Block" }
+        ]
+      }
     }
   ],
   "reference": [

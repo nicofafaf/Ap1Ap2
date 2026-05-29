@@ -36,6 +36,86 @@
           { "text": "Eine Datenbankspalte", "correct": false, "hint": "Das passt zu Datenmodellierung" }
         ]
       }
+    },
+    {
+      "id": "lf12-sw-po",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Flotten-Priorität",
+      "practice": {
+        "type": "mc",
+        "question": "Wer priorisiert typischerweise das Product Backlog in Scrum",
+        "options": [
+          { "text": "Product Owner", "correct": true },
+          { "text": "Scrum Master allein", "correct": false, "hint": "SM facilitiert, priorisiert nicht fachlich" },
+          { "text": "Nur externe Kunden ohne Team", "correct": false, "hint": "PO arbeitet mit Stakeholdern und Team" },
+          { "text": "Der Switch", "correct": false, "hint": "Hardware hat keine Backlog-Rolle" }
+        ]
+      }
+    },
+    {
+      "id": "lf12-an-review",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Inkrement zeigen",
+      "practice": {
+        "type": "mc",
+        "question": "Welches Event zeigt das fertige Inkrement und holt Feedback ein",
+        "options": [
+          { "text": "Sprint Review", "correct": true },
+          { "text": "Daily Scrum", "correct": false, "hint": "Daily ist Kurzsync" },
+          { "text": "Retrospektive", "correct": false, "hint": "Retro verbessert Prozess" },
+          { "text": "Subnetting", "correct": false, "hint": "Netzwerk-Thema" }
+        ]
+      }
+    },
+    {
+      "id": "lf12-gym-dod",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "Qualitäts-Standard",
+      "practice": {
+        "type": "mc",
+        "question": "Was beschreibt die Definition of Done",
+        "options": [
+          { "text": "Gemeinsame Kriterien wann ein Inkrement fertig ist", "correct": true },
+          { "text": "Den Stundenlohn", "correct": false, "hint": "HR-Thema" },
+          { "text": "RAID 10", "correct": false, "hint": "Storage" },
+          { "text": "Ein VLAN-Tag", "correct": false, "hint": "Netzwerk" }
+        ]
+      }
+    },
+    {
+      "id": "lf12-sw-retro",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Nachbesprechung",
+      "practice": {
+        "type": "mc",
+        "question": "Welches Event verbessert die Zusammenarbeit im Team",
+        "options": [
+          { "text": "Sprint Retrospektive", "correct": true },
+          { "text": "Sprint Review", "correct": false, "hint": "Review zeigt Produkt" },
+          { "text": "HTTP GET", "correct": false, "hint": "Web-Protokoll" },
+          { "text": "INNER JOIN", "correct": false, "hint": "SQL" }
+        ]
+      }
+    },
+    {
+      "id": "lf12-an-kanban",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Board-Limit",
+      "practice": {
+        "type": "mc",
+        "question": "Wozu dient ein WIP-Limit auf einer Kanban-Wand",
+        "options": [
+          { "text": "Fluss stabilisieren und Engpässe sichtbar machen", "correct": true },
+          { "text": "Mehr Tasks parallel erzwingen", "correct": false, "hint": "WIP begrenzt bewusst" },
+          { "text": "SQL beschleunigen", "correct": false, "hint": "Kein SQL-Thema" },
+          { "text": "MAC-Adressen ändern", "correct": false, "hint": "Netzwerk" }
+        ]
+      }
     }
   ],
   "reference": [

@@ -313,6 +313,9 @@ export function LearningTerminal({
   const triggerBossHit = useGameStore((s) => s.triggerBossHit);
   const markMissionCleared = useGameStore((s) => s.markMissionCleared);
   const recordLearningExerciseMastery = useGameStore((s) => s.recordLearningExerciseMastery);
+  const advanceEdtechLearningTurn = useGameStore((s) => s.advanceEdtechLearningTurn);
+  const nexusChrome = useGameStore((s) => s.nexusChrome);
+  const edtechFlow = nexusChrome === "edtech";
   const setActiveMissionContext = useGameStore((s) => s.setActiveMissionContext);
   const clearActiveMissionContext = useGameStore((s) => s.clearActiveMissionContext);
   const mission = useGameStore((s) => s.mission);
@@ -451,15 +454,21 @@ export function LearningTerminal({
         void playVictoryFinisherSequence();
         window.dispatchEvent(new CustomEvent("nx:boss-clear-map"));
         triggerBossHit(8);
-      } else if (opt.isCorrect && isBeginnerExercise) {
-        markMissionCleared(exercise.id);
+      } else if (opt.isCorrect) {
         recordLearningExerciseMastery(answerLf, exercise.id);
         triggerBossHit(8);
+        if (edtechFlow) {
+          window.setTimeout(() => advanceEdtechLearningTurn(), 1200);
+        } else if (isBeginnerExercise) {
+          markMissionCleared(exercise.id);
+        }
       }
     },
     [
       answerLf,
+      edtechFlow,
       exercise,
+      advanceEdtechLearningTurn,
       isBeginnerExercise,
       markMissionCleared,
       recordCombatLearningAttempt,
@@ -1025,12 +1034,16 @@ export function LearningTerminal({
                       reference={exercise.solutionCode}
                       milestoneId={exercise.id}
                       onSuccess={() => {
-                        markMissionCleared(exercise.id);
                         recordLearningExerciseMastery(answerLf, exercise.id);
                         if (isBossMode) {
+                          markMissionCleared(exercise.id);
                           unlockSectorMastery(answerLf);
                           void playVictoryFinisherSequence();
                           window.dispatchEvent(new CustomEvent("nx:boss-clear-map"));
+                        } else if (edtechFlow) {
+                          window.setTimeout(() => advanceEdtechLearningTurn(), 1200);
+                        } else {
+                          markMissionCleared(exercise.id);
                         }
                       }}
                       onRunSuccessEffects={triggerCodeSuccessFx}
@@ -1124,6 +1137,14 @@ export function LearningTerminal({
                           variant="focusPanel"
                           onPick={handleMcOption}
                           t={t}
+                          hitMessageOverride={
+                            edtechFlow
+                              ? t(
+                                  "learningTerminal.feedbackMcHitNext",
+                                  "Treffer — nächste Aufgabe kommt gleich"
+                                )
+                              : null
+                          }
                         />
                       ))}
                     </motion.div>
@@ -1151,9 +1172,13 @@ export function LearningTerminal({
                           <InteractiveMissionInput
                             expected={exercise.solutionCode}
                             onSuccess={() => {
-                              markMissionCleared(exercise.id);
                               recordLearningExerciseMastery(answerLf, exercise.id);
                               triggerBossHit(12);
+                              if (edtechFlow) {
+                                window.setTimeout(() => advanceEdtechLearningTurn(), 1200);
+                              } else {
+                                markMissionCleared(exercise.id);
+                              }
                             }}
                           />
                         </motion.div>

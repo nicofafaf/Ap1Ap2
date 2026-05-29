@@ -36,6 +36,87 @@
           { "text": "PATCH", "correct": false, "hint": "PATCH ändert vorhandene Daten teilweise" }
         ]
       }
+    },
+    {
+      "id": "lf9-sw-http",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Holonet-Request",
+      "practice": {
+        "type": "mc",
+        "coachLine": "die flotte wartet auf die antwort des holonet servers",
+        "question": "Ein Browser lädt eine Seite per HTTP. Welche Methode ist typisch für den Abruf",
+        "options": [
+          { "text": "GET", "correct": true },
+          { "text": "DELETE", "correct": false, "hint": "DELETE entfernt Ressourcen" },
+          { "text": "SMTP", "correct": false, "hint": "SMTP ist E-Mail" },
+          { "text": "ARP", "correct": false, "hint": "ARP ist Layer 2" }
+        ]
+      }
+    },
+    {
+      "id": "lf9-an-dns",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Namens-Auflösung",
+      "practice": {
+        "type": "mc",
+        "question": "Welcher Dienst übersetzt einen Hostnamen in eine IP-Adresse",
+        "options": [
+          { "text": "DNS", "correct": true },
+          { "text": "DHCP", "correct": false, "hint": "DHCP vergibt IP-Konfiguration" },
+          { "text": "FTP", "correct": false, "hint": "FTP überträgt Dateien" },
+          { "text": "Telnet", "correct": false, "hint": "Telnet ist Remote-Shell" }
+        ]
+      }
+    },
+    {
+      "id": "lf9-gym-dhcp",
+      "topic": "Multiversum · Gym",
+      "level": "beginner",
+      "title": "Geräte-Check-in",
+      "practice": {
+        "type": "mc",
+        "question": "Neues Gerät im WLAN bekommt automatisch IP und Gateway. Welcher Dienst",
+        "options": [
+          { "text": "DHCP", "correct": true },
+          { "text": "IMAP", "correct": false, "hint": "IMAP liest Mailboxen" },
+          { "text": "SNMP", "correct": false, "hint": "SNMP ist Monitoring" },
+          { "text": "NTP für IP", "correct": false, "hint": "NTP ist Zeit" }
+        ]
+      }
+    },
+    {
+      "id": "lf9-sw-mail",
+      "topic": "Multiversum · Star Wars",
+      "level": "beginner",
+      "title": "Flotten-Dispatch",
+      "practice": {
+        "type": "mc",
+        "question": "Welches Protokoll transportiert E-Mails zwischen Mailservern typischerweise",
+        "options": [
+          { "text": "SMTP", "correct": true },
+          { "text": "HTTP", "correct": false, "hint": "HTTP ist Web, nicht Mail-Transport" },
+          { "text": "DNS", "correct": false, "hint": "DNS löst Namen auf" },
+          { "text": "SSH", "correct": false, "hint": "SSH ist sichere Shell" }
+        ]
+      }
+    },
+    {
+      "id": "lf9-an-https",
+      "topic": "Multiversum · Anime",
+      "level": "beginner",
+      "title": "Verschlüsselter Kanal",
+      "practice": {
+        "type": "mc",
+        "question": "Was bringt HTTPS gegenüber HTTP im Kern",
+        "options": [
+          { "text": "Verschlüsselter Transport mit TLS", "correct": true },
+          { "text": "Schnellere CPU", "correct": false, "hint": "TLS hat Overhead" },
+          { "text": "Keine Zertifikate", "correct": false, "hint": "Zertifikate sind üblich" },
+          { "text": "Ersetzt DNS", "correct": false, "hint": "DNS bleibt separat" }
+        ]
+      }
     }
   ],
   "reference": [

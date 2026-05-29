@@ -126,7 +126,8 @@ const makeBossVisual = (lfNumber: number) => {
   const rel = (ext: string) => publicAssetUrl(`/assets/${stem}${ext}`);
   return {
     primaryPath: rel(".mp4"),
-    fallbackPaths: [rel(".gif"), rel(".webp"), rel(".png")],
+    /** Nur MP4 im Repo — andere Endungen erzeugen sonst 404-Spam auf GitLab Pages */
+    fallbackPaths: [] as string[],
   };
 };
 

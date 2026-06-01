@@ -159,6 +159,18 @@
   line-height: 1.2;
 }
 
+.nx-edtech-learn-coach {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(214, 181, 111, 0.35);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(214, 181, 111, 0.1) 100%);
+  font-size: 0.92rem;
+  font-weight: 650;
+  line-height: 1.45;
+  color: #334155;
+}
+
 .nx-edtech-learn-card p {
   margin: 0;
   font-size: clamp(16px, 2.2vw, 18px);

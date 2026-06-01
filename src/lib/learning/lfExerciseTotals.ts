@@ -6,7 +6,7 @@ import type { LearningField } from "../../data/nexusRegistry";
  */
 export const LF_EXERCISE_TOTAL: Record<LearningField, number> = {
   LF1: 41,
-  LF2: 41,
+  LF2: 56,
   LF3: 40,
   LF4: 40,
   LF5: 38,

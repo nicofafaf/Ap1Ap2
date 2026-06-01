@@ -1,0 +1,347 @@
+[
+  {
+    "id": "lf2-exam-anforderung",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Anforderungsanalyse",
+    "lessonCards": [
+      {
+        "title": "Kern",
+        "body": "Vor der Ausstattung klärst du Bedarf, Nutzung und Rahmenbedingungen — das ist die Anforderungsanalyse"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "der kunde wartet im briefing wir brauchen zuerst klare anforderungen bevor irgendein teil bestellt wird",
+      "question": "Was ist eine Anforderungsanalyse in der IT-Arbeitsplatzeinrichtung",
+      "options": [
+        { "text": "Systematische Ermittlung von Kundenbedarf und technischen Anforderungen", "correct": true },
+        { "text": "Nur die Preisvergleichsliste für Hardware", "correct": false, "hint": "Preise sind erst nach dem Bedarf relevant" },
+        { "text": "Das Formatieren der Festplatte nach der Lieferung", "correct": false, "hint": "Das gehört zur Installation, nicht zur Analyse" },
+        { "text": "Ein reines Virenschutz-Update", "correct": false, "hint": "Sicherheit folgt auf klare Anforderungen" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-einrichtung",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Arbeitsplatz einrichten",
+    "lessonCards": [
+      {
+        "title": "Ablauf",
+        "body": "Anforderungen → Planung → Installation → Konfiguration → Test → Dokumentation"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "neuer arbeitsplatz heute wir gehen die schritte der reihe nach durch kein shortcut",
+      "question": "Welche Reihenfolge ist bei der Einrichtung eines neuen IT-Arbeitsplatzes sinnvoll",
+      "options": [
+        { "text": "Anforderungen klären, planen, installieren, konfigurieren, testen, dokumentieren", "correct": true },
+        { "text": "Sofort installieren und Anforderungen später nachfragen", "correct": false, "hint": "Ohne Bedarf riskierst du Fehlkäufe" },
+        { "text": "Nur Dokumentation ohne Test", "correct": false, "hint": "Funktionstest gehört vor der Übergabe dazu" },
+        { "text": "Konfiguration vor der Installation", "correct": false, "hint": "Ohne Basis-Installation gibt es nichts zu konfigurieren" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-image",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Betriebssystem-Image",
+    "lessonCards": [
+      {
+        "title": "Image",
+        "body": "Ein Image ist ein vorinstallierter Systemzustand — gleiche Konfiguration auf vielen Geräten"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "zehn neue rechner gleiche basis ein image spart zeit und fehler",
+      "question": "Wozu dient ein Betriebssystem-Image",
+      "options": [
+        { "text": "Einheitliche, schnelle Bereitstellung vorkonfigurierter Systeme", "correct": true },
+        { "text": "Nur zum Verschlüsseln von E-Mails", "correct": false, "hint": "Verschlüsselung ist ein anderes Thema" },
+        { "text": "Zum Erhöhen der Monitorauflösung", "correct": false, "hint": "Auflösung hängt an Hardware und Treibern" },
+        { "text": "Zum Ersetzen des Netzwerkkabels", "correct": false, "hint": "Physische Verkabelung ist unabhängig vom Image" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-os-install",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Betriebssystem installieren",
+    "lessonCards": [
+      {
+        "title": "Vorgehen",
+        "body": "Bootmedium erstellen, BIOS/UEFI prüfen, Installation starten, Partitionen wählen, Treiber und Updates"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "installationsstick bereit bios check dann los",
+      "question": "Wie installierst du ein Betriebssystem auf einem Rechner fachgerecht",
+      "options": [
+        { "text": "Bootmedium nutzen, Installation starten, Partitionen festlegen, Treiber und Updates einspielen", "correct": true },
+        { "text": "Betriebssystem per E-Mail-Anhang verteilen", "correct": false, "hint": "OS wird über Medium oder Image bereitgestellt" },
+        { "text": "Nur den Bildschirm kalibrieren", "correct": false, "hint": "Das ist Ergonomie, nicht OS-Installation" },
+        { "text": "Festplatte formatieren und nichts weiter installieren", "correct": false, "hint": "Nach der Vorbereitung folgt die eigentliche Installation" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-partition",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Systempartitionierung",
+    "lessonCards": [
+      {
+        "title": "Warum",
+        "body": "Partitionen trennen System, Daten und ggf. Recovery — stabiler Betrieb und einfachere Wartung"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "system und daten getrennt das rettet backups und updates",
+      "question": "Was bedeutet Systempartitionierung und warum ist sie wichtig",
+      "options": [
+        { "text": "Aufteilung der Festplatte in Bereiche für System, Daten und Wartung", "correct": true },
+        { "text": "Nur die Farbe des Desktop-Hintergrunds", "correct": false, "hint": "Optik ist kein Partitionsthema" },
+        { "text": "Das Verdoppeln der CPU-Takte", "correct": false, "hint": "Partitionierung betrifft Speicher, nicht CPU-Takt" },
+        { "text": "Das Abschalten aller Benutzerkonten", "correct": false, "hint": "Konten sind Konfiguration, nicht Partitionierung" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-server-sicherheit",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Server-Sicherheit",
+    "lessonCards": [
+      {
+        "title": "Prüfung",
+        "body": "Bei Servern: harte Passwörter, Updates, minimale Dienste, Firewall und Zugriffskontrolle"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "server im kernraum zwei sicherheitsmaßnahmen sofort nennen",
+      "question": "Nenne zwei Sicherheitsaspekte bei der Installation eines Servers",
+      "options": [
+        { "text": "Aktuelle Sicherheitsupdates und restriktive Firewall-Regeln", "correct": true },
+        { "text": "Nur bunte LED-Beleuchtung im Rack", "correct": false, "hint": "Optik schützt nicht vor Angriffen" },
+        { "text": "Alle Ports dauerhaft offen lassen", "correct": false, "hint": "Offene Ports erhöhen die Angriffsfläche" },
+        { "text": "Standardpasswörter beibehalten", "correct": false, "hint": "Standardpasswörter sind ein typisches Risiko" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-tools",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Installations-Tools",
+    "lessonCards": [
+      {
+        "title": "Beispiele",
+        "body": "PXE/MDT, Clone-Tools, Treiberpakete, Remote-Verwaltung und Diagnose-Software"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "welches tool für rollout und config heute",
+      "question": "Welche Tools können für Installation und Konfiguration von IT-Systemen verwendet werden",
+      "options": [
+        { "text": "Deploymentsysteme wie MDT/PXE, Images und Remote-Verwaltung", "correct": true },
+        { "text": "Nur ein Texteditor ohne Netzwerk", "correct": false, "hint": "Allein reicht für Rollout selten" },
+        { "text": "Ausschließlich Social-Media-Apps", "correct": false, "hint": "Kein Installationswerkzeug" },
+        { "text": "Nur der Drucker-Treiber-Assistent", "correct": false, "hint": "Zu eng für Gesamtsysteme" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-test",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "System testen",
+    "lessonCards": [
+      {
+        "title": "Check",
+        "body": "Funktionstests, Updates, Treiber, Netzwerk, Sicherheit und Abnahme mit Checkliste"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "vor übergabe alles durchtesten kein blindes go",
+      "question": "Wie stellst du sicher, dass ein installiertes IT-System fehlerfrei läuft",
+      "options": [
+        { "text": "Strukturierte Funktions- und Abnahmetests mit Checkliste", "correct": true },
+        { "text": "Nur optisch prüfen ob das Gehäuse sauber ist", "correct": false, "hint": "Optik sagt nichts über Funktion" },
+        { "text": "Sofort produktiv nutzen ohne Test", "correct": false, "hint": "Risiko für Ausfälle im Betrieb" },
+        { "text": "Dokumentation weglassen", "correct": false, "hint": "Dokumentation hilft bei späterer Fehlersuche" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-clean-upgrade",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Clean-Install vs. Upgrade",
+    "lessonCards": [
+      {
+        "title": "Unterschied",
+        "body": "Clean-Install: Neu aufsetzen. Upgrade: Bestehendes System aktualisieren"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "altes system migrieren oder neu aufsetzen entscheidung jetzt",
+      "question": "Was ist der Unterschied zwischen Clean-Install und Upgrade",
+      "options": [
+        { "text": "Clean-Install setzt neu auf, Upgrade aktualisiert das bestehende System", "correct": true },
+        { "text": "Beides bedeutet nur Monitor tauschen", "correct": false, "hint": "Hardwaretausch ist kein OS-Upgrade" },
+        { "text": "Upgrade löscht immer alle Partitionen unwiderruflich", "correct": false, "hint": "Upgrade kann Daten erhalten — Risiko bleibt" },
+        { "text": "Clean-Install ist nur ein BIOS-Update", "correct": false, "hint": "BIOS-Update ist Firmware, nicht OS-Neuaufsetzung" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-doku",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Systemdokumentation",
+    "lessonCards": [
+      {
+        "title": "Inhalt",
+        "body": "Hardware, Softwarestände, Lizenzen, Netzwerkeinstellungen, Benutzer und Änderungshistorie"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "ohne doku findet der nächste azubi nichts im rack",
+      "question": "Warum ist eine vollständige Systemdokumentation wichtig",
+      "options": [
+        { "text": "Wartung, Support und spätere Änderungen werden nachvollziehbar", "correct": true },
+        { "text": "Sie ersetzt alle Sicherheitsupdates", "correct": false, "hint": "Updates bleiben nötig" },
+        { "text": "Sie verhindert Hardwaredefekte vollständig", "correct": false, "hint": "Doku verhindert keinen Defekt" },
+        { "text": "Sie ist nur für Marketing", "correct": false, "hint": "IT-Doku dient dem Betrieb" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-cloud",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Cloud-Arbeitsplätze",
+    "lessonCards": [
+      {
+        "title": "Vorteile",
+        "body": "Skalierung, zentrale Verwaltung, mobiler Zugriff — bei Beachtung von Datenschutz und Verfügbarkeit"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "cloud oder on prem der kunde will argumente",
+      "question": "Welche Vorteile bieten cloudbasierte Lösungen bei der Arbeitsplatzausstattung",
+      "options": [
+        { "text": "Flexible Skalierung und zentrale Verwaltung von Diensten", "correct": true },
+        { "text": "Kein Internet wird jemals benötigt", "correct": false, "hint": "Cloud braucht meist Verbindung" },
+        { "text": "Datenschutz ist automatisch immer egal", "correct": false, "hint": "DSGVO und Verträge bleiben Pflicht" },
+        { "text": "Hardware wird überflüssig auf jedem Client", "correct": false, "hint": "Endgeräte bleiben nötig" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-netz",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Firmennetz anbinden",
+    "lessonCards": [
+      {
+        "title": "Einstellungen",
+        "body": "IP-Adresse, Subnetz, Gateway, DNS — oft per DHCP im Firmennetz"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "ip gateway dns stimmen sonst kein firmenlogin",
+      "question": "Welche Netzwerkeinstellungen verbinden den Arbeitsplatz mit dem Firmennetzwerk",
+      "options": [
+        { "text": "IP-Konfiguration, Gateway und DNS (oft per DHCP)", "correct": true },
+        { "text": "Nur die Bildschirmhelligkeit", "correct": false, "hint": "Kein Netzwerkparameter" },
+        { "text": "Die Farbe des Netzwerkkabels", "correct": false, "hint": "Farbe ist irrelevant" },
+        { "text": "Ausschließlich der Desktop-Hintergrund", "correct": false, "hint": "UI-Einstellung ohne Netzwirkung" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-ergonomie",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Ergonomie am Arbeitsplatz",
+    "lessonCards": [
+      {
+        "title": "Maßnahmen",
+        "body": "Monitorhöhe, Sitzposition, Beleuchtung, ergonomische Eingabegeräte"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "gesund arbeiten ist prüfungsstoff nicht nur komfort",
+      "question": "Welche Rolle spielt ergonomische Gestaltung und welche Maßnahme ist sinnvoll",
+      "options": [
+        { "text": "Schützt Gesundheit und Produktivität — z. B. höhenverstellbarer Stuhl und Monitorposition", "correct": true },
+        { "text": "Nur für Gaming relevant", "correct": false, "hint": "Gilt für alle Bildschirmarbeitsplätze" },
+        { "text": "Monitor direkt unterhalb der Tischplatte", "correct": false, "hint": "Schlechte Blickrichtung" },
+        { "text": "Ergonomie ersetzt Datensicherung", "correct": false, "hint": "Getrennte Themenbereiche" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-software",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Softwareauswahl",
+    "lessonCards": [
+      {
+        "title": "Kriterien",
+        "body": "Aufgaben, Lizenzen, Kompatibilität, Sicherheit und Schnittstellen zum Bestand"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "welche software passt zum kundenbedarf nicht zum hype",
+      "question": "Wie wählst du passende Software für einen kundenindividuellen Arbeitsplatz",
+      "options": [
+        { "text": "Anhand von Aufgaben, Lizenzen, Kompatibilität und Sicherheitsanforderungen", "correct": true },
+        { "text": "Immer die neueste App ohne Rücksprache", "correct": false, "hint": "Bedarf geht vor Trend" },
+        { "text": "Nur nach der Lieblingsfarbe des Azubis", "correct": false, "hint": "Kein fachliches Kriterium" },
+        { "text": "Ohne Rücksicht auf Datenschutz", "correct": false, "hint": "DSGVO und Vertraulichkeit zählen" }
+      ]
+    }
+  },
+  {
+    "id": "lf2-exam-hardware",
+    "topic": "Prüfung · LF2",
+    "level": "beginner",
+    "title": "Hardware-Komponenten",
+    "lessonCards": [
+      {
+        "title": "Basis",
+        "body": "CPU rechnet, RAM speichert Arbeitsdaten, SSD/Festplatte speichert dauerhaft"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "drei bauteile nennen und sagen was sie tun",
+      "question": "Nenne drei typische Hardwarekomponenten eines Arbeitsplatzes und ihre Funktion",
+      "options": [
+        { "text": "CPU (rechnet), RAM (Arbeitsspeicher), SSD (dauerhafte Speicherung)", "correct": true },
+        { "text": "Monitor (rechnet), Maus (speichert dauerhaft), Tastatur (nur Strom)", "correct": false, "hint": "Rollen vertauscht" },
+        { "text": "Netzteil (DNS), Router (RAM), Kabel (CPU)", "correct": false, "hint": "Funktionen falsch zugeordnet" },
+        { "text": "Softwarelizenz, E-Mail, Passwort", "correct": false, "hint": "Keine Hardware" }
+      ]
+    }
+  }
+]

@@ -3,6 +3,7 @@ import { LF_EDTECH_SUMMARY } from "./edtechLfDisplay";
 import { getLfExerciseTotal } from "./lfExerciseTotals";
 import lf01 from "../../lernfelder/lf01/content.json";
 import lf02 from "../../lernfelder/lf02/content.json";
+import lf02ExamPath from "../../lernfelder/lf02/examPath.json";
 import lf03 from "../../lernfelder/lf03/content.json";
 import lf04 from "../../lernfelder/lf04/content.json";
 import lf05 from "../../lernfelder/lf05/content.json";
@@ -28,9 +29,17 @@ type ContentShape = {
   reference?: Array<{ id?: string; chapter?: string; title?: string; type?: string }>;
 };
 
+const lf02MergedCatalog: ContentShape = {
+  ...(lf02 as ContentShape),
+  beginnerPath: [
+    ...((lf02 as ContentShape).beginnerPath ?? []),
+    ...(lf02ExamPath as NonNullable<ContentShape["beginnerPath"]>),
+  ],
+};
+
 const RAW: Record<LearningField, ContentShape> = {
   LF1: lf01 as ContentShape,
-  LF2: lf02 as ContentShape,
+  LF2: lf02MergedCatalog,
   LF3: lf03 as ContentShape,
   LF4: lf04 as ContentShape,
   LF5: lf05 as ContentShape,
@@ -64,6 +73,7 @@ export type LfCourseMeta = {
   lf: number;
   lfKey: LearningField;
   title: string;
+  summary: string;
   ap: string;
   chapters: LfCourseChapter[];
   missions: LfCourseMission[];

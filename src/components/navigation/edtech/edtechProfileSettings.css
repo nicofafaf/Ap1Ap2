@@ -1,0 +1,186 @@
+.nx-edtech-settings-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nx-z-modal, 1200);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+@media (min-width: 720px) {
+  .nx-edtech-settings-backdrop {
+    align-items: center;
+  }
+}
+
+.nx-edtech-settings-panel {
+  width: min(560px, 100%);
+  max-height: min(88dvh, 720px);
+  overflow: auto;
+  border-radius: 20px;
+  border: 1px solid rgba(214, 181, 111, 0.28);
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.18);
+  padding: 20px 20px 16px;
+}
+
+.nx-edtech-settings-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.nx-edtech-settings-kicker {
+  margin: 0;
+  font-family: var(--nx-font-mono);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0891b2;
+}
+
+.nx-edtech-settings-head h2 {
+  margin: 4px 0 0;
+  font-family: var(--nx-font-sans);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.nx-edtech-settings-close {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.nx-edtech-settings-block {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nx-edtech-settings-block--kmk {
+  border-bottom: none;
+}
+
+.nx-edtech-settings-block h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.nx-edtech-settings-lead {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.nx-edtech-settings-kmk-richt {
+  font-weight: 650;
+  color: #334155;
+}
+
+.nx-edtech-settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.nx-edtech-settings-card {
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.nx-edtech-settings-card--active {
+  border-color: rgba(6, 182, 212, 0.55);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(214, 181, 111, 0.06) 100%);
+  box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.2);
+}
+
+.nx-edtech-settings-card-title {
+  display: block;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.nx-edtech-settings-card-sub {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #64748b;
+}
+
+.nx-edtech-settings-select-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nx-edtech-settings-select-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.nx-edtech-settings-select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: var(--nx-font-sans);
+  background: #fff;
+  color: #0f172a;
+}
+
+.nx-edtech-settings-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 650;
+  color: #334155;
+  cursor: pointer;
+}
+
+.nx-edtech-settings-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: #0891b2;
+}
+
+.nx-edtech-settings-kmk-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #334155;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.nx-edtech-settings-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 8px;
+}

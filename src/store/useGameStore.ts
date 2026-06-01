@@ -327,6 +327,8 @@ type PlayerProfilePersisted = {
   initialSkillScanComplete: boolean;
   trainingTrack: import("../lib/curriculum/trainingProfile").TrainingTrack | null;
   bundeslandId: import("../lib/curriculum/trainingProfile").BundeslandId | null;
+  /** Story-Rahmen in Missionen (true = keine Neutralisierung von Fantasy-Texten) */
+  learningStoryMode: boolean;
 };
 
 function playerProfileFromState(s: {
@@ -337,6 +339,7 @@ function playerProfileFromState(s: {
   initialSkillScanComplete: boolean;
   trainingTrack: import("../lib/curriculum/trainingProfile").TrainingTrack | null;
   bundeslandId: import("../lib/curriculum/trainingProfile").BundeslandId | null;
+  learningStoryMode: boolean;
 }): PlayerProfilePersisted {
   return {
     mentorWaifuIndex: s.mentorWaifuIndex,
@@ -346,6 +349,7 @@ function playerProfileFromState(s: {
     initialSkillScanComplete: s.initialSkillScanComplete,
     trainingTrack: s.trainingTrack,
     bundeslandId: s.bundeslandId,
+    learningStoryMode: s.learningStoryMode,
   };
 }
 
@@ -769,6 +773,8 @@ type GameStore = {
   bundeslandId: import("../lib/curriculum/trainingProfile").BundeslandId | null;
   setTrainingTrack: (track: import("../lib/curriculum/trainingProfile").TrainingTrack) => void;
   setBundeslandId: (id: import("../lib/curriculum/trainingProfile").BundeslandId) => void;
+  learningStoryMode: boolean;
+  setLearningStoryMode: (enabled: boolean) => void;
   /** LF1-Trainingskampf mit reduzierter Boss-Aggression */
   isTutorialCombatRun: boolean;
   /** 0…3 — erwartete Karten: Encrypt → Overclock → Recursion; 3 = alle Schritte erledigt */
@@ -2302,6 +2308,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   initialSkillScanComplete: false,
   trainingTrack: null,
   bundeslandId: null,
+  learningStoryMode: true,
   isTutorialCombatRun: false,
   combatTutorialStep: 0,
   nexusChrome: readStoredNexusChrome(),
@@ -2351,6 +2358,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   setBundeslandId: (id) => {
     set({ bundeslandId: id });
+    persistPlayerProfile(playerProfileFromState(get()));
+  },
+
+  setLearningStoryMode: (enabled) => {
+    set({ learningStoryMode: enabled });
     persistPlayerProfile(playerProfileFromState(get()));
   },
 
@@ -3073,6 +3085,7 @@ try {
     const blRaw = p.bundeslandId;
     const bundeslandId =
       typeof blRaw === "string" && /^[A-Z]{2}$/.test(blRaw) ? (blRaw as import("../lib/curriculum/trainingProfile").BundeslandId) : null;
+    const storyMode = p.learningStoryMode !== false;
     useGameStore.setState({
       mentorWaifuIndex: mentorIdx,
       playerAvatar: avatar,
@@ -3081,6 +3094,7 @@ try {
       initialSkillScanComplete: scanComplete,
       trainingTrack: track,
       bundeslandId,
+      learningStoryMode: storyMode,
     });
   } else if (localStorage.getItem(HAS_COMPLETED_INITIALIZATION_KEY) === "1") {
     /** Legacy: Init-Flag ohne Profil — Begleiterinnen-Raster zeigen, nicht still Waifu 1 setzen */

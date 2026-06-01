@@ -50,6 +50,16 @@ const EDTECH_TEXT_REPLACEMENTS: ReadonlyArray<[RegExp, string]> = [
   [/spurensuche/gi, "Tipp"],
 ];
 
+/** Story-Modus: Texte unverändert (nur Leerzeichen glätten) */
+export function formatLearningDisplayText(raw: string, storyMode: boolean): string {
+  const t = raw.trim().replace(/\s+/g, " ");
+  if (!t) return t;
+  if (storyMode) {
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
+  return sanitizeEdtechLearningText(t);
+}
+
 /** Spiel- und Fantasy-Bezüge für ruhiges Lernen entfernen oder neutralisieren */
 export function sanitizeEdtechLearningText(raw: string): string {
   let t = raw.trim();
@@ -65,7 +75,13 @@ export function sanitizeEdtechLearningText(raw: string): string {
 }
 
 /** Spiel-/Mission-Präfixe für ruhige Anzeige entfernen */
-export function friendlyMissionTitle(missionId: string, rawTitle: string): string {
+export function friendlyMissionTitle(
+  missionId: string,
+  rawTitle: string,
+  storyMode = false
+): string {
+  if (storyMode) return rawTitle.trim();
+
   const key = missionId.trim().toLowerCase();
   if (MISSION_TITLE_OVERRIDES[key]) return MISSION_TITLE_OVERRIDES[key];
 
@@ -77,24 +93,30 @@ export function friendlyMissionTitle(missionId: string, rawTitle: string): strin
   return t || rawTitle;
 }
 
-export function friendlyTopicLine(raw: string): string {
+export function friendlyTopicLine(raw: string, storyMode = false): string {
   const t = raw.trim();
+  if (storyMode) return t;
   if (/corporate espionage|multiversum|star wars|anime|gym/i.test(t)) return "";
   return t;
 }
 
 /** Drei Karten → eine Kurz-Erklärung für entspanntes Lesen */
 export function mergeLessonCardsForEdtech(
-  cards: ReadonlyArray<{ title: string; body: string }>
+  cards: ReadonlyArray<{ title: string; body: string }>,
+  storyMode = false
 ): { title: string; body: string } | null {
   if (!cards.length) return null;
   const parts = cards
-    .map((c) => sanitizeEdtechLearningText(c.body.trim()))
+    .map((c) => formatLearningDisplayText(c.body.trim(), storyMode))
     .filter((body) => body.length > 12);
   if (!parts.length) return null;
   const body = parts.join(" ").replace(/\s+/g, " ").trim();
-  const clipped = body.length > 420 ? `${body.slice(0, 417)}…` : body;
-  return { title: "Kurz erklärt", body: clipped };
+  const clipped = body.length > 520 ? `${body.slice(0, 517)}…` : body;
+  const titleCard = cards.find((c) => c.title.trim().length > 0);
+  return {
+    title: storyMode && titleCard ? titleCard.title.trim() : "Kurz erklärt",
+    body: clipped,
+  };
 }
 
 export function friendlyExampleLabel(raw: string): string {

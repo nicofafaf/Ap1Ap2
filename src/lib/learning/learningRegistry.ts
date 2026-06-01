@@ -24,6 +24,7 @@ import { REFERENCE_EXERCISES_BY_LF } from "./buildReferenceExercises";
 import { LF_DRILL_PACKS } from "./lfDrillPacks";
 import lf01Content from "../../lernfelder/lf01/content.json";
 import lf02Content from "../../lernfelder/lf02/content.json";
+import lf02ExamPath from "../../lernfelder/lf02/examPath.json";
 import lf03Content from "../../lernfelder/lf03/content.json";
 import lf04Content from "../../lernfelder/lf04/content.json";
 import lf05Content from "../../lernfelder/lf05/content.json";
@@ -663,9 +664,17 @@ function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
   ];
 }
 
+const lf02WithExam: BeginnerContentShape = {
+  ...(lf02Content as BeginnerContentShape),
+  beginnerPath: [
+    ...((lf02Content as BeginnerContentShape).beginnerPath ?? []),
+    ...(lf02ExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
+  ],
+};
+
 const BEGINNER_CONTENT_BY_LF: Record<LearningField, BeginnerContentShape> = {
   LF1: lf01Content as BeginnerContentShape,
-  LF2: lf02Content as BeginnerContentShape,
+  LF2: lf02WithExam,
   LF3: lf03Content as BeginnerContentShape,
   LF4: lf04Content as BeginnerContentShape,
   LF5: lf05Content as BeginnerContentShape,
@@ -721,7 +730,7 @@ function mergeFullCurriculum(
   return out;
 }
 
-const LF2_MC_BOSS = buildOptionalBossMcExercise(lf02Content as BeginnerContentShape);
+const LF2_MC_BOSS = buildOptionalBossMcExercise(lf02WithExam);
 const LF3_MC_BOSS = buildOptionalBossMcExercise(lf03Content as BeginnerContentShape);
 const LF1_BOSS = buildOptionalBossMcExercise(lf01Content as BeginnerContentShape);
 const LF10_BOSS = buildOptionalBossMcExercise(lf10Content as BeginnerContentShape);

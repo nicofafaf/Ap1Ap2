@@ -359,7 +359,21 @@
         "secAccount": "Account",
         "requests": "Anfragen",
         "profileMentor": "Profil · Mentor wechseln",
+        "profileSettings": "Profil · Einstellungen",
         "mapContext": "Kontext auf der Karte"
+      },
+      "settings": {
+        "kicker": "Profil",
+        "title": "Einstellungen",
+        "trackTitle": "Ausbildungsrichtung",
+        "trackLead": "AE oder FISI — LF10 bis LF12 passen sich an",
+        "regionTitle": "Bundesland",
+        "regionLead": "KMK-Rahmenlehrplan bundesweit — dein Land für Hinweise",
+        "storyTitle": "Story-Modus",
+        "storyLead": "Missionstexte mit Nexus-Rahmen statt neutraler Kurzfassung",
+        "storyOn": "Story in Lernaufgaben anzeigen",
+        "lf2Title": "LF2 · Prüfungs-Checkliste",
+        "done": "Fertig"
       }
     }
   },

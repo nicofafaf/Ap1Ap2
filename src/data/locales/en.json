@@ -356,7 +356,21 @@
         "secAccount": "Account",
         "requests": "Requests",
         "profileMentor": "Profile · swap mentor",
+        "profileSettings": "Profile · settings",
         "mapContext": "Context on the map"
+      },
+      "settings": {
+        "kicker": "Profile",
+        "title": "Settings",
+        "trackTitle": "Training track",
+        "trackLead": "AE or FISI — LF10 to LF12 titles adapt",
+        "regionTitle": "Federal state",
+        "regionLead": "KMK curriculum nationwide — your state for hints",
+        "storyTitle": "Story mode",
+        "storyLead": "Mission text with Nexus framing instead of neutral summaries",
+        "storyOn": "Show story in learning tasks",
+        "lf2Title": "LF2 · exam checklist",
+        "done": "Done"
       }
     }
   },

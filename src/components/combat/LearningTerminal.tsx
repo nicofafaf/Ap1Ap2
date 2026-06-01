@@ -16,6 +16,7 @@ import { MentorPortrait } from "../ui/MentorPortrait";
 import { EdtechExamTimerBar } from "../navigation/edtech/EdtechExamTimerBar";
 import { EdtechLearningSession } from "../navigation/edtech/EdtechLearningSession";
 import {
+  formatLearningDisplayText,
   friendlyMissionTitle,
   mergeLessonCardsForEdtech,
   sanitizeEdtechLearningText,
@@ -407,22 +408,24 @@ export function LearningTerminal({
   const { snippet, exercise, exerciseLf } = bundle;
   const answerLf = exerciseLf ?? currentLF;
 
+  const learningStoryMode = useGameStore((s) => s.learningStoryMode);
   const learningFocus = Boolean(visible && exercise);
   const isBeginnerExercise = Boolean(exercise?.lessonCards?.length);
   const edtechCalmBeginner = edtechFlow && isBeginnerExercise;
+  const edtechSanitizeText = edtechCalmBeginner && !learningStoryMode;
 
   const displayExerciseTitle = useMemo(() => {
     if (!exercise) return "";
     if (edtechCalmBeginner) {
-      return friendlyMissionTitle(exercise.id, exercise.title);
+      return friendlyMissionTitle(exercise.id, exercise.title, learningStoryMode);
     }
     return exercise.title;
-  }, [exercise, edtechCalmBeginner]);
+  }, [exercise, edtechCalmBeginner, learningStoryMode]);
 
   const edtechMergedLesson = useMemo(() => {
     if (!edtechCalmBeginner || !exercise?.lessonCards?.length) return null;
-    return mergeLessonCardsForEdtech(exercise.lessonCards);
-  }, [edtechCalmBeginner, exercise?.lessonCards]);
+    return mergeLessonCardsForEdtech(exercise.lessonCards, learningStoryMode);
+  }, [edtechCalmBeginner, exercise?.lessonCards, learningStoryMode]);
 
   const learningLeitnerByExerciseId = useGameStore((s) => s.learningLeitnerByExerciseId);
 
@@ -441,15 +444,18 @@ export function LearningTerminal({
 
   const displayMcQuestion = useMemo(() => {
     if (!exercise?.mcQuestion) return "";
-    const q = exercise.mcQuestion;
-    return edtechCalmBeginner ? sanitizeEdtechLearningText(q) : q;
-  }, [exercise?.mcQuestion, edtechCalmBeginner]);
+    return formatLearningDisplayText(exercise.mcQuestion, learningStoryMode);
+  }, [exercise?.mcQuestion, learningStoryMode]);
 
   const displayProblem = useMemo(() => {
     if (!exercise?.problem) return "";
-    const p = exercise.problem;
-    return edtechCalmBeginner ? sanitizeEdtechLearningText(p) : p;
-  }, [exercise?.problem, edtechCalmBeginner]);
+    return formatLearningDisplayText(exercise.problem, learningStoryMode);
+  }, [exercise?.problem, learningStoryMode]);
+
+  const displayCoachLine = useMemo(() => {
+    if (!exercise?.coachLine) return null;
+    return formatLearningDisplayText(exercise.coachLine, learningStoryMode);
+  }, [exercise?.coachLine, learningStoryMode]);
 
   useEffect(() => {
     setPickedId(null);
@@ -1256,7 +1262,7 @@ export function LearningTerminal({
                       gap: "var(--nx-space-12)",
                     }}
                   >
-                    {!examStrict && exercise.coachLine && !edtechCalmBeginner ? (
+                    {!examStrict && displayCoachLine && !edtechCalmBeginner ? (
                       <p
                         style={{
                           margin: 0,
@@ -1276,7 +1282,7 @@ export function LearningTerminal({
                           maxWidth: "72ch",
                         }}
                       >
-                        {sanitizeEdtechLearningText(exercise.coachLine)}
+                        {displayCoachLine}
                       </p>
                     ) : null}
                     <TerminalCodeWorkbench
@@ -1328,7 +1334,7 @@ export function LearningTerminal({
                         gap: "var(--nx-space-12)",
                       }}
                     >
-                      {!examStrict && exercise.coachLine && !edtechCalmBeginner ? (
+                      {!examStrict && displayCoachLine && !edtechCalmBeginner ? (
                         <p
                           style={{
                             margin: 0,
@@ -1348,7 +1354,7 @@ export function LearningTerminal({
                             maxWidth: "72ch",
                           }}
                         >
-                          {sanitizeEdtechLearningText(exercise.coachLine)}
+                          {displayCoachLine}
                         </p>
                       ) : null}
                       <p
@@ -1398,7 +1404,7 @@ export function LearningTerminal({
                               : null
                           }
                           examStrict={examStrict}
-                          sanitizeOptionText={edtechCalmBeginner}
+                          sanitizeOptionText={edtechSanitizeText}
                         />
                       ))}
                     </motion.div>
@@ -1523,7 +1529,7 @@ export function LearningTerminal({
                             "learningTerminal.feedbackMcHitCards"
                           )}
                           examStrict={examStrict}
-                          sanitizeOptionText={edtechCalmBeginner}
+                          sanitizeOptionText={edtechSanitizeText}
                         />
                       ))}
                     </motion.div>

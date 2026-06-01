@@ -593,7 +593,7 @@ export function NeuralInitializer({
                       <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
                         {LEARNING_FIELDS.map((field) => {
                           const lfKey = `LF${field.lf}` as LearningField;
-                          const total = getLfCourseMeta(lf)?.totalExercises ?? 0;
+                          const total = getLfCourseMeta(field.lf)?.totalExercises ?? 0;
                           const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
                           const thumb =
                             getBossThumbnailCandidates(lfKey)[0] ?? mentorWaifuUrl(playerAvatar);

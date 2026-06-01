@@ -1,9 +1,10 @@
 import { useReducedMotion } from "framer-motion";
 import type { RefObject } from "react";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import type { NexusHubMapExtras } from "../../lib/ui/hubMapNavigation";
 import { useGameStore } from "../../store/useGameStore";
 import { EdtechHubSidebar } from "./edtech/EdtechHubSidebar";
+import { EdtechProfileSettings } from "./edtech/EdtechProfileSettings";
 import { NexusEdtechHubArena } from "./edtech/NexusEdtechHubArena";
 
 export type NexusEdtechDashboardProps = {
@@ -33,6 +34,7 @@ export function NexusEdtechDashboard({
 }: NexusEdtechDashboardProps) {
   const reduceMotion = useReducedMotion();
   const playerName = useGameStore((s) => s.playerName);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const scrollHubTop = useCallback(() => {
     const el = scrollParentRef.current;
@@ -67,8 +69,11 @@ export function NexusEdtechDashboard({
         onOpenFieldList={onOpenFieldList}
         onBeginLearningField={onBeginLearningField}
         onSwapCompanion={onSwapCompanion}
+        onOpenSettings={() => setSettingsOpen(true)}
         onBlitzTraining={onBlitzTraining}
       />
+
+      <EdtechProfileSettings open={settingsOpen} onClose={() => setSettingsOpen(false)} />
 
       <NexusEdtechHubArena
         onOpenMap={onOpenMap}

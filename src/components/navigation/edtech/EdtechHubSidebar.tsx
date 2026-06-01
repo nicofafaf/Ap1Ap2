@@ -14,6 +14,7 @@ export type EdtechHubSidebarProps = {
   onOpenFieldList: () => void;
   onBeginLearningField: (lf: number) => void;
   onSwapCompanion: () => void;
+  onOpenSettings?: () => void;
   onBlitzTraining?: () => void;
 };
 
@@ -26,6 +27,7 @@ export function EdtechHubSidebar({
   onOpenFieldList,
   onBeginLearningField,
   onSwapCompanion,
+  onOpenSettings,
   onBlitzTraining,
 }: EdtechHubSidebarProps) {
   const { t } = useNexusI18n();
@@ -74,6 +76,11 @@ export function EdtechHubSidebar({
         </NavSection>
 
         <NavSection title={t("hub.edtech.mega.secAccount")} kicker="◆">
+          <NavBtn
+            label={t("hub.edtech.mega.profileSettings", "Profil · Einstellungen")}
+            onClick={() => onOpenSettings?.()}
+            disabled={!onOpenSettings}
+          />
           <NavBtn label={t("hub.edtech.mega.profileMentor")} onClick={onSwapCompanion} />
           <NavBtn label={t("hub.edtech.mega.mapContext")} onClick={onOpenMap} />
         </NavSection>

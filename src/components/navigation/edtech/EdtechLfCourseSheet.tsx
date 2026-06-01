@@ -21,6 +21,7 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
   const reduceMotion = useReducedMotion();
   const [detailsOpen, setDetailsOpen] = useState(false);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
+  const learningStoryMode = useGameStore((s) => s.learningStoryMode);
 
   const meta = useMemo(() => (lf != null ? getLfCourseMeta(lf) : null), [lf]);
 
@@ -35,7 +36,7 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
 
   const firstMission = meta?.missions[0];
   const friendlyStart = firstMission
-    ? friendlyMissionTitle(firstMission.id, firstMission.title)
+    ? friendlyMissionTitle(firstMission.id, firstMission.title, learningStoryMode)
     : null;
 
   return (
@@ -151,10 +152,10 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
                         <h3>{t("map.edtechCourse.missionsTitle")}</h3>
                         <ul className="nx-edtech-course-mission-list">
                           {meta.missions.map((m) => {
-                            const topic = friendlyTopicLine(m.topic);
+                            const topic = friendlyTopicLine(m.topic, learningStoryMode);
                             return (
                               <li key={m.id}>
-                                <strong>{friendlyMissionTitle(m.id, m.title)}</strong>
+                                <strong>{friendlyMissionTitle(m.id, m.title, learningStoryMode)}</strong>
                                 {topic ? <span>{topic}</span> : null}
                               </li>
                             );

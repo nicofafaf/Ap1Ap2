@@ -4,9 +4,9 @@ import type { LearningField } from "../../../data/nexusRegistry";
 import type { LearningExercise } from "../../../lib/learning/learningRegistry";
 import type { LearningMcOption } from "../../../lib/learning/learningExerciseTypes";
 import {
+  formatLearningDisplayText,
   friendlyMissionTitle,
   mergeLessonCardsForEdtech,
-  sanitizeEdtechLearningText,
 } from "../../../lib/learning/edtechLfDisplay";
 import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { BEGINNER_EXERCISE_IDS_BY_LF } from "../../../lib/learning/learningRegistry";
@@ -35,6 +35,8 @@ export function EdtechLearningSession({
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
+  const learningStoryMode = useGameStore((s) => s.learningStoryMode);
+  const examSessionEndsAt = useGameStore((s) => s.examSessionEndsAt);
   const resetCombat = useGameStore((s) => s.resetCombat);
   const setOverworldLanding = useGameStore((s) => s.setOverworldLanding);
 
@@ -43,18 +45,26 @@ export function EdtechLearningSession({
   const isBeginner = Boolean(exercise.lessonCards?.length);
 
   const displayTitle = useMemo(
-    () => (isBeginner ? friendlyMissionTitle(exercise.id, exercise.title) : exercise.title),
-    [exercise.id, exercise.title, isBeginner]
+    () =>
+      isBeginner
+        ? friendlyMissionTitle(exercise.id, exercise.title, learningStoryMode)
+        : exercise.title,
+    [exercise.id, exercise.title, isBeginner, learningStoryMode]
   );
 
   const mergedLesson = useMemo(() => {
     if (!isBeginner || !exercise.lessonCards?.length) return null;
-    return mergeLessonCardsForEdtech(exercise.lessonCards);
-  }, [exercise.lessonCards, isBeginner]);
+    return mergeLessonCardsForEdtech(exercise.lessonCards, learningStoryMode);
+  }, [exercise.lessonCards, isBeginner, learningStoryMode]);
 
   const mcQuestion = useMemo(
-    () => (isBeginner ? sanitizeEdtechLearningText(exercise.mcQuestion) : exercise.mcQuestion),
-    [exercise.mcQuestion, isBeginner]
+    () => formatLearningDisplayText(exercise.mcQuestion, learningStoryMode),
+    [exercise.mcQuestion, learningStoryMode]
+  );
+
+  const coachLine = useMemo(
+    () => (exercise.coachLine ? formatLearningDisplayText(exercise.coachLine, learningStoryMode) : null),
+    [exercise.coachLine, learningStoryMode]
   );
 
   const solved = new Set(learningCorrectByLf[lf] ?? []).size;
@@ -127,7 +137,7 @@ export function EdtechLearningSession({
         </button>
       </header>
 
-      {examStrict ? <EdtechExamTimerBar /> : null}
+      {examStrict && examSessionEndsAt ? <EdtechExamTimerBar endsAt={examSessionEndsAt} /> : null}
 
       <div className="nx-edtech-learn-body">
         <div className="nx-edtech-learn-inner">
@@ -152,6 +162,7 @@ export function EdtechLearningSession({
                   : t("learningTerminal.edtechStepLabel", "Schritt 1 · Kurz lesen")}
               </div>
               <h3>{displayTitle}</h3>
+              {coachLine ? <p className="nx-edtech-learn-coach">{coachLine}</p> : null}
               <p>{mergedLesson.body}</p>
             </section>
           ) : (
@@ -173,7 +184,7 @@ export function EdtechLearningSession({
                 const active = pickedId === opt.id;
                 const hit = active && opt.isCorrect;
                 const miss = active && !opt.isCorrect;
-                const label = isBeginner ? sanitizeEdtechLearningText(opt.text) : opt.text;
+                const label = formatLearningDisplayText(opt.text, learningStoryMode);
                 return (
                   <motion.button
                     key={opt.id}

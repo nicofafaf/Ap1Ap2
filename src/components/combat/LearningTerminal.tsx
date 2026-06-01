@@ -14,6 +14,12 @@ import { resolveTerminalBossMode } from "../../lib/learning/learningRegistry";
 import { useBossAudioEngine } from "../../lib/audio/bossAudioEngine";
 import { MentorPortrait } from "../ui/MentorPortrait";
 import { EdtechExamTimerBar } from "../navigation/edtech/EdtechExamTimerBar";
+import {
+  friendlyMissionTitle,
+  mergeLessonCardsForEdtech,
+  sanitizeEdtechLearningText,
+} from "../../lib/learning/edtechLfDisplay";
+import { BEGINNER_EXERCISE_IDS_BY_LF } from "../../lib/learning/learningRegistry";
 
 export type LearningTerminalProps = {
   currentLF: LearningField;
@@ -37,6 +43,7 @@ function LearningMcOptionRow({
   t,
   hitMessageOverride,
   examStrict,
+  sanitizeOptionText,
 }: {
   opt: LearningMcOption;
   optIdx: number;
@@ -48,6 +55,7 @@ function LearningMcOptionRow({
   t: (key: string, fallback?: string) => string;
   hitMessageOverride?: string | null;
   examStrict?: boolean;
+  sanitizeOptionText?: boolean;
 }) {
   const learningFocus = variant === "focusPanel";
   const showFeedback = pickedId === opt.id;
@@ -138,7 +146,9 @@ function LearningMcOptionRow({
         >
           {opt.id.toUpperCase()}
         </span>
-        <span style={{ flex: 1, minWidth: 0 }}>{opt.text}</span>
+        <span style={{ flex: 1, minWidth: 0 }}>
+          {sanitizeOptionText ? sanitizeEdtechLearningText(opt.text) : opt.text}
+        </span>
       </span>
       {miss ? (
         <div
@@ -378,6 +388,47 @@ export function LearningTerminal({
 
   const learningFocus = Boolean(visible && exercise);
   const isBeginnerExercise = Boolean(exercise?.lessonCards?.length);
+  const edtechCalmBeginner = edtechFlow && isBeginnerExercise;
+
+  const displayExerciseTitle = useMemo(() => {
+    if (!exercise) return "";
+    if (edtechCalmBeginner) {
+      return friendlyMissionTitle(exercise.id, exercise.title);
+    }
+    return exercise.title;
+  }, [exercise, edtechCalmBeginner]);
+
+  const edtechMergedLesson = useMemo(() => {
+    if (!edtechCalmBeginner || !exercise?.lessonCards?.length) return null;
+    return mergeLessonCardsForEdtech(exercise.lessonCards);
+  }, [edtechCalmBeginner, exercise?.lessonCards]);
+
+  const learningLeitnerByExerciseId = useGameStore((s) => s.learningLeitnerByExerciseId);
+
+  const edtechBeginnerProgress = useMemo(() => {
+    if (!edtechCalmBeginner || !exercise) return null;
+    const ids = [...(BEGINNER_EXERCISE_IDS_BY_LF[answerLf] ?? [])];
+    if (!ids.length) return null;
+    const solved = ids.filter((id) => (learningLeitnerByExerciseId[id]?.repetitions ?? 0) >= 1).length;
+    const idx = ids.indexOf(exercise.id);
+    return {
+      current: idx >= 0 ? idx + 1 : Math.min(solved + 1, ids.length),
+      total: ids.length,
+      solved,
+    };
+  }, [edtechCalmBeginner, exercise, answerLf, learningLeitnerByExerciseId]);
+
+  const displayMcQuestion = useMemo(() => {
+    if (!exercise?.mcQuestion) return "";
+    const q = exercise.mcQuestion;
+    return edtechCalmBeginner ? sanitizeEdtechLearningText(q) : q;
+  }, [exercise?.mcQuestion, edtechCalmBeginner]);
+
+  const displayProblem = useMemo(() => {
+    if (!exercise?.problem) return "";
+    const p = exercise.problem;
+    return edtechCalmBeginner ? sanitizeEdtechLearningText(p) : p;
+  }, [exercise?.problem, edtechCalmBeginner]);
 
   useEffect(() => {
     setPickedId(null);
@@ -894,25 +945,93 @@ export function LearningTerminal({
                       color: learningFocus ? "var(--nx-learn-muted)" : "var(--nx-bone-50)",
                     }}
                   >
-                    {isBeginnerExercise ? "Lektion" : "Aufgabe"}{" "}
-                    {mission.status === "cleared" ? "abgeschlossen" : "in Arbeit"}
+                    {edtechCalmBeginner
+                      ? t("learningTerminal.edtechStepLabel", "Schritt 1 · Kurz lesen")
+                      : isBeginnerExercise
+                        ? t("learningTerminal.lessonLabel", "Lektion")
+                        : t("learningTerminal.taskLabel", "Aufgabe")}{" "}
+                    {!edtechCalmBeginner &&
+                      (mission.status === "cleared"
+                        ? t("learningTerminal.statusDone", "abgeschlossen")
+                        : t("learningTerminal.statusActive", "in Arbeit"))}
                   </div>
                   <h2
                     style={{
                       margin: 0,
                       fontFamily: typography.fontSans,
-                      fontSize: learningFocus
-                        ? "clamp(42px, 5.4vw, 64px)"
-                        : "clamp(24px, 2.8vw, 30px)",
+                      fontSize: edtechCalmBeginner
+                        ? "clamp(28px, 3.6vw, 36px)"
+                        : learningFocus
+                          ? "clamp(42px, 5.4vw, 64px)"
+                          : "clamp(24px, 2.8vw, 30px)",
                       fontWeight: learningFocus ? 800 : typography.headingWeight,
-                      letterSpacing: learningFocus ? "-0.04em" : undefined,
-                      lineHeight: learningFocus ? 0.98 : 1.35,
+                      letterSpacing: learningFocus ? "-0.03em" : undefined,
+                      lineHeight: edtechCalmBeginner ? 1.2 : learningFocus ? 0.98 : 1.35,
                       color: learningFocus ? "var(--nx-learn-ink)" : typography.fg,
                     }}
                   >
-                    {exercise.title}
+                    {displayExerciseTitle}
                   </h2>
-                  {learningFocus && exercise.lessonCards?.length ? (
+                  {edtechBeginnerProgress ? (
+                    <p
+                      style={{
+                        margin: "var(--nx-space-10) 0 0",
+                        fontFamily: typography.fontSans,
+                        fontSize: 14,
+                        fontWeight: 650,
+                        color: "rgba(6, 182, 212, 0.9)",
+                      }}
+                    >
+                      {t("learningTerminal.edtechPathProgress", "Einstieg {current} von {total}")
+                        .replace("{current}", String(edtechBeginnerProgress.current))
+                        .replace("{total}", String(edtechBeginnerProgress.total))}
+                      {edtechBeginnerProgress.solved > 0
+                        ? ` · ${t("learningTerminal.edtechPathDone", "{n} geschafft").replace("{n}", String(edtechBeginnerProgress.solved))}`
+                        : ""}
+                    </p>
+                  ) : null}
+                  {learningFocus && edtechMergedLesson ? (
+                    <article
+                      aria-label={t("learningTerminal.edtechReadAria", "Kurz erklärt")}
+                      style={{
+                        marginTop: "var(--nx-space-20)",
+                        borderRadius: 16,
+                        border: "1px solid rgba(6, 182, 212, 0.28)",
+                        background:
+                          "linear-gradient(165deg, rgba(14, 20, 28, 0.92) 0%, rgba(8, 12, 18, 0.95) 100%)",
+                        padding: "var(--nx-space-20) var(--nx-space-22)",
+                        boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontFamily: typography.fontMono,
+                          fontSize: 11,
+                          fontWeight: 750,
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          color: "rgba(6, 182, 212, 0.85)",
+                        }}
+                      >
+                        {edtechMergedLesson.title}
+                      </div>
+                      <p
+                        style={{
+                          margin: "var(--nx-space-12) 0 0",
+                          fontFamily: typography.fontSans,
+                          fontSize: "clamp(17px, 2vw, 20px)",
+                          lineHeight: 1.55,
+                          fontWeight: 500,
+                          color: "var(--nx-learn-ink)",
+                        }}
+                      >
+                        {edtechMergedLesson.body}
+                      </p>
+                    </article>
+                  ) : null}
+                  {learningFocus &&
+                  exercise.lessonCards?.length &&
+                  !edtechCalmBeginner ? (
                     <div
                       aria-label="Was lernst du"
                       style={{
@@ -980,7 +1099,7 @@ export function LearningTerminal({
                       />
                     </div>
                   ) : null}
-                  {learningFocus && exercise.example ? (
+                  {learningFocus && exercise.example && !edtechCalmBeginner ? (
                     <section
                       aria-label={exercise.example.label}
                       style={{
@@ -1026,14 +1145,16 @@ export function LearningTerminal({
                       style={{
                         marginTop: "var(--nx-space-24)",
                         fontFamily: typography.fontSans,
-                        fontSize: 20,
-                        fontWeight: 850,
+                        fontSize: edtechCalmBeginner ? 13 : 20,
+                        fontWeight: 800,
                         letterSpacing: "0.08em",
                         textTransform: "uppercase",
-                        color: "rgba(22,32,25,0.5)",
+                        color: edtechCalmBeginner ? "rgba(6, 182, 212, 0.75)" : "rgba(22,32,25,0.5)",
                       }}
                     >
-                      {t("learningTerminal.sectionYourTurn", "Deine Aufgabe")}
+                      {edtechCalmBeginner
+                        ? t("learningTerminal.edtechQuestionLabel", "Schritt 2 · Deine Frage")
+                        : t("learningTerminal.sectionYourTurn", "Deine Aufgabe")}
                     </div>
                   ) : null}
                   {!(
@@ -1042,7 +1163,8 @@ export function LearningTerminal({
                     exercise.coachLine &&
                     exercise.lang === "markdown" &&
                     exercise.mcOptions.length > 0
-                  ) ? (
+                  ) &&
+                  !(edtechCalmBeginner && exercise.mcOptions.length > 0) ? (
                     <p
                       style={{
                         margin: isBeginnerExercise
@@ -1058,7 +1180,7 @@ export function LearningTerminal({
                         maxWidth: "72ch",
                       }}
                     >
-                      {exercise.problem}
+                      {displayProblem}
                     </p>
                   ) : null}
                   {learningFocus && exercise.solutionHint ? (
@@ -1102,7 +1224,7 @@ export function LearningTerminal({
                       gap: "var(--nx-space-12)",
                     }}
                   >
-                    {!examStrict && exercise.coachLine ? (
+                    {!examStrict && exercise.coachLine && !edtechCalmBeginner ? (
                       <p
                         style={{
                           margin: 0,
@@ -1122,7 +1244,7 @@ export function LearningTerminal({
                           maxWidth: "72ch",
                         }}
                       >
-                        {exercise.coachLine}
+                        {sanitizeEdtechLearningText(exercise.coachLine)}
                       </p>
                     ) : null}
                     <TerminalCodeWorkbench
@@ -1174,7 +1296,7 @@ export function LearningTerminal({
                         gap: "var(--nx-space-12)",
                       }}
                     >
-                      {!examStrict && exercise.coachLine ? (
+                      {!examStrict && exercise.coachLine && !edtechCalmBeginner ? (
                         <p
                           style={{
                             margin: 0,
@@ -1194,21 +1316,23 @@ export function LearningTerminal({
                             maxWidth: "72ch",
                           }}
                         >
-                          {exercise.coachLine}
+                          {sanitizeEdtechLearningText(exercise.coachLine)}
                         </p>
                       ) : null}
                       <p
                         style={{
                           margin: 0,
                           fontFamily: typography.fontSans,
-                          fontSize: "clamp(1.05rem, 3.2vw, 1.45rem)",
+                          fontSize: edtechCalmBeginner
+                            ? "clamp(1.125rem, 2.8vw, 1.35rem)"
+                            : "clamp(1.05rem, 3.2vw, 1.45rem)",
                           fontWeight: 800,
-                          lineHeight: 1.35,
+                          lineHeight: 1.4,
                           letterSpacing: "-0.01em",
                           color: learningFocus ? "var(--nx-learn-ink)" : "var(--nx-bone-90)",
                         }}
                       >
-                        {exercise.mcQuestion}
+                        {displayMcQuestion}
                       </p>
                     </motion.div>
                     <motion.div variants={streamChild} aria-hidden style={ruleStyle} />
@@ -1242,6 +1366,7 @@ export function LearningTerminal({
                               : null
                           }
                           examStrict={examStrict}
+                          sanitizeOptionText={edtechCalmBeginner}
                         />
                       ))}
                     </motion.div>
@@ -1366,6 +1491,7 @@ export function LearningTerminal({
                             "learningTerminal.feedbackMcHitCards"
                           )}
                           examStrict={examStrict}
+                          sanitizeOptionText={edtechCalmBeginner}
                         />
                       ))}
                     </motion.div>

@@ -1,8 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
-import type { CSSProperties } from "react";
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, type CSSProperties } from "react";
 import { publicAssetUrl, type LearningField } from "../../../data/nexusRegistry";
-import { FRACTAL_COMMAND_BG_MP4 } from "../../../lib/ui/fractalConstants";
 import type { NexusHubMapExtras } from "../../../lib/ui/hubMapNavigation";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import {
@@ -11,10 +9,12 @@ import {
   getHubPlatformStats,
 } from "../../../lib/learning/hubDashboardInsights";
 import { getAllLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
-import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
 import { getDailyIncursionDefinition, getUtcDateKey } from "../../../lib/dailyIncursion";
 import { useGameStore } from "../../../store/useGameStore";
-import { SkillRadar } from "../SkillRadar";
+
+const SkillRadarLazy = lazy(() =>
+  import("../SkillRadar").then((m) => ({ default: m.SkillRadar }))
+);
 import { EdtechLazyVideo } from "./EdtechLazyVideo";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import { StreakCelebration } from "./StreakCelebration";
@@ -58,7 +58,6 @@ export function NexusEdtechHubArena({
 }: NexusEdtechHubArenaProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
-  const [heroVideoOk, setHeroVideoOk] = useState(true);
 
   const playerName = useGameStore((s) => s.playerName);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
@@ -121,14 +120,12 @@ export function NexusEdtechHubArena({
   const { totalCorrect, totalCurriculum } = useMemo(() => {
     let correct = 0;
     let curriculum = 0;
-    for (let lf = 1; lf <= 12; lf += 1) {
-      const key = `LF${lf}` as LearningField;
-      const ids = learningCorrectByLf[key] ?? [];
-      correct += new Set(ids).size;
-      curriculum += CURRICULUM_BY_LF[key]?.length ?? 0;
+    for (const meta of allLfMeta) {
+      correct += new Set(learningCorrectByLf[meta.lfKey] ?? []).size;
+      curriculum += meta.totalExercises;
     }
     return { totalCorrect: correct, totalCurriculum: curriculum };
-  }, [learningCorrectByLf]);
+  }, [allLfMeta, learningCorrectByLf]);
 
   const lastLine = useMemo(() => {
     const ev = lastEvents[0];
@@ -192,28 +189,14 @@ export function NexusEdtechHubArena({
         style={heroShellStyle}
         aria-labelledby="nx-edtech-welcome-title nx-edtech-hero-title"
       >
-        {!reduceMotion && heroVideoOk ? (
-          <video
-            src={FRACTAL_COMMAND_BG_MP4}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            aria-hidden
-            style={heroVideoStyle}
-            onError={() => setHeroVideoOk(false)}
-          />
-        ) : (
-          <span
-            aria-hidden
-            style={{
-              ...heroVideoStyle,
-              background:
-                "linear-gradient(145deg, #0f172a 0%, #1e3a5f 42%, rgba(6, 182, 212, 0.18) 100%)",
-            }}
-          />
-        )}
+        <span
+          aria-hidden
+          style={{
+            ...heroVideoStyle,
+            background:
+              "linear-gradient(145deg, #0f172a 0%, #1e3a5f 42%, rgba(6, 182, 212, 0.22) 72%, rgba(214, 181, 111, 0.12) 100%)",
+          }}
+        />
         <motion.div style={heroOverlayStyle} aria-hidden />
         <div style={heroContentStyle}>
           <div style={heroBannerOnVideoStyle}>
@@ -390,7 +373,9 @@ export function NexusEdtechHubArena({
         </h2>
         <p style={allFieldsLeadStyle}>{t("hub.edtech.radarLead")}</p>
         <div style={radarWrapStyle}>
-          <SkillRadar layoutVariant="compact" epilogueActive />
+          <Suspense fallback={null}>
+            <SkillRadarLazy layoutVariant="compact" epilogueActive />
+          </Suspense>
         </div>
       </motion.section>
 

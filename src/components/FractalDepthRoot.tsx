@@ -414,6 +414,27 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
   const shakeX = Math.min(26, Math.max(2, burstLastDamage * 0.2 + burstIntensity * 10));
   const shakeY = shakeX * 0.72;
   const burstDurationSec = burstDurationMs / 1000;
+  const reduceMotion = useReducedMotion();
+  const liteAtmosphere = edtechAtmosphere || reduceMotion;
+
+  if (liteAtmosphere) {
+    return (
+      <div className="nx-fractal-foreground" style={{ minHeight: "100dvh" }}>
+        <div
+          aria-hidden
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: "var(--nx-z-bg)",
+            pointerEvents: "none",
+            background:
+              "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 45%, #e8eef4 100%)",
+          }}
+        />
+        {children}
+      </div>
+    );
+  }
 
   return (
     <FractalBeatBridge videoRef={videoRef}>

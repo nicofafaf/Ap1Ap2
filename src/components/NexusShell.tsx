@@ -24,6 +24,10 @@ const CombatManagerLazy = lazy(() =>
   import("./combat/CombatManager").then((m) => ({ default: m.CombatManager }))
 );
 
+function preloadCombatChunk() {
+  void import("./combat/CombatManager");
+}
+
 function InitializationFallback() {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
@@ -183,6 +187,7 @@ export function NexusShell() {
   );
 
   const handleOpenOverview = useCallback(() => {
+    preloadCombatChunk();
     completeInitialization();
     setOverworldLanding("map");
     resetCombat();
@@ -195,6 +200,7 @@ export function NexusShell() {
   /** Hub → Karte inkl. Overlay / Sector-Panels (resetCombat setzt Overlay zuerst auf NONE) */
   const handleNavigateFromHubToMap = useCallback(
     (extras: NexusHubMapExtras) => {
+      preloadCombatChunk();
       completeInitialization();
       setOverworldLanding("map");
       resetCombat();
@@ -221,6 +227,7 @@ export function NexusShell() {
 
   const handleBeginLearningField = useCallback(
     (lf: number) => {
+      preloadCombatChunk();
       completeInitialization();
       if (useGameStore.getState().nexusChrome === "edtech") {
         handleEngage(lf);
@@ -303,6 +310,7 @@ export function NexusShell() {
   /** Kampf-Chunk im Leerlauf vorwärmen — kürzerer Fallback beim ersten Dive */
   useEffect(() => {
     if (surface === "combat") return;
+    if (useGameStore.getState().nexusChrome === "edtech") return;
     let idleId = 0;
     let timeoutId = 0;
     const run = () => {

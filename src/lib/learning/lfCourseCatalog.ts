@@ -1,5 +1,6 @@
 import type { LearningField } from "../../data/nexusRegistry";
-import { CURRICULUM_BY_LF } from "./learningRegistry";
+import { LF_EDTECH_SUMMARY } from "./edtechLfDisplay";
+import { getLfExerciseTotal } from "./lfExerciseTotals";
 import lf01 from "../../lernfelder/lf01/content.json";
 import lf02 from "../../lernfelder/lf02/content.json";
 import lf03 from "../../lernfelder/lf03/content.json";
@@ -17,7 +18,13 @@ type ContentShape = {
   lf?: string;
   title?: string;
   ap?: string;
-  beginnerPath?: Array<{ id?: string; title?: string; topic?: string }>;
+  bossPhase?: { id?: string };
+  beginnerPath?: Array<{
+    id?: string;
+    title?: string;
+    topic?: string;
+    practice?: { type?: string };
+  }>;
   reference?: Array<{ id?: string; chapter?: string; title?: string; type?: string }>;
 };
 
@@ -128,10 +135,17 @@ function buildMissions(raw: ContentShape): LfCourseMission[] {
   }));
 }
 
-function detectFlags(lfKey: LearningField) {
-  const bag = CURRICULUM_BY_LF[lfKey] ?? [];
-  const hasBoss = bag.some((e) => /boss/i.test(e.id));
-  const hasCodeWorkbench = bag.some((e) => e.lang === "sql" || e.lang === "csharp" || e.lang === "javascript");
+function detectFlags(lfKey: LearningField, raw: ContentShape) {
+  const hasBoss = Boolean(raw.bossPhase?.id?.trim());
+  const hasCodeWorkbench =
+    lfKey === "LF5" ||
+    lfKey === "LF6" ||
+    lfKey === "LF7" ||
+    lfKey === "LF8" ||
+    (raw.beginnerPath ?? []).some((p) => {
+      const t = p.practice?.type;
+      return t === "sql" || t === "csharp" || t === "javascript" || t === "bash";
+    });
   const hasNetplan = lfKey === "LF10";
   return { hasBoss, hasCodeWorkbench, hasNetplan };
 }
@@ -141,16 +155,17 @@ export function getLfCourseMeta(lf: number): LfCourseMeta | null {
   const lfKey = `LF${lf}` as LearningField;
   const raw = RAW[lfKey];
   if (!raw) return null;
-  const flags = detectFlags(lfKey);
+  const flags = detectFlags(lfKey, raw);
   return {
     lf,
     lfKey,
     title: raw.title?.trim() || lfKey,
+    summary: LF_EDTECH_SUMMARY[lf] ?? raw.title?.trim() ?? lfKey,
     ap: raw.ap?.trim() || (lf <= 6 ? "AP1" : "AP2"),
     chapters: buildChapters(raw),
     missions: buildMissions(raw),
     tools: TOOLS_BY_LF[lf] ?? [{ id: "codex", labelKey: "map.edtechCourse.toolCodex" }],
-    totalExercises: CURRICULUM_BY_LF[lfKey]?.length ?? 0,
+    totalExercises: getLfExerciseTotal(lfKey),
     ...flags,
   };
 }

@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
 import { getBossThumbnailCandidates, mentorWaifuUrl, MENTOR_WAIFU_IDS } from "../../data/nexusRegistry";
-import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
+import { getLfCourseMeta } from "../../lib/learning/lfCourseCatalog";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../store/useGameStore";
 import type { NexusHubMapExtras } from "../../lib/ui/hubMapNavigation";
@@ -147,8 +147,24 @@ export function NeuralInitializer({
 
   useEffect(() => {
     if (phase !== "hub") return;
-    void import("../combat/CombatManager");
-  }, [phase]);
+    if (nexusChrome !== "industrial") return;
+    let idleId = 0;
+    const run = () => void import("../combat/CombatManager");
+    if (typeof window.requestIdleCallback === "function") {
+      idleId = window.requestIdleCallback(run, { timeout: 8000 });
+    } else {
+      idleId = window.setTimeout(run, 4000) as unknown as number;
+    }
+    return () => {
+      if (idleId) {
+        if (typeof window.cancelIdleCallback === "function") {
+          window.cancelIdleCallback(idleId);
+        } else {
+          window.clearTimeout(idleId);
+        }
+      }
+    };
+  }, [phase, nexusChrome]);
 
   const toggleNexusChrome = useCallback(() => {
     setNexusChrome(nexusChrome === "edtech" ? "industrial" : "edtech");
@@ -582,7 +598,7 @@ export function NeuralInitializer({
                       <motion.div variants={CARD} style={fieldGridStyle} aria-label="Alle Lernfelder">
                         {LEARNING_FIELDS.map((field) => {
                           const lfKey = `LF${field.lf}` as LearningField;
-                          const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
+                          const total = getLfCourseMeta(lf)?.totalExercises ?? 0;
                           const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
                           const thumb =
                             getBossThumbnailCandidates(lfKey)[0] ?? mentorWaifuUrl(playerAvatar);

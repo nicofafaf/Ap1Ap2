@@ -759,14 +759,20 @@ export function resolveTerminalBossMode(
   return { isBoss: false, epicLine: null };
 }
 
+/** Nächste Einstiegs-Übung in JSON-Reihenfolge — nicht nur die erste Mission */
 function getPendingBeginnerExercise(
   lf: LearningField,
-  leitner?: Readonly<Record<string, LeitnerCardState>>
+  leitner?: Readonly<Record<string, LeitnerCardState>>,
+  excludeExerciseId?: string | null
 ): LearningExercise | null {
-  const beginner = BEGINNER_EXERCISES_BY_LF[lf][0];
-  if (!beginner) return null;
-  const state = leitner?.[beginner.id];
-  return !state || state.repetitions < 1 ? beginner : null;
+  const path = BEGINNER_EXERCISES_BY_LF[lf];
+  if (!path?.length) return null;
+  for (const ex of path) {
+    if (excludeExerciseId && ex.id === excludeExerciseId) continue;
+    const state = leitner?.[ex.id];
+    if (!state || state.repetitions < 1) return ex;
+  }
+  return null;
 }
 
 const LF5_JSON_CORE = buildLf5FromJson(lf05Content as Lf5ContentShape);
@@ -1170,8 +1176,8 @@ export function pickLearningExerciseFromLfAdaptive(
 ): LearningExercise | null {
   const bag = CURRICULUM_BY_LF[lf];
   if (!bag?.length) return null;
-  const pendingBeginner = getPendingBeginnerExercise(lf, leitner);
-  if (pendingBeginner && pendingBeginner.id !== excludeExerciseId) return pendingBeginner;
+  const pendingBeginner = getPendingBeginnerExercise(lf, leitner, excludeExerciseId);
+  if (pendingBeginner) return pendingBeginner;
 
   const beginnerIds = BEGINNER_EXERCISE_IDS_BY_LF[lf];
   let reviewBag = bag.filter((exercise) => !beginnerIds.has(exercise.id));

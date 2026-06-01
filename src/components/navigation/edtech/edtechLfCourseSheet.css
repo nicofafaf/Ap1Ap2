@@ -7,7 +7,7 @@
   align-items: flex-end;
   justify-content: center;
   padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
-    max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    10px max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
 }
 
 @media (min-width: 720px) {
@@ -18,8 +18,8 @@
 }
 
 .nx-edtech-course-sheet {
-  width: min(100%, 560px);
-  max-height: min(92dvh, 820px);
+  width: min(100%, 520px);
+  max-height: min(92dvh, 780px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,236 @@
   min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 20px 20px 12px;
+  padding: 22px 22px 12px;
+}
+
+.nx-edtech-course-hero {
+  margin-bottom: 18px;
+}
+
+.nx-edtech-course-ap {
+  display: inline-block;
+  font-family: var(--nx-font-mono);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #06b6d4;
+  margin-bottom: 6px;
+}
+
+.nx-edtech-course-title {
+  margin: 0;
+  font-family: var(--nx-font-sans);
+  font-size: clamp(24px, 4.5vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  line-height: 1.15;
+}
+
+.nx-edtech-course-summary {
+  margin: 10px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #64748b;
+  font-family: var(--nx-font-sans);
+}
+
+.nx-edtech-course-progress-block {
+  margin-bottom: 20px;
+}
+
+.nx-edtech-course-progress-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-family: var(--nx-font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.nx-edtech-course-progress-num {
+  font-family: var(--nx-font-mono);
+  font-size: 12px;
+  font-weight: 650;
+  color: #64748b;
+}
+
+.nx-edtech-course-progress-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.22);
+  overflow: hidden;
+}
+
+.nx-edtech-course-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #06b6d4, #d6b56f);
+}
+
+.nx-edtech-course-path {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nx-edtech-course-path-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: #fff;
+}
+
+.nx-edtech-course-path-step--active {
+  border-color: rgba(6, 182, 212, 0.45);
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.08) 0%,
+    rgba(214, 181, 111, 0.06) 100%
+  );
+}
+
+.nx-edtech-course-path-step--optional {
+  opacity: 0.88;
+}
+
+.nx-edtech-course-path-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--nx-font-mono);
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  background: rgba(6, 182, 212, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+}
+
+.nx-edtech-course-path-step strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+  font-family: var(--nx-font-sans);
+}
+
+.nx-edtech-course-path-step p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #64748b;
+  font-family: var(--nx-font-sans);
+}
+
+.nx-edtech-course-start-hint {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(214, 181, 111, 0.35);
+  background: rgba(214, 181, 111, 0.08);
+  margin-bottom: 14px;
+}
+
+.nx-edtech-course-start-label {
+  font-family: var(--nx-font-mono);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.nx-edtech-course-start-title {
+  margin: 6px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.4;
+  font-family: var(--nx-font-sans);
+}
+
+.nx-edtech-course-details-toggle {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 0;
+  text-align: left;
+  font-family: var(--nx-font-sans);
+}
+
+.nx-edtech-course-details {
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.nx-edtech-course-details h3 {
+  margin: 16px 0 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-family: var(--nx-font-sans);
+}
+
+.nx-edtech-course-mission-list,
+.nx-edtech-course-chapter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nx-edtech-course-mission-list li,
+.nx-edtech-course-chapter-list li {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  background: #fff;
+  font-family: var(--nx-font-sans);
+  font-size: 13px;
+  color: #475569;
+}
+
+.nx-edtech-course-mission-list strong {
+  display: block;
+  color: #0f172a;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.nx-edtech-course-chapter-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.nx-edtech-course-chapter-count {
+  font-family: var(--nx-font-mono);
+  font-size: 11px;
+  color: #94a3b8;
+  flex-shrink: 0;
 }
 
 .nx-edtech-course-sheet-actions {
@@ -48,57 +277,31 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 12px 20px max(16px, env(safe-area-inset-bottom));
+  padding: 14px 22px max(18px, env(safe-area-inset-bottom));
   border-top: 1px solid rgba(226, 232, 240, 0.95);
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.98);
 }
 
-.nx-edtech-course-chapters {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 12px;
+.nx-edtech-course-cta-primary {
+  width: 100%;
+  min-height: 52px;
+  font-size: 16px !important;
+  font-weight: 800 !important;
 }
 
-.nx-edtech-course-chapter {
+.nx-edtech-course-cta-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(226, 232, 240, 0.92);
-  background: #fff;
 }
 
-.nx-edtech-course-missions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.nx-edtech-course-mission {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(214, 181, 111, 0.28);
-  background: linear-gradient(90deg, rgba(6, 182, 212, 0.06) 0%, rgba(214, 181, 111, 0.05) 100%);
-}
-
-.nx-edtech-course-tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.nx-edtech-course-tool-pill {
+.nx-edtech-course-close {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
   font-family: var(--nx-font-sans);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(6, 182, 212, 0.35);
-  background: rgba(6, 182, 212, 0.08);
-  color: #0f172a;
+  align-self: center;
 }

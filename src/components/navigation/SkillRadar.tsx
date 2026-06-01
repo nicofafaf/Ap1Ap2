@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useId, useMemo } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
-import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
+import { getLfCourseMeta } from "../../lib/learning/lfCourseCatalog";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../store/useGameStore";
 import { MentorPortrait } from "../ui/MentorPortrait";
@@ -48,10 +48,9 @@ function useRadarSeries(scanPreview?: Partial<Record<LearningField, boolean>>): 
         continue;
       }
       mastered.push(false);
-      const curriculum = CURRICULUM_BY_LF[key] ?? [];
       const have = new Set(learningCorrectByLf[key] ?? []);
-      const correct = curriculum.filter((e) => have.has(e.id)).length;
-      const total = curriculum.length;
+      const total = getLfCourseMeta(lf)?.totalExercises ?? 0;
+      const correct = Math.min(have.size, total);
       let ratio = total > 0 ? correct / total : 0;
       const preview = scanPreview?.[key];
       const scan =

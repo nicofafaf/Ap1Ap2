@@ -789,7 +789,7 @@ export function CombatManager({
       </div>
       <VictoryFinisher captureRef={combatCaptureRef} />
       <LootDetailOverlay />
-      {import.meta.env.DEV && <GameDebugPanel />}
+      {import.meta.env.DEV && !edtechLearn && <GameDebugPanel />}
     </div>
   );
 }

@@ -4,8 +4,7 @@ import { CodexIridium } from "../../archive/CodexIridium";
 import ArtifactGallery from "../../gallery/ArtifactGallery";
 import { getNexusEntryForLF, type LearningField } from "../../../data/nexusRegistry";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
-import { CURRICULUM_BY_LF } from "../../../lib/learning/learningRegistry";
-import { computeAllSectorStabilities, stabilityTier } from "../../../lib/math/mapLogic";
+import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { getDailyIncursionDefinition, getUtcDateKey, type InitiateCombatOptions } from "../../../lib/dailyIncursion";
 import { EdtechDailyCountdown } from "./EdtechDailyCountdown";
 import { useGameStore } from "../../../store/useGameStore";
@@ -37,7 +36,6 @@ import {
   edtechLfProgressFill,
   edtechLfProgressTrack,
   edtechLfSectionTitle,
-  edtechLfTierPill,
 } from "./edtechCourseCardStyles";
 
 export type EdtechSectorMapProps = {
@@ -49,34 +47,11 @@ function apLabel(lf: number): string {
   return lf <= 6 ? "AP1" : "AP2";
 }
 
-function tierPillStyle(tier: "stable" | "unstable" | "critical"): CSSProperties {
-  if (tier === "stable") {
-    return {
-      color: "#166534",
-      background: "rgba(34, 197, 94, 0.12)",
-      borderColor: "rgba(34, 197, 94, 0.38)",
-    };
-  }
-  if (tier === "unstable") {
-    return {
-      color: "#9a3412",
-      background: "rgba(245, 158, 11, 0.12)",
-      borderColor: "rgba(245, 158, 11, 0.45)",
-    };
-  }
-  return {
-    color: "#475569",
-    background: "rgba(148, 163, 184, 0.14)",
-    borderColor: "rgba(148, 163, 184, 0.45)",
-  };
-}
-
 export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMapProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
 
   const campaign = useGameStore((s) => s.campaign);
-  const history = useGameStore((s) => s.combatArchitectHistory);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const initialSkillScanByLf = useGameStore((s) => s.initialSkillScanByLf);
   const initialSkillScanComplete = useGameStore((s) => s.initialSkillScanComplete);
@@ -119,8 +94,6 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
 
   const dateKey = useMemo(() => getUtcDateKey(), []);
   const dailyDef = useMemo(() => getDailyIncursionDefinition(dateKey), [dateKey]);
-  const stabilities = useMemo(() => computeAllSectorStabilities(history), [history]);
-
   const dailyEngageOptions = useMemo<InitiateCombatOptions>(
     () => ({
       applyDailyRules: true,
@@ -156,8 +129,9 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
       const lf = i + 1;
       const lfKey = `LF${lf}` as LearningField;
       const entry = getNexusEntryForLF(lfKey);
+      const courseMeta = getLfCourseMeta(lf);
       const solved = new Set(learningCorrectByLf[lfKey] ?? []).size;
-      const total = CURRICULUM_BY_LF[lfKey]?.length ?? 0;
+      const total = courseMeta?.totalExercises ?? 0;
       const mastered = Boolean(campaign.masteryChecks[lfKey]);
       const isDaily = lf === dailyDef.targetLf;
       const scanRing = scanRingForLf(lf);
@@ -170,8 +144,8 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         mastered,
         isDaily,
         scanRing,
-        title: t(`lf.${lfKey}.boss`, entry.bossDisplayName),
-        discipline: t(`lf.${lfKey}.discipline`, ""),
+        title: courseMeta?.title ?? lfKey,
+        summary: courseMeta?.summary ?? "",
       };
     });
   }, [
@@ -184,14 +158,6 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   ]);
 
   const renderLfCard = (field: (typeof fields)[number]) => {
-    const tier = stabilityTier(stabilities[field.lf] ?? 0);
-    const tierLabel =
-      tier === "stable"
-        ? t("map.tierStable")
-        : tier === "unstable"
-          ? t("map.tierUnstable")
-          : t("map.tierCritical");
-
     const border = field.isDaily
       ? `2px solid ${cyanAccent}`
       : field.mastered
@@ -204,7 +170,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
 
     const pct = field.total > 0 ? Math.min(100, Math.round((field.solved / field.total) * 100)) : 0;
     const ariaLabel = t("map.edtechLfAria").replace("{lf}", String(field.lf)).replace("{title}", field.title);
-    const disciplineLine = field.discipline.trim();
+    const summaryLine = field.summary.trim();
 
     return (
       <motion.button
@@ -279,9 +245,9 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         <span style={{ ...edtechCourseBody, flex: "1 1 auto" }}>
           <span style={edtechCourseAp}>{apLabel(field.lf)}</span>
           <strong style={edtechCourseTitle}>{field.title}</strong>
-          {disciplineLine ? (
-            <span style={{ ...edtechCourseMeta, marginTop: 0 }} title={disciplineLine}>
-              {disciplineLine}
+          {summaryLine ? (
+            <span style={{ ...edtechCourseMeta, marginTop: 0 }} title={summaryLine}>
+              {summaryLine}
             </span>
           ) : null}
           <span style={edtechLfProgressTrack} aria-hidden>
@@ -296,14 +262,10 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
                 color: "#64748b",
                 flex: "1 1 auto",
                 minWidth: 0,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
               }}
             >
-              {field.solved}/{field.total} {t("hub.edtech.feed.exercises")}
+              {field.solved}/{field.total} · {field.total > 0 ? Math.round((field.solved / field.total) * 100) : 0}%
             </span>
-            <span style={{ ...edtechLfTierPill, ...tierPillStyle(tier) }}>{tierLabel}</span>
           </div>
         </span>
       </motion.button>

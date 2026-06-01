@@ -324,6 +324,8 @@ export function LearningTerminal({
   const entryToken = useGameStore((s) => s.entryToken);
   const preferredLearningExerciseId = useGameStore((s) => s.preferredLearningExerciseId);
   const edtechExcludeExerciseId = useGameStore((s) => s.edtechExcludeExerciseId);
+  const edtechRecentExerciseIds = useGameStore((s) => s.edtechRecentExerciseIds);
+  const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const sectorZeroMorphToken = useGameStore((s) => s.sectorZeroMorphToken);
   const recordCombatLearningAttempt = useGameStore((s) => s.recordCombatLearningAttempt);
   const triggerBossHit = useGameStore((s) => s.triggerBossHit);
@@ -373,15 +375,33 @@ export function LearningTerminal({
       const seed = (entryToken ^ (sectorZeroMorphToken * 0x9e3779b9)) >>> 0;
       return getFinalExamLearningBundle(seed, leitner);
     }
+    const edtechPickCtx = edtechFlow
+      ? {
+          excludeExerciseId: edtechExcludeExerciseId,
+          recentExerciseIds: edtechRecentExerciseIds,
+          solvedExerciseIds: learningCorrectByLf[currentLF] ?? [],
+        }
+      : null;
     return getTerminalLearningBundle(
       currentLF,
       semantic,
       entryToken,
       leitner,
       preferredLearningExerciseId,
-      edtechExcludeExerciseId
+      edtechPickCtx
     );
-  }, [sectorZero, sectorZeroMorphToken, currentLF, semantic, entryToken, preferredLearningExerciseId, edtechExcludeExerciseId]);
+  }, [
+    sectorZero,
+    sectorZeroMorphToken,
+    currentLF,
+    semantic,
+    entryToken,
+    preferredLearningExerciseId,
+    edtechFlow,
+    edtechExcludeExerciseId,
+    edtechRecentExerciseIds,
+    learningCorrectByLf,
+  ]);
 
   const { snippet, exercise, exerciseLf } = bundle;
   const answerLf = exerciseLf ?? currentLF;
@@ -433,16 +453,6 @@ export function LearningTerminal({
   useEffect(() => {
     setPickedId(null);
   }, [entryToken, currentLF, semantic, visible, sectorZero, sectorZeroMorphToken]);
-
-  useEffect(() => {
-    if (
-      edtechExcludeExerciseId &&
-      exercise?.id &&
-      exercise.id !== edtechExcludeExerciseId
-    ) {
-      useGameStore.setState({ edtechExcludeExerciseId: null });
-    }
-  }, [exercise?.id, edtechExcludeExerciseId]);
 
   useEffect(() => {
     if (!learningFocus) {

@@ -1,5 +1,5 @@
 /* global self, caches, fetch, clients */
-const CACHE_NAME = "nexus-media-v13";
+const CACHE_NAME = "nexus-media-v14";
 const MANIFEST_PATH = "/nexus-precache-manifest.json";
 
 self.addEventListener("install", (event) => {

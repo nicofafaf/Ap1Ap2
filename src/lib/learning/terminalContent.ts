@@ -5,6 +5,7 @@ import {
   pickFinalExamExercise,
   pickLearningExercise,
   pickLearningExerciseFromLfAdaptive,
+  type EdtechExercisePickContext,
   type LearningExercise,
   type LeitnerCardState,
 } from "./learningRegistry";
@@ -248,7 +249,7 @@ export function getTerminalLearningBundle(
   seed: number,
   leitner?: Readonly<Record<string, LeitnerCardState>>,
   preferredExerciseId?: string | null,
-  excludeExerciseId?: string | null
+  edtechPickCtx?: EdtechExercisePickContext | null
 ): TerminalLearningBundle {
   if (preferredExerciseId) {
     const preferred = getLearningExerciseById(lf, preferredExerciseId);
@@ -266,7 +267,19 @@ export function getTerminalLearningBundle(
   }
   const now = Date.now();
   const exercise = leitner
-    ? pickLearningExerciseFromLfAdaptive(lf, createSeededRandom(seed >>> 0), leitner, now, excludeExerciseId)
+    ? pickLearningExerciseFromLfAdaptive(
+        lf,
+        createSeededRandom(
+          (seed ^
+            (edtechPickCtx?.excludeExerciseId
+              ? [...edtechPickCtx.excludeExerciseId].reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 0)
+              : 0)) >>>
+            0
+        ),
+        leitner,
+        now,
+        edtechPickCtx
+      )
     : pickLearningExercise(lf, semantic, seed);
   if (exercise) {
     return {

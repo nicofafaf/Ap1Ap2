@@ -759,20 +759,49 @@ export function resolveTerminalBossMode(
   return { isBoss: false, epicLine: null };
 }
 
+export type EdtechExercisePickContext = {
+  excludeExerciseId?: string | null;
+  /** Zuletzt gelöste IDs in dieser Sitzung — keine direkte Wiederholung */
+  recentExerciseIds?: readonly string[];
+  /** Bereits richtig gelöste IDs je LF (persistiert) */
+  solvedExerciseIds?: readonly string[];
+};
+
 /** Nächste Einstiegs-Übung in JSON-Reihenfolge — nicht nur die erste Mission */
 function getPendingBeginnerExercise(
   lf: LearningField,
   leitner?: Readonly<Record<string, LeitnerCardState>>,
-  excludeExerciseId?: string | null
+  ctx?: EdtechExercisePickContext | null
 ): LearningExercise | null {
   const path = BEGINNER_EXERCISES_BY_LF[lf];
   if (!path?.length) return null;
+  const solved = new Set(ctx?.solvedExerciseIds ?? []);
+  const exclude = ctx?.excludeExerciseId;
   for (const ex of path) {
-    if (excludeExerciseId && ex.id === excludeExerciseId) continue;
+    if (exclude && ex.id === exclude) continue;
+    if (solved.has(ex.id)) continue;
     const state = leitner?.[ex.id];
     if (!state || state.repetitions < 1) return ex;
   }
   return null;
+}
+
+function filterExercisePool<T extends { id: string }>(
+  pool: T[],
+  ctx?: EdtechExercisePickContext | null
+): T[] {
+  if (!pool.length) return pool;
+  const exclude = ctx?.excludeExerciseId;
+  const recent = new Set(ctx?.recentExerciseIds ?? []);
+  let out = pool.filter((ex) => ex.id !== exclude && !recent.has(ex.id));
+  if (out.length) return out;
+  out = pool.filter((ex) => ex.id !== exclude);
+  if (out.length) return out;
+  if (recent.size) {
+    out = pool.filter((ex) => !recent.has(ex.id));
+    if (out.length) return out;
+  }
+  return pool;
 }
 
 const LF5_JSON_CORE = buildLf5FromJson(lf05Content as Lf5ContentShape);
@@ -1172,22 +1201,29 @@ export function pickLearningExerciseFromLfAdaptive(
   rng: () => number,
   leitner: Readonly<Record<string, LeitnerCardState>>,
   now: number,
-  excludeExerciseId?: string | null
+  edtechCtx?: EdtechExercisePickContext | null
 ): LearningExercise | null {
   const bag = CURRICULUM_BY_LF[lf];
   if (!bag?.length) return null;
-  const pendingBeginner = getPendingBeginnerExercise(lf, leitner, excludeExerciseId);
+  const pendingBeginner = getPendingBeginnerExercise(lf, leitner, edtechCtx);
   if (pendingBeginner) return pendingBeginner;
 
   const beginnerIds = BEGINNER_EXERCISE_IDS_BY_LF[lf];
+  const solved = new Set(edtechCtx?.solvedExerciseIds ?? []);
   let reviewBag = bag.filter((exercise) => !beginnerIds.has(exercise.id));
-  if (excludeExerciseId) {
-    const withoutLast = reviewBag.filter((exercise) => exercise.id !== excludeExerciseId);
-    if (withoutLast.length) reviewBag = withoutLast;
+  reviewBag = filterExercisePool(reviewBag, edtechCtx);
+  if (!reviewBag.length) {
+    reviewBag = filterExercisePool(
+      bag.filter((exercise) => !beginnerIds.has(exercise.id)),
+      edtechCtx
+    );
   }
-  return pickWeightedExercise(reviewBag.length ? reviewBag : bag, rng, (id) =>
-    leitnerPickWeight(id, leitner, now)
-  );
+
+  const unseen = reviewBag.filter((exercise) => !solved.has(exercise.id));
+  const pickPool = unseen.length ? unseen : reviewBag;
+  if (!pickPool.length) return null;
+
+  return pickWeightedExercise(pickPool, rng, (id) => leitnerPickWeight(id, leitner, now));
 }
 
 export function getLearningExerciseById(
@@ -1211,7 +1247,7 @@ export function pickFinalExamExercise(
   now: number
 ): { exercise: LearningExercise; lf: LearningField } | null {
   const lf = pickRandomLf(rng);
-  const exercise = pickLearningExerciseFromLfAdaptive(lf, rng, leitner, now);
+  const exercise = pickLearningExerciseFromLfAdaptive(lf, rng, leitner, now, null);
   if (!exercise) return null;
   return { exercise, lf };
 }

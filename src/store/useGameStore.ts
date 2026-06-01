@@ -596,6 +596,8 @@ type GameStore = {
   entryToken: number;
   /** EdTech: zuletzt gelöste Übung — nächste Auswahl überspringt diese ID */
   edtechExcludeExerciseId: string | null;
+  /** EdTech: letzte gelöste Aufgaben (Sitzung) — verhindert Wiederholungen */
+  edtechRecentExerciseIds: string[];
   preferredLearningExerciseId: string | null;
   damagePulseToken: number;
   criticalHitToken: number;
@@ -882,6 +884,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   bossAdaptivePulseToken: 0,
   entryToken: 0,
   edtechExcludeExerciseId: null,
+  edtechRecentExerciseIds: [],
   preferredLearningExerciseId: null,
   damagePulseToken: 0,
   criticalHitToken: 0,
@@ -918,7 +921,17 @@ export const useGameStore = create<GameStore>((set, get) => ({
   setPreferredLearningExerciseId: (exerciseId) => set({ preferredLearningExerciseId: exerciseId }),
   advanceEdtechLearningTurn: (completedExerciseId) =>
     set((state) => {
-      const excludePatch = { edtechExcludeExerciseId: completedExerciseId ?? null };
+      const recent =
+        completedExerciseId != null
+          ? [
+              completedExerciseId,
+              ...state.edtechRecentExerciseIds.filter((id) => id !== completedExerciseId),
+            ].slice(0, 12)
+          : state.edtechRecentExerciseIds;
+      const excludePatch = {
+        edtechExcludeExerciseId: completedExerciseId ?? null,
+        edtechRecentExerciseIds: recent,
+      };
       if (state.isBlitzSession && state.blitzQueue.length > 0) {
         const nextIndex = state.blitzIndex + 1;
         if (nextIndex >= state.blitzQueue.length) {
@@ -929,6 +942,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
             entryToken: state.entryToken + 1,
             preferredLearningExerciseId: null,
             edtechExcludeExerciseId: null,
+            edtechRecentExerciseIds: [],
           };
         }
         return {
@@ -936,6 +950,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
           preferredLearningExerciseId: state.blitzQueue[nextIndex] ?? null,
           entryToken: state.entryToken + 1,
           edtechExcludeExerciseId: null,
+          edtechRecentExerciseIds: recent,
         };
       }
       return {
@@ -1212,6 +1227,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
         learningMentorColdToken: 0,
         examLogicFlowToken: 0,
         preferredLearningExerciseId: preferredBeginnerExerciseId,
+        edtechExcludeExerciseId: null,
+        edtechRecentExerciseIds: [],
         archiveWorkbenchSnippet: null,
         mission: { lf: null, missionId: null, status: "idle" as const },
       };

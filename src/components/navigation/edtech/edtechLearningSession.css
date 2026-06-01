@@ -4,9 +4,20 @@
   z-index: var(--nx-z-learning-focus-panel);
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 48%, #f1f5f9 100%);
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(6, 182, 212, 0.08), transparent 55%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 48%, #f1f5f9 100%);
   color: #0f172a;
   overflow: hidden;
+}
+
+.nx-edtech-learn-hero-wrap {
+  flex-shrink: 0;
+  padding: max(12px, env(safe-area-inset-top)) 16px 0;
+}
+
+.nx-edtech-learn-hero-wrap .nx-cinematic {
+  border-radius: 16px;
 }
 
 .nx-edtech-learn-header {
@@ -14,11 +25,11 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: max(16px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) 16px
-    max(20px, env(safe-area-inset-left));
+  padding: 12px max(20px, env(safe-area-inset-right)) 16px max(20px, env(safe-area-inset-left));
   border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .nx-edtech-learn-header-text {

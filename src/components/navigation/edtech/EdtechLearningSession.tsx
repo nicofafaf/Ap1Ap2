@@ -12,6 +12,8 @@ import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { BEGINNER_EXERCISE_IDS_BY_LF } from "../../../lib/learning/learningRegistry";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../../store/useGameStore";
+import { publicAssetUrl } from "../../../data/nexusRegistry";
+import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
 import { EdtechExamTimerBar } from "./EdtechExamTimerBar";
 import "./edtechLearningSession.css";
 
@@ -93,14 +95,21 @@ export function EdtechLearningSession({
         ) : null}
       </AnimatePresence>
 
+      <div className="nx-edtech-learn-hero-wrap">
+        <NexusCinematicShell
+          variant="strip"
+          videoSrc={publicAssetUrl(`/assets/LF${lfNum}GIF.mp4`)}
+          kicker={`${meta?.ap ?? "AP"} · LF${lfNum}`}
+          title={meta?.title ?? lf}
+          lead={displayTitle}
+        />
+      </div>
+
       <header className="nx-edtech-learn-header">
         <div className="nx-edtech-learn-header-text">
-          <span className="nx-edtech-learn-lf">
-            {meta?.ap ?? "AP"} · LF{lfNum}
+          <span className="nx-edtech-learn-lf" id="nx-edtech-learn-heading">
+            {t("edtechLearn.progressLabel", "Dein Fortschritt")}
           </span>
-          <h1 id="nx-edtech-learn-heading" className="nx-edtech-learn-title">
-            {meta?.title ?? lf}
-          </h1>
           <div className="nx-edtech-learn-progress-wrap">
             <div className="nx-edtech-learn-progress-meta">
               <span>

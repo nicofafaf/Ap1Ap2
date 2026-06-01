@@ -16,6 +16,8 @@ const SkillRadarLazy = lazy(() =>
   import("../SkillRadar").then((m) => ({ default: m.SkillRadar }))
 );
 import { EdtechLazyVideo } from "./EdtechLazyVideo";
+import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
+import { cinematicGhostBtn, cinematicPrimaryBtn } from "../../../lib/ui/nexusCinematicTokens";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import { StreakCelebration } from "./StreakCelebration";
 import {
@@ -186,71 +188,48 @@ export function NexusEdtechHubArena({
         milestone={streakCelebrationMilestone}
         onDismiss={clearStreakCelebration}
       />
-      <motion.section
-        variants={EDTECH_CARD}
-        style={heroShellStyle}
-        aria-labelledby="nx-edtech-welcome-title nx-edtech-hero-title"
-      >
-        <span
-          aria-hidden
-          style={{
-            ...heroVideoStyle,
-            background:
-              "linear-gradient(145deg, #0f172a 0%, #1e3a5f 42%, rgba(6, 182, 212, 0.22) 72%, rgba(214, 181, 111, 0.12) 100%)",
-          }}
-        />
-        <motion.div style={heroOverlayStyle} aria-hidden />
-        <div style={heroContentStyle}>
-          <div style={heroBannerOnVideoStyle}>
-            <span style={bannerDot} aria-hidden />
-            <span style={{ flex: "1 1 auto", minWidth: 0 }}>{t("hub.edtech.localBanner")}</span>
-          </div>
-          <h1 id="nx-edtech-welcome-title" style={welcomeOnVideoStyle}>
-            {t("hub.edtech.welcomeBefore")} {playerName}
-            {t("hub.edtech.welcomeAfter")}
-          </h1>
-          <p style={welcomeSubOnVideoStyle}>{lastLine}</p>
-          <span style={heroBadgeStyle}>
-            {trainingTrack === "ae"
+      <motion.div variants={EDTECH_CARD}>
+        <NexusCinematicShell
+          variant="hero"
+          videoPriority
+          kicker={
+            (trainingTrack === "ae"
               ? t("hub.edtech.profileTrackAe")
               : trainingTrack === "fisi"
                 ? t("hub.edtech.profileTrackFisi")
-                : t("hub.edtech.heroBadge")}
-            {bundeslandId
+                : t("hub.edtech.heroBadge")) +
+            (bundeslandId
               ? ` · ${t("hub.edtech.profileRegion").replace("{region}", bundeslandId)}`
-              : ""}
-          </span>
-          <h2 id="nx-edtech-hero-title" style={heroTitleStyle}>
-            {t("hub.edtech.heroTitle")}
-          </h2>
-          <p style={heroLeadStyle}>{t("hub.edtech.heroLead")}</p>
-          <motion.div style={heroBtnRowStyle}>
-            <motion.button
-              type="button"
-              onClick={onOpenMap}
-              whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              style={heroPrimaryBtnStyle}
-            >
-              {t("hub.edtech.heroPrimary")}
-            </motion.button>
-            <motion.button
-              type="button"
-              onClick={() => {
-                document.getElementById("nx-edtech-all-fields")?.scrollIntoView({
-                  behavior: reduceMotion ? "auto" : "smooth",
-                  block: "start",
-                });
-              }}
-              whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              style={heroGhostBtnStyle}
-            >
-              {t("hub.edtech.heroSecondary")}
-            </motion.button>
-          </motion.div>
-        </div>
-      </motion.section>
+              : "")
+          }
+          title={`${t("hub.edtech.welcomeBefore")} ${playerName ?? ""}${t("hub.edtech.welcomeAfter")}`}
+          lead={`${lastLine} — ${t("hub.edtech.heroTitle")}`}
+        >
+          <motion.button
+            type="button"
+            onClick={onOpenMap}
+            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+            style={cinematicPrimaryBtn}
+          >
+            {t("hub.edtech.heroPrimary")}
+          </motion.button>
+          <motion.button
+            type="button"
+            onClick={() => {
+              document.getElementById("nx-edtech-all-fields")?.scrollIntoView({
+                behavior: reduceMotion ? "auto" : "smooth",
+                block: "start",
+              });
+            }}
+            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+            style={cinematicGhostBtn}
+          >
+            {t("hub.edtech.heroSecondary")}
+          </motion.button>
+        </NexusCinematicShell>
+      </motion.div>
 
       <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-platform">
         <h2 id="nx-edtech-platform" style={sectionH2}>

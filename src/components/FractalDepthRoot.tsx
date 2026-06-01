@@ -428,7 +428,7 @@ export function FractalDepthRoot({ children }: FractalDepthRootProps) {
             zIndex: "var(--nx-z-bg)",
             pointerEvents: "none",
             background:
-              "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 45%, #e8eef4 100%)",
+              "radial-gradient(ellipse 70% 50% at 8% 0%, rgba(6,182,212,0.1), transparent 55%), radial-gradient(ellipse 60% 45% at 92% 8%, rgba(214,181,111,0.12), transparent 52%), linear-gradient(165deg, #f8fafc 0%, #f1f5f9 45%, #e8eef4 100%)",
           }}
         />
         {children}

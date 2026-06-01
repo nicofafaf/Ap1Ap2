@@ -14,11 +14,13 @@ import { NexusEdtechDashboard } from "./NexusEdtechDashboard";
 import { NexusTopChrome } from "./NexusTopChrome";
 import {
   DEFAULT_BUNDESLAND,
+  OnboardingAvatarProgressShell,
+  OnboardingCodenameStep,
   OnboardingRegionStep,
   OnboardingTrackStep,
   OnboardingWelcomeStep,
 } from "../onboarding/NexusOnboardingSteps";
-import type { BundeslandId } from "../../lib/curriculum/trainingProfile";
+import type { BundeslandId, TrainingTrack } from "../../lib/curriculum/trainingProfile";
 
 export type NeuralInitializerProps = {
   onBeginTraining?: () => void;
@@ -109,6 +111,7 @@ export function NeuralInitializer({
   const [fieldsExpanded, setFieldsExpanded] = useState(false);
   const [codenameDraft, setCodenameDraft] = useState("");
   const [welcomeDone, setWelcomeDone] = useState(false);
+  const [trackDraft, setTrackDraft] = useState<TrainingTrack | null>(null);
   const [regionDraft, setRegionDraft] = useState<BundeslandId>(DEFAULT_BUNDESLAND);
   const initScrollRef = useRef<HTMLDivElement>(null);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
@@ -152,6 +155,14 @@ export function NeuralInitializer({
     setOverworldLanding("hub");
     setNexusChrome("edtech");
   }, [setNexusChrome, setOverworldLanding]);
+
+  const isOnboardingFlow =
+    phase === "welcome" ||
+    phase === "track" ||
+    phase === "region" ||
+    phase === "avatar" ||
+    phase === "codename" ||
+    phase === "scan";
 
   const skipScanToHub = useCallback(() => {
     submitInitialSkillScan({});
@@ -263,6 +274,7 @@ export function NeuralInitializer({
         onToggleMode={toggleNexusChrome}
         onQuickTest={handleQuickTest}
         onOpenMap={goNexusMap}
+        hideUtilityActions={isOnboardingFlow}
       />
       {onReturnToMap ? (
         <div
@@ -330,9 +342,9 @@ export function NeuralInitializer({
           width: "100%",
           minHeight: "100dvh",
           display: "flex",
-          alignItems: phase === "scan" ? "stretch" : "flex-start",
+          alignItems: phase === "scan" ? "stretch" : isOnboardingFlow ? "center" : "flex-start",
           justifyContent: "center",
-          padding: phase === "scan" ? 0 : "clamp(28px, 5vw, 72px)",
+          padding: phase === "scan" ? 0 : isOnboardingFlow ? "clamp(12px, 2vw, 24px)" : "clamp(28px, 5vw, 72px)",
         }}
       >
         <AnimatePresence mode="wait">
@@ -342,8 +354,11 @@ export function NeuralInitializer({
 
           {phase === "track" ? (
             <OnboardingTrackStep
-              value={trainingTrack}
-              onSelect={(track) => setTrainingTrack(track)}
+              pending={trackDraft}
+              onPick={setTrackDraft}
+              onContinue={() => {
+                if (trackDraft) setTrainingTrack(trackDraft);
+              }}
             />
           ) : null}
 
@@ -362,8 +377,9 @@ export function NeuralInitializer({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -14 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              style={{ width: "min(1180px, 94vw)", margin: "0 auto" }}
+              style={{ width: "min(1180px, 100%)", margin: "0 auto" }}
             >
+              <OnboardingAvatarProgressShell>
               <NexusCitadelBriefing
                 scrollParentRef={initScrollRef}
                 companionAnchorId="nx-companion-deck"
@@ -475,97 +491,16 @@ export function NeuralInitializer({
                 ))}
               </div>
               </div>
+              </OnboardingAvatarProgressShell>
             </motion.div>
           ) : null}
 
           {phase === "codename" && playerAvatar !== null ? (
-            <motion.div
-              key="nx-codename"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 260, damping: 28 }}
-              style={{
-                width: "min(520px, 92vw)",
-                margin: "0 auto",
-                padding: 40,
-                borderRadius: 28,
-                border: "1px solid rgba(251,247,239,0.12)",
-                background:
-                  "linear-gradient(165deg, rgba(255,255,255,0.08) 0%, rgba(6,10,9,0.86) 100%)",
-                backdropFilter: "blur(22px) saturate(118%)",
-                WebkitBackdropFilter: "blur(22px) saturate(118%)",
-                boxShadow: "inset 0 1px 0 rgba(251,247,239,0.08), 0 40px 100px rgba(0,0,0,0.55)",
-              }}
-            >
-              <h1
-                style={{
-                  margin: 0,
-                  fontFamily: "var(--nx-font-sans)",
-                  fontSize: 48,
-                  fontWeight: 200,
-                  letterSpacing: "-0.04em",
-                  lineHeight: 1.1,
-                  color: "rgba(251,247,239,0.96)",
-                }}
-              >
-                {t("profile.codenameTitle")}
-              </h1>
-              <p
-                style={{
-                  margin: "16px 0 0",
-                  fontSize: 24,
-                  lineHeight: 1.45,
-                  fontWeight: 500,
-                  color: "rgba(251,247,239,0.72)",
-                }}
-              >
-                {t("profile.codenameLead")}
-              </p>
-              <input
-                value={codenameDraft}
-                onChange={(e) => setCodenameDraft(e.target.value.slice(0, 32))}
-                placeholder={t("profile.codenamePlaceholder")}
-                autoComplete="username"
-                style={{
-                  marginTop: 28,
-                  width: "100%",
-                  boxSizing: "border-box",
-                  borderRadius: 16,
-                  border: "1px solid rgba(251,247,239,0.18)",
-                  background: "rgba(0,0,0,0.35)",
-                  color: "rgba(251,247,239,0.95)",
-                  fontSize: 24,
-                  padding: "16px 18px",
-                  outline: "none",
-                  fontFamily: "var(--nx-font-sans)",
-                }}
-              />
-              <motion.button
-                type="button"
-                whileHover={{ scale: codenameDraft.trim().length < 1 ? 1 : 1.02 }}
-                whileTap={{ scale: codenameDraft.trim().length < 1 ? 1 : 0.98 }}
-                disabled={codenameDraft.trim().length < 1}
-                onClick={() => setPlayerName(codenameDraft)}
-                style={{
-                  marginTop: 22,
-                  width: "100%",
-                  borderRadius: 999,
-                  border: "1px solid rgba(214,181,111,0.4)",
-                  background:
-                    codenameDraft.trim().length < 1
-                      ? "rgba(255,255,255,0.06)"
-                      : "linear-gradient(125deg, rgba(214,181,111,0.35) 0%, rgba(24,37,28,0.95) 100%)",
-                  color: "rgba(251,247,239,0.96)",
-                  fontSize: 24,
-                  fontWeight: 800,
-                  padding: "16px 22px",
-                  cursor: codenameDraft.trim().length < 1 ? "not-allowed" : "pointer",
-                }}
-              >
-                {t("profile.codenameConfirm")}
-              </motion.button>
-            </motion.div>
+            <OnboardingCodenameStep
+              value={codenameDraft}
+              onChange={setCodenameDraft}
+              onSubmit={() => setPlayerName(codenameDraft)}
+            />
           ) : null}
 
           {phase === "scan" && playerAvatar !== null ? (

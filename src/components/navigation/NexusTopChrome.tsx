@@ -7,9 +7,17 @@ export type NexusTopChromeProps = {
   onToggleMode: () => void;
   onQuickTest: () => void;
   onOpenMap: () => void;
+  /** Onboarding: nur Brand, keine Modus-/Test-Schalter */
+  hideUtilityActions?: boolean;
 };
 
-export function NexusTopChrome({ mode, onToggleMode, onQuickTest, onOpenMap }: NexusTopChromeProps) {
+export function NexusTopChrome({
+  mode,
+  onToggleMode,
+  onQuickTest,
+  onOpenMap,
+  hideUtilityActions = false,
+}: NexusTopChromeProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
   const ed = mode === "edtech";
@@ -92,73 +100,79 @@ export function NexusTopChrome({ mode, onToggleMode, onQuickTest, onOpenMap }: N
           aria-label={t("chrome.navAria")}
           style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" }}
         >
-          {!ed ? (
-            <motion.button
-              type="button"
-              onClick={onToggleMode}
-              whileHover={reduceMotion ? undefined : { scale: 1.04 }}
-              whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-              title={t("chrome.themeIndustrialHint")}
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 12,
-                border: "1px solid rgba(251,247,239,0.18)",
-                background: "rgba(0,0,0,0.35)",
-                cursor: "pointer",
-                fontSize: 20,
-                lineHeight: 1,
-                display: "grid",
-                placeItems: "center",
-                color: "rgba(251,247,239,0.9)",
-              }}
-            >
-              ◐
-            </motion.button>
-          ) : null}
+          {hideUtilityActions ? null : (
+            <>
+              {!ed ? (
+                <motion.button
+                  type="button"
+                  onClick={onToggleMode}
+                  whileHover={reduceMotion ? undefined : { scale: 1.04 }}
+                  whileTap={reduceMotion ? undefined : { scale: 0.97 }}
+                  title={t("chrome.themeIndustrialHint")}
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 12,
+                    border: "1px solid rgba(251,247,239,0.18)",
+                    background: "rgba(0,0,0,0.35)",
+                    cursor: "pointer",
+                    fontSize: 20,
+                    lineHeight: 1,
+                    display: "grid",
+                    placeItems: "center",
+                    color: "rgba(251,247,239,0.9)",
+                  }}
+                >
+                  ◐
+                </motion.button>
+              ) : null}
 
-          {!ed ? (
-            <motion.button
-              type="button"
-              onClick={onQuickTest}
-              whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              style={{
-                borderRadius: 999,
-                padding: "10px 16px",
-                fontWeight: 700,
-                fontSize: 15,
-                cursor: "pointer",
-                border: "1px solid rgba(34,211,238,0.35)",
-                background: "rgba(0,0,0,0.22)",
-                color: "rgba(251,247,239,0.92)",
-                fontFamily: "var(--nx-font-sans)",
-              }}
-            >
-              {t("chrome.test")}
-            </motion.button>
-          ) : null}
+              {!ed ? (
+                <motion.button
+                  type="button"
+                  onClick={onQuickTest}
+                  whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+                  whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                  style={{
+                    borderRadius: 999,
+                    padding: "10px 16px",
+                    fontWeight: 700,
+                    fontSize: 15,
+                    cursor: "pointer",
+                    border: "1px solid rgba(34,211,238,0.35)",
+                    background: "rgba(0,0,0,0.22)",
+                    color: "rgba(251,247,239,0.92)",
+                    fontFamily: "var(--nx-font-sans)",
+                  }}
+                >
+                  {t("chrome.test")}
+                </motion.button>
+              ) : null}
 
-          <motion.button
-            type="button"
-            onClick={onOpenMap}
-            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            style={{
-              borderRadius: 999,
-              padding: "10px 18px",
-              fontWeight: 800,
-              fontSize: 15,
-              cursor: "pointer",
-              border: "none",
-              background: ed ? "linear-gradient(125deg, #2563eb 0%, #7c3aed 100%)" : "linear-gradient(125deg, rgba(214,181,111,0.4) 0%, rgba(34,211,238,0.25) 100%)",
-              color: "#ffffff",
-              fontFamily: "var(--nx-font-sans)",
-              boxShadow: ed ? "0 10px 28px rgba(37, 99, 235, 0.28)" : "0 8px 24px rgba(0,0,0,0.35)",
-            }}
-          >
-            {t("chrome.map")}
-          </motion.button>
+              <motion.button
+                type="button"
+                onClick={onOpenMap}
+                whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                style={{
+                  borderRadius: 999,
+                  padding: "10px 18px",
+                  fontWeight: 800,
+                  fontSize: 15,
+                  cursor: "pointer",
+                  border: "none",
+                  background: ed
+                    ? "linear-gradient(125deg, #2563eb 0%, #7c3aed 100%)"
+                    : "linear-gradient(125deg, rgba(214,181,111,0.4) 0%, rgba(34,211,238,0.25) 100%)",
+                  color: "#ffffff",
+                  fontFamily: "var(--nx-font-sans)",
+                  boxShadow: ed ? "0 10px 28px rgba(37, 99, 235, 0.28)" : "0 8px 24px rgba(0,0,0,0.35)",
+                }}
+              >
+                {t("chrome.map")}
+              </motion.button>
+            </>
+          )}
         </nav>
       </div>
     </header>

@@ -1,6 +1,10 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useMemo, useState } from "react";
-import { friendlyMissionTitle, friendlyTopicLine } from "../../../lib/learning/edtechLfDisplay";
+import {
+  friendlyMissionTitle,
+  friendlyTopicLine,
+  getLfEdtechSummary,
+} from "../../../lib/learning/edtechLfDisplay";
 import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../../store/useGameStore";
@@ -22,8 +26,14 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
   const [detailsOpen, setDetailsOpen] = useState(false);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const learningStoryMode = useGameStore((s) => s.learningStoryMode);
+  const trainingTrack = useGameStore((s) => s.trainingTrack);
 
   const meta = useMemo(() => (lf != null ? getLfCourseMeta(lf) : null), [lf]);
+
+  const courseLead = useMemo(() => {
+    if (lf == null) return "";
+    return getLfEdtechSummary(lf, trainingTrack) || meta?.summary || "";
+  }, [lf, trainingTrack, meta?.summary]);
 
   const progress = useMemo(() => {
     if (!meta) return { solved: 0, pct: 0 };
@@ -69,7 +79,7 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
                 videoSrc={publicAssetUrl(`/assets/LF${meta.lf}GIF.mp4`)}
                 kicker={meta.ap}
                 title={meta.title}
-                lead={meta.summary}
+                lead={courseLead}
               />
             </div>
             <div className="nx-edtech-course-sheet-scroll">

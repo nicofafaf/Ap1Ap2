@@ -35,16 +35,35 @@
   }
 }
 
+.nx-edtech-course-cinematic {
+  flex-shrink: 0;
+}
+
+.nx-edtech-course-cinematic .nx-cinematic {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.nx-edtech-course-title-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .nx-edtech-course-sheet-scroll {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 22px 22px 12px;
-}
-
-.nx-edtech-course-hero {
-  margin-bottom: 18px;
+  padding: 18px 22px 12px;
 }
 
 .nx-edtech-course-ap {

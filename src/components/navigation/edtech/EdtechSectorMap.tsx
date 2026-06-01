@@ -2,7 +2,8 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { CodexIridium } from "../../archive/CodexIridium";
 import ArtifactGallery from "../../gallery/ArtifactGallery";
-import { getNexusEntryForLF, type LearningField } from "../../../data/nexusRegistry";
+import { getNexusEntryForLF, publicAssetUrl, type LearningField } from "../../../data/nexusRegistry";
+import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { getLfEdtechSummary } from "../../../lib/learning/edtechLfDisplay";
@@ -405,34 +406,19 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         </div>
       </header>
 
+      <div className="nx-edtech-sector-cinematic">
+        <NexusCinematicShell
+          variant="compact"
+          videoSrc={publicAssetUrl(`/assets/LF${dailyDef.targetLf}GIF.mp4`)}
+          videoPriority
+          kicker={t("map.edtechKicker")}
+          title={t("map.edtechGridTitle")}
+          lead={t("map.edtechGridSubtitle")}
+        />
+      </div>
+
       <main className="nx-edtech-sector-main">
         <div className="nx-edtech-inner">
-          <div style={{ marginBottom: 24 }}>
-            <h2
-              style={{
-                margin: 0,
-                fontFamily: "var(--nx-font-sans)",
-                fontSize: "clamp(20px, 2.2vw, 24px)",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                color: "#0f172a",
-              }}
-            >
-              {t("map.edtechGridTitle")}
-            </h2>
-            <p
-              style={{
-                margin: "8px 0 0",
-                maxWidth: 680,
-                fontSize: "clamp(13px, 3.5vw, 14px)",
-                lineHeight: 1.5,
-                color: "#64748b",
-                fontFamily: "var(--nx-font-sans)",
-              }}
-            >
-              {t("map.edtechGridSubtitle")}
-            </p>
-          </div>
 
           <div className="nx-edtech-section-block" data-nx-tutorial="map">
             <h3 className="nx-edtech-section-title" style={edtechLfSectionTitle}>

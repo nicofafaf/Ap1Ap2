@@ -4,7 +4,9 @@ import { friendlyMissionTitle, friendlyTopicLine } from "../../../lib/learning/e
 import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../../store/useGameStore";
-import { cyanAccent, edtechGhostBtn, edtechPrimaryBtn, goldAccent } from "./edtechHubTokens";
+import { publicAssetUrl } from "../../../data/nexusRegistry";
+import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
+import { edtechGhostBtn, edtechPrimaryBtn } from "./edtechHubTokens";
 import "./edtechLfCourseSheet.css";
 
 export type EdtechLfCourseSheetProps = {
@@ -60,14 +62,19 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
             aria-modal="true"
             aria-labelledby="nx-edtech-course-title"
           >
+            <div className="nx-edtech-course-cinematic">
+              <NexusCinematicShell
+                variant="strip"
+                videoSrc={publicAssetUrl(`/assets/LF${meta.lf}GIF.mp4`)}
+                kicker={meta.ap}
+                title={meta.title}
+                lead={meta.summary}
+              />
+            </div>
             <div className="nx-edtech-course-sheet-scroll">
-              <div className="nx-edtech-course-hero">
-                <span className="nx-edtech-course-ap">{meta.ap}</span>
-                <h2 id="nx-edtech-course-title" className="nx-edtech-course-title">
-                  {meta.title}
-                </h2>
-                <p className="nx-edtech-course-summary">{meta.summary}</p>
-              </div>
+              <h2 id="nx-edtech-course-title" className="nx-edtech-course-title-sr">
+                {meta.title}
+              </h2>
 
               <div className="nx-edtech-course-progress-block">
                 <div className="nx-edtech-course-progress-head">

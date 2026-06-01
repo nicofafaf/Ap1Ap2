@@ -12,6 +12,13 @@ import { MentorPortrait } from "../ui/MentorPortrait";
 import { NexusCitadelBriefing } from "./NexusCitadelBriefing";
 import { NexusEdtechDashboard } from "./NexusEdtechDashboard";
 import { NexusTopChrome } from "./NexusTopChrome";
+import {
+  DEFAULT_BUNDESLAND,
+  OnboardingRegionStep,
+  OnboardingTrackStep,
+  OnboardingWelcomeStep,
+} from "../onboarding/NexusOnboardingSteps";
+import type { BundeslandId } from "../../lib/curriculum/trainingProfile";
 
 export type NeuralInitializerProps = {
   onBeginTraining?: () => void;
@@ -101,8 +108,14 @@ export function NeuralInitializer({
   const [companionGridCols, setCompanionGridCols] = useState(8);
   const [fieldsExpanded, setFieldsExpanded] = useState(false);
   const [codenameDraft, setCodenameDraft] = useState("");
+  const [welcomeDone, setWelcomeDone] = useState(false);
+  const [regionDraft, setRegionDraft] = useState<BundeslandId>(DEFAULT_BUNDESLAND);
   const initScrollRef = useRef<HTMLDivElement>(null);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
+  const trainingTrack = useGameStore((s) => s.trainingTrack);
+  const bundeslandId = useGameStore((s) => s.bundeslandId);
+  const setTrainingTrack = useGameStore((s) => s.setTrainingTrack);
+  const setBundeslandId = useGameStore((s) => s.setBundeslandId);
   const playerAvatar = useGameStore((s) => s.playerAvatar);
   const playerName = useGameStore((s) => s.playerName);
   const setPlayerAvatar = useGameStore((s) => s.setPlayerAvatar);
@@ -115,11 +128,23 @@ export function NeuralInitializer({
   const setNexusChrome = useGameStore((s) => s.setNexusChrome);
 
   const phase = useMemo(() => {
+    if (!trainingTrack) {
+      if (!welcomeDone && !initialSkillScanComplete) return "welcome" as const;
+      return "track" as const;
+    }
+    if (!bundeslandId) return "region" as const;
     if (playerAvatar === null) return "avatar" as const;
     if (!playerName || playerName.trim().length < 1) return "codename" as const;
     if (!initialSkillScanComplete) return "scan" as const;
     return "hub" as const;
-  }, [playerAvatar, playerName, initialSkillScanComplete]);
+  }, [
+    trainingTrack,
+    bundeslandId,
+    welcomeDone,
+    initialSkillScanComplete,
+    playerAvatar,
+    playerName,
+  ]);
 
   const goNexusMap = onLaunchNexusMap ?? onOpenOverview;
 
@@ -196,10 +221,26 @@ export function NeuralInitializer({
   }, []);
 
   useEffect(() => {
-    if (phase !== "hub") return;
-    setNexusChrome("edtech");
-    setOverworldLanding("hub");
+    if (phase === "hub") {
+      setNexusChrome("edtech");
+      setOverworldLanding("hub");
+      return;
+    }
+    if (
+      phase === "welcome" ||
+      phase === "track" ||
+      phase === "region" ||
+      phase === "avatar" ||
+      phase === "codename" ||
+      phase === "scan"
+    ) {
+      setNexusChrome("edtech");
+    }
   }, [phase, setNexusChrome, setOverworldLanding]);
+
+  useEffect(() => {
+    if (bundeslandId) setRegionDraft(bundeslandId);
+  }, [bundeslandId]);
 
   return (
     <div
@@ -295,6 +336,25 @@ export function NeuralInitializer({
         }}
       >
         <AnimatePresence mode="wait">
+          {phase === "welcome" ? (
+            <OnboardingWelcomeStep onContinue={() => setWelcomeDone(true)} />
+          ) : null}
+
+          {phase === "track" ? (
+            <OnboardingTrackStep
+              value={trainingTrack}
+              onSelect={(track) => setTrainingTrack(track)}
+            />
+          ) : null}
+
+          {phase === "region" ? (
+            <OnboardingRegionStep
+              value={regionDraft}
+              onSelect={setRegionDraft}
+              onContinue={() => setBundeslandId(regionDraft)}
+            />
+          ) : null}
+
           {phase === "avatar" ? (
             <motion.div
               key="nx-avatar"

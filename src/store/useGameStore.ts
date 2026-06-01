@@ -325,7 +325,29 @@ type PlayerProfilePersisted = {
   playerName: string | null;
   initialSkillScanByLf: Partial<Record<LearningField, boolean>>;
   initialSkillScanComplete: boolean;
+  trainingTrack: import("../lib/curriculum/trainingProfile").TrainingTrack | null;
+  bundeslandId: import("../lib/curriculum/trainingProfile").BundeslandId | null;
 };
+
+function playerProfileFromState(s: {
+  mentorWaifuIndex: number | null;
+  playerAvatar: number | null;
+  playerName: string | null;
+  initialSkillScanByLf: Partial<Record<LearningField, boolean>>;
+  initialSkillScanComplete: boolean;
+  trainingTrack: import("../lib/curriculum/trainingProfile").TrainingTrack | null;
+  bundeslandId: import("../lib/curriculum/trainingProfile").BundeslandId | null;
+}): PlayerProfilePersisted {
+  return {
+    mentorWaifuIndex: s.mentorWaifuIndex,
+    playerAvatar: s.playerAvatar,
+    playerName: s.playerName,
+    initialSkillScanByLf: s.initialSkillScanByLf,
+    initialSkillScanComplete: s.initialSkillScanComplete,
+    trainingTrack: s.trainingTrack,
+    bundeslandId: s.bundeslandId,
+  };
+}
 
 function persistPlayerProfile(slice: PlayerProfilePersisted) {
   try {
@@ -742,6 +764,11 @@ type GameStore = {
   initialSkillScanByLf: Partial<Record<LearningField, boolean>>;
   initialSkillScanComplete: boolean;
   submitInitialSkillScan: (byLf: Partial<Record<LearningField, boolean>>) => void;
+  /** Fachrichtung: Anwendungsentwicklung oder Systemintegration */
+  trainingTrack: import("../lib/curriculum/trainingProfile").TrainingTrack | null;
+  bundeslandId: import("../lib/curriculum/trainingProfile").BundeslandId | null;
+  setTrainingTrack: (track: import("../lib/curriculum/trainingProfile").TrainingTrack) => void;
+  setBundeslandId: (id: import("../lib/curriculum/trainingProfile").BundeslandId) => void;
   /** LF1-Trainingskampf mit reduzierter Boss-Aggression */
   isTutorialCombatRun: boolean;
   /** 0…3 — erwartete Karten: Encrypt → Overclock → Recursion; 3 = alle Schritte erledigt */
@@ -2273,6 +2300,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
   playerName: null,
   initialSkillScanByLf: {},
   initialSkillScanComplete: false,
+  trainingTrack: null,
+  bundeslandId: null,
   isTutorialCombatRun: false,
   combatTutorialStep: 0,
   nexusChrome: readStoredNexusChrome(),
@@ -2294,60 +2323,40 @@ export const useGameStore = create<GameStore>((set, get) => ({
   setMentorWaifuIndex: (id) => {
     const n = Math.max(1, Math.min(100, Math.floor(id)));
     set({ mentorWaifuIndex: n, playerAvatar: n });
-    const s = get();
-    persistPlayerProfile({
-      mentorWaifuIndex: n,
-      playerAvatar: n,
-      playerName: s.playerName,
-      initialSkillScanByLf: s.initialSkillScanByLf,
-      initialSkillScanComplete: s.initialSkillScanComplete,
-    });
+    persistPlayerProfile(playerProfileFromState(get()));
   },
 
   setPlayerAvatar: (id) => {
     const n = Math.max(1, Math.min(100, Math.floor(id)));
     set({ playerAvatar: n, mentorWaifuIndex: n });
-    const s = get();
-    persistPlayerProfile({
-      mentorWaifuIndex: n,
-      playerAvatar: n,
-      playerName: s.playerName,
-      initialSkillScanByLf: s.initialSkillScanByLf,
-      initialSkillScanComplete: s.initialSkillScanComplete,
-    });
+    persistPlayerProfile(playerProfileFromState(get()));
   },
 
   clearCompanionSelection: () => {
-    const s = get();
     set({ playerAvatar: null, mentorWaifuIndex: null });
-    persistPlayerProfile({
-      mentorWaifuIndex: null,
-      playerAvatar: null,
-      playerName: s.playerName,
-      initialSkillScanByLf: s.initialSkillScanByLf,
-      initialSkillScanComplete: s.initialSkillScanComplete,
-    });
+    persistPlayerProfile(playerProfileFromState(get()));
   },
 
   setPlayerName: (raw) => {
     const name = raw.trim().slice(0, 32);
     if (name.length < 1) return;
     set({ playerName: name });
-    const s = get();
-    const av = s.playerAvatar ?? s.mentorWaifuIndex;
-    persistPlayerProfile({
-      mentorWaifuIndex: av,
-      playerAvatar: av,
-      playerName: name,
-      initialSkillScanByLf: s.initialSkillScanByLf,
-      initialSkillScanComplete: s.initialSkillScanComplete,
-    });
+    persistPlayerProfile(playerProfileFromState(get()));
+  },
+
+  setTrainingTrack: (track) => {
+    set({ trainingTrack: track });
+    persistPlayerProfile(playerProfileFromState(get()));
+  },
+
+  setBundeslandId: (id) => {
+    set({ bundeslandId: id });
+    persistPlayerProfile(playerProfileFromState(get()));
   },
 
   submitInitialSkillScan: (byLf) => {
     const s = get();
     const merged = { ...s.initialSkillScanByLf, ...byLf };
-    const av = s.playerAvatar ?? s.mentorWaifuIndex;
     set({
       initialSkillScanByLf: merged,
       initialSkillScanComplete: true,
@@ -2360,13 +2369,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     } catch {
       // no-op
     }
-    persistPlayerProfile({
-      mentorWaifuIndex: av,
-      playerAvatar: av,
-      playerName: s.playerName,
-      initialSkillScanByLf: merged,
-      initialSkillScanComplete: true,
-    });
+    persistPlayerProfile(playerProfileFromState(get()));
   },
 
   completeInitialization: () => {
@@ -2982,6 +2985,8 @@ function stripFreshOnboardingParam(): void {
       playerName: null,
       initialSkillScanByLf: {},
       initialSkillScanComplete: false,
+      trainingTrack: null,
+      bundeslandId: null,
       hasCompletedInitialization: false,
       overworldLanding: "hub",
       nexusChrome: "edtech",
@@ -3062,12 +3067,20 @@ try {
         if (typeof v === "boolean") scanLf[lf] = v;
       }
     }
+    const trackRaw = p.trainingTrack;
+    const track =
+      trackRaw === "ae" || trackRaw === "fisi" ? trackRaw : null;
+    const blRaw = p.bundeslandId;
+    const bundeslandId =
+      typeof blRaw === "string" && /^[A-Z]{2}$/.test(blRaw) ? (blRaw as import("../lib/curriculum/trainingProfile").BundeslandId) : null;
     useGameStore.setState({
       mentorWaifuIndex: mentorIdx,
       playerAvatar: avatar,
       playerName: pn,
       initialSkillScanByLf: scanLf,
       initialSkillScanComplete: scanComplete,
+      trainingTrack: track,
+      bundeslandId,
     });
   } else if (localStorage.getItem(HAS_COMPLETED_INITIALIZATION_KEY) === "1") {
     /** Legacy: Init-Flag ohne Profil — Begleiterinnen-Raster zeigen, nicht still Waifu 1 setzen */

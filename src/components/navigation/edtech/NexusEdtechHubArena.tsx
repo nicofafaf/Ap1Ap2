@@ -60,6 +60,8 @@ export function NexusEdtechHubArena({
   const reduceMotion = useReducedMotion();
 
   const playerName = useGameStore((s) => s.playerName);
+  const trainingTrack = useGameStore((s) => s.trainingTrack);
+  const bundeslandId = useGameStore((s) => s.bundeslandId);
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const nexusFragments = useGameStore((s) => s.nexusFragments);
   const dailyParticipationStreak = useGameStore((s) => s.dailyParticipationStreak);
@@ -208,7 +210,16 @@ export function NexusEdtechHubArena({
             {t("hub.edtech.welcomeAfter")}
           </h1>
           <p style={welcomeSubOnVideoStyle}>{lastLine}</p>
-          <span style={heroBadgeStyle}>{t("hub.edtech.heroBadge")}</span>
+          <span style={heroBadgeStyle}>
+            {trainingTrack === "ae"
+              ? t("hub.edtech.profileTrackAe")
+              : trainingTrack === "fisi"
+                ? t("hub.edtech.profileTrackFisi")
+                : t("hub.edtech.heroBadge")}
+            {bundeslandId
+              ? ` · ${t("hub.edtech.profileRegion").replace("{region}", bundeslandId)}`
+              : ""}
+          </span>
           <h2 id="nx-edtech-hero-title" style={heroTitleStyle}>
             {t("hub.edtech.heroTitle")}
           </h2>

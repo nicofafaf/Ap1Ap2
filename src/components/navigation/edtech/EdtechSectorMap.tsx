@@ -5,6 +5,7 @@ import ArtifactGallery from "../../gallery/ArtifactGallery";
 import { getNexusEntryForLF, type LearningField } from "../../../data/nexusRegistry";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
+import { getLfEdtechSummary } from "../../../lib/learning/edtechLfDisplay";
 import { getDailyIncursionDefinition, getUtcDateKey, type InitiateCombatOptions } from "../../../lib/dailyIncursion";
 import { EdtechDailyCountdown } from "./EdtechDailyCountdown";
 import { useGameStore } from "../../../store/useGameStore";
@@ -60,6 +61,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   const setOverlayOpenState = useGameStore((s) => s.setOverlayOpenState);
   const setExamPresentationMode = useGameStore((s) => s.setExamPresentationMode);
   const codexCloseToken = useGameStore((s) => s.codexCloseToken);
+  const trainingTrack = useGameStore((s) => s.trainingTrack);
 
   const [extrasOpen, setExtrasOpen] = useState(false);
   const [selectedLf, setSelectedLf] = useState<number | null>(null);
@@ -145,7 +147,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         isDaily,
         scanRing,
         title: courseMeta?.title ?? lfKey,
-        summary: courseMeta?.summary ?? "",
+        summary: getLfEdtechSummary(lf, trainingTrack) || courseMeta?.summary || "",
       };
     });
   }, [
@@ -154,6 +156,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
     initialSkillScanByLf,
     initialSkillScanComplete,
     learningCorrectByLf,
+    trainingTrack,
     t,
   ]);
 

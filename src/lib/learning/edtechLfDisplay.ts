@@ -1,5 +1,8 @@
 /** EdTech-Anzeige: ruhige Texte ohne Spiel-Jargon für Karte, Kurs-Sheet und Terminal */
 
+import type { LearningField } from "../../data/nexusRegistry";
+import { getTrackLfTitle, type TrainingTrack } from "../curriculum/trainingProfile";
+
 export const LF_EDTECH_SUMMARY: Record<number, string> = {
   1: "Unternehmen, Verträge, Recht und einfache BWL — typische AP1-Themen",
   2: "Hardware, Clients, Beschaffung und IT-Grundlagen",
@@ -14,6 +17,15 @@ export const LF_EDTECH_SUMMARY: Record<number, string> = {
   11: "Informationssicherheit, Schutzmaßnahmen und Compliance",
   12: "Agiles Arbeiten, Teams und Projektsteuerung",
 };
+
+export function getLfEdtechSummary(lf: number, track?: TrainingTrack | null): string {
+  if (track && lf >= 10 && lf <= 12) {
+    const key = `LF${lf}` as LearningField;
+    const trackTitle = getTrackLfTitle(key, track);
+    if (trackTitle) return trackTitle;
+  }
+  return LF_EDTECH_SUMMARY[lf] ?? "";
+}
 
 const MISSION_TITLE_OVERRIDES: Record<string, string> = {
   "lf1-mission-kuat": "Rechtsformen: AG, GmbH, KG und OHG",

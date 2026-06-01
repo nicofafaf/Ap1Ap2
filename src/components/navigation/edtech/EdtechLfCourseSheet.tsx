@@ -1,5 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useMemo, useState } from "react";
+import { getLf2ExamMissionProgress } from "../../../lib/curriculum/examReadiness";
+import { LF02_FEINLERNZIELE } from "../../../lib/curriculum/lf02KmkObjectives";
 import {
   friendlyMissionTitle,
   friendlyTopicLine,
@@ -34,6 +36,11 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
     if (lf == null) return "";
     return getLfEdtechSummary(lf, trainingTrack) || meta?.summary || "";
   }, [lf, trainingTrack, meta?.summary]);
+
+  const lf2ExamProgress = useMemo(
+    () => (lf === 2 ? getLf2ExamMissionProgress(learningCorrectByLf) : null),
+    [lf, learningCorrectByLf]
+  );
 
   const progress = useMemo(() => {
     if (!meta) return { solved: 0, pct: 0 };
@@ -103,6 +110,30 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
                   />
                 </div>
               </div>
+
+              {lf2ExamProgress ? (
+                <div className="nx-edtech-course-exam-block" aria-label={t("map.edtechCourse.examBlockAria")}>
+                  <div className="nx-edtech-course-exam-head">
+                    <span>{t("map.edtechCourse.examBlockTitle")}</span>
+                    <span>
+                      {lf2ExamProgress.solved}/{lf2ExamProgress.total} · {lf2ExamProgress.pct}%
+                    </span>
+                  </div>
+                  <div className="nx-edtech-course-progress-track">
+                    <motion.div
+                      className="nx-edtech-course-progress-fill nx-edtech-course-progress-fill--exam"
+                      initial={false}
+                      animate={{ width: `${lf2ExamProgress.pct}%` }}
+                      transition={{ duration: reduceMotion ? 0 : 0.5, ease: "easeOut" }}
+                    />
+                  </div>
+                  <ul className="nx-edtech-course-kmk-list">
+                    {LF02_FEINLERNZIELE.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
 
               <ol className="nx-edtech-course-path" aria-label={t("map.edtechCourse.pathAria")}>
                 <li className="nx-edtech-course-path-step nx-edtech-course-path-step--active">

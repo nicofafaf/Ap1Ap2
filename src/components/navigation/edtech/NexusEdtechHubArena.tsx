@@ -18,6 +18,7 @@ const SkillRadarLazy = lazy(() =>
 import { EdtechLazyVideo } from "./EdtechLazyVideo";
 import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
 import { cinematicGhostBtn, cinematicPrimaryBtn } from "../../../lib/ui/nexusCinematicTokens";
+import { EdtechExamReadinessCard } from "./EdtechExamReadinessCard";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import { StreakCelebration } from "./StreakCelebration";
 import {
@@ -261,6 +262,10 @@ export function NexusEdtechHubArena({
             accent="gold"
           />
         </motion.div>
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD}>
+        <EdtechExamReadinessCard onFocusLf={onBeginLearningField} />
       </motion.section>
 
       <motion.section

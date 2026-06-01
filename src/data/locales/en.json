@@ -43,7 +43,10 @@
       "detailsHide": "Hide details",
       "ctaLearn": "Start exercises",
       "ctaExam": "Exam mode",
-      "ctaCodex": "Open theory"
+      "ctaCodex": "Open theory",
+      "examBlockAria": "LF2 exam questions and KMK objectives",
+      "examBlockTitle": "LF2 exam questions",
+      "examBlockKmk": "KMK fine objectives checklist"
     },
     "edtechDailyBadge": "Daily goal",
     "edtechDailyLead": "Today LF{lf} — start now",
@@ -242,6 +245,19 @@
       "tipTitle": "Your learning tip for today",
       "tipExamLabel": "Exam readiness",
       "tipCta": "Open recommended field",
+      "readiness": {
+        "title": "Exam readiness",
+        "lead": "Exercises, reviews, and exam-style questions — estimate for AP1 and AP2",
+        "mentorScore": "Readiness score",
+        "ap1": "AP1 · LF1–LF6",
+        "ap2": "AP2 · LF7–LF12",
+        "overall": "Overall",
+        "apSub": "{solved} of {total} exercises",
+        "overallSub": "{pct}% of the platform correct at least once",
+        "gridAria": "Progress per learning field",
+        "examMissions": "Exam {solved}/{total}",
+        "cta": "Practice weakest field · LF{lf}"
+      },
       "allFieldsTitle": "All twelve learning fields",
       "allFieldsAp1": "AP1 · LF1–LF6",
       "allFieldsAp2": "AP2 · LF7–LF12",

@@ -1,0 +1,172 @@
+.nx-edtech-readiness {
+  border-radius: 18px;
+  border: 1px solid rgba(214, 181, 111, 0.28);
+  background: linear-gradient(165deg, #ffffff 0%, #f1f5f9 100%);
+  padding: 22px 24px;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.08);
+}
+
+.nx-edtech-readiness--compact {
+  padding: 16px 18px;
+}
+
+.nx-edtech-readiness-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.nx-edtech-readiness-head h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.nx-edtech-readiness-lead {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #64748b;
+  max-width: 42ch;
+}
+
+.nx-edtech-readiness-score {
+  border-radius: 14px;
+  padding: 10px 16px;
+  text-align: right;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.nx-edtech-readiness-score--ready {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.12) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+.nx-edtech-readiness-score--ontrack {
+  border-color: rgba(6, 182, 212, 0.45);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+.nx-edtech-readiness-score-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.nx-edtech-readiness-score-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #0f172a;
+  line-height: 1.1;
+}
+
+.nx-edtech-readiness-score-max {
+  font-size: 0.85rem;
+  font-weight: 650;
+  opacity: 0.55;
+}
+
+.nx-edtech-readiness-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.nx-edtech-readiness-bar-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.nx-edtech-readiness-bar-track {
+  height: 8px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.nx-edtech-readiness-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.nx-edtech-readiness-bar-sub {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.nx-edtech-readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.nx-edtech-readiness-lf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 6px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.nx-edtech-readiness-lf:disabled {
+  cursor: default;
+  opacity: 0.95;
+}
+
+.nx-edtech-readiness-lf-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.nx-edtech-readiness-lf-pct {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.nx-edtech-readiness-lf-exam {
+  font-size: 0.62rem;
+  font-weight: 650;
+  color: #0891b2;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.nx-edtech-readiness-cta {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 750;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #0f172a;
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.18) 0%, rgba(214, 181, 111, 0.2) 100%);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+}

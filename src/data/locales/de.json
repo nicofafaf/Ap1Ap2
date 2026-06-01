@@ -43,7 +43,10 @@
       "detailsHide": "Details ausblenden",
       "ctaLearn": "Übungen starten",
       "ctaExam": "Prüfungsmodus",
-      "ctaCodex": "Theorie öffnen"
+      "ctaCodex": "Theorie öffnen",
+      "examBlockAria": "LF2 Prüfungsfragen und KMK-Feinlernziele",
+      "examBlockTitle": "Prüfungsfragen LF2",
+      "examBlockKmk": "KMK-Feinlernziele zum Abhaken"
     },
     "edtechDailyBadge": "Tagesziel",
     "edtechDailyLead": "Heute LF{lf} — direkt starten",
@@ -245,6 +248,19 @@
       "tipTitle": "Dein Lern-Tipp für heute",
       "tipExamLabel": "Prüfungsnähe",
       "tipCta": "Empfohlenes Lernfeld öffnen",
+      "readiness": {
+        "title": "Prüfungsreife",
+        "lead": "Übungen, Wiederholungen und Prüfungsfragen — Schätzung für AP1 und AP2",
+        "mentorScore": "Prüfungsnähe",
+        "ap1": "AP1 · LF1–LF6",
+        "ap2": "AP2 · LF7–LF12",
+        "overall": "Gesamt",
+        "apSub": "{solved} von {total} Übungen",
+        "overallSub": "{pct}% der Plattform mindestens einmal richtig",
+        "gridAria": "Fortschritt je Lernfeld",
+        "examMissions": "Prüfung {solved}/{total}",
+        "cta": "Schwächstes Feld üben · LF{lf}"
+      },
       "allFieldsTitle": "Alle zwölf Lernfelder",
       "allFieldsAp1": "AP1 · LF1–LF6",
       "allFieldsAp2": "AP2 · LF7–LF12",

@@ -22,44 +22,65 @@ export function EdtechLazyVideo({ src, mode, style, priority = false }: EdtechLa
   const wrapRef = useRef<HTMLSpanElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hover, setHover] = useState(false);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(priority);
   const [armed, setArmed] = useState(priority);
+  const [loadFailed, setLoadFailed] = useState(false);
+
+  const viewportVisible = mode === "viewport" && (inView || priority);
 
   const wantsPlay =
     !reduceMotion &&
+    !loadFailed &&
     armed &&
-    (mode === "hover" ? hover : inView || priority);
+    (mode === "hover" ? hover : viewportVisible);
 
   useEffect(() => {
     const node = wrapRef.current;
     if (!node || reduceMotion || mode !== "viewport") return;
     const io = new IntersectionObserver(
       ([entry]) => setInView(entry?.isIntersecting ?? false),
-      { rootMargin: "80px 0px", threshold: 0.2 }
+      { rootMargin: "80px 0px", threshold: 0.15 }
     );
     io.observe(node);
     return () => io.disconnect();
   }, [mode, reduceMotion]);
 
+  /** Viewport: Video mounten sobald sichtbar — Hover geht auf .nx-cinematic-media nicht (pointer-events: none) */
   useEffect(() => {
+    if (mode === "viewport" && viewportVisible) {
+      setArmed(true);
+    }
+  }, [mode, viewportVisible]);
+
+  useEffect(() => {
+    setLoadFailed(false);
+  }, [src]);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!armed || !v) return;
+
     if (!wantsPlay) {
       releaseEdtechVideoSlot(slotId);
-      videoRef.current?.pause();
+      v.pause();
+      if (mode === "viewport" && viewportVisible) {
+        v.preload = "metadata";
+        v.load();
+      }
       return;
     }
     if (!acquireEdtechVideoSlot(slotId)) {
-      videoRef.current?.pause();
+      v.pause();
+      v.preload = "metadata";
+      v.load();
       return;
     }
-    const v = videoRef.current;
-    if (v) {
-      v.preload = "metadata";
-      void v.play().catch(() => {});
-    }
+    v.preload = "auto";
+    void v.play().catch(() => {});
     return () => {
       releaseEdtechVideoSlot(slotId);
     };
-  }, [wantsPlay, slotId]);
+  }, [wantsPlay, slotId, armed, mode, viewportVisible]);
 
   return (
     <span
@@ -83,13 +104,16 @@ export function EdtechLazyVideo({ src, mode, style, priority = false }: EdtechLa
           muted
           loop
           playsInline
-          preload="none"
+          preload={viewportVisible || priority ? "metadata" : "none"}
           aria-hidden
+          onError={() => setLoadFailed(true)}
           style={{
             width: "100%",
             height: "100%",
             objectFit: "cover",
             display: "block",
+            opacity: wantsPlay || (mode === "viewport" && armed) ? 1 : 0,
+            transition: "opacity 0.4s ease",
           }}
         />
       ) : null}

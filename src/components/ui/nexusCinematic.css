@@ -32,6 +32,7 @@
 }
 
 .nx-cinematic-media video,
+.nx-cinematic-poster,
 .nx-cinematic-fallback {
   position: absolute;
   inset: 0;
@@ -41,6 +42,14 @@
   object-position: center;
   transform: scale(1.04);
   filter: saturate(1.08) contrast(1.1);
+}
+
+.nx-cinematic-poster {
+  z-index: 0;
+}
+
+.nx-cinematic-media video {
+  z-index: 1;
 }
 
 .nx-cinematic-fallback {

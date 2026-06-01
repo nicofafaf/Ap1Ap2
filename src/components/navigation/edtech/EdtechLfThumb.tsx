@@ -37,13 +37,14 @@ export function EdtechLfThumb({ lf, fillContainer }: EdtechLfThumbProps) {
         style={{
           position: "absolute",
           inset: 0,
+          zIndex: 0,
           background: `linear-gradient(145deg, #0f172a 0%, #1e293b 42%, rgba(6,182,212,0.22) 100%)`,
         }}
       />
       <EdtechLazyVideo
         src={videoSrc}
-        mode="hover"
-        style={{ position: "absolute", inset: 0 }}
+        mode="viewport"
+        style={{ position: "absolute", inset: 0, zIndex: 1 }}
       />
       <span
         aria-hidden

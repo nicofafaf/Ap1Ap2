@@ -56,6 +56,7 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
     ? friendlyMissionTitle(firstMission.id, firstMission.title, learningStoryMode)
     : null;
   const learnMissionCount = meta?.missions.length ?? 0;
+  const vertiefungMissionCount = meta?.vertiefungMissions.length ?? 0;
   const examMissionCount = meta?.examMissions.length ?? 0;
 
   return (
@@ -195,6 +196,23 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
                         <h3>{t("map.edtechCourse.missionsTitle")}</h3>
                         <ul className="nx-edtech-course-mission-list">
                           {meta.missions.map((m) => {
+                            const topic = friendlyTopicLine(m.topic, learningStoryMode);
+                            return (
+                              <li key={m.id}>
+                                <strong>{friendlyMissionTitle(m.id, m.title, learningStoryMode)}</strong>
+                                {topic ? <span>{topic}</span> : null}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </section>
+                    ) : null}
+                    {vertiefungMissionCount > 0 ? (
+                      <section>
+                        <h3>{t("map.edtechCourse.vertiefungMissionsTitle")}</h3>
+                        <p className="nx-edtech-course-exam-hint">{t("map.edtechCourse.vertiefungMissionsHint")}</p>
+                        <ul className="nx-edtech-course-mission-list">
+                          {meta.vertiefungMissions.map((m) => {
                             const topic = friendlyTopicLine(m.topic, learningStoryMode);
                             return (
                               <li key={m.id}>

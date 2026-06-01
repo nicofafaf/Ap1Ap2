@@ -9,7 +9,7 @@ export const LF_EXERCISE_TOTAL: Record<LearningField, number> = {
   LF2: 65,
   LF3: 46,
   LF4: 45,
-  LF5: 45,
+  LF5: 49,
   LF6: 35,
   LF7: 30,
   LF8: 36,

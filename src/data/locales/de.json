@@ -40,6 +40,8 @@
       "pathExamBody": "Optional — Timer, weniger Hilfen",
       "startLabel": "Du startest mit",
       "startBody": "Zuerst kurz lesen, dann eine leichte Frage — Prüfungsaufgaben kommen erst im Prüfungsmodus",
+      "vertiefungMissionsTitle": "Abenteuer & Vertiefung (danach)",
+      "vertiefungMissionsHint": "Story- und Multiversum-Missionen — kommen im Lernmodus nach den Grundlagen",
       "examMissionsTitle": "Prüfungsaufgaben (später)",
       "examMissionsHint": "Diese Aufgaben sind prüfungsnah. Nutze dafür den Prüfungsmodus, wenn du die Grundlagen durch hast",
       "detailsShow": "Alle Kapitel und Details anzeigen",

@@ -1,7 +1,7 @@
 import type { LearningField } from "../../data/nexusRegistry";
 import { LF_EDTECH_SUMMARY } from "./edtechLfDisplay";
 import { getLfExerciseTotal } from "./lfExerciseTotals";
-import { isExamPathMission, isLearnPathMission } from "./learnPathFilters";
+import { isExamPathMission, isGrundlagePathMission, isVertiefungPathMission } from "./learnPathFilters";
 import lf01 from "../../lernfelder/lf01/content.json";
 import lf02 from "../../lernfelder/lf02/content.json";
 import lf02ExamPath from "../../lernfelder/lf02/examPath.json";
@@ -97,8 +97,10 @@ export type LfCourseMeta = {
   summary: string;
   ap: string;
   chapters: LfCourseChapter[];
-  /** Grundlagen- und Einstiegsmissionen (Lernmodus) */
+  /** Grundlagen- und Einstiegsmissionen (Lernmodus, zuerst) */
   missions: LfCourseMission[];
+  /** Story / Multiversum / CCNA — nach den Grundlagen */
+  vertiefungMissions: LfCourseMission[];
   /** Prüfung · / IHK — nur im Prüfungsmodus */
   examMissions: LfCourseMission[];
   tools: LfCourseTool[];
@@ -175,7 +177,13 @@ function mapMission(
 
 function buildLearnMissions(raw: ContentShape): LfCourseMission[] {
   return (raw.beginnerPath ?? [])
-    .filter((m) => isLearnPathMission(m))
+    .filter((m) => isGrundlagePathMission(m))
+    .map((m, i) => mapMission(raw, m, i));
+}
+
+function buildVertiefungMissions(raw: ContentShape): LfCourseMission[] {
+  return (raw.beginnerPath ?? [])
+    .filter((m) => isVertiefungPathMission(m))
     .map((m, i) => mapMission(raw, m, i));
 }
 
@@ -214,6 +222,7 @@ export function getLfCourseMeta(lf: number): LfCourseMeta | null {
     ap: raw.ap?.trim() || (lf <= 6 ? "AP1" : "AP2"),
     chapters: buildChapters(raw),
     missions: buildLearnMissions(raw),
+    vertiefungMissions: buildVertiefungMissions(raw),
     examMissions: buildExamMissions(raw),
     tools: TOOLS_BY_LF[lf] ?? [{ id: "codex", labelKey: "map.edtechCourse.toolCodex" }],
     totalExercises: getLfExerciseTotal(lfKey),

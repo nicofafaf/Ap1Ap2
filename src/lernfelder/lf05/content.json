@@ -172,6 +172,150 @@
       }
     },
     {
+      "id": "lf5-sql-04-order",
+      "topic": "SQL-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Sortieren und begrenzen",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "ORDER BY legt die Reihenfolge der Zeilen fest LIMIT zeigt nur die ersten n Ergebnisse"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie eine sortierte Kontaktliste — oben die ersten zehn Namen statt alle tausend"
+        },
+        {
+          "title": "Merksatz",
+          "body": "SELECT FROM WHERE dann ORDER BY dann LIMIT — DESC sortiert absteigend"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "SELECT name FROM Kunden ORDER BY name LIMIT 5;"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "sortiere die liste bevor du nur die top-zeilen zeigst",
+        "question": "Welcher Befehl begrenzt die Anzahl der Zeilen im Ergebnis",
+        "options": [
+          { "text": "LIMIT 5", "correct": true },
+          { "text": "WHERE 5", "correct": false, "hint": "WHERE filtert Bedingungen nicht die Anzahl" },
+          { "text": "FROM 5", "correct": false, "hint": "FROM nennt die Tabelle" },
+          { "text": "SELECT 5", "correct": false, "hint": "SELECT listet Spalten keine Zeilenanzahl" }
+        ]
+      }
+    },
+    {
+      "id": "lf5-sql-05-insert",
+      "topic": "SQL-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "INSERT — neue Zeilen",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Mit INSERT fügst du neue Datensätze in eine Tabelle ein — Spalten nennen und Werte in VALUES setzen"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie eine neue Zeile in Excel unten anfügen — nur mit SQL-Befehl statt Mausklick"
+        },
+        {
+          "title": "Merksatz",
+          "body": "INSERT INTO tabelle (spalten) VALUES (werte) — id oft weglassen wenn sie automatisch zählt"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "INSERT INTO Kunden (Name, Stadt) VALUES ('Müller GmbH', 'Berlin');"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "neuer kunde in die tabelle eintragen vergiss das semikolon nicht",
+        "question": "Welcher Befehl legt einen neuen Kunden an",
+        "options": [
+          { "text": "INSERT INTO Kunden (Name, Stadt) VALUES ('Müller', 'Berlin')", "correct": true },
+          { "text": "SELECT INTO Kunden VALUES ('Müller', 'Berlin')", "correct": false, "hint": "SELECT liest Daten legt nicht neu an" },
+          { "text": "UPDATE Kunden SET Name = 'Müller'", "correct": false, "hint": "UPDATE ändert bestehende Zeilen" },
+          { "text": "DELETE FROM Kunden WHERE Name = 'Müller'", "correct": false, "hint": "DELETE entfernt Zeilen" }
+        ]
+      }
+    },
+    {
+      "id": "lf5-sql-06-update-delete",
+      "topic": "SQL-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "UPDATE und DELETE — vorsichtig",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "UPDATE ändert Werte DELETE entfernt Zeilen — ohne WHERE trifft es alle Zeilen in der Tabelle"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Erst mit SELECT prüfen wen du triffst — dann UPDATE oder DELETE — wie doppelt checken vor dem Löschen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Immer WHERE bei UPDATE und DELETE — sonst ist die ganze Tabelle betroffen"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "UPDATE Kunden SET Stadt = 'Hamburg' WHERE Name = 'Müller GmbH';"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "ohne where wird alles geändert — filter zuerst den einen datensatz",
+        "question": "Was passiert bei UPDATE Kunden SET Stadt = 'Hamburg' ohne WHERE",
+        "options": [
+          { "text": "Alle Kunden bekommen Stadt Hamburg", "correct": true },
+          { "text": "Nur der erste Kunde wird geändert", "correct": false, "hint": "Ohne WHERE gibt es keine Begrenzung auf eine Zeile" },
+          { "text": "Die Tabelle wird gelöscht", "correct": false, "hint": "UPDATE ändert Werte löscht die Tabelle nicht" },
+          { "text": "Nichts SQL verweigert den Befehl", "correct": false, "hint": "Der Befehl läuft — nur zu breit" }
+        ]
+      }
+    },
+    {
+      "id": "lf5-sql-07-tipps",
+      "topic": "SQL-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Häufige Anfängerfehler",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Semikolon beendet den Befehl Textwerte stehen in einfachen Anführungszeichen SQL-Schlüsselwörter oft groß geschrieben"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Das Semikolon ist der Punkt am Ende des Satzes — ohne Punkt weiß die Datenbank nicht dass du fertig bist"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Falsche Reihenfolge SELECT FROM WHERE ORDER BY LIMIT — Tippfehler in Tabellennamen gibt Fehler"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Richtig: SELECT * FROM Kunden WHERE Stadt = 'Berlin'; — Text mit einfachen Anführungszeichen"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "prüfe anführungszeichen und semikolon bevor du run drückst",
+        "question": "Was ist an SELECT * FROM Kunden WHERE Stadt = \"Berlin\" in MySQL oft falsch",
+        "options": [
+          { "text": "Doppelte Anführungszeichen statt einfacher für Text", "correct": true },
+          { "text": "SELECT ist groß geschrieben", "correct": false, "hint": "Groß oder klein bei SQL ist egal" },
+          { "text": "FROM steht nach SELECT", "correct": false, "hint": "Das ist die richtige Reihenfolge" },
+          { "text": "WHERE filtert Zeilen", "correct": false, "hint": "WHERE ist hier korrekt verwendet" }
+        ]
+      }
+    },
+    {
       "id": "lf5-sql-join-01",
       "topic": "Prüfung · LF5",
       "level": "beginner",

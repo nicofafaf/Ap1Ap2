@@ -382,7 +382,8 @@ MC-Frage zur WHERE-Clause, 4 Optionen.
 | Mittel | LLM-Erklär-Coach | Falsche Antwort → tieferer Hint (ohne Lösung verraten) |
 | Mittel | Multi-Select / Zuordnung | WiSo hat „kreuze zwei an“ — aktuell nur Single-MC |
 | Niedrig | Bundle-Größe | Entry ~760 KB (Budget-Warnung 520 KB) — Code-Splitting |
-| Content | LF4–LF12 examPath | Analog `lf02/examPath.json` pro LF |
+| ~~Erledigt~~ | Lernpfad lxpert + Trennung | `learnPathFilters.ts`: grundlage → vertiefung → prüfung |
+| ~~Erledigt~~ | LF5 SQL Grundlagen-Kette | Kapitel wie sql-grundlagen bis UPDATE/Tipps |
 
 ---
 

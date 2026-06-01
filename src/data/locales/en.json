@@ -40,6 +40,8 @@
       "pathExamBody": "Optional — timer, fewer hints",
       "startLabel": "You start with",
       "startBody": "Read a short explanation first, then an easy question — exam-style tasks are in exam mode only",
+      "vertiefungMissionsTitle": "Adventure & depth (after basics)",
+      "vertiefungMissionsHint": "Story and multiverse missions — in learn mode after the foundation chapters",
       "examMissionsTitle": "Exam tasks (later)",
       "examMissionsHint": "These are exam-style. Use exam mode after you have covered the basics",
       "detailsShow": "Show all chapters and details",

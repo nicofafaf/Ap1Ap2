@@ -23,6 +23,27 @@ export function isExamPathMission(meta: BeginnerPathMeta): boolean {
   return false;
 }
 
+/** Story, Multiversum, CCNA — nach allen Grundlagen */
+export function isVertiefungPathMission(meta: BeginnerPathMeta): boolean {
+  if (isExamPathMission(meta)) return false;
+
+  const phase = meta.learnPhase?.trim().toLowerCase();
+  if (phase === "grundlage") return false;
+  if (phase === "vertiefung") return true;
+
+  const topic = meta.topic?.trim() ?? "";
+  if (/multiversum|ccna|corporate espionage/i.test(topic)) return true;
+
+  const id = meta.id?.trim().toLowerCase() ?? "";
+  if (/lf\d+-mission-|lf\d+-sw-|lf\d+-an-|lf\d+-gym-/.test(id)) return true;
+
+  return false;
+}
+
+export function isGrundlagePathMission(meta: BeginnerPathMeta): boolean {
+  return isLearnPathMission(meta) && !isVertiefungPathMission(meta);
+}
+
 export function isLearnPathMission(meta: BeginnerPathMeta): boolean {
   return !isExamPathMission(meta);
 }

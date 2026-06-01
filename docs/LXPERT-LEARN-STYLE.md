@@ -17,9 +17,9 @@ Dieses Material erklärt **von null** — ohne dass man schon Fachbegriffe kenne
 | 5 | **Ein Konzept** | `title` + `practice.question` | Nur **eine** neue Idee pro Mission |
 | 6 | **Leichte Frage** | `practice` MC oder Workbench | Verständnis, nicht Auswendiglernen |
 | 7 | **Konkreter Hint** | `options[].hint` | Sagt **warum** falsch — nicht „falsch“ |
-| 8 | **Reihenfolge** | Position in `beginnerPath` | Grundlagen **vor** `Prüfung ·` / IHK |
+| 8 | **Reihenfolge** | Position in `beginnerPath` | Grundlagen **vor** Vertiefung (Story) **vor** Prüfung |
 
-Optional: `learnPhase: "grundlage"` für Lern-Missionen.
+`learnPhase`: `"grundlage"` | `"vertiefung"` | Prüfung via `Prüfung ·` / IHK
 
 ---
 

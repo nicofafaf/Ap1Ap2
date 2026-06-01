@@ -22,7 +22,11 @@ import {
 } from "./expandedCurriculum";
 import { REFERENCE_EXERCISES_BY_LF } from "./buildReferenceExercises";
 import { LF_DRILL_PACKS } from "./lfDrillPacks";
-import { isExamPathMission, isLearnPathMission } from "./learnPathFilters";
+import {
+  isExamPathMission,
+  isGrundlagePathMission,
+  isVertiefungPathMission,
+} from "./learnPathFilters";
 import lf01Content from "../../lernfelder/lf01/content.json";
 import lf02Content from "../../lernfelder/lf02/content.json";
 import lf02ExamPath from "../../lernfelder/lf02/examPath.json";
@@ -668,16 +672,23 @@ function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
   ];
 }
 
-/** Lernpfad (Grundlagen) und Prüfungs-/IHK-Aufgaben getrennt — gleiche JSON-Reihenfolge */
+/** Grundlagen → Vertiefung (Story) → Prüfung — JSON-Reihenfolge je Teilmenge */
 function buildLearnAndExamPathsFromJson(raw: BeginnerContentShape): {
+  grundlage: LearningExercise[];
+  vertiefung: LearningExercise[];
   learn: LearningExercise[];
   exam: LearningExercise[];
 } {
   const entries = raw.beginnerPath ?? [];
-  const learnEntries = entries.filter((entry) => isLearnPathMission(entry));
+  const grundlageEntries = entries.filter((entry) => isGrundlagePathMission(entry));
+  const vertiefungEntries = entries.filter((entry) => isVertiefungPathMission(entry));
   const examEntries = entries.filter((entry) => isExamPathMission(entry));
+  const grundlage = buildBeginnerPathFromJson({ ...raw, beginnerPath: grundlageEntries });
+  const vertiefung = buildBeginnerPathFromJson({ ...raw, beginnerPath: vertiefungEntries });
   return {
-    learn: buildBeginnerPathFromJson({ ...raw, beginnerPath: learnEntries }),
+    grundlage,
+    vertiefung,
+    learn: [...grundlage, ...vertiefung],
     exam: buildBeginnerPathFromJson({ ...raw, beginnerPath: examEntries }),
   };
 }
@@ -724,7 +735,20 @@ const BEGINNER_CONTENT_BY_LF: Record<LearningField, BeginnerContentShape> = {
 
 const LEARN_AND_EXAM_BY_LF = Object.fromEntries(
   Object.entries(BEGINNER_CONTENT_BY_LF).map(([lf, content]) => [lf, buildLearnAndExamPathsFromJson(content)])
-) as Record<LearningField, { learn: LearningExercise[]; exam: LearningExercise[] }>;
+) as Record<
+  LearningField,
+  { grundlage: LearningExercise[]; vertiefung: LearningExercise[]; learn: LearningExercise[]; exam: LearningExercise[] }
+>;
+
+/** Nur lxpert-Grundlagen — zuerst im Lernmodus */
+export const GRUNDLAGE_EXERCISES_BY_LF: Record<LearningField, LearningExercise[]> = Object.fromEntries(
+  Object.entries(LEARN_AND_EXAM_BY_LF).map(([lf, paths]) => [lf, paths.grundlage])
+) as Record<LearningField, LearningExercise[]>;
+
+/** Story / Multiversum / CCNA — nach den Grundlagen */
+export const VERTIEFUNG_EXERCISES_BY_LF: Record<LearningField, LearningExercise[]> = Object.fromEntries(
+  Object.entries(LEARN_AND_EXAM_BY_LF).map(([lf, paths]) => [lf, paths.vertiefung])
+) as Record<LearningField, LearningExercise[]>;
 
 /** Sequentieller Lernpfad — ohne Prüfung · / IHK-Sommer-Aufgaben */
 export const BEGINNER_EXERCISES_BY_LF: Record<LearningField, LearningExercise[]> = Object.fromEntries(
@@ -751,7 +775,7 @@ export const EXAM_EXERCISE_IDS_BY_LF: Record<LearningField, Set<string>> = Objec
 ) as Record<LearningField, Set<string>>;
 
 export function getBeginnerExerciseForLf(lf: LearningField): LearningExercise | null {
-  return BEGINNER_EXERCISES_BY_LF[lf][0] ?? null;
+  return GRUNDLAGE_EXERCISES_BY_LF[lf][0] ?? BEGINNER_EXERCISES_BY_LF[lf][0] ?? null;
 }
 
 export function getNextLearnExerciseForLf(
@@ -835,13 +859,12 @@ export type EdtechExercisePickContext = {
 };
 
 /** Nächste Lern-Übung in JSON-Reihenfolge (ohne Prüfungs-/IHK-Missionen) */
-function getPendingBeginnerExercise(
-  lf: LearningField,
+function getPendingInLearnPath(
+  path: LearningExercise[],
   leitner?: Readonly<Record<string, LeitnerCardState>>,
   ctx?: EdtechExercisePickContext | null
 ): LearningExercise | null {
-  const path = BEGINNER_EXERCISES_BY_LF[lf];
-  if (!path?.length) return null;
+  if (!path.length) return null;
   const solved = new Set(ctx?.solvedExerciseIds ?? []);
   const exclude = ctx?.excludeExerciseId;
   for (const ex of path) {
@@ -851,6 +874,19 @@ function getPendingBeginnerExercise(
     if (!state || state.repetitions < 1) return ex;
   }
   return null;
+}
+
+function getPendingBeginnerExercise(
+  lf: LearningField,
+  leitner?: Readonly<Record<string, LeitnerCardState>>,
+  ctx?: EdtechExercisePickContext | null
+): LearningExercise | null {
+  const grundlage = GRUNDLAGE_EXERCISES_BY_LF[lf] ?? [];
+  const pendingGrund = getPendingInLearnPath(grundlage, leitner, ctx);
+  if (pendingGrund) return pendingGrund;
+
+  const vertiefung = VERTIEFUNG_EXERCISES_BY_LF[lf] ?? [];
+  return getPendingInLearnPath(vertiefung, leitner, ctx);
 }
 
 function filterExercisePool<T extends { id: string }>(

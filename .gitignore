@@ -40,3 +40,4 @@ dist/
 # IHK-PDF OCR-Arbeitsordner (lokal, nicht deployen)
 exam-ocr-pages/
 .exam-pdf-extract.txt
+.wiso-*.png

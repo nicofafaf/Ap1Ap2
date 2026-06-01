@@ -80,10 +80,15 @@ export async function runBootIntegritySuite(): Promise<BootIntegrityReport> {
         parsed = null;
       }
       const n = Array.isArray(parsed) ? parsed.length : 0;
+      const slimOk = Array.isArray(parsed);
       lines.push({
         id: "precache-manifest",
-        ok: n > 0,
-        detail: n > 0 ? `${n} Einträge · SHA-256 ${manifestSha256.slice(0, 16)}…` : "Leer / kein Array",
+        ok: slimOk,
+        detail: slimOk
+          ? n > 0
+            ? `${n} Einträge · SHA-256 ${manifestSha256.slice(0, 16)}…`
+            : "Slim-Modus (0 Einträge) — Boss-Videos on-demand"
+          : "Ungültiges JSON",
       });
       if (NEXUS_MANIFEST_SHA256_EXPECTED && manifestSha256 !== NEXUS_MANIFEST_SHA256_EXPECTED) {
         lines.push({

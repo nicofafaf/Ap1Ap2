@@ -23,7 +23,7 @@ pages:
     - test -f assets/hintergrund-atmosphäre-q-epn-7i.mp4
     - test "$(wc -c < assets/hintergrund-atmosphäre-q-epn-7i.mp4)" -gt 1000000
     - "npm ci"
-    - "npm run build"
+    - "npm run verify"
     - "test -d dist && test -d dist/assets"
     - "rm -rf public"
     - "mv dist public"

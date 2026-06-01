@@ -14,6 +14,7 @@ import { resolveTerminalBossMode } from "../../lib/learning/learningRegistry";
 import { useBossAudioEngine } from "../../lib/audio/bossAudioEngine";
 import { MentorPortrait } from "../ui/MentorPortrait";
 import { EdtechExamTimerBar } from "../navigation/edtech/EdtechExamTimerBar";
+import { EdtechLearningSession } from "../navigation/edtech/EdtechLearningSession";
 import {
   friendlyMissionTitle,
   mergeLessonCardsForEdtech,
@@ -547,7 +548,7 @@ export function LearningTerminal({
           triggerBossHit(8);
         }
         if (edtechFlow) {
-          window.setTimeout(() => advanceEdtechLearningTurn(exercise.id), 1200);
+          window.setTimeout(() => advanceEdtechLearningTurn(exercise.id), 900);
         } else if (isBeginnerExercise) {
           markMissionCleared(exercise.id);
         }
@@ -616,6 +617,27 @@ export function LearningTerminal({
       } as const);
 
   if (!visible) return null;
+
+  const useEdtechSession =
+    edtechFlow &&
+    learningFocus &&
+    exercise &&
+    exercise.mcOptions.length > 0 &&
+    exercise.lang !== "sql" &&
+    exercise.lang !== "csharp" &&
+    exercise.lang !== "bash";
+
+  if (useEdtechSession) {
+    return (
+      <EdtechLearningSession
+        lf={answerLf}
+        exercise={exercise}
+        pickedId={pickedId}
+        examStrict={examStrict}
+        onPick={handleMcOption}
+      />
+    );
+  }
 
   if (!exercise && edtechFlow) {
     return (

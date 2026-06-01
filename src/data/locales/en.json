@@ -124,6 +124,14 @@
     "strengthsTitle": "Strengths",
     "weaknessesTitle": "Practice more"
   },
+  "edtechLearn": {
+    "progressLabel": "Your progress",
+    "exit": "Pause",
+    "stepRead": "1 · Read",
+    "stepAsk": "2 · Question",
+    "readAria": "Quick explanation",
+    "introProgress": "Intro {n} of {total}"
+  },
   "hub": {
     "eyebrow": "LernenSchule",
     "headline": "Your calm learning hub",

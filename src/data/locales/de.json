@@ -124,6 +124,14 @@
     "strengthsTitle": "Stärken",
     "weaknessesTitle": "Schwerpunkte trainieren"
   },
+  "edtechLearn": {
+    "progressLabel": "Dein Fortschritt",
+    "exit": "Pause",
+    "stepRead": "1 · Lesen",
+    "stepAsk": "2 · Frage",
+    "readAria": "Kurz erklärt",
+    "introProgress": "Einstieg {n} von {total}"
+  },
   "hub": {
     "eyebrow": "LernenSchule",
     "headline": "Deine ruhige Lernzentrale",

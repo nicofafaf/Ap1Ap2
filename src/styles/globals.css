@@ -206,6 +206,22 @@ html[data-nx-chrome="edtech"] .nx-volumetric-leaks {
   opacity: 0.12;
 }
 
+/* EdTech-Lernsession: helles Vollbild, kein Kampf-Dimming */
+html[data-nx-chrome="edtech"][data-nx-learning-focus="1"] .nx-fractal-particle-layer,
+html[data-nx-chrome="edtech"][data-nx-learning-focus="1"] .nx-volumetric-leaks {
+  opacity: 0 !important;
+}
+
+html[data-nx-chrome="edtech"][data-nx-learning-focus="1"] .nx-fractal-bg-video,
+html[data-nx-chrome="edtech"][data-nx-learning-focus="1"] .nx-fractal-bg-fallback {
+  filter: none !important;
+}
+
+html[data-nx-chrome="edtech"][data-nx-learning-focus="1"] [data-nx-learning-dim-chrome="1"] {
+  opacity: 0 !important;
+  filter: none !important;
+}
+
 /* Reiner Lernfokus: Welt dimmen, Partikel fast aus */
 html[data-nx-learning-focus="1"] .nx-fractal-particle-layer {
   opacity: 0;

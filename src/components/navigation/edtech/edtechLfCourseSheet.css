@@ -221,6 +221,26 @@
   font-family: var(--nx-font-sans);
 }
 
+.nx-edtech-course-start-body {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #64748b;
+  font-family: var(--nx-font-sans);
+}
+
+.nx-edtech-course-exam-hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #64748b;
+  font-family: var(--nx-font-sans);
+}
+
+.nx-edtech-course-mission-list--exam li {
+  opacity: 0.92;
+}
+
 .nx-edtech-course-details-toggle {
   width: 100%;
   border: none;

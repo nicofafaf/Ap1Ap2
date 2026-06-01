@@ -21,9 +21,15 @@ import {
   streakMilestoneFor,
 } from "../lib/learning/blitzSession";
 import {
+  buildSommer2026Queue,
+  getSommer2026DurationMs,
+  type Sommer2026PackId,
+} from "../lib/curriculum/sommer2026Exams";
+import {
   CURRICULUM_BY_LF,
   applyLeitnerReview,
   getBeginnerExerciseForLf,
+  getNextLearnExerciseForLf,
   type LeitnerCardState,
 } from "../lib/learning/learningRegistry";
 import {
@@ -597,6 +603,9 @@ type GameStore = {
   blitzTargetLf: number;
   beginBlitzTraining: () => void;
   beginExamForLf: (lf: number) => void;
+  /** IHK Abschlussprüfung Sommer 2026 — WiSo / GA1 / GA2 */
+  ihkExamPackId: Sommer2026PackId | null;
+  beginSommer2026Exam: (packId: Sommer2026PackId) => void;
   streakCelebrationMilestone: number | null;
   clearStreakCelebration: () => void;
   checkStreakCelebration: (streak: number) => void;
@@ -901,6 +910,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   blitzQueue: [],
   blitzIndex: 0,
   blitzTargetLf: 1,
+  ihkExamPackId: null,
   streakCelebrationMilestone: null,
   examLogicFlowToken: 0,
   learningMentorStreak: 0,
@@ -965,11 +975,17 @@ export const useGameStore = create<GameStore>((set, get) => ({
         edtechExcludeExerciseId: completedExerciseId ?? null,
         edtechRecentExerciseIds: recent,
       };
-      if (state.isBlitzSession && state.blitzQueue.length > 0) {
+      if (
+        (state.isBlitzSession || state.ihkExamPackId != null) &&
+        state.blitzQueue.length > 0
+      ) {
         const nextIndex = state.blitzIndex + 1;
         if (nextIndex >= state.blitzQueue.length) {
           return {
             isBlitzSession: false,
+            ihkExamPackId: null,
+            examPresentationMode: false,
+            examSessionEndsAt: null,
             blitzQueue: [],
             blitzIndex: 0,
             entryToken: state.entryToken + 1,
@@ -1154,7 +1170,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
       const sectorZero = lf === 0;
       const lfC = sectorZero ? 0 : Math.max(1, Math.min(12, lf));
       const lfKey = lfC === 0 ? null : (`LF${lfC}` as LearningField);
-      const preferredBeginnerExerciseId = lfKey ? getBeginnerExerciseForLf(lfKey)?.id ?? null : null;
+      const preferredBeginnerExerciseId = lfKey
+        ? getNextLearnExerciseForLf(lfKey, state.learningLeitnerByExerciseId, state.learningCorrectByLf[lfKey])
+            ?.id ??
+          getBeginnerExerciseForLf(lfKey)?.id ??
+          null
+        : null;
       const tutorial = state.isTutorialCombatRun;
       const daily = getDailyIncursionDefinition();
       const applyDaily =
@@ -2410,13 +2431,38 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (milestone) set({ streakCelebrationMilestone: milestone });
   },
   beginExamForLf: (lf) => {
-    const queue = buildBlitzQueue(lf, BLITZ_QUESTION_COUNT);
+    const queue = buildBlitzQueue(lf, BLITZ_QUESTION_COUNT, "exam");
     const first = queue[0] ?? null;
     set({
+      ihkExamPackId: null,
       examPresentationMode: true,
       examSessionEndsAt: Date.now() + EXAM_SESSION_MS,
       isBlitzSession: false,
       blitzQueue: [],
+      blitzIndex: 0,
+      blitzTargetLf: lf,
+      preferredLearningExerciseId: first,
+      isTutorialCombatRun: false,
+      combatTutorialStep: 0,
+    });
+    try {
+      localStorage.setItem("nexus.examPresentationMode.v1", "1");
+    } catch {
+      // no-op
+    }
+    get().initiateCombat(lf, 100);
+  },
+  beginSommer2026Exam: (packId) => {
+    const pack = buildSommer2026Queue(packId);
+    const lf = packId === "wiso" ? 1 : packId === "ga1" ? 2 : 10;
+    const first = pack[0] ?? null;
+    const durationMs = getSommer2026DurationMs(packId);
+    set({
+      ihkExamPackId: packId,
+      examPresentationMode: true,
+      examSessionEndsAt: Date.now() + durationMs,
+      isBlitzSession: true,
+      blitzQueue: pack,
       blitzIndex: 0,
       blitzTargetLf: lf,
       preferredLearningExerciseId: first,
@@ -2436,6 +2482,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const queue = buildBlitzQueue(lf, BLITZ_QUESTION_COUNT);
     const first = queue[0] ?? null;
     set({
+      ihkExamPackId: null,
       examPresentationMode: false,
       examSessionEndsAt: null,
       isBlitzSession: true,

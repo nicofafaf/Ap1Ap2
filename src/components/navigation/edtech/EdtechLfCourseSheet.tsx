@@ -55,6 +55,8 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
   const friendlyStart = firstMission
     ? friendlyMissionTitle(firstMission.id, firstMission.title, learningStoryMode)
     : null;
+  const learnMissionCount = meta?.missions.length ?? 0;
+  const examMissionCount = meta?.examMissions.length ?? 0;
 
   return (
     <AnimatePresence>
@@ -188,11 +190,28 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
                     exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
                     transition={{ duration: reduceMotion ? 0 : 0.25 }}
                   >
-                    {meta.missions.length > 0 ? (
+                    {learnMissionCount > 0 ? (
                       <section>
                         <h3>{t("map.edtechCourse.missionsTitle")}</h3>
                         <ul className="nx-edtech-course-mission-list">
                           {meta.missions.map((m) => {
+                            const topic = friendlyTopicLine(m.topic, learningStoryMode);
+                            return (
+                              <li key={m.id}>
+                                <strong>{friendlyMissionTitle(m.id, m.title, learningStoryMode)}</strong>
+                                {topic ? <span>{topic}</span> : null}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </section>
+                    ) : null}
+                    {examMissionCount > 0 ? (
+                      <section>
+                        <h3>{t("map.edtechCourse.examMissionsTitle")}</h3>
+                        <p className="nx-edtech-course-exam-hint">{t("map.edtechCourse.examMissionsHint")}</p>
+                        <ul className="nx-edtech-course-mission-list nx-edtech-course-mission-list--exam">
+                          {meta.examMissions.map((m) => {
                             const topic = friendlyTopicLine(m.topic, learningStoryMode);
                             return (
                               <li key={m.id}>

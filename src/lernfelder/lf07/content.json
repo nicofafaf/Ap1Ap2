@@ -4,22 +4,58 @@
   "title": "Objektorientierte Programmierung und Cyber-Security",
   "beginnerPath": [
     {
-      "id": "lf7-start",
-      "topic": "Klasse und Objekt",
+      "id": "lf7-grund-00-code",
+      "topic": "Programmieren-Grundlagen",
+      "learnPhase": "grundlage",
       "level": "beginner",
-      "title": "Bauplan und echtes Ding unterscheiden",
+      "title": "Was macht Programmcode?",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Eine Klasse ist ein Bauplan. Ein Objekt ist ein konkretes Exemplar davon"
+          "title": "In einfachen Worten",
+          "body": "Code sind Anweisungen in einer Programmiersprache die der Computer ausführt — Variablen speichern Werte Methoden führen Aktionen aus"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie eine Formularvorlage: Felder für Name und Status — jedes ausgefüllte Formular ist ein konkreter Fall"
         },
         {
           "title": "Merksatz",
-          "body": "Klasse beschreibt, Objekt benutzt"
+          "body": "Erst Problem in Worten — dann Struktur — dann Syntax in C# oder einer anderen Sprache"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "int alter = 17; speichert eine Zahl — Console.WriteLine gibt Text aus"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist eine Variable am einfachsten",
+        "options": [
+          { "text": "Ein benannter Speicherplatz für einen Wert", "correct": true },
+          { "text": "Ein Netzwerkkabel", "correct": false, "hint": "Variablen leben im Programm nicht in der Wand" },
+          { "text": "Eine Rechtsform", "correct": false, "hint": "Das gehört zu WiSo" },
+          { "text": "Ein RAID-Level", "correct": false, "hint": "RAID gehört zu Speichersystemen" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-start",
+      "topic": "Programmieren-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Klasse und Objekt",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Eine Klasse ist ein Bauplan — ein Objekt ist ein konkretes Exemplar mit eigenen Werten"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Suche zuerst Dinge mit Eigenschaften, zum Beispiel Ticket mit Nummer und Status"
+          "title": "Vergleich aus dem Alltag",
+          "body": "Bauplan Haus — dein Haus in der Straße 5 ist das Objekt mit echten Maßen und Farben"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Klasse beschreibt — Objekt benutzt"
         }
       ],
       "example": {
@@ -131,6 +167,150 @@
           { "text": "MD5 mit einem globalen app-weiten salt reicht für alle athlete-accounts", "correct": false, "hint": "Globaler salt teilt sich alle user rainbow-tables bleiben teilweise möglich" },
           { "text": "Passwörter im klartext speichern damit support schnell resetten kann", "correct": false, "hint": "Klartext ist nie akzeptabel" }
         ]
+      }
+    },
+    {
+      "id": "lf7-oop-inherit-01",
+      "topic": "Prüfung · LF7",
+      "level": "beginner",
+      "title": "Vererbung und Polymorphie",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Vererbung erlaubt abgeleitete Klassen die Eigenschaften und Methoden der Basisklasse zu übernehmen und zu erweitern"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Polymorphie bedeutet eine Referenz vom Basistyp kann auf Objekte abgeleiteter Typen zeigen und die passende überschriebene Methode aufrufen"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "override in C# markiert überschriebene Methoden virtual in der Basisklasse ist Voraussetzung Komposition ist oft flexibler als tiefe Vererbungshierarchien"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "List TicketBasis tickets enthält SupportTicket und ChangeTicket gemeinsame Methode Anzeigen wird polymorph aufgerufen"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das ticket-modul der cba-it-service gmbh wirft falsche methoden wir prüfen override und basistyp bevor der helpdesk einfriert",
+        "question": "Eine Variable vom Typ TicketBasis zeigt auf ein Objekt ChangeTicket die Methode StatusAnzeigen ist in ChangeTicket mit override überschrieben Welche Aussage trifft zu",
+        "options": [
+          { "text": "Es wird die überschriebene Methode von ChangeTicket ausgeführt", "correct": true },
+          { "text": "Es wird immer die Methode der Basisklasse ausgeführt", "correct": false, "hint": "override ersetzt die Implementierung zur Laufzeit" },
+          { "text": "override funktioniert nur bei struct", "correct": false, "hint": "override gilt für Klassenvererbung" },
+          { "text": "Polymorphie verbietet Listen mit gemischten Typen", "correct": false, "hint": "Listen vom Basistyp sind ein klassisches Polymorphie-Muster" }
+        ],
+        "solutionHint": "zur laufzeit zählt der echte objekttyp"
+      }
+    },
+    {
+      "id": "lf7-sec-sqli-02",
+      "topic": "Prüfung · LF7",
+      "level": "beginner",
+      "title": "SQL-Injection abwehren",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "SQL-Injection nutzt unsichere String-Konkatenation in SQL-Befehlen um Logik zu manipulieren"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Parametrisierte Queries Prepared Statements und ORM-Parameter trennen Code und Daten"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Eingabe OR 1 gleich 1 in einem Login-Feld ist ein klassischer Angriff Escaping allein ist fehleranfälliger als Parameter"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "SELECT User FROM Login WHERE Name gleich Parameter und Passwort gleich Parameter statt Name plus Eingabe im String"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die login-api der netsolutions ag blutet sql wir ersetzen string-bau durch parameter bevor credentials durchsickern",
+        "question": "Welche Maßnahme verhindert SQL-Injection am zuverlässigsten in einer C#-Datenbankanwendung",
+        "options": [
+          { "text": "Parametrisierte Abfragen mit Platzhaltern für Benutzereingaben", "correct": true },
+          { "text": "Anführungszeichen in der Eingabe durch Backslash ersetzen", "correct": false, "hint": "Escaping ist sprach- und kontextabhängig fehleranfällig" },
+          { "text": "Nur Großbuchstaben in SQL-Keywords verbieten", "correct": false, "hint": "Schreibweise ändert nicht die Injektionslogik" },
+          { "text": "HTTP statt HTTPS erzwingen", "correct": false, "hint": "Transport schützt nicht die SQL-Logik auf dem Server" }
+        ],
+        "solutionHint": "parameter trennen daten von befehl"
+      }
+    },
+    {
+      "id": "lf7-sec-crypto-03",
+      "topic": "Prüfung · LF7",
+      "level": "beginner",
+      "title": "Symmetrisch und asymmetrisch",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Symmetrische Verfahren wie AES nutzen einen gemeinsamen Schlüssel asymmetrische wie RSA nutzen Schlüsselpaare"
+        },
+        {
+          "title": "Anwendung",
+          "body": "TLS kombiniert oft RSA oder ECDHE zum Schlüsselaustausch und AES für die eigentliche Datenübertragung"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "AES eignet sich für große Datenmengen RSA für Schlüsselaustausch und Signaturen nicht zum Verschlüsseln riesiger Dateien allein"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Backup-Archiv mit AES-256 verschlüsseln Schlüssel per RSA an Admin verteilen"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "der sichere kanal zur cba-it-service gmbh bricht ein wir ordnen aes und rsa zu bevor sessions im klartext laufen",
+        "question": "Welche Zuordnung von Verfahren und Einsatz ist korrekt",
+        "options": [
+          { "text": "AES für große Datenströme RSA für Schlüsselaustausch und digitale Signaturen", "correct": true },
+          { "text": "RSA verschlüsselt dauerhaft ganze Festplatten ohne AES", "correct": false, "hint": "RSA ist langsam und limitiert für Massendaten" },
+          { "text": "AES benötigt immer zwei verschiedene Schlüssel pro Partner", "correct": false, "hint": "Zwei Schlüssel sind Merkmal asymmetrischer Verfahren" },
+          { "text": "Hashing ersetzt Verschlüsselung bei TLS", "correct": false, "hint": "Hashes sind Einweg TLS braucht Verschlüsselung" }
+        ],
+        "solutionHint": "symmetrisch schnell asymmetrisch schlüssel und signatur"
+      }
+    },
+    {
+      "id": "lf7-sec-rbac-04",
+      "topic": "Prüfung · LF7",
+      "level": "beginner",
+      "title": "RBAC und Least Privilege",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Role Based Access Control ordnet Berechtigungen Rollen zu Benutzer erhalten Rollen statt Einzelrechte im Chaos"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Least Privilege heißt nur die minimal nötigen Rechte für die Aufgabe vergeben"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Admin-Rolle für jeden Helpdesk-Mitarbeiter verletzt Least Privilege getrennte Rollen Support Read und Change Write"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Rolle Auditor nur SELECT Rolle Operator SELECT UPDATE auf Tickets keine DROP-Rechte"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die acl der netsolutions ag ist zu weit jeder hat admin wir schneiden rollen zu bevor ein insider das rz löscht",
+        "question": "Ein Support-Mitarbeiter soll Tickets lesen und Status ändern aber keine Benutzer anlegen Welches Konzept setzt das am saubersten um",
+        "options": [
+          { "text": "RBAC mit Rolle Support und Least Privilege nur nötige Rechte", "correct": true },
+          { "text": "Allen Mitarbeitern das Admin-Passwort geben", "correct": false, "hint": "Verletzt Least Privilege und Nachvollziehbarkeit" },
+          { "text": "Sicherheit nur über Physik im Büro", "correct": false, "hint": "Physische Zutrittskontrolle ersetzt keine Anwendungsrechte" },
+          { "text": "MAC-Adressen filtern statt Rollen", "correct": false, "hint": "Netzwerkfilter steuert nicht fein granulare App-Funktionen" }
+        ],
+        "solutionHint": "rollen mit minimalrechten"
       }
     }
   ],

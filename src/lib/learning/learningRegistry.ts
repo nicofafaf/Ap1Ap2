@@ -22,9 +22,13 @@ import {
 } from "./expandedCurriculum";
 import { REFERENCE_EXERCISES_BY_LF } from "./buildReferenceExercises";
 import { LF_DRILL_PACKS } from "./lfDrillPacks";
+import { isExamPathMission, isLearnPathMission } from "./learnPathFilters";
 import lf01Content from "../../lernfelder/lf01/content.json";
 import lf02Content from "../../lernfelder/lf02/content.json";
 import lf02ExamPath from "../../lernfelder/lf02/examPath.json";
+import wisoExamPath from "../../lernfelder/sommer2026/wisoExamPath.json";
+import ga1ExamPath from "../../lernfelder/sommer2026/ga1ExamPath.json";
+import ga2ExamPath from "../../lernfelder/sommer2026/ga2ExamPath.json";
 import lf03Content from "../../lernfelder/lf03/content.json";
 import lf04Content from "../../lernfelder/lf04/content.json";
 import lf05Content from "../../lernfelder/lf05/content.json";
@@ -664,16 +668,47 @@ function buildLf5FromJson(raw: Lf5ContentShape): LearningExercise[] {
   ];
 }
 
+/** Lernpfad (Grundlagen) und Prüfungs-/IHK-Aufgaben getrennt — gleiche JSON-Reihenfolge */
+function buildLearnAndExamPathsFromJson(raw: BeginnerContentShape): {
+  learn: LearningExercise[];
+  exam: LearningExercise[];
+} {
+  const entries = raw.beginnerPath ?? [];
+  const learnEntries = entries.filter((entry) => isLearnPathMission(entry));
+  const examEntries = entries.filter((entry) => isExamPathMission(entry));
+  return {
+    learn: buildBeginnerPathFromJson({ ...raw, beginnerPath: learnEntries }),
+    exam: buildBeginnerPathFromJson({ ...raw, beginnerPath: examEntries }),
+  };
+}
+
 const lf02WithExam: BeginnerContentShape = {
   ...(lf02Content as BeginnerContentShape),
   beginnerPath: [
     ...((lf02Content as BeginnerContentShape).beginnerPath ?? []),
     ...(lf02ExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
+    ...(ga1ExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
+  ],
+};
+
+const lf01WithSommer2026: BeginnerContentShape = {
+  ...(lf01Content as BeginnerContentShape),
+  beginnerPath: [
+    ...((lf01Content as BeginnerContentShape).beginnerPath ?? []),
+    ...(wisoExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
+  ],
+};
+
+const lf10WithSommer2026: BeginnerContentShape = {
+  ...(lf10Content as BeginnerContentShape),
+  beginnerPath: [
+    ...((lf10Content as BeginnerContentShape).beginnerPath ?? []),
+    ...(ga2ExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
   ],
 };
 
 const BEGINNER_CONTENT_BY_LF: Record<LearningField, BeginnerContentShape> = {
-  LF1: lf01Content as BeginnerContentShape,
+  LF1: lf01WithSommer2026,
   LF2: lf02WithExam,
   LF3: lf03Content as BeginnerContentShape,
   LF4: lf04Content as BeginnerContentShape,
@@ -682,16 +717,23 @@ const BEGINNER_CONTENT_BY_LF: Record<LearningField, BeginnerContentShape> = {
   LF7: lf07Content as BeginnerContentShape,
   LF8: lf08Content as BeginnerContentShape,
   LF9: lf09Content as BeginnerContentShape,
-  LF10: lf10Content as BeginnerContentShape,
+  LF10: lf10WithSommer2026,
   LF11: lf11Content as BeginnerContentShape,
   LF12: lf12Content as BeginnerContentShape,
 };
 
-const BEGINNER_EXERCISES_BY_LF: Record<LearningField, LearningExercise[]> = Object.fromEntries(
-  Object.entries(BEGINNER_CONTENT_BY_LF).map(([lf, content]) => [
-    lf,
-    buildBeginnerPathFromJson(content),
-  ])
+const LEARN_AND_EXAM_BY_LF = Object.fromEntries(
+  Object.entries(BEGINNER_CONTENT_BY_LF).map(([lf, content]) => [lf, buildLearnAndExamPathsFromJson(content)])
+) as Record<LearningField, { learn: LearningExercise[]; exam: LearningExercise[] }>;
+
+/** Sequentieller Lernpfad — ohne Prüfung · / IHK-Sommer-Aufgaben */
+export const BEGINNER_EXERCISES_BY_LF: Record<LearningField, LearningExercise[]> = Object.fromEntries(
+  Object.entries(LEARN_AND_EXAM_BY_LF).map(([lf, paths]) => [lf, paths.learn])
+) as Record<LearningField, LearningExercise[]>;
+
+/** Nur Prüfungs- und IHK-Aufgaben — für Prüfungsmodus / Blitz-Prüfung */
+export const EXAM_PATH_EXERCISES_BY_LF: Record<LearningField, LearningExercise[]> = Object.fromEntries(
+  Object.entries(LEARN_AND_EXAM_BY_LF).map(([lf, paths]) => [lf, paths.exam])
 ) as Record<LearningField, LearningExercise[]>;
 
 export const BEGINNER_EXERCISE_IDS_BY_LF: Record<LearningField, Set<string>> = Object.fromEntries(
@@ -701,8 +743,23 @@ export const BEGINNER_EXERCISE_IDS_BY_LF: Record<LearningField, Set<string>> = O
   ])
 ) as Record<LearningField, Set<string>>;
 
+export const EXAM_EXERCISE_IDS_BY_LF: Record<LearningField, Set<string>> = Object.fromEntries(
+  Object.entries(EXAM_PATH_EXERCISES_BY_LF).map(([lf, exercises]) => [
+    lf,
+    new Set(exercises.map((exercise) => exercise.id)),
+  ])
+) as Record<LearningField, Set<string>>;
+
 export function getBeginnerExerciseForLf(lf: LearningField): LearningExercise | null {
   return BEGINNER_EXERCISES_BY_LF[lf][0] ?? null;
+}
+
+export function getNextLearnExerciseForLf(
+  lf: LearningField,
+  leitner?: Readonly<Record<string, LeitnerCardState>>,
+  solvedExerciseIds?: readonly string[]
+): LearningExercise | null {
+  return getPendingBeginnerExercise(lf, leitner, { solvedExerciseIds });
 }
 
 function withBeginnerPath(lf: LearningField, advanced: LearningExercise[]): LearningExercise[] {
@@ -727,6 +784,7 @@ function mergeFullCurriculum(
   for (const ex of REFERENCE_EXERCISES_BY_LF[lf] ?? []) push(ex);
   for (const ex of LF_DRILL_PACKS[lf] ?? []) push(ex);
   for (const ex of extra) push(ex);
+  for (const ex of EXAM_PATH_EXERCISES_BY_LF[lf] ?? []) push(ex);
   return out;
 }
 
@@ -776,7 +834,7 @@ export type EdtechExercisePickContext = {
   solvedExerciseIds?: readonly string[];
 };
 
-/** Nächste Einstiegs-Übung in JSON-Reihenfolge — nicht nur die erste Mission */
+/** Nächste Lern-Übung in JSON-Reihenfolge (ohne Prüfungs-/IHK-Missionen) */
 function getPendingBeginnerExercise(
   lf: LearningField,
   leitner?: Readonly<Record<string, LeitnerCardState>>,
@@ -1218,12 +1276,15 @@ export function pickLearningExerciseFromLfAdaptive(
   if (pendingBeginner) return pendingBeginner;
 
   const beginnerIds = BEGINNER_EXERCISE_IDS_BY_LF[lf];
+  const examIds = EXAM_EXERCISE_IDS_BY_LF[lf];
   const solved = new Set(edtechCtx?.solvedExerciseIds ?? []);
-  let reviewBag = bag.filter((exercise) => !beginnerIds.has(exercise.id));
+  let reviewBag = bag.filter(
+    (exercise) => !beginnerIds.has(exercise.id) && !examIds.has(exercise.id)
+  );
   reviewBag = filterExercisePool(reviewBag, edtechCtx);
   if (!reviewBag.length) {
     reviewBag = filterExercisePool(
-      bag.filter((exercise) => !beginnerIds.has(exercise.id)),
+      bag.filter((exercise) => !beginnerIds.has(exercise.id) && !examIds.has(exercise.id)),
       edtechCtx
     );
   }

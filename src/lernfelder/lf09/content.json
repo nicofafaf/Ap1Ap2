@@ -4,22 +4,58 @@
   "title": "Dienste Protokolle und Schnittstellen",
   "beginnerPath": [
     {
-      "id": "lf9-start",
-      "topic": "Schnittstellen verstehen",
+      "id": "lf9-grund-00-api",
+      "topic": "Schnittstellen-Grundlagen",
+      "learnPhase": "grundlage",
       "level": "beginner",
-      "title": "Systeme sprechen über klare Regeln",
+      "title": "Was ist eine API?",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Eine Schnittstelle beschreibt, wie zwei Systeme Daten austauschen"
+          "title": "In einfachen Worten",
+          "body": "Eine API ist eine vereinbarte Schnittstelle — Programme tauschen Daten nach festen Regeln aus ohne die innere Technik zu kennen"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie eine Speisekarte im Restaurant — du bestellst nach Nummer — die Küche liefert — du musst nicht kochen"
         },
         {
           "title": "Merksatz",
-          "body": "GET holt Daten. POST sendet neue Daten"
+          "body": "Client fragt — API liefert Antwort oft als JSON über HTTP"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Eine Wetter-App ruft eine API ab und bekommt Temperatur als JSON zurück"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Wofür steht API im Alltag am besten",
+        "options": [
+          { "text": "Schnittstelle damit Programme Daten austauschen", "correct": true },
+          { "text": "Ein Netzwerkkabel-Typ", "correct": false, "hint": "Kabel sind Schicht 1 nicht API" },
+          { "text": "Ein Windows-Update", "correct": false, "hint": "Updates sind Patches keine Schnittstellen-Definition" },
+          { "text": "Eine CPU-Marke", "correct": false, "hint": "Hardware-Hersteller sind nicht API" }
+        ]
+      }
+    },
+    {
+      "id": "lf9-start",
+      "topic": "Schnittstellen-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "HTTP — lesen oder anlegen",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "HTTP-Methoden sagen der API was du willst — GET liest — POST legt oft neu an"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Frage zuerst: Will ich etwas lesen oder etwas neu anlegen"
+          "title": "Vergleich aus dem Alltag",
+          "body": "GET ist Nachschlagen im Katalog — POST ist ein neues Formular abgeben"
+        },
+        {
+          "title": "Merksatz",
+          "body": "GET holt — POST sendet neu — DELETE entfernt — PATCH ändert teilweise"
         }
       ],
       "example": {
@@ -116,6 +152,150 @@
           { "text": "Keine Zertifikate", "correct": false, "hint": "Zertifikate sind üblich" },
           { "text": "Ersetzt DNS", "correct": false, "hint": "DNS bleibt separat" }
         ]
+      }
+    },
+    {
+      "id": "lf9-api-idempotent-01",
+      "topic": "Prüfung · LF9",
+      "level": "beginner",
+      "title": "REST Idempotenz",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Idempotent heißt mehrfaches Ausführen derselben Anfrage ändert den Zustand nicht weiter nach dem ersten erfolgreichen Mal"
+        },
+        {
+          "title": "Anwendung",
+          "body": "GET PUT und DELETE sind idempotent POST legt neue Ressourcen an wiederholtes POST erzeugt mehrere Objekte"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "PUT ersetzt eine Ressource erneutes PUT mit gleichen Daten ist unkritisch POST auf /orders erzeugt jedes Mal eine neue Bestellung"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "PUT /tickets/42 mit gleichem Body zweimal liefert gleichen Endzustand POST /tickets erzeugt zwei IDs"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die api-gateway-logs der cba-it-service gmbh fluten durch doppel-posts wir wählen idempotente methoden bevor das ticket-system duplikate frisst",
+        "question": "Ein Client soll einen vorhandenen Datensatz vollständig ersetzen und bei Netzwerk-Wiederholung keinen zusätzlichen Datensatz anlegen Welche HTTP-Methode ist dafür fachlich passend",
+        "options": [
+          { "text": "PUT auf die konkrete Ressourcen-URI", "correct": true },
+          { "text": "POST auf die Sammlungs-URI /items", "correct": false, "hint": "POST erzeugt bei jedem Aufruf typischerweise eine neue Ressource" },
+          { "text": "GET mit Body-Ersatz", "correct": false, "hint": "GET darf den Serverzustand nicht ändern und ist nicht zum Ersetzen gedacht" },
+          { "text": "PATCH ohne ID", "correct": false, "hint": "PATCH teilt Änderungen mit braucht aber eine Zielressource und ist nicht das Standard-Ersetzen" }
+        ],
+        "solutionHint": "ersetzen gleich put post gleich neu anlegen"
+      }
+    },
+    {
+      "id": "lf9-json-xml-02",
+      "topic": "Prüfung · LF9",
+      "level": "beginner",
+      "title": "JSON und XML im Vergleich",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "JSON nutzt Schlüssel-Wert-Paare und Arrays XML nutzt verschachtelte Tags mit Start- und Endmarkierung"
+        },
+        {
+          "title": "Anwendung",
+          "body": "REST-APIs und Browser-JavaScript bevorzugen JSON Enterprise-Integration und ältere SOAP-Schnittstellen nutzen oft XML"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "XML ist oft ausführlicher und schema-validierbar JSON ist leichter für JavaScript-Object-Literal-Parsing"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "{\"service\":\"monitor\",\"status\":\"ok\"} ist JSON <status>ok</status> ist XML-Fragment"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "der schnittstellen-parser der netsolutions ag erwartet geschweifte klammern xml-tags würden den json-deserializer sprengen",
+        "question": "Welche Aussage zu JSON gegenüber XML trifft für moderne REST-Clients am ehesten zu",
+        "options": [
+          { "text": "JSON ist kompakt und wird nativ in JavaScript verarbeitet XML braucht meist einen separaten Parser", "correct": true },
+          { "text": "XML ist immer kleiner als JSON bei gleichen Daten", "correct": false, "hint": "Tag-Paare und Attribute machen XML oft größer nicht kleiner" },
+          { "text": "JSON erlaubt keine verschachtelten Strukturen", "correct": false, "hint": "Objekte in Objekten und Arrays sind Kern von JSON" },
+          { "text": "XML kann keine Schemas validieren", "correct": false, "hint": "XSD und DTD sind klassische XML-Validierung" }
+        ],
+        "solutionHint": "json leichtgewichtig für web xml schema-stark enterprise"
+      }
+    },
+    {
+      "id": "lf9-pki-tls-03",
+      "topic": "Prüfung · LF9",
+      "level": "beginner",
+      "title": "PKI und Zertifikate",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Eine Public Key Infrastructure verteilt öffentliche Schlüssel über Zertifikate die von Certificate Authorities signiert werden"
+        },
+        {
+          "title": "Anwendung",
+          "body": "TLS nutzt Serverzertifikate Clients prüfen die Kette bis zu einer vertrauenswürdigen Root-CA asymmetrisch verschlüsselt der Handshake den Sitzungsschlüssel"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Privater Schlüssel bleibt auf dem Server öffentlicher Schlüssel steckt im Zertifikat Pre-Shared-Keys sind kein PKI-Muster"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Browser vertraut Let's Encrypt Root signiertes Webserver-Zertifikat für shop.cba-it.de"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das zertifikat an der api der cba-it-service gmbh läuft ab wir ordnen schlüssel rollen zu bevor tls handshakes im timeout sterben",
+        "question": "Welche Aussage zur PKI bei HTTPS ist korrekt",
+        "options": [
+          { "text": "Die CA signiert das Serverzertifikat der private Schlüssel verlässt den Server nicht", "correct": true },
+          { "text": "Der private Schlüssel wird im DNS-TXT-Record veröffentlicht", "correct": false, "hint": "Öffentlich gehört nur der Public Key im Zertifikat" },
+          { "text": "Symmetrische AES-Schlüssel ersetzen die CA komplett", "correct": false, "hint": "AES schützt die Session nach dem asymmetrischen Handshake" },
+          { "text": "Selbstsignierte Zertifikate werden von jedem Browser automatisch vertraut", "correct": false, "hint": "Ohne bekannte Root erscheint eine Warnung" }
+        ],
+        "solutionHint": "ca vertrauen privat lokal symmetrisch session"
+      }
+    },
+    {
+      "id": "lf9-dhcp-dora-04",
+      "topic": "Prüfung · LF9",
+      "level": "beginner",
+      "title": "DHCP DORA im Detail",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "DHCP vergibt IPv4-Konfiguration per Discover Offer Request Acknowledge Client startet ohne gültige IP"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Discover und Request sind Broadcast Offer und Ack kommen vom Server oft als Unicast nach Auswahl"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Reihenfolge D O R A verwechslung mit ARP oder DNS ist häufig Offer enthält Lease Zeit Gateway und DNS"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Laptop 0.0.0.0 sendet Discover Server 192.168.1.1 antwortet Offer Client Request Ack mit 192.168.1.50"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "im vlan der netsolutions ag hängen clients auf 0.0.0.0 wir sortieren dora bevor der dhcp-scope leer ist",
+        "question": "Ein neuer Client im LAN hat noch keine IP Welche Reihenfolge und welche Pakettypen beschreiben DHCP korrekt",
+        "options": [
+          { "text": "Discover Broadcast Offer Request Ack mit Lease und Optionen", "correct": true },
+          { "text": "Request Discover Ack Offer", "correct": false, "hint": "Request kommt nach Offer wenn der Client ein Angebot annimmt" },
+          { "text": "ARP Request vor jedem DHCP-Schritt", "correct": false, "hint": "ARP löst IP zu MAC auf ist kein DHCP-Ersatz für Adressvergabe" },
+          { "text": "DNS Query ersetzt Discover", "correct": false, "hint": "DNS braucht bereits IP-Konfiguration oder Link-Local" }
+        ],
+        "solutionHint": "d-o-r-a broadcast dann unicast-angebot"
       }
     }
   ],

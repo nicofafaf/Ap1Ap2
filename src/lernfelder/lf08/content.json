@@ -96,22 +96,58 @@
   },
   "beginnerPath": [
     {
-      "id": "lf8-start",
-      "topic": "Datenmodell lesen",
+      "id": "lf8-grund-00-linux",
+      "topic": "Linux-Grundlagen",
+      "learnPhase": "grundlage",
       "level": "beginner",
-      "title": "Dinge, Eigenschaften und Beziehungen",
+      "title": "Was ist Linux?",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Ein Datenmodell zeigt, welche Dinge gespeichert werden und wie sie zusammenhängen"
+          "title": "In einfachen Worten",
+          "body": "Linux ist ein Betriebssystem wie Windows — oft auf Servern — du steuerst es mit Shell-Befehlen und Dateipfaden"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Windows ist wie ein Wohnzimmer mit Icons — Linux-Shell ist wie direkt in den Schränken Ordner suchen und Befehle geben"
         },
         {
           "title": "Merksatz",
-          "body": "Entität ist das Ding. Attribut ist eine Eigenschaft. Beziehung verbindet Dinge"
+          "body": "Alles ist eine Datei oder ein Ordner — Pfade mit Schrägstrich — Rechte steuern wer lesen darf"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "ls zeigt Dateien im Ordner — cd wechselt den Ordner — pwd zeigt wo du bist"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist die Linux-Shell am einfachsten",
+        "options": [
+          { "text": "Eine Kommandozeile um Befehle einzugeben", "correct": true },
+          { "text": "Ein Grafikchip", "correct": false, "hint": "GPU ist Hardware nicht Shell" },
+          { "text": "Ein Browser", "correct": false, "hint": "Browser gibt es auch unter Linux ist aber nicht die Shell" },
+          { "text": "Ein SQL-Join", "correct": false, "hint": "JOIN gehört zu Datenbanken" }
+        ]
+      }
+    },
+    {
+      "id": "lf8-start",
+      "topic": "Datenmodell-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Entitäten und Beziehungen",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Ein Datenmodell zeigt welche Dinge gespeichert werden und wie sie zusammenhängen"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Markiere zuerst Nomen im Text. Daraus entstehen oft Entitäten"
+          "title": "Vergleich aus dem Alltag",
+          "body": "Stell dir Kundenkarten und Bestellzettel vor — jeder Kunde kann mehrere Bestellungen haben"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Entität ist das Ding — Attribut ist Eigenschaft — Beziehung verbindet"
         }
       ],
       "example": {
@@ -229,6 +265,150 @@
           { "text": "grep ohne -F ist hier immer besser", "correct": false, "hint": "Die referenz nutzt -F für literal match" },
           { "text": "Der logpfad sollte unter /tmp liegen", "correct": false, "hint": "Die referenz zeigt /var/log/biometrie.log" }
         ]
+      }
+    },
+    {
+      "id": "lf8-linux-chmod-01",
+      "topic": "Prüfung · LF8",
+      "level": "beginner",
+      "title": "chmod numerisch 640",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Linux-Rechte rwx für owner group others werden oft als Oktalziffer 0 bis 7 pro Triplet geschrieben"
+        },
+        {
+          "title": "Anwendung",
+          "body": "6 ist rw- für owner 4 ist r-- für group 0 ist --- für others zusammen 640"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "777 gibt world Schreibrecht auf Konfigurationsdateien 600 nur owner rw ist strenger als 640"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "chmod 640 /etc/cba/db.conf owner liest und schreibt group liest nur"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die config im rz der cba-it-service gmbh ist world-readable wir setzen die maske bevor credentials aus /etc durchsickern",
+        "question": "Welche chmod-Maske entspricht owner read write group read only others kein Zugriff",
+        "options": [
+          { "text": "640", "correct": true },
+          { "text": "664", "correct": false, "hint": "664 erlaubt others read" },
+          { "text": "460", "correct": false, "hint": "Die Ziffernfolge 460 ist keine übliche rw-r----- Kombination" },
+          { "text": "777", "correct": false, "hint": "777 öffnet alle Rechte für alle" }
+        ],
+        "solutionHint": "6 4 0 als oktal-triplets"
+      }
+    },
+    {
+      "id": "lf8-linux-fhs-02",
+      "topic": "Prüfung · LF8",
+      "level": "beginner",
+      "title": "FHS Pfade zuordnen",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Das Filesystem Hierarchy Standard legt fest welche Verzeichnisse welche Rolle auf Linux haben"
+        },
+        {
+          "title": "Anwendung",
+          "body": "/etc enthält Konfiguration /var/log Logs /home Benutzerdaten /usr Programme"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Logs gehören nicht nach /etc Konfiguration nicht nach /tmp dauerhaft"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Anwendungslog unter /var/log/netsolutions/app.log Konfig unter /etc/netsolutions"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "der audit der netsolutions ag findet logs in /etc wir sortieren fhs-pfade bevor der forensik-export scheitert",
+        "question": "Wo speicherst du dauerhafte Server-Konfigurationsdateien und wo rotierende Logdateien fachlich korrekt",
+        "options": [
+          { "text": "Konfiguration /etc Logs /var/log", "correct": true },
+          { "text": "Konfiguration /var/log Logs /etc", "correct": false, "hint": "Die Rollen sind vertauscht" },
+          { "text": "Beides unter /tmp", "correct": false, "hint": "/tmp kann beim Reboot geleert werden" },
+          { "text": "Beides unter /home/root", "correct": false, "hint": "/home ist für Benutzerprofile nicht Systemkonfiguration" }
+        ],
+        "solutionHint": "etc config var log logs"
+      }
+    },
+    {
+      "id": "lf8-linux-journal-03",
+      "topic": "Prüfung · LF8",
+      "level": "beginner",
+      "title": "journalctl und systemd",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "systemd verwaltet Dienste als Units journalctl zeigt strukturierte Logs des journald"
+        },
+        {
+          "title": "Anwendung",
+          "body": "journalctl -u nginx.service -f folgt Live-Logs einer Unit journalctl -p err filtert Priorität"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "systemctl status zeigt Kurzstatus journalctl liefert Historie restart nach Config-Änderung"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Nach Deploy systemctl restart app.service dann journalctl -u app.service --since heute"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "der dienst app.service der cba-it-service gmbh ist rot wir lesen journalctl bevor wir blind neu starten",
+        "question": "Welche Kombination hilft nach einem Fehlerstart einer Unit die letzten Fehlermeldungen dieser Unit anzuzeigen",
+        "options": [
+          { "text": "journalctl -u dienstname mit Zeitfilter", "correct": true },
+          { "text": "chmod auf die Unit-Datei", "correct": false, "hint": "chmod ändert Rechte nicht Loginhalt" },
+          { "text": "grep nur in /etc/passwd", "correct": false, "hint": "passwd enthält keine Unit-Logs" },
+          { "text": "systemctl disable ohne Analyse", "correct": false, "hint": "disable verhindert Autostart löst nicht die Fehlerursache" }
+        ],
+        "solutionHint": "journalctl für systemd-logs"
+      }
+    },
+    {
+      "id": "lf8-erd-cardinality-04",
+      "topic": "Prüfung · LF8",
+      "level": "beginner",
+      "title": "ER-Modell Kardinalität",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Kardinalität beschreibt wie viele Instanzen einer Entität mit einer anderen verknüpft sein dürfen"
+        },
+        {
+          "title": "Anwendung",
+          "body": "1 zu n ein Kunde hat viele Aufträge n zu m braucht oft eine Zwischentabelle"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Mitarbeiter und Projekt many-to-many über Tabelle MitarbeiterProjekt mit beiden Fremdschlüsseln"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Kunde 1 n Auftrag Projekt n m Mitarbeiter über Zuordnungstabelle"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das er-modell der netsolutions ag hat kreuzende linien wir zählen kardinalitäten bevor die migration scheitert",
+        "question": "Ein Mitarbeiter arbeitet an vielen Projekten ein Projekt hat viele Mitarbeiter Wie modellierst du das relational",
+        "options": [
+          { "text": "Zwischentabelle mit MitarbeiterID und ProjektID als Fremdschlüssel", "correct": true },
+          { "text": "Alle MitarbeiterIDs als CSV in einer Projektspalte", "correct": false, "hint": "Verletzt 1NF und erschwert Abfragen" },
+          { "text": "Nur eine Tabelle Projekt ohne Mitarbeiter", "correct": false, "hint": "Die n zu m Beziehung fehlt" },
+          { "text": "Zwei Primärschlüssel in einer Tabelle ohne Zuordnung", "correct": false, "hint": "n zu m braucht Auflösung über Assoziationstabelle" }
+        ],
+        "solutionHint": "aufloesungstabelle bei n zu m"
       }
     }
   ],

@@ -113,8 +113,12 @@ export function mergeLessonCardsForEdtech(
   const body = parts.join(" ").replace(/\s+/g, " ").trim();
   const clipped = body.length > 520 ? `${body.slice(0, 517)}…` : body;
   const titleCard = cards.find((c) => c.title.trim().length > 0);
+  const learnTitle = cards.find((c) => /in einfachen worten/i.test(c.title))?.title.trim();
   return {
-    title: storyMode && titleCard ? titleCard.title.trim() : "Kurz erklärt",
+    title:
+      storyMode && titleCard
+        ? titleCard.title.trim()
+        : learnTitle || "So lernst du es",
     body: clipped,
   };
 }

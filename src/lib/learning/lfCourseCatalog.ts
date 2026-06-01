@@ -1,9 +1,13 @@
 import type { LearningField } from "../../data/nexusRegistry";
 import { LF_EDTECH_SUMMARY } from "./edtechLfDisplay";
 import { getLfExerciseTotal } from "./lfExerciseTotals";
+import { isExamPathMission, isLearnPathMission } from "./learnPathFilters";
 import lf01 from "../../lernfelder/lf01/content.json";
 import lf02 from "../../lernfelder/lf02/content.json";
 import lf02ExamPath from "../../lernfelder/lf02/examPath.json";
+import wisoExamPath from "../../lernfelder/sommer2026/wisoExamPath.json";
+import ga1ExamPath from "../../lernfelder/sommer2026/ga1ExamPath.json";
+import ga2ExamPath from "../../lernfelder/sommer2026/ga2ExamPath.json";
 import lf03 from "../../lernfelder/lf03/content.json";
 import lf04 from "../../lernfelder/lf04/content.json";
 import lf05 from "../../lernfelder/lf05/content.json";
@@ -34,11 +38,28 @@ const lf02MergedCatalog: ContentShape = {
   beginnerPath: [
     ...((lf02 as ContentShape).beginnerPath ?? []),
     ...(lf02ExamPath as NonNullable<ContentShape["beginnerPath"]>),
+    ...(ga1ExamPath as NonNullable<ContentShape["beginnerPath"]>),
+  ],
+};
+
+const lf01MergedCatalog: ContentShape = {
+  ...(lf01 as ContentShape),
+  beginnerPath: [
+    ...((lf01 as ContentShape).beginnerPath ?? []),
+    ...(wisoExamPath as NonNullable<ContentShape["beginnerPath"]>),
+  ],
+};
+
+const lf10MergedCatalog: ContentShape = {
+  ...(lf10 as ContentShape),
+  beginnerPath: [
+    ...((lf10 as ContentShape).beginnerPath ?? []),
+    ...(ga2ExamPath as NonNullable<ContentShape["beginnerPath"]>),
   ],
 };
 
 const RAW: Record<LearningField, ContentShape> = {
-  LF1: lf01 as ContentShape,
+  LF1: lf01MergedCatalog,
   LF2: lf02MergedCatalog,
   LF3: lf03 as ContentShape,
   LF4: lf04 as ContentShape,
@@ -47,7 +68,7 @@ const RAW: Record<LearningField, ContentShape> = {
   LF7: lf07 as ContentShape,
   LF8: lf08 as ContentShape,
   LF9: lf09 as ContentShape,
-  LF10: lf10 as ContentShape,
+  LF10: lf10MergedCatalog,
   LF11: lf11 as ContentShape,
   LF12: lf12 as ContentShape,
 };
@@ -76,7 +97,10 @@ export type LfCourseMeta = {
   summary: string;
   ap: string;
   chapters: LfCourseChapter[];
+  /** Grundlagen- und Einstiegsmissionen (Lernmodus) */
   missions: LfCourseMission[];
+  /** Prüfung · / IHK — nur im Prüfungsmodus */
+  examMissions: LfCourseMission[];
   tools: LfCourseTool[];
   totalExercises: number;
   hasBoss: boolean;
@@ -137,12 +161,28 @@ function buildChapters(raw: ContentShape): LfCourseChapter[] {
   }));
 }
 
-function buildMissions(raw: ContentShape): LfCourseMission[] {
-  return (raw.beginnerPath ?? []).map((m, i) => ({
+function mapMission(
+  raw: ContentShape,
+  m: NonNullable<ContentShape["beginnerPath"]>[number],
+  i: number
+): LfCourseMission {
+  return {
     id: m.id?.trim() || `mission-${i}`,
     title: m.title?.trim() || `Mission ${i + 1}`,
     topic: m.topic?.trim() || raw.title?.trim() || "",
-  }));
+  };
+}
+
+function buildLearnMissions(raw: ContentShape): LfCourseMission[] {
+  return (raw.beginnerPath ?? [])
+    .filter((m) => isLearnPathMission(m))
+    .map((m, i) => mapMission(raw, m, i));
+}
+
+function buildExamMissions(raw: ContentShape): LfCourseMission[] {
+  return (raw.beginnerPath ?? [])
+    .filter((m) => isExamPathMission(m))
+    .map((m, i) => mapMission(raw, m, i));
 }
 
 function detectFlags(lfKey: LearningField, raw: ContentShape) {
@@ -173,7 +213,8 @@ export function getLfCourseMeta(lf: number): LfCourseMeta | null {
     summary: LF_EDTECH_SUMMARY[lf] ?? raw.title?.trim() ?? lfKey,
     ap: raw.ap?.trim() || (lf <= 6 ? "AP1" : "AP2"),
     chapters: buildChapters(raw),
-    missions: buildMissions(raw),
+    missions: buildLearnMissions(raw),
+    examMissions: buildExamMissions(raw),
     tools: TOOLS_BY_LF[lf] ?? [{ id: "codex", labelKey: "map.edtechCourse.toolCodex" }],
     totalExercises: getLfExerciseTotal(lfKey),
     ...flags,

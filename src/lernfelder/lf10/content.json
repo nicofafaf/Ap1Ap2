@@ -4,6 +4,76 @@
   "title": "Projektmanagement und agile Steuerung",
   "beginnerPath": [
     {
+      "id": "lf10-grund-00-projekt",
+      "topic": "Projekt-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Was ist ein Projekt?",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Ein Projekt hat ein klares Ziel eine Begrenzung in Zeit und Ressourcen und ist einmalig — anders als der Tagesbetrieb"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Umzug in eine neue Wohnung ist ein Projekt — jeden Tag Geschirr spülen ist der laufende Betrieb"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Projekt = Ziel plus Ende — Betrieb = wiederkehrend ohne festes Ende"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Neues Ticketsystem einführen bis Go-Live ist ein Projekt — Tickets bearbeiten danach ist Betrieb"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was kennzeichnet ein Projekt",
+        "options": [
+          { "text": "Einmaliges Ziel mit Zeit- und Ressourcenrahmen", "correct": true },
+          { "text": "Tägliche Routine ohne Enddatum", "correct": false, "hint": "Das beschreibt eher Linie oder Betrieb" },
+          { "text": "Nur ein Netzwerkkabel", "correct": false, "hint": "Hardware allein ist kein Projekt" },
+          { "text": "Ein SQL-Semikolon", "correct": false, "hint": "Syntax gehört zu Datenbanken" }
+        ]
+      }
+    },
+    {
+      "id": "lf10-grund-01-plan",
+      "topic": "Projekt-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Aufgaben und Reihenfolge",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Projekte zerlegt man in Aufgaben mit Dauer und Abhängigkeiten — manche Schritte können parallel laufen andere warten"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Kuchen backen: Teig mischen parallel Ofen vorheizen — backen erst wenn beides fertig ist"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Parallel endet wenn die langsamste Aufgabe fertig ist — danach startet der nächste Block"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Design 3 Tage und Text 2 Tage parallel — Test startet erst wenn beide fertig sind also nach 3 Tagen"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Zwei Aufgaben laufen parallel vier und fünf Tage — wann kann die nächste starten",
+        "options": [
+          { "text": "Nach fünf Tagen", "correct": true },
+          { "text": "Nach vier Tagen", "correct": false, "hint": "Die langsamere Aufgabe bestimmt das Ende" },
+          { "text": "Nach neun Tagen", "correct": false, "hint": "Parallel heißt nicht immer addieren" },
+          { "text": "Sofort", "correct": false, "hint": "Ohne Fertigstellung der Vorläufe geht es nicht weiter" }
+        ]
+      }
+    },
+    {
       "id": "lf10-mission-destroyer",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",
@@ -121,6 +191,150 @@
           { "text": "11 Tage weil zwei plus fünf plus vier alles addiert", "correct": false, "hint": "A und B laufen parallel nicht hintereinander" },
           { "text": "4 Tage weil nur C zählt", "correct": false, "hint": "C kann nicht starten bevor die längere parallele Spur fertig ist" }
         ]
+      }
+    },
+    {
+      "id": "lf10-pm-scrum-01",
+      "topic": "Prüfung · LF10",
+      "level": "beginner",
+      "title": "Scrum Ereignisse und Rollen",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Scrum definiert Rollen Product Owner Scrum Master Entwicklungsteam und zeitboxed Events Sprint Planning Daily Review Retrospective"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Sprint Review zeigt Inkrement Stakeholdern Sprint Retrospective verbessert Zusammenarbeit nicht das Produkt direkt"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Scrum Master ist kein Projektleiter mit Weisungsrecht Product Owner priorisiert Backlog"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Nach Sprint Ende Demo im Review danach Retro mit Team ohne Kunden"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das release der cba-it-service gmbh steht vor der tür wir trennen review und retro bevor stakeholder im falschen meeting sitzen",
+        "question": "Welches Scrum-Event dient primär der Demonstration des Inkrements und welches der Teamverbesserung",
+        "options": [
+          { "text": "Review für Inkrement Retrospective für Teamprozess", "correct": true },
+          { "text": "Daily für Inkrement Retrospective für Priorisierung", "correct": false, "hint": "Daily synchronisiert den Sprint nicht Stakeholder-Demo" },
+          { "text": "Planning für Retro Review ersetzt Sprint", "correct": false, "hint": "Planning plant den Sprint Review zeigt Ergebnis" },
+          { "text": "Retro ersetzt den Product Owner", "correct": false, "hint": "Rollen bleiben getrennt" }
+        ],
+        "solutionHint": "review produkt retro team"
+      }
+    },
+    {
+      "id": "lf10-pm-buffer-02",
+      "topic": "Prüfung · LF10",
+      "level": "beginner",
+      "title": "Puffer auf dem Nebenpfad",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Der kritische Pfad bestimmt die Projektdauer Nebenpfade haben oft Zeitreserve bis sie einen gemeinsamen Meilenstein treffen"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Verzögerung auf dem Nebenpfad verschiebt das Ende nur wenn die Reserve kleiner ist als die Verzögerung"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Kritischer Pfad zwölf Tage Nebenpfad fünf Tage Puffer zwei Tage Verzug auf Nebenpfad Endtermin bleibt"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Gemeinsamer Meilenstein Tag 12 Nebenpfad hatte fünf Tage Spielraum zwei Tage Verzug verbrauchen nicht alles"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "der netzplan der netsolutions ag wackelt nur auf der nebenroute wir rechnen puffer gegen verzug bevor der launch verschoben wird",
+        "question": "Projektende Tag 12 kritischer Pfad Nebenpfad mit fünf Tagen Puffer zum gleichen Meilenstein zwei Tage Verzug nur auf Nebenpfad Verschiebt sich das Ende",
+        "options": [
+          { "text": "Nein zwei ist kleiner als fünf Reserve", "correct": true },
+          { "text": "Ja immer um zwei Tage egal welcher Pfad", "correct": false, "hint": "Nur wenn Puffer aufgebraucht oder kritischer Pfad betroffen" },
+          { "text": "Ja um fünf Tage weil Puffer weg ist", "correct": false, "hint": "Verzögerung ist zwei nicht fünf" },
+          { "text": "Nein weil Nebenpfade keine Arbeit tragen", "correct": false, "hint": "Nebenpfade tragen Arbeit mit Reserve" }
+        ],
+        "solutionHint": "vergleiche verzug mit puffer"
+      }
+    },
+    {
+      "id": "lf10-pm-devops-03",
+      "topic": "Prüfung · LF10",
+      "level": "beginner",
+      "title": "CI/CD Pipeline",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Continuous Integration baut und testet bei jedem Commit Continuous Delivery/Deployment liefert automatisiert in Stufen"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Pipeline Stufen Build Test Staging Deploy mit Quality Gates"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Manuelles FTP ohne Tests ist kein CI/CD Automatisierte Tests vor Produktiv-Deploy sind Kern"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Git Push triggert Build Unit-Tests bei Grün Deploy auf Staging Freigabe für Produktion"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die pipeline der cba-it-service gmbh ist rot wir setzen tests vor deploy bevor kunden den fehlerhaften build sehen",
+        "question": "Welche Reihenfolge beschreibt eine typische CI/CD-Pipeline fachlich sinnvoll",
+        "options": [
+          { "text": "Commit Build automatisierte Tests Staging Deploy Freigabe Produktion", "correct": true },
+          { "text": "Direkt Produktion Deploy dann Tests nachträglich", "correct": false, "hint": "Tests vor Produktion sind Standard" },
+          { "text": "Nur manuelles Kopieren ohne Versionskontrolle", "correct": false, "hint": "Kein CI ohne reproduzierbaren Build" },
+          { "text": "Tests nur einmal pro Jahr", "correct": false, "hint": "CI bedeutet häufige Integration" }
+        ],
+        "solutionHint": "build test dann deploy"
+      }
+    },
+    {
+      "id": "lf10-pm-automation-04",
+      "topic": "Prüfung · LF10",
+      "level": "beginner",
+      "title": "Infrastructure as Code",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Infrastructure as Code beschreibt Server Netz und Konfiguration in versionierten Dateien statt nur manuell in der GUI"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Terraform Ansible oder Cloud-Formation ermöglichen reproduzierbare Umgebungen"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Drift entsteht wenn manuelle Änderungen nicht im Code nachgezogen werden"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Playbook legt Benutzer Firewall-Regeln und Pakete fest gleicher Stand auf zehn Servern"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "zehn server der netsolutions ag driften auseinander wir ziehen alles in code bevor die firewall-regeln unterschiedlich werden",
+        "question": "Welcher Vorteil spricht in der Prüfung am stärksten für Infrastructure as Code",
+        "options": [
+          { "text": "Reproduzierbare Umgebungen und Versionierung wie bei Software", "correct": true },
+          { "text": "Keine Dokumentation mehr nötig", "correct": false, "hint": "Dokumentation bleibt wichtig Code ist eine Form davon" },
+          { "text": "Manuelle Klick-Konfiguration ist schneller bei Drift", "correct": false, "hint": "Manuell erzeugt Drift nicht Kontrolle" },
+          { "text": "IaC ersetzt Backups", "correct": false, "hint": "Backups bleiben eigenes Thema" }
+        ],
+        "solutionHint": "versioniert und wiederholbar"
       }
     }
   ],

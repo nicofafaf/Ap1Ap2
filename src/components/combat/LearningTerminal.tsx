@@ -341,6 +341,7 @@ export function LearningTerminal({
   const isBlitzSession = useGameStore((s) => s.isBlitzSession);
   const blitzIndex = useGameStore((s) => s.blitzIndex);
   const blitzQueue = useGameStore((s) => s.blitzQueue);
+  const ihkExamPackId = useGameStore((s) => s.ihkExamPackId);
   const examStrict = edtechFlow && examPresentationMode;
   const setActiveMissionContext = useGameStore((s) => s.setActiveMissionContext);
   const clearActiveMissionContext = useGameStore((s) => s.clearActiveMissionContext);
@@ -787,7 +788,7 @@ export function LearningTerminal({
             {learningFocus && examStrict && examSessionEndsAt ? (
               <EdtechExamTimerBar endsAt={examSessionEndsAt} compact />
             ) : null}
-            {learningFocus && isBlitzSession && blitzQueue.length > 0 ? (
+            {learningFocus && (isBlitzSession || ihkExamPackId) && blitzQueue.length > 0 ? (
               <motion.div
                 variants={streamChild}
                 style={{
@@ -803,7 +804,9 @@ export function LearningTerminal({
                   color: "var(--nx-learn-muted)",
                 }}
               >
-                {t("learningTerminal.blitzProgress")
+                {(ihkExamPackId
+                  ? t("learningTerminal.ihkSommer26Progress")
+                  : t("learningTerminal.blitzProgress"))
                   .replace("{current}", String(blitzIndex + 1))
                   .replace("{total}", String(blitzQueue.length))}
               </motion.div>

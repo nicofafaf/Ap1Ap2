@@ -31,22 +31,128 @@
   },
   "beginnerPath": [
     {
-      "id": "lf5-start",
-      "topic": "Daten filtern",
+      "id": "lf5-sql-00-was-ist",
+      "topic": "SQL-Grundlagen",
+      "learnPhase": "grundlage",
       "level": "beginner",
-      "title": "Eine Tabelle wie eine Liste lesen",
+      "title": "Was ist SQL?",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Eine Datenbanktabelle ist für den Start wie eine Excel-Liste mit Spalten und Zeilen"
+          "title": "In einfachen Worten",
+          "body": "SQL steht für Structured Query Language. Damit sagst du einer Datenbank: Zeig mir Daten, speichere etwas oder ändere einen Eintrag"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "DB ist der Aktenschrank mit Ordnern. DBMS ist das Programm wie MySQL — der Bibliothekar. DBS ist beides zusammen: Schrank und Bibliothekar"
         },
         {
           "title": "Merksatz",
-          "body": "SELECT zeigt Daten FROM wählt die Tabelle WHERE setzt den Filter"
+          "body": "SQL ist keine Programmiersprache wie Java — du stellst Fragen an Daten und bekommst Tabellen als Antwort"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "SELECT 1 + 1; — die Datenbank rechnet und antwortet mit 2"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was beschreibt SQL am besten",
+        "options": [
+          { "text": "Eine Sprache um mit Datenbanken zu sprechen und Daten abzufragen", "correct": true },
+          { "text": "Ein Betriebssystem für Server", "correct": false, "hint": "Betriebssysteme sind z B Windows oder Linux" },
+          { "text": "Eine Grafiksoftware wie Photoshop", "correct": false, "hint": "SQL arbeitet mit Tabellen und Textbefehlen nicht mit Bildern" },
+          { "text": "Ein Virenscanner", "correct": false, "hint": "Sicherheitstools schützen Rechner SQL verwaltet gespeicherte Daten" }
+        ]
+      }
+    },
+    {
+      "id": "lf5-sql-01-tabellen",
+      "topic": "SQL-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Tabellen verstehen",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Eine Tabelle hat einen Namen, Spalten für Eigenschaften und Zeilen für einzelne Einträge"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Du musst SQL noch nicht auswendig können Übernimm zuerst das Beispiel und erkenne den Filter"
+          "title": "Vergleich aus dem Alltag",
+          "body": "Stell dir Excel vor: Spalte Name, Spalte Stadt — jede Zeile ist ein Kunde in der Liste"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Spalte = eine Art Information, Zeile = ein Datensatz, id = eindeutige Hausnummer"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Tabelle Kunden: Spalten id, Name, Stadt — Zeile 1 könnte Müller GmbH in Berlin sein"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist in einer Tabelle eine Zeile",
+        "options": [
+          { "text": "Ein einzelner Datensatz zum Beispiel ein Kunde", "correct": true },
+          { "text": "Eine Spaltenüberschrift wie Name oder Stadt", "correct": false, "hint": "Die Überschrift beschreibt den Spaltentyp die Zeile ist der konkrete Eintrag" },
+          { "text": "Das Programm das die Datenbank verwaltet", "correct": false, "hint": "Das wäre das DBMS nicht eine Zeile in der Tabelle" },
+          { "text": "Ein Semikolon am Ende eines SQL-Befehls", "correct": false, "hint": "Das Semikolon beendet den Befehl es ist kein Tabelleneintrag" }
+        ]
+      }
+    },
+    {
+      "id": "lf5-sql-02-select",
+      "topic": "SQL-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "SELECT — Daten holen",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Mit SELECT fragst du die Datenbank: Zeig mir diese Spalten aus dieser Tabelle"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie in Excel: Du markierst nur die Spalten die du sehen willst statt die ganze Tabelle zu scrollen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "SELECT = was will ich sehen? FROM = aus welcher Tabelle? Jeder Befehl endet mit ;"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "SELECT name, stadt FROM Kunden; — nur Name und Stadt, nicht alle Spalten"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Welcher Teil einer Abfrage wählt die Tabelle aus",
+        "options": [
+          { "text": "FROM Kunden", "correct": true },
+          { "text": "SELECT name", "correct": false, "hint": "SELECT listet die Spalten FROM nennt die Tabelle" },
+          { "text": "WHERE stadt = Berlin", "correct": false, "hint": "WHERE filtert Zeilen kommt später" },
+          { "text": "ORDER BY name", "correct": false, "hint": "ORDER BY sortiert das Ergebnis" }
+        ]
+      }
+    },
+    {
+      "id": "lf5-start",
+      "topic": "SQL-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "WHERE — nur passende Zeilen",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "WHERE ist ein Filter: Die Datenbank zeigt nur Zeilen die zu deiner Bedingung passen"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie eine Excel-Filterzeile: Nur Kunden aus Berlin bleiben sichtbar der Rest wird ausgeblendet"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Reihenfolge: SELECT dann FROM dann WHERE — Text in einfachen Anführungszeichen z B 'Berlin'"
         }
       ],
       "example": {
@@ -63,6 +169,150 @@
           { "text": "FROM sortiert nach Stadt", "correct": false, "hint": "FROM wählt die Tabelle" },
           { "text": "SELECT verbindet zwei Tabellen", "correct": false, "hint": "SELECT bestimmt was angezeigt wird" }
         ]
+      }
+    },
+    {
+      "id": "lf5-sql-join-01",
+      "topic": "Prüfung · LF5",
+      "level": "beginner",
+      "title": "INNER JOIN Kunden und Aufträge",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Ein JOIN verknüpft Zeilen aus zwei Tabellen über einen gemeinsamen Schlüssel meist Primärschlüssel und Fremdschlüssel"
+        },
+        {
+          "title": "Anwendung",
+          "body": "INNER JOIN liefert nur Datensätze die auf beiden Seiten eine passende Partnerzeile haben"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "LEFT JOIN behält auch Kunden ohne Auftrag COUNT mit JOIN zählt nur verknüpfte Zeilen nicht jede Kundenzeile doppelt ohne GROUP BY"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "SELECT k.Name o.Betrag FROM Kunden k INNER JOIN Auftraege o ON k.KundenID = o.KundenID"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das reporting der cba-it-service gmbh liefert leere listen wir müssen den join-schlüssel treffen bevor der geschäftsführung ein falscher umsatz gemeldet wird",
+        "question": "Welche Abfrage liefert nur Kunden die mindestens einen Auftrag haben zusammen mit dem Auftragsbetrag",
+        "options": [
+          { "text": "INNER JOIN Kunden und Auftraege ON KundenID", "correct": true },
+          { "text": "SELECT Name Betrag FROM Kunden Komma Auftraege ohne ON", "correct": false, "hint": "Ohne ON entsteht ein kartesisches Produkt nicht eine saubere Verknüpfung" },
+          { "text": "LEFT JOIN und danach WHERE Betrag IS NULL", "correct": false, "hint": "Das liefert eher Kunden ohne Auftrag nicht nur mit Auftrag" },
+          { "text": "Zwei getrennte SELECTs ohne Verknüpfung", "correct": false, "hint": "Zwei Abfragen können ohne Schlüssellogik nicht automatisch zusammengeführt werden" }
+        ],
+        "solutionHint": "inner join nur passende schlüsselpaare"
+      }
+    },
+    {
+      "id": "lf5-sql-group-02",
+      "topic": "Prüfung · LF5",
+      "level": "beginner",
+      "title": "GROUP BY und Aggregation",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "GROUP BY fasst Zeilen mit gleichen Werten in einer Spalte zu Gruppen zusammen Aggregatfunktionen wie COUNT SUM AVG wirken pro Gruppe"
+        },
+        {
+          "title": "Anwendung",
+          "body": "SELECT Abteilung COUNT Stern FROM Mitarbeiter GROUP BY Abteilung zählt pro Abteilung"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Spalten im SELECT müssen in GROUP BY stehen oder in einer Aggregatfunktion liegen HAVING filtert Gruppen nach der Aggregation"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "SELECT Standort COUNT ProjektID FROM Projekte GROUP BY Standort HAVING COUNT ProjektID groesser 3"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das bi-dashboard der netsolutions ag zeigt doppelte zähler wir trennen group by und having bevor die kpis kippen",
+        "question": "Wie viele Projekte hat jeder Standort mindestens vier Projekte sollen nur diese Standorte erscheinen",
+        "options": [
+          { "text": "GROUP BY Standort HAVING COUNT groesser gleich 4", "correct": true },
+          { "text": "WHERE COUNT groesser 4 ohne GROUP BY", "correct": false, "hint": "COUNT ist Aggregat WHERE darf keine Aggregatfunktion ohne GROUP BY nutzen" },
+          { "text": "GROUP BY ohne COUNT filtert einzelne Zeilen", "correct": false, "hint": "Ohne Aggregat siehst du keine Anzahl pro Standort" },
+          { "text": "ORDER BY COUNT filtert Gruppen", "correct": false, "hint": "ORDER BY sortiert HAVING filtert Gruppen" }
+        ],
+        "solutionHint": "group by bildet gruppen having filtert danach"
+      }
+    },
+    {
+      "id": "lf5-sql-normalize-03",
+      "topic": "Prüfung · LF5",
+      "level": "beginner",
+      "title": "Normalisierung bis 3NF",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Normalisierung reduziert Redundanz und Update-Anomalien Tabellen werden in thematische Entitäten zerlegt"
+        },
+        {
+          "title": "Anwendung",
+          "body": "1NF keine wiederholenden Gruppen in einer Zelle 2NF kein partieller Schlüssel auf Nichtschlüssel 3NF kein transitiver Schlüssel auf Nichtschlüssel"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "KundeName und KundeOrt in jeder Auftragszeile verletzt 3NF Auslagern in Tabelle Kunden mit KundenID als Fremdschlüssel"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Tabelle Auftrag mit KundenName KundenPLZ und PLZStadt trennen in Kunden und PLZ-Stadt-Lookup"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die auftrags-tabelle der cba-it-service gmbh dupliziert kundendaten jede änderung bricht das schema wir normalisieren bevor migrationskosten explodieren",
+        "question": "In Auftraege stehen KundenName KundenStrasse und KundenOrt in jeder Zeile wiederholt Welcher Normalisierungsschritt ist fachlich der nächste sinnvolle",
+        "options": [
+          { "text": "Kundendaten in Tabelle Kunden auslagern Auftraege nur mit KundenID", "correct": true },
+          { "text": "Alles in eine breite Tabelle mit mehr Spalten", "correct": false, "hint": "Mehr Spalten erhöhen Redundanz nicht lösen sie" },
+          { "text": "Primärschlüssel auf Auftragsdatum legen", "correct": false, "hint": "Datum ist selten eindeutiger Schlüssel für Kundenattribute" },
+          { "text": "CSV-Export statt relationalem Modell", "correct": false, "hint": "Format ändert nicht die Normalisierungslogik" }
+        ],
+        "solutionHint": "eigene entität kunde mit fremdschlüssel"
+      }
+    },
+    {
+      "id": "lf5-sql-subquery-04",
+      "topic": "Prüfung · LF5",
+      "level": "beginner",
+      "title": "Subquery und EXISTS",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Eine Subquery ist eine SELECT-Anfrage in Klammern innerhalb einer äußeren Abfrage"
+        },
+        {
+          "title": "Anwendung",
+          "body": "EXISTS prüft ob die innere Abfrage mindestens eine Zeile liefert oft performanter als IN bei großen Tabellen"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Kunden mit offenem Ticket WHERE EXISTS SELECT 1 FROM Tickets t WHERE t.KundenID = k.KundenID AND Status offen"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Äußere Tabelle Kunden k innere Tickets mit gleicher KundenID und Filter Status"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "der support-export der netsolutions ag hängt in einer verschachtelten abfrage wir setzen exists sauber bevor das ticket-system timeout wirft",
+        "question": "Welche Logik liefert alle Kunden die mindestens ein offenes Ticket haben ohne doppelte Kundenzeilen",
+        "options": [
+          { "text": "WHERE EXISTS Subquery auf Tickets mit gleicher KundenID und Status offen", "correct": true },
+          { "text": "INNER JOIN Tickets ohne DISTINCT auf Kunden", "correct": false, "hint": "JOIN kann Kunden mehrfach listen wenn mehrere Tickets offen sind" },
+          { "text": "SELECT MAX TicketID gruppiert nach Kunde", "correct": false, "hint": "MAX zeigt nicht ob ein offenes Ticket existiert" },
+          { "text": "DELETE FROM Tickets WHERE Status offen", "correct": false, "hint": "Löschen beantwortet nicht die Auswahlfrage" }
+        ],
+        "solutionHint": "exists testet vorkommen ohne zeilen zu vervielfachen"
       }
     }
   ],

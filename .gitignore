@@ -36,3 +36,7 @@ assets/*.mp4
 public/assets/
 dist/
 *.map
+
+# IHK-PDF OCR-Arbeitsordner (lokal, nicht deployen)
+exam-ocr-pages/
+.exam-pdf-extract.txt

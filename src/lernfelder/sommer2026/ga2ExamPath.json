@@ -1,0 +1,171 @@
+[
+  {
+    "id": "ihk26-ga2-01",
+    "topic": "IHK GA2 2026 · Aufgabe 1aa",
+    "level": "beginner",
+    "title": "Netzadresse /16",
+    "lessonCards": [
+      {
+        "title": "RZ Köln",
+        "body": "Internes Netz im Rechenzentrum: 10.0.0.0/16"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "bei slash 16 bleiben die ersten zwei oktetts die netzadresse",
+      "question": "Wie lautet die Netzadresse von 10.0.0.0/16",
+      "options": [
+        { "text": "10.0.0.0", "correct": true },
+        { "text": "10.0.0.1", "correct": false, "hint": "Erste nutzbare Host-Adresse" },
+        { "text": "10.0.255.255", "correct": false, "hint": "Das ist die Broadcast-Adresse" },
+        { "text": "10.255.255.255", "correct": false, "hint": "Falsche Maske angenommen" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga2-02",
+    "topic": "IHK GA2 2026 · Aufgabe 1aa",
+    "level": "beginner",
+    "title": "Broadcast-Adresse /16",
+    "lessonCards": [{ "title": "Subnetz", "body": "10.0.0.0/16 — Broadcast am Ende des Adressraums" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "broadcast ist letzte adresse im netz",
+      "question": "Wie lautet die Broadcast-Adresse von 10.0.0.0/16",
+      "options": [
+        { "text": "10.0.255.255", "correct": true },
+        { "text": "10.0.0.0", "correct": false, "hint": "Netzadresse" },
+        { "text": "10.255.0.0", "correct": false, "hint": "Falsche Oktett-Logik" },
+        { "text": "255.255.255.255", "correct": false, "hint": "Globale Limited Broadcast" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga2-03",
+    "topic": "IHK GA2 2026 · Aufgabe 1ab",
+    "level": "beginner",
+    "title": "Broadcast Schicht 3",
+    "lessonCards": [{ "title": "Layer", "body": "Broadcast auf Schicht 3 und Umsetzung auf Schicht 2" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "broadcast erreicht alle hosts im selben netz segment",
+      "question": "Welcher Zweck trifft auf die Broadcast-Adresse auf Layer 3 zu",
+      "options": [
+        { "text": "Daten an alle Hosts im selben IP-Netz senden", "correct": true },
+        { "text": "Nur an den Default-Gateway senden", "correct": false, "hint": "Das ist Unicast zum Router" },
+        { "text": "Verschlüsselung auf Schicht 7 erzwingen", "correct": false, "hint": "Kein Broadcast-Zweck" },
+        { "text": "MAC-Adressen weltweit eindeutig vergeben", "correct": false, "hint": "IEEE/OUI Thema" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga2-04",
+    "topic": "IHK GA2 2026 · VRRP",
+    "level": "beginner",
+    "title": "VRRP 10.0.0.99",
+    "lessonCards": [
+      {
+        "title": "Redundanz",
+        "body": "Zwei Router mit VRRP-IP 10.0.0.99 zwischen Provider LWL und DSL"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "vrrp hält das default gateway bei ausfall eines routers",
+      "question": "Wozu dient VRRP zwischen den beiden Internet-Routern",
+      "options": [
+        { "text": "Ausfallsichere Bereitstellung einer gemeinsamen Gateway-Adresse", "correct": true },
+        { "text": "DNS-Zonen automatisch veröffentlichen", "correct": false, "hint": "DNS ist ein anderer Dienst" },
+        { "text": "Festplatten im RZ spiegeln", "correct": false, "hint": "Storage-Replikation" },
+        { "text": "Nur WLAN-Passwörter verteilen", "correct": false, "hint": "Kein Routing-Protokoll-Zweck" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga2-05",
+    "topic": "IHK GA2 2026 · Aufgabe 3",
+    "level": "beginner",
+    "title": "IP-Konflikt · ARP",
+    "lessonCards": [
+      {
+        "title": "Paketmitschnitt",
+        "body": "Zwei verschiedene MAC-Adressen melden dieselbe IP 192.168.12.6 — duplicate use detected"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "zwei geräte gleiche ip ist klassischer konflikt",
+      "question": "Was zeigt die ARP-Meldung duplicate use of 192.168.12.6",
+      "options": [
+        { "text": "Zwei Geräte nutzen dieselbe IP-Adresse im Netz", "correct": true },
+        { "text": "Der DNS-Server ist abgestürzt", "correct": false, "hint": "DNS wäre andere Fehlermeldung" },
+        { "text": "Das Subnetz ist zu klein", "correct": false, "hint": "Kein ARP-Duplicate-Hinweis" },
+        { "text": "HTTPS-Zertifikat ist ungültig", "correct": false, "hint": "Layer 7" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga2-06",
+    "topic": "IHK GA2 2026 · DNS",
+    "level": "beginner",
+    "title": "DNS-Abfrage Frame",
+    "lessonCards": [
+      {
+        "title": "Wireshark",
+        "body": "DNS Standard query ihk.de von 192.168.12.6 zu 192.168.12.254 UDP Port 53"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "dns läuft standard auf udp 53",
+      "question": "Welches Protokoll und welcher Port werden für die DNS-Anfrage im Mitschnitt genutzt",
+      "options": [
+        { "text": "UDP Port 53", "correct": true },
+        { "text": "TCP Port 80", "correct": false, "hint": "HTTP" },
+        { "text": "ICMP Echo", "correct": false, "hint": "Ping" },
+        { "text": "UDP Port 443", "correct": false, "hint": "QUIC/HTTPS anders" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga2-07",
+    "topic": "IHK GA2 2026 · Aufgabe 4",
+    "level": "beginner",
+    "title": "DHCP ACK",
+    "lessonCards": [
+      {
+        "title": "DHCP_Frankfurt",
+        "body": "DHCP ACK: Client-IP 192.168.5.101 · Maske 255.255.255.0 · Gateway 192.168.5.1 · DNS 192.168.5.250"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "im ack steht die vergebene client ip",
+      "question": "Welche IP-Adresse erhält der Client laut DHCP ACK",
+      "options": [
+        { "text": "192.168.5.101", "correct": true },
+        { "text": "192.168.5.1", "correct": false, "hint": "Das ist der DHCP-Server/Router" },
+        { "text": "0.0.0.0", "correct": false, "hint": "Discover-Phase" },
+        { "text": "255.255.255.255", "correct": false, "hint": "Broadcast" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga2-08",
+    "topic": "IHK GA2 2026 · DHCP",
+    "level": "beginner",
+    "title": "DHCP-Reihenfolge",
+    "lessonCards": [{ "title": "DORA", "body": "Discover · Offer · Request · Acknowledge" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "discover kommt zuerst mit 0.0.0.0 als quelle",
+      "question": "Welche DHCP-Nachricht sendet der Client zuerst",
+      "options": [
+        { "text": "DHCP Discover", "correct": true },
+        { "text": "DHCP ACK", "correct": false, "hint": "Kommt vom Server am Ende" },
+        { "text": "DHCP Offer", "correct": false, "hint": "Antwort des Servers" },
+        { "text": "ARP Reply", "correct": false, "hint": "Kein DHCP" }
+      ]
+    }
+  }
+]

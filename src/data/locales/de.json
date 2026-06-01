@@ -39,6 +39,9 @@
       "pathExam": "Prüfungsmodus",
       "pathExamBody": "Optional — Timer, weniger Hilfen",
       "startLabel": "Du startest mit",
+      "startBody": "Zuerst kurz lesen, dann eine leichte Frage — Prüfungsaufgaben kommen erst im Prüfungsmodus",
+      "examMissionsTitle": "Prüfungsaufgaben (später)",
+      "examMissionsHint": "Diese Aufgaben sind prüfungsnah. Nutze dafür den Prüfungsmodus, wenn du die Grundlagen durch hast",
       "detailsShow": "Alle Kapitel und Details anzeigen",
       "detailsHide": "Details ausblenden",
       "ctaLearn": "Übungen starten",
@@ -260,6 +263,24 @@
         "gridAria": "Fortschritt je Lernfeld",
         "examMissions": "Prüfung {solved}/{total}",
         "cta": "Schwächstes Feld üben · LF{lf}"
+      },
+      "sommer26": {
+        "title": "IHK Abschlussprüfung Sommer 2026",
+        "lead": "Originalprüfungen WiSo, GA1 und GA2 als Prüfungssimulation mit echtem Zeitlimit — Aufgaben als Multiple-Choice für schnelles Feedback",
+        "badge": "ZPA Nord-West",
+        "metaDate": "Termin",
+        "metaTime": "Zeit",
+        "metaTimeVal": "{min} Min",
+        "metaTasks": "Inhalt",
+        "metaTasksVal": "{mc} MC · Original {orig} Aufgaben",
+        "progress": "{solved} von {total} richtig",
+        "start": "Prüfung starten",
+        "note": "Schriftliche Rechen-, Zuordnungs- und Erläuterungsaufgaben sind als prüfungsnahe MC umgesetzt — für Handschrift und Notizen weiterhin deine PDF-Originale nutzen",
+        "pack": {
+          "wiso": { "tag": "Teil 2 · WiSo" },
+          "ga1": { "tag": "Teil 2 · GA1" },
+          "ga2": { "tag": "Teil 2 · GA2" }
+        }
       },
       "allFieldsTitle": "Alle zwölf Lernfelder",
       "allFieldsAp1": "AP1 · LF1–LF6",
@@ -518,6 +539,7 @@
     "feedbackMcWrongPickOther": "Lies die Frage noch einmal und wähle eine andere Antwort",
     "feedbackExamNoHint": "Im Prüfungsmodus gibt es keine Hinweise — probiere eine andere Antwort",
     "blitzProgress": "Schnell üben · Frage {current} von {total}",
+    "ihkSommer26Progress": "IHK Sommer 2026 · Aufgabe {current} von {total}",
     "feedbackMcHitLesson": "Richtig — gut gemacht",
     "feedbackMcHitNext": "Richtig — gleich kommt die nächste Aufgabe",
     "feedbackMcHitNumeric": "Richtig — trage jetzt die Zahl ein",

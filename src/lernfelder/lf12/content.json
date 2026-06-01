@@ -4,22 +4,58 @@
   "title": "Agile Methoden und Projektsteuerung",
   "beginnerPath": [
     {
-      "id": "lf12-start",
-      "topic": "Agiles Arbeiten",
+      "id": "lf12-grund-00-team",
+      "topic": "Agile-Grundlagen",
+      "learnPhase": "grundlage",
       "level": "beginner",
-      "title": "In kleinen Schritten liefern",
+      "title": "Team und Rollen",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Agile Teams planen kurz, liefern regelmäßig und lernen aus Feedback"
+          "title": "In einfachen Worten",
+          "body": "Agile Teams arbeiten selbstorganisiert — Product Owner priorisiert Wert — Scrum Master hilft dem Prozess"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Beim Umzug entscheidet jemand was wichtig ist — das Team packt — ein Koordinator löst Hindernisse"
         },
         {
           "title": "Merksatz",
-          "body": "Sprintziel sagt, was im Sprint erreicht werden soll"
+          "body": "PO = was bauen — Team = wie bauen — Scrum Master = Prozess und Hindernisse"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "PO sagt Login zuerst — Entwickler bauen — Scrum Master organisiert das Daily"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Wer priorisiert typischerweise das Product Backlog",
+        "options": [
+          { "text": "Product Owner", "correct": true },
+          { "text": "Scrum Master allein", "correct": false, "hint": "Scrum Master moderiert nicht die fachliche Priorität" },
+          { "text": "Der Router", "correct": false, "hint": "Hardware priorisiert keine User Stories" },
+          { "text": "Die Datenbank", "correct": false, "hint": "SQL speichert keine Rollen" }
+        ]
+      }
+    },
+    {
+      "id": "lf12-start",
+      "topic": "Agile-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Sprint und Sprintziel",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Ein Sprint ist ein fester Zeitraum — oft zwei Wochen — in dem ein nutzbares Inkrement entsteht"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Unterscheide Rolle, Ereignis und Ergebnis"
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie eine Lernwoche mit klarem Ziel — am Freitag zeigst du was fertig ist"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Sprintziel = das Wichtigste das am Ende des Sprints stehen soll"
         }
       ],
       "example": {
@@ -115,6 +151,150 @@
           { "text": "SQL beschleunigen", "correct": false, "hint": "Kein SQL-Thema" },
           { "text": "MAC-Adressen ändern", "correct": false, "hint": "Netzwerk" }
         ]
+      }
+    },
+    {
+      "id": "lf12-agile-daily-01",
+      "topic": "Prüfung · LF12",
+      "level": "beginner",
+      "title": "Daily Scrum Ziel",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Das Daily Scrum ist ein max 15-Minuten-Event für das Entwicklungsteam zur Synchronisation des Sprints"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Typische Fragen Was habe ich gestern gemacht Was mache ich heute Welche Hindernisse gibt es"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Daily ist kein Statusbericht an den Manager Hindernisse werden sichtbar nicht ausführlich gelöst"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Team steht am Board kurzer Abgleich Blocker gehen an Scrum Master"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das daily der cba-it-service gmbh wird zum stunden-meeting wir kürzen auf synchronisation bevor der sprint erstickt",
+        "question": "Welches Ziel beschreibt das Daily Scrum am besten",
+        "options": [
+          { "text": "Synchronisation und frühes Erkennen von Hindernissen im Team", "correct": true },
+          { "text": "Detaillierte technische Code-Reviews durch den Product Owner", "correct": false, "hint": "PO nimmt nicht an jedem technischen Detail teil" },
+          { "text": "Neue Anforderungen vom Kunden vollständig aufnehmen", "correct": false, "hint": "Scope-Änderung ist nicht Daily-Zweck" },
+          { "text": "Sprint-Retrospective ersetzen", "correct": false, "hint": "Retro ist ein separates Event" }
+        ],
+        "solutionHint": "kurz sync blockers sichtbar"
+      }
+    },
+    {
+      "id": "lf12-agile-dod-02",
+      "topic": "Prüfung · LF12",
+      "level": "beginner",
+      "title": "Definition of Done",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Definition of Done ist ein gemeinsames Qualitäts-Kriterium wann ein Product Backlog Item wirklich fertig ist"
+        },
+        {
+          "title": "Anwendung",
+          "body": "DoD kann Code-Review Tests Dokumentation und Deployment auf Staging enthalten"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Fertig nur auf meinem Laptop ist keine DoD Inkrement muss potenziell auslieferbar sein"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "DoD enthält Unit-Tests grün Merge in main und Release-Notes"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das inkrement der netsolutions ag ist halbfertig wir schärfen die definition of done bevor der kunde rote builds sieht",
+        "question": "Welche Aussage zur Definition of Done trifft zu",
+        "options": [
+          { "text": "DoD legt teamweit fest wann Arbeit als abnahmefähig gilt", "correct": true },
+          { "text": "DoD ist nur für den Scrum Master privat", "correct": false, "hint": "DoD ist Teamvereinbarung transparent" },
+          { "text": "DoD ersetzt das Product Backlog", "correct": false, "hint": "Backlog bleibt für Anforderungen" },
+          { "text": "DoD gilt nur für Bugs nicht für Features", "correct": false, "hint": "DoD gilt für alle PBIs im Sprint" }
+        ],
+        "solutionHint": "gemeinsames fertig-kriterium"
+      }
+    },
+    {
+      "id": "lf12-agile-story-03",
+      "topic": "Prüfung · LF12",
+      "level": "beginner",
+      "title": "User Story Format",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Eine User Story beschreibt Nutzen aus Sicht einer Rolle oft Als Rolle möchte ich Ziel damit Nutzen"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Akzeptanzkriterien präzisieren messbare Bedingungen für die Story"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Technische Tasks ohne Nutzen sind keine guten Stories allein Implementiere REST"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Als Support-Mitarbeiter möchte ich Tickets filtern damit ich schneller antworte"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das backlog der cba-it-service gmbh ist technisch wir formulieren nutzen in stories bevor der po priorisiert",
+        "question": "Welche Formulierung ist eine saubere User Story",
+        "options": [
+          { "text": "Als Admin möchte ich Benutzer deaktivieren damit keine aktiven Logins mehr möglich sind", "correct": true },
+          { "text": "Refactoring der Datenbank weil es schöner ist", "correct": false, "hint": "Fehlender Nutzen und Rolle" },
+          { "text": "Spring Boot Version 3 installieren", "correct": false, "hint": "Technischer Task ohne Nutzenperspektive" },
+          { "text": "Meeting jeden Freitag", "correct": false, "hint": "Kein Nutzer-Nutzen beschrieben" }
+        ],
+        "solutionHint": "rolle ziel nutzen"
+      }
+    },
+    {
+      "id": "lf12-agile-retro-04",
+      "topic": "Prüfung · LF12",
+      "level": "beginner",
+      "title": "Sprint Retrospective",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Die Retrospective reflektiert Zusammenarbeit Prozess und Tools des Teams nach dem Sprint"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Start Stop Continue oder Mad Sad Glad sind gängige Formate mit konkreten Improvement-Items"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Retro ist vertraulich im Team nicht zur Kunden-Demo Schuldige suchen ist kontraproduktiv"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Team vereinbart weniger parallele WIP und festes Pairing für kritische Module"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die retro der netsolutions ag endet ohne actions wir holen verbesserungen rein bevor der nächste sprint scheitert",
+        "question": "Was ist ein sinnvolles Ergebnis einer Sprint Retrospective",
+        "options": [
+          { "text": "Konkrete Verbesserungsmaßnahmen für den nächsten Sprint", "correct": true },
+          { "text": "Fertiges Produkt-Inkrement für Stakeholder", "correct": false, "hint": "Das ist Sprint Review" },
+          { "text": "Neue Priorisierung des Backlogs durch Kunden", "correct": false, "hint": "PO arbeitet am Backlog Retro fokussiert Teamprozess" },
+          { "text": "Vollständige Architektur-Dokumentation", "correct": false, "hint": "Nicht Zweck jeder Retro" }
+        ],
+        "solutionHint": "verbesserungen fuer teamprozess"
       }
     }
   ],

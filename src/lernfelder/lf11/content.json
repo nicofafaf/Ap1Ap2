@@ -4,22 +4,58 @@
   "title": "Informationssicherheit",
   "beginnerPath": [
     {
-      "id": "lf11-start",
-      "topic": "Schutzziele",
+      "id": "lf11-grund-00-risiko",
+      "topic": "Sicherheits-Grundlagen",
+      "learnPhase": "grundlage",
       "level": "beginner",
-      "title": "Was Sicherheit schützen soll",
+      "title": "Warum IT-Sicherheit?",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Informationssicherheit schützt Daten und Systeme vor Verlust, Veränderung und Ausfall"
+          "title": "In einfachen Worten",
+          "body": "IT-Sicherheit schützt Daten und Systeme vor Diebstahl Manipulation und Ausfall — für Firma und Kunden"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Haus abschließen Alarmanlage Backup — in der IT sind das Passwörter Updates und Kopien"
         },
         {
           "title": "Merksatz",
-          "body": "Vertraulichkeit, Integrität, Verfügbarkeit sind die drei Grundziele"
+          "body": "Bedrohung plus Schwachstelle kann Schaden erzeugen — Maßnahmen senken das Risiko"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Schwaches Passwort plus Phishing-Mail kann zum Datenleck führen"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist ein Risiko in der IT-Sicherheit",
+        "options": [
+          { "text": "Möglicher Schaden wenn eine Bedrohung eintrifft", "correct": true },
+          { "text": "Nur die Farbe eines Servers", "correct": false, "hint": "Optik ist kein Sicherheitsrisiko" },
+          { "text": "Ein SQL-SELECT", "correct": false, "hint": "Abfragen sind Werkzeug kein Risiko an sich" },
+          { "text": "Ein Sprint im Scrum", "correct": false, "hint": "Agile Begriffe gehören zu LF12" }
+        ]
+      }
+    },
+    {
+      "id": "lf11-start",
+      "topic": "Sicherheits-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Schutzziele CIA",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Informationssicherheit schützt vor unbefugtem Lesen Veränderung und Ausfall"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Ordne zuerst zu, welches Schutzziel verletzt wird"
+          "title": "Vergleich aus dem Alltag",
+          "body": "Briefumschlag verschlossen — niemand darf heimlich ändern — Post muss ankommen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Vertraulichkeit Integrität Verfügbarkeit — kurz CIA"
         }
       ],
       "example": {
@@ -114,6 +150,150 @@
           { "text": "return braucht ToUpperInvariant auf beiden", "correct": false, "hint": "Equals mit OrdinalIgnoreCase ist der saubere Fix laut Referenz" }
         ]
       }
+    },
+    {
+      "id": "lf11-sec-dsgvo-01",
+      "topic": "Prüfung · LF11",
+      "level": "beginner",
+      "title": "DSGVO Rechtsgrundlagen",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Personenbezogene Daten dürfen nur mit Rechtsgrundlage verarbeitet werden Art 6 DSGVO nennt Einwilligung Vertrag berechtigtes Interesse u a"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Newsletter nur mit wirksamer Einwilligung Lohnabrechnung oft Vertragserfüllung"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Berechtigtes Interesse braucht Abwägung und Widerspruchsmöglichkeit nicht jede Marketing-Idee ist abgedeckt"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Kundendaten für Support-Ticket Vertragserfüllung Werbe-Mail an Bestandskunden ohne Opt-in problematisch"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "der newsletter der cba-it-service gmbh geht ohne opt-in raus wir prüfen art 6 bevor die datenschutzbehörde klopft",
+        "question": "Welche Rechtsgrundlage passt typischer zur Speicherung von Kundendaten zur Abwicklung eines Wartungsvertrags",
+        "options": [
+          { "text": "Vertragserfüllung Art 6 Abs 1 lit b", "correct": true },
+          { "text": "Berechtigtes Interesse ohne Abwägung für beliebiges Profiling", "correct": false, "hint": "Interesse braucht Prüfung und Transparenz" },
+          { "text": "Keine Grundlage nötig bei B2B", "correct": false, "hint": "DSGVO gilt auch im B2B für personenbezogene Daten" },
+          { "text": "Einwilligung ist immer automatisch bei Vertragsschluss", "correct": false, "hint": "Einwilligung muss freiwillig und konkret sein" }
+        ],
+        "solutionHint": "vertrag fuer vertragsdaten"
+      }
+    },
+    {
+      "id": "lf11-sec-phishing-02",
+      "topic": "Prüfung · LF11",
+      "level": "beginner",
+      "title": "Phishing erkennen",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Phishing täuscht Vertrauen vor um Zugangsdaten oder Malware-Installation zu erreichen"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Auffällig sind Druck Zeitdruck gefälschte Absenderdomains und Links die nicht zur angezeigten Bank passen"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "IT fordert nie per Mail das Passwort im Klartext zu senden"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Mail von support-netsoluti0ns.com mit Link zu fremder Domain"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die phishing-welle trifft die netsolutions ag wir lesen absender und link bevor jemand credentials verschenkt",
+        "question": "Welches Merkmal spricht am stärksten für eine Phishing-Mail",
+        "options": [
+          { "text": "Dringender Druck plus Link auf unbekannte Domain statt offiziellem Portal", "correct": true },
+          { "text": "Persönliche Anrede mit korrektem Namen", "correct": false, "hint": "Angreifer können Namen aus Leaks kennen" },
+          { "text": "TLS-Verschlüsselung der Webseite", "correct": false, "hint": "HTTPS schützt Transport nicht die Echtheit der Seite" },
+          { "text": "Signatur mit Firmenlogo", "correct": false, "hint": "Logos sind leicht kopierbar" }
+        ],
+        "solutionHint": "druck und falsche domain"
+      }
+    },
+    {
+      "id": "lf11-sec-tom-03",
+      "topic": "Prüfung · LF11",
+      "level": "beginner",
+      "title": "TOM nach Art 32 DSGVO",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Technisch-organisatorische Maßnahmen schützen Vertraulichkeit Integrität und Verfügbarkeit personenbezogener Daten"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Verschlüsselung Zugangskontrolle Protokollierung Backup und Schulung sind typische TOM"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "TOM müssen dem Risiko angemessen sein nicht jedes Startup braucht sofort HSM aber Passwortrichtlinien gehören dazu"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Festplattenverschlüsselung MFA für Admin Zugriff und Restore-Tests dokumentiert"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das verzeichnis der tom der cba-it-service gmbh ist leer wir füllen maßnahmen ein bevor der audit rot wird",
+        "question": "Welche Kombination ist eine typische technisch-organisatorische Maßnahme",
+        "options": [
+          { "text": "Verschlüsselung ruhender Daten und rollenbasierte Zugriffsrechte", "correct": true },
+          { "text": "Passwörter auf Post-its am Monitor", "correct": false, "hint": "Organisatorisch unsicher" },
+          { "text": "Keine Backups um Speicher zu sparen", "correct": false, "hint": "Verfügbarkeit und Integrität leiden" },
+          { "text": "Öffentlicher Zugriff auf Kundendatenbank ohne Login", "correct": false, "hint": "Verletzt Vertraulichkeit" }
+        ],
+        "solutionHint": "verschluesselung und zugriffskontrolle"
+      }
+    },
+    {
+      "id": "lf11-sec-risk-04",
+      "topic": "Prüfung · LF11",
+      "level": "beginner",
+      "title": "Risikoanalyse",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Risiko kombiniert Eintrittswahrscheinlichkeit und Schadenshöhe Maßnahmen sollen Risiko auf akzeptables Niveau senken"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Matrix aus Wahrscheinlichkeit und Impact priorisiert Maßnahmen zuerst kritische Kombinationen"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Risiko null gibt es selten Restrisiko dokumentieren und verantworten"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Ransomware hoch Wahrscheinlichkeit hoch Schaden Backup und Offline-Kopie als Maßnahme"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die risikomatrix der netsolutions ag ist unausgeglichen wir priorisieren impact mal wahrscheinlichkeit bevor budget falsch fließt",
+        "question": "Ein Risiko hat hohe Eintrittswahrscheinlichkeit und hohen finanziellen Schaden Was ist der fachlich sinnvolle nächste Schritt",
+        "options": [
+          { "text": "Priorisierte Gegenmaßnahme planen und Restrisiko dokumentieren", "correct": true },
+          { "text": "Risiko ignorieren weil IT zu beschäftigt ist", "correct": false, "hint": "Ignorieren erhöht Haftungs- und Ausfallrisiko" },
+          { "text": "Nur Versicherung ohne technische Maßnahme", "correct": false, "hint": "Versicherung ersetzt keine TOM" },
+          { "text": "Alle Risiken gleich behandeln ohne Priorisierung", "correct": false, "hint": "Ressourcen sind begrenzt Priorisierung nötig" }
+        ],
+        "solutionHint": "hoch mal hoch zuerst behandeln"
+      }
     }
   ],
   "bossPhase": {
@@ -135,7 +315,7 @@
         { "text": "UND verknüpft beide Kanäle obwohl ein reichender Kanal ein ODER braucht", "correct": true },
         { "text": "Die else-Zweige sind vertauscht", "correct": false, "hint": "Der Fehler sitzt in der if-Bedingung nicht im else-Zweig" },
         { "text": "return muss ohne Semikolon stehen", "correct": false, "hint": "Syntax ist hier nicht das Problem sondern die Logik" },
-        { "text": "primA und primB müssen vertauscht werden", "correct": false, "hint": "Die Werte sind absichtlich so gesetzt der Operator ist falsch" }
+          { "text": "primA und primB müssen vertauscht werden", "correct": false, "hint": "Die Werte sind absichtlich so gesetzt der Operator ist falsch" }
       ]
     }
   },

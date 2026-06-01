@@ -4,22 +4,58 @@
   "title": "Anwendungsentwicklung und Skripte",
   "beginnerPath": [
     {
-      "id": "lf6-start",
-      "topic": "Abläufe verstehen",
+      "id": "lf6-grund-00-skript",
+      "topic": "Skript-Grundlagen",
+      "learnPhase": "grundlage",
       "level": "beginner",
-      "title": "Programme arbeiten Schritt für Schritt",
+      "title": "Was ist ein Skript?",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Ein Programm ist eine Reihenfolge von Anweisungen, Entscheidungen und Wiederholungen"
+          "title": "In einfachen Worten",
+          "body": "Ein Skript ist eine Datei mit Anweisungen die der Computer Zeile für Zeile ausführt — oft zum Automatisieren"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie ein Kochrezept: Schritt 1 Wasser kochen — Schritt 2 Nudeln — der Koch folgt der Liste"
         },
         {
           "title": "Merksatz",
-          "body": "Sequenz heißt der Reihe nach. Auswahl heißt wenn dann. Schleife heißt wiederholen"
+          "body": "Skripte sparen Klicks — gleiche Aufgabe wiederholbar ohne alles von Hand zu machen"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Ein Backup-Skript kopiert jeden Abend einen Ordner — ohne dass du es jedes Mal klickst"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Wozu nutzt man Skripte am häufigsten",
+        "options": [
+          { "text": "Wiederkehrende Aufgaben automatisieren", "correct": true },
+          { "text": "Monitore heller machen", "correct": false, "hint": "Helligkeit ist Hardware oder OS-Einstellung" },
+          { "text": "Rechtsformen einer GmbH wählen", "correct": false, "hint": "Das ist WiSo nicht Programmierung" },
+          { "text": "Netzwerkkabel verlegen", "correct": false, "hint": "Das ist physische Installation" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-start",
+      "topic": "Skript-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Ablauf — Schritt für Schritt",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Ein Programm ist eine Reihenfolge von Anweisungen Entscheidungen und Wiederholungen"
         },
         {
-          "title": "Erster Schritt",
-          "body": "Lies zuerst den Ablauf in Alltagssprache, dann erst Code"
+          "title": "Vergleich aus dem Alltag",
+          "body": "Morgens aufstehen ist Sequenz — wenn es regnet nimm Schirm ist Auswahl — zehn Liegestütze ist Schleife"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Sequenz der Reihe nach — Auswahl wenn-dann — Schleife wiederholen"
         }
       ],
       "example": {
@@ -109,6 +145,150 @@
           { "text": "Nur wenn shield gleich 20", "correct": false, "hint": "Kleiner 20, nicht gleich" },
           { "text": "Nie", "correct": false, "hint": "Bei true läuft der Block" }
         ]
+      }
+    },
+    {
+      "id": "lf6-script-ps-bash-01",
+      "topic": "Prüfung · LF6",
+      "level": "beginner",
+      "title": "PowerShell und Bash vergleichen",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "PowerShell ist objektorientiert und liefert oft .NET-Objekte Bash arbeitet mit Textströmen und kleinen Programmen Pipes zwischen Binaries"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Windows-Administration nutzt Cmdlets wie Get-Service Linux-Server nutzen grep awk und systemd-Skripte in Bash"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Get-ChildItem ist kein externes Programm sondern ein Cmdlet ls ist ein Binary das Ergebnis ist Text bis du es weiterverarbeitest"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Get-Service | Where-Object Status -eq Running filtert Objekte ls -la | grep .log filtert Textzeilen"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "hybride infrastruktur bei cba-it-service die shell wechselt wir dürfen cmdlets nicht mit binären verwechseln",
+        "question": "Ein Administrator soll auf Windows laufende Dienste als Objektliste ausgeben und auf Linux Logzeilen per Pipe filtern Welche Zuordnung ist fachlich richtig",
+        "options": [
+          { "text": "Windows Get-Service mit Where-Object Linux ls kombiniert mit grep", "correct": true },
+          { "text": "Windows grep als natives Cmdlet Linux Get-ChildItem für Textpipes", "correct": false, "hint": "grep ist auf Windows nicht das Standard-Cmdlet-Modell Get-ChildItem liefert in PowerShell Objekte" },
+          { "text": "Beide Plattformen nutzen ausschließlich .exe-Binaries ohne Objektpipeline", "correct": false, "hint": "PowerShell-Pipelines transportieren oft Objekte nicht nur Text" },
+          { "text": "Bash verwendet Cmdlets PowerShell verwendet nur Binaries", "correct": false, "hint": "Cmdlets sind das PowerShell-Konzept Bash nutzt klassische Unix-Befehle" }
+        ],
+        "solutionHint": "powershell objekte bash text und binaries"
+      }
+    },
+    {
+      "id": "lf6-script-ifelse-02",
+      "topic": "Prüfung · LF6",
+      "level": "beginner",
+      "title": "Bedingungen logisch auswerten",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Eine if-else-Struktur führt Code nur aus wenn die Bedingung wahr ist sonst der else-Zweig"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Mehrere Bedingungen werden mit AND und OR verkettet Klammern vermeiden Fehlinterpretation bei gemischten Ausdrücken"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "AND benötigt dass alle Teile wahr sind OR reicht wenn ein Teil wahr ist De Morgan in der Prüfung oft Fallstrick"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "if diskFree < 10 AND serviceUp == false then alert() nur beide Bedingungen lösen Alarm aus"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das monitoring-skript der netsolutions ag hängt in der verzweigung wir tracen die booleschen ausdrücke bevor der falsch-alarm das noc aufweckt",
+        "question": "diskFree gleich 8 Prozent serviceUp gleich true backupLate gleich true Welcher Zweig läuft bei if diskFree kleiner 10 AND serviceUp gleich false",
+        "options": [
+          { "text": "Der else-Zweig weil serviceUp true ist und die AND-Bedingung scheitert", "correct": true },
+          { "text": "Der if-Zweig weil diskFree unter 10 ist", "correct": false, "hint": "AND verlangt auch serviceUp gleich false der zweite Teil ist false" },
+          { "text": "Der if-Zweig weil backupLate true ist", "correct": false, "hint": "backupLate steht nicht in der Bedingung" },
+          { "text": "Beide Zweige parallel", "correct": false, "hint": "if-else ist alternativ exklusiv" }
+        ],
+        "solutionHint": "and braucht alle teile wahr sonst else"
+      }
+    },
+    {
+      "id": "lf6-script-loops-03",
+      "topic": "Prüfung · LF6",
+      "level": "beginner",
+      "title": "for und while analysieren",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "for eignet sich wenn die Anzahl der Durchläufe bekannt ist while läuft bis eine Abbruchbedingung false wird"
+        },
+        {
+          "title": "Anwendung",
+          "body": "for i von 0 bis n minus 1 verarbeitet Listenindizes while read line liest bis EOF oder bis ein Sentinel kommt"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Endlosschleifen entstehen wenn die Abbruchvariable im while-Körper nicht verändert wird break beendet sofort"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "while queue not empty dequeue() ist warteschlangen-tauglich for file in backupSet ist feste Menge"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die warteschlangen-schleife frisst cpu-zeit wir zählen durchläufe und prüfen die abbruchvariable bevor der scheduler eskaliert",
+        "question": "Gegeben while retries kleiner 3 startet retries bei 0 am Anfang jedes Durchlaufs wird retries um 1 erhöht danach bei Fehler continue Wie oft wird retries erhöht bis die Schleife endet wenn jeder Durchlauf einen Fehler liefert",
+        "options": [
+          { "text": "Drei Inkremente retries wird 3 die Bedingung 3 kleiner 3 ist false", "correct": true },
+          { "text": "Zwei Inkremente weil continue die Schleife sofort beendet", "correct": false, "hint": "continue springt zum nächsten Schleifendurchlauf beendet sie nicht" },
+          { "text": "Unendlich weil continue retries nicht erhöht", "correct": false, "hint": "Im Text wird retries im Körper erhöht auch bei continue nach dem Increment" },
+          { "text": "Vier Inkremente weil die Bedingung kleiner-gleich sein müsste", "correct": false, "hint": "kleiner 3 stoppt bei retries gleich 3 nach dem dritten Durchlauf von 0 aus" }
+        ],
+        "solutionHint": "while prüft vor jedem lauf continue überspringt nur den rest des körpers"
+      }
+    },
+    {
+      "id": "lf6-script-backup-04",
+      "topic": "Prüfung · LF6",
+      "level": "beginner",
+      "title": "Inkrementell und differentiell",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Ein Vollbackup sichert alle Daten ein inkrementelles Backup sichert nur Änderungen seit dem letzten Backup beliebig welchem Typ"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Ein differentielles Backup sichert alle Änderungen seit dem letzten Vollbackup die Restore-Kette wird kürzer als bei rein inkrementell"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Restore inkrementell braucht Vollbackup plus alle Inkremente in Reihenfolge differentiell oft Vollbackup plus nur das letzte Differentielle"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Sonntag Voll Montag inkrementell Dienstag inkrementell Restore Montag braucht Sonntag plus Montag"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das backup-skript der netsolutions ag schreibt in die falsche stufe wir sortieren inkrementell und differentiell bevor die wiederherstellung scheitert",
+        "question": "Sonntag Vollbackup Montag nur geänderte Dateien seit Sonntag Dienstag nur geänderte Dateien seit Montag Mittwoch alle geänderten Dateien seit Sonntag Welche Kombination beschreibt Montag Dienstag Mittwoch korrekt",
+        "options": [
+          { "text": "Montag und Dienstag inkrementell Mittwoch differentiell zum Sonntag", "correct": true },
+          { "text": "Alle drei Tage sind Vollbackups", "correct": false, "hint": "Nur Sonntag ist voll die anderen Beschreibungen sind deltas" },
+          { "text": "Montag differentiell Dienstag inkrementell Mittwoch Voll", "correct": false, "hint": "Mittwoch sichert seit Sonntag das ist ein differentielles Muster nicht ein neues Vollbackup" },
+          { "text": "Montag und Dienstag differentiell Mittwoch inkrementell zu Dienstag", "correct": false, "hint": "Dienstag bezieht sich auf Montag als letztes Backup das ist inkrementell nicht differentiell zum Sonntag" }
+        ],
+        "solutionHint": "inkrementell seit letztem backup differentiell seit letztem vollbackup"
       }
     }
   ],

@@ -19,6 +19,7 @@ import { EdtechLazyVideo } from "./EdtechLazyVideo";
 import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
 import { cinematicGhostBtn, cinematicPrimaryBtn } from "../../../lib/ui/nexusCinematicTokens";
 import { EdtechExamReadinessCard } from "./EdtechExamReadinessCard";
+import { EdtechSommer2026ExamCard } from "./EdtechSommer2026ExamCard";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import { StreakCelebration } from "./StreakCelebration";
 import {
@@ -74,6 +75,7 @@ export function NexusEdtechHubArena({
   const streakCelebrationMilestone = useGameStore((s) => s.streakCelebrationMilestone);
   const clearStreakCelebration = useGameStore((s) => s.clearStreakCelebration);
   const beginExamForLf = useGameStore((s) => s.beginExamForLf);
+  const beginSommer2026Exam = useGameStore((s) => s.beginSommer2026Exam);
 
   const dateKey = getUtcDateKey();
   const dailyLf = useMemo(() => getDailyIncursionDefinition(dateKey).targetLf, [dateKey]);
@@ -266,6 +268,10 @@ export function NexusEdtechHubArena({
 
       <motion.section variants={EDTECH_CARD}>
         <EdtechExamReadinessCard onFocusLf={onBeginLearningField} />
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD}>
+        <EdtechSommer2026ExamCard onStartPack={beginSommer2026Exam} />
       </motion.section>
 
       <motion.section

@@ -6,20 +6,21 @@
     {
       "id": "lf3-start",
       "topic": "Netzwerk-Grundidee",
+      "learnPhase": "grundlage",
       "level": "beginner",
       "title": "Geräte finden sich über Adressen",
       "lessonCards": [
         {
-          "title": "Worum geht es",
+          "title": "In einfachen Worten",
           "body": "Ein Netzwerk verbindet Geräte, damit Daten von einem Punkt zum anderen kommen"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie ein Brief: Die Hausnummer findet das Haus, die Abteilung im Haus ist der Dienst auf dem Gerät"
         },
         {
           "title": "Merksatz",
           "body": "IP-Adresse findet das Gerät, Port findet den Dienst"
-        },
-        {
-          "title": "Erster Schritt",
-          "body": "Du musst noch nicht rechnen. Unterscheide zuerst Gerät und Dienst"
         }
       ],
       "example": {
@@ -34,6 +35,76 @@
           { "text": "Für die Farbe des Netzwerkkabels", "correct": false, "hint": "Die Kabelfarbe ist keine logische Dienstadresse" },
           { "text": "Für den Preis eines Computers", "correct": false, "hint": "Preise gehören nicht zur Netzadressierung" },
           { "text": "Für eine Benutzerrolle", "correct": false, "hint": "Rollen gehören eher zu Berechtigungen" }
+        ]
+      }
+    },
+    {
+      "id": "lf3-grund-ip",
+      "topic": "Netzwerk-Grundidee",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "IP-Adresse — das Haus im Netz",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Eine IP-Adresse identifiziert ein Gerät im Netzwerk damit Datenpakete den richtigen Rechner finden"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie eine Hausnummer in einer Straße — ohne Nummer weiß die Post nicht wohin"
+        },
+        {
+          "title": "Merksatz",
+          "body": "IPv4 sieht oft aus wie vier Zahlen mit Punkten — z B 192.168.1.10"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Dein Router hat 192.168.1.1 — dein Laptop vielleicht 192.168.1.25"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Wofür braucht man eine IP-Adresse am einfachsten",
+        "options": [
+          { "text": "Um ein Gerät im Netzwerk eindeutig anzusprechen", "correct": true },
+          { "text": "Um die Farbe eines Kabels zu wählen", "correct": false, "hint": "Farben sind keine logische Adresse" },
+          { "text": "Um den Preis eines Switches festzulegen", "correct": false, "hint": "Preise haben nichts mit Adressierung zu tun" },
+          { "text": "Um eine Benutzerrolle zu speichern", "correct": false, "hint": "Rollen gehören zu Berechtigungen nicht zur L3-Adresse" }
+        ]
+      }
+    },
+    {
+      "id": "lf3-grund-switch",
+      "topic": "Netzwerk-Grundidee",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Switch — Geräte im gleichen Netz",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Ein Switch verbindet mehrere Geräte in einem lokalen Netz und leitet Datenframes an den richtigen Port weiter"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie ein Verteiler im Büro — jedes Gerät hat ein Kabel zum Switch statt jedes mit jedem"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Switch arbeitet auf Schicht 2 mit MAC-Adressen — Router verbindet oft verschiedene Netze auf Schicht 3"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Fünf PCs hängen an einem Switch — sie können sich im gleichen Netz erreichen"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was macht ein Switch in einem LAN am besten",
+        "options": [
+          { "text": "Verbindet Geräte und leitet Frames gezielt weiter", "correct": true },
+          { "text": "Übersetzt Webseiten in andere Sprachen", "correct": false, "hint": "Das macht kein Switch" },
+          { "text": "Ersetzt das Betriebssystem", "correct": false, "hint": "Software läuft auf dem PC nicht im Switch" },
+          { "text": "Speichert E-Mails dauerhaft", "correct": false, "hint": "Speicher ist Aufgabe von Servern oder Clients" }
         ]
       }
     },
@@ -127,6 +198,150 @@
           { "text": "Er schickt den Frame an den Router zurück", "correct": false, "hint": "Ein Layer-2-Switch leitet nicht automatisch an einen Router" },
           { "text": "Er sendet einen ARP-Request an den Absender", "correct": false, "hint": "ARP löst IP zu MAC auf — das ist kein Switch-Standard bei unbekannter Ziel-MAC" }
         ]
+      }
+    },
+    {
+      "id": "lf3-net-subnet-01",
+      "topic": "Prüfung · LF3",
+      "level": "beginner",
+      "title": "Subnetze für Abteilungen planen",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Subnetting teilt ein großes Netz in kleinere Broadcast-Domänen mit eigener Netz- und Hostanteil"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Benötigte Subnetze bestimmen wie viele Bits vom Hostanteil geliehen werden 2 hoch n muss mindestens die Anzahl Subnetze abdecken"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Fünf Subnetze mit je mindestens 20 Hosts aus /24 brauchen drei zusätzliche Netzbits also /27 mit 30 nutzbaren Hosts pro Subnetz"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "192.168.10.0/24 wird in acht /27-Blöcke geteilt je Block 32 Adressen davon 30 nutzbare Hosts"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das rz der cba-it-service gmbh braucht fünf getrennte vlan-netze wir rechnen maske und hostzahl bevor der core-router falsch routet",
+        "question": "Aus 192.168.10.0/24 sollen fünf Subnetze entstehen jedes mindestens 20 nutzbare Host-Adressen Welche Maske ist die kleinste passende Wahl",
+        "options": [
+          { "text": "/27 mit 30 nutzbaren Hosts pro Subnetz", "correct": true },
+          { "text": "/28 mit 14 nutzbaren Hosts pro Subnetz", "correct": false, "hint": "14 Hosts reichen nicht für 20 geforderte Plätze" },
+          { "text": "/26 mit nur zwei Subnetzen im /24", "correct": false, "hint": "/26 liefert zwar 62 Hosts aber nur vier Subnetze in diesem Schema nicht fünf getrennte /26 aus einem /24" },
+          { "text": "/24 unverändert mit 254 Hosts in einem Segment", "correct": false, "hint": "Ein Segment erfüllt nicht die Forderung nach fünf getrennten Netzen" }
+        ],
+        "solutionHint": "drei netzbits leihen ergibt acht /27 mit 30 hosts"
+      }
+    },
+    {
+      "id": "lf3-net-vlan-02",
+      "topic": "Prüfung · LF3",
+      "level": "beginner",
+      "title": "VLAN Trunk und Access",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "VLANs trennen Broadcast-Domänen logisch auf einem Switch Access-Ports tragen meist ein untagged VLAN"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Trunk-Ports zwischen Switches nutzen 802.1Q-Tags um mehrere VLANs über ein Kabel zu führen"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Native VLAN und erlaubte VLAN-Liste am Trunk müssen auf beiden Seiten übereinstimmen sonst Leaks oder Blackholes"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "PC am Access-Port VLAN 20 Server-Uplink als Trunk mit getaggten VLAN 10 und 20"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "am switch-uplink der netsolutions ag fehlen tags wir trennen access und trunk bevor gäste-vlan ins server-vlan blutet",
+        "question": "Ein PC hängt an Port 12 VLAN 20 untagged der Uplink Port 48 führt VLAN 10 und 20 zum Kernswitch Welche Port-Rolle ist korrekt",
+        "options": [
+          { "text": "Port 12 Access Port 48 Trunk mit 802.1Q-Tags", "correct": true },
+          { "text": "Beide Ports Access ohne Tags", "correct": false, "hint": "Über einen Link ohne Trunk gehen nicht zwei VLANs parallel" },
+          { "text": "Port 12 Trunk PC sendet selbst 802.1Q", "correct": false, "hint": "Endgeräte am Access-Port sprechen in der Regel untagged" },
+          { "text": "Port 48 Access nur ein VLAN erlaubt", "correct": false, "hint": "Uplink zum Kern braucht Trunk für mehrere VLANs" }
+        ],
+        "solutionHint": "access untagged trunk getaggt"
+      }
+    },
+    {
+      "id": "lf3-net-osi-03",
+      "topic": "Prüfung · LF3",
+      "level": "beginner",
+      "title": "OSI-Schichten zuordnen",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Das OSI-Modell ordnet Netzfunktionen Schichten 1 bis 7 zu jede Schicht nutzt die darunterliegende"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Switch arbeitet auf Schicht 2 mit MAC Router auf Schicht 3 mit IP HTTP ist Schicht 7 Anwendung"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "ARP wirkt zwischen Schicht 2 und 3 TLS sitzt über TCP also Schicht 4 bis 7 Fehler suchen bottom-up"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "Kabel Schicht 1 Switch Schicht 2 Router Schicht 3 Browser HTTPS Schicht 7"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "im störungsfall bei cba-it-service pingt layer 7 aber layer 2 wirft errors wir ordnen osi zu bevor wir am falschen gerät drehen",
+        "question": "Welche Zuordnung von Aufgabe und OSI-Schicht ist korrekt",
+        "options": [
+          { "text": "Router entscheidet anhand IP-Adresse Schicht 3", "correct": true },
+          { "text": "Switch routet zwischen zwei IP-Netzen Schicht 3", "correct": false, "hint": "Klassischer Switch forwardet auf MAC Schicht 2" },
+          { "text": "HTTP läuft auf Schicht 4 Transport", "correct": false, "hint": "HTTP ist Anwendungsprotokoll Schicht 7" },
+          { "text": "MAC-Adresse gehört zu Schicht 3", "correct": false, "hint": "MAC ist Sicherungsschicht Schicht 2" }
+        ],
+        "solutionHint": "ip layer3 mac layer2 http layer7"
+      }
+    },
+    {
+      "id": "lf3-net-arp-tcp-04",
+      "topic": "Prüfung · LF3",
+      "level": "beginner",
+      "title": "ARP und TCP Handshake",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "ARP mappt eine bekannte IPv4-Adresse auf die MAC im lokalen Segment bevor Schicht-3-Pakete gesendet werden"
+        },
+        {
+          "title": "Anwendung",
+          "body": "TCP baut mit SYN SYN-ACK ACK eine zuverlässige Verbindung auf UDP ist verbindungslos ohne Handshake"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Ping OK aber keine Webseite kann an DNS TCP-Port oder Firewall liegen ARP-Probleme zeigen sich im gleichen Subnetz"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "PC fragt Wer hat 192.168.1.1 per ARP danach TCP SYN zu Port 443 auf dem Webserver"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "der webserver der netsolutions ag antwortet nicht auf https wir prüfen arp im lan und tcp-handshake bevor wir dns beschuldigen",
+        "question": "Ein Client im selben /24 kann den Router per Ping erreichen HTTPS zu 192.168.1.10 schlägt fehl Mitschnitt zeigt kein SYN-ACK Welche Ursache ist am wahrscheinlichsten",
+        "options": [
+          { "text": "TCP-Port 443 am Ziel blockiert oder Dienst antwortet nicht ARP im LAN ist bereits ok", "correct": true },
+          { "text": "ARP kann die MAC von 192.168.1.10 nicht auflösen obwohl Ping zum Router geht", "correct": false, "hint": "Ping zum Router beweist L2/L3 Grundpfad ARP zum Webserver wäre separat zu prüfen" },
+          { "text": "Fehlende Subnetzmaske am Client", "correct": false, "hint": "Ping zum Router würde dann meist auch scheitern" },
+          { "text": "UDP statt TCP für HTTPS", "correct": false, "hint": "HTTPS nutzt TCP auf Port 443" }
+        ],
+        "solutionHint": "ping ok aber kein syn-ack deutet auf port oder firewall"
       }
     }
   ],

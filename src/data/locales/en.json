@@ -39,6 +39,9 @@
       "pathExam": "Exam mode",
       "pathExamBody": "Optional — timer, fewer hints",
       "startLabel": "You start with",
+      "startBody": "Read a short explanation first, then an easy question — exam-style tasks are in exam mode only",
+      "examMissionsTitle": "Exam tasks (later)",
+      "examMissionsHint": "These are exam-style. Use exam mode after you have covered the basics",
       "detailsShow": "Show all chapters and details",
       "detailsHide": "Hide details",
       "ctaLearn": "Start exercises",
@@ -257,6 +260,24 @@
         "gridAria": "Progress per learning field",
         "examMissions": "Exam {solved}/{total}",
         "cta": "Practice weakest field · LF{lf}"
+      },
+      "sommer26": {
+        "title": "IHK final exam Summer 2026",
+        "lead": "Original WiSo, GA1 and GA2 papers as timed exam simulations — tasks as multiple choice for instant feedback",
+        "badge": "ZPA Nord-West",
+        "metaDate": "Date",
+        "metaTime": "Time",
+        "metaTimeVal": "{min} min",
+        "metaTasks": "Content",
+        "metaTasksVal": "{mc} MC · original {orig} tasks",
+        "progress": "{solved} of {total} correct",
+        "start": "Start exam",
+        "note": "Written calculations, matching and explanation tasks are adapted as exam-style MC — use your original PDFs for handwritten practice",
+        "pack": {
+          "wiso": { "tag": "Part 2 · WiSo" },
+          "ga1": { "tag": "Part 2 · GA1" },
+          "ga2": { "tag": "Part 2 · GA2" }
+        }
       },
       "allFieldsTitle": "All twelve learning fields",
       "allFieldsAp1": "AP1 · LF1–LF6",
@@ -512,6 +533,7 @@
     "feedbackMcWrongPickOther": "Read the question again and pick another answer",
     "feedbackExamNoHint": "Exam mode has no hints — try another answer",
     "blitzProgress": "Quick practice · question {current} of {total}",
+    "ihkSommer26Progress": "IHK Summer 2026 · task {current} of {total}",
     "feedbackMcHitLesson": "Correct — well done",
     "feedbackMcHitNext": "Correct — next exercise coming up",
     "feedbackMcHitNumeric": "Correct — enter the number now",

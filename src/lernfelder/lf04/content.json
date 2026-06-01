@@ -4,22 +4,58 @@
   "title": "Hardware, Systemintegration und Elektrotechnik",
   "beginnerPath": [
     {
+      "id": "lf4-grund-00-teile",
+      "topic": "Hardware-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Die wichtigsten PC-Teile",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "CPU rechnet Anweisungen aus — RAM hält Daten kurz bereit — SSD oder HDD speichert dauerhaft — Mainboard verbindet alles"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "CPU ist der Koch — RAM ist die Arbeitsplatte — Festplatte ist der Vorratsschrank — Mainboard ist die Küche mit Anschlüssen"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Ohne passendes RAM oder Stromversorgung startet kein System auch wenn die CPU stark ist"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Viele Browser-Tabs offen — zu wenig RAM macht den PC langsam auch mit schneller CPU"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Welches Bauteil führt Programmbefehle aus",
+        "options": [
+          { "text": "CPU Prozessor", "correct": true },
+          { "text": "Netzteil", "correct": false, "hint": "Das Netzteil liefert Strom rechnet nicht" },
+          { "text": "Gehäuse", "correct": false, "hint": "Das Gehäuse schützt nur mechanisch" },
+          { "text": "Monitor", "correct": false, "hint": "Der Monitor zeigt Bilder an" }
+        ]
+      }
+    },
+    {
       "id": "lf4-start",
-      "topic": "Hardware zusammensetzen",
+      "topic": "Hardware-Grundlagen",
+      "learnPhase": "grundlage",
       "level": "beginner",
       "title": "Komponenten müssen zusammenpassen",
       "lessonCards": [
         {
-          "title": "Worum geht es",
-          "body": "Ein IT-System besteht aus Teilen wie CPU, RAM, Speicher, Mainboard und Betriebssystem"
+          "title": "In einfachen Worten",
+          "body": "Ein IT-System besteht aus Teilen die technisch und für den Nutzer zusammen passen müssen"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie beim Auto — starker Motor hilft wenig wenn die Bremse oder Reifen nicht mithalten"
         },
         {
           "title": "Merksatz",
-          "body": "Hardware einbauen reicht nicht. Sie muss kompatibel sein und getestet werden"
-        },
-        {
-          "title": "Erster Schritt",
-          "body": "Frage zuerst: Was braucht der Nutzer, welches Teil erfüllt es"
+          "body": "Hardware einbauen reicht nicht — Kompatibilität testen und Anforderung prüfen"
         }
       ],
       "example": {
@@ -131,6 +167,150 @@
           { "text": "0,21 Ω", "correct": false, "hint": "Das wäre I durch U vertauscht" },
           { "text": "58 Ω", "correct": false, "hint": "Rechne 48 geteilt durch 10 noch einmal" }
         ]
+      }
+    },
+    {
+      "id": "lf4-hardware-raid-01",
+      "topic": "Prüfung · LF4",
+      "level": "beginner",
+      "title": "RAID 5 und RAID 10 Kapazität",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "RAID 5 verteilt Paritätsinformationen auf mindestens drei Platten und verkraftet den Ausfall genau einer Platte ohne Datenverlust"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Die nutzbare Nettokapazität bei RAID 5 ist (n minus 1) mal die Kapazität der kleinsten Platte bei n gleich großen Laufwerken"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "RAID 10 spiegelt und stripet Halb der Plattenkapazität fällt für Spiegelung weg vier mal 4 TB ergeben oft 8 TB nutzbar nicht 16 TB"
+        }
+      ],
+      "example": {
+        "label": "Rechenbeispiel CBA-IT",
+        "body": "Vier Platten à 4 TB im RAID 5: (4 minus 1) mal 4 TB gleich 12 TB nutzbar im RAID 10 mit vier Platten: 8 TB nutzbar"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "im rechenzentrum der cba-it-service gmbh blinkt der raid-controller rot wir müssen netto-kapazität und ausfallschutz trennen bevor das backup-team falsch bestellt",
+        "question": "Die CBA-IT-Service GmbH betreibt ein Storage-Array mit vier Festplatten zu je 4 TB Welche Aussage zu nutzbarer Kapazität und Ausfallsicherheit trifft zu",
+        "options": [
+          { "text": "RAID 5 liefert 12 TB nutzbar und übersteht den Ausfall einer Platte", "correct": true },
+          { "text": "RAID 5 liefert 16 TB nutzbar ohne Paritätsverlust", "correct": false, "hint": "16 TB wären RAID 0 ohne Redundanz eine Platte Parität fehlt in der Rechnung" },
+          { "text": "RAID 10 liefert 16 TB nutzbar weil alle Platten voll genutzt werden", "correct": false, "hint": "RAID 10 halbiert die nutzbare Kapazität weil jede Datenplatte gespiegelt wird" },
+          { "text": "RAID 5 liefert 8 TB nutzbar weil zwei Platten nur für Spiegel reserviert sind", "correct": false, "hint": "8 TB passt eher zu RAID 10 mit vier Platten nicht zu RAID 5 mit einer Paritätsplatte" }
+        ],
+        "solutionHint": "raid 5 zieht genau eine platte für parität ab raid 10 halbiert die kapazität"
+      }
+    },
+    {
+      "id": "lf4-usv-dimension-02",
+      "topic": "Prüfung · LF4",
+      "level": "beginner",
+      "title": "USV in VA und Überbrückungszeit",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Die Scheinleistung in Voltampere VA beschreibt die maximale Last die die USV liefern kann Wirkleistung in Watt hängt am Leistungsfaktor cos phi"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Näherung S in VA gleich P in Watt geteilt durch cos phi bei Serverlast oft cos phi zwischen 0,7 und 0,9 planen"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Laufzeit t gleich nutzbare Batterieenergie E in Wh geteilt durch Last P in W vergiss den Wirkungsgrad der USV nicht wenn er explizit genannt wird"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Server 2400 W cos phi 0,8 ergibt S gleich 3000 VA Batterie 1800 Wh ergibt t gleich 1800 durch 2400 gleich 0,75 h also 45 min"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die usv im rz der netsolutions ag knistert unter volllast wir rechnen va und minuten bevor der generator hochfährt",
+        "question": "Ein Rack zieht P gleich 3600 W bei cos phi gleich 0,9 Die USV liefert 5000 VA Die nutzbare Energie beträgt 2700 Wh Wie lange reicht der Puffer näherungsweise und welche Scheinleistung ist mindestens nötig",
+        "options": [
+          { "text": "Etwa 45 min und 4000 VA reichen rechnerisch", "correct": true },
+          { "text": "Etwa 90 min weil 2700 durch 3600 zwei Stunden ergibt", "correct": false, "hint": "2700 Wh durch 3600 W sind 0,75 h nicht 1,5 h" },
+          { "text": "3000 VA reichen weil VA immer gleich Watt sind", "correct": false, "hint": "Bei cos phi 0,9 brauchst du mehr VA als Watt S gleich P durch cos phi" },
+          { "text": "15 min weil nur ein Zehntel der Batterie nutzbar ist", "correct": false, "hint": "Es wird die volle 2700 Wh gegen 3600 W gerechnet ohne willkürlichen Zehntel-Abzug" }
+        ],
+        "solutionHint": "t gleich e durch p und s gleich p durch cos phi getrennt betrachten"
+      }
+    },
+    {
+      "id": "lf4-virt-hypervisor-03",
+      "topic": "Prüfung · LF4",
+      "level": "beginner",
+      "title": "Hypervisor Typ 1 und Typ 2",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "Ein Hypervisor verwaltet virtuelle Maschinen Typ 1 läuft direkt auf der Hardware Typ 2 als Anwendung auf einem Host-Betriebssystem"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Produktive Rechenzentren nutzen meist Typ 1 wie VMware ESXi oder Hyper-V Server Typ 2 eignet sich für Tests auf dem Entwickler-Laptop"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "Typ 2 hat einen zusätzlichen OS-Stack darunter höhere Angriffsfläche und mehr Overhead Typ 1 ist Bare-Metal"
+        }
+      ],
+      "example": {
+        "label": "CBA-IT-Service GmbH",
+        "body": "RZ-Server mit ESXi ohne Windows darunter ist Typ 1 VirtualBox auf Windows 11 ist Typ 2"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "die migrationswelle rollt aufs rz zu wir müssen bare-metal von hosted trennen bevor die falsche lizenz den cluster stoppt",
+        "question": "Die CBA-IT-Service GmbH will Produktiv-VMs auf RZ-Hosts ohne zusätzliches General-Purpose-OS unter dem Hypervisor betreiben Welche Zuordnung ist korrekt",
+        "options": [
+          { "text": "ESXi auf Serverhardware ist Typ 1 VirtualBox auf Windows ist Typ 2", "correct": true },
+          { "text": "VirtualBox auf Windows ist Typ 1 weil es VMs startet", "correct": false, "hint": "Ohne direkte Hardware-Anbindung bleibt ein Host-OS dazwischen das ist Typ 2" },
+          { "text": "Hyper-V Server als Rolle auf Windows Desktop ist immer Typ 1", "correct": false, "hint": "Der Desktop-Stack darunter macht es in der Prüfung oft Typ-2-ähnlich achte auf Bare-Metal" },
+          { "text": "Typ 2 hat weniger Overhead weil ein zweites OS Effizienz bringt", "correct": false, "hint": "Ein zusätzliches Host-OS erhöht Overhead und Angriffsfläche" }
+        ],
+        "solutionHint": "bare-metal gleich typ 1 anwendung auf host-os gleich typ 2"
+      }
+    },
+    {
+      "id": "lf4-ipv6-basics-04",
+      "topic": "Prüfung · LF4",
+      "level": "beginner",
+      "title": "IPv6 Adresse kürzen",
+      "lessonCards": [
+        {
+          "title": "Definition",
+          "body": "IPv6-Adressen haben 128 Bit oft in acht Sechzehn-Bit-Blöcken hexadezimal dargestellt führende Nullen in einem Block dürfen entfallen"
+        },
+        {
+          "title": "Anwendung",
+          "body": "Eine einmalige Folge von nur Nullen-Blöcken darf durch :: ersetzt werden nur einmal pro Adresse"
+        },
+        {
+          "title": "Prüfungsfokus",
+          "body": "2001:0db8:0000:0000:0000:ff00:0042:8329 wird zu 2001:db8::ff00:42:8329 nicht doppeltes ::"
+        }
+      ],
+      "example": {
+        "label": "NetSolutions AG",
+        "body": "Präfix 2001:db8::/32 dokumentieren Subnetz /64 pro VLAN ist Standard im LAN"
+      },
+      "practice": {
+        "type": "mc",
+        "coachLine": "das routing-team der netsolutions ag wartet auf die gekürzte v6-adresse ein tippfehler im :: blockiert den grenzrouter",
+        "question": "Welche Schreibweise ist die korrekte gekürzte Form von 2001:0db8:0000:0000:0000:ff00:0042:8329",
+        "options": [
+          { "text": "2001:db8::ff00:42:8329", "correct": true },
+          { "text": "2001:db8::ff00:0042:8329::", "correct": false, "hint": "Nur eine ::-Sequenz pro Adresse erlaubt und kein :: am Ende" },
+          { "text": "2001:db8:0:0:ff00:42:8329", "correct": false, "hint": "Einzelne Null-Blöcke dürfen weg die lange Nullfolge sollte als :: gebündelt werden" },
+          { "text": "2001:db8::ff00::42:8329", "correct": false, "hint": "Zwei ::-Sequenzen in einer Adresse sind unzulässig" }
+        ],
+        "solutionHint": "führende nullen pro block streichen eine nullfolge als ::"
       }
     }
   ],

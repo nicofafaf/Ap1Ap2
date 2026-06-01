@@ -1,0 +1,586 @@
+[
+  {
+    "id": "ihk26-wiso-01",
+    "topic": "IHK WiSo 2026 · Aufgabe 1",
+    "level": "beginner",
+    "title": "Ausbildungsvertrag · Zulässigkeit",
+    "lessonCards": [
+      {
+        "title": "Fall",
+        "body": "Frau Müller (18) beginnt die Ausbildung zur Fachinformatikerin Anwendungsentwicklung bei der CBA-IT-Service GmbH in Erfurt"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "prüfe jede klausel gegen bbig und tarifrecht bevor du unterschreibst",
+      "question": "Welche Vereinbarung im Ausbildungsvertrag ist zulässig",
+      "options": [
+        { "text": "Frau Müller muss keinen Ausbildungsnachweis führen", "correct": false, "hint": "Der Nachweis ist gesetzlich vorgeschrieben" },
+        { "text": "Die Vergütung des laufenden Monats wird in den ersten zwei Wochen des Folgemonats gezahlt", "correct": false, "hint": "Die Vergütung ist monatlich fällig" },
+        { "text": "Frau Müller verpflichtet sich zur Geheimhaltung von Betriebsgeheimnissen", "correct": true },
+        { "text": "Ein Arbeitsplatzangebot muss bei bestandener Prüfung angenommen werden", "correct": false, "hint": "Keine Bindung nach der Ausbildung erzwingbar" },
+        { "text": "Frau Müller muss mindestens zwei Jahre nach der Ausbildung im Betrieb bleiben", "correct": false, "hint": "Nachvertragliche Bindung ist unzulässig" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-02",
+    "topic": "IHK WiSo 2026 · Aufgabe 2",
+    "level": "beginner",
+    "title": "Unwirksame Vereinbarung",
+    "lessonCards": [{ "title": "Rechtsfolge", "body": "Eine unwirksame Klausel kann den Rest des Vertrags nicht automatisch zerstören" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "nur die betroffene klausel fällt weg der rest bleibt bestehen",
+      "question": "Welche Rechtsfolge hat eine unwirksame Vereinbarung für den übrigen Ausbildungsvertrag",
+      "options": [
+        { "text": "Der gesamte Ausbildungsvertrag ist nichtig", "correct": false, "hint": "Nur die einzelne Klausel ist betroffen" },
+        { "text": "Die betroffene Vereinbarung ist unwirksam der Rest bleibt wirksam", "correct": true },
+        { "text": "Der Vertrag ist nur wirksam wenn die IHK zustimmt", "correct": false, "hint": "Die IHK heilt keine unwirksame Klausel" },
+        { "text": "Der Vertrag ist wirksam wenn Frau Müller der Klausel zustimmt", "correct": false, "hint": "Zustimmung ändert die Unwirksamkeit nicht" },
+        { "text": "Der Vertrag ist wirksam wenn die Eltern zustimmen", "correct": false, "hint": "Bei Volljährigen keine Elternzustimmung nötig" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-03",
+    "topic": "IHK WiSo 2026 · Aufgabe 3",
+    "level": "beginner",
+    "title": "Vertragsschluss",
+    "lessonCards": [{ "title": "Termin", "body": "Ausbildungsbeginn 01.09.2026 — der Vertrag muss rechtzeitig vorher geschlossen sein" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "der vertrag muss vor dem ersten tag stehen",
+      "question": "Bis wann spätestens muss der Ausbildungsvertrag bei Beginn am 01.09.2026 geschlossen sein",
+      "options": [
+        { "text": "Am ersten Arbeitstag im September 2026", "correct": false, "hint": "Spätestens vor Beginn" },
+        { "text": "Am 31.08.2026", "correct": true },
+        { "text": "Am 02.09.2026", "correct": false, "hint": "Das wäre nach Beginn" },
+        { "text": "Mit Beginn der Berufsschule nach den Ferien", "correct": false, "hint": "Unabhängig vom Schulstart" },
+        { "text": "Nach Ablauf der Probezeit", "correct": false, "hint": "Vertrag muss vorher existieren" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-04",
+    "topic": "IHK WiSo 2026 · Aufgabe 4",
+    "level": "beginner",
+    "title": "Ende des Ausbildungsverhältnisses",
+    "lessonCards": [{ "title": "Abschluss", "body": "Geplanter Prüfungstermin 13.07.2029 — das Verhältnis endet nicht automatisch mit der letzten Klausur" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "ende ist an die prüfungsergebnisse gekoppelt nicht nur an den kalender",
+      "question": "Welche Aussage zum Ende des Ausbildungsverhältnisses ist richtig",
+      "options": [
+        { "text": "Das Ausbildungsverhältnis endet nach der schriftlichen Abschlussprüfung", "correct": false, "hint": "Ergebnis muss bekannt sein" },
+        { "text": "Das Ausbildungsverhältnis endet mit der Bekanntgabe der positiven Prüfungsergebnisse", "correct": true },
+        { "text": "Der Dreijahresvertrag endet nur am 31.08.2029", "correct": false, "hint": "Früheres Ende bei bestandener Prüfung möglich" },
+        { "text": "Das Verhältnis endet an einem von der IHK festgelegten September-Termin", "correct": false, "hint": "Nicht pauschal ein IHK-Datum" },
+        { "text": "Das Verhältnis endet mit den Sommerferien der Berufsschule", "correct": false, "hint": "Schulferien sind nicht maßgeblich" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-05",
+    "topic": "IHK WiSo 2026 · Aufgabe 5",
+    "level": "beginner",
+    "title": "Zwei neue Auszubildende",
+    "lessonCards": [{ "title": "Kontext", "body": "Valentina Eberle (21) und Robert Traber (22) beginnen am 01.09.2026" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "vergütung und arbeitszeit gelten auch für volljährige azubis",
+      "question": "Welche Aussage zu den beiden Auszubildenden trifft zu",
+      "options": [
+        { "text": "Eine Probezeit von sechs Monaten ist zulässig weil sie über 18 sind", "correct": false, "hint": "Probezeit ist kürzer begrenzt" },
+        { "text": "Die Ausbildungsvergütung muss von Jahr zu Jahr steigen", "correct": true },
+        { "text": "Der Betrieb muss die Vergütung jeweils bis zum 15. zahlen", "correct": false, "hint": "Fälligkeit ist monatlich anders geregelt" },
+        { "text": "Als Erwachsene müssen sie sich selbst für die Berufsschule anmelden", "correct": false, "hint": "Anmeldung obliegt nicht allein den Azubis" },
+        { "text": "Als Erwachsene sind sie vom Berichtsheft befreit", "correct": false, "hint": "Berichtsheft bleibt Pflicht" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-06",
+    "topic": "IHK WiSo 2026 · Aufgabe 6",
+    "level": "beginner",
+    "title": "Arbeitsunfall · Reihenfolge",
+    "lessonCards": [{ "title": "Situation", "body": "Frau Kermann stürzt am Displayständer und verletzt sich schwer" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "erste hilfe kommt sofort alles andere folgt danach",
+      "question": "Was ist unmittelbar nach dem Arbeitsunfall als Erstes zu tun",
+      "options": [
+        { "text": "Ein Kollege leistet Erste Hilfe", "correct": true },
+        { "text": "Unfallanzeige an die Berufsgenossenschaft ohne Arztbericht", "correct": false, "hint": "Anzeige folgt später" },
+        { "text": "Durchgangsarzt bestellt die Arbeitsunfähigkeit", "correct": false, "hint": "Das kommt nach der Erstversorgung" },
+        { "text": "Reha-Maßnahme beginnt sofort", "correct": false, "hint": "Reha folgt auf Heilungsphase" },
+        { "text": "Rückkehr an den Arbeitsplatz nach sieben Wochen", "correct": false, "hint": "Das ist ein späterer Schritt" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-07",
+    "topic": "IHK WiSo 2026 · Aufgabe 7",
+    "level": "beginner",
+    "title": "Reha-Kosten",
+    "lessonCards": [{ "title": "Unfall", "body": "Nach dem Arbeitsunfall soll eine Reha-Maßnahme finanziert werden" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "berufsunfälle sind sache der gesetzlichen unfallversicherung",
+      "question": "Welche Versicherung übernimmt die Kosten der Reha nach dem Arbeitsunfall",
+      "options": [
+        { "text": "Gesetzliche Unfallversicherung", "correct": true },
+        { "text": "Gesetzliche Pflegeversicherung", "correct": false, "hint": "Pflegeversicherung ist ein anderes Risiko" },
+        { "text": "Betriebsunterbrechungsversicherung", "correct": false, "hint": "Schützt den Betrieb nicht die Personenreha" },
+        { "text": "Betriebshaftpflichtversicherung", "correct": false, "hint": "Haftpflicht deckt Drittschäden" },
+        { "text": "Private Unfallversicherung der Mitarbeiterin", "correct": false, "hint": "Berufsunfall primär über UV" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-08",
+    "topic": "IHK WiSo 2026 · Aufgabe 8",
+    "level": "beginner",
+    "title": "Zuständiges Gericht",
+    "lessonCards": [{ "title": "Streit", "body": "Frau Kermann will den Bescheid zur Reha-Kostenübernahme gerichtlich klären" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "sozialrechtliche streitigkeiten führen zum sozialgericht",
+      "question": "Welches Gericht ist für den Reha-Kostenstreit zunächst zuständig",
+      "options": [
+        { "text": "Familiengericht", "correct": false, "hint": "Familienrechtliche Streitigkeiten" },
+        { "text": "Verwaltungsgericht", "correct": false, "hint": "Behördenakte oft hier — nicht Reha-Leistung" },
+        { "text": "Arbeitsgericht", "correct": false, "hint": "Arbeitsvertragliche Streitigkeiten" },
+        { "text": "Amtsgericht", "correct": false, "hint": "Zivilgericht erster Instanz allgemein" },
+        { "text": "Sozialgericht", "correct": true }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-09",
+    "topic": "IHK WiSo 2026 · Aufgabe 9",
+    "level": "beginner",
+    "title": "Krankenversicherungsbeitrag",
+    "lessonCards": [
+      {
+        "title": "Daten",
+        "body": "Brutto 4.200 EUR · allgemeiner Satz 14,6 % · Zusatzbeitrag 2,4 % · Arbeitnehmeranteil ist die Hälfte des Gesamtbeitrags"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "halber gesamtbeitrag von 17 prozent auf 4200",
+      "question": "Wie hoch ist der Arbeitnehmerbeitrag zur gesetzlichen Krankenversicherung (gerundet)",
+      "options": [
+        { "text": "357,00 EUR", "correct": true },
+        { "text": "714,00 EUR", "correct": false, "hint": "Das wäre der volle Beitrag beider Seiten" },
+        { "text": "613,20 EUR", "correct": false, "hint": "Nur 14,6 % ohne Zusatz und ohne Hälfte" },
+        { "text": "100,80 EUR", "correct": false, "hint": "Viel zu niedrig gerechnet" },
+        { "text": "504,00 EUR", "correct": false, "hint": "12 % vom Brutto — falscher Ansatz" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-10",
+    "topic": "IHK WiSo 2026 · Aufgabe 10",
+    "level": "beginner",
+    "title": "Schwangerschaft · Ausbildung",
+    "lessonCards": [{ "title": "Fall", "body": "Paula Kaiser (20) ist schwanger Geburtstermin 01.12.2026" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "mutterschutz schützt vor kündigung nicht vor vergütung",
+      "question": "Welche Aussage zum Ausbildungsvertrag von Frau Kaiser trifft zu",
+      "options": [
+        { "text": "Das Ausbildungsverhältnis endet mit Mitteilung des Geburtstermins", "correct": false, "hint": "Schwangerschaft beendet nicht die Ausbildung" },
+        { "text": "Das Ausbildungsverhältnis endet mit der Geburt", "correct": false, "hint": "Es geht weiter mit Schutzrechten" },
+        { "text": "Für werdende Mütter gilt ein besonderer Kündigungsschutz", "correct": true },
+        { "text": "In der Schwangerschaft entfällt die Ausbildungsvergütung", "correct": false, "hint": "Vergütung bleibt grundsätzlich" },
+        { "text": "Sie muss zwingend Elterngeld beantragen", "correct": false, "hint": "Elterngeld ist kein Muss für den Vertrag" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-11",
+    "topic": "IHK WiSo 2026 · Aufgabe 11",
+    "level": "beginner",
+    "title": "Wiedereinstieg nach Geburt",
+    "lessonCards": [{ "title": "MuSchG", "body": "Geburt 30.11.2026 — Beschäftigungsverbot nach Entbindung acht Wochen" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "acht wochen beschäftigungsverbot auch wenn sie sich fit fühlt",
+      "question": "Ab wann darf Frau Kaiser frühestens wieder arbeiten",
+      "options": [
+        { "text": "Frühestens sechs Wochen nach der Entbindung", "correct": false, "hint": "Regel sind acht Wochen" },
+        { "text": "Frühestens acht Wochen nach der Entbindung", "correct": true },
+        { "text": "Frühestens zwölf Wochen nach der Entbindung", "correct": false, "hint": "Zwölf Wochen nur bei Früh-/Mehrling" },
+        { "text": "Sofort mit ärztlicher Arbeitsfähigkeitsbescheinigung", "correct": false, "hint": "Gesetzliches Verbot geht vor" },
+        { "text": "Sofort wenn der Arbeitgeber es erlaubt", "correct": false, "hint": "Arbeitgeber kann Verbot nicht aufheben" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-12",
+    "topic": "IHK WiSo 2026 · Aufgabe 12",
+    "level": "beginner",
+    "title": "Kollektives Arbeitsrecht",
+    "lessonCards": [{ "title": "Tarif", "body": "CBA-IT-Service GmbH ist Mitglied im Arbeitgeberverband" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "tarifliche wochenarbeitszeit kommt aus dem tarifvertrag",
+      "question": "In welchem Vertragsbestandteil ist die GmbH an kollektives Arbeitsrecht gebunden",
+      "options": [
+        { "text": "Arbeitsbeginn am 1. Juli 2026", "correct": false, "hint": "Individualvereinbarung" },
+        { "text": "Homeoffice mit Zustimmung des Vorgesetzten", "correct": false, "hint": "Betriebliche Regelung möglich" },
+        { "text": "Individuelle Zulage 200 EUR", "correct": false, "hint": "Einzelvergütung" },
+        { "text": "Einsatzort Erfurt", "correct": false, "hint": "Ort der Tätigkeit" },
+        { "text": "Wöchentliche Arbeitszeit laut Tarifvertrag 38,5 Stunden", "correct": true }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-13",
+    "topic": "IHK WiSo 2026 · Aufgabe 13",
+    "level": "beginner",
+    "title": "Betriebsrat · Mitbestimmung",
+    "lessonCards": [{ "title": "BetrVG", "body": "Der Betriebsrat hat in bestimmten Angelegenheiten Mitbestimmungsrechte" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "technische überwachung der arbeitnehmer ist mitbestimmungspflichtig",
+      "question": "In welcher Angelegenheit hat der Betriebsrat ein Mitbestimmungsrecht",
+      "options": [
+        { "text": "Beginn und Ende der täglichen Arbeitszeit", "correct": true },
+        { "text": "Planung des Fortbildungsbedarfs", "correct": false, "hint": "Mitwirkung nicht Mitbestimmung" },
+        { "text": "Bau einer neuen Lagerhalle", "correct": false, "hint": "Investition Unternehmen" },
+        { "text": "Gründung einer neuen Filiale", "correct": false, "hint": "Unternehmensentscheidung" },
+        { "text": "Steuerliche Gewinnermittlung", "correct": false, "hint": "Kein Betriebsrats-Thema" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-14",
+    "topic": "IHK WiSo 2026 · Aufgabe 14",
+    "level": "beginner",
+    "title": "Gewerkschaften",
+    "lessonCards": [{ "title": "Koalitionsfreiheit", "body": "Gewerkschaften verhandeln Tarifverträge mit Arbeitgeberverbänden" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "gewerkschaften verhandeln tariflich mit den verbänden",
+      "question": "Welche Aussage zu Gewerkschaften in Deutschland trifft zu",
+      "options": [
+        { "text": "Das Grundgesetz erlaubt nur Lohntarifverträge ohne weitere Aufgaben", "correct": false, "hint": "Koalitionsfreiheit ist breiter" },
+        { "text": "Gewerkschaften verhandeln mit Arbeitgeberverbänden über Arbeitsbedingungen", "correct": true },
+        { "text": "Gewerkschaftsvertreter dürfen nicht zu Betriebsversammlungen", "correct": false, "hint": "Einladung ist möglich" },
+        { "text": "Humanisierung der Arbeit ist verboten", "correct": false, "hint": "Gegenteil ist Ziel" },
+        { "text": "Rechtsschutz für Mitglieder ist verboten", "correct": false, "hint": "Rechtsschutz ist üblich" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-15",
+    "topic": "IHK WiSo 2026 · Aufgabe 15",
+    "level": "beginner",
+    "title": "Rechtsform GmbH",
+    "lessonCards": [{ "title": "Kapitalgesellschaft", "body": "CBA-IT-Service GmbH — Haftung beschränkt auf Stammeinlage" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "gmbh gesellschafter haften nur mit ihrer einlage",
+      "question": "Welche Aussage zur GmbH trifft zu",
+      "options": [
+        { "text": "Die GmbH erzielt immer die beste Eigenkapitalrentabilität", "correct": false, "hint": "Kein Automatismus" },
+        { "text": "Die GmbH ist eine Personengesellschaft", "correct": false, "hint": "Kapitalgesellschaft" },
+        { "text": "Gesellschafter dürfen nie Geschäftsführer sein", "correct": false, "hint": "Oft sind sie es" },
+        { "text": "Stammkapital muss mindestens 50.000 EUR betragen", "correct": false, "hint": "25.000 EUR Minimum" },
+        { "text": "Gesellschafter haften nur mit ihrer Stammeinlage", "correct": true }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-16",
+    "topic": "IHK WiSo 2026 · Aufgabe 16",
+    "level": "beginner",
+    "title": "Eigenkapitalrentabilität",
+    "lessonCards": [
+      {
+        "title": "Formel",
+        "body": "Reingewinn 24.860 EUR · Eigenkapital 220.000 EUR · EKR = Reingewinn / Eigenkapital × 100"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "reingewinn durch eigenkapital mal hundert",
+      "question": "Wie hoch ist die Eigenkapitalrentabilität (auf eine Dezimalstelle gerundet)",
+      "options": [
+        { "text": "11,3 %", "correct": true },
+        { "text": "8,9 %", "correct": false, "hint": "Division vertauscht" },
+        { "text": "24,9 %", "correct": false, "hint": "Nur Gewinn als Prozent — falsch" },
+        { "text": "113 %", "correct": false, "hint": "Komma verrutscht" },
+        { "text": "4,5 %", "correct": false, "hint": "Zu niedrig gerechnet" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-17",
+    "topic": "IHK WiSo 2026 · Aufgabe 17",
+    "level": "beginner",
+    "title": "Umsatzsteigerung",
+    "lessonCards": [{ "title": "Kurzfristig", "body": "Welche Maßnahme wirkt unmittelbar auf den Umsatz" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "marketing für eigene software bringt schnell nachfrage",
+      "question": "Welche Maßnahme steigert den Umsatz kurzfristig und unmittelbar",
+      "options": [
+        { "text": "Marketing zur Förderung des Verkaufs eigener Software", "correct": true },
+        { "text": "Einstellung eines weiteren Lageristen", "correct": false, "hint": "Kosten steigen zuerst" },
+        { "text": "Auslagerung von Dienstleistungen zur Lohnsenkung", "correct": false, "hint": "Nicht unmittelbar Umsatz" },
+        { "text": "Versandlager um 20 % vergrößern", "correct": false, "hint": "Investition langfristig" },
+        { "text": "Werbeetat halbieren", "correct": false, "hint": "Wirkt eher dämpfend" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-18",
+    "topic": "IHK WiSo 2026 · Aufgabe 18",
+    "level": "beginner",
+    "title": "Europass",
+    "lessonCards": [{ "title": "EU", "body": "Frau Müller möchte nach der Ausbildung im Ausland arbeiten" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "europass macht qualifikationen in europa vergleichbar",
+      "question": "Welche Aussage zum Dienst Europass trifft zu",
+      "options": [
+        { "text": "Europass ist ein kostenpflichtiger EU-Dienst", "correct": false, "hint": "Grundangebot ist kostenlos" },
+        { "text": "Europass hilft Qualifikationen europaweit verständlich darzustellen", "correct": true },
+        { "text": "Europass beglaubigt jeden Auslandsabschnitt automatisch", "correct": false, "hint": "Keine pauschale Beglaubigung" },
+        { "text": "Europass ist für Auslandsausbildung verpflichtend", "correct": false, "hint": "Freiwilliges Instrument" },
+        { "text": "Europass zertifiziert alle Fremdsprachen offiziell", "correct": false, "hint": "Sprachenportfolio ist separat" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-19",
+    "topic": "IHK WiSo 2026 · Aufgabe 19",
+    "level": "beginner",
+    "title": "Arbeitsschutzbeauftragter",
+    "lessonCards": [{ "title": "Rolle", "body": "Herr Korok übernimmt die Aufgaben des Arbeitsschutzbeauftragten" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "er unterstützt den arbeitgeber beim unfallschutz",
+      "question": "Welche Aufgabe hat der Arbeitsschutzbeauftragte",
+      "options": [
+        { "text": "Er ist allein verantwortlich für den Arbeitsschutz", "correct": false, "hint": "Verantwortung bleibt beim Arbeitgeber" },
+        { "text": "Er unterstützt den Arbeitgeber bei der Durchführung des Unfallschutzes", "correct": true },
+        { "text": "Er ist ein Organ des Betriebsrats", "correct": false, "hint": "Unabhängige Funktion" },
+        { "text": "Er prüft nur das Vorhandensein von Schutzeinrichtungen", "correct": false, "hint": "Auch Benutzung gehört dazu" },
+        { "text": "Er ist automatisch im ASA des Betriebsrats", "correct": false, "hint": "Nicht automatisch" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-20",
+    "topic": "IHK WiSo 2026 · Aufgabe 20",
+    "level": "beginner",
+    "title": "Brandschutz · Sofortmaßnahmen",
+    "lessonCards": [{ "title": "Brandfall", "body": "Welche Maßnahmen sind sofort erforderlich" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "notruf und evakuierung haben vorrang",
+      "question": "Welche Maßnahme muss im Brandfall sofort ergriffen werden",
+      "options": [
+        { "text": "Alle Fenster öffnen damit Rauch abzieht", "correct": false, "hint": "Kann Brand fördern" },
+        { "text": "Notruf absetzen", "correct": true },
+        { "text": "Nur den Vorgesetzten informieren", "correct": false, "hint": "Zu wenig — Rettung zuerst" },
+        { "text": "Alle Wasserhähne öffnen", "correct": false, "hint": "Bringt nichts ohne Löschsystem" },
+        { "text": "Brandursache dokumentieren bevor jemand hilft", "correct": false, "hint": "Menschenrettung zuerst" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-21",
+    "topic": "IHK WiSo 2026 · Aufgabe 21",
+    "level": "beginner",
+    "title": "Emissionen im Betrieb",
+    "lessonCards": [{ "title": "Umwelt", "body": "Lager der CBA-IT-Service GmbH auf Emissionen prüfen" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "emissionen sind mehr als nur abgase aus transport",
+      "question": "Welche Darstellung zu Emissionen ist richtig",
+      "options": [
+        { "text": "Emissionen entstehen nur beim Transport zwischen Lagern", "correct": false, "hint": "Auch Betrieb und Geräte" },
+        { "text": "Schädliche Emissionen umfassen auch Lärm und Elektrosmog", "correct": true },
+        { "text": "Höhere Schornsteine vermeiden Emissionen", "correct": false, "hint": "Nur Verdünnung nicht Vermeidung" },
+        { "text": "Der Sicherheitsbeauftragte ist für Immissionsschutz allein zuständig", "correct": false, "hint": "Träger ist der Arbeitgeber" },
+        { "text": "Reduzieren ist wichtiger als Vermeiden", "correct": false, "hint": "Vermeiden hat Vorrang" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-22",
+    "topic": "IHK WiSo 2026 · Aufgabe 22",
+    "level": "beginner",
+    "title": "Stressreduktion",
+    "lessonCards": [{ "title": "BGM", "body": "Welche Maßnahme eignet sich nicht zur Stressreduktion" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "öffentliche fehlerlisten erhöhen stress",
+      "question": "Welche Maßnahme ist nicht geeignet Stress am Arbeitsplatz zu reduzieren",
+      "options": [
+        { "text": "Kundenbeschwerden nur telefonisch und öffentlich am Schwarzen Brett", "correct": true },
+        { "text": "Workshops zu Work-Life-Balance", "correct": false, "hint": "Das hilft" },
+        { "text": "Angenehmes Arbeitsklima schaffen", "correct": false, "hint": "Das hilft" },
+        { "text": "Betriebssport ausbauen", "correct": false, "hint": "Das hilft" },
+        { "text": "Flexibleres Homeoffice", "correct": false, "hint": "Das kann entlasten" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-23",
+    "topic": "IHK WiSo 2026 · Aufgabe 23",
+    "level": "beginner",
+    "title": "Ökologisches Ziel",
+    "lessonCards": [{ "title": "Nachhaltigkeit", "body": "Welches Ziel ist ökologisch" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "ökologie bei lieferanten und produkten",
+      "question": "Welches Ziel ist ein ökologisches Ziel",
+      "options": [
+        { "text": "Produkte von ökologisch zertifizierten Lieferanten ohne Qualitätsverlust", "correct": true },
+        { "text": "Hohe Investitionen führen automatisch zu ökonomischer Harmonie", "correct": false, "hint": "Ökonomisch nicht ökologisch" },
+        { "text": "Kundenzufriedenheit steigern", "correct": false, "hint": "Ökonomisch/marketing" },
+        { "text": "Größere Verbrenner für die Geschäftsführung", "correct": false, "hint": "Gegenteil von ökologisch" },
+        { "text": "Umsatz durch Sortimentserweiterung", "correct": false, "hint": "Wirtschaftsziel" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-24",
+    "topic": "IHK WiSo 2026 · Aufgabe 24",
+    "level": "beginner",
+    "title": "Blauer Engel",
+    "lessonCards": [{ "title": "Umweltzeichen", "body": "Druckerpapier mit Blauem Engel" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "blauer engel steht für schonende herstellung",
+      "question": "Welche Aussage zum Blauen Engel beim Druckerpapier trifft zu",
+      "options": [
+        { "text": "Es ist besonders reißfest", "correct": false, "hint": "Kein Kernkriterium" },
+        { "text": "Es ist besonders sicher in der Handhabung", "correct": false, "hint": "Nicht das Umweltzeichen" },
+        { "text": "Es wird aus schadstoffarmen Rohstoffen umweltfreundlich hergestellt", "correct": true },
+        { "text": "Es hat mehrere Umweltpreise gewonnen", "correct": false, "hint": "Irrelevant" },
+        { "text": "Es darf nur über den Dualen System entsorgt werden", "correct": false, "hint": "Entsorgung ist separat" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-25",
+    "topic": "IHK WiSo 2026 · Aufgabe 25",
+    "level": "beginner",
+    "title": "Soziale Marktwirtschaft",
+    "lessonCards": [{ "title": "Ordnung", "body": "Merkmale der sozialen Marktwirtschaft in Deutschland" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "sozial bedeutet schutz der schwächeren am markt",
+      "question": "Welches Merkmal beschreibt die soziale Marktwirtschaft",
+      "options": [
+        { "text": "Zentrale staatliche Planung aller Güter", "correct": false, "hint": "Planwirtschaft" },
+        { "text": "Der Staat schützt wirtschaftlich Schwächere", "correct": true },
+        { "text": "Alle Produktionsmittel sind staatlich", "correct": false, "hint": "Sozialismus" },
+        { "text": "Nur nachgefragte Berufe dürfen ausgebildet werden", "correct": false, "hint": "Nicht sozialer Markt" },
+        { "text": "Wettbewerb soll ausgeschaltet werden", "correct": false, "hint": "Wettbewerb ist gewollt" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-26",
+    "topic": "IHK WiSo 2026 · Aufgabe 26",
+    "level": "beginner",
+    "title": "Betriebliche Arbeitsteilung",
+    "lessonCards": [{ "title": "Organisation", "body": "Arbeitszerlegung innerhalb des Betriebs" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "ein prozess wird in teilschritte für mehrere mitarbeiter zerlegt",
+      "question": "In welchem Fall liegt betriebliche Arbeitsteilung vor",
+      "options": [
+        { "text": "Ein Prozessschritt wird an die Byte GmbH ausgegliedert", "correct": false, "hint": "Betriebliche Teilarbeit" },
+        { "text": "Beschaffung wird in Teilprozesse für mehrere Mitarbeiter zerlegt", "correct": true },
+        { "text": "Eine Mitarbeiterin baut aus Fremdteilen ein Produkt", "correct": false, "hint": "Keine Zerlegung" },
+        { "text": "Supply-Chain mit Lieferanten und Kunden", "correct": false, "hint": "Überbetrieblich" },
+        { "text": "Filiale schließen und Kunden umverteilen", "correct": false, "hint": "Standortentscheidung" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-27",
+    "topic": "IHK WiSo 2026 · Aufgabe 27",
+    "level": "beginner",
+    "title": "GROTHE AG",
+    "lessonCards": [{ "title": "Sektoren", "body": "IT-Dienstleister GROTHE AG einordnen" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "dienstleistung ist tertiär und gewinnorientiert",
+      "question": "Welche Aussage zur GROTHE AG trifft zu",
+      "options": [
+        { "text": "Unternehmen des primären Sektors", "correct": false, "hint": "Rohstoffe/Landwirtschaft" },
+        { "text": "Unternehmen des tertiären Sektors", "correct": true },
+        { "text": "Gemeinwirtschaftliches Unternehmen", "correct": false, "hint": "AG ist privatwirtschaftlich" },
+        { "text": "Personengesellschaft", "correct": false, "hint": "AG ist Kapitalgesellschaft" },
+        { "text": "GbR", "correct": false, "hint": "Falsche Rechtsform" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-28",
+    "topic": "IHK WiSo 2026 · Aufgabe 28",
+    "level": "beginner",
+    "title": "Globalisierung",
+    "lessonCards": [{ "title": "Welthandel", "body": "Maßnahmen die Globalisierung fördern" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "freihandel senkt grenzen nicht erhöht sie",
+      "question": "Welche Maßnahme fördert die Globalisierung",
+      "options": [
+        { "text": "EU erhöht Zölle auf chinesische Produkte", "correct": false, "hint": "Hemmt Handel" },
+        { "text": "EU schließt Freihandelsabkommen mit Südamerika", "correct": true },
+        { "text": "Steuern auf Transportdienstleistungen erhöhen", "correct": false, "hint": "Erschwert Austausch" },
+        { "text": "US-Niederlassung schließen", "correct": false, "hint": "Deglobalisierung" },
+        { "text": "Fertigung komplett nach Deutschland verlagern", "correct": false, "hint": "Zentralisierung hemmt globale Vernetzung" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-29",
+    "topic": "IHK WiSo 2026 · Aufgabe 29",
+    "level": "beginner",
+    "title": "Unternehmensverbindungen",
+    "lessonCards": [{ "title": "Fall a", "body": "Byte GmbH und IT-Sec GmbH werden zur Byte-Sec GmbH" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "zwei firmen werden eine das ist fusion",
+      "question": "Byte GmbH und IT-Sec GmbH schließen sich zur Byte-Sec GmbH zusammen — welche Verbindung liegt vor",
+      "options": [
+        { "text": "Fusion", "correct": true },
+        { "text": "Kartell", "correct": false, "hint": "Preisabsprache Wettbewerber" },
+        { "text": "Konzern", "correct": false, "hint": "Mutter-Tochter-Struktur" },
+        { "text": "Arbeitsgemeinschaft", "correct": false, "hint": "Gemeinsamer Auftrag ohne Fusion" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-wiso-30",
+    "topic": "IHK WiSo 2026 · Aufgabe 30",
+    "level": "beginner",
+    "title": "Sozialer Rechtsstaat",
+    "lessonCards": [{ "title": "Grundsatz", "body": "Sozialer demokratischer Bundesstaat" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "sozialpolitik unterstützt einkommensschwache haushalte",
+      "question": "Welcher Sachverhalt entspricht dem Grundsatz des sozialen Rechtsstaats",
+      "options": [
+        { "text": "Höhere Abschreibungen auf Gewerbeimmobilien", "correct": false, "hint": "Unternehmensförderung" },
+        { "text": "Höhere Freibeträge bei Erbschaftsteuer", "correct": false, "hint": "Begünstigt Vermögende" },
+        { "text": "Steuerliche Förderung von Immobilienkäufen durch Kapitalgesellschaften", "correct": false, "hint": "Nicht sozial ausgerichtet" },
+        { "text": "Senkung der Steuern auf Kapitalerträge", "correct": false, "hint": "Entlastet Kapitalbesitzer" },
+        { "text": "Erhöhung des Wohngelds", "correct": true }
+      ]
+    }
+  }
+]

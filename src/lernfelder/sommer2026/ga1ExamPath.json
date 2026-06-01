@@ -1,0 +1,162 @@
+[
+  {
+    "id": "ihk26-ga1-01",
+    "topic": "IHK GA1 2026 · Aufgabe 1a",
+    "level": "beginner",
+    "title": "Netzteil dimensionieren",
+    "lessonCards": [
+      {
+        "title": "Liebig GmbH",
+        "body": "Webserver: 1× Mainboard 40 W · 2× CPU je 90 W · 8× RAM je 4 W · 4× HDD je 10 W · 2× NIC je 6 W · +20 % Reserve · Wirkungsgrad 90 % · Standardgrößen 250–600 W in 50-W-Schritten"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "summe mal 1,2 geteilt durch 0,9 und auf die nächste standardgröße aufrunden",
+      "question": "Welche Netzteilleistung ist nach Puffer und Wirkungsgrad passend",
+      "options": [
+        { "text": "350 W", "correct": false, "hint": "Unterdimensioniert" },
+        { "text": "400 W", "correct": false, "hint": "Noch zu knapp" },
+        { "text": "450 W", "correct": true },
+        { "text": "500 W", "correct": false, "hint": "Größer als nötig aber nicht die kleinste passende" },
+        { "text": "250 W", "correct": false, "hint": "Viel zu schwach" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga1-02",
+    "topic": "IHK GA1 2026 · Aufgabe 1b",
+    "level": "beginner",
+    "title": "UEFI/BIOS-Härtung",
+    "lessonCards": [{ "title": "Server-Härtung", "body": "Zwei sinnvolle BIOS/UEFI-Einstellungen zur Absicherung" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "secure boot und usb boot sind klassische hebel",
+      "question": "Welche UEFI/BIOS-Einstellung härtet den Server sinnvoll",
+      "options": [
+        { "text": "Secure Boot aktivieren", "correct": true },
+        { "text": "USB-Boot immer zuerst erlauben", "correct": false, "hint": "Erleichtert Angreifern den Start" },
+        { "text": "Admin-Passwort im BIOS deaktivieren", "correct": false, "hint": "Schwächt den Schutz" },
+        { "text": "Alle virtuellen Maschinen im BIOS deaktivieren", "correct": false, "hint": "Nicht immer sinnvoll oder möglich" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga1-03",
+    "topic": "IHK GA1 2026 · Aufgabe 1c",
+    "level": "beginner",
+    "title": "TOM · Physischer Zugang",
+    "lessonCards": [{ "title": "TOM", "body": "Technisch-organisatorische Maßnahmen über einzelne Systeme hinaus" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "chipkarte im serverraum ist das vorgegebene beispiel",
+      "question": "Welche TOM schützt vor unbefugtem physischem Zugriff auf Server mit sensiblen Daten",
+      "options": [
+        { "text": "Chipkarte für den Serverraum", "correct": true },
+        { "text": "Öffentlicher WLAN-Gastzugang im RZ", "correct": false, "hint": "Erhöht Risiko" },
+        { "text": "Geteiltes Admin-Passwort per E-Mail", "correct": false, "hint": "Organisatorisch unsicher" },
+        { "text": "Deaktivierte Firewalls", "correct": false, "hint": "Gegenteil von Schutz" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga1-04",
+    "topic": "IHK GA1 2026 · Aufgabe 1",
+    "level": "beginner",
+    "title": "GRUB Bootloader",
+    "lessonCards": [
+      {
+        "title": "Funktion",
+        "body": "GRUB lädt den Kernel in den Speicher und bietet ein Auswahlmenü für Betriebssysteme"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "grub ist boot manager und boot loader in einem",
+      "question": "Welche Aussage beschreibt Zweck und Funktion von GRUB richtig",
+      "options": [
+        { "text": "GRUB lädt den Kernel und ermöglicht die Auswahl des Betriebssystems beim Start", "correct": true },
+        { "text": "GRUB ersetzt den Arbeitsspeicher des Servers", "correct": false, "hint": "Kein RAM-Ersatz" },
+        { "text": "GRUB verschlüsselt nur Festplatten ohne Boot", "correct": false, "hint": "Das ist Festplattenverschlüsselung" },
+        { "text": "GRUB ist ein reines Virenschutzprogramm", "correct": false, "hint": "Kein AV-Produkt" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga1-05",
+    "topic": "IHK GA1 2026 · Aufgabe 1bb",
+    "level": "beginner",
+    "title": "grub rescue",
+    "lessonCards": [
+      {
+        "title": "Fehler",
+        "body": "Meldung: error: file not found. grub rescue>"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "coachLine": "grub findet seine dateien nicht mehr oft partition oder config",
+      "question": "Welche Ursache passt zu grub rescue mit file not found",
+      "options": [
+        { "text": "GRUB-Konfiguration oder Boot-Partition ist nicht erreichbar oder verschoben", "correct": true },
+        { "text": "Der Monitor hat zu wenig Auflösung", "correct": false, "hint": "Unabhängig vom Bootloader" },
+        { "text": "Zu wenig RAM für DNS", "correct": false, "hint": "DNS ist kein Boot-Thema" },
+        { "text": "HTTPS-Zertifikat abgelaufen", "correct": false, "hint": "Betrifft Webdienst nicht GRUB" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga1-06",
+    "topic": "IHK GA1 2026 · Aufgabe 2aa",
+    "level": "beginner",
+    "title": "Certificate Authority",
+    "lessonCards": [{ "title": "HTTPS", "body": "Webserver erlaubt nur HTTPS — Rolle einer CA" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "ca stellt zertifikate aus und prüft identität",
+      "question": "Welche Aufgabe hat eine Certificate Authority",
+      "options": [
+        { "text": "Ausstellung und Prüfung digitaler Zertifikate für HTTPS", "correct": true },
+        { "text": "Physische Verkabelung im Rechenzentrum", "correct": false, "hint": "Layer 1 Thema" },
+        { "text": "Formatierung aller Festplatten", "correct": false, "hint": "Installation" },
+        { "text": "Erhöhung der CPU-Taktung", "correct": false, "hint": "Hardware-Tuning" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga1-07",
+    "topic": "IHK GA1 2026 · Aufgabe 2",
+    "level": "beginner",
+    "title": "Nur HTTPS",
+    "lessonCards": [{ "title": "Webserver", "body": "Ausschließlich verschlüsselte Verbindungen erlauben" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "tls zertifikat und redirect von http",
+      "question": "Was ist typisch nötig damit ein Webserver nur HTTPS-Verbindungen annimmt",
+      "options": [
+        { "text": "TLS-Zertifikat einbinden und HTTP auf HTTPS umleiten oder sperren", "correct": true },
+        { "text": "FTP-Dienst auf Port 21 erzwingen", "correct": false, "hint": "Unverschlüsseltes Protokoll" },
+        { "text": "ARP-Tabellen leeren", "correct": false, "hint": "Kein HTTPS-Mechanismus" },
+        { "text": "Nur UDP erlauben", "correct": false, "hint": "HTTPS nutzt TCP" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga1-08",
+    "topic": "IHK GA1 2026 · TOM",
+    "level": "beginner",
+    "title": "Backup als TOM",
+    "lessonCards": [{ "title": "Datenschutz", "body": "Weitere TOM neben physischer Zutrittskontrolle" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "regelmäßige sicherungen schützen verfügbarkeit und daten",
+      "question": "Welche weitere TOM schützt Server und Daten sinnvoll",
+      "options": [
+        { "text": "Regelmäßige verschlüsselte Backups mit Restore-Tests", "correct": true },
+        { "text": "Alle Logs öffentlich im Internet", "correct": false, "hint": "Datenschutzverletzung" },
+        { "text": "Ein Passwort für alle Admins", "correct": false, "hint": "Schwächt Sicherheit" },
+        { "text": "Deaktivierung aller Patches", "correct": false, "hint": "Erhöht Angriffsfläche" }
+      ]
+    }
+  }
+]

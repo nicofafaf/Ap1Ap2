@@ -4,6 +4,111 @@
   "title": "Wirtschaft und Recht",
   "beginnerPath": [
     {
+      "id": "lf1-grund-00-ausbildung",
+      "topic": "WiSo-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Was ist eine Ausbildung?",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "In der Ausbildung lernst du einen Beruf im Betrieb und in der Berufsschule — du bist Azubi und kein normaler Vollzeit-Mitarbeiter ohne Lernvertrag"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie ein Praktikum mit Plan: Du arbeitest mit, bekommst Aufgaben und wirst Schritt für Schritt fit für den Beruf"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Ausbildungsvertrag regelt Rechte und Pflichten — Vergütung, Berufsschule und Prüfung gehören dazu"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Du unterschreibst einen Ausbildungsvertrag bei einer IT-Firma und gehst zusätzlich in die Berufsschule"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Was beschreibt eine duale Ausbildung am besten",
+        "options": [
+          { "text": "Lernen im Betrieb und in der Berufsschule", "correct": true },
+          { "text": "Nur Selbststudium zu Hause ohne Betrieb", "correct": false, "hint": "Dual heißt Betrieb plus Schule" },
+          { "text": "Nur Theorie ohne praktische Arbeit", "correct": false, "hint": "Im Betrieb übst du echte Aufgaben" },
+          { "text": "Ein Urlaub mit Gehalt", "correct": false, "hint": "Ausbildung ist Arbeit mit Lernziel und Pflichten" }
+        ]
+      }
+    },
+    {
+      "id": "lf1-grund-01-unternehmen",
+      "topic": "WiSo-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Unternehmen und Rechtsform",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Ein Unternehmen organisiert Arbeit und Kapital — die Rechtsform sagt, wer haftet und wie das Geld eingezahlt wird"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Einzelkaufleute sind wie ein Ein-Mann-Laden mit voller Haftung — eine GmbH ist wie ein Verein mit eingezahltem Stammkapital und begrenzter Haftung"
+        },
+        {
+          "title": "Merksatz",
+          "body": "GmbH = Gesellschafter und Geschäftsanteile — AG = Aktien und oft Börse — KG = Komplementär plus Kommanditisten"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Eine kleine Werkstatt kann Einzelunternehmen sein — ein großer Konzern oft AG oder GmbH"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Welche Rechtsform hat typischerweise Gesellschafter mit Geschäftsanteilen",
+        "options": [
+          { "text": "GmbH", "correct": true },
+          { "text": "Aktiengesellschaft mit Pflicht zur Börse bei jedem Laden", "correct": false, "hint": "AG nutzt Aktien nicht jede Firma ist börsennotiert" },
+          { "text": "Offene Handelsgesellschaft ohne Personen", "correct": false, "hint": "OHG besteht aus Personen die unbeschränkt haften" },
+          { "text": "Gewerkschaft", "correct": false, "hint": "Gewerkschaften vertreten Arbeitnehmer keine Unternehmensform" }
+        ]
+      }
+    },
+    {
+      "id": "lf1-grund-02-sozial",
+      "topic": "WiSo-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Sozialversicherung — Überblick",
+      "lessonCards": [
+        {
+          "title": "In einfachen Worten",
+          "body": "Sozialversicherung schützt bei Krankheit, Alter, Arbeitslosigkeit und Arbeitsunfällen — Arbeitgeber und Arbeitnehmer zahlen Beiträge ein"
+        },
+        {
+          "title": "Vergleich aus dem Alltag",
+          "body": "Wie ein Schirm-Paket: Krankenkasse für Arzt, Rentenkasse für später, Unfallversicherung wenn etwas im Job passiert"
+        },
+        {
+          "title": "Merksatz",
+          "body": "Unfall im Betrieb → gesetzliche Unfallversicherung — Krankheit behandeln → Krankenversicherung"
+        }
+      ],
+      "example": {
+        "label": "Mini-Beispiel",
+        "body": "Du stürzt auf der Treppe in der Firma — die Berufsgenossenschaft ist oft zuständig nicht die Krankenkasse allein"
+      },
+      "practice": {
+        "type": "mc",
+        "question": "Wer zahlt in der Regel Beiträge zur Sozialversicherung mit",
+        "options": [
+          { "text": "Arbeitgeber und Arbeitnehmer gemeinsam", "correct": true },
+          { "text": "Nur der Arbeitnehmer allein", "correct": false, "hint": "Der Arbeitgeber beteiligt sich an vielen Beiträgen" },
+          { "text": "Nur der Staat ohne Betrieb", "correct": false, "hint": "Beiträge kommen aus Lohn und Arbeitgeberanteil" },
+          { "text": "Nur bei Selbstständigen", "correct": false, "hint": "Angestellte und Azubis sind typischerweise versichert" }
+        ]
+      }
+    },
+    {
       "id": "lf1-mission-kuat",
       "topic": "Corporate Espionage · Kuat",
       "level": "beginner",

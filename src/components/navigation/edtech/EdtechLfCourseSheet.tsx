@@ -19,10 +19,10 @@ export type EdtechLfCourseSheetProps = {
   lf: number | null;
   onClose: () => void;
   onEngage: (lf: number, mode: "learn" | "exam") => void;
-  onOpenCodex: () => void;
+  onOpenTheory: () => void;
 };
 
-export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: EdtechLfCourseSheetProps) {
+export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenTheory }: EdtechLfCourseSheetProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -244,13 +244,12 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
                     {meta.chapters.length > 0 ? (
                       <section>
                         <h3>{t("map.edtechCourse.chaptersTitle")}</h3>
+                        <p className="nx-edtech-course-exam-hint">{t("map.edtechCourse.chaptersHint")}</p>
                         <ul className="nx-edtech-course-chapter-list">
-                          {meta.chapters.map((ch) => (
+                          {meta.chapters.map((ch, i) => (
                             <li key={ch.id}>
+                              <span className="nx-edtech-course-chapter-n">{i + 1}</span>
                               <span>{ch.title}</span>
-                              <span className="nx-edtech-course-chapter-count">
-                                {ch.noteCount} {t("map.edtechCourse.notes")}
-                              </span>
                             </li>
                           ))}
                         </ul>
@@ -283,13 +282,14 @@ export function EdtechLfCourseSheet({ lf, onClose, onEngage, onOpenCodex }: Edte
                 <motion.button
                   type="button"
                   onClick={() => {
-                    onOpenCodex();
+                    onOpenTheory();
                     onClose();
                   }}
                   whileTap={reduceMotion ? undefined : { scale: 0.98 }}
                   style={{ ...edtechGhostBtn, flex: 1 }}
+                  aria-label={t("map.edtechCourse.ctaTheory")}
                 >
-                  {t("map.edtechCourse.ctaCodex")}
+                  {t("map.edtechCourse.ctaTheory")}
                 </motion.button>
               </div>
               <button type="button" className="nx-edtech-course-close" onClick={onClose}>

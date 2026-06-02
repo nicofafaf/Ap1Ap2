@@ -1,14 +1,11 @@
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import type { LearningField } from "../../../data/nexusRegistry";
-import { publicAssetUrl } from "../../../data/nexusRegistry";
 import { ensureCurriculumLoaded } from "../../../lib/learning/curriculumAccess";
 import { getGrundlageTheoryChapters } from "../../../lib/learning/grundlageTheoryChapters";
 import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../../store/useGameStore";
-import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
-import "./edtechLearningSession.css";
 import "./edtechTheoryReader.css";
 
 export type EdtechTheoryReaderProps = {
@@ -57,71 +54,62 @@ export function EdtechTheoryReader({ lf, onClose, onStartExercises }: EdtechTheo
 
   return (
     <motion.div
-      className="nx-edtech-learn-root nx-edtech-theory-root"
-      initial={reduceMotion ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={reduceMotion ? undefined : { opacity: 0 }}
+      className="nx-edtech-theory-root"
+      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={reduceMotion ? undefined : { opacity: 0, y: 8 }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="nx-edtech-theory-heading"
     >
-      <div className="nx-edtech-learn-hero-wrap">
-        <NexusCinematicShell
-          variant="strip"
-          videoSrc={publicAssetUrl(`/assets/LF${lfNum}GIF.mp4`)}
-          kicker={`${meta?.ap ?? "AP"} · LF${lfNum}`}
-          title={meta?.title ?? lf}
-          lead={t("edtechTheory.lead", "Grundlagen — kurz lesen, dann üben")}
-        />
-      </div>
-
-      <header className="nx-edtech-learn-header">
-        <div className="nx-edtech-learn-header-text">
-          <span className="nx-edtech-learn-lf" id="nx-edtech-theory-heading">
-            {t("edtechTheory.title", "Theorie")}
+      <header className="nx-edtech-theory-header">
+        <div className="nx-edtech-theory-header-text">
+          <span className="nx-edtech-theory-kicker">
+            {meta?.ap ?? "AP"} · LF{lfNum}
           </span>
-          <p className="nx-edtech-theory-sub">
-            {t("edtechTheory.subtitle", "Gleiche Inhalte wie beim Üben — nur zum Lesen")}
+          <h1 id="nx-edtech-theory-heading" className="nx-edtech-theory-title">
+            {meta?.title ?? lf}
+          </h1>
+          <p className="nx-edtech-theory-lead">
+            {t("edtechTheory.lead", "Grundlagen kurz lesen — dieselben Texte wie vor den Übungen")}
           </p>
           {total > 0 ? (
-            <div className="nx-edtech-learn-progress-wrap">
-              <div className="nx-edtech-learn-progress-meta">
-                <span>
-                  {t("edtechTheory.chapterProgress", "Kapitel {n} von {total}")
-                    .replace("{n}", String(safeIdx + 1))
-                    .replace("{total}", String(total))}
-                </span>
-              </div>
-              <div className="nx-edtech-learn-progress-track" aria-hidden>
+            <div className="nx-edtech-theory-progress">
+              <span>
+                {t("edtechTheory.chapterProgress", "Kapitel {n} von {total}")
+                  .replace("{n}", String(safeIdx + 1))
+                  .replace("{total}", String(total))}
+              </span>
+              <div className="nx-edtech-theory-progress-track" aria-hidden>
                 <div
-                  className="nx-edtech-learn-progress-fill"
-                  style={{ width: `${total > 0 ? ((safeIdx + 1) / total) * 100 : 0}%` }}
+                  className="nx-edtech-theory-progress-fill"
+                  style={{ width: `${((safeIdx + 1) / total) * 100}%` }}
                 />
               </div>
             </div>
           ) : null}
         </div>
-        <button type="button" className="nx-edtech-learn-close" onClick={onClose}>
+        <button type="button" className="nx-edtech-theory-close" onClick={onClose}>
           {t("edtechTheory.close", "Schließen")}
         </button>
       </header>
 
-      <div className="nx-edtech-learn-body">
-        <div className="nx-edtech-learn-inner nx-edtech-theory-inner">
-          {!ready ? (
-            <p className="nx-edtech-theory-loading">{t("edtechTheory.loading", "Inhalte werden geladen…")}</p>
-          ) : total === 0 ? (
-            <section className="nx-edtech-learn-card">
-              <h3>{t("edtechTheory.emptyTitle", "Noch keine Lesekapitel")}</h3>
-              <p>{t("edtechTheory.emptyBody", "Starte die Übungen — dort steht die Erklärung vor jeder Frage")}</p>
-              {onStartExercises ? (
-                <button type="button" className="nx-edtech-theory-cta-primary" onClick={onStartExercises}>
-                  {t("map.edtechCourse.ctaLearn", "Übungen starten")}
-                </button>
-              ) : null}
-            </section>
-          ) : chapter ? (
-            <>
+      <div className="nx-edtech-theory-body">
+        {!ready ? (
+          <p className="nx-edtech-theory-loading">{t("edtechTheory.loading", "Inhalte werden geladen…")}</p>
+        ) : total === 0 ? (
+          <section className="nx-edtech-theory-card nx-edtech-theory-card--empty">
+            <h2>{t("edtechTheory.emptyTitle", "Noch keine Lesekapitel")}</h2>
+            <p>{t("edtechTheory.emptyBody", "Starte die Übungen — dort steht die Erklärung vor jeder Frage")}</p>
+            {onStartExercises ? (
+              <button type="button" className="nx-edtech-theory-cta-primary" onClick={onStartExercises}>
+                {t("map.edtechCourse.ctaLearn", "Übungen starten")}
+              </button>
+            ) : null}
+          </section>
+        ) : chapter ? (
+          <div className="nx-edtech-theory-layout">
+            <main className="nx-edtech-theory-main">
               <nav className="nx-edtech-theory-nav" aria-label={t("edtechTheory.navAria", "Kapitel")}>
                 <button type="button" className="nx-edtech-theory-nav-btn" onClick={() => goChapter(-1)}>
                   {t("edtechTheory.prev", "Zurück")}
@@ -131,28 +119,30 @@ export function EdtechTheoryReader({ lf, onClose, onStartExercises }: EdtechTheo
                 </button>
               </nav>
 
-              <section className="nx-edtech-learn-card" aria-label={chapter.title}>
-                <div className="nx-edtech-learn-card-label">
+              <article className="nx-edtech-theory-card">
+                <div className="nx-edtech-theory-card-label">
                   {chapter.topic || t("edtechTheory.topicFallback", "Grundlagen")}
                 </div>
-                <h3>{chapter.title}</h3>
-                <div className="nx-edtech-theory-cards">
-                  {chapter.cards.map((card) => (
-                    <article key={`${chapter.id}-${card.title}`} className="nx-edtech-theory-card">
-                      <h4>{card.title}</h4>
-                      <p>{card.body}</p>
-                    </article>
-                  ))}
-                </div>
+                <h2>{chapter.title}</h2>
+                <p className="nx-edtech-theory-read-kicker">{chapter.readTitle}</p>
+                {chapter.coachLine ? (
+                  <p className="nx-edtech-theory-coach">{chapter.coachLine}</p>
+                ) : null}
+                <p className="nx-edtech-theory-body-text">{chapter.body}</p>
                 {chapter.example ? (
                   <aside className="nx-edtech-theory-example">
                     <span className="nx-edtech-theory-example-label">{chapter.example.label}</span>
                     <p>{chapter.example.body}</p>
                   </aside>
                 ) : null}
-              </section>
+              </article>
+            </main>
 
-              <ul className="nx-edtech-theory-toc" aria-label={t("edtechTheory.tocAria", "Alle Kapitel")}>
+            <aside className="nx-edtech-theory-sidebar" aria-label={t("edtechTheory.tocAria", "Alle Kapitel")}>
+              <h3 className="nx-edtech-theory-sidebar-title">
+                {t("edtechTheory.tocTitle", "Kapitel")}
+              </h3>
+              <ul className="nx-edtech-theory-toc">
                 {chapters.map((ch, i) => (
                   <li key={ch.id}>
                     <button
@@ -165,20 +155,20 @@ export function EdtechTheoryReader({ lf, onClose, onStartExercises }: EdtechTheo
                       onClick={() => setChapterIdx(i)}
                     >
                       <span className="nx-edtech-theory-toc-n">{i + 1}</span>
-                      {ch.title}
+                      <span className="nx-edtech-theory-toc-label">{ch.title}</span>
                     </button>
                   </li>
                 ))}
               </ul>
-            </>
-          ) : null}
-        </div>
+            </aside>
+          </div>
+        ) : null}
       </div>
 
       {onStartExercises && total > 0 ? (
         <footer className="nx-edtech-theory-footer">
           <button type="button" className="nx-edtech-theory-cta-primary" onClick={onStartExercises}>
-            {t("map.edtechCourse.ctaLearn", "Übungen starten")}
+            {t("edtechTheory.ctaPractice", "Jetzt üben")}
           </button>
         </footer>
       ) : null}

@@ -95,28 +95,26 @@ export function mentorPickPortraitCandidates(id: number): readonly string[] {
     publicAssetUrl(`${pick128}/${n}.png`),
     publicAssetUrl(`${pick64}/${n}.png`),
     publicAssetUrl(`${pick128}/waifu-${n}.png`),
-    publicAssetUrl(`${pick128}/${n}.webp`),
   ];
 }
 
 const WAIFU_IDLE_FOLDER_ENC = encodeURIComponent("100 Waifus - Idle Animation 64x64");
 
 /**
- * Überall sonst: 64×64 Idle unter `assets/Characters/100 Waifus - Idle Animation 64x64/V1.0/`
- * Erwartet u. a.: `waifu-{n}.webp`, `.gif`, `.webm` — danach Legacy-PNG
+ * Idle: auf GitLab Pages nur Portrait-PNGs (Slim-Deploy); lokal optional GIF aus Characters/.
  */
 export function mentorIdleAnimationCandidates(id: number): readonly string[] {
   const n = Math.max(1, Math.min(100, Math.floor(id)));
-  const root = `/assets/Characters/${WAIFU_IDLE_FOLDER_ENC}/V1.0`;
   const static128 = publicAssetUrl(`/assets/Portraits/25-waifus-128x128/${n}.png`);
   const static64 = publicAssetUrl(`/assets/Portraits/25-waifus-64x64/${n}.png`);
+  if (import.meta.env.PROD) {
+    return [static128, static64];
+  }
+  const root = `/assets/Characters/${WAIFU_IDLE_FOLDER_ENC}/V1.0`;
   return [
     static128,
     static64,
-    publicAssetUrl(`${root}/waifu-${n}.webp`),
     publicAssetUrl(`${root}/waifu-${n}.gif`),
-    publicAssetUrl(`${root}/waifu-${n}.webm`),
-    publicAssetUrl(`${root}/${n}.webp`),
     publicAssetUrl(`${root}/${n}.gif`),
   ];
 }
@@ -378,8 +376,7 @@ export function getBossThumbnailCandidates(lf: LearningField): string[] {
     if (/\.(mp4|webm|mov)$/i.test(u)) continue;
     if (/\.(webp|png|gif|jpe?g|svg|avif)$/i.test(u)) out.push(u);
   }
-  const n = lf.replace("LF", "");
-  out.push(publicAssetUrl(`/assets/LF${n}.webp`), publicAssetUrl(`/assets/LF${n}.png`));
+  /** Deploy enthält nur LF{n}GIF.mp4 — keine LF{n}.webp/.png (vermeidet 404 auf Pages) */
   if (entry.loot.itemPath && !/\.(mp4|webm|mov)$/i.test(entry.loot.itemPath)) {
     out.push(entry.loot.itemPath);
   }

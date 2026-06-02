@@ -1,7 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import { useMemo } from "react";
-import { publicAssetUrl } from "../../data/nexusRegistry";
 import { FRACTAL_COMMAND_BG_MP4 } from "../../lib/ui/fractalConstants";
 import { EdtechLazyVideo } from "../navigation/edtech/EdtechLazyVideo";
 import "./nexusCinematic.css";
@@ -35,15 +33,7 @@ export function NexusCinematicShell({
 }: NexusCinematicShellProps) {
   const reduceMotion = useReducedMotion();
   const showVideo = Boolean(videoSrc) && !reduceMotion;
-  const lfPoster = useMemo(() => {
-    const m = videoSrc?.match(/LF(\d{1,2})GIF\.mp4/i);
-    if (!m) return null;
-    const n = Number.parseInt(m[1]!, 10);
-    if (!Number.isFinite(n) || n < 1 || n > 12) return null;
-    return publicAssetUrl(`/assets/LF${n}.webp`);
-  }, [videoSrc]);
-  const videoPriorityResolved =
-    videoPriority || variant === "hero" || Boolean(lfPoster);
+  const videoPriorityResolved = videoPriority || variant === "hero";
 
   return (
     <motion.section
@@ -53,16 +43,6 @@ export function NexusCinematicShell({
       transition={{ type: "spring", stiffness: 280, damping: 30 }}
     >
       <div className="nx-cinematic-media" aria-hidden>
-        {lfPoster ? (
-          <img
-            className="nx-cinematic-poster"
-            src={lfPoster}
-            alt=""
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
-        ) : null}
         {showVideo ? (
           <EdtechLazyVideo
             src={videoSrc!}

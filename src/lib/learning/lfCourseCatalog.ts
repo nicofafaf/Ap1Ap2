@@ -95,17 +95,15 @@ function chapterId(title: string, index: number): string {
   return `ch-${index}-${title.replace(/\s+/g, "-").slice(0, 24)}`;
 }
 
+/** Lesekapitel = Grundlagen-Missionen (nicht altes Codex-reference[]) */
 function buildChapters(raw: ContentShape): LfCourseChapter[] {
-  const counts = new Map<string, number>();
-  for (const ref of raw.reference ?? []) {
-    const ch = ref.chapter?.trim() || "Kurs";
-    counts.set(ch, (counts.get(ch) ?? 0) + 1);
-  }
-  return [...counts.entries()].map(([title, noteCount], index) => ({
-    id: chapterId(title, index),
-    title,
-    noteCount,
-  }));
+  return (raw.beginnerPath ?? [])
+    .filter((m) => isGrundlagePathMission(m))
+    .map((m, index) => ({
+      id: m.id?.trim() || chapterId(m.title?.trim() || "Kapitel", index),
+      title: m.title?.trim() || `Kapitel ${index + 1}`,
+      noteCount: 0,
+    }));
 }
 
 function mapMission(

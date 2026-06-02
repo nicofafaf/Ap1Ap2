@@ -67,15 +67,21 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   const [selectedLf, setSelectedLf] = useState<number | null>(null);
   const [theoryLf, setTheoryLf] = useState<LearningField>("LF1");
   const [theoryOpen, setTheoryOpen] = useState(false);
+  const codexCloseToken = useGameStore((s) => s.codexCloseToken);
   const [technicalDossierOpen, setTechnicalDossierOpen] = useState(false);
   const [hallRecordsOpen, setHallRecordsOpen] = useState(false);
   const [coreAugOpen, setCoreAugOpen] = useState(false);
   const [legacyCreditsOpen, setLegacyCreditsOpen] = useState(false);
   useEffect(() => {
+    if (codexCloseToken > 0) setTheoryOpen(false);
+  }, [codexCloseToken]);
+
+  useEffect(() => {
     const onDossier = () => setTechnicalDossierOpen(true);
     const onHall = () => setHallRecordsOpen(true);
     const onTheory = () => {
-      setTheoryLf("LF1");
+      const lf = useGameStore.getState().activeLF;
+      setTheoryLf(`LF${lf >= 1 && lf <= 12 ? lf : 1}` as LearningField);
       setTheoryOpen(true);
     };
     window.addEventListener("nx:sector-open-dossier", onDossier);
@@ -441,7 +447,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         lf={selectedLf}
         onClose={() => setSelectedLf(null)}
         onEngage={handleCourseEngage}
-        onOpenCodex={() => {
+        onOpenTheory={() => {
           if (selectedLf != null) openTheoryForLf(selectedLf);
         }}
       />

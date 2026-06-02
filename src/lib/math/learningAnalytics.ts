@@ -3,7 +3,8 @@
  */
 
 import type { LearningField } from "../../data/nexusRegistry";
-import { CURRICULUM_BY_LF } from "../learning/learningRegistry";
+import { getCurriculumByLf, isCurriculumLoaded } from "../learning/curriculumAccess";
+import { getLfExerciseTotal } from "../learning/lfExerciseTotals";
 import {
   defaultLeitnerState,
   estimatedRetention,
@@ -26,6 +27,15 @@ export type LfHeatCell = {
 };
 
 const MS_PER_DAY = 86400000;
+
+const LF_ORDER: LearningField[] = Array.from(
+  { length: 12 },
+  (_, i) => `LF${i + 1}` as LearningField
+);
+
+function curriculumBag(lf: LearningField) {
+  return isCurriculumLoaded() ? getCurriculumByLf(lf) : [];
+}
 
 export function loadRetentionSeries(): RetentionHistoryPoint[] {
   try {
@@ -96,7 +106,7 @@ export function computeLfErrorHeatmap(
   const raw: LfHeatCell[] = [];
   for (let lf = 1; lf <= 12; lf += 1) {
     const key = `LF${lf}` as LearningField;
-    const curriculum = CURRICULUM_BY_LF[key] ?? [];
+    const curriculum = curriculumBag(key);
     if (curriculum.length === 0) {
       raw.push({ lf, strain: 0.12 });
       continue;
@@ -154,7 +164,7 @@ function avgCurriculumRetention(
   let n = 0;
   for (let lf = 1; lf <= 12; lf += 1) {
     const key = `LF${lf}` as LearningField;
-    const curriculum = CURRICULUM_BY_LF[key] ?? [];
+    const curriculum = curriculumBag(key);
     for (const ex of curriculum) {
       n += 1;
       const card = leitner[ex.id];
@@ -179,13 +189,21 @@ export function buildNeuralMentorReport(
   const { avgR, totalEx } = avgCurriculumRetention(leitner, now);
   const masteredRatio =
     totalEx > 0
-      ? (Object.keys(CURRICULUM_BY_LF) as LearningField[]).reduce((acc, lf) => {
-          const bag = CURRICULUM_BY_LF[lf] ?? [];
+      ? LF_ORDER.reduce((acc, lf) => {
+          const bag = curriculumBag(lf);
           const have = new Set(learningCorrectByLf[lf] ?? []);
           const ok = bag.filter((e) => have.has(e.id)).length;
           return acc + ok;
         }, 0) / totalEx
-      : 0;
+      : LF_ORDER.reduce((acc, lf) => {
+          const total = getLfExerciseTotal(lf);
+          if (total <= 0) return acc;
+          const solved = Math.min(
+            (learningCorrectByLf[lf] ?? []).length,
+            total
+          );
+          return acc + solved / total;
+        }, 0) / LF_ORDER.length;
 
   const examReadyScore = Math.round(
     Math.max(0, Math.min(100, avgR * 62 + masteredRatio * 38))
@@ -196,7 +214,7 @@ export function buildNeuralMentorReport(
 
   const focusAreas: NeuralMentorFocus[] = top.map((c) => {
     const lfKey = `LF${c.lf}` as LearningField;
-    const weakEx = (CURRICULUM_BY_LF[lfKey] ?? [])
+    const weakEx = curriculumBag(lfKey)
       .map((e) => ({
         id: e.id,
         title: e.title,

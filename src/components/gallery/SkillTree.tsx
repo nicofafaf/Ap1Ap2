@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useMemo } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
-import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
+import { getCurriculumByLf, isCurriculumLoaded } from "../../lib/learning/curriculumAccess";
+import { getLfExerciseTotal } from "../../lib/learning/lfExerciseTotals";
 import { typography } from "../../theme/typography";
 import { useGameStore } from "../../store/useGameStore";
 
@@ -26,10 +27,13 @@ export function SkillTree() {
   const rows = useMemo(
     () =>
       LF_ORDER.map((lf) => {
-        const curriculum = CURRICULUM_BY_LF[lf] ?? [];
-        const total = curriculum.length;
+        const curriculum = isCurriculumLoaded() ? getCurriculumByLf(lf) : [];
+        const total = curriculum.length > 0 ? curriculum.length : getLfExerciseTotal(lf);
         const have = new Set(learningCorrectByLf[lf] ?? []);
-        const correctCount = curriculum.filter((e) => have.has(e.id)).length;
+        const correctCount =
+          curriculum.length > 0
+            ? curriculum.filter((e) => have.has(e.id)).length
+            : Math.min(have.size, total);
         const ratio = total > 0 ? correctCount / total : 0;
         const mastered = total > 0 && correctCount >= total;
         return { lf, ratio, mastered, correctCount, total };

@@ -1,5 +1,6 @@
 import type { LearningField } from "../data/nexusRegistry";
-import { CURRICULUM_BY_LF } from "../lib/learning/learningRegistry";
+import { getCurriculumByLf, isCurriculumLoaded } from "../lib/learning/curriculumAccess";
+import { getLfExerciseTotal } from "../lib/learning/lfExerciseTotals";
 
 const AP1: LearningField[] = ["LF1", "LF2", "LF3", "LF4", "LF5", "LF6"];
 const AP2: LearningField[] = ["LF7", "LF8", "LF9", "LF10", "LF11", "LF12"];
@@ -11,12 +12,20 @@ function ratioForLfs(
   let need = 0;
   let hit = 0;
   for (const lf of lfs) {
-    const bag = CURRICULUM_BY_LF[lf] ?? [];
-    const want = new Set(bag.map((e) => e.id));
+    const needCount = isCurriculumLoaded()
+      ? getCurriculumByLf(lf).length
+      : getLfExerciseTotal(lf);
+    const want = isCurriculumLoaded()
+      ? new Set(getCurriculumByLf(lf).map((e) => e.id))
+      : null;
     const have = new Set(correctByLf[lf] ?? []);
-    need += want.size;
-    for (const id of want) {
-      if (have.has(id)) hit += 1;
+    need += needCount;
+    if (want) {
+      for (const id of want) {
+        if (have.has(id)) hit += 1;
+      }
+    } else {
+      hit += Math.min(have.size, needCount);
     }
   }
   if (need === 0) return 1;

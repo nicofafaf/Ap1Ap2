@@ -2,7 +2,7 @@
  * Boot-Integrität + Registry-Drift: lokales Lern-Wissen (localStorage) mit Curriculum abgleichen
  */
 
-import { CURRICULUM_BY_LF } from "../learning/learningRegistry";
+import { ensureCurriculumLoaded, getCurriculumByLf } from "../learning/curriculumAccess";
 import type { LearningField } from "../../data/nexusRegistry";
 import { NEXUS_CORE_INTEGRITY_TAG, NEXUS_MANIFEST_SHA256_EXPECTED } from "./coreIntegrityManifest";
 import {
@@ -29,9 +29,10 @@ const LF_ORDER: LearningField[] = [
 ];
 
 export async function computeLearningRegistryFingerprint(): Promise<string> {
+  await ensureCurriculumLoaded();
   const parts: string[] = [];
   for (const lf of LF_ORDER) {
-    const bag = CURRICULUM_BY_LF[lf] ?? [];
+    const bag = getCurriculumByLf(lf);
     const ids = bag
       .map((e) => e.id)
       .sort()

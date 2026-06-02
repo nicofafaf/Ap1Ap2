@@ -186,6 +186,21 @@
     "readAria": "Kurz erklärt",
     "introProgress": "Einstieg {n} von {total}"
   },
+  "edtechTheory": {
+    "title": "Theorie",
+    "lead": "Grundlagen — kurz lesen, dann üben",
+    "subtitle": "Gleiche Inhalte wie beim Üben — nur zum Lesen",
+    "chapterProgress": "Kapitel {n} von {total}",
+    "close": "Schließen",
+    "loading": "Inhalte werden geladen…",
+    "emptyTitle": "Noch keine Lesekapitel",
+    "emptyBody": "Starte die Übungen — dort steht die Erklärung vor jeder Frage",
+    "navAria": "Kapitel",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "topicFallback": "Grundlagen",
+    "tocAria": "Alle Kapitel"
+  },
   "hub": {
     "eyebrow": "LernenSchule",
     "headline": "Deine ruhige Lernzentrale",

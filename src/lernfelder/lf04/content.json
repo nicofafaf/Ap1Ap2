@@ -74,6 +74,52 @@
       }
     },
     {
+      "id": "lf4-grund-psu",
+      "topic": "Hardware-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Netzteil — Leistung in Watt",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Das Netzteil liefert Strom in Watt — alle Verbraucher zusammen dürfen die Leistung nicht überlasten" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie eine Steckdosenleiste mit maximaler Belastung — zu viele Geräte gleichzeitig fliegen die Sicherung" },
+        { "title": "Merksatz", "body": "Summe der Verbraucher plus Reserve — Wirkungsgrad reduziert nutzbare Leistung" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "CPU GPU und Festplatten addieren Watt — Netzteil muss größer sein als der Bedarf" },
+      "practice": {
+        "type": "mc",
+        "question": "Warum braucht man Reserve beim Netzteil",
+        "options": [
+          { "text": "Spitzenlast und Wirkungsgrad erfordern Puffer", "correct": true },
+          { "text": "Reserve macht den PC langsamer", "correct": false, "hint": "Reserve schützt vor Unterversorgung" },
+          { "text": "Netzteile liefern immer exakt 250 W", "correct": false, "hint": "Es gibt verschiedene Größen" },
+          { "text": "Reserve ersetzt RAM", "correct": false, "hint": "Strom und Arbeitsspeicher sind getrennt" }
+        ]
+      }
+    },
+    {
+      "id": "lf4-grund-speicher",
+      "topic": "Hardware-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "SSD und HDD",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "SSD ist schneller und ohne bewegliche Teile — HDD ist günstiger mit Scheiben und Magnetköpfen" },
+        { "title": "Vergleich aus dem Alltag", "body": "SSD wie USB-Stick ohne Mechanik — HDD wie eine Schallplatte die sich dreht" },
+        { "title": "Merksatz", "body": "Betriebssystem auf SSD startet schneller — große Archive können auf HDD" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Windows auf SSD — Datenarchiv auf großer HDD spart Kosten" },
+      "practice": {
+        "type": "mc",
+        "question": "Was trifft auf eine SSD am ehesten zu",
+        "options": [
+          { "text": "Schneller Zugriff ohne bewegliche Teile", "correct": true },
+          { "text": "Immer lauter wegen rotierender Scheiben", "correct": false, "hint": "Rotation ist typisch für HDD" },
+          { "text": "Nur für Netzwerkkabel", "correct": false, "hint": "SSD ist Speicher" },
+          { "text": "Ersetzt die CPU", "correct": false, "hint": "Prozessor und Speicher sind verschieden" }
+        ]
+      }
+    },
+    {
       "id": "lf4-sw-ion",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",

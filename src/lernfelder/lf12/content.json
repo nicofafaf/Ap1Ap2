@@ -74,6 +74,52 @@
       }
     },
     {
+      "id": "lf12-grund-daily",
+      "topic": "Agile-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Daily und Transparenz",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Im Daily sagt jedes Teammitglied kurz was gestern war was heute kommt und ob Hindernisse da sind" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie kurzer Morgen-Check beim Umzug — wer braucht Hilfe" },
+        { "title": "Merksatz", "body": "Daily ist Sync — keine Stunden-Statusveranstaltung" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "15 Minuten stehen alle im Kreis — Blocker werden notiert" },
+      "practice": {
+        "type": "mc",
+        "question": "Wozu dient das Daily in Scrum",
+        "options": [
+          { "text": "Kurze Abstimmung und Hindernisse sichtbar machen", "correct": true },
+          { "text": "Neue Anforderungen ohne PO entscheiden", "correct": false, "hint": "Priorität bleibt beim PO" },
+          { "text": "Code ohne Review ausliefern", "correct": false, "hint": "Qualität bleibt wichtig" },
+          { "text": "Sprint komplett neu planen", "correct": false, "hint": "Daily ersetzt nicht Sprint Planning" }
+        ]
+      }
+    },
+    {
+      "id": "lf12-grund-review",
+      "topic": "Agile-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Review und Retrospektive",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Sprint Review zeigt das fertige Inkrement — Retrospektive verbessert die Zusammenarbeit im Team" },
+        { "title": "Vergleich aus dem Alltag", "body": "Review ist die Präsentation des Umzugs-Fortschritts — Retro ist was lief beim nächsten Mal besser" },
+        { "title": "Merksatz", "body": "Review = Produkt — Retro = Prozess" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Stakeholder sehen die Demo — Team bespricht danach Verbesserungen" },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist der Fokus der Sprint Retrospektive",
+        "options": [
+          { "text": "Wie das Team im nächsten Sprint besser zusammenarbeitet", "correct": true },
+          { "text": "Nur neue Features verkaufen", "correct": false, "hint": "Das ist eher Review mit Stakeholdern" },
+          { "text": "SQL-Abfragen optimieren", "correct": false, "hint": "Technik kann Thema sein ist aber nicht der Scrum-Fokus" },
+          { "text": "Netzwerkkabel sortieren", "correct": false, "hint": "Das ist kein Agile-Event" }
+        ]
+      }
+    },
+    {
       "id": "lf12-sw-po",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",

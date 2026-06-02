@@ -1,3 +1,4 @@
+/** @deprecated Legacy „Codex Iridium“ — Nutzung über {@link EdtechTheoryReader}. Datei bleibt vorerst im Archiv. */
 import { useEffect, useMemo, useState } from "react";
 import type { LearningField } from "../../data/nexusRegistry";
 import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";

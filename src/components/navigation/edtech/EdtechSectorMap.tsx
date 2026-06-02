@@ -1,6 +1,6 @@
 ﻿import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { CodexIridium } from "../../archive/CodexIridium";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { EdtechTheoryReader } from "./EdtechTheoryReader";
 import ArtifactGallery from "../../gallery/ArtifactGallery";
 import { getNexusEntryForLF, publicAssetUrl, type LearningField } from "../../../data/nexusRegistry";
 import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
@@ -61,37 +61,30 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   const overlayOpenState = useGameStore((s) => s.overlayOpenState);
   const setOverlayOpenState = useGameStore((s) => s.setOverlayOpenState);
   const setExamPresentationMode = useGameStore((s) => s.setExamPresentationMode);
-  const codexCloseToken = useGameStore((s) => s.codexCloseToken);
   const trainingTrack = useGameStore((s) => s.trainingTrack);
 
   const [extrasOpen, setExtrasOpen] = useState(false);
   const [selectedLf, setSelectedLf] = useState<number | null>(null);
-  const [codexLf, setCodexLf] = useState<LearningField | undefined>(undefined);
-  const [codexOpen, setCodexOpen] = useState(false);
+  const [theoryLf, setTheoryLf] = useState<LearningField>("LF1");
+  const [theoryOpen, setTheoryOpen] = useState(false);
   const [technicalDossierOpen, setTechnicalDossierOpen] = useState(false);
   const [hallRecordsOpen, setHallRecordsOpen] = useState(false);
   const [coreAugOpen, setCoreAugOpen] = useState(false);
   const [legacyCreditsOpen, setLegacyCreditsOpen] = useState(false);
-  const lastCodexCloseRef = useRef(0);
-
-  useEffect(() => {
-    if (codexCloseToken > lastCodexCloseRef.current) {
-      lastCodexCloseRef.current = codexCloseToken;
-      setCodexOpen(false);
-    }
-  }, [codexCloseToken]);
-
   useEffect(() => {
     const onDossier = () => setTechnicalDossierOpen(true);
     const onHall = () => setHallRecordsOpen(true);
-    const onCodex = () => setCodexOpen(true);
+    const onTheory = () => {
+      setTheoryLf("LF1");
+      setTheoryOpen(true);
+    };
     window.addEventListener("nx:sector-open-dossier", onDossier);
     window.addEventListener("nx:sector-open-hall-records", onHall);
-    window.addEventListener("nx:sector-open-codex", onCodex);
+    window.addEventListener("nx:sector-open-codex", onTheory);
     return () => {
       window.removeEventListener("nx:sector-open-dossier", onDossier);
       window.removeEventListener("nx:sector-open-hall-records", onHall);
-      window.removeEventListener("nx:sector-open-codex", onCodex);
+      window.removeEventListener("nx:sector-open-codex", onTheory);
     };
   }, []);
 
@@ -113,9 +106,9 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
     onEngage(lf, opts);
   };
 
-  const openCodexForLf = (lf: number) => {
-    setCodexLf(`LF${lf}` as LearningField);
-    setCodexOpen(true);
+  const openTheoryForLf = (lf: number) => {
+    setTheoryLf(`LF${lf}` as LearningField);
+    setTheoryOpen(true);
   };
 
   const scanRingForLf = (lf: number): "stable" | "gap" | "neutral" | undefined => {
@@ -385,8 +378,8 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
                 type="button"
                 data-nx-tutorial="codex"
                 onClick={() => {
-                  setCodexLf(undefined);
-                  setCodexOpen(true);
+                  setTheoryLf("LF1");
+                  setTheoryOpen(true);
                 }}
                 style={edtechMenuBtn}
               >
@@ -449,35 +442,21 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         onClose={() => setSelectedLf(null)}
         onEngage={handleCourseEngage}
         onOpenCodex={() => {
-          if (selectedLf != null) openCodexForLf(selectedLf);
+          if (selectedLf != null) openTheoryForLf(selectedLf);
         }}
       />
       <AnimatePresence>
-        {codexOpen ? (
-          <motion.div
-            key="edtech-codex"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 70,
-              background: "rgba(15, 23, 42, 0.55)",
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)",
-              padding: "min(5vh, 32px) min(4vw, 28px)",
-              overflow: "auto",
+        {theoryOpen ? (
+          <EdtechTheoryReader
+            key={`theory-${theoryLf}`}
+            lf={theoryLf}
+            onClose={() => setTheoryOpen(false)}
+            onStartExercises={() => {
+              const n = Number.parseInt(theoryLf.replace("LF", ""), 10);
+              setTheoryOpen(false);
+              if (Number.isFinite(n)) handleCourseEngage(n, "learn");
             }}
-          >
-            <div style={{ position: "absolute", top: 18, right: 20 }}>
-              <button type="button" onClick={() => setCodexOpen(false)} style={edtechMenuBtn}>
-                {t("map.edtechClose")}
-              </button>
-            </div>
-            <CodexIridium initialLf={codexLf} />
-          </motion.div>
+          />
         ) : null}
       </AnimatePresence>
     </div>

@@ -14,7 +14,7 @@ import {
   type AchievementType,
 } from "../../data/achievementRegistry";
 import { getBossThumbnailCandidates, getNexusEntryForLF, type LearningField } from "../../data/nexusRegistry";
-import { CURRICULUM_BY_LF } from "../../lib/learning/learningRegistry";
+import { getLfExerciseTotal } from "../../lib/learning/lfExerciseTotals";
 import { useGameStore } from "../../store/useGameStore";
 import type { GlobalCollectionEntry } from "../../store/useGameStore";
 import {
@@ -32,7 +32,7 @@ import { HallOfRecords } from "../menu/HallOfRecords";
 import { NexusSyncStatus } from "../menu/NexusSyncStatus";
 import { TechnicalDossier } from "../menu/TechnicalDossier";
 import { LegacyCredits } from "../menu/LegacyCredits";
-import { CodexIridium } from "../archive/CodexIridium";
+import { EdtechTheoryReader } from "./edtech/EdtechTheoryReader";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { readEpilogueUnlocked } from "../../lib/progression/nexusEpilogue";
 import {
@@ -320,9 +320,9 @@ export function SectorMap({
   const [hallRecordsOpen, setHallRecordsOpen] = useState(false);
   const [endlessDeepDiveOptIn, setEndlessDeepDiveOptIn] = useState(false);
   const [technicalDossierOpen, setTechnicalDossierOpen] = useState(false);
-  const [codexOpen, setCodexOpen] = useState(false);
-  const codexCloseToken = useGameStore((s) => s.codexCloseToken);
-  const lastCodexCloseTokenRef = useRef(0);
+  const activeLfNum = useGameStore((s) => s.activeLF);
+  const [theoryOpen, setTheoryOpen] = useState(false);
+  const [theoryLf, setTheoryLf] = useState<LearningField>("LF1");
   const [epilogLoreOpen, setEpilogLoreOpen] = useState(false);
   const [legacyCreditsOpen, setLegacyCreditsOpen] = useState(false);
   const [dailyPanelOpen, setDailyPanelOpen] = useState(false);
@@ -339,12 +339,11 @@ export function SectorMap({
   const edtechCalm = nexusChrome === "edtech";
   const isFirstBoot = useGameStore((s) => s.isFirstBoot);
 
-  useEffect(() => {
-    if (codexCloseToken > lastCodexCloseTokenRef.current) {
-      lastCodexCloseTokenRef.current = codexCloseToken;
-      setCodexOpen(false);
-    }
-  }, [codexCloseToken]);
+  const openTheoryForLf = useCallback((lf: number) => {
+    const n = lf >= 1 && lf <= 12 ? lf : 1;
+    setTheoryLf(`LF${n}` as LearningField);
+    setTheoryOpen(true);
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 780px), (max-height: 640px)");
@@ -373,7 +372,7 @@ export function SectorMap({
   useEffect(() => {
     const onDossier = () => setTechnicalDossierOpen(true);
     const onHall = () => setHallRecordsOpen(true);
-    const onCodex = () => setCodexOpen(true);
+    const onCodex = () => openTheoryForLf(activeLfNum);
     const onDaily = () => setDailyPanelOpen(true);
     window.addEventListener("nx:sector-open-dossier", onDossier);
     window.addEventListener("nx:sector-open-hall-records", onHall);
@@ -385,7 +384,7 @@ export function SectorMap({
       window.removeEventListener("nx:sector-open-codex", onCodex);
       window.removeEventListener("nx:sector-open-daily-panel", onDaily);
     };
-  }, []);
+  }, [activeLfNum, openTheoryForLf]);
 
   const dateKey = useMemo(() => getUtcDateKey(), [utcTick]);
   const dailyDef = useMemo(() => getDailyIncursionDefinition(dateKey), [dateKey]);
@@ -395,10 +394,9 @@ export function SectorMap({
     const out: Record<number, { ratio: number; mastered: boolean }> = {};
     for (let lf = 1; lf <= 12; lf += 1) {
       const key = `LF${lf}` as LearningField;
-      const curriculum = CURRICULUM_BY_LF[key] ?? [];
       const have = new Set(learningCorrectByLf[key] ?? []);
-      const correct = curriculum.filter((e) => have.has(e.id)).length;
-      const total = curriculum.length;
+      const correct = (learningCorrectByLf[key] ?? []).filter((id) => have.has(id)).length;
+      const total = getLfExerciseTotal(key);
       const ratio = total > 0 ? correct / total : 0;
       const mastered = total > 0 && correct >= total;
       out[lf] = { ratio, mastered };
@@ -1034,7 +1032,7 @@ export function SectorMap({
                 <button
                   type="button"
                   data-nx-tutorial="codex"
-                  onClick={() => setCodexOpen(true)}
+                  onClick={() => openTheoryForLf(activeLfNum)}
                   style={{
                     borderRadius: 10,
                     border: "1px solid rgba(251,247,239,0.18)",
@@ -1046,7 +1044,7 @@ export function SectorMap({
                     cursor: "pointer",
                   }}
                 >
-                  Ãœbungen
+                  {t("map.edtechMenuExercises")}
                 </button>
                 <button
                   type="button"
@@ -1613,43 +1611,17 @@ export function SectorMap({
       <HallOfRecords open={hallRecordsOpen} onClose={() => setHallRecordsOpen(false)} />
       <CoreAugmentations open={coreAugOpen} onClose={() => setCoreAugOpen(false)} />
       <AnimatePresence>
-        {codexOpen ? (
-          <motion.div
-            key="codex-root"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 70,
-              background: "rgba(5,5,7,0.8)",
-              padding: "min(5vh, 32px) min(4vw, 28px)",
-              overflow: "auto",
+        {theoryOpen ? (
+          <EdtechTheoryReader
+            key={`theory-${theoryLf}`}
+            lf={theoryLf}
+            onClose={() => setTheoryOpen(false)}
+            onStartExercises={() => {
+              const n = Number.parseInt(theoryLf.replace("LF", ""), 10);
+              setTheoryOpen(false);
+              if (Number.isFinite(n)) onEngage(n);
             }}
-          >
-            <div style={{ position: "absolute", top: 18, right: 20 }}>
-              <button
-                type="button"
-                onClick={() => setCodexOpen(false)}
-                style={{
-                  borderRadius: 8,
-                  border: "1px solid rgba(255,214,165,0.55)",
-                  background: "rgba(20,16,10,0.72)",
-                  color: "var(--nx-bone-90)",
-                  letterSpacing: ".12em",
-                  fontSize: 11,
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  textTransform: "uppercase",
-                }}
-              >
-                SchlieÃŸen
-              </button>
-            </div>
-            <CodexIridium />
-          </motion.div>
+          />
         ) : null}
       </AnimatePresence>
       {coachDockCompact && !edtechCalm ? (

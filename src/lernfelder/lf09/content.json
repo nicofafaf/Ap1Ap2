@@ -74,6 +74,52 @@
       }
     },
     {
+      "id": "lf9-grund-json",
+      "topic": "Schnittstellen-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "JSON — Datenformat",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "JSON ist ein Textformat für Daten — Schlüssel und Werte in geschweiften Klammern" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Formular mit Feldern Name Alter Stadt — nur maschinenlesbar" },
+        { "title": "Merksatz", "body": "APIs liefern oft JSON — in C# deserialisiert man mit passenden Klassen" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "{\"name\": \"Max\", \"score\": 42}" },
+      "practice": {
+        "type": "mc",
+        "question": "Wofür nutzt man JSON in Web-APIs",
+        "options": [
+          { "text": "Strukturierte Daten zwischen Client und Server austauschen", "correct": true },
+          { "text": "Netzwerkkabel zu crimpen", "correct": false, "hint": "Das ist Hardware" },
+          { "text": "BIOS zu flashen", "correct": false, "hint": "Firmware ist kein Datenaustauschformat" },
+          { "text": "SQL-Tabellen zu joinen", "correct": false, "hint": "JOIN ist SQL nicht JSON" }
+        ]
+      }
+    },
+    {
+      "id": "lf9-grund-status",
+      "topic": "Schnittstellen-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "HTTP-Statuscodes",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "200 bedeutet OK — 404 nicht gefunden — 500 Serverfehler" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie Ampelfarben — grün alles gut — rot etwas ist schiefgelaufen" },
+        { "title": "Merksatz", "body": "4xx oft Client-Problem — 5xx oft Server-Problem" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "GET /api/tickets/999 liefert 404 wenn die ID fehlt" },
+      "practice": {
+        "type": "mc",
+        "question": "Was bedeutet HTTP-Status 404 am einfachsten",
+        "options": [
+          { "text": "Ressource wurde nicht gefunden", "correct": true },
+          { "text": "Alles hat geklappt", "correct": false, "hint": "Das wäre eher 200" },
+          { "text": "Interner Serverfehler", "correct": false, "hint": "Das ist eher 5xx" },
+          { "text": "Erfolgreich neu angelegt", "correct": false, "hint": "Das ist oft 201 bei POST" }
+        ]
+      }
+    },
+    {
       "id": "lf9-sw-http",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",

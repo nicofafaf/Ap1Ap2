@@ -62,18 +62,20 @@
 
 | LF | AP | Standard-Thema (Kurz) | Übungen (Stand) | Besonderes |
 |----|-----|------------------------|-----------------|------------|
-| LF1 | AP1 | Wirtschaft, Recht, WiSo | 71 | +30 IHK WiSo Sommer 2026 |
-| LF2 | AP1 | IT-Grundlagen, Clients, Infrastruktur | 64 | +15 LF2-Prüfungsmissionen + 8 GA1 Sommer 2026 |
-| LF3 | AP1 | Netzwerke, Protokolle | 40 | Netplan-Simulator |
-| LF4 | AP1 | Server, Virtualisierung, Hardware | 40 | |
-| LF5 | AP1 | SQL, Datenbanken | 38 | SQL-Workbench |
-| LF6 | AP1 | Skripte, Automatisierung | 30 | |
-| LF7 | AP2 | OOP, C#, Sicherheit | 25 | C#-Exam-Drills |
-| LF8 | AP2 | Linux, Datenmodelle | 31 | |
-| LF9 | AP2 | APIs, Dienste | 35 | |
-| LF10 | AP2 | PM / Server (track-abhängig) | 32 | +8 GA2 Sommer 2026; FISI: Server/Netz |
-| LF11 | AP2 | Sicherheit / Funktionalität (track) | 24 | |
-| LF12 | AP2 | Agile PM / Kundenentwicklung (track) | 23 | |
+| LF1 | AP1 | Wirtschaft, Recht, WiSo | 77 | +31 IHK WiSo Sommer 2026; Grundlagen-Kette |
+| LF2 | AP1 | IT-Grundlagen, Clients, Infrastruktur | 69 | +15 LF2-Prüfungsmissionen + 10 GA1 Sommer 2026; C#-Grundlagen |
+| LF3 | AP1 | Netzwerke, Protokolle | 50 | Netplan-Simulator; MAC/OSI/DNS/Router Grundlagen |
+| LF4 | AP1 | Server, Virtualisierung, Hardware | 47 | PSU/SSD Grundlagen |
+| LF5 | AP1 | SQL, Datenbanken | 39 | SQL-Workbench; 8-Kapitel-SQL-Grundlagen (ohne deprecated SQL-Duplikat-Set) |
+| LF6 | AP1 | Skripte, Automatisierung | 36 | C#-Workbench + C#-Prüfungsdrills (keine JS-Drills mehr) |
+| LF7 | AP2 | OOP, C#, Sicherheit | 38 | C#-Kette inkl. foreach/switch/override |
+| LF8 | AP2 | Linux, Datenmodelle | 38 | Pfade/chmod Grundlagen |
+| LF9 | AP2 | APIs, Dienste | 42 | JSON/HTTP-Status Grundlagen |
+| LF10 | AP2 | PM / Server (track-abhängig) | 42 | +10 GA2 Sommer 2026; agil/Puffer Grundlagen |
+| LF11 | AP2 | Sicherheit / Funktionalität (track) | 31 | Phishing/MFA Grundlagen |
+| LF12 | AP2 | Agile PM / Kundenentwicklung (track) | 30 | Daily/Review-Retro Grundlagen |
+
+**Gesamt (Registry):** 539 Übungen · Entry-Bundle lazy Curriculum (~401 KB) · `npm run verify`
 
 **Training Tracks (Onboarding):**
 - `ae` = Anwendungsentwicklung  
@@ -381,7 +383,8 @@ MC-Frage zur WHERE-Clause, 4 Optionen.
 | Hoch | DOCX/Lernfeld-Import | Weitere offizielle LF-Materialien in JSON gießen |
 | Mittel | LLM-Erklär-Coach | Falsche Antwort → tieferer Hint (ohne Lösung verraten) |
 | Mittel | Multi-Select / Zuordnung | WiSo hat „kreuze zwei an“ — aktuell nur Single-MC |
-| Niedrig | Bundle-Größe | Entry ~760 KB (Budget-Warnung 520 KB) — Code-Splitting |
+| ~~Erledigt~~ | Bundle-Größe | Entry lazy Curriculum-Chunk (~401 KB ≤ 520 KB Budget) |
+| ~~Erledigt~~ | Theorie (EdTech) | „Theorie öffnen“ → `EdtechTheoryReader` (lessonCards aus Grundlagen), nicht Codex Iridium |
 | ~~Erledigt~~ | Lernpfad lxpert + Trennung | `learnPathFilters.ts`: grundlage → vertiefung → prüfung |
 | ~~Erledigt~~ | LF5 SQL Grundlagen-Kette | Kapitel wie sql-grundlagen bis UPDATE/Tipps |
 

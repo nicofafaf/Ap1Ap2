@@ -25,8 +25,9 @@ import {
   getSommer2026DurationMs,
   type Sommer2026PackId,
 } from "../lib/curriculum/sommer2026Exams";
+import { getLfExerciseTotal } from "../lib/learning/lfExerciseTotals";
+import { getCurriculumByLf, ensureCurriculumLoaded } from "../lib/learning/curriculumAccess";
 import {
-  CURRICULUM_BY_LF,
   applyLeitnerReview,
   getBeginnerExerciseForLf,
   getNextLearnExerciseForLf,
@@ -2221,10 +2222,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
       const nextCorrectLf = [...prevCorrect, exerciseId];
       const nextCorrectMap = { ...state.learningCorrectByLf, [lf]: nextCorrectLf };
-      const curriculum = CURRICULUM_BY_LF[lf] ?? [];
-      const need = new Set(curriculum.map((e) => e.id));
+      const total = getLfExerciseTotal(lf);
       const have = new Set(nextCorrectLf);
-      const mastered = curriculum.length > 0 && [...need].every((id) => have.has(id));
+      const mastered = total > 0 && have.size >= total;
       let nextBadges = state.lfArchitectBadgeGranted;
       if (mastered && !state.lfArchitectBadgeGranted[lf]) {
         nextBadges = { ...state.lfArchitectBadgeGranted, [lf]: true };
@@ -2514,10 +2514,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   mergeLocalKnowledgeWithRegistry: async (registryFingerprint) => {
+    await ensureCurriculumLoaded();
     const state = get();
     const allValid = new Set(
-      (Object.keys(CURRICULUM_BY_LF) as LearningField[]).flatMap(
-        (lf) => (CURRICULUM_BY_LF[lf] ?? []).map((e) => e.id)
+      (["LF1", "LF2", "LF3", "LF4", "LF5", "LF6", "LF7", "LF8", "LF9", "LF10", "LF11", "LF12"] as LearningField[]).flatMap(
+        (lf) => getCurriculumByLf(lf).map((e) => e.id)
       )
     );
     const leitner = { ...state.learningLeitnerByExerciseId };
@@ -2526,8 +2527,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
     const correctByLf = { ...state.learningCorrectByLf };
     for (const lf of EMPTY_LEARNING_FIELDS()) {
-      const curriculum = CURRICULUM_BY_LF[lf] ?? [];
-      const v = new Set(curriculum.map((e) => e.id));
+      const v = new Set(getCurriculumByLf(lf).map((e) => e.id));
       correctByLf[lf] = (correctByLf[lf] ?? []).filter((id) => v.has(id));
     }
     const normalized = normalizeCorrectMap(correctByLf);

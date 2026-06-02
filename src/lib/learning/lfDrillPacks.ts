@@ -109,78 +109,8 @@ const LF4: LearningExercise[] = [
   },
 ];
 
-const LF6: LearningExercise[] = [
-  {
-    id: "js-array-map",
-    title: "Array.map",
-    problem: "const prices = [10, 20]; const gross = prices.map(p => p * 1.19); — Was enthält gross?",
-    solutionCode: "[11.9, 23.8]",
-    lang: "javascript",
-    mcQuestion: "Was macht map hier?",
-    mcOptions: [
-      { id: "a", text: "Neues Array mit transformierten Werten", isCorrect: true },
-      { id: "b", text: "Nur die erste Position ändern", isCorrect: false, whyWrongHint: "map wendet die Funktion auf jedes Element an" },
-      { id: "c", text: "Das Array sortieren", isCorrect: false, whyWrongHint: "sort() wäre separate Methode" },
-      { id: "d", text: "Einen einzelnen Summenwert", isCorrect: false, whyWrongHint: "reduce() summiert, map mappt" },
-    ],
-  },
-  {
-    id: "js-strict-equal",
-    title: "=== vs ==",
-    problem: "Warum bevorzugt man oft === in JavaScript?",
-    solutionCode: "=== vergleicht ohne Typumwandlung",
-    lang: "javascript",
-    mcQuestion: "Unterschied === und ==?",
-    mcOptions: [
-      { id: "a", text: "=== ohne implizite Typumwandlung", isCorrect: true },
-      { id: "b", text: "=== wandelt Strings immer in Zahlen", isCorrect: false, whyWrongHint: "Das ist eher == Verhalten" },
-      { id: "c", text: "== ist strikter", isCorrect: false, whyWrongHint: "== ist lockerer wegen Coercion" },
-      { id: "d", text: "Kein Unterschied", isCorrect: false, whyWrongHint: "0 == '0' ist true, 0 === '0' ist false" },
-    ],
-  },
-  {
-    id: "js-function-arrow",
-    title: "Arrow Function",
-    problem: "const add = (a, b) => a + b; — Was ist add?",
-    solutionCode: "Eine Funktion, die die Summe zurückgibt",
-    lang: "javascript",
-    mcQuestion: "Was beschreibt diese Schreibweise?",
-    mcOptions: [
-      { id: "a", text: "Kurzsyntax für eine Funktion mit implizitem return", isCorrect: true },
-      { id: "b", text: "Eine Schleife", isCorrect: false, whyWrongHint: "Kein for/while — Funktionsausdruck" },
-      { id: "c", text: "Ein SQL-Join", isCorrect: false, whyWrongHint: "Kein SQL" },
-      { id: "d", text: "Ein VLAN-Tag", isCorrect: false, whyWrongHint: "Netzwerk-Thema" },
-    ],
-  },
-  {
-    id: "js-json-parse",
-    title: "JSON.parse",
-    problem: "API liefert String '{\"ok\":true}'. Wie wird ein Objekt daraus?",
-    solutionCode: "JSON.parse(text)",
-    lang: "javascript",
-    mcQuestion: "String → JavaScript-Objekt?",
-    mcOptions: [
-      { id: "a", text: "JSON.parse", isCorrect: true },
-      { id: "b", text: "JSON.stringify", isCorrect: false, whyWrongHint: "stringify macht Objekt → String" },
-      { id: "c", text: "console.log allein", isCorrect: false, whyWrongHint: "log gibt aus, parst nicht" },
-      { id: "d", text: "SELECT * FROM json", isCorrect: false, whyWrongHint: "SQL-Syntax in JS ungültig" },
-    ],
-  },
-  {
-    id: "js-dom-query",
-    title: "DOM — querySelector",
-    problem: "Dokument soll Button mit id save finden — welche Methode?",
-    solutionCode: "document.querySelector('#save')",
-    lang: "javascript",
-    mcQuestion: "Element per CSS-Selektor?",
-    mcOptions: [
-      { id: "a", text: "document.querySelector('#save')", isCorrect: true },
-      { id: "b", text: "document.join('#save')", isCorrect: false, whyWrongHint: "join existiert nicht am document" },
-      { id: "c", text: "ping save", isCorrect: false, whyWrongHint: "ping ist Netzwerk" },
-      { id: "d", text: "chmod 755 save", isCorrect: false, whyWrongHint: "Shell-Befehl" },
-    ],
-  },
-];
+/** LF6: Prüfungssprache C# — keine JS-Drills mehr (Inhalt in lf06/content.json + AP-Drills) */
+const LF6: LearningExercise[] = [];
 
 const LF7: LearningExercise[] = [
   {

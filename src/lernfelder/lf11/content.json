@@ -74,6 +74,52 @@
       }
     },
     {
+      "id": "lf11-grund-phishing",
+      "topic": "Sicherheits-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Phishing erkennen",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Phishing täuscht dich mit gefälschten Mails oder Seiten — Ziel sind Passwörter oder Klicks auf Malware" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein gefälschter Brief vom Bank — Logo sieht echt aus — Absender stimmt nicht" },
+        { "title": "Merksatz", "body": "Link prüfen — nicht blind klicken — bei Zweifel direkt beim Absender nachfragen" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Mail fordert sofortiges Passwort-Update über unbekannte Domain" },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist ein typisches Phishing-Ziel",
+        "options": [
+          { "text": "Zugangsdaten oder Malware-Installation", "correct": true },
+          { "text": "CPU-Taktung erhöhen", "correct": false, "hint": "Phishing zielt auf Menschen nicht MHz" },
+          { "text": "SQL-Index optimieren", "correct": false, "hint": "Das ist Datenbanktuning" },
+          { "text": "Netzplan zeichnen", "correct": false, "hint": "Das ist Projektmanagement" }
+        ]
+      }
+    },
+    {
+      "id": "lf11-grund-passwort",
+      "topic": "Sicherheits-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Passwörter und MFA",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Lange einzigartige Passwörter plus Multi-Faktor-Authentifizierung schützen Accounts auch wenn ein Passwort leakt" },
+        { "title": "Vergleich aus dem Alltag", "body": "Tür mit zwei Schlössern — einer reicht nicht wenn einer kopiert wurde" },
+        { "title": "Merksatz", "body": "Passwortmanager — MFA für Mail und Admin-Konten" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Login mit Passwort plus Code aus Authenticator-App" },
+      "practice": {
+        "type": "mc",
+        "question": "Was verbessert MFA am stärksten",
+        "options": [
+          { "text": "Zweiter Faktor neben dem Passwort", "correct": true },
+          { "text": "Kürzere Passwörter", "correct": false, "hint": "Kürzer ist schwächer" },
+          { "text": "Ein Passwort für alle Dienste", "correct": false, "hint": "Wiederverwendung ist riskant" },
+          { "text": "Passwort im Klartext speichern", "correct": false, "hint": "Klartext ist unsicher" }
+        ]
+      }
+    },
+    {
       "id": "lf11-sw-shield-debug",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",

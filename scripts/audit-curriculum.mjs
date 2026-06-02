@@ -1,5 +1,8 @@
-import { CURRICULUM_BY_LF } from "../src/lib/learning/learningRegistry.ts";
+import { ensureCurriculumLoaded, getCurriculumRecord } from "../src/lib/learning/curriculumAccess.ts";
 import { REFERENCE_EXERCISES_BY_LF } from "../src/lib/learning/buildReferenceExercises.ts";
+
+await ensureCurriculumLoaded();
+const CURRICULUM_BY_LF = getCurriculumRecord();
 
 const all = Object.values(CURRICULUM_BY_LF).flat();
 const byQ = new Map();

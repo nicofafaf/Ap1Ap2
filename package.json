@@ -14,7 +14,7 @@
     "prune:assets": "node scripts/prune-nexus-assets.mjs",
     "generate:ap-drills": "node scripts/generate-ap-exam-drills.mjs",
     "verify": "npm run typecheck && npm test && npm run build && npm run audit:curriculum",
-    "audit:curriculum": "node scripts/audit-curriculum.mjs"
+    "audit:curriculum": "vite-node scripts/audit-curriculum.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.22",

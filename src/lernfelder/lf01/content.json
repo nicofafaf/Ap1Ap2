@@ -109,6 +109,52 @@
       }
     },
     {
+      "id": "lf1-grund-03-vertrag",
+      "topic": "WiSo-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Ausbildungsvertrag — Pflichten",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Im Vertrag stehen Rechte und Pflichten von Azubi und Betrieb — z B Berufsschule besuchen und Ausbildungsnachweis führen" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Trainingsplan beim Sport — beide Seiten halten sich an vereinbarte Regeln" },
+        { "title": "Merksatz", "body": "Unzulässige Klauseln können unwirksam sein — der Rest des Vertrags bleibt oft gültig" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Geheimhaltung von Betriebsgeheimnissen ist üblich — Bindung nach der Ausbildung oft nicht" },
+      "practice": {
+        "type": "mc",
+        "question": "Welche Pflicht hat der Auszubildende typischerweise",
+        "options": [
+          { "text": "Den Ausbildungsnachweis führen", "correct": true },
+          { "text": "Zwei Jahre nach der Ausbildung im Betrieb bleiben", "correct": false, "hint": "Eine solche Bindung ist meist unzulässig" },
+          { "text": "Keine Berufsschule besuchen", "correct": false, "hint": "Berufsschule gehört zur dualen Ausbildung" },
+          { "text": "Nur mündlich lernen ohne Dokumentation", "correct": false, "hint": "Der Nachweis ist vorgeschrieben" }
+        ]
+      }
+    },
+    {
+      "id": "lf1-grund-04-lohn",
+      "topic": "WiSo-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Vergütung und Lohn",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Die Ausbildungsvergütung steigt oft mit dem Lehrjahr — Brutto ist vor Abzügen Netto ist ausgezahlt" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie Gehalt auf dem Vertrag — auf dem Konto landet weniger wegen Steuern und Sozialabgaben" },
+        { "title": "Merksatz", "body": "Vergütung ist monatlich fällig — nicht erst nach zwei Wochen des Folgemonats als Standard" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "1. Lehrjahr hat eine feste Vergütung laut Tarif oder Vertrag" },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist der Unterschied zwischen Brutto und Netto",
+        "options": [
+          { "text": "Brutto vor Abzügen Netto auf dem Konto", "correct": true },
+          { "text": "Brutto ist immer kleiner als Netto", "correct": false, "hint": "Netto ist nach Abzügen meist kleiner" },
+          { "text": "Beides ist dasselbe bei Azubis", "correct": false, "hint": "Abzüge ändern den ausgezahlten Betrag" },
+          { "text": "Netto ist nur für Selbstständige", "correct": false, "hint": "Angestellte und Azubis haben beides" }
+        ]
+      }
+    },
+    {
       "id": "lf1-mission-kuat",
       "topic": "Corporate Espionage · Kuat",
       "level": "beginner",

@@ -5,18 +5,18 @@ import type { LearningField } from "../../data/nexusRegistry";
  * Bei Curriculum-Änderungen: `npm run audit:curriculum` und Werte anpassen.
  */
 export const LF_EXERCISE_TOTAL: Record<LearningField, number> = {
-  LF1: 75,
-  LF2: 67,
+  LF1: 77,
+  LF2: 69,
   LF3: 50,
-  LF4: 45,
-  LF5: 49,
-  LF6: 41,
-  LF7: 35,
+  LF4: 47,
+  LF5: 39,
+  LF6: 36,
+  LF7: 38,
   LF8: 38,
-  LF9: 40,
-  LF10: 40,
-  LF11: 29,
-  LF12: 28,
+  LF9: 42,
+  LF10: 42,
+  LF11: 31,
+  LF12: 30,
 };
 
 export function getLfExerciseTotal(lf: LearningField): number {

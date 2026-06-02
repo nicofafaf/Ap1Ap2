@@ -186,6 +186,21 @@
     "readAria": "Quick explanation",
     "introProgress": "Intro {n} of {total}"
   },
+  "edtechTheory": {
+    "title": "Theory",
+    "lead": "Basics — read first, then practice",
+    "subtitle": "Same content as in exercises — read-only",
+    "chapterProgress": "Chapter {n} of {total}",
+    "close": "Close",
+    "loading": "Loading content…",
+    "emptyTitle": "No reading chapters yet",
+    "emptyBody": "Start exercises — each one begins with a short explanation",
+    "navAria": "Chapters",
+    "prev": "Back",
+    "next": "Next",
+    "topicFallback": "Basics",
+    "tocAria": "All chapters"
+  },
   "hub": {
     "eyebrow": "LernenSchule",
     "headline": "Your calm learning hub",

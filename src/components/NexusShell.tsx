@@ -12,6 +12,7 @@ import type { LearningField } from "../data/nexusRegistry";
 import type { InitiateCombatOptions } from "../lib/dailyIncursion";
 import type { NexusHubMapExtras } from "../lib/ui/hubMapNavigation";
 import { useGameStore } from "../store/useGameStore";
+import { ensureCurriculumLoaded } from "../lib/learning/curriculumAccess";
 import { SectorMap } from "./navigation/SectorMap";
 import { MaintenanceOverlay } from "./system/MaintenanceOverlay";
 import { useNexusI18n } from "../lib/i18n/I18nProvider";
@@ -151,6 +152,10 @@ export function NexusShell() {
   const initiateCombat = useGameStore((s) => s.initiateCombat);
   const resetCombat = useGameStore((s) => s.resetCombat);
   const recomputeMenuSystemMood = useGameStore((s) => s.recomputeMenuSystemMood);
+
+  useEffect(() => {
+    void ensureCurriculumLoaded();
+  }, []);
 
   const handleEngage = useCallback(
     (lf: number, opts?: InitiateCombatOptions) => {

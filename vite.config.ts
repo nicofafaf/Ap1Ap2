@@ -184,6 +184,13 @@ function requiredNexusMediaPlugin(): Plugin {
  * Prüfsumme nur für den/die isEntry-Chunk(s) (ohne parallele vendor-* beim ersten Parse).
  */
 function nexusManualChunk(id: string): string | undefined {
+  if (id.includes("curriculumBundle") || id.includes("apExamDrillData")) {
+    return "curriculum-data";
+  }
+  if (id.includes("/lernfelder/") && id.endsWith(".json")) {
+    return "curriculum-lf-json";
+  }
+  if (id.includes("expandedCurriculum")) return "curriculum-expanded";
   if (!id.includes("node_modules")) return undefined;
   if (id.includes("framer-motion")) return "vendor-motion";
   if (id.includes("recharts")) return "vendor-charts";

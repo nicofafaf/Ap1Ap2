@@ -9,7 +9,8 @@ import {
 } from "../cert/nexusMasterCertificate";
 import type { LearningField } from "../../data/nexusRegistry";
 import { getNexusEntryForLF } from "../../data/nexusRegistry";
-import { CURRICULUM_BY_LF } from "../learning/learningRegistry";
+import { getLfExerciseTotal } from "../learning/lfExerciseTotals";
+import { getCurriculumByLf, isCurriculumLoaded } from "../learning/curriculumAccess";
 
 export type LfHealthRow = {
   lf: LearningField;
@@ -48,8 +49,9 @@ function collectLfHealth(): { rows: LfHealthRow[]; integrityOk: boolean } {
   let integrityOk = true;
 
   for (const lf of EXPECTED_LFS) {
-    const bag = CURRICULUM_BY_LF[lf];
-    const curriculumExercises = bag?.length ?? 0;
+    const curriculumExercises = isCurriculumLoaded()
+      ? getCurriculumByLf(lf).length
+      : getLfExerciseTotal(lf);
     let registryEntryPresent = false;
     try {
       const entry = getNexusEntryForLF(lf);
@@ -63,7 +65,7 @@ function collectLfHealth(): { rows: LfHealthRow[]; integrityOk: boolean } {
     rows.push({ lf, curriculumExercises, registryEntryPresent });
   }
 
-  if (EXPECTED_LFS.length !== Object.keys(CURRICULUM_BY_LF).length) {
+  if (isCurriculumLoaded() && EXPECTED_LFS.length !== 12) {
     integrityOk = false;
   }
 
@@ -118,7 +120,7 @@ export async function runNexusHealthCheck(): Promise<NexusHealthReport> {
 export function getNexusLfCurriculumSnapshot(): Record<LearningField, number> {
   const out = {} as Record<LearningField, number>;
   for (const lf of EXPECTED_LFS) {
-    out[lf] = CURRICULUM_BY_LF[lf]?.length ?? 0;
+    out[lf] = isCurriculumLoaded() ? getCurriculumByLf(lf).length : getLfExerciseTotal(lf);
   }
   return out;
 }

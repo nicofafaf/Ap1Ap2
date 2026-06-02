@@ -74,6 +74,52 @@
       }
     },
     {
+      "id": "lf10-grund-02-agil",
+      "topic": "Projekt-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Klassisch vs agil",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Klassisch plant man viel vorher — agil liefert in kurzen Sprints nutzbare Teile und passt den Plan an" },
+        { "title": "Vergleich aus dem Alltag", "body": "Klassisch wie kompletter Umzugsplan am Tag 1 — agil wie Raum für Raum einrichten und zwischendurch umdenken" },
+        { "title": "Merksatz", "body": "Agil = kurze Iterationen plus Feedback — nicht planlos" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Nach zwei Wochen Sprint zeigt das Team ein lauffähiges Mini-Feature" },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist typisch für agiles Arbeiten",
+        "options": [
+          { "text": "Kurze Iterationen mit regelmäßigem Feedback", "correct": true },
+          { "text": "Einmaliger Plan ohne Anpassung", "correct": false, "hint": "Das ist eher klassisch starr" },
+          { "text": "Keine Kommunikation im Team", "correct": false, "hint": "Agil braucht viel Abstimmung" },
+          { "text": "Nur Netzwerkkonfiguration", "correct": false, "hint": "Das ist Technik nicht PM-Methode" }
+        ]
+      }
+    },
+    {
+      "id": "lf10-grund-03-puffer",
+      "topic": "Projekt-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Puffer und Risiko",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Pufferzeit schützt vor Verzögerungen — Risiken früh benennen und Maßnahmen planen" },
+        { "title": "Vergleich aus dem Alltag", "body": "Früher losfahren wegen Stau-Risiko — das ist Puffer im Alltag" },
+        { "title": "Merksatz", "body": "Netzplan mit Puffer — kritische Kette zuerst im Blick" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Testphase bekommt zwei Tage Puffer vor Go-Live" },
+      "practice": {
+        "type": "mc",
+        "question": "Wozu dient Puffer im Projektplan",
+        "options": [
+          { "text": "Verzögerungen abfedern ohne sofortigen Terminbruch", "correct": true },
+          { "text": "Puffer ersetzt alle Aufgaben", "correct": false, "hint": "Puffer ist Reserve nicht Ersatzarbeit" },
+          { "text": "Puffer bedeutet weniger Qualität", "correct": false, "hint": "Puffer schützt Termine" },
+          { "text": "Puffer gilt nur in der Berufsschule", "correct": false, "hint": "Puffer ist Standard in PM" }
+        ]
+      }
+    },
+    {
       "id": "lf10-mission-destroyer",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",

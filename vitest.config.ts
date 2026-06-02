@@ -7,5 +7,6 @@ export default defineConfig({
     environment: "node",
     include: ["src/**/*.test.ts"],
     globals: true,
+    setupFiles: ["src/lib/learning/__tests__/vitestCurriculumSetup.ts"],
   },
 });

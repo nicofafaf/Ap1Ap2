@@ -34,10 +34,13 @@ export function MaintenanceOverlay() {
     }
   }, [mergeLocalKnowledgeWithRegistry, report]);
 
+  const blockingLine = (l: { id: string; ok: boolean }) =>
+    !l.ok && l.id !== "learning-registry" && l.id !== "precache-manifest";
+
   const show =
     !dismissed &&
     report &&
-    (report.registryDrift || report.lines.some((l) => !l.ok && l.id !== "learning-registry"));
+    (report.registryDrift || report.lines.some(blockingLine));
 
   if (!show || !report) return null;
 

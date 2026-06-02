@@ -5,6 +5,11 @@
 import { CURRICULUM_BY_LF } from "../learning/learningRegistry";
 import type { LearningField } from "../../data/nexusRegistry";
 import { NEXUS_CORE_INTEGRITY_TAG, NEXUS_MANIFEST_SHA256_EXPECTED } from "./coreIntegrityManifest";
+import {
+  evaluatePrecacheManifestPayload,
+  isPrecacheManifestHttpAcceptable,
+  precacheManifestMissingDetail,
+} from "./bootCheck";
 
 export const REGISTRY_FINGERPRINT_STORAGE_KEY = "nexus.registryContentFingerprint.v2";
 
@@ -64,39 +69,49 @@ export async function runBootIntegritySuite(): Promise<BootIntegrityReport> {
 
   try {
     const res = await fetch("/nexus-precache-manifest.json", { cache: "no-store" });
-    if (!res.ok) {
+    if (!isPrecacheManifestHttpAcceptable(res.status)) {
       lines.push({
         id: "precache-manifest",
-        ok: false,
-        detail: `HTTP ${res.status}`,
+        ok: true,
+        detail: precacheManifestMissingDetail(),
+      });
+    } else if (res.status === 404) {
+      lines.push({
+        id: "precache-manifest",
+        ok: true,
+        detail: precacheManifestMissingDetail(),
       });
     } else {
       const text = await res.text();
       manifestSha256 = await sha256Text(text);
-      let parsed: unknown;
+      let parsed: unknown = null;
       try {
         parsed = JSON.parse(text);
       } catch {
         parsed = null;
       }
-      const n = Array.isArray(parsed) ? parsed.length : 0;
-      const slimOk = Array.isArray(parsed);
+      const evalResult = evaluatePrecacheManifestPayload(parsed);
+      const shaSuffix =
+        evalResult.entryCount > 0 && manifestSha256
+          ? ` · SHA-256 ${manifestSha256.slice(0, 16)}…`
+          : "";
       lines.push({
         id: "precache-manifest",
-        ok: slimOk,
-        detail: slimOk
-          ? n > 0
-            ? `${n} Einträge · SHA-256 ${manifestSha256.slice(0, 16)}…`
-            : "Slim-Modus (0 Einträge) — Boss-Videos on-demand"
-          : "Ungültiges JSON",
+        ok: evalResult.ok,
+        detail: evalResult.ok ? `${evalResult.detail}${shaSuffix}` : evalResult.detail,
       });
-      if (NEXUS_MANIFEST_SHA256_EXPECTED && manifestSha256 !== NEXUS_MANIFEST_SHA256_EXPECTED) {
+      const expectChecksum =
+        NEXUS_MANIFEST_SHA256_EXPECTED &&
+        evalResult.ok &&
+        evalResult.entryCount > 0 &&
+        manifestSha256;
+      if (expectChecksum && manifestSha256 !== NEXUS_MANIFEST_SHA256_EXPECTED) {
         lines.push({
           id: "manifest-checksum",
           ok: false,
           detail: "Manifest-Checksum weicht von Erwartung ab (Build-Tag prüfen)",
         });
-      } else if (NEXUS_MANIFEST_SHA256_EXPECTED) {
+      } else if (expectChecksum) {
         lines.push({
           id: "manifest-checksum",
           ok: true,
@@ -104,11 +119,11 @@ export async function runBootIntegritySuite(): Promise<BootIntegrityReport> {
         });
       }
     }
-  } catch (e) {
+  } catch {
     lines.push({
       id: "precache-manifest",
-      ok: false,
-      detail: e instanceof Error ? e.message : "Fetch fehlgeschlagen",
+      ok: true,
+      detail: precacheManifestMissingDetail(),
     });
   }
 

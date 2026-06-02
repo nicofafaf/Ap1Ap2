@@ -151,7 +151,13 @@ function nexusPrecacheManifestPlugin(): Plugin {
         );
       }
       mkdirSync(resolve(__dirname, "public"), { recursive: true });
+      /** Slim-Modus: [] ist gültig — SW precached nur on-demand (kein vite-plugin-pwa) */
       writeFileSync(out, `${JSON.stringify(filtered, null, 0)}\n`, "utf8");
+      if (filtered.length === 0) {
+        console.warn(
+          "[nexus-precache-manifest] Slim-Modus — leeres Manifest (Boot-Check und SW behandeln als OK)"
+        );
+      }
     },
   };
 }

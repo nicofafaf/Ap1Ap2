@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 
-const CACHE_NAME = "nexus-media-v1";
+const CACHE_NAME = "nexus-media-v16";
 
 type SyncState = "checking" | "synced" | "degraded";
 
@@ -18,9 +18,13 @@ export function NexusSyncStatus() {
           cache: "no-store",
           signal: AbortSignal.timeout(9000),
         });
-        if (!res.ok) throw new Error("no manifest");
-        const urls = (await res.json()) as unknown;
-        if (!Array.isArray(urls) || urls.length === 0) throw new Error("empty");
+        if (!res.ok && res.status !== 404) throw new Error("no manifest");
+        const urls = res.ok ? ((await res.json()) as unknown) : [];
+        if (!Array.isArray(urls)) throw new Error("bad manifest");
+        if (urls.length === 0) {
+          if (!cancelled) setSync("synced");
+          return;
+        }
         const cache = await caches.open(CACHE_NAME);
         let hits = 0;
         const sample = urls.filter((u): u is string => typeof u === "string").slice(0, 48);

@@ -95,8 +95,20 @@ function ensurePublicAssetsPlugin(): Plugin {
             portraitCount += 1;
           }
         }
+        const srcRanksDir = join(srcDir, "ranks");
+        let rankCount = 0;
+        if (existsSync(srcRanksDir)) {
+          const destRanksDir = join(destDir, "ranks");
+          mkdirSync(destRanksDir, { recursive: true });
+          for (const name of readdirSync(srcRanksDir)) {
+            const lower = name.toLowerCase();
+            if (!lower.endsWith(".png") && !lower.endsWith(".webp")) continue;
+            copyFileSync(join(srcRanksDir, name), join(destRanksDir, name));
+            rankCount += 1;
+          }
+        }
         console.warn(
-          `[ensure-public-assets] CI Slim Deploy — ${REQUIRED_DEPLOY_ASSETS.length} Kern-Assets + ${portraitCount} Portrait-PNGs kopiert`,
+          `[ensure-public-assets] CI Slim Deploy — ${REQUIRED_DEPLOY_ASSETS.length} Kern-Assets + ${portraitCount} Portrait-PNGs + ${rankCount} Rang-Badges kopiert`,
         );
         return;
       }

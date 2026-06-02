@@ -14,7 +14,8 @@
     "prune:assets": "node scripts/prune-nexus-assets.mjs",
     "generate:ap-drills": "node scripts/generate-ap-exam-drills.mjs",
     "verify": "npm run typecheck && npm test && npm run build && npm run audit:curriculum",
-    "audit:curriculum": "vite-node scripts/audit-curriculum.mjs"
+    "audit:curriculum": "vite-node scripts/audit-curriculum.mjs",
+    "optimize:ranks": "node scripts/optimize-rank-assets.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.22",
@@ -31,6 +32,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^5.0.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.9.2",
     "vite": "^7.1.3",
     "vitest": "^3.2.4"

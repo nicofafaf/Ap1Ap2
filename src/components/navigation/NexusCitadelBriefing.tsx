@@ -1,6 +1,7 @@
 import { motion, useInView, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type RefObject } from "react";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
+import { CitadelRankCards } from "./edtech/EdtechLearningRankPanel";
 import { citadelChromeTokens, type CitadelChromeTokens, type NexusChromeMode } from "../../lib/ui/nexusChromeTokens";
 
 export type NexusCitadelBriefingProps = {
@@ -839,54 +840,7 @@ export function NexusCitadelBriefing({ scrollParentRef, companionAnchorId, onOpe
         >
           {t("citadel.rankLead")}
         </p>
-        <div
-          id={railId}
-          style={{
-            display: "flex",
-            gap: 12,
-            overflowX: "auto",
-            paddingBottom: 8,
-            scrollSnapType: "x mandatory",
-            maxWidth: 1100,
-            margin: "0 auto",
-            WebkitOverflowScrolling: "touch",
-          }}
-        >
-          {[0, 1, 2, 3].map((i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              style={{
-                flex: "0 0 min(78vw, 260px)",
-                scrollSnapAlign: "start",
-                borderRadius: 16,
-                border: `1px solid ${tk.cardBorder}`,
-                padding: "20px 18px",
-                background: tk.card,
-                boxShadow: ed ? tk.cardShadow : undefined,
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "var(--nx-font-mono)",
-                  fontSize: 12,
-                  color: ed ? "#7c3aed" : "rgba(214,181,111,0.85)",
-                  fontWeight: 800,
-                }}
-              >
-                {t(`citadel.ranks.${i}.tier`)}
-              </div>
-              <div style={{ marginTop: 10, fontSize: 18, fontWeight: 800, color: tk.text }}>
-                {t(`citadel.ranks.${i}.title`)}
-              </div>
-              <p style={{ margin: "10px 0 0", fontSize: 15, lineHeight: 1.5, color: tk.textSoft }}>
-                {t(`citadel.ranks.${i}.body`)}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        <CitadelRankCards dark={!ed} />
       </section>
 
       <section style={{ padding: "0 clamp(20px,4vw,48px) 72px" }}>

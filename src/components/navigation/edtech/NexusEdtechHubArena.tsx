@@ -20,6 +20,7 @@ import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
 import { cinematicGhostBtn, cinematicPrimaryBtn } from "../../../lib/ui/nexusCinematicTokens";
 import { EdtechExamReadinessCard } from "./EdtechExamReadinessCard";
 import { EdtechSommer2026ExamCard } from "./EdtechSommer2026ExamCard";
+import { EdtechLearningRankPanel } from "./EdtechLearningRankPanel";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import { StreakCelebration } from "./StreakCelebration";
 import {
@@ -49,6 +50,7 @@ export type NexusEdtechHubArenaProps = {
   onBeginLearningField: (lf: number) => void;
   onBeginExamField?: (lf: number) => void;
   onBlitzTraining?: () => void;
+  onBeginRanked?: () => void;
   mapWithExtras: (extras: NexusHubMapExtras) => void;
 };
 
@@ -58,6 +60,7 @@ export function NexusEdtechHubArena({
   onBeginLearningField,
   onBeginExamField,
   onBlitzTraining,
+  onBeginRanked,
   mapWithExtras,
 }: NexusEdtechHubArenaProps) {
   const { t } = useNexusI18n();
@@ -120,8 +123,23 @@ export function NexusEdtechHubArena({
         accent: "rgba(139, 92, 246, 0.95)",
         onClick: () => mapWithExtras({ openDailyPanel: true }),
       },
+      {
+        title: t("hub.edtech.modeRanked"),
+        body: t("hub.edtech.modeRankedBody"),
+        accent: "rgba(245, 158, 11, 0.95)",
+        onClick: () => onBeginRanked?.(),
+      },
     ],
-    [beginExamForLf, continueTarget?.lf, learningTip.lf, mapWithExtras, onBeginExamField, onBlitzTraining, t],
+    [
+      beginExamForLf,
+      continueTarget?.lf,
+      learningTip.lf,
+      mapWithExtras,
+      onBeginExamField,
+      onBeginRanked,
+      onBlitzTraining,
+      t,
+    ],
   );
 
   const { totalCorrect, totalCurriculum } = useMemo(() => {
@@ -264,6 +282,13 @@ export function NexusEdtechHubArena({
             accent="gold"
           />
         </motion.div>
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD}>
+        <EdtechLearningRankPanel
+          onBeginRanked={onBeginRanked}
+          onOpenLadder={() => mapWithExtras({ overlay: "LEADERBOARD" })}
+        />
       </motion.section>
 
       <motion.section variants={EDTECH_CARD}>

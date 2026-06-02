@@ -355,6 +355,8 @@ export function LearningTerminal({
   const examPresentationMode = useGameStore((s) => s.examPresentationMode);
   const examSessionEndsAt = useGameStore((s) => s.examSessionEndsAt);
   const isBlitzSession = useGameStore((s) => s.isBlitzSession);
+  const activeRankedRun = useGameStore((s) => s.activeRankedRun);
+  const rankedRunLpSession = useGameStore((s) => s.rankedRunLpSession);
   const blitzIndex = useGameStore((s) => s.blitzIndex);
   const blitzQueue = useGameStore((s) => s.blitzQueue);
   const ihkExamPackId = useGameStore((s) => s.ihkExamPackId);
@@ -882,9 +884,12 @@ export function LearningTerminal({
               >
                 {(ihkExamPackId
                   ? t("learningTerminal.ihkSommer26Progress")
-                  : t("learningTerminal.blitzProgress"))
+                  : activeRankedRun
+                    ? t("learningTerminal.rankedProgress")
+                    : t("learningTerminal.blitzProgress"))
                   .replace("{current}", String(blitzIndex + 1))
-                  .replace("{total}", String(blitzQueue.length))}
+                  .replace("{total}", String(blitzQueue.length))
+                  .replace("{lp}", String(rankedRunLpSession))}
               </motion.div>
             ) : null}
             {!learningFocus ? (

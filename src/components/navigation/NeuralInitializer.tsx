@@ -24,6 +24,7 @@ import type { BundeslandId, TrainingTrack } from "../../lib/curriculum/trainingP
 
 export type NeuralInitializerProps = {
   onBeginTraining?: () => void;
+  onBeginRanked?: () => void;
   onOpenOverview: () => void;
   /** Optional: gleicher Effekt wie onOpenOverview — SectorMap mit Scale-In aus dem Shell-Wrapper */
   onLaunchNexusMap?: () => void;
@@ -97,6 +98,7 @@ const leadStyle: CSSProperties = {
 
 export function NeuralInitializer({
   onBeginTraining,
+  onBeginRanked,
   onOpenOverview,
   onLaunchNexusMap,
   onBeginLearningField,
@@ -577,6 +579,7 @@ export function NeuralInitializer({
                       onSwapCompanion={() => clearCompanionSelection()}
                       onNavigateFromHubToMap={onNavigateFromHubToMap}
                       onBlitzTraining={onBeginTraining}
+                      onBeginRanked={onBeginRanked}
                     />
 
                   <div id="nx-field-list-anchor" style={{ scrollMarginTop: 20 }}>

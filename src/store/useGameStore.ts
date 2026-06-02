@@ -20,6 +20,14 @@ import {
   pickWeakestLf,
   streakMilestoneFor,
 } from "../lib/learning/blitzSession";
+import { countSolvedExercises, rankLpDelta, RANKED_SPRINT_SIZE } from "../lib/progression/learningRank";
+import type { LearningRankId } from "../data/learningRankRegistry";
+import {
+  applyLearningRankLpDelta,
+  loadLearningRankLp,
+  promoteLearningRankIfHigher,
+  syncLastLearningRankWithoutCelebration,
+} from "../lib/progression/learningRankPersist";
 import {
   buildSommer2026Queue,
   getSommer2026DurationMs,
@@ -603,6 +611,11 @@ type GameStore = {
   blitzIndex: number;
   blitzTargetLf: number;
   beginBlitzTraining: () => void;
+  /** Ranked-Sprint: 15 Übungen, erhöhte Lernpunkte */
+  beginRankedSprint: () => void;
+  activeRankedRun: boolean;
+  rankedRunLpSession: number;
+  learningRankLp: number;
   beginExamForLf: (lf: number) => void;
   /** IHK Abschlussprüfung Sommer 2026 — WiSo / GA1 / GA2 */
   ihkExamPackId: Sommer2026PackId | null;
@@ -610,6 +623,9 @@ type GameStore = {
   streakCelebrationMilestone: number | null;
   clearStreakCelebration: () => void;
   checkStreakCelebration: (streak: number) => void;
+  learningRankUpCelebration: LearningRankId | null;
+  clearLearningRankUpCelebration: () => void;
+  maybeCelebrateLearningRankUp: () => void;
   /** Exam-Mode: Live-Logic-Flow Visualisierung — inkrementiert pro gespielter Karte */
   examLogicFlowToken: number;
   /** Aufeinanderfolgende korrekte Lernantworten (MC) im laufenden Kampf */
@@ -911,6 +927,10 @@ export const useGameStore = create<GameStore>((set, get) => ({
   blitzQueue: [],
   blitzIndex: 0,
   blitzTargetLf: 1,
+  activeRankedRun: false,
+  rankedRunLpSession: 0,
+  learningRankLp: loadLearningRankLp(),
+  learningRankUpCelebration: null,
   ihkExamPackId: null,
   streakCelebrationMilestone: null,
   examLogicFlowToken: 0,
@@ -984,6 +1004,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
         if (nextIndex >= state.blitzQueue.length) {
           return {
             isBlitzSession: false,
+            activeRankedRun: false,
+            rankedRunLpSession: 0,
             ihkExamPackId: null,
             examPresentationMode: false,
             examSessionEndsAt: null,
@@ -2203,6 +2225,17 @@ export const useGameStore = create<GameStore>((set, get) => ({
         learningMentorColdToken: state.learningMentorColdToken,
       };
     });
+    const lpDelta = rankLpDelta(wasCorrect, get().activeRankedRun);
+    if (lpDelta !== 0) {
+      const nextLp = applyLearningRankLpDelta(lpDelta);
+      set((state) => ({
+        learningRankLp: nextLp,
+        rankedRunLpSession: state.activeRankedRun
+          ? state.rankedRunLpSession + lpDelta
+          : state.rankedRunLpSession,
+      }));
+      get().maybeCelebrateLearningRankUp();
+    }
     queueMicrotask(() => {
       appendRetentionSnapshot(get().learningLeitnerByExerciseId);
     });
@@ -2250,6 +2283,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     });
     queueMicrotask(() => {
       appendRetentionSnapshot(get().learningLeitnerByExerciseId);
+      get().maybeCelebrateLearningRankUp();
     });
   },
 
@@ -2430,6 +2464,13 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const milestone = streakMilestoneFor(streak);
     if (milestone) set({ streakCelebrationMilestone: milestone });
   },
+  clearLearningRankUpCelebration: () => set({ learningRankUpCelebration: null }),
+  maybeCelebrateLearningRankUp: () => {
+    const s = get();
+    const { masteryPct } = countSolvedExercises(s.learningCorrectByLf);
+    const promoted = promoteLearningRankIfHigher(s.learningRankLp, masteryPct);
+    if (promoted) set({ learningRankUpCelebration: promoted });
+  },
   beginExamForLf: (lf) => {
     const queue = buildBlitzQueue(lf, BLITZ_QUESTION_COUNT, "exam");
     const first = queue[0] ?? null;
@@ -2485,6 +2526,34 @@ export const useGameStore = create<GameStore>((set, get) => ({
       ihkExamPackId: null,
       examPresentationMode: false,
       examSessionEndsAt: null,
+      activeRankedRun: false,
+      rankedRunLpSession: 0,
+      isBlitzSession: true,
+      blitzQueue: queue,
+      blitzIndex: 0,
+      blitzTargetLf: lf,
+      preferredLearningExerciseId: first,
+      isTutorialCombatRun: false,
+      combatTutorialStep: 0,
+    });
+    try {
+      localStorage.setItem("nexus.examPresentationMode.v1", "0");
+    } catch {
+      // no-op
+    }
+    get().initiateCombat(lf, 100);
+  },
+  beginRankedSprint: () => {
+    const s = get();
+    const lf = pickWeakestLf(s.learningLeitnerByExerciseId, s.learningCorrectByLf);
+    const queue = buildBlitzQueue(lf, RANKED_SPRINT_SIZE);
+    const first = queue[0] ?? null;
+    set({
+      ihkExamPackId: null,
+      examPresentationMode: false,
+      examSessionEndsAt: null,
+      activeRankedRun: true,
+      rankedRunLpSession: 0,
       isBlitzSession: true,
       blitzQueue: queue,
       blitzIndex: 0,
@@ -3011,7 +3080,18 @@ try {
         unlockedSectors: deriveUnlockedSectorsFromMastery(bg),
       },
     });
+    const lp = useGameStore.getState().learningRankLp;
+    const { masteryPct } = countSolvedExercises(correctByLf);
+    syncLastLearningRankWithoutCelebration(lp, masteryPct);
   }
+} catch {
+  // no-op
+}
+
+try {
+  const lp = useGameStore.getState().learningRankLp;
+  const { masteryPct } = countSolvedExercises(useGameStore.getState().learningCorrectByLf);
+  syncLastLearningRankWithoutCelebration(lp, masteryPct);
 } catch {
   // no-op
 }

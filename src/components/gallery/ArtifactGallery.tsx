@@ -13,6 +13,7 @@ import { GlobalLeaderboard } from "../menu/GlobalLeaderboard";
 import { DAILY_PURPLE_BORDER, DAILY_PURPLE_NEON } from "../../lib/dailyIncursion";
 import type { LearningField } from "../../data/nexusRegistry";
 import { SkillTree } from "./SkillTree";
+import { EdtechLearningRankPanel } from "../navigation/edtech/EdtechLearningRankPanel";
 
 const AnalyticsDashboardLazy = lazy(() =>
   import("./AnalyticsDashboard").then((m) => ({ default: m.AnalyticsDashboard }))
@@ -229,7 +230,9 @@ export function ArtifactGallery({ visible, onClose }: ArtifactGalleryProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.2 }}
+                  style={{ display: "flex", flexDirection: "column", gap: 20 }}
                 >
+                  <EdtechLearningRankPanel />
                   <LeaderboardSim globalCollection={store.globalCollection} />
                 </motion.div>
               ) : store.overlayOpenState === "SKILL_TREE" ? (

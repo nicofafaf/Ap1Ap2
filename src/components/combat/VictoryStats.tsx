@@ -15,6 +15,8 @@ import {
   openCertVerifyHash,
 } from "../../lib/security/certExporter";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
+import { buildLearningRankSnapshot } from "../../lib/progression/learningRank";
+import { LearningRankBadge } from "../navigation/edtech/LearningRankBadge";
 
 type VictoryStatsProps = {
   elapsedSec: number;
@@ -194,6 +196,12 @@ export function VictoryStats({
   const markRankSoundPlayed = useGameStore((state) => state.markRankSoundPlayed);
   const hardcoreDriftEnabled = useGameStore((state) => state.hardcoreDriftEnabled);
   const lastCombatLearningEvents = useGameStore((state) => state.lastCombatLearningEvents);
+  const learningRankLp = useGameStore((state) => state.learningRankLp);
+  const learningCorrectByLf = useGameStore((state) => state.learningCorrectByLf);
+  const learningRankSnap = useMemo(
+    () => buildLearningRankSnapshot(learningRankLp, learningCorrectByLf),
+    [learningRankLp, learningCorrectByLf]
+  );
   const activeCombatIsSectorZero = useGameStore((state) => state.activeCombatIsSectorZero);
   const nexusMasterCertificateSealed = useGameStore((state) => state.nexusMasterCertificateSealed);
   const didTriggerRef = useRef(false);
@@ -853,6 +861,41 @@ export function VictoryStats({
               Architect Persona
             </span>
             <TypewriterValue text={displayPersona} startDelayMs={baseTw + 440} charMs={20} />
+          </motion.div>
+
+          <motion.div variants={statsChildVariants} style={{ marginTop: 4 }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 16,
+                alignItems: "center",
+                paddingBottom: 10,
+                borderBottom: ascension
+                  ? "1px solid rgba(212,175,55,0.22)"
+                  : "1px solid rgba(34,211,238,0.18)",
+              }}
+            >
+              <span
+                style={{
+                  letterSpacing: ".16em",
+                  textTransform: "uppercase",
+                  opacity: 0.82,
+                  fontFamily:
+                    '"JetBrains Mono","Inter",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace',
+                  fontSize: 11,
+                  color: ascension ? "rgba(247, 244, 236, 0.94)" : "rgba(207, 242, 255, 0.96)",
+                }}
+              >
+                {t("learningRank.victoryLabel", "Lern-Rang")}
+              </span>
+              <LearningRankBadge
+                rankId={learningRankSnap.rankId}
+                size="md"
+                showLabel
+                label={t(`learningRank.${learningRankSnap.rankId}.title`)}
+              />
+            </div>
           </motion.div>
 
           <motion.div variants={statsChildVariants} style={{ marginTop: 4 }}>

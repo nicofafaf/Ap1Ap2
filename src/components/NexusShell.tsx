@@ -15,6 +15,7 @@ import { useGameStore } from "../store/useGameStore";
 import { ensureCurriculumLoaded } from "../lib/learning/curriculumAccess";
 import { SectorMap } from "./navigation/SectorMap";
 import { MaintenanceOverlay } from "./system/MaintenanceOverlay";
+import { LearningRankUpCelebration } from "./navigation/edtech/LearningRankUpCelebration";
 import { useNexusI18n } from "../lib/i18n/I18nProvider";
 
 const NeuralInitializerLazy = lazy(() =>
@@ -152,6 +153,8 @@ export function NexusShell() {
   const initiateCombat = useGameStore((s) => s.initiateCombat);
   const resetCombat = useGameStore((s) => s.resetCombat);
   const recomputeMenuSystemMood = useGameStore((s) => s.recomputeMenuSystemMood);
+  const learningRankUpCelebration = useGameStore((s) => s.learningRankUpCelebration);
+  const clearLearningRankUpCelebration = useGameStore((s) => s.clearLearningRankUpCelebration);
 
   useEffect(() => {
     void ensureCurriculumLoaded();
@@ -171,6 +174,7 @@ export function NexusShell() {
   );
 
   const beginBlitzTraining = useGameStore((s) => s.beginBlitzTraining);
+  const beginRankedSprint = useGameStore((s) => s.beginRankedSprint);
   const beginExamForLf = useGameStore((s) => s.beginExamForLf);
 
   const handleBeginTraining = useCallback(() => {
@@ -179,6 +183,15 @@ export function NexusShell() {
     setMapHoldCombat(true);
     setSurface("combat");
   }, [beginBlitzTraining]);
+
+  const handleBeginRanked = useCallback(() => {
+    preloadCombatChunk();
+    completeInitialization();
+    beginRankedSprint();
+    setDiveBridgeLf(useGameStore.getState().blitzTargetLf);
+    setMapHoldCombat(true);
+    setSurface("combat");
+  }, [beginRankedSprint, completeInitialization]);
 
   const handleBeginExamField = useCallback(
     (lf: number) => {
@@ -393,6 +406,7 @@ export function NexusShell() {
             <Suspense fallback={<InitializationFallback />}>
               <NeuralInitializerLazy
                 onBeginTraining={handleBeginTraining}
+                onBeginRanked={handleBeginRanked}
                 onOpenOverview={handleOpenOverview}
                 onLaunchNexusMap={handleOpenOverview}
                 onBeginLearningField={handleBeginLearningField}
@@ -488,6 +502,10 @@ export function NexusShell() {
         </div>
       ) : null}
       <MaintenanceOverlay />
+      <LearningRankUpCelebration
+        rankId={learningRankUpCelebration}
+        onDismiss={clearLearningRankUpCelebration}
+      />
     </div>
   );
 }

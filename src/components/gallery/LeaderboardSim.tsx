@@ -1,6 +1,10 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { achievementOrder, achievementRegistry } from "../../data/achievementRegistry";
+import { buildLearningRankSnapshot } from "../../lib/progression/learningRank";
+import { useGameStore } from "../../store/useGameStore";
+import { LearningRankBadge } from "../navigation/edtech/LearningRankBadge";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import type { GlobalCollectionEntry } from "../../store/useGameStore";
 
 type LeaderboardSimProps = {
@@ -27,6 +31,14 @@ const botSeeds: Array<{ id: string; name: string; score: number; achievements: n
 ];
 
 export function LeaderboardSim({ globalCollection }: LeaderboardSimProps) {
+  const { t } = useNexusI18n();
+  const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
+  const learningRankLp = useGameStore((s) => s.learningRankLp);
+  const userRank = useMemo(
+    () => buildLearningRankSnapshot(learningRankLp, learningCorrectByLf),
+    [learningCorrectByLf, learningRankLp]
+  );
+
   const rows = useMemo(() => {
     const userAchievementCount = achievementOrder.reduce(
       (sum, key) => sum + (globalCollection[key]?.count ?? 0),
@@ -69,8 +81,25 @@ export function LeaderboardSim({ globalCollection }: LeaderboardSimProps) {
         padding: "12px 12px 8px",
       }}
     >
-      <div style={{ fontSize: 11, letterSpacing: ".14em", opacity: 0.86, marginBottom: 8 }}>
-        GLOBAL LEADERBOARD SIM
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          marginBottom: 12,
+          flexWrap: "wrap",
+        }}
+      >
+        <LearningRankBadge
+          rankId={userRank.rankId}
+          size="md"
+          showLabel
+          label={t(`learningRank.${userRank.rankId}.title`)}
+          sublabel={t("learningRank.leaderboardYou").replace("{lp}", String(userRank.lp))}
+        />
+        <div style={{ fontSize: 11, letterSpacing: ".14em", opacity: 0.86 }}>
+          {t("learningRank.leaderboardSim")}
+        </div>
       </div>
       <div style={{ maxHeight: 350, overflowY: "auto", display: "grid", gap: 6 }}>
         {rows.map((row) => {

@@ -544,7 +544,11 @@
     "feedbackNumericRetry": "Not yet — check the number or format",
     "feedbackNumericIdle": "Enter the number only, without units",
     "feedbackCodeOk": "Correct — code matches",
-    "feedbackCodeDiff": "Not yet — compare the code line by line"
+    "feedbackCodeDiff": "Not yet — compare the code line by line",
+    "mcSubmitMulti": "Check answer",
+    "mcMultiLabel": "Step 2 · Multiple choice",
+    "mcMultiHint": "Select all that apply, then tap Check",
+    "feedbackMcMultiWrong": "Not all correct answers selected yet"
   },
   "dossier": {
     "portfolioKicker": "Learning record",

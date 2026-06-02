@@ -109,6 +109,99 @@
       }
     },
     {
+      "id": "lf3-grund-mac",
+      "topic": "Netzwerk-Grundidee",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "MAC-Adresse — Schicht 2",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Die MAC-Adresse ist die Hardware-Adresse einer Netzwerkkarte — eindeutig auf Schicht 2" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie die Seriennummer an deinem Laptop — steht auf dem Gerät selbst" },
+        { "title": "Merksatz", "body": "MAC = 48 Bit — Switch lernt welche MAC an welchem Port hängt" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Switch sieht Frame von MAC aa:bb:cc:dd:ee:ff auf Port 3 und merkt sich das" },
+      "practice": {
+        "type": "mc",
+        "coachLine": "schicht 2 ist hardware-nah die mac steckt im frame",
+        "question": "Wofür nutzt ein Switch primär die MAC-Adresse",
+        "options": [
+          { "text": "Um Frames an den richtigen Port weiterzuleiten", "correct": true },
+          { "text": "Um Webseiten zu übersetzen", "correct": false, "hint": "Das macht eher DNS oder HTTP" },
+          { "text": "Um Passwörter zu speichern", "correct": false, "hint": "Sicherheit ist ein anderes Thema" },
+          { "text": "Um SQL-Abfragen zu filtern", "correct": false, "hint": "SQL gehört zu Datenbanken" }
+        ]
+      }
+    },
+    {
+      "id": "lf3-grund-osi",
+      "topic": "Netzwerk-Grundidee",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "OSI — Schichten grob",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Das OSI-Modell teilt Netzwerk in Schichten — jede Schicht hat eine Aufgabe" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Paket: Etikett (Schicht 3 IP) — Inhalt (Schicht 7 App) — Transport (Schicht 4 TCP)" },
+        { "title": "Merksatz", "body": "Merke für den Start: Schicht 2 MAC · Schicht 3 IP · Schicht 4 TCP/UDP · Schicht 7 Anwendung" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Browser = Schicht 7 — TCP-Verbindung = Schicht 4 — IP-Routing = Schicht 3" },
+      "practice": {
+        "type": "mc",
+        "question": "Auf welcher OSI-Schicht arbeitet eine IP-Adresse typischerweise",
+        "options": [
+          { "text": "Schicht 3 Netzwerk", "correct": true },
+          { "text": "Schicht 1 Bitübertragung", "correct": false, "hint": "Schicht 1 ist das Kabel/Medium" },
+          { "text": "Schicht 7 Anwendung", "correct": false, "hint": "Schicht 7 ist z B HTTP" },
+          { "text": "Schicht 5 Sitzung", "correct": false, "hint": "IP ist nicht Sitzungsschicht" }
+        ]
+      }
+    },
+    {
+      "id": "lf3-grund-dns",
+      "topic": "Netzwerk-Grundidee",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "DNS — Namen statt Zahlen",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "DNS übersetzt Domainnamen wie example.com in IP-Adressen" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Telefonbuch — du kennst den Namen DNS liefert die Nummer" },
+        { "title": "Merksatz", "body": "Name → DNS → IP — ohne DNS müsstest du dir IPs merken" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "www.cba-it-service.de wird per DNS z B in 93.184.216.34 aufgelöst" },
+      "practice": {
+        "type": "mc",
+        "question": "Was macht DNS am einfachsten",
+        "options": [
+          { "text": "Übersetzt Hostnamen in IP-Adressen", "correct": true },
+          { "text": "Verschlüsselt Festplatten", "correct": false, "hint": "Verschlüsselung ist kein DNS" },
+          { "text": "Sortiert SQL-Ergebnisse", "correct": false, "hint": "ORDER BY ist SQL" },
+          { "text": "Teilt VLANs ein", "correct": false, "hint": "VLANs sind Switch-Thema" }
+        ]
+      }
+    },
+    {
+      "id": "lf3-grund-router",
+      "topic": "Netzwerk-Grundidee",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Router — Netze verbinden",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Ein Router verbindet verschiedene Netze und leitet Pakete anhand von IP-Adressen weiter" },
+        { "title": "Vergleich aus dem Alltag", "body": "Switch = Verteiler im Büro — Router = Post zwischen verschiedenen Städten" },
+        { "title": "Merksatz", "body": "Switch im LAN — Router zwischen Netzen — Default Gateway ist oft der Router" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Dein Heim-PC 192.168.1.10 sendet über den Router ins Internet" },
+      "practice": {
+        "type": "mc",
+        "question": "Was unterscheidet einen Router vom Switch am besten",
+        "options": [
+          { "text": "Router verbindet Netze auf Schicht 3 IP", "correct": true },
+          { "text": "Router arbeitet nur mit MAC-Adressen", "correct": false, "hint": "MAC ist Switch-Schicht 2" },
+          { "text": "Switch verbindet immer das Internet", "correct": false, "hint": "Switch verbindet Geräte im LAN" },
+          { "text": "Router speichert nur Passwörter", "correct": false, "hint": "Das ist kein Router-Kernjob" }
+        ]
+      }
+    },
+    {
       "id": "lf3-ccna-em-1",
       "topic": "CCNA Ethernet Concepts",
       "level": "beginner",

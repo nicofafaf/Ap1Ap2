@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { KnowledgeVault } from "./KnowledgeVault";
 import { MasterLeitfadenPanel } from "./MasterLeitfadenPanel";
@@ -13,7 +13,10 @@ import { GlobalLeaderboard } from "../menu/GlobalLeaderboard";
 import { DAILY_PURPLE_BORDER, DAILY_PURPLE_NEON } from "../../lib/dailyIncursion";
 import type { LearningField } from "../../data/nexusRegistry";
 import { SkillTree } from "./SkillTree";
-import { AnalyticsDashboard } from "./AnalyticsDashboard";
+
+const AnalyticsDashboardLazy = lazy(() =>
+  import("./AnalyticsDashboard").then((m) => ({ default: m.AnalyticsDashboard }))
+);
 
 type ArtifactGalleryProps = {
   visible: boolean;
@@ -215,7 +218,9 @@ export function ArtifactGallery({ visible, onClose }: ArtifactGalleryProps) {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <AnalyticsDashboard />
+                  <Suspense fallback={null}>
+                    <AnalyticsDashboardLazy />
+                  </Suspense>
                 </motion.div>
               ) : store.overlayOpenState === "LEADERBOARD" ? (
                 <motion.div

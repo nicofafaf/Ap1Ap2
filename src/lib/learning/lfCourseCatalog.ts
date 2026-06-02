@@ -2,22 +2,7 @@ import type { LearningField } from "../../data/nexusRegistry";
 import { LF_EDTECH_SUMMARY } from "./edtechLfDisplay";
 import { getLfExerciseTotal } from "./lfExerciseTotals";
 import { isExamPathMission, isGrundlagePathMission, isVertiefungPathMission } from "./learnPathFilters";
-import lf01 from "../../lernfelder/lf01/content.json";
-import lf02 from "../../lernfelder/lf02/content.json";
-import lf02ExamPath from "../../lernfelder/lf02/examPath.json";
-import wisoExamPath from "../../lernfelder/sommer2026/wisoExamPath.json";
-import ga1ExamPath from "../../lernfelder/sommer2026/ga1ExamPath.json";
-import ga2ExamPath from "../../lernfelder/sommer2026/ga2ExamPath.json";
-import lf03 from "../../lernfelder/lf03/content.json";
-import lf04 from "../../lernfelder/lf04/content.json";
-import lf05 from "../../lernfelder/lf05/content.json";
-import lf06 from "../../lernfelder/lf06/content.json";
-import lf07 from "../../lernfelder/lf07/content.json";
-import lf08 from "../../lernfelder/lf08/content.json";
-import lf09 from "../../lernfelder/lf09/content.json";
-import lf10 from "../../lernfelder/lf10/content.json";
-import lf11 from "../../lernfelder/lf11/content.json";
-import lf12 from "../../lernfelder/lf12/content.json";
+import { CATALOG_RAW_BY_LF } from "./lernfelderContentIndex";
 
 type ContentShape = {
   lf?: string;
@@ -31,46 +16,6 @@ type ContentShape = {
     practice?: { type?: string };
   }>;
   reference?: Array<{ id?: string; chapter?: string; title?: string; type?: string }>;
-};
-
-const lf02MergedCatalog: ContentShape = {
-  ...(lf02 as ContentShape),
-  beginnerPath: [
-    ...((lf02 as ContentShape).beginnerPath ?? []),
-    ...(lf02ExamPath as NonNullable<ContentShape["beginnerPath"]>),
-    ...(ga1ExamPath as NonNullable<ContentShape["beginnerPath"]>),
-  ],
-};
-
-const lf01MergedCatalog: ContentShape = {
-  ...(lf01 as ContentShape),
-  beginnerPath: [
-    ...((lf01 as ContentShape).beginnerPath ?? []),
-    ...(wisoExamPath as NonNullable<ContentShape["beginnerPath"]>),
-  ],
-};
-
-const lf10MergedCatalog: ContentShape = {
-  ...(lf10 as ContentShape),
-  beginnerPath: [
-    ...((lf10 as ContentShape).beginnerPath ?? []),
-    ...(ga2ExamPath as NonNullable<ContentShape["beginnerPath"]>),
-  ],
-};
-
-const RAW: Record<LearningField, ContentShape> = {
-  LF1: lf01MergedCatalog,
-  LF2: lf02MergedCatalog,
-  LF3: lf03 as ContentShape,
-  LF4: lf04 as ContentShape,
-  LF5: lf05 as ContentShape,
-  LF6: lf06 as ContentShape,
-  LF7: lf07 as ContentShape,
-  LF8: lf08 as ContentShape,
-  LF9: lf09 as ContentShape,
-  LF10: lf10MergedCatalog,
-  LF11: lf11 as ContentShape,
-  LF12: lf12 as ContentShape,
 };
 
 export type LfCourseChapter = {
@@ -211,7 +156,7 @@ function detectFlags(lfKey: LearningField, raw: ContentShape) {
 export function getLfCourseMeta(lf: number): LfCourseMeta | null {
   if (!Number.isFinite(lf) || lf < 1 || lf > 12) return null;
   const lfKey = `LF${lf}` as LearningField;
-  const raw = RAW[lfKey];
+  const raw = CATALOG_RAW_BY_LF[lfKey] as ContentShape;
   if (!raw) return null;
   const flags = detectFlags(lfKey, raw);
   return {

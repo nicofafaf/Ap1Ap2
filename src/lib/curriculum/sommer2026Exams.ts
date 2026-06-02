@@ -32,7 +32,7 @@ export const SOMMER2026_EXAM_PACKS: Record<Sommer2026PackId, Sommer2026ExamPack>
     subtitle: "Wirtschafts- und Sozialkunde · CBA-IT-Service GmbH",
     examDate: "29.04.2026",
     durationMinutes: 60,
-    taskCount: 30,
+    taskCount: 31,
     points: 100,
     primaryLf: 1,
     primaryLfKey: "LF1",

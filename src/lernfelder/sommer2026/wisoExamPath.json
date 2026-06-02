@@ -582,5 +582,31 @@
         { "text": "Erhöhung des Wohngelds", "correct": true }
       ]
     }
+  },
+  {
+    "id": "ihk26-wiso-31",
+    "topic": "IHK WiSo 2026 · Aufgabe 31",
+    "level": "beginner",
+    "title": "Sozialversicherung · Mehrfachauswahl",
+    "lessonCards": [
+      {
+        "title": "Merksatz",
+        "body": "Die fünf Säulen der Sozialversicherung in Deutschland — manche Aufgaben verlangen mehrere richtige Antworten"
+      }
+    ],
+    "practice": {
+      "type": "mc",
+      "selectMode": "multi",
+      "coachLine": "kreuze alle zutreffenden versicherungszweige an",
+      "question": "Welche der folgenden gehören zur gesetzlichen Sozialversicherung in Deutschland — kreuze alle zutreffenden an",
+      "options": [
+        { "text": "Krankenversicherung", "correct": true },
+        { "text": "Rentenversicherung", "correct": true },
+        { "text": "Haftpflichtversicherung für Privatpersonen", "correct": false, "hint": "Private Versicherung nicht gesetzliche Sozialversicherung" },
+        { "text": "Arbeitslosenversicherung", "correct": true },
+        { "text": "Pflegeversicherung", "correct": true },
+        { "text": "Rechtsschutzversicherung", "correct": false, "hint": "Optional privat nicht Pflicht-Sozialversicherung" }
+      ]
+    }
   }
 ]

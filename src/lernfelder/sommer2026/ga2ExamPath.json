@@ -167,5 +167,41 @@
         { "text": "ARP Reply", "correct": false, "hint": "Kein DHCP" }
       ]
     }
+  },
+  {
+    "id": "ihk26-ga2-09",
+    "topic": "IHK GA2 2026 · Subnetz",
+    "level": "beginner",
+    "title": "Subnetzmaske lesen",
+    "lessonCards": [{ "title": "Frankfurt", "body": "Maske 255.255.255.0 — das Netz hat 256 Adressen im letzten Oktett (abzüglich reserviert)" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "255.255.255.0 bedeutet /24",
+      "question": "Was bedeutet die Subnetzmaske 255.255.255.0 in CIDR-Notation",
+      "options": [
+        { "text": "/24", "correct": true },
+        { "text": "/16", "correct": false, "hint": "Das wäre 255.255.0.0" },
+        { "text": "/8", "correct": false, "hint": "Nur erstes Oktett fest" },
+        { "text": "/32", "correct": false, "hint": "Einzelhost ohne Subnetz" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga2-10",
+    "topic": "IHK GA2 2026 · Diagnose",
+    "level": "beginner",
+    "title": "Erreichbarkeit prüfen",
+    "lessonCards": [{ "title": "Troubleshooting", "body": "Erst lokale Schicht dann Gateway dann Ziel" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "ping prüft icmp erreichbarkeit traceroute zeigt hops",
+      "question": "Welches Werkzeug prüft zuerst ob ein Host im Netz antwortet",
+      "options": [
+        { "text": "ping", "correct": true },
+        { "text": "nslookup nur für MAC-Adressen", "correct": false, "hint": "nslookup löst Namen auf" },
+        { "text": "chmod", "correct": false, "hint": "Linux-Rechte nicht Erreichbarkeit" },
+        { "text": "SELECT", "correct": false, "hint": "SQL-Befehl" }
+      ]
+    }
   }
 ]

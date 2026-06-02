@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "@fontsource/inter/latin-100.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-600.css";
 import "./styles/globals.css";
 import { FractalDepthRoot } from "./components/FractalDepthRoot";
 import { NexusShell } from "./components/NexusShell";
@@ -14,7 +15,7 @@ attachNexusHealthToWindow();
 syncOpenGraphMetaFromLocalState();
 
 /** Einmal pro Inhalts-Release: alte PWA-Caches leeren (veraltete Texte / fehlendes Hero-Video) */
-const CONTENT_REV = "2026-05-29-lernpfad-complete";
+const CONTENT_REV = "2026-05-29-aaa-pass";
 const CONTENT_REV_KEY = "nexus.contentRev.v1";
 if (typeof localStorage !== "undefined" && localStorage.getItem(CONTENT_REV_KEY) !== CONTENT_REV) {
   localStorage.setItem(CONTENT_REV_KEY, CONTENT_REV);

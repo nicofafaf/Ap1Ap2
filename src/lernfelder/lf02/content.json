@@ -74,6 +74,52 @@
       }
     },
     {
+      "id": "lf2-grund-cs-einstieg",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "C# in der Berufsschule",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "In der Ausbildung lernst du mit C# Programme zu schreiben — Konsolen-Apps sind der Einstieg vor größeren Projekten" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie eine Sprache lernen: Erst Wörter und Sätze — dann längere Texte" },
+        { "title": "Merksatz", "body": "C# gehört zu .NET — Visual Studio oder Rider sind typische Entwicklungsumgebungen" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Console.WriteLine(\"Hallo IT\");" },
+      "practice": {
+        "type": "mc",
+        "question": "Wofür nutzt du C# in der Ausbildung zum Fachinformatiker am häufigsten",
+        "options": [
+          { "text": "Anwendungen und Logik programmieren", "correct": true },
+          { "text": "Netzwerkkabel verlegen", "correct": false, "hint": "Das ist Hardware" },
+          { "text": "Nur Tabellen in Excel", "correct": false, "hint": "Excel ist kein C#-Ersatz" },
+          { "text": "BIOS flashen", "correct": false, "hint": "Firmware ist kein C#-Hauptthema" }
+        ]
+      }
+    },
+    {
+      "id": "lf2-grund-cs-var",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "var und Typen",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "var lässt den Compiler den Typ erraten — int string bool double bleiben aber lesbarer in der Prüfung" },
+        { "title": "Vergleich aus dem Alltag", "body": "Etikett mit Inhalt: int zaehler = 0 ist klarer als var ohne erkennbaren Typ" },
+        { "title": "Merksatz", "body": "var count = 5; ist int — var name = \"Max\"; ist string" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "var online = true;\nbool status = online;" },
+      "practice": {
+        "type": "mc",
+        "question": "Was ist var in C# am einfachsten",
+        "options": [
+          { "text": "Der Compiler leitet den Typ aus dem Wert ab", "correct": true },
+          { "text": "Eine Variable ohne festen Typ", "correct": false, "hint": "var hat einen festen Typ der Compiler kennt ihn nur" },
+          { "text": "Nur für Schleifen erlaubt", "correct": false, "hint": "var ist überall nutzbar wo der Typ klar ist" },
+          { "text": "Ein SQL-Schlüsselwort", "correct": false, "hint": "var gehört zu C# nicht SQL" }
+        ]
+      }
+    },
+    {
       "id": "lf2-sw-bandwidth",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",

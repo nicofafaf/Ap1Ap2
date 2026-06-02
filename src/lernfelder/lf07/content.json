@@ -12,20 +12,20 @@
       "lessonCards": [
         {
           "title": "In einfachen Worten",
-          "body": "Code sind Anweisungen in einer Programmiersprache die der Computer ausführt — Variablen speichern Werte Methoden führen Aktionen aus"
+          "body": "Code sind Anweisungen in C# — der Compiler prüft Typen — Variablen speichern Werte Methoden führen Aktionen aus"
         },
         {
           "title": "Vergleich aus dem Alltag",
-          "body": "Wie eine Formularvorlage: Felder für Name und Status — jedes ausgefüllte Formular ist ein konkreter Fall"
+          "body": "Wie ein Formular mit festen Feldern: int für Zahlen string für Text — jedes ausgefüllte Formular ist ein Programmdurchlauf"
         },
         {
           "title": "Merksatz",
-          "body": "Erst Problem in Worten — dann Struktur — dann Syntax in C# oder einer anderen Sprache"
+          "body": "C# ist die Sprache in Berufsschule und Prüfung — erst Problem in Worten dann Struktur dann Syntax"
         }
       ],
       "example": {
-        "label": "Mini-Beispiel",
-        "body": "int alter = 17; speichert eine Zahl — Console.WriteLine gibt Text aus"
+        "label": "Mini-Beispiel C#",
+        "body": "int alter = 17;\nConsole.WriteLine($\"Alter: {alter}\");"
       },
       "practice": {
         "type": "mc",
@@ -70,6 +70,210 @@
           { "text": "Der allgemeine Bauplan Ticket", "correct": false, "hint": "Der Bauplan ist die Klasse" },
           { "text": "Ein Netzwerkkabel", "correct": false, "hint": "Das passt nicht zum Ticket-Beispiel" },
           { "text": "Eine Rabattrechnung", "correct": false, "hint": "Das gehört eher zu LF1" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-grund-cs-typen",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Datentypen — int string bool",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "int speichert Ganzzahlen double Dezimalzahlen string Text bool true oder false" },
+        { "title": "Vergleich aus dem Alltag", "body": "Verschiedene Schubladen: Zahlen Text Ja/Nein — du darfst nicht alles in dieselbe Schublade legen" },
+        { "title": "Merksatz", "body": "int für Zähler — string für Namen — bool für Bedingungen — double für Messwerte mit Komma" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "int count = 0;\ndouble load = 12.5;\nstring name = \"Max\";\nbool aktiv = true;" },
+      "practice": {
+        "type": "mc",
+        "question": "Welcher Typ passt für einen Messwert mit Nachkommastellen in C#",
+        "options": [
+          { "text": "double", "correct": true },
+          { "text": "int", "correct": false, "hint": "int schneidet Nachkommastellen ab" },
+          { "text": "bool", "correct": false, "hint": "bool ist nur wahr oder falsch" },
+          { "text": "string", "correct": false, "hint": "string ist Text nicht Rechnen mit Komma" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-grund-cs-if",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "if und else in C#",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "if (bedingung) { ... } else { ... } — der else-Zweig läuft nur wenn die Bedingung false ist" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wenn Note >= 50 dann bestanden sonst wiederholen" },
+        { "title": "Merksatz", "body": "Vergleich mit == für Gleichheit — = allein ist Zuweisung kein Vergleich" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "if (score >= 50) { bestanden = true; } else { bestanden = false; }" },
+      "practice": {
+        "type": "csharp",
+        "coachLine": "in der if-bedingung steckt eine zuweisung statt vergleich wir fixen den operator",
+        "question": "Der Login-Check vergleicht das Passwort falsch Repariere die if-Bedingung",
+        "brokenCode": "string eingabe = \"geheim\";\nbool ok = false;\nif (eingabe = \"geheim\")\n    ok = true;\nreturn ok;",
+        "expected": "string eingabe = \"geheim\";\nbool ok = false;\nif (eingabe == \"geheim\")\n    ok = true;\nreturn ok;",
+        "solutionHint": "Vergleich braucht == nicht =",
+        "options": [
+          { "text": "Zuweisung = statt Vergleich == in der if-Bedingung", "correct": true },
+          { "text": "string darf nicht verglichen werden", "correct": false, "hint": "== funktioniert für strings hier" },
+          { "text": "ok muss int sein", "correct": false, "hint": "bool ist korrekt" },
+          { "text": "return ok ist unzulässig", "correct": false, "hint": "return ist für die Workbench ok" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-grund-cs-for",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "for-Schleife in C#",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "for (int i = 1; i <= n; i++) summiert oft Zahlen — i ist nur innerhalb der Schleife sichtbar" },
+        { "title": "Vergleich aus dem Alltag", "body": "Zähle von 1 bis 10 — jeder Durchlauf erhöht i um eins" },
+        { "title": "Merksatz", "body": "Start Bedingung Schritt — drei Teile in den Klammern getrennt durch Semikolon" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "int sum = 0;\nfor (int i = 1; i <= 3; i++) { sum += i; }\n// sum ist 6" },
+      "practice": {
+        "type": "csharp",
+        "coachLine": "die obere grenze ist zu klein wir wollen 1 bis n inklusive summieren",
+        "question": "Die Summe 1 bis n soll korrekt sein Korrigiere die Schleifenbedingung",
+        "brokenCode": "int SumToN(int n)\n{\n    int s = 0;\n    for (int i = 1; i < n; i++)\n        s += i;\n    return s;\n}",
+        "expected": "int SumToN(int n)\n{\n    int s = 0;\n    for (int i = 1; i <= n; i++)\n        s += i;\n    return s;\n}",
+        "solutionHint": "n soll mitgezählt werden — <= statt <",
+        "options": [
+          { "text": "i < n schließt n aus — i <= n zählt bis n inklusive", "correct": true },
+          { "text": "i muss bei 0 starten", "correct": false, "hint": "1 bis n ist mit Start 1 korrekt" },
+          { "text": "s += i ist falsch", "correct": false, "hint": "Summieren mit += ist richtig" },
+          { "text": "for ist in C# verboten", "correct": false, "hint": "for ist Standard in C#" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-grund-cs-klasse",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Klasse mit Property",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "public class Ticket { public string Nummer { get; set; } } — Property kapselt Felder sauber" },
+        { "title": "Vergleich aus dem Alltag", "body": "Bauplan Ticket — Objekt T100 hat Nummer T100 als konkreter Wert" },
+        { "title": "Merksatz", "body": "class Name — Properties mit get set — new Ticket() erzeugt ein Objekt" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "public class Ticket {\n  public string Nummer { get; set; } = \"T100\";\n}" },
+      "practice": {
+        "type": "csharp",
+        "coachLine": "die property heißt nummer klein wir passen den namen an die c# konvention an",
+        "question": "Die Ticket-Klasse soll eine Property Nummer haben Korrigiere den Property-Namen",
+        "brokenCode": "public class Ticket\n{\n    public string nummer { get; set; } = \"T100\";\n}",
+        "expected": "public class Ticket\n{\n    public string Nummer { get; set; } = \"T100\";\n}",
+        "solutionHint": "In C# beginnen Properties oft mit Großbuchstabe",
+        "options": [
+          { "text": "Property-Name Nummer mit Großbuchstabe laut Konvention und Aufgabe", "correct": true },
+          { "text": "nummer muss private sein", "correct": false, "hint": "public ist hier gefordert" },
+          { "text": "get set ist ungültig", "correct": false, "hint": "Auto-Property Syntax ist korrekt" },
+          { "text": "class Ticket ist reserviert", "correct": false, "hint": "Ticket ist ein normaler Klassenname" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-grund-cs-liste",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "List<T> — dynamische Liste",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "List<string> wächst mit Add() — Count gibt die Anzahl Elemente zurück" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie eine Einkaufsliste die du jederzeit verlängern kannst — Array hat feste Größe" },
+        { "title": "Merksatz", "body": "var items = new List<string>(); items.Add(\"text\"); int n = items.Count;" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "var tags = new List<string>();\ntags.Add(\"C#\");\ntags.Add(\"OOP\");\n// tags.Count == 2" },
+      "practice": {
+        "type": "mc",
+        "question": "Warum List<string> statt string[] wenn du zur Laufzeit Einträge hinzufügst",
+        "options": [
+          { "text": "List wächst dynamisch mit Add — Array braucht feste Größe", "correct": true },
+          { "text": "Array.Add existiert wie bei List", "correct": false, "hint": "Arrays haben feste Länge" },
+          { "text": "List erlaubt keine Duplikate", "correct": false, "hint": "Duplikate sind erlaubt — HashSet wäre für Eindeutigkeit" },
+          { "text": "Count ist die interne Kapazität nicht die Elementanzahl", "correct": false, "hint": "Count ist die Anzahl Elemente" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-grund-cs-foreach",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "foreach — durch Listen gehen",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "foreach (var item in liste) führt den Block für jedes Element einmal aus — ideal für List und Array" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie eine Checkliste abarbeiten: Jeder Punkt einmal durchgehen" },
+        { "title": "Merksatz", "body": "foreach braucht keine Index-Variable — bei Index-Zählen nimm for" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "foreach (string name in namen) { Console.WriteLine(name); }" },
+      "practice": {
+        "type": "mc",
+        "question": "Wann ist foreach in C# oft die beste Wahl",
+        "options": [
+          { "text": "Wenn du jedes Element einer Liste einmal bearbeiten willst", "correct": true },
+          { "text": "Wenn du die Schleife rückwärts mit i-- zählen musst", "correct": false, "hint": "Dafür ist for mit Index üblicher" },
+          { "text": "Wenn du SQL-Tabellen joinst", "correct": false, "hint": "JOIN ist SQL nicht C# foreach" },
+          { "text": "Wenn du nur eine Zeile Code brauchst", "correct": false, "hint": "foreach ist eine Schleife kein Einzeiler-Ersatz" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-grund-cs-switch",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "switch — viele Fälle",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "switch (wert) vergleicht mit case und springt zum passenden Block — default fängt den Rest" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Fahrstuhl: Knopf 1 Etage 1 — Knopf 2 Etage 2 — sonst bleibt die Tür zu" },
+        { "title": "Merksatz", "body": "Jeder case braucht break oder return — sonst fällt die Ausführung durch" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "switch (note) { case 1: return \"sehr gut\"; default: return \"sonst\"; }" },
+      "practice": {
+        "type": "csharp",
+        "coachLine": "der switch vergisst ein break wir stoppen den durchfall",
+        "question": "Der Menü-switch soll nach case 1 stoppen Füge break ein",
+        "brokenCode": "int wahl = 1;\nstring text = \"\";\nswitch (wahl)\n{\n    case 1:\n        text = \"A\";\n    default:\n        text = \"X\";\n}\nreturn text;",
+        "expected": "int wahl = 1;\nstring text = \"\";\nswitch (wahl)\n{\n    case 1:\n        text = \"A\";\n        break;\n    default:\n        text = \"X\";\n        break;\n}\nreturn text;",
+        "solutionHint": "Nach case 1 fehlt break sonst läuft default mit",
+        "options": [
+          { "text": "Fehlendes break nach case 1 führt zu Fall-through", "correct": true },
+          { "text": "switch darf kein int vergleichen", "correct": false, "hint": "int ist ein klassischer switch-Typ" },
+          { "text": "default muss vor case 1 stehen", "correct": false, "hint": "Reihenfolge ist hier ok" },
+          { "text": "return text ist ungültig", "correct": false, "hint": "return ist für die Workbench ok" }
+        ]
+      }
+    },
+    {
+      "id": "lf7-grund-cs-override",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "virtual und override",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "virtual in der Basisklasse erlaubt override in der abgeleiteten Klasse — zur Laufzeit zählt der echte Objekttyp" },
+        { "title": "Vergleich aus dem Alltag", "body": "Basisklasse sagt: Jeder Mitarbeiter hat eine Aufgabe — die abgeleitete Klasse überschreibt wie genau" },
+        { "title": "Merksatz", "body": "virtual in Basis — override in Kind — Polymorphie: TicketBasis zeigt auf ChangeTicket" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "public class Basis { public virtual string Info() => \"Basis\"; }\npublic class Kind : Basis { public override string Info() => \"Kind\"; }" },
+      "practice": {
+        "type": "csharp",
+        "coachLine": "die methode soll überschrieben werden dafür fehlt override",
+        "question": "Die abgeleitete Klasse soll Info überschreiben Ergänze override",
+        "brokenCode": "public class Basis\n{\n    public virtual string Info() => \"Basis\";\n}\npublic class Kind : Basis\n{\n    public string Info() => \"Kind\";\n}\nreturn new Kind().Info();",
+        "expected": "public class Basis\n{\n    public virtual string Info() => \"Basis\";\n}\npublic class Kind : Basis\n{\n    public override string Info() => \"Kind\";\n}\nreturn new Kind().Info();",
+        "solutionHint": "Ohne override versteckt die neue Methode die Basis-Methode nicht polymorph",
+        "options": [
+          { "text": "override fehlt — ohne override keine echte Überschreibung", "correct": true },
+          { "text": "virtual ist in C# verboten", "correct": false, "hint": "virtual ist Standard für Polymorphie" },
+          { "text": "Kind darf nicht von Basis erben", "correct": false, "hint": "Vererbung ist korrekt" },
+          { "text": "return new Kind() ist falsch", "correct": false, "hint": "return ist für die Prüfung ok" }
         ]
       }
     },

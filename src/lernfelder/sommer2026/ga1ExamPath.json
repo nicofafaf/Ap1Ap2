@@ -158,5 +158,41 @@
         { "text": "Deaktivierung aller Patches", "correct": false, "hint": "Erhöht Angriffsfläche" }
       ]
     }
+  },
+  {
+    "id": "ihk26-ga1-09",
+    "topic": "IHK GA1 2026 · RAID",
+    "level": "beginner",
+    "title": "RAID 1 — Spiegelung",
+    "lessonCards": [{ "title": "Ausfallsicherheit", "body": "Zwei gleiche Festplatten halten dieselben Daten — fällt eine aus bleibt der Betrieb oft möglich" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "raid 1 spiegelt daten nicht verteilt sie nur",
+      "question": "Was beschreibt RAID 1 am einfachsten",
+      "options": [
+        { "text": "Spiegelung — dieselben Daten auf zwei Laufwerken", "correct": true },
+        { "text": "Striping ohne Redundanz", "correct": false, "hint": "Das ist eher RAID 0" },
+        { "text": "Parität über drei Platten wie RAID 5", "correct": false, "hint": "RAID 1 nutzt typisch zwei Spiegel" },
+        { "text": "Nur Software-Backup auf Band", "correct": false, "hint": "Backup ist kein RAID-Level" }
+      ]
+    }
+  },
+  {
+    "id": "ihk26-ga1-10",
+    "topic": "IHK GA1 2026 · Firewall",
+    "level": "beginner",
+    "title": "Firewall-Regel",
+    "lessonCards": [{ "title": "Server", "body": "Nur HTTPS von außen — SSH nur aus dem Admin-Netz" }],
+    "practice": {
+      "type": "mc",
+      "coachLine": "default deny und nur benötigte ports öffnen",
+      "question": "Welche Firewall-Regel ist für einen öffentlichen Webserver am sinnvollsten",
+      "options": [
+        { "text": "Eingehend TCP 443 erlauben — Rest standardmäßig sperren", "correct": true },
+        { "text": "Alle Ports von überall erlauben", "correct": false, "hint": "Maximale Angriffsfläche" },
+        { "text": "Nur ICMP blockieren alles andere offen", "correct": false, "hint": "Zu großzügig" },
+        { "text": "Ausgehenden Verkehr komplett verbieten", "correct": false, "hint": "Updates und DNS brauchen oft ausgehend" }
+      ]
+    }
   }
 ]

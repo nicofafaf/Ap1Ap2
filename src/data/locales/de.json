@@ -550,7 +550,11 @@
     "feedbackNumericRetry": "Noch nicht — Zahl oder Format prüfen",
     "feedbackNumericIdle": "Nur die Zahl eingeben, ohne Einheit",
     "feedbackCodeOk": "Richtig — Code stimmt",
-    "feedbackCodeDiff": "Noch nicht — Code Zeile für Zeile vergleichen"
+    "feedbackCodeDiff": "Noch nicht — Code Zeile für Zeile vergleichen",
+    "mcSubmitMulti": "Antwort prüfen",
+    "mcMultiLabel": "Schritt 2 · Mehrfachauswahl",
+    "mcMultiHint": "Wähle alle zutreffenden Antworten und tippe dann auf Prüfen",
+    "feedbackMcMultiWrong": "Noch nicht alle richtigen Antworten getroffen"
   },
   "dossier": {
     "portfolioKicker": "Lernnachweis",

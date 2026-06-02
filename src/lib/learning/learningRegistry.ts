@@ -27,22 +27,15 @@ import {
   isGrundlagePathMission,
   isVertiefungPathMission,
 } from "./learnPathFilters";
-import lf01Content from "../../lernfelder/lf01/content.json";
-import lf02Content from "../../lernfelder/lf02/content.json";
-import lf02ExamPath from "../../lernfelder/lf02/examPath.json";
-import wisoExamPath from "../../lernfelder/sommer2026/wisoExamPath.json";
-import ga1ExamPath from "../../lernfelder/sommer2026/ga1ExamPath.json";
-import ga2ExamPath from "../../lernfelder/sommer2026/ga2ExamPath.json";
-import lf03Content from "../../lernfelder/lf03/content.json";
-import lf04Content from "../../lernfelder/lf04/content.json";
-import lf05Content from "../../lernfelder/lf05/content.json";
-import lf06Content from "../../lernfelder/lf06/content.json";
-import lf07Content from "../../lernfelder/lf07/content.json";
-import lf08Content from "../../lernfelder/lf08/content.json";
-import lf09Content from "../../lernfelder/lf09/content.json";
-import lf10Content from "../../lernfelder/lf10/content.json";
-import lf11Content from "../../lernfelder/lf11/content.json";
-import lf12Content from "../../lernfelder/lf12/content.json";
+import {
+  BEGINNER_CONTENT_BY_LF,
+  lf01Content,
+  lf03Content,
+  lf05Content,
+  lf08Content,
+  lf10Content,
+  lf11Content,
+} from "./lernfelderContentIndex";
 
 export type { LearningExercise, LearningMcOption } from "./learningExerciseTypes";
 export type { LeitnerCardState } from "./leitnerEngine";
@@ -412,7 +405,7 @@ type BeginnerPathOption = {
 type BeginnerPathEntry = {
   id: string;
   topic: string;
-  level: "beginner";
+  level: string;
   title: string;
   lessonCards: Array<{
     title: string;
@@ -423,11 +416,12 @@ type BeginnerPathEntry = {
     body: string;
   };
   practice: {
-    type: "mc" | "sql" | "csharp" | "bash" | "javascript" | "markdown" | "plain-text";
+    type: string;
     question: string;
     coachLine?: string;
     expected?: string;
-    /** Defekter Editor-Start für C#/SQL-Workbench (Referenz bleibt expected/solutionCode) */
+    /** multi = mehrere correct:true (WiSo) */
+    selectMode?: "single" | "multi";
     brokenCode?: string;
     solutionHint?: string;
     options: BeginnerPathOption[];
@@ -464,13 +458,14 @@ type Lf5ContentShape = {
 };
 
 type BeginnerContentShape = {
-  lf: LearningField | number | string;
-  title: string;
+  lf?: LearningField | number | string;
+  title?: string;
   beginnerPath?: BeginnerPathEntry[];
-  bossPhase?: BeginnerBossPhaseJson;
+  bossPhase?: any;
 };
 
 function normalizeLearningField(rawLf: BeginnerContentShape["lf"]): LearningField | null {
+  if (rawLf == null) return null;
   if (typeof rawLf === "number") {
     return rawLf >= 1 && rawLf <= 12 ? (`LF${rawLf}` as LearningField) : null;
   }
@@ -478,8 +473,12 @@ function normalizeLearningField(rawLf: BeginnerContentShape["lf"]): LearningFiel
   return /^LF(?:[1-9]|1[0-2])$/.test(normalized) ? (normalized as LearningField) : null;
 }
 
-function practiceLang(type: BeginnerPathEntry["practice"]["type"]): LearningExercise["lang"] {
-  return type === "mc" ? "markdown" : type;
+function practiceLang(type: string): LearningExercise["lang"] {
+  if (type === "mc") return "markdown";
+  if (type === "sql" || type === "csharp" || type === "bash" || type === "javascript") return type;
+  if (type === "plain-text") return "plain-text";
+  if (type === "markdown") return "markdown";
+  return "plain-text";
 }
 
 /** C#/SQL/Bash-Boss aus beginnerPath-JSON (brokenCode + expected + MC) */
@@ -489,7 +488,7 @@ function buildOptionalBossCodeExercise(raw: BeginnerContentShape): LearningExerc
   if (!lf || !bp?.practice) return null;
   const p = bp.practice;
   if (p.type !== "csharp" && p.type !== "sql" && p.type !== "bash") return null;
-  const options = p.options ?? [];
+  const options: BeginnerPathOption[] = (p.options ?? []) as BeginnerPathOption[];
   if (options.length < 2) return null;
   const expected = p.expected?.trim();
   const broken = p.brokenCode?.trim();
@@ -538,7 +537,7 @@ function buildOptionalBossMcExercise(raw: BeginnerContentShape): LearningExercis
   const lf = normalizeLearningField(raw.lf);
   const bp = raw.bossPhase;
   if (!lf || !bp?.practice || bp.practice.type !== "mc") return null;
-  const options = bp.practice.options ?? [];
+  const options: BeginnerPathOption[] = (bp.practice.options ?? []) as BeginnerPathOption[];
   if (options.length < 2) return null;
   const correctIdx = Math.max(0, options.findIndex((option) => option.correct));
   const normalizedCorrectIdx = correctIdx === -1 ? 0 : correctIdx;
@@ -579,19 +578,26 @@ function buildBeginnerPathFromJson(raw: BeginnerContentShape): LearningExercise[
     const options = path.practice.options.length
       ? path.practice.options
       : [{ text: "Ich habe den ersten Schritt verstanden", correct: true }];
+    const correctCount = options.filter((option) => option.correct).length;
+    const mcSelectMode: "single" | "multi" =
+      path.practice.selectMode === "multi" || correctCount > 1 ? "multi" : "single";
     const correctIdx = Math.max(0, options.findIndex((option) => option.correct));
     const normalizedCorrectIdx = correctIdx === -1 ? 0 : correctIdx;
     const optIds = ["a", "b", "c", "d", "e", "f"];
     const mcOptions: LearningMcOption[] = options.map((option, idx) => ({
       id: optIds[idx] ?? `o${idx + 1}`,
       text: option.text,
-      isCorrect: idx === normalizedCorrectIdx,
+      isCorrect: mcSelectMode === "multi" ? Boolean(option.correct) : idx === normalizedCorrectIdx,
       whyWrongHint:
-        idx === normalizedCorrectIdx
+        (mcSelectMode === "multi" ? option.correct : idx === normalizedCorrectIdx)
           ? undefined
           : option.hint || "Schau noch einmal auf die Action-Cards über der Übung",
     }));
-    const correctText = options[normalizedCorrectIdx]?.text ?? options[0]?.text ?? "";
+    const correctTexts = options.filter((option) => option.correct).map((option) => option.text);
+    const correctText =
+      correctTexts.length > 0
+        ? correctTexts.join(" | ")
+        : (options[normalizedCorrectIdx]?.text ?? options[0]?.text ?? "");
     const solutionCode = path.practice.expected ?? correctText;
 
     const coachLine = path.practice.coachLine?.trim();
@@ -599,12 +605,13 @@ function buildBeginnerPathFromJson(raw: BeginnerContentShape): LearningExercise[
 
     return {
       id: path.id || `${lf.toLowerCase()}-start-${pathIdx + 1}`,
-      title: path.title || `${raw.title} Einstieg`,
+      title: path.title || `${raw.title ?? lf} Einstieg`,
       problem: path.practice.question,
       solutionCode,
       lang: practiceLang(path.practice.type),
       mcQuestion: path.practice.question,
       mcOptions,
+      mcSelectMode,
       lessonCards: path.lessonCards,
       example: path.example,
       ...(coachLine ? { coachLine } : {}),
@@ -693,48 +700,17 @@ function buildLearnAndExamPathsFromJson(raw: BeginnerContentShape): {
   };
 }
 
-const lf02WithExam: BeginnerContentShape = {
-  ...(lf02Content as BeginnerContentShape),
-  beginnerPath: [
-    ...((lf02Content as BeginnerContentShape).beginnerPath ?? []),
-    ...(lf02ExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
-    ...(ga1ExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
-  ],
-};
+const lf02WithExam = BEGINNER_CONTENT_BY_LF.LF2;
+const lf01WithSommer2026 = BEGINNER_CONTENT_BY_LF.LF1;
+const lf10WithSommer2026 = BEGINNER_CONTENT_BY_LF.LF10;
 
-const lf01WithSommer2026: BeginnerContentShape = {
-  ...(lf01Content as BeginnerContentShape),
-  beginnerPath: [
-    ...((lf01Content as BeginnerContentShape).beginnerPath ?? []),
-    ...(wisoExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
-  ],
-};
-
-const lf10WithSommer2026: BeginnerContentShape = {
-  ...(lf10Content as BeginnerContentShape),
-  beginnerPath: [
-    ...((lf10Content as BeginnerContentShape).beginnerPath ?? []),
-    ...(ga2ExamPath as NonNullable<BeginnerContentShape["beginnerPath"]>),
-  ],
-};
-
-const BEGINNER_CONTENT_BY_LF: Record<LearningField, BeginnerContentShape> = {
-  LF1: lf01WithSommer2026,
-  LF2: lf02WithExam,
-  LF3: lf03Content as BeginnerContentShape,
-  LF4: lf04Content as BeginnerContentShape,
-  LF5: lf05Content as BeginnerContentShape,
-  LF6: lf06Content as BeginnerContentShape,
-  LF7: lf07Content as BeginnerContentShape,
-  LF8: lf08Content as BeginnerContentShape,
-  LF9: lf09Content as BeginnerContentShape,
-  LF10: lf10WithSommer2026,
-  LF11: lf11Content as BeginnerContentShape,
-  LF12: lf12Content as BeginnerContentShape,
-};
+const BEGINNER_CONTENT_REGISTRY = BEGINNER_CONTENT_BY_LF;
 
 const LEARN_AND_EXAM_BY_LF = Object.fromEntries(
-  Object.entries(BEGINNER_CONTENT_BY_LF).map(([lf, content]) => [lf, buildLearnAndExamPathsFromJson(content)])
+  Object.entries(BEGINNER_CONTENT_REGISTRY).map(([lf, content]) => [
+    lf,
+    buildLearnAndExamPathsFromJson(content as BeginnerContentShape),
+  ])
 ) as Record<
   LearningField,
   { grundlage: LearningExercise[]; vertiefung: LearningExercise[]; learn: LearningExercise[]; exam: LearningExercise[] }
@@ -841,7 +817,7 @@ export function resolveTerminalBossMode(
     }
     return { isBoss: false, epicLine: null };
   }
-  const raw = BEGINNER_CONTENT_BY_LF[lf];
+  const raw = BEGINNER_CONTENT_BY_LF[lf] as BeginnerContentShape;
   const bossId = raw.bossPhase?.id?.trim();
   if (bossId && exerciseId === bossId) {
     const e = raw.bossPhase?.epicCoach;
@@ -916,47 +892,47 @@ const SQL_EXAM_LF5 = mergeFullCurriculum("LF5", [
   ...(LF5_BOSS ? [LF5_BOSS] : []),
 ]);
 
-/** 5 JS-Aufgaben — LF6 (HardwareNetworking): Variablen, Schleifen, Klasse */
-export const JAVASCRIPT_EXAM_LF6: LearningExercise[] = [
+/** 5 C#-Aufgaben — LF6: Variablen, Schleifen, Klasse (Prüfungssprache) */
+export const CSHARP_EXAM_LF6: LearningExercise[] = [
   {
-    id: "js-let-const",
-    title: "let vs const",
-    problem: "Deklariere einen Zähler, der später erhöht wird, und eine feste Maximalgrenze",
-    solutionCode: `let count = 0;\nconst max = 100;\ncount += 1;`,
-    lang: "javascript",
-    mcQuestion: "Warum `let` für count und `const` für max?",
+    id: "cs6-int-string",
+    title: "int vs string",
+    problem: "Deklariere einen Zähler als int und einen Namen als string — sinnvolle Initialisierung",
+    solutionCode: `int count = 0;\nstring name = "Azubi";`,
+    lang: "csharp",
+    mcQuestion: "Warum int für count und string für name?",
     mcOptions: [
       {
         id: "a",
-        text: "count wird neu zugewiesen → let; max bleibt gleiche Bindung → const",
+        text: "count ist Ganzzahl — name ist Text; Typ muss zum Wert passen",
         isCorrect: true,
       },
       {
         id: "b",
-        text: "const erlaubt doch += wenn der Wert Zahl ist",
+        text: "string speichert nur Zahlen ohne Anführungszeichen",
         isCorrect: false,
-        whyWrongHint: "const verbietet Re-Binding; count += 1 ist Reassignment — const auf count wäre Syntaxfehler",
+        whyWrongHint: "string braucht Anführungszeichen für Textliterale",
       },
       {
         id: "c",
-        text: "var ist heute identisch mit let",
+        text: "int darf in C# keine 0 sein",
         isCorrect: false,
-        whyWrongHint: "var hat Function-Scope und Hoisting — nicht identisch mit block-scoped let",
+        whyWrongHint: "0 ist eine gültige int-Initialisierung",
       },
       {
         id: "d",
-        text: "let ist nur für Schleifen erlaubt",
+        text: "var verbietet Mischung aus int und string",
         isCorrect: false,
-        whyWrongHint: "let ist allgemein für veränderliche Bindungen in Blöcken nutzbar",
+        whyWrongHint: "var leitet den Typ pro Variable ab — kein Konflikt zwischen zwei Variablen",
       },
     ],
   },
   {
-    id: "js-for-sum",
+    id: "cs6-for-sum",
     title: "for-Schleife — Summe",
-    problem: "Summe der Zahlen 1 bis n (n≥1) mit klassischer for-Schleife",
-    solutionCode: `function sumToN(n) {\n  let s = 0;\n  for (let i = 1; i <= n; i += 1) {\n    s += i;\n  }\n  return s;\n}`,
-    lang: "javascript",
+    problem: "Summe der Zahlen 1 bis n (n≥1) mit klassischer for-Schleife in C#",
+    solutionCode: `int SumToN(int n) {\n  int s = 0;\n  for (int i = 1; i <= n; i++) {\n    s += i;\n  }\n  return s;\n}`,
+    lang: "csharp",
     mcQuestion: "Warum `i <= n` statt `< n`?",
     mcOptions: [
       {
@@ -966,30 +942,30 @@ export const JAVASCRIPT_EXAM_LF6: LearningExercise[] = [
       },
       {
         id: "b",
-        text: "< n wäre semantisch gleich wenn i bei 0 startet und n+1 nutzt",
+        text: "< n wäre semantisch gleich wenn i bei 0 startet",
         isCorrect: false,
-        whyWrongHint: "Andere Startwerte ändern die Formel — hier ist i<=n die direkte Lesbarkeit 1…n",
+        whyWrongHint: "Hier startet i bei 1 — i<=n ist die direkte Lesbarkeit 1…n",
       },
       {
         id: "c",
-        text: "for darf nur i < n verwenden",
+        text: "for darf in C# nur i < n verwenden",
         isCorrect: false,
         whyWrongHint: "Beide Vergleiche sind erlaubt — abhängig von Start/Inkrement",
       },
       {
         id: "d",
-        text: "i++ und i += 1 sind in JS unterschiedlich schnell",
+        text: "i++ ist in C# verboten",
         isCorrect: false,
-        whyWrongHint: "Praktisch gleichwertig; Stilfrage, nicht Prüfungskern",
+        whyWrongHint: "i++ ist gültig; Stil kann i += 1 sein",
       },
     ],
   },
   {
-    id: "js-while",
+    id: "cs6-while",
     title: "while — Herunterzählen",
-    problem: "Zähle von `start` bis 1 herunter und sammle die Werte in einem Array",
-    solutionCode: `function countdown(start) {\n  const out = [];\n  let n = start;\n  while (n > 0) {\n    out.push(n);\n    n -= 1;\n  }\n  return out;\n}`,
-    lang: "javascript",
+    problem: "Zähle von `start` bis 1 herunter und sammle die Werte in einer List<int>",
+    solutionCode: `List<int> Countdown(int start) {\n  var out = new List<int>();\n  int n = start;\n  while (n > 0) {\n    out.Add(n);\n    n -= 1;\n  }\n  return out;\n}`,
+    lang: "csharp",
     mcQuestion: "Risiko bei while gegenüber for?",
     mcOptions: [
       {
@@ -999,15 +975,15 @@ export const JAVASCRIPT_EXAM_LF6: LearningExercise[] = [
       },
       {
         id: "b",
-        text: "while ist schneller als for",
+        text: "while ist in C# schneller als for",
         isCorrect: false,
         whyWrongHint: "Laufzeit hängt von Logik ab — didaktisch: Korrektheit und Abbruch zuerst",
       },
       {
         id: "c",
-        text: "while darf keine Arrays füllen",
+        text: "while darf keine List füllen",
         isCorrect: false,
-        whyWrongHint: "push in while ist üblich",
+        whyWrongHint: "Add in while ist üblich",
       },
       {
         id: "d",
@@ -1018,68 +994,68 @@ export const JAVASCRIPT_EXAM_LF6: LearningExercise[] = [
     ],
   },
   {
-    id: "js-typeof",
-    title: "Typen — typeof",
-    problem: "Prüfe, ob ein Wert eine endliche Zahl ist (ohne Number.isNaN allein)",
-    solutionCode: `function isFiniteNumber(x) {\n  return typeof x === "number" && Number.isFinite(x);\n}`,
-    lang: "javascript",
-    mcQuestion: "Warum reicht typeof x === 'number' nicht?",
+    id: "cs6-tryparse",
+    title: "int.TryParse",
+    problem: "Prüfe, ob ein string eine gültige Ganzzahl ist — ohne Exception",
+    solutionCode: `bool IsValidInt(string text) {\n  return int.TryParse(text, out _);\n}`,
+    lang: "csharp",
+    mcQuestion: "Warum TryParse statt int.Parse?",
     mcOptions: [
       {
         id: "a",
-        text: "typeof erkennt NaN und Infinity trotzdem als number",
+        text: "TryParse liefert false bei ungültiger Eingabe — Parse wirft Exception",
         isCorrect: true,
       },
       {
         id: "b",
-        text: "typeof liefert bei Zahlen immer 'integer'",
+        text: "Parse akzeptiert nur negative Zahlen",
         isCorrect: false,
-        whyWrongHint: "JS hat nur 'number' — kein separates 'integer' bei typeof",
+        whyWrongHint: "Parse akzeptiert gültige int-Literale allgemein",
       },
       {
         id: "c",
-        text: "NaN ist vom Typ 'NaN'",
+        text: "TryParse gibt immer true zurück",
         isCorrect: false,
-        whyWrongHint: "typeof NaN ist 'number' — daher Zusatzcheck nötig",
+        whyWrongHint: "Bei \"abc\" ist das Ergebnis false",
       },
       {
         id: "d",
-        text: "Number.isFinite schließt Strings mit aus — deshalb falsch",
+        text: "out _ ist in C# ungültig",
         isCorrect: false,
-        whyWrongHint: "isFinite prüft Zahlen; Strings würden vorher coerced — hier reicht die Kombination für reine Zahl",
+        whyWrongHint: "Discard _ ist seit C# 7 gültig wenn der out-Wert ignoriert wird",
       },
     ],
   },
   {
-    id: "js-class-basic",
-    title: "Klasse — Konstruktor + Methode",
-    problem: "Klasse `Counter` mit startwert und Methode `tick()` die intern erhöht",
-    solutionCode: `class Counter {\n  constructor(start = 0) {\n    this.value = start;\n  }\n  tick() {\n    this.value += 1;\n    return this.value;\n  }\n}`,
-    lang: "javascript",
-    mcQuestion: "Warum `this.value` in Methoden?",
+    id: "cs6-class-basic",
+    title: "Klasse — Property + Methode",
+    problem: "Klasse `Counter` mit Startwert und Methode `Tick()` die intern erhöht",
+    solutionCode: `public class Counter {\n  public int Value { get; private set; }\n  public Counter(int start = 0) => Value = start;\n  public int Tick() => ++Value;\n}`,
+    lang: "csharp",
+    mcQuestion: "Warum Property Value statt public int value Feld?",
     mcOptions: [
       {
         id: "a",
-        text: "Instanzfelder hängen am Objekt — this verweist auf die Instanz",
+        text: "Property kapselt Zugriff — private set verhindert unkontrollierte Änderung von außen",
         isCorrect: true,
       },
       {
         id: "b",
-        text: "Ohne this sind Felder automatisch global",
+        text: "Felder sind in C# verboten",
         isCorrect: false,
-        whyWrongHint: "Strikter Modus/let verhindert Globals — this ist das definierte Instanz-Pattern",
+        whyWrongHint: "Felder sind erlaubt — Properties sind aber üblicher für Kapselung",
       },
       {
         id: "c",
-        text: "constructor darf keine Parameter haben",
+        text: "Tick muss static sein",
         isCorrect: false,
-        whyWrongHint: "Parameter im constructor sind Standard",
+        whyWrongHint: "static gehört zur Klasse — hier brauchst du Instanzstate",
       },
       {
         id: "d",
-        text: "tick muss static sein",
+        text: "Konstruktor darf keine Parameter haben",
         isCorrect: false,
-        whyWrongHint: "static gehört zur Klasse, nicht zur Instanz — hier brauchst du Instanzstate",
+        whyWrongHint: "Parameter im Konstruktor sind Standard",
       },
     ],
   },
@@ -1275,7 +1251,7 @@ export const CURRICULUM_BY_LF: Record<LearningField, LearningExercise[]> = {
   LF3: curriculumWithOptionalBoss("LF3", LF3_NETZWERK, LF3_MC_BOSS),
   LF4: mergeFullCurriculum("LF4", LF4_NETZ_HARDWARE),
   LF5: SQL_EXAM_LF5,
-  LF6: mergeFullCurriculum("LF6", JAVASCRIPT_EXAM_LF6),
+  LF6: mergeFullCurriculum("LF6", CSHARP_EXAM_LF6),
   LF7: mergeFullCurriculum("LF7", CSHARP_EXAM_LF7),
   LF8: curriculumWithOptionalBoss("LF8", LF8_DATENMODELL, LF8_BOSS),
   LF9: mergeFullCurriculum("LF9", LF9_DIENSTE_PROTOKOLLE),
@@ -1360,7 +1336,12 @@ export function pickFinalExamExercise(
 
 export function assertMcIntegrity(ex: LearningExercise): void {
   const correct = ex.mcOptions.filter((o) => o.isCorrect);
-  if (correct.length !== 1) {
+  const isMulti = ex.mcSelectMode === "multi";
+  if (isMulti) {
+    if (correct.length < 2) {
+      throw new Error(`Exercise ${ex.id}: Mehrfachauswahl braucht mindestens zwei richtige MC-Optionen`);
+    }
+  } else if (correct.length !== 1) {
     throw new Error(`Exercise ${ex.id}: genau eine richtige MC-Option nötig`);
   }
   for (const o of ex.mcOptions) {

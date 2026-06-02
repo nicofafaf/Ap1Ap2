@@ -13,6 +13,8 @@ export type LearningExercise = {
   lang: "sql" | "javascript" | "csharp" | "bash" | "plain-text" | "markdown";
   mcQuestion: string;
   mcOptions: LearningMcOption[];
+  /** single = eine Option; multi = mehrere richtige (WiSo „kreuze zwei an“) */
+  mcSelectMode?: "single" | "multi";
   /** Kurze Lektion vor der Aufgabe — Lern-App-Flow statt Prüfungs-Sprung */
   lessonCards?: Array<{
     title: string;

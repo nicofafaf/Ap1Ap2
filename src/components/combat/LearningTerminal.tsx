@@ -39,6 +39,9 @@ function LearningMcOptionRow({
   optIdx,
   totalOpts,
   pickedId,
+  pickedIds,
+  mcSubmitted,
+  isMultiMc,
   isBeginnerExercise,
   variant,
   onPick,
@@ -51,6 +54,9 @@ function LearningMcOptionRow({
   optIdx: number;
   totalOpts: number;
   pickedId: string | null;
+  pickedIds?: ReadonlySet<string>;
+  mcSubmitted?: boolean;
+  isMultiMc?: boolean;
   isBeginnerExercise: boolean;
   variant: McRowVariant;
   onPick: (opt: LearningMcOption) => void;
@@ -60,10 +66,14 @@ function LearningMcOptionRow({
   sanitizeOptionText?: boolean;
 }) {
   const learningFocus = variant === "focusPanel";
-  const showFeedback = pickedId === opt.id;
+  const multiActive = Boolean(isMultiMc && pickedIds);
+  const showFeedback = multiActive
+    ? Boolean(mcSubmitted)
+    : pickedId === opt.id;
+  const multiSelected = multiActive && pickedIds!.has(opt.id);
   const isLast = optIdx === totalOpts - 1;
-  const hit = showFeedback && opt.isCorrect;
-  const miss = showFeedback && !opt.isCorrect;
+  const hit = showFeedback && opt.isCorrect && (multiActive ? multiSelected : true);
+  const miss = showFeedback && (multiActive ? multiSelected && !opt.isCorrect : !opt.isCorrect);
 
   const borderBottom = isLast
     ? "none"
@@ -77,16 +87,22 @@ function LearningMcOptionRow({
       ? learningFocus
         ? "rgba(52, 211, 153, 0.14)"
         : "rgba(52, 211, 153, 0.12)"
-      : learningFocus
-        ? "rgba(248, 113, 113, 0.12)"
-        : "rgba(248, 113, 113, 0.1)";
+      : miss
+        ? learningFocus
+          ? "rgba(248, 113, 113, 0.12)"
+          : "rgba(248, 113, 113, 0.1)"
+        : "transparent";
+  } else if (multiSelected && !mcSubmitted) {
+    background = learningFocus ? "rgba(214, 181, 111, 0.12)" : "rgba(214, 181, 111, 0.1)";
   }
 
-  const accentBorder = showFeedback
+  const accentBorder = showFeedback && (hit || miss)
     ? hit
       ? "4px solid rgba(52, 211, 153, 0.85)"
       : "4px solid rgba(248, 113, 113, 0.88)"
-    : "4px solid transparent";
+    : multiSelected && !mcSubmitted
+      ? "4px solid rgba(214, 181, 111, 0.55)"
+      : "4px solid transparent";
 
   return (
     <button
@@ -97,7 +113,7 @@ function LearningMcOptionRow({
         onPick(opt);
       }}
       onClick={() => onPick(opt)}
-      aria-pressed={showFeedback}
+      aria-pressed={multiActive ? multiSelected : showFeedback}
       style={{
         textAlign: "left",
         width: "100%",
@@ -351,6 +367,8 @@ export function LearningTerminal({
   const playerAvatar = useGameStore((s) => s.playerAvatar);
   const playerName = useGameStore((s) => s.playerName);
   const [pickedId, setPickedId] = useState<string | null>(null);
+  const [pickedIds, setPickedIds] = useState<ReadonlySet<string>>(() => new Set());
+  const [mcSubmitted, setMcSubmitted] = useState(false);
   const selectionDebounceRef = useRef<string | null>(null);
   const panelShake = useAnimation();
   const [rimGold, setRimGold] = useState(false);
@@ -458,9 +476,13 @@ export function LearningTerminal({
     return formatLearningDisplayText(exercise.coachLine, learningStoryMode);
   }, [exercise?.coachLine, learningStoryMode]);
 
+  const isMultiMc = exercise?.mcSelectMode === "multi";
+
   useEffect(() => {
     setPickedId(null);
-  }, [entryToken, currentLF, semantic, visible, sectorZero, sectorZeroMorphToken]);
+    setPickedIds(new Set());
+    setMcSubmitted(false);
+  }, [entryToken, currentLF, semantic, visible, sectorZero, sectorZeroMorphToken, exercise?.id]);
 
   useEffect(() => {
     if (!learningFocus) {
@@ -519,9 +541,83 @@ export function LearningTerminal({
     );
   }, [bossUi.epicLine, isBossMode, t]);
 
+  const applyMcSuccess = useCallback(
+    (selectedOptionId: string) => {
+      if (!exercise) return;
+      const bossActive = resolveTerminalBossMode(answerLf, exercise.id).isBoss;
+      if (bossActive) {
+        markMissionCleared(exercise.id);
+        recordLearningExerciseMastery(answerLf, exercise.id);
+        unlockSectorMastery(answerLf);
+        void playVictoryFinisherSequence();
+        window.dispatchEvent(new CustomEvent("nx:boss-clear-map"));
+        triggerBossHit(8);
+      } else {
+        recordLearningExerciseMastery(answerLf, exercise.id);
+        if (!edtechFlow) {
+          triggerBossHit(8);
+        }
+        if (edtechFlow) {
+          window.setTimeout(() => advanceEdtechLearningTurn(exercise.id), 900);
+        } else if (isBeginnerExercise) {
+          markMissionCleared(exercise.id);
+        }
+      }
+    },
+    [
+      answerLf,
+      edtechFlow,
+      exercise,
+      advanceEdtechLearningTurn,
+      isBeginnerExercise,
+      markMissionCleared,
+      recordLearningExerciseMastery,
+      triggerBossHit,
+      unlockSectorMastery,
+      playVictoryFinisherSequence,
+    ]
+  );
+
+  const handleMcSubmitMulti = useCallback(() => {
+    if (!exercise || !isMultiMc || mcSubmitted || pickedIds.size === 0) return;
+    const correctIds = new Set(exercise.mcOptions.filter((o) => o.isCorrect).map((o) => o.id));
+    const ok =
+      correctIds.size === pickedIds.size && [...correctIds].every((id) => pickedIds.has(id));
+    setMcSubmitted(true);
+    setPickedId([...pickedIds].sort().join(","));
+    recordCombatLearningAttempt({
+      lf: answerLf,
+      exerciseId: exercise.id,
+      title: exercise.title,
+      problem: exercise.problem,
+      mcQuestion: exercise.mcQuestion,
+      selectedOptionId: [...pickedIds].sort().join(","),
+      wasCorrect: ok,
+    });
+    if (ok) applyMcSuccess([...pickedIds].sort().join(","));
+  }, [
+    answerLf,
+    applyMcSuccess,
+    exercise,
+    isMultiMc,
+    mcSubmitted,
+    pickedIds,
+    recordCombatLearningAttempt,
+  ]);
+
   const handleMcOption = useCallback(
     (opt: LearningMcOption) => {
       if (!exercise) return;
+      if (isMultiMc) {
+        if (mcSubmitted) return;
+        setPickedIds((prev) => {
+          const next = new Set(prev);
+          if (next.has(opt.id)) next.delete(opt.id);
+          else next.add(opt.id);
+          return next;
+        });
+        return;
+      }
       const selectionKey = `${exercise.id}:${opt.id}`;
       if (selectionDebounceRef.current === selectionKey) return;
       selectionDebounceRef.current = selectionKey;
@@ -541,38 +637,15 @@ export function LearningTerminal({
         selectedOptionId: opt.id,
         wasCorrect: opt.isCorrect,
       });
-      const bossActive = resolveTerminalBossMode(answerLf, exercise.id).isBoss;
-      if (opt.isCorrect && bossActive) {
-        markMissionCleared(exercise.id);
-        recordLearningExerciseMastery(answerLf, exercise.id);
-        unlockSectorMastery(answerLf);
-        void playVictoryFinisherSequence();
-        window.dispatchEvent(new CustomEvent("nx:boss-clear-map"));
-        triggerBossHit(8);
-      } else if (opt.isCorrect) {
-        recordLearningExerciseMastery(answerLf, exercise.id);
-        if (!edtechFlow) {
-          triggerBossHit(8);
-        }
-        if (edtechFlow) {
-          window.setTimeout(() => advanceEdtechLearningTurn(exercise.id), 900);
-        } else if (isBeginnerExercise) {
-          markMissionCleared(exercise.id);
-        }
-      }
+      if (opt.isCorrect) applyMcSuccess(opt.id);
     },
     [
       answerLf,
-      edtechFlow,
+      applyMcSuccess,
       exercise,
-      advanceEdtechLearningTurn,
-      isBeginnerExercise,
-      markMissionCleared,
+      isMultiMc,
+      mcSubmitted,
       recordCombatLearningAttempt,
-      recordLearningExerciseMastery,
-      triggerBossHit,
-      unlockSectorMastery,
-      playVictoryFinisherSequence,
     ]
   );
 
@@ -640,8 +713,11 @@ export function LearningTerminal({
         lf={answerLf}
         exercise={exercise}
         pickedId={pickedId}
+        pickedIds={pickedIds}
+        mcSubmitted={mcSubmitted}
         examStrict={examStrict}
         onPick={handleMcOption}
+        onSubmitMulti={handleMcSubmitMulti}
       />
     );
   }
@@ -1395,6 +1471,9 @@ export function LearningTerminal({
                           optIdx={optIdx}
                           totalOpts={exercise.mcOptions.length}
                           pickedId={pickedId}
+                          pickedIds={pickedIds}
+                          mcSubmitted={mcSubmitted}
+                          isMultiMc={isMultiMc}
                           isBeginnerExercise={isBeginnerExercise}
                           variant="focusPanel"
                           onPick={handleMcOption}
@@ -1410,6 +1489,30 @@ export function LearningTerminal({
                           sanitizeOptionText={edtechSanitizeText}
                         />
                       ))}
+                      {isMultiMc && !mcSubmitted ? (
+                        <motion.button
+                          type="button"
+                          variants={streamChild}
+                          onClick={handleMcSubmitMulti}
+                          disabled={pickedIds.size === 0}
+                          style={{
+                            marginTop: 12,
+                            alignSelf: "flex-start",
+                            border: "none",
+                            borderRadius: 999,
+                            padding: "12px 20px",
+                            fontFamily: typography.fontSans,
+                            fontWeight: 800,
+                            fontSize: 18,
+                            cursor: pickedIds.size === 0 ? "not-allowed" : "pointer",
+                            opacity: pickedIds.size === 0 ? 0.5 : 1,
+                            background: "linear-gradient(135deg, #18251c 0%, #314832 100%)",
+                            color: "rgba(251,247,239,0.98)",
+                          }}
+                        >
+                          {t("learningTerminal.mcSubmitMulti", "Antwort prüfen")}
+                        </motion.button>
+                      ) : null}
                     </motion.div>
                     {!isBeginnerExercise ? (
                       <>
@@ -1524,6 +1627,9 @@ export function LearningTerminal({
                           optIdx={optIdx}
                           totalOpts={exercise.mcOptions.length}
                           pickedId={pickedId}
+                          pickedIds={pickedIds}
+                          mcSubmitted={mcSubmitted}
+                          isMultiMc={isMultiMc}
                           isBeginnerExercise={isBeginnerExercise}
                           variant="ambientPanel"
                           onPick={handleMcOption}
@@ -1535,6 +1641,29 @@ export function LearningTerminal({
                           sanitizeOptionText={edtechSanitizeText}
                         />
                       ))}
+                      {isMultiMc && !mcSubmitted ? (
+                        <button
+                          type="button"
+                          onClick={handleMcSubmitMulti}
+                          disabled={pickedIds.size === 0}
+                          style={{
+                            marginTop: 12,
+                            alignSelf: "flex-start",
+                            border: "none",
+                            borderRadius: 999,
+                            padding: "10px 18px",
+                            fontFamily: typography.fontSans,
+                            fontWeight: 800,
+                            fontSize: 16,
+                            cursor: pickedIds.size === 0 ? "not-allowed" : "pointer",
+                            opacity: pickedIds.size === 0 ? 0.5 : 1,
+                            background: "linear-gradient(135deg, #18251c 0%, #314832 100%)",
+                            color: "rgba(251,247,239,0.98)",
+                          }}
+                        >
+                          {t("learningTerminal.mcSubmitMulti", "Antwort prüfen")}
+                        </button>
+                      ) : null}
                     </motion.div>
                   </>
                 ) : null}

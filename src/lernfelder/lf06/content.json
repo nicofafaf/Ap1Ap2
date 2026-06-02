@@ -12,20 +12,20 @@
       "lessonCards": [
         {
           "title": "In einfachen Worten",
-          "body": "Ein Skript ist eine Datei mit Anweisungen die der Computer Zeile für Zeile ausführt — oft zum Automatisieren"
+          "body": "Programme und Skripte sind Anweisungen die der Computer ausführt — in der Berufsschule lernst du dafür vor allem C#"
         },
         {
           "title": "Vergleich aus dem Alltag",
-          "body": "Wie ein Kochrezept: Schritt 1 Wasser kochen — Schritt 2 Nudeln — der Koch folgt der Liste"
+          "body": "Wie ein Kochrezept: Schritt 1 Wasser kochen — Schritt 2 Nudeln — der Computer folgt der Liste Zeile für Zeile"
         },
         {
           "title": "Merksatz",
-          "body": "Skripte sparen Klicks — gleiche Aufgabe wiederholbar ohne alles von Hand zu machen"
+          "body": "C# ist die Sprache für Anwendungsentwicklung in Schule und Prüfung — Skripte automatisieren wiederkehrende Aufgaben"
         }
       ],
       "example": {
-        "label": "Mini-Beispiel",
-        "body": "Ein Backup-Skript kopiert jeden Abend einen Ordner — ohne dass du es jedes Mal klickst"
+        "label": "Mini-Beispiel C#",
+        "body": "Console.WriteLine(\"Backup start\"); — eine Zeile Code gibt Text in der Konsole aus"
       },
       "practice": {
         "type": "mc",
@@ -74,6 +74,152 @@
       }
     },
     {
+      "id": "lf6-grund-variablen",
+      "topic": "Skript-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Variablen — Werte merken",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "In C# speicherst du Werte in Variablen mit einem Typ — int für Ganzzahlen string für Text bool für wahr/falsch" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Etikett auf einer Schublade — int fuel = 80 bedeutet: fuel ist eine Ganzzahl mit Wert 80" },
+        { "title": "Merksatz", "body": "int string bool double — Typ zuerst dann Name dann Wert mit Semikolon am Ende" }
+      ],
+      "example": { "label": "Mini-Beispiel C#", "body": "int fuel = 80;\nfuel = 75;\n— der Wert unter fuel wurde geändert" },
+      "practice": {
+        "type": "mc",
+        "question": "Welche C#-Deklaration ist für eine Ganzzahl die sich ändern darf korrekt",
+        "options": [
+          { "text": "int zaehler = 0;", "correct": true },
+          { "text": "int zaehler = \"0\";", "correct": false, "hint": "Anführungszeichen bedeuten string nicht int" },
+          { "text": "string zaehler = 0;", "correct": false, "hint": "0 ohne Anführungszeichen ist keine Zeichenkette" },
+          { "text": "int zaehler = 0", "correct": false, "hint": "In C# endet die Anweisung mit Semikolon" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-grund-if",
+      "topic": "Skript-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Wenn-dann — Entscheidungen",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Mit if prüft das Programm eine Bedingung und führt Code nur aus wenn sie wahr ist" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wenn es regnet nimm einen Schirm — sonst geh ohne Schirm" },
+        { "title": "Merksatz", "body": "if Bedingung { dann das } — else { sonst das }" }
+      ],
+      "example": { "label": "Mini-Beispiel C#", "body": "if (score >= 50) { bestanden = true; } else { bestanden = false; }" },
+      "practice": {
+        "type": "mc",
+        "question": "Wann wird der Block hinter if ausgeführt",
+        "options": [
+          { "text": "Wenn die Bedingung wahr ist", "correct": true },
+          { "text": "Immer am Ende des Programms", "correct": false, "hint": "if springt nur bei wahrer Bedingung hinein" },
+          { "text": "Nur wenn die Variable const heißt", "correct": false, "hint": "const hat nichts mit if zu tun" },
+          { "text": "Nur in SQL-Abfragen", "correct": false, "hint": "if ist Programmierlogik nicht SQL" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-grund-schleife",
+      "topic": "Skript-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Schleifen — Wiederholen",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Eine Schleife führt denselben Code mehrfach aus bis eine Abbruchbedingung erreicht ist" },
+        { "title": "Vergleich aus dem Alltag", "body": "10 Liegestütze — jede Wiederholung ist ein Durchlauf der Schleife" },
+        { "title": "Merksatz", "body": "for (int i = 0; i < n; i++) — while läuft solange die Bedingung wahr bleibt" }
+      ],
+      "example": { "label": "Mini-Beispiel C#", "body": "for (int i = 0; i < 3; i++) { Console.WriteLine(i); } — gibt 0 1 2 aus" },
+      "practice": {
+        "type": "mc",
+        "question": "Was macht i++ in for (int i = 0; i < 3; i++) in C#",
+        "options": [
+          { "text": "Erhöht i um 1 nach jedem Durchlauf", "correct": true },
+          { "text": "Setzt i auf 0 zurück", "correct": false, "hint": "i++ addiert eins nicht null" },
+          { "text": "Beendet die Schleife sofort", "correct": false, "hint": "break beendet die Schleife i++ zählt hoch" },
+          { "text": "Löscht die Variable i", "correct": false, "hint": "i bleibt bestehen und wächst" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-grund-cs-start",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "C# — deine Prüfungssprache",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "C# ist eine objektorientierte Sprache von Microsoft — damit schreibst du Konsolen- und Desktop-Programme in Berufsschule und IHK-Prüfung" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Baukasten mit festen Regeln: Typen Klassen Methoden — der Compiler prüft ob dein Code syntaktisch stimmt" },
+        { "title": "Merksatz", "body": "C# = Schule + Prüfung — Console.WriteLine für Ausgabe — Semikolon nach jeder Anweisung" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "Console.WriteLine(\"Hallo C#\");" },
+      "practice": {
+        "type": "mc",
+        "question": "Wofür nutzt du C# in der Ausbildung zum Fachinformatiker Anwendungsentwicklung am häufigsten",
+        "options": [
+          { "text": "Programme schreiben mit Variablen Schleifen und Klassen", "correct": true },
+          { "text": "Netzwerkkabel crimpen", "correct": false, "hint": "Das ist Hardware nicht Programmierung" },
+          { "text": "Nur HTML-Webseiten ohne Logik", "correct": false, "hint": "C# ist eine Programmiersprache nicht nur Markup" },
+          { "text": "BIOS-Einstellungen im UEFI", "correct": false, "hint": "Firmware ist kein C#-Thema" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-grund-cs-console",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Console.WriteLine — Ausgabe",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Console.WriteLine gibt Text in der Konsole aus — in $\"...\" kannst du Variablen einsetzen" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Lautsprecher im Programm — du sagst was angezeigt werden soll" },
+        { "title": "Merksatz", "body": "Console.WriteLine(\"Text\"); oder Console.WriteLine($\"Wert: {x}\");" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "int punkte = 42;\nConsole.WriteLine($\"Punkte: {punkte}\");" },
+      "practice": {
+        "type": "csharp",
+        "coachLine": "die ausgabe zeigt noch den platzhalter wir ersetzen ihn durch den echten variablennamen",
+        "question": "Der Code soll den Wert von score ausgeben Korrigiere die WriteLine-Zeile",
+        "brokenCode": "int score = 100;\nConsole.WriteLine(\"Score: {name}\");\nreturn score;",
+        "expected": "int score = 100;\nConsole.WriteLine($\"Score: {score}\");\nreturn score;",
+        "solutionHint": "Nutze String-Interpolation mit $ vor den Anführungszeichen",
+        "options": [
+          { "text": "Interpolation mit $ und korrektem Variablennamen in geschweiften Klammern", "correct": true },
+          { "text": "name ist ein reserviertes C#-Schlüsselwort", "correct": false, "hint": "name existiert hier nicht score ist die Variable" },
+          { "text": "WriteLine braucht immer drei Parameter", "correct": false, "hint": "Ein String-Argument reicht" },
+          { "text": "return score ist falsch", "correct": false, "hint": "return ist für die Workbench-Prüfung ok der Fehler ist WriteLine" }
+        ]
+      }
+    },
+    {
+      "id": "lf6-grund-cs-methode",
+      "topic": "C#-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Methoden — wiederverwendbare Logik",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Eine Methode kapselt Logik — static int Verdopple(int x) nimmt x und gibt das Ergebnis zurück" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie eine Formel in Excel die du in vielen Zellen wieder verwendest" },
+        { "title": "Merksatz", "body": "Rückgabetyp Name Parameter — return liefert den Wert zurück" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "static int Verdopple(int wert) { return wert * 2; }" },
+      "practice": {
+        "type": "csharp",
+        "coachLine": "die methode soll verdoppeln nicht addieren wir fixen den return",
+        "question": "Die Methode CalcPlate soll load mal 2 rechnen Korrigiere den return",
+        "brokenCode": "static int CalcPlate(int load)\n{\n    return load + 2;\n}",
+        "expected": "static int CalcPlate(int load)\n{\n    return load * 2;\n}",
+        "solutionHint": "Verdoppeln heißt multiplizieren nicht addieren",
+        "options": [
+          { "text": "Multiplikation statt Addition im return", "correct": true },
+          { "text": "load muss string sein", "correct": false, "hint": "int ist hier korrekt" },
+          { "text": "static ist verboten", "correct": false, "hint": "static ist in Übungen üblich" },
+          { "text": "return fehlt komplett", "correct": false, "hint": "return ist da nur die Formel ist falsch" }
+        ]
+      }
+    },
+    {
       "id": "lf6-sw-variables",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",
@@ -84,11 +230,11 @@
       "practice": {
         "type": "mc",
         "coachLine": "der hyperantrieb braucht stabile werte bevor wir springen",
-        "question": "let fuel = 80; const maxTemp = 1200; — Was darf später geändert werden",
+        "question": "int fuel = 80; const int maxTemp = 1200; — Was darf später geändert werden",
         "options": [
-          { "text": "fuel mit let", "correct": true },
-          { "text": "maxTemp mit const", "correct": false, "hint": "const bleibt fest nach der ersten Zuweisung" },
-          { "text": "Beides nie", "correct": false, "hint": "let ist genau für Änderungen gedacht" },
+          { "text": "fuel — int-Variable kann neu zugewiesen werden", "correct": true },
+          { "text": "maxTemp — const int bleibt fest", "correct": false, "hint": "const kann nach der ersten Zuweisung nicht geändert werden" },
+          { "text": "Beides nie", "correct": false, "hint": "int ohne const darf geändert werden" },
           { "text": "Nur Kommentare", "correct": false, "hint": "Variablen sind Werte im Programm" }
         ]
       }
@@ -103,7 +249,7 @@
       ],
       "practice": {
         "type": "mc",
-        "question": "for (let i = 0; i < 5; i++) { train(); } — Wie oft läuft train()",
+        "question": "for (int i = 0; i < 5; i++) { Train(); } — Wie oft läuft Train()",
         "options": [
           { "text": "5 Mal", "correct": true },
           { "text": "4 Mal", "correct": false, "hint": "i geht von 0 bis 4 das sind fünf Durchläufe" },
@@ -122,7 +268,7 @@
       ],
       "practice": {
         "type": "mc",
-        "question": "function calcPlate(load) { return load * 2; } — Wozu dient calcPlate",
+        "question": "static int CalcPlate(int load) { return load * 2; } — Wozu dient CalcPlate",
         "options": [
           { "text": "Wiederverwendbare Logik mit Parameter", "correct": true },
           { "text": "Nur ein Kommentar", "correct": false, "hint": "function führt Code aus" },

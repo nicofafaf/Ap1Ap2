@@ -166,6 +166,52 @@
       }
     },
     {
+      "id": "lf8-grund-pfade",
+      "topic": "Linux-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Pfade — wo bin ich",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Ein Pfad zeigt wo eine Datei oder ein Ordner im Dateisystem liegt — absolut ab / oder relativ zum aktuellen Ordner" },
+        { "title": "Vergleich aus dem Alltag", "body": "Absolut: Straße Hausnummer Stadt — Relativ: zweite Tür links von hier" },
+        { "title": "Merksatz", "body": "/ ist Wurzel — . ist hier — .. ist ein Ordner hoch — pwd zeigt den absoluten Pfad" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "cd /etc — pwd zeigt /etc — ls listet den Inhalt" },
+      "practice": {
+        "type": "mc",
+        "question": "Was bedeutet ein Pfad der mit / beginnt unter Linux",
+        "options": [
+          { "text": "Absoluter Pfad ab der Wurzel", "correct": true },
+          { "text": "Nur ein relativer Kurzname", "correct": false, "hint": "Relativ startet ohne führenden Slash" },
+          { "text": "Ein Windows-Laufwerk C:", "correct": false, "hint": "Linux kennt keine Laufwerksbuchstaben so" },
+          { "text": "Ein SQL-Tabellenname", "correct": false, "hint": "Pfade gehören zum Dateisystem" }
+        ]
+      }
+    },
+    {
+      "id": "lf8-grund-chmod",
+      "topic": "Linux-Grundlagen",
+      "learnPhase": "grundlage",
+      "level": "beginner",
+      "title": "Rechte — wer darf was",
+      "lessonCards": [
+        { "title": "In einfachen Worten", "body": "Jede Datei hat Rechte für Besitzer Gruppe und andere — lesen schreiben ausführen" },
+        { "title": "Vergleich aus dem Alltag", "body": "Wie ein Büro: Chef darf alles Team liest nur Gäste kommen nicht rein" },
+        { "title": "Merksatz", "body": "chmod setzt Rechte — 640 ist rw-r----- — 777 ist für alle offen und unsicher" }
+      ],
+      "example": { "label": "Mini-Beispiel", "body": "chmod 640 config.toml — Besitzer rw Gruppe r andere nichts" },
+      "practice": {
+        "type": "mc",
+        "question": "Was bedeutet chmod 640 auf einer Datei grob",
+        "options": [
+          { "text": "Besitzer lesen+schreiben Gruppe lesen andere nichts", "correct": true },
+          { "text": "Alle dürfen lesen schreiben und ausführen", "correct": false, "hint": "Das wäre eher 777" },
+          { "text": "Nur root darf die Datei sehen", "correct": false, "hint": "640 erlaubt Gruppe lesen" },
+          { "text": "Die Datei wird gelöscht", "correct": false, "hint": "chmod ändert Rechte nicht Inhalt" }
+        ]
+      }
+    },
+    {
       "id": "lf8-sw-chmod",
       "topic": "Multiversum · Star Wars",
       "level": "beginner",

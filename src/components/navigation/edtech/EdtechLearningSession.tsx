@@ -21,16 +21,22 @@ export type EdtechLearningSessionProps = {
   lf: LearningField;
   exercise: LearningExercise;
   pickedId: string | null;
+  pickedIds?: ReadonlySet<string>;
+  mcSubmitted?: boolean;
   examStrict: boolean;
   onPick: (opt: LearningMcOption) => void;
+  onSubmitMulti?: () => void;
 };
 
 export function EdtechLearningSession({
   lf,
   exercise,
   pickedId,
+  pickedIds,
+  mcSubmitted = false,
   examStrict,
   onPick,
+  onSubmitMulti,
 }: EdtechLearningSessionProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
@@ -43,6 +49,8 @@ export function EdtechLearningSession({
   const lfNum = Number.parseInt(lf.replace("LF", ""), 10);
   const meta = getLfCourseMeta(lfNum);
   const isBeginner = Boolean(exercise.lessonCards?.length);
+  const isMultiMc = exercise.mcSelectMode === "multi";
+  const selectedIds = pickedIds ?? new Set<string>();
 
   const displayTitle = useMemo(
     () =>
@@ -75,9 +83,22 @@ export function EdtechLearningSession({
   const beginnerIdx = beginnerIds.indexOf(exercise.id);
   const beginnerCurrent = beginnerIdx >= 0 ? beginnerIdx + 1 : null;
 
+  const correctIds = useMemo(
+    () => new Set(exercise.mcOptions.filter((o) => o.isCorrect).map((o) => o.id)),
+    [exercise.mcOptions]
+  );
+
+  const multiOk =
+    isMultiMc &&
+    mcSubmitted &&
+    correctIds.size === selectedIds.size &&
+    [...correctIds].every((id) => selectedIds.has(id));
+
   const picked = exercise.mcOptions.find((o) => o.id === pickedId);
-  const showHit = Boolean(picked?.isCorrect && pickedId);
-  const showMiss = Boolean(picked && !picked.isCorrect && pickedId);
+  const showHit = isMultiMc ? Boolean(multiOk) : Boolean(picked?.isCorrect && pickedId);
+  const showMiss = isMultiMc
+    ? Boolean(mcSubmitted && !multiOk)
+    : Boolean(picked && !picked.isCorrect && pickedId);
 
   const exitLearn = () => {
     resetCombat();
@@ -176,29 +197,42 @@ export function EdtechLearningSession({
 
           <section className="nx-edtech-learn-card" aria-label={t("learningTerminal.ariaMc")}>
             <div className="nx-edtech-learn-card-label">
-              {t("learningTerminal.edtechQuestionLabel", "Schritt 2 · Deine Frage")}
+              {isMultiMc
+                ? t("learningTerminal.mcMultiLabel", "Schritt 2 · Mehrfachauswahl")
+                : t("learningTerminal.edtechQuestionLabel", "Schritt 2 · Deine Frage")}
             </div>
             <p className="nx-edtech-learn-question">{mcQuestion}</p>
+            {isMultiMc ? (
+              <p className="nx-edtech-learn-coach" style={{ marginTop: 0, marginBottom: 12 }}>
+                {t("learningTerminal.mcMultiHint", "Wähle alle zutreffenden Antworten und tippe dann auf Prüfen")}
+              </p>
+            ) : null}
             <div className="nx-edtech-learn-options" role="group">
               {exercise.mcOptions.map((opt) => {
-                const active = pickedId === opt.id;
-                const hit = active && opt.isCorrect;
-                const miss = active && !opt.isCorrect;
+                const active = isMultiMc ? selectedIds.has(opt.id) : pickedId === opt.id;
+                const hit = isMultiMc
+                  ? mcSubmitted && opt.isCorrect && selectedIds.has(opt.id)
+                  : active && opt.isCorrect;
+                const miss = isMultiMc
+                  ? mcSubmitted && ((selectedIds.has(opt.id) && !opt.isCorrect) || (!selectedIds.has(opt.id) && opt.isCorrect))
+                  : active && !opt.isCorrect;
                 const label = formatLearningDisplayText(opt.text, learningStoryMode);
+                const locked = isMultiMc ? mcSubmitted : Boolean(pickedId);
                 return (
                   <motion.button
                     key={opt.id}
                     type="button"
-                    disabled={Boolean(pickedId)}
+                    disabled={locked}
                     className={[
                       "nx-edtech-learn-opt",
+                      active && !mcSubmitted ? "nx-edtech-learn-opt--active" : "",
                       hit ? "nx-edtech-learn-opt--hit" : "",
                       miss ? "nx-edtech-learn-opt--miss" : "",
                     ]
                       .filter(Boolean)
                       .join(" ")}
                     onClick={() => onPick(opt)}
-                    whileTap={reduceMotion || pickedId ? undefined : { scale: 0.98 }}
+                    whileTap={reduceMotion || locked ? undefined : { scale: 0.98 }}
                   >
                     <span aria-hidden style={{ fontWeight: 800, marginRight: 10 }}>
                       {opt.id.toUpperCase()}
@@ -208,6 +242,17 @@ export function EdtechLearningSession({
                 );
               })}
             </div>
+            {isMultiMc && !mcSubmitted ? (
+              <button
+                type="button"
+                className="nx-edtech-learn-close"
+                style={{ marginTop: 16, width: "100%" }}
+                disabled={selectedIds.size === 0}
+                onClick={onSubmitMulti}
+              >
+                {t("learningTerminal.mcSubmitMulti", "Antwort prüfen")}
+              </button>
+            ) : null}
             {showHit ? (
               <div className="nx-edtech-learn-feedback nx-edtech-learn-feedback--hit" role="status">
                 {t("learningTerminal.feedbackMcHitNext", "Richtig — gleich kommt die nächste Aufgabe")}
@@ -215,8 +260,12 @@ export function EdtechLearningSession({
             ) : null}
             {showMiss ? (
               <div className="nx-edtech-learn-feedback nx-edtech-learn-feedback--miss" role="status">
-                <div>{t("learningTerminal.feedbackMcWrongTitle", "Das ist noch nicht richtig")}</div>
-                {!examStrict && optWrongHint(picked) ? (
+                <div>
+                  {isMultiMc
+                    ? t("learningTerminal.feedbackMcMultiWrong", "Noch nicht alle richtigen Antworten getroffen")
+                    : t("learningTerminal.feedbackMcWrongTitle", "Das ist noch nicht richtig")}
+                </div>
+                {!examStrict && !isMultiMc && optWrongHint(picked) ? (
                   <div style={{ marginTop: 8, fontWeight: 550 }}>{optWrongHint(picked)}</div>
                 ) : null}
               </div>

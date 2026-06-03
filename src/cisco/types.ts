@@ -16,7 +16,7 @@ export type CiscoMatchPair = {
   right: CiscoLocaleText;
 };
 
-export type CiscoQuestionType = "single" | "multi" | "match" | "unsupported";
+export type CiscoQuestionType = "single" | "multi" | "match" | "pt-lab" | "unsupported";
 
 export type CiscoQuestion = {
   id: string;
@@ -61,7 +61,8 @@ export type CiscoPackId =
   | "practice-final"
   | "course-final"
   | "system-test"
-  | "pt-skills-final";
+  | "pt-skills-final"
+  | "pt-skills-practice";
 
 export type CiscoModuleDef = {
   module: number;

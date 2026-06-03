@@ -28,6 +28,7 @@ export type EdtechLearningSessionProps = {
   onPick: (opt: LearningMcOption) => void;
   onSubmitMulti?: () => void;
   onSubmitMatch?: (ok: boolean, selectionKey: string) => void;
+  onPtLabComplete?: () => void;
 };
 
 export function EdtechLearningSession({
@@ -40,6 +41,7 @@ export function EdtechLearningSession({
   onPick,
   onSubmitMulti,
   onSubmitMatch,
+  onPtLabComplete,
 }: EdtechLearningSessionProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
@@ -54,6 +56,7 @@ export function EdtechLearningSession({
   const isBeginner = Boolean(exercise.lessonCards?.length);
   const isMultiMc = exercise.mcSelectMode === "multi";
   const isMatchMc = exercise.mcSelectMode === "match";
+  const isPtLab = Boolean(exercise.ptLab);
   const selectedIds = pickedIds ?? new Set<string>();
 
   const displayTitle = useMemo(
@@ -222,11 +225,13 @@ export function EdtechLearningSession({
 
           <section className="nx-edtech-learn-card" aria-label={t("learningTerminal.ariaMc")}>
             <div className="nx-edtech-learn-card-label">
-              {isMatchMc
-                ? t("learningTerminal.matchLabel", "Schritt 2 · Zuordnung")
-                : isMultiMc
-                  ? t("learningTerminal.mcMultiLabel", "Schritt 2 · Mehrfachauswahl")
-                  : t("learningTerminal.edtechQuestionLabel", "Schritt 2 · Deine Frage")}
+              {isPtLab
+                ? t("cisco.ptLabLabel", "Packet Tracer Lab")
+                : isMatchMc
+                  ? t("learningTerminal.matchLabel", "Schritt 2 · Zuordnung")
+                  : isMultiMc
+                    ? t("learningTerminal.mcMultiLabel", "Schritt 2 · Mehrfachauswahl")
+                    : t("learningTerminal.edtechQuestionLabel", "Schritt 2 · Deine Frage")}
             </div>
             <p className="nx-edtech-learn-question">{mcQuestion}</p>
             {exercise.exhibitCode ? (
@@ -239,12 +244,40 @@ export function EdtechLearningSession({
                 alt={mcQuestion.slice(0, 120)}
               />
             ) : null}
-            {isMultiMc ? (
+            {isPtLab ? (
+              <>
+                <p className="nx-edtech-learn-coach" style={{ marginTop: 0, marginBottom: 12 }}>
+                  {t(
+                    "cisco.ptLabHint",
+                    "Stelle das Szenario in Packet Tracer nach, dann tippe auf Weiter."
+                  )}
+                </p>
+                {exercise.sourceUrl ? (
+                  <a
+                    className="nx-edtech-learn-pt-link"
+                    href={exercise.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t("cisco.ptLabOpenSource", "Referenz auf ITExamAnswers öffnen")}
+                  </a>
+                ) : null}
+                <button
+                  type="button"
+                  className="nx-edtech-learn-close"
+                  style={{ marginTop: 16, width: "100%" }}
+                  onClick={onPtLabComplete}
+                >
+                  {t("cisco.ptLabComplete", "Lab abgeschlossen — weiter")}
+                </button>
+              </>
+            ) : null}
+            {isMultiMc && !isPtLab ? (
               <p className="nx-edtech-learn-coach" style={{ marginTop: 0, marginBottom: 12 }}>
                 {t("learningTerminal.mcMultiHint", "Wähle alle zutreffenden Antworten und tippe dann auf Prüfen")}
               </p>
             ) : null}
-            {isMatchMc && exercise.matchPairs?.length ? (
+            {!isPtLab && isMatchMc && exercise.matchPairs?.length ? (
               <CiscoMatchExercise
                 key={exercise.id}
                 pairs={exercise.matchPairs}
@@ -252,7 +285,7 @@ export function EdtechLearningSession({
                 onSubmit={(ok, key) => onSubmitMatch?.(ok, key)}
               />
             ) : null}
-            {!isMatchMc ? (
+            {!isMatchMc && !isPtLab ? (
               <>
             <div className="nx-edtech-learn-options" role="group">
               {exercise.mcOptions.map((opt) => {

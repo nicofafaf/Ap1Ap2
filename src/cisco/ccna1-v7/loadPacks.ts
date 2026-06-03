@@ -39,13 +39,31 @@ function isPlayableCiscoItem(i: CiscoQuestion): boolean {
   return false;
 }
 
+function isPtLabItem(i: CiscoQuestion): boolean {
+  return i.type === "pt-lab";
+}
+
 export function getMcItemsForPack(id: CiscoPackId) {
   const pack = getCiscoPack(id);
   if (!pack) return [];
   return pack.items.filter((i) => i.type === "single" || i.type === "multi");
 }
 
-/** MC + Match — für Cisco-Sessions */
+function isPtLabPack(id: CiscoPackId): boolean {
+  return id === "pt-skills-final" || id === "pt-skills-practice";
+}
+
+/** MC + Match + PT-Lab (PTSA) — für Cisco-Sessions */
+export function getSessionItemsForPack(id: CiscoPackId) {
+  const pack = getCiscoPack(id);
+  if (!pack) return [];
+  if (isPtLabPack(id)) {
+    return pack.items.filter(isPtLabItem);
+  }
+  return pack.items.filter(isPlayableCiscoItem);
+}
+
+/** MC + Match — für Quiz-Zähler und Live-Duell */
 export function getQuizItemsForPack(id: CiscoPackId) {
   const pack = getCiscoPack(id);
   if (!pack) return [];

@@ -630,6 +630,30 @@ export function LearningTerminal({
     ]
   );
 
+  const handlePtLabComplete = useCallback(() => {
+    if (!exercise?.ptLab) return;
+    recordCombatLearningAttempt({
+      lf: answerLf,
+      exerciseId: exercise.id,
+      title: exercise.title,
+      problem: exercise.problem,
+      mcQuestion: exercise.mcQuestion,
+      selectedOptionId: "pt-lab:done",
+      wasCorrect: true,
+    });
+    recordLearningExerciseMastery(answerLf, exercise.id);
+    if (edtechFlow) {
+      window.setTimeout(() => advanceEdtechLearningTurn(exercise.id), 600);
+    }
+  }, [
+    answerLf,
+    advanceEdtechLearningTurn,
+    edtechFlow,
+    exercise,
+    recordCombatLearningAttempt,
+    recordLearningExerciseMastery,
+  ]);
+
   const handleMatchSubmit = useCallback(
     (ok: boolean, selectionKey: string) => {
       if (!exercise || mcSubmitted) return;
@@ -775,16 +799,21 @@ export function LearningTerminal({
 
   if (!visible) return null;
 
-  const useEdtechSession =
-    edtechFlow &&
-    learningFocus &&
-    exercise &&
-    (exercise.mcOptions.length > 0 || (exercise.matchPairs?.length ?? 0) > 0) &&
-    exercise.lang !== "sql" &&
-    exercise.lang !== "csharp" &&
-    exercise.lang !== "bash";
+  const edtechExerciseReady = (() => {
+    if (!exercise) return false;
+    const hasContent =
+      exercise.ptLab ||
+      exercise.mcOptions.length > 0 ||
+      (exercise.matchPairs?.length ?? 0) > 0;
+    return (
+      hasContent &&
+      exercise.lang !== "sql" &&
+      exercise.lang !== "csharp" &&
+      exercise.lang !== "bash"
+    );
+  })();
 
-  if (useEdtechSession) {
+  if (edtechFlow && learningFocus && edtechExerciseReady && exercise) {
     return (
       <EdtechLearningSession
         lf={answerLf}
@@ -796,6 +825,7 @@ export function LearningTerminal({
         onPick={handleMcOption}
         onSubmitMulti={handleMcSubmitMulti}
         onSubmitMatch={handleMatchSubmit}
+        onPtLabComplete={handlePtLabComplete}
       />
     );
   }

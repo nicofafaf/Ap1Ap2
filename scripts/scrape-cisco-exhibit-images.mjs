@@ -30,6 +30,8 @@ const PACK_URLS = {
     "https://itexamanswers.net/ccna-1-v7-0-final-exam-answers-full-introduction-to-networks.html",
   "system-test":
     "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
+  "pt-skills-practice":
+    "https://itexamanswers.net/ccna-1-v7-0-itn-practice-pt-skills-assessment-ptsa-answers.html",
   "pt-skills-final":
     "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
 };
@@ -170,15 +172,18 @@ async function patchPackJson(packId, manifest) {
 async function processPtSkillsImages(packId, html) {
   const packOut = join(outRoot, packId);
   mkdirSync(packOut, { recursive: true });
-  const scenarioRe =
-    /<h3>Answers Key(?:\s*-\s*100% Score)?<\/h3>([\s\S]*?)(?=<h3>Answers Key|<h3>Download PDF|$)/gi;
-  let m;
-  let num = 0;
+  const headerRe =
+    /<h3[^>]*>(?:Answers Key(?:\s*-\s*100% Score)?|Answers - Passed 100% Score)<\/h3>/gi;
+  const starts = [];
+  let hm;
+  while ((hm = headerRe.exec(html))) starts.push(hm.index);
   let count = 0;
-  while ((m = scenarioRe.exec(html))) {
-    num += 1;
-    const chunk = m[1];
-    const imgMatch = chunk.match(/src=["']([^"']+153921[^"']+)["']/i);
+  for (let i = 0; i < starts.length; i += 1) {
+    const chunk = html.slice(starts[i], starts[i + 1] ?? html.length);
+    const num = i + 1;
+    const imgMatch =
+      chunk.match(/src=["']([^"']+153921[^"']+)["']/i) ??
+      chunk.match(/src=["']([^"']+wp-content\/uploads\/20[^"']+)["']/i);
     if (!imgMatch) continue;
     const imgUrl = decodeHtml(imgMatch[1]);
     const fileName = `q${String(num).padStart(3, "0")}.jpg`;
@@ -209,7 +214,7 @@ async function main() {
     const manifestPath = join(outRoot, packId, "manifest.json");
     let manifest = [];
     let n = 0;
-    if (packId === "pt-skills-final") {
+    if (packId === "pt-skills-final" || packId === "pt-skills-practice") {
       n = await processPtSkillsImages(packId, html);
     } else {
       n = await processPack(packId, html);

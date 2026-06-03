@@ -73,6 +73,14 @@ export const CCNA1_ITN_PACKS: ReadonlyArray<{
     titleDe: "Übungs-Abschlussprüfung ITN",
   },
   {
+    id: "pt-skills-practice",
+    moduleRange: [1, 17],
+    sourceUrl:
+      "https://itexamanswers.net/ccna-1-v7-0-itn-practice-pt-skills-assessment-ptsa-answers.html",
+    titleEn: "ITN Practice PT Skills Assessment (PTSA)",
+    titleDe: "Übungs-PT-Fähigkeitenbeurteilung (PTSA)",
+  },
+  {
     id: "pt-skills-final",
     moduleRange: [1, 17],
     sourceUrl:

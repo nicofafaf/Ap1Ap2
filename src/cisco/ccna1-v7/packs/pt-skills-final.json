@@ -35,15 +35,15 @@
         17
       ],
       "number": 1,
-      "type": "unsupported",
+      "type": "pt-lab",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
       "needsManual": true,
       "question": {
-        "en": "ITN Final PTSA — Scenario ID 001 (Packet Tracer lab — see exhibit for R1/S1 config)",
+        "en": "ITN Final PTSA — Scenario ID 120 (Packet Tracer lab — see exhibit for router/switch config)",
         "de": null
       },
-      "exhibitCode": "enable\nconfigure terminal \nno ip domain-lookup\nhostname R1\nbanner motd #Unauthorized access to this device is prohibited!#\n\ninterface g0/0/0\ndescription Connect to Subnet B\nip address 192.168.10.129 255.255.255.192\nno shutdown \nexit\n\ninterface g0/0/1\ndescription Connect to Subnet A\nip address 192.168.10.1 255.255.255.128\nno shutdown \nexit\n\nenable secret DontTellAnyone\nservice password-encryption\nsecurity passwords min-length 10\n\nip domain-name netsec.com\nusername netadmin secret Ci$co12345\n\nline console 0\npassword C@nsPassw!\nlogin\nexit\n\nline vty 0 15\ntransport input ssh\nlogin local\nexit\n\ncrypto key generate rsa\n1024\nexit\ncopy running-config startup-config\n\n---\n\nenable\nconfigure terminal \nno ip domain-lookup\nhostname S1\nbanner motd #Unauthorized access to this device is prohibited!#\n\ninterface vlan 1\ndescription Switch Subnet A\nip address 192.168.10.2 255.255.255.128\nno shutdown \nexit\n\nip default-gateway 192.168.10.1\n\nenable secret DontTellAnyone\nservice password-encryption\n\nip domain-name netsec.com\nusername netadmin secret Ci$co12345\n\nline console 0\npassword C@nsPassw!\nlogin\nexit\n\nline vty 0 15\ntransport input ssh\nlogin local\nexit\n\ncrypto key generate rsa\n1024\n\nint range f0/1 - 4, f0/7 - 24, g0/1 - 2\ndescription Unused switch ports\nshutdown\n\nend\ncopy running-config startup-config",
+      "exhibitCode": "enable configure terminal no ip domain-lookup hostname R1 banner motd #Unauthorized access to this device is prohibited!# interface g0/0/0 description Connect to Subnet B ip address 192.168.10.129 255.255.255.192 no shutdown exit interface g0/0/1 description Connect to Subnet A ip address 192.168.10.1 255.255.255.128 no shutdown exit enable secret DontTellAnyone service password-encryption security passwords min-length 10 ip domain-name netsec.com username netadmin secret Ci$co12345 line console 0 password C@nsPassw! login exit line vty 0 15 transport input ssh login local exit crypto key generate rsa 1024 exit copy running-config startup-config\n\n---\n\nenable configure terminal no ip domain-lookup hostname S1 banner motd #Unauthorized access to this device is prohibited!# interface vlan 1 description Switch Subnet A ip address 192.168.10.2 255.255.255.128 no shutdown exit ip default-gateway 192.168.10.1 enable secret DontTellAnyone service password-encryption ip domain-name netsec.com username netadmin secret Ci$co12345 line console 0 password C@nsPassw! login exit line vty 0 15 transport input ssh login local exit crypto key generate rsa 1024 int range f0/1 - 4, f0/7 - 24, g0/1 - 2 description Unused switch ports shutdown end copy running-config startup-config",
       "illustrationSrc": "/assets/cisco/exhibits/pt-skills-final/q001.jpg"
     },
     {
@@ -69,14 +69,15 @@
         17
       ],
       "number": 2,
-      "type": "unsupported",
+      "type": "pt-lab",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
       "needsManual": true,
       "question": {
-        "en": "ITN Final PTSA — Scenario ID 002 (Packet Tracer lab — see exhibit for R1/S1 config)",
+        "en": "ITN Final PTSA — Scenario ID 211 (Packet Tracer lab — see exhibit for router/switch config)",
         "de": null
       },
+      "exhibitCode": "enable configure terminal no ip domain-lookup hostname Router-A banner motd #Unauthorized access to this device is prohibited!# interface g0/0/0 description Connect to Subnet B ip address 172.16.1.65 255.255.255.224 no shutdown exit interface g0/0/1 description Connect to Subnet A ip address 172.16.1.1 255.255.255.192 no shutdown exit enable secret NoOneShouldKnow service password-encryption security passwords min-length 10 ip domain-name netsec.com username netadmin secret Ci$co12345 line console 0 password C@nsPassw! login exit line vty 0 15 transport input ssh login local exit crypto key generate rsa 1024 exit copy running-config startup-config\n\n---\n\nenable configure terminal no ip domain-lookup hostname Switch-A banner motd #Unauthorized access to this device is prohibited!# interface vlan 1 description Switch Subnet A ip address 172.16.1.2 255.255.255.192 no shutdown exit ip default-gateway 172.16.1.1 enable secret NoOneShouldKnow service password-encryption ip domain-name netsec.com username netadmin secret Ci$co12345 line console 0 password C@nsPassw! login exit line vty 0 15 transport input ssh login local exit crypto key generate rsa 1024 int range f0/1 - 4, f0/7 - 24, g0/1 - 2 description Unused switch ports shutdown end copy running-config startup-config",
       "illustrationSrc": "/assets/cisco/exhibits/pt-skills-final/q002.jpg"
     },
     {
@@ -102,14 +103,15 @@
         17
       ],
       "number": 3,
-      "type": "unsupported",
+      "type": "pt-lab",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
       "needsManual": true,
       "question": {
-        "en": "ITN Final PTSA — Scenario ID 003 (Packet Tracer lab — see exhibit for R1/S1 config)",
+        "en": "ITN Final PTSA — Scenario ID 003 (Packet Tracer lab — see exhibit for router/switch config)",
         "de": null
       },
+      "exhibitCode": "enable configure terminal no ip domain-lookup hostname Central-RT banner motd #Unauthorized access to this device is prohibited!# interface g0/0/0 description Connect to Subnet B ip address 209.165.201.33 255.255.255.224 no shutdown exit interface g0/0/1 description Connect to Subnet A ip address 209.165.201.1 255.255.255.224 no shutdown exit enable secret NoOneShouldKnow service password-encryption security passwords min-length 10 ip domain-name netsec.com username netadmin secret Ci$co12345 line console 0 password C@nsPassw! login exit line vty 0 15 transport input ssh login local exit crypto key generate rsa 1024 exit copy running-config startup-config\n\n---\n\nenable configure terminal no ip domain-lookup hostname Central-SW banner motd #Unauthorized access to this device is prohibited!# interface vlan 1 description Switch Subnet A ip address 209.165.201.2 255.255.255.224 no shutdown exit ip default-gateway 209.165.201.1 enable secret NoOneShouldKnow service password-encryption ip domain-name netsec.com username netadmin secret Ci$co12345 line console 0 password C@nsPassw! login exit line vty 0 15 transport input ssh login local exit crypto key generate rsa 1024 int range f0/1 - 4, f0/7 - 24, g0/1 - 2 description Unused switch ports shutdown end copy running-config startup-config",
       "illustrationSrc": "/assets/cisco/exhibits/pt-skills-final/q003.jpg"
     }
   ]

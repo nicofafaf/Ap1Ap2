@@ -65,6 +65,9 @@ export async function buildLiveDuelQuestionPool(
       "modules-11-13",
       "modules-14-15",
       "modules-16-17",
+      "practice-final",
+      "course-final",
+      "system-test",
     ] as CiscoPackId[];
     for (const p of packs) bag.push(...refsFromCiscoPack(p));
   } else if (sourceId.startsWith("ccna:")) {

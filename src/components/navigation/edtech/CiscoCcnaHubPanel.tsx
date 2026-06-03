@@ -8,6 +8,12 @@ import {
   totalCiscoQuizCount,
 } from "../../../cisco/ccna1-v7/loadPacks";
 import type { CiscoPackId } from "../../../cisco/types";
+import {
+  CISCO_EXAM_PACK_IDS,
+  ciscoPackProgress,
+  hasCiscoLeitnerData,
+  pickWeakestCiscoModule,
+} from "../../../lib/cisco/ciscoProgress";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../../store/useGameStore";
 import "./edtechLearningRank.css";
@@ -18,7 +24,10 @@ export type CiscoCcnaHubPanelProps = {
 
 export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
   const beginCiscoPack = useGameStore((s) => s.beginCiscoPack);
+  const beginCiscoExam = useGameStore((s) => s.beginCiscoExam);
+  const beginCiscoWeaknessDrill = useGameStore((s) => s.beginCiscoWeaknessDrill);
   const beginCiscoModule = useGameStore((s) => s.beginCiscoModule);
+  const leitner = useGameStore((s) => s.learningLeitnerByExerciseId);
   const { t, locale } = useNexusI18n();
   const reduceMotion = useReducedMotion();
   const [packsReady, setPacksReady] = useState(false);
@@ -61,7 +70,8 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
           p.id === "practice-final" ||
           p.id === "course-final" ||
           p.id === "system-test" ||
-          p.id === "pt-skills-final"
+          p.id === "pt-skills-final" ||
+          p.id === "pt-skills-practice"
       ),
     [packs]
   );
@@ -72,8 +82,23 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
     return map;
   }, [packs]);
 
+  const weakestModule = useMemo(
+    () => (hasCiscoLeitnerData(leitner) ? pickWeakestCiscoModule(leitner) : null),
+    [leitner]
+  );
+
   const startPack = (id: CiscoPackId) => {
     beginCiscoPack(id);
+    onSessionStart?.();
+  };
+
+  const startExam = (id: CiscoPackId) => {
+    beginCiscoExam(id);
+    onSessionStart?.();
+  };
+
+  const startWeaknessDrill = () => {
+    beginCiscoWeaknessDrill(weakestModule?.packId);
     onSessionStart?.();
   };
 
@@ -116,51 +141,98 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
 
       {packsReady ? (
         <>
+          {weakestModule ? (
+            <div className="nx-cisco-coach-card">
+              <div>
+                <p className="nx-cisco-coach-kicker">{t("cisco.coachTitle", "Schwächen-Coach")}</p>
+                <p className="nx-cisco-coach-lead">
+                  {t("cisco.coachLead", "Modul {n} braucht Wiederholung").replace(
+                    "{n}",
+                    String(weakestModule.module)
+                  )}
+                </p>
+              </div>
+              <button type="button" className="nx-cisco-coach-cta" onClick={startWeaknessDrill}>
+                {t("cisco.coachCta", "Schwächen üben")}
+              </button>
+            </div>
+          ) : null}
+
           <div className="nx-cisco-pack-grid">
-            {CCNA1_ITN_PACKS.filter((p) => p.id.startsWith("modules-")).map((meta) => (
-              <motion.button
-                key={meta.id}
-                type="button"
-                className="nx-cisco-pack-card"
-                whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-                onClick={() => startPack(meta.id)}
-              >
-                <span className="nx-cisco-pack-range">
-                  {t("cisco.moduleRange")
-                    .replace("{from}", String(meta.moduleRange[0]))
-                    .replace("{to}", String(meta.moduleRange[1]))}
-                </span>
-                <span className="nx-cisco-pack-title">
-                  {locale === "de" ? meta.titleDe : meta.titleEn}
-                </span>
-                <span className="nx-cisco-pack-meta">
-                  {t("cisco.mcPackCount").replace("{n}", String(packStats.get(meta.id) ?? 0))}
-                </span>
-              </motion.button>
-            ))}
+            {CCNA1_ITN_PACKS.filter((p) => p.id.startsWith("modules-")).map((meta) => {
+              const total = packStats.get(meta.id) ?? 0;
+              const prog = ciscoPackProgress(leitner, meta.id, total);
+              return (
+                <motion.button
+                  key={meta.id}
+                  type="button"
+                  className="nx-cisco-pack-card"
+                  whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+                  onClick={() => startPack(meta.id)}
+                >
+                  <span className="nx-cisco-pack-range">
+                    {t("cisco.moduleRange")
+                      .replace("{from}", String(meta.moduleRange[0]))
+                      .replace("{to}", String(meta.moduleRange[1]))}
+                  </span>
+                  <span className="nx-cisco-pack-title">
+                    {locale === "de" ? meta.titleDe : meta.titleEn}
+                  </span>
+                  <span className="nx-cisco-pack-meta">
+                    {t("cisco.mcPackCount").replace("{n}", String(total))}
+                  </span>
+                  {prog.solved > 0 ? (
+                    <span className="nx-cisco-pack-progress">
+                      {t("cisco.packProgress", "{pct}% geübt").replace("{pct}", String(prog.pct))}
+                    </span>
+                  ) : null}
+                </motion.button>
+              );
+            })}
           </div>
 
           {finalPacks.length > 0 ? (
             <div className="nx-cisco-pack-grid nx-cisco-pack-grid--finals">
-              {finalPacks.map((pack) => (
-                <motion.button
-                  key={pack.id}
-                  type="button"
-                  className="nx-cisco-pack-card nx-cisco-pack-card--final"
-                  whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-                  onClick={() => startPack(pack.id as CiscoPackId)}
-                >
-                  <span className="nx-cisco-pack-title">
-                    {locale === "de" ? pack.title.de : pack.title.en}
-                  </span>
-                  <span className="nx-cisco-pack-meta">
-                    {t("cisco.mcPackCount").replace(
-                      "{n}",
-                      String(getQuizItemsForPack(pack.id as CiscoPackId).length)
-                    )}
-                  </span>
-                </motion.button>
-              ))}
+              {finalPacks.map((pack) => {
+                const packId = pack.id as CiscoPackId;
+                const isPtLab = packId === "pt-skills-final" || packId === "pt-skills-practice";
+                const isExamPack = CISCO_EXAM_PACK_IDS.includes(packId);
+                const count = isPtLab ? pack.itemCount : getQuizItemsForPack(packId).length;
+                return (
+                  <div key={pack.id} className="nx-cisco-pack-card nx-cisco-pack-card--final">
+                    <span className="nx-cisco-pack-title">
+                      {locale === "de" ? pack.title.de : pack.title.en}
+                    </span>
+                    <span className="nx-cisco-pack-meta">
+                      {isPtLab
+                        ? t("cisco.ptLabCount", "{n} Labs").replace("{n}", String(count))
+                        : t("cisco.mcPackCount").replace("{n}", String(count))}
+                    </span>
+                    <div className="nx-cisco-pack-actions">
+                      {isPtLab ? (
+                        <button type="button" className="nx-cisco-pack-btn" onClick={() => startPack(packId)}>
+                          {t("cisco.ptLabBtn", "Lab öffnen")}
+                        </button>
+                      ) : (
+                        <>
+                          <button type="button" className="nx-cisco-pack-btn" onClick={() => startPack(packId)}>
+                            {t("cisco.practiceBtn", "Lernen")}
+                          </button>
+                          {isExamPack ? (
+                            <button
+                              type="button"
+                              className="nx-cisco-pack-btn nx-cisco-pack-btn--exam"
+                              onClick={() => startExam(packId)}
+                            >
+                              {t("cisco.examBtn", "Prüfung")}
+                            </button>
+                          ) : null}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           ) : null}
 

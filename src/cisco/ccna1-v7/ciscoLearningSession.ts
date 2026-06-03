@@ -4,7 +4,7 @@ import {
 } from "../../lib/i18n/questionLocale";
 import type { LearningExercise } from "../../lib/learning/learningExerciseTypes";
 import { ciscoQuestionToLearningExercise } from "./ciscoToLearningExercise";
-import { ensureCiscoPacksLoaded, getCiscoPack, getQuizItemsForPack } from "./loadPacks";
+import { ensureCiscoPacksLoaded, getCiscoPack, getQuizItemsForPack, getSessionItemsForPack } from "./loadPacks";
 import type { CiscoPackId } from "../types";
 
 export type CiscoExerciseLoadOptions = {
@@ -17,7 +17,7 @@ export const CISCO_CARRIER_LF = 10;
 
 export async function buildCiscoMcQueue(packId: CiscoPackId, shuffle = true): Promise<string[]> {
   await ensureCiscoPacksLoaded();
-  const ids = getQuizItemsForPack(packId).map((q) => q.id);
+  const ids = getSessionItemsForPack(packId).map((q) => q.id);
   if (!shuffle) return ids;
   const copy = [...ids];
   for (let i = copy.length - 1; i > 0; i -= 1) {
@@ -32,7 +32,7 @@ export async function getCiscoLearningExerciseById(
   opts: CiscoExerciseLoadOptions = {}
 ): Promise<LearningExercise | null> {
   const locale = opts.locale ?? "en";
-  const autoTranslate = opts.autoTranslate ?? false;
+  const autoTranslate = opts.autoTranslate ?? locale === "de";
   await ensureCiscoPacksLoaded();
   const packPrefix = exerciseId.split("-q")[0] as CiscoPackId;
   const pack = getCiscoPack(packPrefix);
@@ -42,7 +42,11 @@ export async function getCiscoLearningExerciseById(
   const base = ciscoQuestionToLearningExercise(q, locale);
   if (!base) return null;
   if (locale === "de" && autoTranslate && !q.question.de?.trim()) {
-    return localizeCiscoLearningExercise(base, locale, true);
+    try {
+      return await localizeCiscoLearningExercise(base, locale, true);
+    } catch {
+      return base;
+    }
   }
   return base;
 }

@@ -39,6 +39,10 @@ export type LearningExercise = {
   exhibitCode?: string;
   /** Optional: Kurz-Hilfe unter der Aufgabe (ADHD-freundlich, ohne Extra-Scroll) */
   solutionHint?: string;
+  /** CCNA PTSA: Packet-Tracer-Lab (Referenz + Konfiguration, kein MC) */
+  ptLab?: boolean;
+  /** Original itexamanswers URL (PT-Lab) */
+  sourceUrl?: string;
   /** Optional: Coach-Flavour vor MC-Frage (aus beginnerPath JSON) */
   coachLine?: string;
   /** Optional: kaputter Startcode für SQL/C#/Bash-Workbench (aus JSON practice.brokenCode) */

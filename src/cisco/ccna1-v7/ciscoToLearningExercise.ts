@@ -13,6 +13,24 @@ export function ciscoQuestionToLearningExercise(
   const qText = pickCiscoLocaleText(q.question, locale);
   const expl = q.explanation ? pickCiscoLocaleText(q.explanation, locale) : undefined;
 
+  if (q.type === "pt-lab") {
+    return {
+      id: q.id,
+      title: `CCNA PTSA · #${q.number}`,
+      problem: qText,
+      solutionCode: "",
+      lang: "plain-text",
+      mcQuestion: qText,
+      mcOptions: [],
+      mcSelectMode: "single",
+      ptLab: true,
+      sourceUrl: q.sourceUrl,
+      solutionHint: expl,
+      illustrationSrc: q.illustrationSrc,
+      exhibitCode: q.exhibitCode,
+    };
+  }
+
   if (q.type === "match") {
     const pairs = resolveCiscoMatchPairs(q);
     if (pairs.length < 2) return null;

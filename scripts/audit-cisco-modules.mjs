@@ -96,7 +96,7 @@ function auditPack(packId, { htmlCrossCheck = true } = {}) {
   const pack = JSON.parse(readFileSync(packPath, "utf8"));
   let failures = 0;
 
-  if (packId === "pt-skills-final") {
+  if (packId === "pt-skills-final" || packId === "pt-skills-practice") {
     if (pack.itemCount < 1) {
       console.log("  FAIL: pt-skills-final has no scenario items");
       failures += 1;
@@ -156,7 +156,7 @@ function auditPack(packId, { htmlCrossCheck = true } = {}) {
     const imageRefs = pack.items.filter((i) => i.illustrationSrc).length;
     if (exhibitRefs > 0) {
       console.log(`  WARN: ${exhibitRefs} exhibit refs but no manifest`);
-    } else if (imageRefs > 0 && packId === "pt-skills-final") {
+    } else if (imageRefs > 0 && (packId === "pt-skills-final" || packId === "pt-skills-practice")) {
       console.log(`  exhibits: ${imageRefs} PTSA topology refs (no manifest)`);
     } else {
       console.log("  exhibits: none (expected)");
@@ -173,7 +173,7 @@ if (!htmlAvailable) {
   console.log("[audit:cisco-modules] imports/cisco/html not found — skipping HTML cross-check (CI mode)\n");
 }
 
-for (const packId of [...MODULE_PACKS, ...FINAL_PACKS, "pt-skills-final"]) {
+for (const packId of [...MODULE_PACKS, ...FINAL_PACKS, "pt-skills-practice", "pt-skills-final"]) {
   failures += auditPack(packId, { htmlCrossCheck: htmlAvailable });
 }
 

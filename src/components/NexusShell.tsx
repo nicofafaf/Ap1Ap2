@@ -163,8 +163,10 @@ export function NexusShell() {
   const handleEngage = useCallback(
     (lf: number, opts?: InitiateCombatOptions) => {
       const hp = lf === 0 ? 128 : 100;
-      initiateCombat(lf, hp, opts);
       const st = useGameStore.getState();
+      if (!st.isCiscoSession) {
+        initiateCombat(lf, hp, opts);
+      }
       const bridge = lf === 0 ? st.sectorZeroMorphLf : lf;
       setDiveBridgeLf(bridge);
       setMapHoldCombat(true);

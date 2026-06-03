@@ -1,4 +1,8 @@
 import { getCiscoPack } from "../../cisco/ccna1-v7/loadPacks";
+import {
+  matchPromptFromQuestion,
+  resolveCiscoMatchPairs,
+} from "../../cisco/ccna1-v7/parseMatchPairs";
 import type { LearningField } from "../../data/nexusRegistry";
 import { SOMMER2026_EXAM_PACKS } from "../curriculum/sommer2026Exams";
 import type { NexusLocale } from "../i18n/translationEngine";
@@ -44,7 +48,29 @@ export function resolveLiveDuelQuestion(
   if (ref.source === "cisco") {
     const pack = getCiscoPack(ref.packId);
     const item = pack?.items.find((q) => q.id === ref.questionId);
-    if (!item || (item.type !== "single" && item.type !== "multi")) return null;
+    if (!item) return null;
+
+    if (item.type === "match") {
+      const pairs = resolveCiscoMatchPairs(item);
+      if (pairs.length < 2) return null;
+      const pair = pairs[0]!;
+      const promptBase = matchPromptFromQuestion(pickLocaleText(item.question.en, item.question.de, locale));
+      const leftLabel = pickLocaleText(pair.left.en, pair.left.de, locale);
+      const rights = pairs.map((p) => pickLocaleText(p.right.en, p.right.de, locale));
+      const correctRight = pickLocaleText(pair.right.en, pair.right.de, locale);
+      return {
+        prompt: `${promptBase} — ${leftLabel}`,
+        options: rights.map((label, idx) => ({
+          id: String(idx),
+          label,
+          correct: label === correctRight,
+        })),
+        imageSrc: item.illustrationSrc,
+        exhibitCode: item.exhibitCode,
+      };
+    }
+
+    if (item.type !== "single" && item.type !== "multi") return null;
     const options = item.options ?? [];
     return {
       prompt: pickLocaleText(item.question.en, item.question.de, locale),

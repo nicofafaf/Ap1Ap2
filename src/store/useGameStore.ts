@@ -34,6 +34,11 @@ import {
 } from "../cisco/ccna1-v7/ciscoLearningSession";
 import { ensureCiscoPacksLoaded } from "../cisco/ccna1-v7/loadPacks";
 import { CCNA1_ITN_17_MODULES } from "../cisco/ccna1-v7/examCatalog";
+import {
+  buildCiscoWeaknessExerciseIds,
+  getCiscoExamDurationMs,
+  pickWeakestCiscoModule,
+} from "../lib/cisco/ciscoProgress";
 import type { LearningRankId } from "../data/learningRankRegistry";
 import {
   applyLearningRankLpDelta,
@@ -637,7 +642,10 @@ type GameStore = {
   /** CCNA 1 ITN — Original-MC aus Checkpoint-Packs (Module 1–17) */
   isCiscoSession: boolean;
   ciscoPackId: CiscoPackId | null;
+  ciscoExamPackId: CiscoPackId | null;
   beginCiscoPack: (packId: CiscoPackId) => void;
+  beginCiscoExam: (packId: CiscoPackId) => void;
+  beginCiscoWeaknessDrill: (packId?: CiscoPackId) => void;
   beginCiscoModule: (module: number) => void;
   activeRankedRun: boolean;
   rankedRunLpSession: number;
@@ -960,6 +968,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   activeRankedRun: false,
   isCiscoSession: false,
   ciscoPackId: null,
+  ciscoExamPackId: null,
   rankedRunLpSession: 0,
   learningRankLp: loadLearningRankLp(),
   learningRankUpCelebration: null,
@@ -1038,6 +1047,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
             isBlitzSession: false,
             isCiscoSession: false,
             ciscoPackId: null,
+            ciscoExamPackId: null,
             activeRankedRun: false,
             rankedRunLpSession: 0,
             ihkExamPackId: null,
@@ -1337,7 +1347,10 @@ export const useGameStore = create<GameStore>((set, get) => ({
         learningMentorStreak: 0,
         learningMentorColdToken: 0,
         examLogicFlowToken: 0,
-        preferredLearningExerciseId: preferredBeginnerExerciseId,
+        preferredLearningExerciseId:
+          opts?.preferredExerciseId !== undefined
+            ? opts.preferredExerciseId
+            : preferredBeginnerExerciseId,
         edtechExcludeExerciseId: null,
         edtechRecentExerciseIds: [],
         archiveWorkbenchSnippet: null,
@@ -2539,7 +2552,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     } catch {
       // no-op
     }
-    get().initiateCombat(lf, 100);
+    get().initiateCombat(lf, 100, { preferredExerciseId: first });
   },
   beginSommer2026Exam: (packId) => {
     const pack = buildSommer2026Queue(packId);
@@ -2563,7 +2576,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     } catch {
       // no-op
     }
-    get().initiateCombat(lf, 100);
+    get().initiateCombat(lf, 100, { preferredExerciseId: first });
   },
   beginBlitzTraining: () => {
     const s = get();
@@ -2589,7 +2602,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     } catch {
       // no-op
     }
-    get().initiateCombat(lf, 100);
+    get().initiateCombat(lf, 100, { preferredExerciseId: first });
   },
   beginRankedSprint: () => {
     const s = get();
@@ -2615,17 +2628,106 @@ export const useGameStore = create<GameStore>((set, get) => ({
     } catch {
       // no-op
     }
-    get().initiateCombat(lf, 100);
+    get().initiateCombat(lf, 100, { preferredExerciseId: first });
   },
   beginCiscoPack: (packId) => {
+    set({
+      ihkExamPackId: null,
+      examPresentationMode: false,
+      examSessionEndsAt: null,
+      activeRankedRun: false,
+      rankedRunLpSession: 0,
+      isCiscoSession: true,
+      ciscoPackId: packId,
+      ciscoExamPackId: null,
+      isBlitzSession: true,
+      blitzQueue: [],
+      blitzIndex: 0,
+      blitzTargetLf: CISCO_CARRIER_LF,
+      preferredLearningExerciseId: null,
+      isTutorialCombatRun: false,
+      combatTutorialStep: 0,
+    });
     void (async () => {
       await ensureCiscoPacksLoaded().catch(() => undefined);
       const queue = await buildCiscoMcQueue(packId, true);
       const first = queue[0] ?? null;
       if (!first) {
         console.warn("[cisco] empty queue for pack", packId);
+        set({ isCiscoSession: false, ciscoPackId: null, isBlitzSession: false });
         return;
       }
+      set({
+        blitzQueue: queue,
+        preferredLearningExerciseId: first,
+      });
+      try {
+        localStorage.setItem("nexus.examPresentationMode.v1", "0");
+      } catch {
+        // no-op
+      }
+      get().initiateCombat(CISCO_CARRIER_LF, 100, { preferredExerciseId: first });
+    })();
+  },
+  beginCiscoExam: (packId) => {
+    set({
+      ihkExamPackId: null,
+      examPresentationMode: true,
+      examSessionEndsAt: null,
+      activeRankedRun: false,
+      rankedRunLpSession: 0,
+      isCiscoSession: true,
+      ciscoPackId: packId,
+      ciscoExamPackId: packId,
+      isBlitzSession: true,
+      blitzQueue: [],
+      blitzIndex: 0,
+      blitzTargetLf: CISCO_CARRIER_LF,
+      preferredLearningExerciseId: null,
+      isTutorialCombatRun: false,
+      combatTutorialStep: 0,
+    });
+    void (async () => {
+      await ensureCiscoPacksLoaded().catch(() => undefined);
+      const queue = await buildCiscoMcQueue(packId, false);
+      const first = queue[0] ?? null;
+      if (!first) {
+        console.warn("[cisco] empty exam queue for pack", packId);
+        set({
+          isCiscoSession: false,
+          ciscoPackId: null,
+          ciscoExamPackId: null,
+          isBlitzSession: false,
+          examPresentationMode: false,
+        });
+        return;
+      }
+      const durationMs = getCiscoExamDurationMs(packId);
+      set({
+        examSessionEndsAt: Date.now() + durationMs,
+        blitzQueue: queue,
+        preferredLearningExerciseId: first,
+      });
+      try {
+        localStorage.setItem("nexus.examPresentationMode.v1", "1");
+      } catch {
+        // no-op
+      }
+      get().initiateCombat(CISCO_CARRIER_LF, 100, { preferredExerciseId: first });
+    })();
+  },
+  beginCiscoWeaknessDrill: (packId) => {
+    void (async () => {
+      await ensureCiscoPacksLoaded().catch(() => undefined);
+      const leitner = get().learningLeitnerByExerciseId;
+      const targetPack =
+        packId ?? pickWeakestCiscoModule(leitner)?.packId ?? ("modules-1-3" as CiscoPackId);
+      let queue = buildCiscoWeaknessExerciseIds(leitner, targetPack, 24);
+      if (!queue.length) {
+        queue = await buildCiscoMcQueue(targetPack, true);
+      }
+      const first = queue[0] ?? null;
+      if (!first) return;
       set({
         ihkExamPackId: null,
         examPresentationMode: false,
@@ -2633,7 +2735,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
         activeRankedRun: false,
         rankedRunLpSession: 0,
         isCiscoSession: true,
-        ciscoPackId: packId,
+        ciscoPackId: targetPack,
+        ciscoExamPackId: null,
         isBlitzSession: true,
         blitzQueue: queue,
         blitzIndex: 0,
@@ -2647,7 +2750,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       } catch {
         // no-op
       }
-      get().initiateCombat(CISCO_CARRIER_LF, 100);
+      get().initiateCombat(CISCO_CARRIER_LF, 100, { preferredExerciseId: first });
     })();
   },
   beginCiscoModule: (module) => {

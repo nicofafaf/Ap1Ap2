@@ -94,6 +94,8 @@ export type InitiateCombatOptions = {
   dailyRanked?: boolean;
   /** Endless Deep Dive: nach Loot folgt nächster Boss mit skalierten Werten */
   endlessDeepDive?: boolean;
+  /** Blitz/CCNA/IHK: erste Übung beibehalten (nicht Beginner-Pick des LFs) */
+  preferredExerciseId?: string | null;
 };
 
 export type DailyIncursionDefinition = {

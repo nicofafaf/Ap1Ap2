@@ -83,6 +83,15 @@ const PACK_META = {
     moduleRange: [1, 17],
     titleEn: "ITN Final PT Skills Assessment (PTSA)",
     titleDe: "Abschluss-PT-Fähigkeitenbeurteilung (PTSA)",
+    ptsaLabel: "Final",
+  },
+  "pt-skills-practice": {
+    sourceUrl:
+      "https://itexamanswers.net/ccna-1-v7-0-itn-practice-pt-skills-assessment-ptsa-answers.html",
+    moduleRange: [1, 17],
+    titleEn: "ITN Practice PT Skills Assessment (PTSA)",
+    titleDe: "Übungs-PT-Fähigkeitenbeurteilung (PTSA)",
+    ptsaLabel: "Practice",
   },
 };
 
@@ -354,61 +363,105 @@ function findWordPressQuestionHits(body) {
   return hits;
 }
 
-/** ITExamAnswers WordPress HTML (2024+) — verbatim aus <p><strong>N. … */
+/** ITExamAnswers PTSA — Final (Answers Key) + Practice (Answers - Passed) */
+function extractPtSkillsChunkConfig(chunk) {
+  const codeBlocks = [...chunk.matchAll(/<pre[^>]*class="code_answer"[^>]*>([\s\S]*?)<\/pre>/gi)];
+  if (codeBlocks.length > 0) {
+    return codeBlocks.map((m) => stripHtml(m[1]).trim()).filter(Boolean);
+  }
+  const routerPre =
+    chunk.match(
+      /(?:Router R1|router configuration script|Town Hall router|Building 1 router|CS Department router)[\s\S]*?<pre[^>]*>([\s\S]*?)<\/pre>/i
+    )?.[1] ?? chunk.match(/Router[\s\S]{0,120}?<pre[^>]*>([\s\S]*?)<\/pre>/i)?.[1];
+  const switchPre =
+    chunk.match(
+      /(?:Switch S1|Switch configuration script|Administration Switch|Second Floor Switch|LAB 214-A Switch)[\s\S]*?<pre[^>]*>([\s\S]*?)<\/pre>/i
+    )?.[1] ?? chunk.match(/Switch[\s\S]{0,120}?<pre[^>]*>([\s\S]*?)<\/pre>/i)?.[1];
+  const parts = [];
+  if (routerPre) parts.push(parseExhibitPre(`<pre>${routerPre}</pre>`) ?? stripHtml(routerPre));
+  if (switchPre) parts.push(parseExhibitPre(`<pre>${switchPre}</pre>`) ?? stripHtml(switchPre));
+  return parts.filter(Boolean);
+}
+
+function extractPtSkillsTopology(chunk) {
+  return (
+    chunk.match(/<img[^>]+src=["']([^"']+153921[^"']+)["']/i)?.[1] ??
+    chunk.match(/<img[^>]+alt="[^"]*Packet Tracer[^"]*"[^>]+src=["']([^"']+)["']/i)?.[1] ??
+    chunk.match(/<img[^>]+src=["']([^"']+wp-content[^"']+)["'][^>]+alt="[^"]*Packet Tracer/i)?.[1] ??
+    chunk.match(/<img[^>]+src=["']([^"']+wp-content\/uploads\/20[^"']+)["']/i)?.[1]
+  );
+}
+
+function pushPtSkillsItem(items, packId, modules, meta, label, chunk, numOverride) {
+  const exhibitParts = extractPtSkillsChunkConfig(chunk);
+  if (!exhibitParts.length) return false;
+  const num = numOverride ?? items.length + 1;
+  const idTag =
+    chunk.match(/Packet Tracer\s*[-–]\s*ID\s*(\d+)/i)?.[1] ??
+    chunk.match(/wp-caption-text[^>]*>[^<]*\bID\s*(\d+)/i)?.[1] ??
+    chunk.match(/ID:\s*(\d+)/i)?.[1] ??
+    String(num).padStart(3, "0");
+  const topo = extractPtSkillsTopology(chunk);
+  items.push({
+    id: `${packId}-q${String(num).padStart(3, "0")}`,
+    packId,
+    modules,
+    number: num,
+    type: "pt-lab",
+    verbatim: true,
+    sourceUrl: meta.sourceUrl,
+    needsManual: true,
+    question: {
+      en: `ITN ${label} PTSA — Scenario ID ${idTag} (Packet Tracer lab — see exhibit for router/switch config)`,
+      de: null,
+    },
+    exhibitCode: exhibitParts.join("\n\n---\n\n"),
+    illustrationSrc: topo
+      ? `/assets/cisco/exhibits/${packId}/q${String(num).padStart(3, "0")}.jpg`
+      : undefined,
+  });
+  return true;
+}
+
 function parsePtSkillsPack(text, packId, meta) {
   const modules = modulesForRange(meta.moduleRange);
-  const scenarioRe =
-    /<h3>Answers Key(?:\s*-\s*100% Score)?<\/h3>([\s\S]*?)(?=<h3>Answers Key|<h3>Download PDF|$)/gi;
+  const label = meta.ptsaLabel ?? (packId.includes("practice") ? "Practice" : "Final");
   const items = [];
-  let m;
-  let num = 0;
-  while ((m = scenarioRe.exec(text))) {
-    num += 1;
-    const chunk = m[1];
-    const topo =
-      chunk.match(/<img[^>]+src=["']([^"']+153921[^"']+)["']/i)?.[1] ??
-      chunk.match(/<img[^>]+src=["']([^"']+wp-content[^"']+)["']/i)?.[1];
-    const routerPre = chunk.match(
-      /Router R1 configuration script[\s\S]*?<pre[^>]*>([\s\S]*?)<\/pre>/i
-    )?.[1];
-    const switchPre = chunk.match(
-      /Switch S1 configuration script[\s\S]*?<pre[^>]*>([\s\S]*?)<\/pre>/i
-    )?.[1];
-    const idTag = chunk.match(/ID:\s*(\d+)/i)?.[1] ?? String(num).padStart(3, "0");
-    const exhibitParts = [];
-    if (routerPre) exhibitParts.push(parseExhibitPre(`<pre>${routerPre}</pre>`) ?? stripHtml(routerPre));
-    if (switchPre) exhibitParts.push(parseExhibitPre(`<pre>${switchPre}</pre>`) ?? stripHtml(switchPre));
-    items.push({
-      id: `${packId}-q${String(num).padStart(3, "0")}`,
-      packId,
-      modules,
-      number: num,
-      type: "unsupported",
-      verbatim: true,
-      sourceUrl: meta.sourceUrl,
-      needsManual: true,
-      question: {
-        en: `ITN Final PTSA — Scenario ID ${idTag} (Packet Tracer lab — see exhibit for R1/S1 config)`,
-        de: null,
-      },
-      exhibitCode: exhibitParts.filter(Boolean).join("\n\n---\n\n") || undefined,
-      illustrationSrc: topo
-        ? `/assets/cisco/exhibits/${packId}/q${String(num).padStart(3, "0")}.jpg`
-        : undefined,
-    });
+
+  const headerRe =
+    /<h3[^>]*>(?:Answers Key(?:\s*-\s*100% Score)?|Answers - Passed 100% Score)<\/h3>/gi;
+  const starts = [];
+  let hm;
+  while ((hm = headerRe.exec(text))) starts.push(hm.index);
+
+  for (let i = 0; i < starts.length; i += 1) {
+    const chunk = text.slice(starts[i], starts[i + 1] ?? text.length);
+    pushPtSkillsItem(items, packId, modules, meta, label, chunk);
   }
+
+  if (items.length === 0) {
+    const scenarioRe =
+      /<h3>Answers Key(?:\s*-\s*100% Score)?<\/h3>([\s\S]*?)(?=<h3>Answers Key|<h3>Download PDF|$)/gi;
+    let m;
+    let num = 0;
+    while ((m = scenarioRe.exec(text))) {
+      num += 1;
+      pushPtSkillsItem(items, packId, modules, meta, label, m[1], num);
+    }
+  }
+
   if (items.length === 0) {
     items.push({
       id: `${packId}-q001`,
       packId,
       modules,
       number: 1,
-      type: "unsupported",
+      type: "pt-lab",
       verbatim: true,
       sourceUrl: meta.sourceUrl,
       needsManual: true,
       question: {
-        en: "ITN Final PT Skills Assessment — open source page for full lab guide",
+        en: `ITN ${label} PT Skills Assessment — open source page for full lab guide`,
         de: null,
       },
     });
@@ -505,7 +558,7 @@ function parseWordPressHtmlBody(text, packId, meta) {
 }
 
 function parseHtmlBody(text, packId, meta) {
-  if (packId === "pt-skills-final") {
+  if (packId === "pt-skills-final" || packId === "pt-skills-practice") {
     return parsePtSkillsPack(text, packId, meta);
   }
   if (/<p[^>]*>[\s\S]*?<strong>\s*\d{1,3}\.(?!\d)/i.test(text)) {

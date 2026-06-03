@@ -19,6 +19,7 @@ const PACKS = [
   ["practice-final", "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html"],
   ["course-final", "https://itexamanswers.net/ccna-1-v7-0-final-exam-answers-full-introduction-to-networks.html"],
   ["system-test", "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html"],
+  ["pt-skills-practice", "https://itexamanswers.net/ccna-1-v7-0-itn-practice-pt-skills-assessment-ptsa-answers.html"],
   ["pt-skills-final", "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html"],
 ];
 

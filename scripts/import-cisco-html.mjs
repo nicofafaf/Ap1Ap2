@@ -202,6 +202,13 @@ function detectType(questionText, block, options) {
     }
     return "unsupported";
   }
+  if (
+    /place the options in the following order|correct order of events|termination process steps in the order/i.test(
+      q
+    )
+  ) {
+    return "match";
+  }
   if (/place the options|match the/i.test(q)) return "match";
   if (/choose two|choose three|\(choose two\)|\(choose three\)/i.test(q)) return "multi";
   const correctCount = options.filter((o) => o.correct).length;
@@ -713,6 +720,7 @@ function parseHtmlBody(text, packId, meta) {
       let pairs = matchPairs;
       if (pairs.length < 2) pairs = parsePipeMatchPairs(questionRaw);
       if (pairs.length < 2) pairs = parsePipeMatchPairs(optBlock);
+      if (pairs.length < 2) pairs = parseMatchTable(explBlock + "\n" + chunk);
       if (pairs.length >= 2) {
         item.matchPairs = pairs;
         item.question = { en: stripMd(questionRaw.split("|")[0] ?? questionRaw), de: null };

@@ -1569,7 +1569,7 @@
       "topic": "2.3.5",
       "question": {
         "en": "Match the definitions to their respective CLI hot keys and shortcuts. (Not all options are used.)",
-        "de": null
+        "de": "Ordnen Sie die Definitionen ihren jeweiligen CLI-Kurztasten und Verknüpfungen zu. (Es werden nicht alle Optionen verwendet.)"
       },
       "explanation": {
         "en": "Topic 2.3.5 The shortcuts with their functions are as follows: – Tab – Completes the remainder of a partially typed command or keyword – Space bar – displays the next screen – ? – provides context-sensitive help – Up Arrow – Allows user to scroll backward through former commands – Ctrl-C – cancels any command currently being entered and returns directly to privileged EXEC mode – Ctrl-Shift-6 – Allows the user to interrupt an IOS process such as ping or traceroute",
@@ -1603,13 +1603,13 @@
           },
           "right": {
             "en": "Tab",
-            "de": null
+            "de": "Tab"
           }
         },
         {
           "left": {
             "en": "scrolls backwards through previously entered commands",
-            "de": null
+            "de": "scrollt rückwärts durch zuvor eingegebene Befehle"
           },
           "right": {
             "en": "Up Arrow",
@@ -1890,7 +1890,7 @@
           "id": "a",
           "text": {
             "en": "encapsulation",
-            "de": null
+            "de": "Verkapselung"
           },
           "correct": false
         },
@@ -1898,7 +1898,7 @@
           "id": "b",
           "text": {
             "en": "flow control",
-            "de": null
+            "de": "Verkehrsflusslenkung"
           },
           "correct": true
         },

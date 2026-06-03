@@ -40,14 +40,14 @@
       "sourceUrl": "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
       "question": {
         "en": "What two characteristics describe an FTP connection? (Choose two.)",
-        "de": null
+        "de": "Welche zwei Merkmale beschreiben eine FTP-Verbindung? (Wählen Sie zwei aus.)"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "The server establishes the first connection with the client to control traffic that consists of server commands and client replies.",
-            "de": null
+            "de": "Der Server stellt die erste Verbindung mit dem Client her, um den Datenverkehr zu steuern, der aus Serverbefehlen und Clientantworten besteht."
           },
           "correct": false
         },
@@ -55,7 +55,7 @@
           "id": "b",
           "text": {
             "en": "A large file requires more than two connections between the client and the server to successfully download it.",
-            "de": null
+            "de": "Eine große Datei erfordert mehr als zwei Verbindungen zwischen dem Client und dem Server, um sie erfolgreich herunterzuladen."
           },
           "correct": false
         },
@@ -63,7 +63,7 @@
           "id": "c",
           "text": {
             "en": "The first connection established is for traffic control and the second connection is created to transfer a file.",
-            "de": null
+            "de": "Die erste hergestellte Verbindung dient der Verkehrssteuerung und die zweite Verbindung wird erstellt, um eine Datei zu übertragen."
           },
           "correct": true
         },
@@ -71,7 +71,7 @@
           "id": "d",
           "text": {
             "en": "Files can be downloaded from or uploaded to the server.",
-            "de": null
+            "de": "Dateien können vom Server heruntergeladen oder auf den Server hochgeladen werden."
           },
           "correct": true
         },
@@ -79,7 +79,7 @@
           "id": "e",
           "text": {
             "en": "The client needs to run a daemon program to establish an FTP connection with a server.",
-            "de": null
+            "de": "Der Client muss ein Daemon-Programm ausführen, um eine FTP-Verbindung mit einem Server herzustellen."
           },
           "correct": false
         }
@@ -113,14 +113,14 @@
       "sourceUrl": "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
       "question": {
         "en": "Refer to the exhibit. Consider the IP address configuration shown from PC1. What is a description of the default gateway address?",
-        "de": null
+        "de": "Siehe Anlage. Betrachten Sie die von PC1 gezeigte IP-Adresskonfiguration. Was ist eine Beschreibung der Standard-Gateway-Adresse?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "It is the IP address of the Router1 interface that connects the PC1 LAN to Router1.",
-            "de": null
+            "de": "Es ist die IP-Adresse der Router1-Schnittstelle, die das PC1-LAN mit Router1 verbindet."
           },
           "correct": true
         },
@@ -128,7 +128,7 @@
           "id": "b",
           "text": {
             "en": "It is the IP address of the Router1 interface that connects the company to the Internet.",
-            "de": null
+            "de": "Es ist die IP-Adresse der Router1-Schnittstelle, die das Unternehmen mit dem Internet verbindet."
           },
           "correct": false
         },
@@ -136,7 +136,7 @@
           "id": "c",
           "text": {
             "en": "It is the IP address of the ISP network device located in the cloud.",
-            "de": null
+            "de": "Es ist die IP-Adresse des ISP-Netzwerkgeräts, das sich in der Cloud befindet."
           },
           "correct": false
         },
@@ -144,7 +144,7 @@
           "id": "d",
           "text": {
             "en": "It is the IP address of Switch1 that connects PC1 to other devices on the same LAN.",
-            "de": null
+            "de": "Es ist die IP-Adresse von Switch1, die PC1 mit anderen Geräten im selben LAN verbindet."
           },
           "correct": false
         }
@@ -211,14 +211,14 @@
       "sourceUrl": "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
       "question": {
         "en": "Which statement describes the physical topology for a LAN?",
-        "de": null
+        "de": "Welche Aussage beschreibt die physikalische Topologie für ein LAN?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "It defines how hosts and network devices connect to the LAN.",
-            "de": null
+            "de": "Es definiert, wie sich Hosts und Netzwerkgeräte mit dem LAN verbinden."
           },
           "correct": true
         },
@@ -226,7 +226,7 @@
           "id": "b",
           "text": {
             "en": "It shows the order in which hosts access the network.",
-            "de": null
+            "de": "Es zeigt die Reihenfolge an, in der Hosts auf das Netzwerk zugreifen."
           },
           "correct": false
         },
@@ -234,7 +234,7 @@
           "id": "c",
           "text": {
             "en": "It depicts the addressing scheme that is employed in the LAN.",
-            "de": null
+            "de": "Es zeigt das Adressierungsschema, das im LAN verwendet wird."
           },
           "correct": false
         },
@@ -242,7 +242,7 @@
           "id": "d",
           "text": {
             "en": "It describes whether the LAN is a broadcast or token-passing network.",
-            "de": null
+            "de": "Es beschreibt, ob das LAN ein Broadcast- oder Token-Passing-Netzwerk ist."
           },
           "correct": false
         }

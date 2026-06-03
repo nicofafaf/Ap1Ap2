@@ -2464,19 +2464,53 @@
         17
       ],
       "number": 47,
-      "type": "unsupported",
+      "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "16.4.4",
       "question": {
-        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.",
+        "en": "PT Activity — Which command has to be configured on the router to complete the SSH configuration?",
         "de": null
       },
       "explanation": {
         "en": "Topic 16.4.4 The missing command to complete the SSH configuration is transport input ssh in line vty 0 4 mode.The commands service password-encryption and enable secret class do configure secure features on the router, but are not required to configure SSH. The command ip domain-name cisco.com is not required because the command i p domain-name span.com has been used.",
         "de": null
       },
-      "needsManual": true
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "service password-encryption",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "transport input ssh",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "enable secret class",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "ip domain-name cisco.com",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-16-17/q047.jpg"
     },
     {
       "id": "modules-16-17-q048",

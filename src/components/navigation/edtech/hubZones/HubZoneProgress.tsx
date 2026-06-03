@@ -7,6 +7,7 @@ import { EdtechLearningRankPanel } from "../EdtechLearningRankPanel";
 import { EdtechLfThumb } from "../EdtechLfThumb";
 import { EDTECH_CARD } from "../edtechHubTokens";
 import type { HubZoneContext } from "./hubZoneTypes";
+import { CiscoHubProgressCard } from "./CiscoHubProgressCard";
 
 const SkillRadarLazy = lazy(() =>
   import("../../SkillRadar").then((m) => ({ default: m.SkillRadar }))
@@ -61,6 +62,8 @@ export function HubZoneProgress({ ctx }: { ctx: HubZoneContext }) {
           onOpenLadder={() => ctx.mapWithExtras({ overlay: "LEADERBOARD" })}
         />
       </motion.section>
+
+      <CiscoHubProgressCard ctx={ctx} />
 
       <motion.section
         variants={EDTECH_CARD}

@@ -68,7 +68,7 @@ const PACKS: Record<CcnaModulePackId, PackSpotCheck> = {
   "modules-1-3": {
     pack: modules13 as CiscoExamPack,
     q1: { type: "single", optionCount: 4, correctEn: "spyware" },
-    imageExhibits: [18, 43, 54],
+    imageExhibits: [18, 43, 52, 54],
   },
   "modules-4-7": {
     pack: modules47 as CiscoExamPack,
@@ -77,7 +77,7 @@ const PACKS: Record<CcnaModulePackId, PackSpotCheck> = {
       optionCount: 4,
       correctEn: "transmitting bits across the local media",
     },
-    imageExhibits: [30, 45, 46],
+    imageExhibits: [30, 45, 46, 47],
   },
   "modules-8-10": {
     pack: modules810 as CiscoExamPack,
@@ -91,7 +91,7 @@ const PACKS: Record<CcnaModulePackId, PackSpotCheck> = {
   "modules-11-13": {
     pack: modules1113 as CiscoExamPack,
     q1: { type: "single", optionCount: 4, correctEn: "/27" },
-    imageExhibits: [12, 14, 17, 28, 40],
+    imageExhibits: [12, 14, 17, 28, 40, 49],
   },
   "modules-14-15": {
     pack: modules1415 as CiscoExamPack,
@@ -104,7 +104,7 @@ const PACKS: Record<CcnaModulePackId, PackSpotCheck> = {
   "modules-16-17": {
     pack: modules1617 as CiscoExamPack,
     q1: { type: "single", optionCount: 5, correctEn: "firewall" },
-    imageExhibits: [23, 38, 39],
+    imageExhibits: [23, 38, 39, 47],
   },
 };
 
@@ -156,7 +156,8 @@ for (const [packId, cfg] of Object.entries(PACKS) as [CcnaModulePackId, PackSpot
       it("links image exhibit questions to local assets", () => {
         for (const num of cfg.imageExhibits) {
           const item = cfg.pack.items.find((i) => i.number === num);
-          expect(item?.question.en.toLowerCase()).toContain("refer to the exhibit");
+          const q = item?.question.en.toLowerCase() ?? "";
+          expect(q.includes("refer to the exhibit") || q.includes("pt activity")).toBe(true);
           expect(item?.illustrationSrc).toMatch(
             new RegExp(
               `^/assets/cisco/exhibits/${packId}/q${String(num).padStart(3, "0")}\\.`

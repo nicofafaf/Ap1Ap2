@@ -864,7 +864,7 @@
     "moduleRange": "Module {from}–{to}",
     "mcPackCount": "{n} MC-Fragen",
     "ladderAria": "Alle 17 ITN-Module",
-    "verbatimNote": "Fragen unverändert (EN). Deutsche Übersetzung folgt als zweite Spur. Inhalte nur für den eigenen Lernkontext.",
+    "verbatimNote": "Fragen 1:1 aus ITExamAnswers (EN). Deutsche Übersetzung wird schrittweise in die Pack-JSONs eingepflegt — bei UI=DE zuerst statisch, sonst Auto-Translate. Nur für den eigenen Lernkontext.",
     "coachTitle": "Schwächen-Coach",
     "coachLead": "Modul {n} braucht Wiederholung",
     "coachCta": "Schwächen üben",
@@ -879,7 +879,12 @@
     "ptLabOpenSource": "Referenz auf ITExamAnswers öffnen",
     "sessionProgress": "Session",
     "examSessionProgress": "Prüfung",
-    "courseProgress": "{pct}% Kurs geübt"
+    "courseProgress": "{pct}% Kurs geübt",
+    "progressCardTitle": "CCNA ITN — dein Fortschritt",
+    "progressCardLead": "{solved} von {total} Aufgaben geübt",
+    "progressModuleRow": "Modul {n} — Wiederholung empfohlen",
+    "progressCardHint": "Starte ein Checkpoint-Pack im CCNA-Hub — dann siehst du Schwächen hier.",
+    "progressGoHub": "Zum CCNA-Hub"
   },
   "liveDuel": {
     "tabs": { "host": "Raum erstellen", "join": "Beitreten" },

@@ -27,14 +27,14 @@
       "topic": "1.8.1",
       "question": {
         "en": "During a routine inspection, a technician discovered that software that was installed on a computer was secretly collecting data about websites that were visited by users of the computer. Which type of threat is affecting this computer?",
-        "de": null
+        "de": "Bei einer routinemäßigen Inspektion entdeckte ein Techniker, dass Software, die auf einem Computer installiert war, heimlich Daten über Websites sammelte, die von Benutzern des Computers besucht wurden. Welche Art von Bedrohung betrifft diesen Computer?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "DoS attack​",
-            "de": null
+            "de": "DoS-Angriff​"
           },
           "correct": false
         },
@@ -42,7 +42,7 @@
           "id": "b",
           "text": {
             "en": "identity theft",
-            "de": null
+            "de": "Identitätsraub"
           },
           "correct": false
         },
@@ -50,7 +50,7 @@
           "id": "c",
           "text": {
             "en": "spyware",
-            "de": null
+            "de": "spyware"
           },
           "correct": true
         },
@@ -58,7 +58,7 @@
           "id": "d",
           "text": {
             "en": "zero-day attack",
-            "de": null
+            "de": "zero-Day-Angriff"
           },
           "correct": false
         }
@@ -79,14 +79,14 @@
       "topic": "1.4.4",
       "question": {
         "en": "Which term refers to a network that provides secure access to the corporate offices by suppliers, customers and collaborators?",
-        "de": null
+        "de": "Welcher Begriff bezieht sich auf ein Netzwerk, das Lieferanten, Kunden und Mitarbeitern einen sicheren Zugang zu den Unternehmensbüros bietet?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "Internet",
-            "de": null
+            "de": "Internet"
           },
           "correct": false
         },
@@ -94,7 +94,7 @@
           "id": "b",
           "text": {
             "en": "intranet",
-            "de": null
+            "de": "firmeninternes Netzwerk"
           },
           "correct": false
         },
@@ -102,7 +102,7 @@
           "id": "c",
           "text": {
             "en": "extranet",
-            "de": null
+            "de": "Extranet"
           },
           "correct": true
         },
@@ -110,7 +110,7 @@
           "id": "d",
           "text": {
             "en": "extendednet",
-            "de": null
+            "de": "extendednet"
           },
           "correct": false
         }
@@ -131,14 +131,14 @@
       "topic": "1.7.2",
       "question": {
         "en": "A large corporation has modified its network to allow users to access network resources from their personal laptops and smart phones. Which networking trend does this describe?",
-        "de": null
+        "de": "Ein großes Unternehmen hat sein Netzwerk so modifiziert, dass Benutzer von ihren persönlichen Laptops und Smartphones aus auf Netzwerkressourcen zugreifen können. Welchen Vernetzungstrend beschreibt das?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "cloud computing",
-            "de": null
+            "de": "cloud computing"
           },
           "correct": false
         },
@@ -146,7 +146,7 @@
           "id": "b",
           "text": {
             "en": "online collaboration",
-            "de": null
+            "de": "online-Zusammenarbeit"
           },
           "correct": false
         },
@@ -154,7 +154,7 @@
           "id": "c",
           "text": {
             "en": "bring your own device",
-            "de": null
+            "de": "BYOD (Bring Your Own Device)"
           },
           "correct": true
         },
@@ -162,7 +162,7 @@
           "id": "d",
           "text": {
             "en": "video conferencing",
-            "de": null
+            "de": "Videokonferenzen"
           },
           "correct": false
         }
@@ -183,14 +183,14 @@
       "topic": "1.5.1",
       "question": {
         "en": "What is an ISP?",
-        "de": null
+        "de": "Was ist ein ISP?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "It is a standards body that develops cabling and wiring standards for networking.",
-            "de": null
+            "de": "Es ist ein Normungsgremium, das Verkabelungs- und Verdrahtungsstandards für die Vernetzung entwickelt."
           },
           "correct": false
         },
@@ -198,7 +198,7 @@
           "id": "b",
           "text": {
             "en": "It is a protocol that establishes how computers within a local network communicate.",
-            "de": null
+            "de": "Es ist ein Protokoll, das festlegt, wie Computer in einem lokalen Netzwerk kommunizieren."
           },
           "correct": false
         },
@@ -206,7 +206,7 @@
           "id": "c",
           "text": {
             "en": "It is an organization that enables individuals and businesses to connect to the Internet.",
-            "de": null
+            "de": "Es ist eine Organisation, die es Einzelpersonen und Unternehmen ermöglicht, sich mit dem Internet zu verbinden."
           },
           "correct": true
         },
@@ -214,7 +214,7 @@
           "id": "d",
           "text": {
             "en": "It is a networking device that combines the functionality of several different networking devices in one.",
-            "de": null
+            "de": "Es ist ein Netzwerkgerät, das die Funktionalität mehrerer verschiedener Netzwerkgeräte in einem vereint."
           },
           "correct": false
         }
@@ -235,41 +235,41 @@
       "topic": "1.6.5",
       "question": {
         "en": "Match the requirements of a reliable network with the supporting network architecture. (Not all options are used.)",
-        "de": null
+        "de": "Passen Sie die Anforderungen eines zuverlässigen Netzwerks an die unterstützende Netzwerkarchitektur an. (Es werden nicht alle Optionen verwendet.)"
       },
       "explanation": {
         "en": "Topic 1.6.5",
-        "de": null
+        "de": "Thema 1.6.5"
       },
       "matchPairs": [
         {
           "left": {
             "en": "fault tolerance",
-            "de": null
+            "de": "Fehlertoleranz"
           },
           "right": {
             "en": "Provide redundant links and devices.",
-            "de": null
+            "de": "Stellen Sie redundante Links und Geräte bereit."
           }
         },
         {
           "left": {
             "en": "scalability",
-            "de": null
+            "de": "Skalierbarkeit"
           },
           "right": {
             "en": "Expand the network without degrading the service for existing users.",
-            "de": null
+            "de": "Erweitern Sie das Netzwerk, ohne den Dienst für bestehende Benutzer zu beeinträchtigen."
           }
         },
         {
           "left": {
             "en": "security",
-            "de": null
+            "de": "Sicherheit"
           },
           "right": {
             "en": "Protect the network from unauthorized access.",
-            "de": null
+            "de": "Schützen Sie das Netzwerk vor unbefugtem Zugriff."
           }
         }
       ]
@@ -289,18 +289,18 @@
       "topic": "1.4.4",
       "question": {
         "en": "An employee at a branch office is creating a quote for a customer. In order to do this, the employee needs to access confidential pricing information from internal servers at the Head Office. What type of network would the employee access?",
-        "de": null
+        "de": "Ein Mitarbeiter einer Niederlassung erstellt ein Angebot für einen Kunden. Dazu muss der Mitarbeiter auf vertrauliche Preisinformationen von internen Servern in der Zentrale zugreifen können. Auf welche Art von Netzwerk würde der Mitarbeiter zugreifen?"
       },
       "explanation": {
         "en": "Topic 1.4.4 Intranet is a term used to refer to a private connection of LANs and WANs that belongs to an organization. An intranet is designed to be accessible only by the organization&#8217;s members, employees, or others with authorization.",
-        "de": null
+        "de": "Thema 1.4.4 Intranet ist ein Begriff, der sich auf eine private Verbindung von LANs und WANs bezieht, die zu einer Organisation gehört. Ein Intranet ist so konzipiert, dass es nur Mitgliedern, Mitarbeitern oder anderen autorisierten Personen der Organisation zugänglich ist."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "an intranet",
-            "de": null
+            "de": "ein Intranet"
           },
           "correct": true
         },
@@ -308,7 +308,7 @@
           "id": "b",
           "text": {
             "en": "the Internet",
-            "de": null
+            "de": "Suche im Internet"
           },
           "correct": false
         },
@@ -316,7 +316,7 @@
           "id": "c",
           "text": {
             "en": "an extranet",
-            "de": null
+            "de": "ein Extranet"
           },
           "correct": false
         },
@@ -324,7 +324,7 @@
           "id": "d",
           "text": {
             "en": "a local area network",
-            "de": null
+            "de": "Lokales Netzwerk"
           },
           "correct": false
         }
@@ -345,14 +345,14 @@
       "topic": "1.7.8",
       "question": {
         "en": "Which statement describes the use of powerline networking technology?",
-        "de": null
+        "de": "Welche Aussage beschreibt den Einsatz von Powerline-Netzwerktechnik?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "New “smart” electrical cabling is used to extend an existing home LAN.",
-            "de": null
+            "de": "Neue \"intelligente\" elektrische Verkabelung wird verwendet, um ein bestehendes Heim-LAN zu erweitern."
           },
           "correct": false
         },
@@ -360,7 +360,7 @@
           "id": "b",
           "text": {
             "en": "A home LAN is installed without the use of physical cabling.",
-            "de": null
+            "de": "Ein Heim-LAN wird ohne die Verwendung einer physischen Verkabelung installiert."
           },
           "correct": false
         },
@@ -368,7 +368,7 @@
           "id": "c",
           "text": {
             "en": "A device connects to an existing home LAN using an adapter and an existing electrical outlet.",
-            "de": null
+            "de": "Ein Gerät verbindet sich über einen Adapter und eine vorhandene Steckdose mit einem vorhandenen Heim-LAN."
           },
           "correct": true
         },
@@ -376,7 +376,7 @@
           "id": "d",
           "text": {
             "en": "Wireless access points use powerline adapters to distribute data through the home LAN.",
-            "de": null
+            "de": "Drahtlose Access Points verwenden Powerline-Adapter, um Daten über das Heim-LAN zu verteilen."
           },
           "correct": false
         }
@@ -397,14 +397,14 @@
       "topic": "1.1.8",
       "question": {
         "en": "A networking technician is working on the wireless network at a medical clinic. The technician accidentally sets up the wireless network so that patients can see the medical records data of other patients. Which of the four network characteristics has been violated in this situation?",
-        "de": null
+        "de": "Ein Netzwerktechniker arbeitet an dem drahtlosen Netzwerk in einer medizinischen Klinik. Der Techniker richtet das drahtlose Netzwerk versehentlich so ein, dass Patienten die medizinischen Daten anderer Patienten einsehen können. Welche der vier Netzeigenschaften wurden in dieser Situation verletzt?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "fault tolerance",
-            "de": null
+            "de": "Fehlertoleranz"
           },
           "correct": false
         },
@@ -412,7 +412,7 @@
           "id": "b",
           "text": {
             "en": "scalability",
-            "de": null
+            "de": "Skalierbarkeit"
           },
           "correct": false
         },
@@ -420,7 +420,7 @@
           "id": "c",
           "text": {
             "en": "security",
-            "de": null
+            "de": "Sicherheit"
           },
           "correct": true
         },
@@ -428,7 +428,7 @@
           "id": "d",
           "text": {
             "en": "Quality of Service (QoS)",
-            "de": null
+            "de": "Quality of Service (QoS) <g x=1 id=\"1138\"/>"
           },
           "correct": false
         },
@@ -436,7 +436,7 @@
           "id": "e",
           "text": {
             "en": "reliability",
-            "de": null
+            "de": "Zuverlässigkeit"
           },
           "correct": false
         }
@@ -457,51 +457,51 @@
       "topic": "1.5.2",
       "question": {
         "en": "Match each characteristic to its corresponding Internet connectivity type. (Not all options are used.)",
-        "de": null
+        "de": "Ordnen Sie jedes Merkmal dem entsprechenden Internet-Konnektivitätstyp zu. (Es werden nicht alle Optionen verwendet.)"
       },
       "explanation": {
         "en": "Topic 1.5.2 DSL is an always-on, high bandwidth connection that runs over telephone lines. Cable uses the same coaxial cable that carries television signals into the home to provide Internet access. Dialup telephone is much slower than either DSL or cable, but is the least expensive option for home users because it can use any telephone line and a simple modem. Satellite requires a clear line of sight and is affected by trees and other obstructions. None of these typical home options use dedicated leased lines such as T1/E1 and T3/E3.",
-        "de": null
+        "de": "Thema 1.5.2 DSL ist eine ständig aktive Verbindung mit hoher Bandbreite, die über Telefonleitungen läuft. Das Kabel verwendet dasselbe Koaxialkabel, das Fernsehsignale in das Haus überträgt, um einen Internetzugang zu ermöglichen. Einwahltelefon ist viel langsamer als DSL oder Kabel, ist aber die kostengünstigste Option für Privatanwender, da es jede Telefonleitung und ein einfaches Modem verwenden kann. Satellit erfordert eine freie Sichtlinie und wird durch Bäume und andere Hindernisse beeinträchtigt. Keines dieser typischen Häuser..."
       },
       "matchPairs": [
         {
           "left": {
             "en": "uses coaxial cable as a medium",
-            "de": null
+            "de": "verwendet Koaxialkabel als Medium"
           },
           "right": {
             "en": "cable",
-            "de": null
+            "de": "Kabel,"
           }
         },
         {
           "left": {
             "en": "not suited for heavily wooded areas",
-            "de": null
+            "de": "nicht für stark bewaldete Flächen geeignet"
           },
           "right": {
             "en": "satellite",
-            "de": null
+            "de": "Satellit"
           }
         },
         {
           "left": {
             "en": "typically has very low bandwidth",
-            "de": null
+            "de": "hat typischerweise eine sehr geringe Bandbreite"
           },
           "right": {
             "en": "dialup telephone",
-            "de": null
+            "de": "dFÜ-Telefon"
           }
         },
         {
           "left": {
             "en": "high bandwidth connection that runs over telephone line",
-            "de": null
+            "de": "verbindung mit hoher Bandbreite, die über eine Telefonleitung verläuft"
           },
           "right": {
             "en": "DSL",
-            "de": null
+            "de": "DSL"
           }
         }
       ]
@@ -521,18 +521,18 @@
       "topic": "2.6.2",
       "question": {
         "en": "What two criteria are used to help select a network medium from various network media? (Choose two.)",
-        "de": null
+        "de": "Welche zwei Kriterien werden verwendet, um ein Netzwerkmedium aus verschiedenen Netzwerkmedien auszuwählen? (Wählen Sie zwei aus.)"
       },
       "explanation": {
         "en": "Topic 2.6.2 Criteria for choosing a network medium are the distance the selected medium can successfully carry a signal, the environment in which the selected medium is to be installed, the amount of data and the speed at which the data must be transmitted, and the cost of the medium and its installation.",
-        "de": null
+        "de": "Thema 2.6.2 Kriterien für die Auswahl eines Netzwerkmediums sind die Entfernung, über die das ausgewählte Medium erfolgreich ein Signal übertragen kann, die Umgebung, in der das ausgewählte Medium installiert werden soll, die Datenmenge und die Geschwindigkeit, mit der die Daten übertragen werden müssen, sowie die Kosten des Mediums und seiner Installation."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "the types of data that need to be prioritized",
-            "de": null
+            "de": "die Arten von Daten, die priorisiert werden müssen"
           },
           "correct": false
         },
@@ -540,7 +540,7 @@
           "id": "b",
           "text": {
             "en": "the cost of the end devices utilized in the network",
-            "de": null
+            "de": "die Kosten der im Netzwerk genutzten Endgeräte"
           },
           "correct": false
         },
@@ -548,7 +548,7 @@
           "id": "c",
           "text": {
             "en": "the distance the selected medium can successfully carry a signal",
-            "de": null
+            "de": "die Entfernung, über die das ausgewählte Medium erfolgreich ein Signal übertragen kann"
           },
           "correct": true
         },
@@ -556,7 +556,7 @@
           "id": "d",
           "text": {
             "en": "the number of intermediate devices installed in the network",
-            "de": null
+            "de": "die Anzahl der im Netzwerk installierten Zwischengeräte"
           },
           "correct": false
         },
@@ -564,7 +564,7 @@
           "id": "e",
           "text": {
             "en": "the environment where the selected medium is to be installed",
-            "de": null
+            "de": "die Umgebung, in der das ausgewählte Medium installiert werden soll"
           },
           "correct": true
         }
@@ -585,18 +585,18 @@
       "topic": "1.6.4",
       "question": {
         "en": "What type of network traffic requires QoS?",
-        "de": null
+        "de": "Welche Art von Netzwerkverkehr erfordert QoS?"
       },
       "explanation": {
         "en": "Topic 1.6.4 Video conferencing utilizes real-time audio and video communications. Both of these are time-sensitive and bandwidth-intensive forms of communication that require quality of service to be active on the network. QoS will ensure an uninterrupted user experience.",
-        "de": null
+        "de": "Thema 1.6.4 Videokonferenzen nutzen Audio- und Videokommunikation in Echtzeit. Beides sind zeitkritische und bandbreitenintensive Kommunikationsformen, die eine aktive Dienstqualität im Netzwerk erfordern. QoS sorgt für ein ununterbrochenes Benutzererlebnis."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "email",
-            "de": null
+            "de": "Email"
           },
           "correct": false
         },
@@ -604,7 +604,7 @@
           "id": "b",
           "text": {
             "en": "on-line purchasing",
-            "de": null
+            "de": "online-Einkauf"
           },
           "correct": false
         },
@@ -612,7 +612,7 @@
           "id": "c",
           "text": {
             "en": "video conferencing",
-            "de": null
+            "de": "Videokonferenzen"
           },
           "correct": true
         },
@@ -620,7 +620,7 @@
           "id": "d",
           "text": {
             "en": "wiki",
-            "de": null
+            "de": "wiki"
           },
           "correct": false
         }
@@ -641,18 +641,18 @@
       "topic": "1.8.2",
       "question": {
         "en": "A user is implementing security on a small office network. Which two actions would provide the minimum security requirements for this network? (Choose two.)",
-        "de": null
+        "de": "Ein Benutzer implementiert Sicherheit in einem kleinen Büronetzwerk. Welche zwei Maßnahmen würden die Mindestsicherheitsanforderungen für dieses Netzwerk bieten? (Wählen Sie zwei aus.)"
       },
       "explanation": {
         "en": "Topic 1.8.2 Technically complex security measures such as intrusion prevention and intrusion prevention systems are usually associated with business networks rather than home networks. Installing antivirus software, antimalware software, and implementing a firewall will usually be the minimum requirements for home networks. Installing a home wireless network will not improve network security, and will require further security actions to be taken.",
-        "de": null
+        "de": "Thema 1.8.2 Technisch komplexe Sicherheitsmaßnahmen wie Intrusion Prevention und Intrusion Prevention Systeme sind in der Regel eher mit Geschäftsnetzwerken als mit Heimnetzwerken verbunden. Die Installation von Antivirensoftware, Antimalware-Software und die Implementierung einer Firewall sind in der Regel die Mindestanforderungen für Heimnetzwerke. Die Installation eines drahtlosen Heimnetzwerks verbessert nicht die Netzwerksicherheit und erfordert weitere Sicherheitsmaßnahmen."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "implementing a firewall",
-            "de": null
+            "de": "implementierung einer Firewall"
           },
           "correct": true
         },
@@ -660,7 +660,7 @@
           "id": "b",
           "text": {
             "en": "installing a wireless network",
-            "de": null
+            "de": "installation eines drahtlosen Netzwerks"
           },
           "correct": false
         },
@@ -668,7 +668,7 @@
           "id": "c",
           "text": {
             "en": "installing antivirus software",
-            "de": null
+            "de": "installation von Antivirensoftware"
           },
           "correct": true
         },
@@ -676,7 +676,7 @@
           "id": "d",
           "text": {
             "en": "implementing an intrusion detection system",
-            "de": null
+            "de": "implementierung eines Intrusion Detection Systems"
           },
           "correct": false
         },
@@ -684,7 +684,7 @@
           "id": "e",
           "text": {
             "en": "adding a dedicated intrusion prevention device",
-            "de": null
+            "de": "hinzufügen eines dedizierten Intrusion Prevention-Geräts"
           },
           "correct": false
         }
@@ -705,18 +705,18 @@
       "topic": "2.4.3",
       "question": {
         "en": "Passwords can be used to restrict access to all or parts of the Cisco IOS. Select the modes and interfaces that can be protected with passwords. (Choose three.)",
-        "de": null
+        "de": "Passwörter können verwendet werden, um den Zugriff auf alle oder Teile von Cisco IOS zu beschränken. Wählen Sie die Modi und Schnittstellen, die mit Passwörtern geschützt werden können. (Wählen Sie drei aus.)"
       },
       "explanation": {
         "en": "Topic 2.4.3 Access to the VTY and console interfaces can be restricted using passwords. Out-of-band management of the router can be restricted in both user EXEC and privileged EXEC modes.",
-        "de": null
+        "de": "Thema 2.4.3 Der Zugriff auf die VTY- und Konsolenschnittstellen kann über Passwörter eingeschränkt werden. Die Out-of-Band-Verwaltung des Routers kann sowohl in den Modi User EXEC als auch Privileged EXEC eingeschränkt werden."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "VTY interface",
-            "de": null
+            "de": "VTY-Schnittstelle"
           },
           "correct": true
         },
@@ -724,7 +724,7 @@
           "id": "b",
           "text": {
             "en": "console interface",
-            "de": null
+            "de": "Konsolen-Benutzeroberfläche"
           },
           "correct": true
         },
@@ -732,7 +732,7 @@
           "id": "c",
           "text": {
             "en": "Ethernet interface",
-            "de": null
+            "de": "Ethernet-Schnittstelle"
           },
           "correct": false
         },
@@ -740,7 +740,7 @@
           "id": "d",
           "text": {
             "en": "boot IOS mode",
-            "de": null
+            "de": "iOS-Startmodus"
           },
           "correct": false
         },
@@ -748,7 +748,7 @@
           "id": "e",
           "text": {
             "en": "privileged EXEC mode",
-            "de": null
+            "de": "privilegierter EXEC-Modus"
           },
           "correct": true
         },
@@ -756,7 +756,7 @@
           "id": "f",
           "text": {
             "en": "router configuration mode",
-            "de": null
+            "de": "Konfiguration „Router“"
           },
           "correct": false
         }
@@ -777,18 +777,18 @@
       "topic": "2.6.2",
       "question": {
         "en": "Which interface allows remote management of a Layer 2 switch?",
-        "de": null
+        "de": "Welche Schnittstelle ermöglicht die Fernverwaltung eines Layer-2-Switches?"
       },
       "explanation": {
         "en": "Topic 2.6.2 In a Layer 2 switch, there is a switch virtual interface (SVI) that provides a means for remotely managing the device.",
-        "de": null
+        "de": "Thema 2.6.2 In einem Layer-2-Switch gibt es eine virtuelle Switch-Schnittstelle (SVI), die ein Mittel zur Remote-Verwaltung des Geräts bereitstellt."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "the AUX interface",
-            "de": null
+            "de": "die AUX-Schnittstelle"
           },
           "correct": false
         },
@@ -796,7 +796,7 @@
           "id": "b",
           "text": {
             "en": "the console port interface",
-            "de": null
+            "de": "die Konsolen-Port-Schnittstelle"
           },
           "correct": false
         },
@@ -804,7 +804,7 @@
           "id": "c",
           "text": {
             "en": "the switch virtual interface",
-            "de": null
+            "de": "die virtuelle Switch-Schnittstelle"
           },
           "correct": true
         },
@@ -812,7 +812,7 @@
           "id": "d",
           "text": {
             "en": "the first Ethernet port interface",
-            "de": null
+            "de": "die erste Ethernet-Port-Schnittstelle"
           },
           "correct": false
         }
@@ -833,18 +833,18 @@
       "topic": "2.3.5",
       "question": {
         "en": "What function does pressing the Tab key have when entering a command in IOS?",
-        "de": null
+        "de": "Welche Funktion hat das Drücken der Tab-Taste bei der Eingabe eines Befehls in IOS?"
       },
       "explanation": {
         "en": "Topic 2.3.5 Pressing the Tab key after a command has been partially typed will cause the IOS to complete the rest of the command.",
-        "de": null
+        "de": "Thema 2.3.5 Wenn Sie die Tabulatortaste drücken, nachdem ein Befehl teilweise eingegeben wurde, führt dies dazu, dass das IOS den Rest des Befehls abschließt."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "It aborts the current command and returns to configuration mode.",
-            "de": null
+            "de": "Es bricht den aktuellen Befehl ab und kehrt in den Konfigurationsmodus zurück."
           },
           "correct": false
         },
@@ -852,7 +852,7 @@
           "id": "b",
           "text": {
             "en": "It exits configuration mode and returns to user EXEC mode.",
-            "de": null
+            "de": "Es verlässt den Konfigurationsmodus und kehrt in den BENUTZERAUSFÜHRUNGSMODUS zurück."
           },
           "correct": false
         },
@@ -860,7 +860,7 @@
           "id": "c",
           "text": {
             "en": "It moves the cursor to the beginning of the next line.",
-            "de": null
+            "de": "Er bewegt den Cursor an den Anfang der nächsten Zeile."
           },
           "correct": false
         },
@@ -868,7 +868,7 @@
           "id": "d",
           "text": {
             "en": "It completes the remainder of a partially typed word in a command.",
-            "de": null
+            "de": "Es vervollständigt den Rest eines teilweise eingegebenen Wortes in einem Befehl."
           },
           "correct": true
         }
@@ -889,18 +889,18 @@
       "topic": "2.5.2",
       "question": {
         "en": "While trying to solve a network issue, a technician made multiple changes to the current router configuration file. The changes did not solve the problem and were not saved. What action can the technician take to discard the changes and work with the file in NVRAM?",
-        "de": null
+        "de": "Beim Versuch, ein Netzwerkproblem zu lösen, hat ein Techniker mehrere Änderungen an der aktuellen Router-Konfigurationsdatei vorgenommen. Die Änderungen haben das Problem nicht gelöst und wurden nicht gespeichert. Welche Maßnahmen kann der Techniker ergreifen, um die Änderungen zu verwerfen und mit der Datei in NVRAM zu arbeiten?"
       },
       "explanation": {
         "en": "Topic 2.5.2 The technician does not want to make any mistakes trying to remove all the changes that were done to the running configuration file. The solution is to reboot the router without saving the running configuration. The copy startup-config running-config command does not overwrite the running configuration file with the configuration file stored in NVRAM, but rather it just has an additive effect.",
-        "de": null
+        "de": "Thema 2.5.2 Der Techniker möchte keine Fehler machen, wenn er versucht, alle Änderungen zu entfernen, die an der laufenden Konfigurationsdatei vorgenommen wurden. Die Lösung besteht darin, den Router neu zu starten, ohne die laufende Konfiguration zu speichern. Der Befehl copy startup-config running-config überschreibt die laufende Konfigurationsdatei nicht mit der in NVRAM gespeicherten Konfigurationsdatei, sondern hat nur einen additiven Effekt."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "Issue the reload command without saving the running configuration.",
-            "de": null
+            "de": "Geben Sie den Reload-Befehl aus, ohne die laufende Konfiguration zu speichern."
           },
           "correct": true
         },
@@ -908,7 +908,7 @@
           "id": "b",
           "text": {
             "en": "Delete the vlan.dat file and reboot the device.",
-            "de": null
+            "de": "Löschen Sie die Datei vlan.dat und starten Sie das Gerät neu."
           },
           "correct": false
         },
@@ -916,7 +916,7 @@
           "id": "c",
           "text": {
             "en": "Close and reopen the terminal emulation software.",
-            "de": null
+            "de": "Schließen und öffnen Sie die Terminalemulationssoftware erneut."
           },
           "correct": false
         },
@@ -924,7 +924,7 @@
           "id": "d",
           "text": {
             "en": "Issue the copy startup-config running-config command.",
-            "de": null
+            "de": "Geben Sie den Befehl copy startup-config running-config aus."
           },
           "correct": false
         }
@@ -945,18 +945,18 @@
       "topic": "2.3.5",
       "question": {
         "en": "An administrator uses the Ctrl-Shift-6 key combination on a switch after issuing the ping command. What is the purpose of using these keystrokes?",
-        "de": null
+        "de": "Ein Administrator verwendet die Tastenkombination Strg-Umschalttaste 6 auf einem Schalter, nachdem er den PING-Befehl ausgegeben hat. Was ist der Zweck der Verwendung dieser Tastenanschläge?"
       },
       "explanation": {
         "en": "Topic 2.3.5 To interrupt an IOS process such as ping or traceroute, a user enters the Ctrl-Shift-6 key combination. Tab completes the remainder of parameters or arguments within a command. To exit from configuration mode to privileged mode use the Ctrl-Z keystroke. CTRL-R will redisplay the line just typed, thus making it easier for the user to press Enter and reissue the ping command.",
-        "de": null
+        "de": "Thema 2.3.5 Um einen iOS-Prozess wie Ping oder Traceroute zu unterbrechen, gibt ein Benutzer die Tastenkombination Strg-Umschalttaste-6 ein. Die Registerkarte vervollständigt den Rest der Parameter oder Argumente innerhalb eines Befehls. Um aus dem Konfigurationsmodus in den privilegierten Modus zu wechseln, verwenden Sie die Strg-Z-Taste. Strg-R zeigt die gerade eingegebene Zeile erneut an, wodurch es für den Benutzer einfacher wird, die Eingabetaste zu drücken und den PING-Befehl erneut auszugeben."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "to restart the ping process",
-            "de": null
+            "de": "um den Ping-Vorgang neu zu starten"
           },
           "correct": false
         },
@@ -964,7 +964,7 @@
           "id": "b",
           "text": {
             "en": "to interrupt the ping process",
-            "de": null
+            "de": "um den Ping-Vorgang zu unterbrechen"
           },
           "correct": true
         },
@@ -972,7 +972,7 @@
           "id": "c",
           "text": {
             "en": "to exit to a different configuration mode",
-            "de": null
+            "de": "um zu einem anderen Konfigurationsmodus zu gelangen"
           },
           "correct": false
         },
@@ -980,7 +980,7 @@
           "id": "d",
           "text": {
             "en": "to allow the user to complete the command",
-            "de": null
+            "de": "damit der Benutzer den Befehl ausführen kann"
           },
           "correct": false
         }
@@ -1001,18 +1001,18 @@
       "topic": "2.4.3",
       "question": {
         "en": "Refer to the exhibit. A network administrator is configuring access control to switch SW1. If the administrator uses a console connection to connect to the switch, which password is needed to access user EXEC mode?",
-        "de": null
+        "de": "Siehe Anlage. Ein Netzwerkadministrator konfiguriert die Zugriffskontrolle für Switch SW1. Wenn der Administrator eine Konsolenverbindung verwendet, um eine Verbindung zum Switch herzustellen, welches Passwort wird benötigt, um auf den BENUTZERAUSFÜHRUNGSMODUS zuzugreifen?"
       },
       "explanation": {
         "en": "Topic 2.4.3 Telnet accesses a network device through the virtual interface configured with the line VTY command. The password configured under this is required to access the user EXEC mode. The password configured under the line console 0 command is required to gain entry through the console port, and the enable and enable secret passwords are used to allow entry into the privileged EXEC mode.",
-        "de": null
+        "de": "Thema 2.4.3 Telnet greift über die mit dem Befehl Line VTY konfigurierte virtuelle Schnittstelle auf ein Netzwerkgerät zu. Das darunter konfigurierte Passwort ist für den Zugriff auf den User EXEC Modus erforderlich. Das unter dem Befehl Line Console 0 konfigurierte Passwort ist erforderlich, um über den Konsolenport Zugang zu erhalten, und die geheimen Passwörter enable und enable werden verwendet, um den Zugang zum privilegierten EXEC-Modus zu ermöglichen."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "letmein",
-            "de": null
+            "de": "letmein"
           },
           "correct": false
         },
@@ -1020,7 +1020,7 @@
           "id": "b",
           "text": {
             "en": "secretin",
-            "de": null
+            "de": "Secretin"
           },
           "correct": false
         },
@@ -1028,7 +1028,7 @@
           "id": "c",
           "text": {
             "en": "lineconin",
-            "de": null
+            "de": "lineconin"
           },
           "correct": true
         },
@@ -1036,7 +1036,7 @@
           "id": "d",
           "text": {
             "en": "linevtyin",
-            "de": null
+            "de": "linevtyin"
           },
           "correct": false
         }
@@ -1058,18 +1058,18 @@
       "topic": "2.7.4",
       "question": {
         "en": "A technician configures a switch with these commands:",
-        "de": null
+        "de": "Ein Techniker konfiguriert einen Schalter mit diesen Befehlen:"
       },
       "explanation": {
         "en": "Topic 2.7.4 For a switch to have an IP address, a switch virtual interface must be configured. This allows the switch to be managed remotely over the network.",
-        "de": null
+        "de": "Thema 2.7.4 Damit ein Switch eine IP-Adresse hat, muss eine virtuelle Switch-Schnittstelle konfiguriert werden. Dadurch kann der Switch aus der Ferne über das Netzwerk verwaltet werden."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "Telnet access",
-            "de": null
+            "de": "Telnet-Zugang"
           },
           "correct": false
         },
@@ -1077,7 +1077,7 @@
           "id": "b",
           "text": {
             "en": "SVI",
-            "de": null
+            "de": "SVI"
           },
           "correct": true
         },
@@ -1085,7 +1085,7 @@
           "id": "c",
           "text": {
             "en": "password encryption",
-            "de": null
+            "de": "Passwort-Verschlüsselung"
           },
           "correct": false
         },
@@ -1093,7 +1093,7 @@
           "id": "d",
           "text": {
             "en": "physical switchport access",
-            "de": null
+            "de": "physischer Switchport-Zugang"
           },
           "correct": false
         }
@@ -1114,18 +1114,18 @@
       "topic": "2.2.4",
       "question": {
         "en": "Which command or key combination allows a user to return to the previous level in the command hierarchy?",
-        "de": null
+        "de": "Mit welchem Befehl oder welcher Tastenkombination kann ein Benutzer zur vorherigen Ebene in der Befehlshierarchie zurückkehren?"
       },
       "explanation": {
         "en": "Topic 2.2.4 End and CTRL-Z return the user to the privileged EXEC mode. Ctrl-C ends a command in process. The exit command returns the user to the previous level.",
-        "de": null
+        "de": "Thema 2.2.4 Ende und Strg-Z bringen den Benutzer in den privilegierten EXEC-MODUS zurück. Strg-C beendet einen Befehl in Bearbeitung. Der Exit-Befehl bringt den Benutzer auf die vorherige Ebene zurück."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "end",
-            "de": null
+            "de": "Ende"
           },
           "correct": false
         },
@@ -1133,7 +1133,7 @@
           "id": "b",
           "text": {
             "en": "exit",
-            "de": null
+            "de": "beenden"
           },
           "correct": true
         },
@@ -1141,7 +1141,7 @@
           "id": "c",
           "text": {
             "en": "Ctrl-Z",
-            "de": null
+            "de": "Strg-Z"
           },
           "correct": false
         },
@@ -1149,7 +1149,7 @@
           "id": "d",
           "text": {
             "en": "Ctrl-C",
-            "de": null
+            "de": "Strg-C"
           },
           "correct": false
         }
@@ -1170,18 +1170,18 @@
       "topic": "2.5.1",
       "question": {
         "en": "What are two characteristics of RAM on a Cisco device? (Choose two.)",
-        "de": null
+        "de": "Was sind zwei Merkmale von RAM auf einem Cisco-Gerät? (Wählen Sie zwei aus.)"
       },
       "explanation": {
         "en": "Topic 2.5.1 RAM stores data that is used by the device to support network operations. The running configuration is stored in RAM. This type of memory is considered volatile memory because data is lost during a power cycle. Flash memory stores the IOS and delivers a copy of the IOS into RAM when a device is powered on. Flash memory is nonvolatile since it retains stored contents during a loss of power.",
-        "de": null
+        "de": "Thema 2.5.1 RAM speichert Daten, die vom Gerät zur Unterstützung von Netzwerkvorgängen verwendet werden. Die laufende Konfiguration wird im RAM gespeichert. Diese Art von Speicher gilt als flüchtiger Speicher, da während eines Leistungszyklus Daten verloren gehen. Flash-Speicher speichert das IOS und liefert eine Kopie des IOS in den Arbeitsspeicher, wenn ein Gerät eingeschaltet wird. Flash-Speicher ist nicht flüchtig, da er gespeicherte Inhalte während eines Stromausfalls beibehält."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "RAM provides nonvolatile storage.",
-            "de": null
+            "de": "RAM bietet nichtflüchtigen Speicher."
           },
           "correct": false
         },
@@ -1189,7 +1189,7 @@
           "id": "b",
           "text": {
             "en": "The configuration that is actively running on the device is stored in RAM.",
-            "de": null
+            "de": "Die Konfiguration, die auf dem Gerät aktiv ausgeführt wird, wird im RAM gespeichert."
           },
           "correct": true
         },
@@ -1197,7 +1197,7 @@
           "id": "c",
           "text": {
             "en": "The contents of RAM are lost during a power cycle.",
-            "de": null
+            "de": "Der Inhalt des Arbeitsspeichers geht während eines Netzzyklus verloren."
           },
           "correct": true
         },
@@ -1205,7 +1205,7 @@
           "id": "d",
           "text": {
             "en": "RAM is a component in Cisco switches but not in Cisco routers.",
-            "de": null
+            "de": "RAM ist eine Komponente in Cisco-Switches, aber nicht in Cisco-Routern."
           },
           "correct": false
         },
@@ -1213,7 +1213,7 @@
           "id": "e",
           "text": {
             "en": "RAM is able to store multiple versions of IOS and configuration files.",
-            "de": null
+            "de": "RAM ist in der Lage, mehrere Versionen von IOS und Konfigurationsdateien zu speichern."
           },
           "correct": false
         }
@@ -1234,18 +1234,18 @@
       "topic": "2.4.1",
       "question": {
         "en": "Which two host names follow the guidelines for naming conventions on Cisco IOS devices? (Choose two.)",
-        "de": null
+        "de": "Welche beiden Hostnamen folgen den Richtlinien für Namenskonventionen auf Cisco IOS-GERÄTEN? (Wählen Sie zwei aus.)"
       },
       "explanation": {
         "en": "Topic 2.4.1 Some guidelines for naming conventions are that names should: Start with a letter Contain no spaces End with a letter or digit Use only letters, digits, and dashes Be less than 64 characters in length",
-        "de": null
+        "de": "Thema 2.4.1 Einige Richtlinien für Namenskonventionen sind, dass Namen sollten: Mit einem Buchstaben beginnen Keine Leerzeichen enthalten Mit einem Buchstaben oder einer Ziffer enden Nur Buchstaben, Ziffern und Bindestriche verwenden Weniger als 64 Zeichen lang sein"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "Branch2!",
-            "de": null
+            "de": "Branch2!"
           },
           "correct": false
         },
@@ -1253,7 +1253,7 @@
           "id": "b",
           "text": {
             "en": "RM-3-Switch-2A4",
-            "de": null
+            "de": "RM-3-Schalter-2A4"
           },
           "correct": true
         },
@@ -1261,7 +1261,7 @@
           "id": "c",
           "text": {
             "en": "Floor(15)",
-            "de": null
+            "de": "15. Stock"
           },
           "correct": false
         },
@@ -1269,7 +1269,7 @@
           "id": "d",
           "text": {
             "en": "HO Floor 17",
-            "de": null
+            "de": "HO Boden 17"
           },
           "correct": false
         },
@@ -1277,7 +1277,7 @@
           "id": "e",
           "text": {
             "en": "SwBranch799",
-            "de": null
+            "de": "SwBranch799"
           },
           "correct": true
         }
@@ -1298,18 +1298,18 @@
       "topic": "2.1.4",
       "question": {
         "en": "How is SSH different from Telnet?",
-        "de": null
+        "de": "Wie unterscheidet sich SSH von Telnet?"
       },
       "explanation": {
         "en": "Topic 2.1.4 SSH is the preferred protocol for connecting to a device operating system over the network because it is much more secure than Telnet. Both SSH and Telnet are used to connect to devices over the network, and so are both used in-band. PuTTY and Terra Term can be used to make both SSH and Telnet connections.",
-        "de": null
+        "de": "Thema 2.1.4 SSH ist das bevorzugte Protokoll für die Verbindung mit einem Gerätebetriebssystem über das Netzwerk, da es viel sicherer ist als Telnet. Sowohl SSH als auch Telnet werden verwendet, um eine Verbindung zu Geräten über das Netzwerk herzustellen, und werden daher beide im Band verwendet. Mit PuTTY und Terra Term können sowohl SSH- als auch Telnet-Verbindungen hergestellt werden."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "SSH makes connections over the network, whereas Telnet is for out-of-band access.",
-            "de": null
+            "de": "SSH stellt Verbindungen über das Netzwerk her, während Telnet für den Out-of-Band-Zugriff gedacht ist."
           },
           "correct": false
         },
@@ -1317,7 +1317,7 @@
           "id": "b",
           "text": {
             "en": "SSH provides security to remote sessions by encrypting messages and using user authentication. Telnet is considered insecure and sends messages in plaintext.",
-            "de": null
+            "de": "SSH bietet Sicherheit für Remote-Sitzungen, indem Nachrichten verschlüsselt und die Benutzerauthentifizierung verwendet wird. Telnet gilt als unsicher und sendet Nachrichten im Klartext."
           },
           "correct": true
         },
@@ -1325,7 +1325,7 @@
           "id": "c",
           "text": {
             "en": "SSH requires the use of the PuTTY terminal emulation program. Tera Term must be used to connect to devices through the use of Telnet.",
-            "de": null
+            "de": "SSH erfordert die Verwendung des PuTTY-Terminal-Emulationsprogramms. Tera Term muss verwendet werden, um eine Verbindung zu Geräten über Telnet herzustellen."
           },
           "correct": false
         },
@@ -1333,7 +1333,7 @@
           "id": "d",
           "text": {
             "en": "SSH must be configured over an active network connection, whereas Telnet is used to connect to a device from a console connection.",
-            "de": null
+            "de": "SSH muss über eine aktive Netzwerkverbindung konfiguriert werden, während Telnet verwendet wird, um eine Verbindung zu einem Gerät über eine Konsolenverbindung herzustellen."
           },
           "correct": false
         }
@@ -1354,51 +1354,51 @@
       "topic": "2.2.4",
       "question": {
         "en": "An administrator is configuring a switch console port with a password. In what order will the administrator travel through the IOS modes of operation in order to reach the mode in which the configuration commands will be entered? (Not all options are used.)",
-        "de": null
+        "de": "Ein Administrator konfiguriert einen Switch-Konsolen-Port mit einem Passwort. In welcher Reihenfolge durchläuft der Administrator die IOS-BETRIEBSMODI, um in den Modus zu gelangen, in dem die Konfigurationsbefehle eingegeben werden? (Es werden nicht alle Optionen verwendet.)"
       },
       "explanation": {
         "en": "Topic 2.2.4 The configuration mode that the administrator first encounters is user EXEC mode. After the enable command is entered, the next mode is privileged EXEC mode. From there, the configure termina l command is entered to move to global configuration mode. Finally, the administrator enters the line console 0 command to enter the mode in which the configuration will be entered.",
-        "de": null
+        "de": "Thema 2.2.4 Der Konfigurationsmodus, dem der Administrator zum ersten Mal begegnet, ist der Benutzerausführungsmodus. Nachdem der Freigabebefehl eingegeben wurde, ist der nächste Modus der privilegierte EXEC-Modus. Von dort aus wird der Befehl configure termina l eingegeben, um in den globalen Konfigurationsmodus zu wechseln. Schließlich gibt der Administrator den Befehl Line Console 0 ein, um in den Modus zu gelangen, in dem die Konfiguration eingegeben wird."
       },
       "matchPairs": [
         {
           "left": {
             "en": "first mode",
-            "de": null
+            "de": "erster Modus"
           },
           "right": {
             "en": "user EXEC mode",
-            "de": null
+            "de": "user EXEC MODE"
           }
         },
         {
           "left": {
             "en": "second mode",
-            "de": null
+            "de": "Zweiter Modus:"
           },
           "right": {
             "en": "privileged EXEC mode",
-            "de": null
+            "de": "privilegierter EXEC-Modus"
           }
         },
         {
           "left": {
             "en": "third mode",
-            "de": null
+            "de": "Modus dritte Stufe"
           },
           "right": {
             "en": "global configuration mode",
-            "de": null
+            "de": "Globale Konfiguration"
           }
         },
         {
           "left": {
             "en": "final mode",
-            "de": null
+            "de": "finaler Modus"
           },
           "right": {
             "en": "line configuration mode",
-            "de": null
+            "de": "Konfigurationsmodus"
           }
         }
       ]
@@ -1418,18 +1418,18 @@
       "topic": "2.6.2",
       "question": {
         "en": "What are three characteristics of an SVI? (Choose three.)",
-        "de": null
+        "de": "Was sind drei Merkmale eines SVI? (Wählen Sie drei aus.)"
       },
       "explanation": {
         "en": "Topic 2.6.2 Switches have one or more switch virtual interfaces (SVIs). SVIs are created in software since there is no physical hardware associated with them. Virtual interfaces provide a means to remotely manage a switch over a network that is using IP. Each switch comes with one SVI appearing in the default configuration &#8220;out-of-the-box.&#8221; The default SVI interface is VLAN1.",
-        "de": null
+        "de": "Thema 2.6.2 Switches verfügen über eine oder mehrere Switch Virtual Interfaces (SVIs). SVIs werden in Software erstellt, da ihnen keine physische Hardware zugeordnet ist. Virtuelle Schnittstellen bieten ein Mittel zur Remote-Verwaltung eines Switches über ein Netzwerk, das IP verwendet. Jeder Switch wird mit einem SVI geliefert, der in der Standardkonfiguration „out-of-the-box“ erscheint. \"Die Standard-SVI-Schnittstelle ist VLAN1."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "It is designed as a security protocol to protect switch ports.",
-            "de": null
+            "de": "Es ist als Sicherheitsprotokoll zum Schutz von Switch-Ports konzipiert."
           },
           "correct": false
         },
@@ -1437,7 +1437,7 @@
           "id": "b",
           "text": {
             "en": "It is not associated with any physical interface on a switch.",
-            "de": null
+            "de": "Es ist keiner physischen Schnittstelle an einem Switch zugeordnet."
           },
           "correct": true
         },
@@ -1445,7 +1445,7 @@
           "id": "c",
           "text": {
             "en": "It is a special interface that allows connectivity by different types of media.",
-            "de": null
+            "de": "Es handelt sich um eine spezielle Schnittstelle, die die Konnektivität durch verschiedene Medientypen ermöglicht."
           },
           "correct": false
         },
@@ -1453,7 +1453,7 @@
           "id": "d",
           "text": {
             "en": "It is required to allow connectivity by any device at any location.",
-            "de": null
+            "de": "Es ist erforderlich, die Konnektivität durch jedes Gerät an jedem Ort zu ermöglichen."
           },
           "correct": false
         },
@@ -1461,7 +1461,7 @@
           "id": "e",
           "text": {
             "en": "It provides a means to remotely manage a switch.",
-            "de": null
+            "de": "Es bietet eine Möglichkeit, einen Switch aus der Ferne zu verwalten."
           },
           "correct": true
         },
@@ -1469,7 +1469,7 @@
           "id": "f",
           "text": {
             "en": "It is associated with VLAN1 by default.",
-            "de": null
+            "de": "Es ist standardmäßig mit VLAN1 verknüpft."
           },
           "correct": true
         }
@@ -1490,18 +1490,18 @@
       "topic": "2.8.1",
       "question": {
         "en": "What command is used to verify the condition of the switch interfaces, including the status of the interfaces and a configured IP address?",
-        "de": null
+        "de": "Welcher Befehl wird verwendet, um den Zustand der Switch-Schnittstellen zu überprüfen, einschließlich des Status der Schnittstellen und einer konfigurierten IP-Adresse?"
       },
       "explanation": {
         "en": "Topic 2.8.1 The show ip interface brief command is used to display a brief synopsis of the condition of the device interfaces. The ipconfig command is used to verify TCP/IP properties on a host. The ping command is used to verify Layer 3 connectivity. The traceroute command is used to trace the network path from source to destination.",
-        "de": null
+        "de": "Thema 2.8.1 Der Befehl show ip interface brief wird verwendet, um eine kurze Zusammenfassung des Zustands der Geräteschnittstellen anzuzeigen. Der Befehl ipconfig wird verwendet, um die TCP/IP-Eigenschaften auf einem Host zu überprüfen. Der Ping-Befehl wird verwendet, um die Layer-3-Konnektivität zu überprüfen. Der Befehl traceroute wird verwendet, um den Netzwerkpfad von der Quelle zum Ziel zu verfolgen."
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "ipconfig",
-            "de": null
+            "de": "ipconfig"
           },
           "correct": false
         },
@@ -1509,7 +1509,7 @@
           "id": "b",
           "text": {
             "en": "ping",
-            "de": null
+            "de": "Ping"
           },
           "correct": false
         },
@@ -1517,7 +1517,7 @@
           "id": "c",
           "text": {
             "en": "traceroute",
-            "de": null
+            "de": "Traceroute"
           },
           "correct": false
         },
@@ -1525,7 +1525,7 @@
           "id": "d",
           "text": {
             "en": "show ip interface brief",
-            "de": null
+            "de": "show ip interface brief"
           },
           "correct": true
         }
@@ -2904,19 +2904,53 @@
         3
       ],
       "number": 52,
-      "type": "unsupported",
+      "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
       "topic": "2.7.4",
       "question": {
-        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.",
+        "en": "PT Activity — What is the IP address of the switch virtual interface (SVI) on Switch0?",
         "de": null
       },
       "explanation": {
         "en": "Topic 2.7.4 After the enable command is issued, the show running-configuration command or the show ip interfaces brief command will display the IP address of the switch virtual interface (SVI).",
         "de": null
       },
-      "needsManual": true
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "192.168.5.10",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.10.5",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "192.168.10.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "192.168.5.0",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-1-3/q052.jpg"
     },
     {
       "id": "modules-1-3-q053",

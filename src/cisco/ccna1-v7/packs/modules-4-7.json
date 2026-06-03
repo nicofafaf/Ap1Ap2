@@ -2715,19 +2715,53 @@
         7
       ],
       "number": 47,
-      "type": "unsupported",
+      "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-4-7-ethernet-concepts-exam-answers.html",
       "topic": "7.3.2",
       "question": {
-        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.",
+        "en": "PT Activity — Which port does Switch0 use to send frames to the host with the IPv4 address 10.1.1.5?",
         "de": null
       },
       "explanation": {
         "en": "Topic 7.3.2 Issuing the command ipconfig /all from the PC0 command prompt displays the IPv4 address and MAC address. When the IPv4 address 10.1.1.5 is pinged from PC0, the switch stores the source MAC address (from PC0) along with the port to which PC0 is connected. When the destination reply is received, the switch takes the destination MAC address and compares to MAC addresses stored in the MAC address table. Issuing the show mac-address-table on the PC0 Terminal application displays two dynamic MAC address entries. The MAC address and port entry that does not belong to PC0 must be the MAC address and port of the destination with the IPv4 address 10.1.1.5.",
         "de": null
       },
-      "needsManual": true
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Fa0/1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Fa0/5",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Fa0/9",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Fa0/11",
+            "de": null
+          },
+          "correct": true
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-4-7/q047.jpg"
     },
     {
       "id": "modules-4-7-q048",

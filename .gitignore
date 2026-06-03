@@ -39,6 +39,7 @@ dist/
 
 # Cisco HTML-Rohimport (JSON in src/cisco/.../packs wird committed)
 imports/cisco/html/
+scripts/.cisco-translate-cache.json
 
 # IHK-PDF OCR-Arbeitsordner (lokal, nicht deployen)
 exam-ocr-pages/

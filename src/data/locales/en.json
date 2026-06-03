@@ -858,7 +858,7 @@
     "moduleRange": "Modules {from}–{to}",
     "mcPackCount": "{n} MC questions",
     "ladderAria": "All 17 ITN modules",
-    "verbatimNote": "Questions unchanged (EN). German translation will follow as a second track. For personal study use only.",
+    "verbatimNote": "Questions verbatim from ITExamAnswers (EN). German translations are being added to pack JSON step by step — UI=DE prefers static DE, else auto-translate. For personal study use only.",
     "coachTitle": "Weakness coach",
     "coachLead": "Module {n} needs review",
     "coachCta": "Drill weaknesses",
@@ -873,7 +873,12 @@
     "ptLabOpenSource": "Open ITExamAnswers reference",
     "sessionProgress": "Session",
     "examSessionProgress": "Exam",
-    "courseProgress": "{pct}% of course practiced"
+    "courseProgress": "{pct}% of course practiced",
+    "progressCardTitle": "CCNA ITN — your progress",
+    "progressCardLead": "{solved} of {total} items practiced",
+    "progressModuleRow": "Module {n} — review recommended",
+    "progressCardHint": "Start a checkpoint pack in the CCNA hub to see weaknesses here.",
+    "progressGoHub": "Go to CCNA hub"
   },
   "liveDuel": {
     "tabs": { "host": "Create room", "join": "Join" },

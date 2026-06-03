@@ -20,7 +20,9 @@
     "fetch:cisco": "node scripts/fetch-ccna1-itn-html.mjs",
     "import:cisco": "node scripts/import-cisco-html.mjs --all",
     "scrape:cisco-exhibits": "node scripts/scrape-cisco-exhibit-images.mjs",
-    "refresh:cisco": "node scripts/fetch-ccna1-itn-html.mjs && node scripts/import-cisco-html.mjs --all && node scripts/scrape-cisco-exhibit-images.mjs"
+    "refresh:cisco": "node scripts/fetch-ccna1-itn-html.mjs && node scripts/import-cisco-html.mjs --all && node scripts/scrape-cisco-exhibit-images.mjs",
+    "translate:cisco": "node scripts/translate-cisco-packs.mjs",
+    "patch:cisco-pt": "node scripts/patch-cisco-pt-activity.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.22",

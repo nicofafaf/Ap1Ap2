@@ -194,7 +194,14 @@ function parsePipeMatchPairs(text) {
 
 function detectType(questionText, block, options) {
   const q = questionText.toLowerCase();
-  if (/open the pt activity/i.test(q)) return "unsupported";
+  if (/open the pt activity/i.test(q)) {
+    if (options.length >= 2) {
+      const correctCount = options.filter((o) => o.correct).length;
+      if (/choose two|choose three|\(choose two\)|\(choose three\)/i.test(q)) return "multi";
+      return correctCount > 1 ? "multi" : "single";
+    }
+    return "unsupported";
+  }
   if (/place the options|match the/i.test(q)) return "match";
   if (/choose two|choose three|\(choose two\)|\(choose three\)/i.test(q)) return "multi";
   const correctCount = options.filter((o) => o.correct).length;
@@ -304,6 +311,42 @@ function parseWordPressOptions(blockHtml) {
     idx += 1;
   }
   return options;
+}
+
+/** Follow-up-MC nach „Open the PT Activity“ (WordPress-HTML). */
+function extractPtFollowUpWordPress(chunkHtml) {
+  const subQM =
+    chunkHtml.match(
+      /<p>\s*<strong>\s*((?:What|Which|How|Where|Refer|Match)[^<]+?\?(?:\s*\([^)]+\))?)\s*<\/strong>\s*<\/p>/i
+    ) ??
+    chunkHtml.match(
+      /<strong>\s*((?:What|Which|How|Where|Refer|Match)[^<]+?\?(?:\s*\([^)]+\))?)\s*<\/strong>/i
+    );
+  if (!subQM) return null;
+  const subQ = stripHtml(subQM[1]);
+  const afterSub = chunkHtml.slice(chunkHtml.indexOf(subQM[0]) + subQM[0].length);
+  const options = parseWordPressOptions(afterSub);
+  if (options.length < 2) return null;
+  const chooseN = /choose\s+(two|three|four)/i.test(subQ);
+  let type = chooseN || options.filter((o) => o.correct).length > 1 ? "multi" : "single";
+  if (type === "single") {
+    const correct = options.filter((o) => o.correct);
+    if (correct.length !== 1) {
+      const first = options.findIndex((o) => o.correct);
+      options.forEach((o, idx) => {
+        o.correct = idx === (first >= 0 ? first : 0);
+      });
+    }
+  }
+  const img =
+    chunkHtml.match(/<img[^>]+src=["']([^"']+wp-content\/uploads[^"']+)["']/i)?.[1] ??
+    undefined;
+  return {
+    type,
+    question: { en: `PT Activity — ${subQ}`, de: null },
+    options,
+    illustrationSrc: img,
+  };
 }
 
 function sliceWordPressExamBody(text) {
@@ -518,6 +561,17 @@ function parseWordPressHtmlBody(text, packId, meta) {
       const expl = stripHtml(explM[1]);
       if (expl) item.explanation = { en: expl, de: null };
     }
+    if (/open the pt activity/i.test(questionRaw)) {
+      const pt = extractPtFollowUpWordPress(cur.qText + chunk);
+      if (pt) {
+        item.type = pt.type;
+        item.question = pt.question;
+        item.options = pt.options;
+        if (pt.illustrationSrc) item.illustrationSrc = pt.illustrationSrc;
+        items.push(item);
+        continue;
+      }
+    }
     if (/refer to the exhibit/i.test(questionRaw)) {
       const pre = parseExhibitPre(chunk);
       if (pre) item.exhibitCode = pre;
@@ -635,6 +689,24 @@ function parseHtmlBody(text, packId, meta) {
         explBlock.replace(/^\*\*Explanation:\*\*/i, "").replace(/^Explanation:\s*/i, "")
       );
       if (expl) item.explanation = { en: expl, de: null };
+    }
+
+    if (/open the pt activity/i.test(questionRaw)) {
+      const subMatch = rest.match(
+        /(?:^|\n|\r)((?:What|Which|How|Where|Refer|Match)[^\n?]+\?(?:\s*\([^)]+\))?)/im
+      );
+      if (subMatch) {
+        const subQ = subMatch[1].trim();
+        const afterSub = rest.slice(rest.indexOf(subMatch[1]) + subMatch[1].length);
+        const ptOpts = parseOptions(afterSub);
+        if (ptOpts.length >= 2) {
+          item.question = { en: `PT Activity — ${subQ}`, de: null };
+          item.options = ptOpts;
+          item.type = detectType(subQ, afterSub, ptOpts);
+          items.push(item);
+          return;
+        }
+      }
     }
 
     if (type === "match") {

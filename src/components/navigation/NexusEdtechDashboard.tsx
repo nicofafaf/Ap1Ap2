@@ -6,6 +6,7 @@ import { useGameStore } from "../../store/useGameStore";
 import { EdtechHubSidebar } from "./edtech/EdtechHubSidebar";
 import { EdtechProfileSettings } from "./edtech/EdtechProfileSettings";
 import { NexusEdtechHubArena } from "./edtech/NexusEdtechHubArena";
+import "./edtech/edtechDashboardLayout.css";
 
 export type NexusEdtechDashboardProps = {
   scrollParentRef: RefObject<HTMLDivElement | null>;
@@ -54,40 +55,38 @@ export function NexusEdtechDashboard({
 
   return (
     <div
-      style={{
-        display: "flex",
-        flexDirection: railCompact ? "column" : "row",
-        gap: railCompact ? 16 : 24,
-        width: "100%",
-        alignItems: "flex-start",
-      }}
+      className={railCompact ? "nx-edtech-dashboard nx-edtech-dashboard--stack" : "nx-edtech-dashboard"}
     >
-      <EdtechHubSidebar
-        playerAvatar={playerAvatar}
-        playerName={playerName ?? ""}
-        scrollHubTop={scrollHubTop}
-        onOpenMap={onOpenMap}
-        mapWithExtras={mapWithExtras}
-        onOpenFieldList={onOpenFieldList}
-        onBeginLearningField={onBeginLearningField}
-        onSwapCompanion={onSwapCompanion}
-        onOpenSettings={() => setSettingsOpen(true)}
-        onBlitzTraining={onBlitzTraining}
-      />
+      <div className="nx-edtech-dashboard-rail">
+        <EdtechHubSidebar
+          playerAvatar={playerAvatar}
+          playerName={playerName ?? ""}
+          scrollHubTop={scrollHubTop}
+          onOpenMap={onOpenMap}
+          mapWithExtras={mapWithExtras}
+          onOpenFieldList={onOpenFieldList}
+          onBeginLearningField={onBeginLearningField}
+          onSwapCompanion={onSwapCompanion}
+          onOpenSettings={() => setSettingsOpen(true)}
+          onBlitzTraining={onBlitzTraining}
+        />
+      </div>
 
       <EdtechProfileSettings open={settingsOpen} onClose={() => setSettingsOpen(false)} />
 
-      <NexusEdtechHubArena
-        scrollParentRef={scrollParentRef}
-        scrollHubTop={scrollHubTop}
-        onOpenMap={onOpenMap}
-        onOpenFieldList={onOpenFieldList}
-        onBeginLearningField={onBeginLearningField}
-        onBeginExamField={onBeginExamField}
-        onBlitzTraining={onBlitzTraining}
-        onBeginRanked={onBeginRanked}
-        mapWithExtras={mapWithExtras}
-      />
+      <div className="nx-edtech-dashboard-main">
+        <NexusEdtechHubArena
+          scrollParentRef={scrollParentRef}
+          scrollHubTop={scrollHubTop}
+          onOpenMap={onOpenMap}
+          onOpenFieldList={onOpenFieldList}
+          onBeginLearningField={onBeginLearningField}
+          onBeginExamField={onBeginExamField}
+          onBlitzTraining={onBlitzTraining}
+          onBeginRanked={onBeginRanked}
+          mapWithExtras={mapWithExtras}
+        />
+      </div>
     </div>
   );
 }

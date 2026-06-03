@@ -1,0 +1,55 @@
+/* Zwei-Spalten-Lernzentrale — kein Überlappen von Rail und Inhalt */
+
+.nx-edtech-dashboard {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  align-items: start;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 961px) {
+  .nx-edtech-dashboard {
+    grid-template-columns: 17.5rem minmax(0, 1fr);
+  }
+}
+
+.nx-edtech-dashboard-rail {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 17.5rem;
+  min-width: 0;
+}
+
+.nx-edtech-dashboard--stack {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 960px) {
+  .nx-edtech-dashboard-rail {
+    max-width: none;
+  }
+}
+
+.nx-edtech-sidebar nav {
+  max-height: min(70dvh, 640px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.nx-edtech-dashboard-main {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Sticky nur innerhalb der Hauptspalte (Section-Nav), nicht über den Inhalt */
+.nx-edtech-dashboard-main .nx-edtech-hub-nav {
+  top: 0;
+}

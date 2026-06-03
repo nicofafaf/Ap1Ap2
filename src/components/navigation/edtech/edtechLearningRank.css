@@ -303,7 +303,11 @@
 
 .nx-cisco-hub-panel {
   margin-top: 8px;
-  scroll-margin-top: 24px;
+  scroll-margin-top: 5.5rem;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+  box-sizing: border-box;
 }
 
 .nx-cisco-hero-badge {

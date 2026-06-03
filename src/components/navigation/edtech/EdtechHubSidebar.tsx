@@ -35,7 +35,7 @@ export function EdtechHubSidebar({
   const reduceMotion = useReducedMotion();
 
   return (
-    <aside style={shellStyle} aria-label={t("hub.edtech.navAria")}>
+    <aside className="nx-edtech-sidebar" style={shellStyle} aria-label={t("hub.edtech.navAria")}>
       <motion.nav
         initial={{ opacity: 0, x: -12 }}
         animate={{ opacity: 1, x: 0 }}
@@ -164,19 +164,17 @@ function NavBtn({
 }
 
 const shellStyle: CSSProperties = {
-  width: 280,
-  flexShrink: 0,
+  width: "100%",
+  maxWidth: "100%",
   display: "flex",
   flexDirection: "column",
-  maxHeight: "min(88dvh, 920px)",
+  maxHeight: "none",
   borderRadius: 18,
   border: "1px solid rgba(214, 181, 111, 0.22)",
   background: "linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(241,245,249,0.92) 100%)",
   boxShadow: "0 20px 56px rgba(15,23,42,0.1), inset 0 1px 0 rgba(255,255,255,1)",
   padding: "14px 12px 12px",
-  position: "sticky",
-  top: 12,
-  alignSelf: "flex-start",
+  boxSizing: "border-box",
 };
 
 const brandRowStyle: CSSProperties = {

@@ -226,7 +226,7 @@ export function NeuralInitializer({
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 780px), (max-height: 640px)");
+    const mq = window.matchMedia("(max-width: 960px)");
     const fn = () => setProfileDockCompact(mq.matches);
     fn();
     mq.addEventListener("change", fn);
@@ -561,13 +561,15 @@ export function NeuralInitializer({
               <div
                 style={{
                   display: "flex",
-                  flexDirection: profileDockCompact ? "column" : "row",
-                  gap: profileDockCompact ? 28 : 36,
+                  flexDirection: "column",
+                  gap: 0,
                   alignItems: "stretch",
                   width: "100%",
+                  minWidth: 0,
+                  maxWidth: "100%",
                 }}
               >
-                <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+                <div style={{ flex: "1 1 auto", minWidth: 0, width: "100%", maxWidth: "100%" }}>
                   <NexusEdtechDashboard
                       scrollParentRef={initScrollRef}
                       railCompact={profileDockCompact}

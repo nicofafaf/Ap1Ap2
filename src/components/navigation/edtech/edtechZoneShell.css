@@ -1,0 +1,240 @@
+/* AAA Zonen-Shell — ein Bereich pro Ansicht, kein Scroll-Mashup */
+
+.nx-edtech-zone-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.nx-edtech-zone-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+}
+
+.nx-edtech-zone-tab {
+  flex: 1 1 auto;
+  min-width: 5.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: #f8fafc;
+  color: #475569;
+  font-family: var(--nx-font-sans);
+  font-size: 0.82rem;
+  font-weight: 750;
+  padding: 0.55rem 0.75rem;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.nx-edtech-zone-tab:hover {
+  border-color: rgba(6, 182, 212, 0.45);
+  color: #0f172a;
+}
+
+.nx-edtech-zone-tab--active {
+  border-color: rgba(6, 182, 212, 0.55);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.14) 0%, rgba(214, 181, 111, 0.1) 100%);
+  color: #0f172a;
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.15);
+}
+
+.nx-edtech-zone-panel {
+  min-width: 0;
+  width: 100%;
+}
+
+.nx-edtech-zone-panel[hidden] {
+  display: none !important;
+}
+
+.nx-edtech-zone-intro {
+  margin: 0 0 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.05);
+}
+
+.nx-edtech-zone-intro-kicker {
+  display: block;
+  margin: 0 0 0.35rem;
+  font-family: var(--nx-font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(6, 182, 212, 0.9);
+}
+
+.nx-edtech-zone-intro-title {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.nx-edtech-zone-intro-lead {
+  margin: 0.45rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #64748b;
+  max-width: 58ch;
+}
+
+.nx-edtech-zone-viewport {
+  min-width: 0;
+  width: 100%;
+}
+
+.nx-edtech-zone-block-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.nx-edtech-zone-block-lead {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #64748b;
+  max-width: 52ch;
+}
+
+.nx-edtech-progress-tip {
+  padding: 1.25rem 1.35rem;
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
+}
+
+.nx-edtech-progress-tip-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.nx-edtech-progress-tip-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.nx-edtech-progress-tip-score {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0e7490;
+}
+
+.nx-edtech-progress-tip-body {
+  margin: 0.65rem 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.nx-edtech-progress-tip-cta {
+  border-radius: 12px;
+  border: 1px solid rgba(6, 182, 212, 0.45);
+  background: rgba(6, 182, 212, 0.1);
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 0.88rem;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+}
+
+.nx-edtech-progress-radar {
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: #fff;
+  padding: 1rem;
+  min-height: 280px;
+}
+
+.nx-edtech-progress-daily {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.25rem 1.35rem;
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.nx-edtech-progress-daily-thumb {
+  flex: 0 0 auto;
+  display: block;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.nx-edtech-progress-daily-body {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.nx-edtech-progress-daily-cta {
+  margin-top: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(214, 181, 111, 0.45);
+  background: linear-gradient(125deg, rgba(214, 181, 111, 0.2) 0%, rgba(6, 182, 212, 0.08) 100%);
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 0.88rem;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+}
+
+.nx-edtech-progress-sim-scroll {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  scroll-snap-type: x proximity;
+}
+
+.nx-edtech-progress-sim-card {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.nx-edtech-progress-sim-label {
+  display: block;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: #0f172a;
+}

@@ -1,10 +1,15 @@
 import { useReducedMotion } from "framer-motion";
 import type { RefObject } from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { NexusHubMapExtras } from "../../lib/ui/hubMapNavigation";
 import { useGameStore } from "../../store/useGameStore";
 import { EdtechHubSidebar } from "./edtech/EdtechHubSidebar";
 import { EdtechProfileSettings } from "./edtech/EdtechProfileSettings";
+import {
+  edtechHubZoneFromSearch,
+  writeEdtechHubZoneToUrl,
+  type EdtechHubZoneId,
+} from "./edtech/edtechHubZones";
 import { NexusEdtechHubArena } from "./edtech/NexusEdtechHubArena";
 import "./edtech/edtechDashboardLayout.css";
 
@@ -38,6 +43,9 @@ export function NexusEdtechDashboard({
   const reduceMotion = useReducedMotion();
   const playerName = useGameStore((s) => s.playerName);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [activeZone, setActiveZone] = useState<EdtechHubZoneId>(() =>
+    edtechHubZoneFromSearch(typeof window !== "undefined" ? window.location.search : ""),
+  );
 
   const scrollHubTop = useCallback(() => {
     const el = scrollParentRef.current;
@@ -50,8 +58,23 @@ export function NexusEdtechDashboard({
       if (onNavigateFromHubToMap) onNavigateFromHubToMap(extras);
       else onOpenMap();
     },
-    [onNavigateFromHubToMap, onOpenMap]
+    [onNavigateFromHubToMap, onOpenMap],
   );
+
+  const onZoneChange = useCallback(
+    (zone: EdtechHubZoneId) => {
+      setActiveZone(zone);
+      writeEdtechHubZoneToUrl(zone);
+      scrollHubTop();
+    },
+    [scrollHubTop],
+  );
+
+  useEffect(() => {
+    const syncFromUrl = () => setActiveZone(edtechHubZoneFromSearch(window.location.search));
+    window.addEventListener("popstate", syncFromUrl);
+    return () => window.removeEventListener("popstate", syncFromUrl);
+  }, []);
 
   return (
     <div
@@ -61,6 +84,8 @@ export function NexusEdtechDashboard({
         <EdtechHubSidebar
           playerAvatar={playerAvatar}
           playerName={playerName ?? ""}
+          activeZone={activeZone}
+          onZoneChange={onZoneChange}
           scrollHubTop={scrollHubTop}
           onOpenMap={onOpenMap}
           mapWithExtras={mapWithExtras}
@@ -76,10 +101,9 @@ export function NexusEdtechDashboard({
 
       <div className="nx-edtech-dashboard-main">
         <NexusEdtechHubArena
-          scrollParentRef={scrollParentRef}
-          scrollHubTop={scrollHubTop}
+          activeZone={activeZone}
+          onZoneChange={onZoneChange}
           onOpenMap={onOpenMap}
-          onOpenFieldList={onOpenFieldList}
           onBeginLearningField={onBeginLearningField}
           onBeginExamField={onBeginExamField}
           onBlitzTraining={onBlitzTraining}

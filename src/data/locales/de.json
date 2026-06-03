@@ -247,6 +247,20 @@
         "courses": "Kurse",
         "insights": "Mehr"
       },
+      "zones": {
+        "navAria": "Lernbereiche",
+        "kicker": "Bereich",
+        "home": "Start",
+        "homeLead": "Willkommen, Weiterlernen und Lernmodi — dein Einstieg auf einen Blick",
+        "ccna": "CCNA ITN",
+        "ccnaLead": "Cisco CCNA v7 Kapitel, Übungen und Prüfungsfragen — eigener Bereich ohne LF-Mix",
+        "exams": "Prüfungen",
+        "examsLead": "AP1/AP2-Prüfungsreife und IHK Sommer 2026 — alles für deinen Abschluss",
+        "courses": "Alle Lernfelder",
+        "coursesLead": "LF1 bis LF12 mit Fortschritt — jedes Lernfeld als eigene Kachel",
+        "progress": "Fortschritt",
+        "progressLead": "Rang, Radar, Tagesaufgabe und Praxis-Simulatoren"
+      },
       "examsKicker": "Abschluss",
       "examsTitle": "Prüfungen & Prüfungsreife",
       "examsLead": "AP1/AP2-Fortschritt, IHK Sommer 2026 und gezieltes Üben",

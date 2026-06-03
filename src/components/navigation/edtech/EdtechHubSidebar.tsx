@@ -3,12 +3,14 @@ import type { CSSProperties, ReactNode } from "react";
 import type { NexusHubMapExtras } from "../../../lib/ui/hubMapNavigation";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { MentorPortrait } from "../../ui/MentorPortrait";
-import { scrollEdtechHubSection } from "./EdtechHubSectionNav";
+import type { EdtechHubZoneId } from "./edtechHubZones";
 import { cyanAccent, goldAccent } from "./edtechHubTokens";
 
 export type EdtechHubSidebarProps = {
   playerAvatar: number;
   playerName: string;
+  activeZone: EdtechHubZoneId;
+  onZoneChange: (zone: EdtechHubZoneId) => void;
   scrollHubTop: () => void;
   onOpenMap: () => void;
   mapWithExtras: (extras: NexusHubMapExtras) => void;
@@ -22,6 +24,8 @@ export type EdtechHubSidebarProps = {
 export function EdtechHubSidebar({
   playerAvatar,
   playerName,
+  activeZone,
+  onZoneChange,
   scrollHubTop,
   onOpenMap,
   mapWithExtras,
@@ -51,22 +55,29 @@ export function EdtechHubSidebar({
         </div>
 
         <NavSection title={t("hub.edtech.mega.secStart")} kicker="◆">
-          <NavBtn active label={t("hub.edtech.mega.dashboard")} onClick={scrollHubTop} />
+          <NavBtn
+            active={activeZone === "home"}
+            label={t("hub.edtech.zones.home")}
+            onClick={() => onZoneChange("home")}
+          />
           <NavBtn label={t("hub.edtech.mega.lernStart")} onClick={onOpenMap} />
         </NavSection>
 
         <NavSection title={t("hub.edtech.mega.secLearn")} kicker="◆">
           <NavBtn
+            active={activeZone === "home"}
             label={t("hub.edtech.sectionNav.continue", "Weiterlernen")}
-            onClick={() => scrollEdtechHubSection("nx-edtech-continue", Boolean(reduceMotion))}
+            onClick={() => onZoneChange("home")}
           />
           <NavBtn
-            label={t("hub.edtech.sectionNav.ccna", "CCNA ITN")}
-            onClick={() => scrollEdtechHubSection("nx-ccna-hub", Boolean(reduceMotion))}
+            active={activeZone === "ccna"}
+            label={t("hub.edtech.zones.ccna")}
+            onClick={() => onZoneChange("ccna")}
           />
           <NavBtn
-            label={t("hub.edtech.sectionNav.exams", "Prüfungen")}
-            onClick={() => scrollEdtechHubSection("nx-edtech-exams", Boolean(reduceMotion))}
+            active={activeZone === "exams"}
+            label={t("hub.edtech.zones.exams")}
+            onClick={() => onZoneChange("exams")}
           />
           <NavBtn
             label={t("hub.edtech.mega.blitz")}
@@ -75,8 +86,14 @@ export function EdtechHubSidebar({
           />
           <NavBtn label={t("hub.edtech.mega.exams")} onClick={onOpenMap} />
           <NavBtn
-            label={t("hub.edtech.sectionNav.courses", "Alle Kurse")}
-            onClick={() => scrollEdtechHubSection("nx-edtech-all-fields", Boolean(reduceMotion))}
+            active={activeZone === "courses"}
+            label={t("hub.edtech.zones.courses")}
+            onClick={() => onZoneChange("courses")}
+          />
+          <NavBtn
+            active={activeZone === "progress"}
+            label={t("hub.edtech.zones.progress")}
+            onClick={() => onZoneChange("progress")}
           />
           <NavBtn label={t("hub.edtech.mega.roles")} onClick={() => mapWithExtras({ overlay: "GALLERY" })} />
           <NavBtn label={t("hub.edtech.mega.certs")} onClick={() => mapWithExtras({ openDossier: true })} />

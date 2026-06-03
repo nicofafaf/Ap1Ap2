@@ -244,6 +244,20 @@
         "courses": "Courses",
         "insights": "More"
       },
+      "zones": {
+        "navAria": "Learning areas",
+        "kicker": "Area",
+        "home": "Home",
+        "homeLead": "Welcome, continue learning, and learning modes — your entry point at a glance",
+        "ccna": "CCNA ITN",
+        "ccnaLead": "Cisco CCNA v7 chapters, exercises, and exam questions — dedicated area without LF clutter",
+        "exams": "Exams",
+        "examsLead": "AP1/AP2 readiness and IHK Summer 2026 — everything for your final exam",
+        "courses": "All learning fields",
+        "coursesLead": "LF1–LF12 with progress — each field as its own card",
+        "progress": "Progress",
+        "progressLead": "Rank, radar, daily task, and practice simulators"
+      },
       "examsKicker": "Finals",
       "examsTitle": "Exams & readiness",
       "examsLead": "AP1/AP2 progress, IHK Summer 2026 papers, and focused practice",

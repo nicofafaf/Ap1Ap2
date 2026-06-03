@@ -779,6 +779,9 @@
     "victoryLabel": "Lern-Rang"
   },
   "cisco": {
+    "heroBadge": "NetAcad · Cisco ITN",
+    "loading": "Lade Prüfungsbank…",
+    "loadError": "CCNA-Inhalt konnte nicht geladen werden.",
     "hubTitle": "CCNA: Introduction to Networks",
     "courseCode": "2526-E2FI2-CCNA1-ITNg · ITN v7.02",
     "hubLead": "Original Checkpoint-Fragen (1:1) für alle 17 Module — MC mit Exhibit-Grafiken",

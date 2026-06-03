@@ -9,7 +9,7 @@ import { NetplanVisualizer, resolveLf10Netplan } from "./NetplanVisualizer";
 import { typography } from "../../theme/typography";
 import { useGameStore } from "../../store/useGameStore";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
-import type { LearningMcOption } from "../../lib/learning/learningExerciseTypes";
+import type { LearningExercise, LearningMcOption } from "../../lib/learning/learningExerciseTypes";
 import { resolveTerminalBossMode } from "../../lib/learning/learningRegistry";
 import { useBossAudioEngine } from "../../lib/audio/bossAudioEngine";
 import { MentorPortrait } from "../ui/MentorPortrait";
@@ -395,22 +395,34 @@ export function LearningTerminal({
 
   const isCiscoSession = useGameStore((s) => s.isCiscoSession);
   const ciscoPackId = useGameStore((s) => s.ciscoPackId);
+  const [ciscoExercise, setCiscoExercise] = useState<LearningExercise | null>(null);
+
+  useEffect(() => {
+    if (!isCiscoSession || !preferredLearningExerciseId) {
+      setCiscoExercise(null);
+      return;
+    }
+    let cancelled = false;
+    void getCiscoLearningExerciseById(preferredLearningExerciseId).then((exercise) => {
+      if (!cancelled) setCiscoExercise(exercise);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isCiscoSession, preferredLearningExerciseId]);
 
   const bundle = useMemo(() => {
     const leitner = useGameStore.getState().learningLeitnerByExerciseId;
-    if (isCiscoSession && preferredLearningExerciseId) {
-      const exercise = getCiscoLearningExerciseById(preferredLearningExerciseId);
-      if (exercise) {
-        return {
-          snippet: {
-            lang: "javascript",
-            code: `# CCNA ITN · ${ciscoPackId ?? "checkpoint"}\n${exercise.mcQuestion}`,
-            caption: "CCNA Checkpoint — Original MC",
-          },
-          exercise,
-          exerciseLf: currentLF,
-        };
-      }
+    if (isCiscoSession && ciscoExercise) {
+      return {
+        snippet: {
+          lang: "javascript" as const,
+          code: `# CCNA ITN · ${ciscoPackId ?? "checkpoint"}\n${ciscoExercise.mcQuestion}`,
+          caption: "CCNA Checkpoint — Original MC",
+        },
+        exercise: ciscoExercise,
+        exerciseLf: currentLF,
+      };
     }
     if (sectorZero) {
       const seed = (entryToken ^ (sectorZeroMorphToken * 0x9e3779b9)) >>> 0;
@@ -440,6 +452,7 @@ export function LearningTerminal({
     preferredLearningExerciseId,
     isCiscoSession,
     ciscoPackId,
+    ciscoExercise,
     edtechFlow,
     edtechExcludeExerciseId,
     edtechRecentExerciseIds,

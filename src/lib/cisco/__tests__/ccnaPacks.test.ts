@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { CCNA1_ITN_17_MODULES, CCNA1_ITN_PACKS } from "../../../cisco/ccna1-v7/examCatalog";
-import { getAllCiscoPacks, totalCiscoMcCount, totalCiscoQuizCount } from "../../../cisco/ccna1-v7/loadPacks";
+import {
+  ensureCiscoPacksLoaded,
+  getAllCiscoPacks,
+  totalCiscoMcCount,
+  totalCiscoQuizCount,
+} from "../../../cisco/ccna1-v7/loadPacks";
 import { ciscoQuestionToLearningExercise } from "../../../cisco/ccna1-v7/ciscoToLearningExercise";
 
 describe("CCNA1 ITN packs", () => {
@@ -11,7 +16,8 @@ describe("CCNA1 ITN packs", () => {
     expect(mods.size).toBe(17);
   });
 
-  it("loads imported JSON with substantial MC bank", () => {
+  it("loads imported JSON with substantial MC bank", async () => {
+    await ensureCiscoPacksLoaded();
     const packs = getAllCiscoPacks();
     expect(packs.length).toBeGreaterThanOrEqual(8);
     const mcTotal = totalCiscoMcCount();

@@ -1,15 +1,26 @@
 import type { CiscoExamPack, CiscoPackId, CiscoQuestion } from "../types";
 import { ciscoQuestionHasMatch } from "./parseMatchPairs";
 
-const packModules = import.meta.glob<{ default: CiscoExamPack }>("./packs/*.json", {
-  eager: true,
-});
+const packLoaders = import.meta.glob<{ default: CiscoExamPack }>("./packs/*.json");
 
 const packsById = new Map<CiscoPackId, CiscoExamPack>();
+let loadPromise: Promise<void> | null = null;
 
-for (const mod of Object.values(packModules)) {
-  const pack = mod.default;
-  if (pack?.id) packsById.set(pack.id as CiscoPackId, pack);
+/** Lädt alle Pack-JSONs on-demand (nicht im Initial-Bundle — GitLab Pages stabil) */
+export function ensureCiscoPacksLoaded(): Promise<void> {
+  if (packsById.size > 0) return Promise.resolve();
+  if (loadPromise) return loadPromise;
+  loadPromise = (async () => {
+    const entries = Object.entries(packLoaders);
+    await Promise.all(
+      entries.map(async ([, loader]) => {
+        const mod = await loader();
+        const pack = mod.default;
+        if (pack?.id) packsById.set(pack.id as CiscoPackId, pack);
+      })
+    );
+  })();
+  return loadPromise;
 }
 
 export function getCiscoPack(id: CiscoPackId): CiscoExamPack | null {
@@ -49,5 +60,8 @@ export function totalCiscoMcCount(): number {
 }
 
 export function totalCiscoQuizCount(): number {
-  return getAllCiscoPacks().reduce((sum, p) => sum + getQuizItemsForPack(p.id as CiscoPackId).length, 0);
+  return getAllCiscoPacks().reduce(
+    (sum, p) => sum + getQuizItemsForPack(p.id as CiscoPackId).length,
+    0
+  );
 }

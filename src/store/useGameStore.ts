@@ -2585,30 +2585,33 @@ export const useGameStore = create<GameStore>((set, get) => ({
     get().initiateCombat(lf, 100);
   },
   beginCiscoPack: (packId) => {
-    const queue = buildCiscoMcQueue(packId, true);
-    const first = queue[0] ?? null;
-    if (!first) return;
-    set({
-      ihkExamPackId: null,
-      examPresentationMode: false,
-      examSessionEndsAt: null,
-      activeRankedRun: false,
-      rankedRunLpSession: 0,
-      isCiscoSession: true,
-      ciscoPackId: packId,
-      isBlitzSession: true,
-      blitzQueue: queue,
-      blitzIndex: 0,
-      blitzTargetLf: CISCO_CARRIER_LF,
-      preferredLearningExerciseId: first,
-      isTutorialCombatRun: false,
-      combatTutorialStep: 0,
-    });
-    try {
-      localStorage.setItem("nexus.examPresentationMode.v1", "0");
-    } catch {
-      // no-op
-    }
+    void (async () => {
+      const queue = await buildCiscoMcQueue(packId, true);
+      const first = queue[0] ?? null;
+      if (!first) return;
+      set({
+        ihkExamPackId: null,
+        examPresentationMode: false,
+        examSessionEndsAt: null,
+        activeRankedRun: false,
+        rankedRunLpSession: 0,
+        isCiscoSession: true,
+        ciscoPackId: packId,
+        isBlitzSession: true,
+        blitzQueue: queue,
+        blitzIndex: 0,
+        blitzTargetLf: CISCO_CARRIER_LF,
+        preferredLearningExerciseId: first,
+        isTutorialCombatRun: false,
+        combatTutorialStep: 0,
+      });
+      try {
+        localStorage.setItem("nexus.examPresentationMode.v1", "0");
+      } catch {
+        // no-op
+      }
+      get().initiateCombat(CISCO_CARRIER_LF, 100);
+    })();
   },
   beginCiscoModule: (module) => {
     const def = CCNA1_ITN_17_MODULES.find((m) => m.module === module);

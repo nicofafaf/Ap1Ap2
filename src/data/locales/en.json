@@ -773,6 +773,9 @@
     "victoryLabel": "Learning rank"
   },
   "cisco": {
+    "heroBadge": "NetAcad · Cisco ITN",
+    "loading": "Loading exam bank…",
+    "loadError": "Could not load CCNA content.",
     "hubTitle": "CCNA: Introduction to Networks",
     "courseCode": "2526-E2FI2-CCNA1-ITNg · ITN v7.02",
     "hubLead": "Original checkpoint questions (verbatim) for all 17 modules — MC with exhibit graphics",

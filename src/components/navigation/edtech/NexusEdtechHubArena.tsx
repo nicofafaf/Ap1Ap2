@@ -286,17 +286,17 @@ export function NexusEdtechHubArena({
       </motion.section>
 
       <motion.section variants={EDTECH_CARD}>
-        <EdtechLearningRankPanel
-          onBeginRanked={onBeginRanked}
-          onOpenLadder={() => mapWithExtras({ overlay: "LEADERBOARD" })}
-        />
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD}>
         <CiscoCcnaHubPanel
           onSessionStart={() => {
             onBeginLearningField?.(10);
           }}
+        />
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD}>
+        <EdtechLearningRankPanel
+          onBeginRanked={onBeginRanked}
+          onOpenLadder={() => mapWithExtras({ overlay: "LEADERBOARD" })}
         />
       </motion.section>
 

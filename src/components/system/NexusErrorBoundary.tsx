@@ -87,25 +87,23 @@ export class NexusErrorBoundary extends Component<Props, State> {
               Ein kritischer Fehler wurde isoliert Die Oberfläche bleibt stabil Starte die Session neu um
               fortzufahren
             </p>
-            {isDev ? (
-              <pre
-                style={{
-                  margin: "0 0 var(--nx-space-24)",
-                  padding: "var(--nx-space-16)",
-                  maxHeight: 140,
-                  overflow: "auto",
-                  fontSize: "0.75rem",
-                  fontFamily: "var(--nx-font-mono)",
-                  color: "var(--nx-text-muted)",
-                  background: "rgba(5, 5, 7, 0.45)",
-                  borderRadius: 2,
-                  whiteSpace: "pre-wrap",
-                  wordBreak: "break-word",
-                }}
-              >
-                {msg}
-              </pre>
-            ) : null}
+            <pre
+              style={{
+                margin: "0 0 var(--nx-space-24)",
+                padding: "var(--nx-space-16)",
+                maxHeight: isDev ? 140 : 72,
+                overflow: "auto",
+                fontSize: "0.75rem",
+                fontFamily: "var(--nx-font-mono)",
+                color: "var(--nx-text-muted)",
+                background: "rgba(5, 5, 7, 0.45)",
+                borderRadius: 2,
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+              }}
+            >
+              {isDev ? msg : msg.slice(0, 180)}
+            </pre>
             <motion.button
               type="button"
               onClick={this.handleRestart}

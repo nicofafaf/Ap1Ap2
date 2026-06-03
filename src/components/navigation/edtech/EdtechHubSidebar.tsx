@@ -32,6 +32,7 @@ export function EdtechHubSidebar({
   onBlitzTraining,
 }: EdtechHubSidebarProps) {
   const { t } = useNexusI18n();
+  const reduceMotion = useReducedMotion();
 
   return (
     <aside style={shellStyle} aria-label={t("hub.edtech.navAria")}>

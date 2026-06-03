@@ -360,6 +360,12 @@ export function NexusShell() {
     setSurface("overworld");
   }, [completeInitialization, resetCombat, recomputeMenuSystemMood, setOverworldLanding]);
 
+  useEffect(() => {
+    const onExitEdtechLearning = () => handleExitCombat();
+    window.addEventListener("nx:exit-edtech-learning", onExitEdtechLearning);
+    return () => window.removeEventListener("nx:exit-edtech-learning", onExitEdtechLearning);
+  }, [handleExitCombat]);
+
   const lfKey =
     activeLfNum === 0 || activeCombatIsSectorZero
       ? (`LF${Math.max(1, Math.min(12, sectorZeroMorphLf))}` as LearningField)

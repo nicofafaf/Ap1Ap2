@@ -78,6 +78,8 @@ export function NexusEdtechDashboard({
       <EdtechProfileSettings open={settingsOpen} onClose={() => setSettingsOpen(false)} />
 
       <NexusEdtechHubArena
+        scrollParentRef={scrollParentRef}
+        scrollHubTop={scrollHubTop}
         onOpenMap={onOpenMap}
         onOpenFieldList={onOpenFieldList}
         onBeginLearningField={onBeginLearningField}

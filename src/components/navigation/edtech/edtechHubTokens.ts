@@ -5,7 +5,7 @@ export const EDTECH_STAGGER = {
   show: {
     opacity: 1,
     pointerEvents: "auto" as const,
-    transition: { staggerChildren: 0.05, delayChildren: 0.02 },
+    transition: { staggerChildren: 0.03, delayChildren: 0.01 },
   },
 };
 

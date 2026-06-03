@@ -1,5 +1,5 @@
 /* global self, caches, fetch, clients */
-const CACHE_NAME = "nexus-media-v16";
+const CACHE_NAME = "nexus-media-v18";
 const MANIFEST_PATH = "/nexus-precache-manifest.json";
 
 function offlinePlainResponse() {

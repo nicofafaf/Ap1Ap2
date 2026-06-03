@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties, ReactNode } from "react";
 import type { NexusHubMapExtras } from "../../../lib/ui/hubMapNavigation";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { MentorPortrait } from "../../ui/MentorPortrait";
+import { scrollEdtechHubSection } from "./EdtechHubSectionNav";
 import { cyanAccent, goldAccent } from "./edtechHubTokens";
 
 export type EdtechHubSidebarProps = {
@@ -55,12 +56,27 @@ export function EdtechHubSidebar({
 
         <NavSection title={t("hub.edtech.mega.secLearn")} kicker="◆">
           <NavBtn
+            label={t("hub.edtech.sectionNav.continue", "Weiterlernen")}
+            onClick={() => scrollEdtechHubSection("nx-edtech-continue", Boolean(reduceMotion))}
+          />
+          <NavBtn
+            label={t("hub.edtech.sectionNav.ccna", "CCNA ITN")}
+            onClick={() => scrollEdtechHubSection("nx-ccna-hub", Boolean(reduceMotion))}
+          />
+          <NavBtn
+            label={t("hub.edtech.sectionNav.exams", "Prüfungen")}
+            onClick={() => scrollEdtechHubSection("nx-edtech-exams", Boolean(reduceMotion))}
+          />
+          <NavBtn
             label={t("hub.edtech.mega.blitz")}
             onClick={() => onBlitzTraining?.()}
             disabled={!onBlitzTraining}
           />
           <NavBtn label={t("hub.edtech.mega.exams")} onClick={onOpenMap} />
-          <NavBtn label={t("hub.edtech.mega.courses")} onClick={onOpenFieldList} />
+          <NavBtn
+            label={t("hub.edtech.sectionNav.courses", "Alle Kurse")}
+            onClick={() => scrollEdtechHubSection("nx-edtech-all-fields", Boolean(reduceMotion))}
+          />
           <NavBtn label={t("hub.edtech.mega.roles")} onClick={() => mapWithExtras({ overlay: "GALLERY" })} />
           <NavBtn label={t("hub.edtech.mega.certs")} onClick={() => mapWithExtras({ openDossier: true })} />
           <NavBtn label={t("hub.edtech.mega.cards")} onClick={() => onBeginLearningField(5)} />

@@ -79,6 +79,7 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
       id="nx-ccna-hub"
       className="nx-edtech-rank-panel nx-cisco-hub-panel"
       aria-labelledby="nx-cisco-hub-title"
+      style={{ scrollMarginTop: 88 }}
     >
       <div className="nx-edtech-rank-head">
         <div>

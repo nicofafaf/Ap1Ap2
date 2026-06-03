@@ -183,6 +183,7 @@
   "edtechLearn": {
     "progressLabel": "Dein Fortschritt",
     "exit": "Pause",
+    "exitAria": "Lernen pausieren und zur Übersicht",
     "stepRead": "1 · Lesen",
     "stepAsk": "2 · Frage",
     "readAria": "Kurz erklärt",
@@ -234,6 +235,27 @@
       "heroLead": "Wähle ein Thema, lies kurz die Erklärung und beantworte Fragen — bei Fehlern siehst du sofort, was richtig wäre",
       "heroPrimary": "Lernfelder-Karte öffnen",
       "heroSecondary": "Alle Themen anzeigen",
+      "sectionNav": {
+        "aria": "Abschnitte auf der Lernübersicht",
+        "ccna": "CCNA",
+        "rank": "Rang",
+        "exams": "Prüfung",
+        "continue": "Weiter",
+        "courses": "Kurse",
+        "insights": "Mehr"
+      },
+      "examsKicker": "Abschluss",
+      "examsTitle": "Prüfungen & Prüfungsreife",
+      "examsLead": "AP1/AP2-Fortschritt, IHK Sommer 2026 und gezieltes Üben",
+      "modesKicker": "Einstieg",
+      "coursesKicker": "Curriculum",
+      "insights": {
+        "kicker": "Analyse",
+        "title": "Einblicke & Praxis-Tools",
+        "lead": "Lern-Tipp, Kompetenz-Radar, Tagesaufgabe und Simulatoren",
+        "expand": "Einblicke & Tools anzeigen",
+        "collapse": "Weniger anzeigen"
+      },
       "statsAria": "Dein Fortschritt",
       "statFragments": "Lernpunkte",
       "statCoverage": "Übungen geschafft",

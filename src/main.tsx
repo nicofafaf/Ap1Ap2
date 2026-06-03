@@ -15,7 +15,7 @@ attachNexusHealthToWindow();
 syncOpenGraphMetaFromLocalState();
 
 /** Einmal pro Inhalts-Release: alte PWA-Caches leeren (veraltete Texte / fehlendes Hero-Video) */
-const CONTENT_REV = "2026-06-03-ccna-lazy";
+const CONTENT_REV = "2026-06-03-aaa-hub";
 const CONTENT_REV_KEY = "nexus.contentRev.v1";
 if (typeof localStorage !== "undefined" && localStorage.getItem(CONTENT_REV_KEY) !== CONTENT_REV) {
   localStorage.setItem(CONTENT_REV_KEY, CONTENT_REV);
@@ -72,6 +72,18 @@ window.addEventListener("unhandledrejection", (event) => {
     void clearStaleNexusShellAndReload("dynamic-import");
   }
 });
+
+document.addEventListener(
+  "error",
+  (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLLinkElement)) return;
+    if (target.rel !== "stylesheet") return;
+    event.preventDefault();
+    void clearStaleNexusShellAndReload("stylesheet");
+  },
+  true
+);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

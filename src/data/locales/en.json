@@ -183,6 +183,7 @@
   "edtechLearn": {
     "progressLabel": "Your progress",
     "exit": "Pause",
+    "exitAria": "Pause learning and return to overview",
     "stepRead": "1 · Read",
     "stepAsk": "2 · Question",
     "readAria": "Quick explanation",
@@ -231,6 +232,27 @@
       "heroLead": "Pick a topic, read a short explanation, answer questions — wrong answers show what was correct right away",
       "heroPrimary": "Open learning field map",
       "heroSecondary": "Show all topics",
+      "sectionNav": {
+        "aria": "Sections on the learning overview",
+        "ccna": "CCNA",
+        "rank": "Rank",
+        "exams": "Exams",
+        "continue": "Continue",
+        "courses": "Courses",
+        "insights": "More"
+      },
+      "examsKicker": "Finals",
+      "examsTitle": "Exams & readiness",
+      "examsLead": "AP1/AP2 progress, IHK Summer 2026 papers, and focused practice",
+      "modesKicker": "Start here",
+      "coursesKicker": "Curriculum",
+      "insights": {
+        "kicker": "Insights",
+        "title": "Insights & practice tools",
+        "lead": "Learning tip, skill radar, daily task, and simulators",
+        "expand": "Show insights & tools",
+        "collapse": "Show less"
+      },
       "statsAria": "Your progress",
       "statFragments": "Learning points",
       "statCoverage": "Exercises completed",

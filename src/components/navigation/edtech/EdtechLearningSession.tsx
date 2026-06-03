@@ -46,8 +46,6 @@ export function EdtechLearningSession({
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const learningStoryMode = useGameStore((s) => s.learningStoryMode);
   const examSessionEndsAt = useGameStore((s) => s.examSessionEndsAt);
-  const resetCombat = useGameStore((s) => s.resetCombat);
-  const setOverworldLanding = useGameStore((s) => s.setOverworldLanding);
 
   const lfNum = Number.parseInt(lf.replace("LF", ""), 10);
   const meta = getLfCourseMeta(lfNum);
@@ -111,8 +109,7 @@ export function EdtechLearningSession({
       : Boolean(picked && !picked.isCorrect && pickedId);
 
   const exitLearn = () => {
-    resetCombat();
-    setOverworldLanding("hub");
+    window.dispatchEvent(new Event("nx:exit-edtech-learning"));
   };
 
   return (
@@ -163,7 +160,12 @@ export function EdtechLearningSession({
             </div>
           </div>
         </div>
-        <button type="button" className="nx-edtech-learn-close" onClick={exitLearn}>
+        <button
+          type="button"
+          className="nx-edtech-learn-close"
+          onClick={exitLearn}
+          aria-label={t("edtechLearn.exitAria", "Lernen pausieren und zur Übersicht")}
+        >
           {t("edtechLearn.exit", "Pause")}
         </button>
       </header>

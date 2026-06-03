@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { lazy, Suspense, useMemo, type CSSProperties } from "react";
+import { lazy, Suspense, useMemo, type CSSProperties, type RefObject } from "react";
 import { publicAssetUrl, type LearningField } from "../../../data/nexusRegistry";
 import type { NexusHubMapExtras } from "../../../lib/ui/hubMapNavigation";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
@@ -22,6 +22,9 @@ import { EdtechExamReadinessCard } from "./EdtechExamReadinessCard";
 import { EdtechSommer2026ExamCard } from "./EdtechSommer2026ExamCard";
 import { EdtechLearningRankPanel } from "./EdtechLearningRankPanel";
 import { CiscoCcnaHubPanel } from "./CiscoCcnaHubPanel";
+import { EdtechHubCollapsibleSection } from "./EdtechHubCollapsibleSection";
+import { EdtechHubSectionNav } from "./EdtechHubSectionNav";
+import "./edtechHubArena.css";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import { StreakCelebration } from "./StreakCelebration";
 import {
@@ -46,6 +49,8 @@ import {
 } from "./edtechHubTokens";
 
 export type NexusEdtechHubArenaProps = {
+  scrollParentRef?: RefObject<HTMLElement | null>;
+  scrollHubTop?: () => void;
   onOpenMap: () => void;
   onOpenFieldList: () => void;
   onBeginLearningField: (lf: number) => void;
@@ -56,6 +61,8 @@ export type NexusEdtechHubArenaProps = {
 };
 
 export function NexusEdtechHubArena({
+  scrollParentRef,
+  scrollHubTop,
   onOpenMap,
   onOpenFieldList,
   onBeginLearningField,
@@ -201,10 +208,10 @@ export function NexusEdtechHubArena({
 
   return (
     <motion.div
+      className="nx-edtech-hub-arena"
       variants={EDTECH_STAGGER}
       initial="hidden"
       animate="show"
-      style={{ flex: "1 1 auto", minWidth: 0, display: "flex", flexDirection: "column", gap: 28 }}
     >
       <StreakCelebration
         milestone={streakCelebrationMilestone}
@@ -250,67 +257,45 @@ export function NexusEdtechHubArena({
           >
             {t("hub.edtech.heroSecondary")}
           </motion.button>
+          <div style={heroPlatformGridStyle} role="group" aria-label={t("hub.edtech.platformTitle")}>
+            <PlatformStat
+              compact
+              value={String(platformStats.totalExercises)}
+              label={t("hub.edtech.platformExercises")}
+              sub={t("hub.edtech.platformExercisesSub")}
+              accent="cyan"
+            />
+            <PlatformStat
+              compact
+              value={String(platformStats.learningFieldCount)}
+              label={t("hub.edtech.platformFields")}
+              sub={t("hub.edtech.platformFieldsSub")}
+              accent="gold"
+            />
+            <PlatformStat
+              compact
+              value={`${platformStats.practiceToolCount}+`}
+              label={t("hub.edtech.platformTools")}
+              sub={t("hub.edtech.platformToolsSub")}
+              accent="violet"
+            />
+            <PlatformStat
+              compact
+              value={String(platformStats.examTrackCount)}
+              label={t("hub.edtech.platformExams")}
+              sub={t("hub.edtech.platformExamsSub")}
+              accent="gold"
+            />
+          </div>
         </NexusCinematicShell>
       </motion.div>
 
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-platform">
-        <h2 id="nx-edtech-platform" style={sectionH2}>
-          {t("hub.edtech.platformTitle")}
-        </h2>
-        <motion.div style={platformGridStyle}>
-          <PlatformStat
-            value={String(platformStats.totalExercises)}
-            label={t("hub.edtech.platformExercises")}
-            sub={t("hub.edtech.platformExercisesSub")}
-            accent="cyan"
-          />
-          <PlatformStat
-            value={String(platformStats.learningFieldCount)}
-            label={t("hub.edtech.platformFields")}
-            sub={t("hub.edtech.platformFieldsSub")}
-            accent="gold"
-          />
-          <PlatformStat
-            value={`${platformStats.practiceToolCount}+`}
-            label={t("hub.edtech.platformTools")}
-            sub={t("hub.edtech.platformToolsSub")}
-            accent="violet"
-          />
-          <PlatformStat
-            value={String(platformStats.examTrackCount)}
-            label={t("hub.edtech.platformExams")}
-            sub={t("hub.edtech.platformExamsSub")}
-            accent="gold"
-          />
-        </motion.div>
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD}>
-        <CiscoCcnaHubPanel
-          onSessionStart={() => {
-            onBeginLearningField?.(10);
-          }}
-        />
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD}>
-        <EdtechLearningRankPanel
-          onBeginRanked={onBeginRanked}
-          onOpenLadder={() => mapWithExtras({ overlay: "LEADERBOARD" })}
-        />
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD}>
-        <EdtechExamReadinessCard onFocusLf={onBeginLearningField} />
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD}>
-        <EdtechSommer2026ExamCard onStartPack={beginSommer2026Exam} />
-      </motion.section>
+      <EdtechHubSectionNav scrollParentRef={scrollParentRef} onScrollTop={scrollHubTop} />
 
       <motion.section
+        id="nx-edtech-continue"
         variants={EDTECH_CARD}
-        style={continueShellStyle}
+        className="nx-edtech-hub-section nx-edtech-hub-continue"
         aria-labelledby="nx-edtech-continue"
       >
         <div style={sectionHeadRowStyle}>
@@ -356,70 +341,68 @@ export function NexusEdtechHubArena({
         )}
       </motion.section>
 
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-modes">
-        <h2 id="nx-edtech-modes" style={sectionH2}>
-          {t("hub.edtech.modesTitle")}
-        </h2>
-        <motion.div style={modeGridStyle}>
+      <motion.section variants={EDTECH_CARD} className="nx-edtech-hub-section">
+        <CiscoCcnaHubPanel
+          onSessionStart={() => {
+            onBeginLearningField?.(10);
+          }}
+        />
+      </motion.section>
+
+      <motion.section
+        id="nx-edtech-exams"
+        variants={EDTECH_CARD}
+        className="nx-edtech-hub-section"
+        aria-labelledby="nx-edtech-exams-heading"
+      >
+        <header className="nx-edtech-hub-section-head">
+          <span className="nx-edtech-hub-section-kicker">{t("hub.edtech.examsKicker", "Abschluss")}</span>
+          <h2 id="nx-edtech-exams-heading" className="nx-edtech-hub-section-title">
+            {t("hub.edtech.examsTitle", "Prüfungen & Prüfungsreife")}
+          </h2>
+          <p className="nx-edtech-hub-section-lead">
+            {t("hub.edtech.examsLead", "AP1/AP2-Fortschritt, IHK Sommer 2026 und gezieltes Üben")}
+          </p>
+        </header>
+        <div className="nx-edtech-hub-exams-stack">
+          <EdtechExamReadinessCard onFocusLf={onBeginLearningField} />
+          <EdtechSommer2026ExamCard onStartPack={beginSommer2026Exam} />
+        </div>
+      </motion.section>
+
+      <motion.section id="nx-edtech-rank" variants={EDTECH_CARD} className="nx-edtech-hub-section">
+        <EdtechLearningRankPanel
+          onBeginRanked={onBeginRanked}
+          onOpenLadder={() => mapWithExtras({ overlay: "LEADERBOARD" })}
+        />
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD} className="nx-edtech-hub-section" aria-labelledby="nx-edtech-modes">
+        <header className="nx-edtech-hub-section-head">
+          <span className="nx-edtech-hub-section-kicker">{t("hub.edtech.modesKicker", "Einstieg")}</span>
+          <h2 id="nx-edtech-modes" className="nx-edtech-hub-section-title">
+            {t("hub.edtech.modesTitle")}
+          </h2>
+        </header>
+        <div className="nx-edtech-hub-mode-grid">
           {learningModes.map((mode) => (
             <motion.button
               key={mode.title}
               type="button"
+              className="nx-edtech-hub-mode-card"
+              style={{ ["--nx-mode-accent" as string]: mode.accent }}
               onClick={mode.onClick}
-              whileHover={reduceMotion ? undefined : { y: -4 }}
+              whileHover={reduceMotion ? undefined : { y: -2 }}
               whileTap={reduceMotion ? undefined : { scale: 0.99 }}
-              style={{ ...edtechCardPanel, ...modeCardStyle }}
             >
-              <span style={{ ...modeAccentBarStyle, background: mode.accent }} aria-hidden />
-              <strong style={modeTitleStyle}>{mode.title}</strong>
-              <span style={modeBodyStyle}>{mode.body}</span>
+              <strong>{mode.title}</strong>
+              <span>{mode.body}</span>
             </motion.button>
           ))}
-        </motion.div>
-      </motion.section>
-
-      <motion.section
-        variants={EDTECH_CARD}
-        style={{ ...edtechCardPanel, padding: "22px 24px" }}
-        aria-labelledby="nx-edtech-tip"
-      >
-        <div style={sectionHeadRowStyle}>
-          <h2 id="nx-edtech-tip" style={{ ...sectionH2, margin: 0 }}>
-            {t("hub.edtech.tipTitle")}
-          </h2>
-          <span style={tipScoreStyle}>
-            {t("hub.edtech.tipExamLabel")}: {learningTip.examReadyPct}%
-          </span>
-        </div>
-        <p style={tipBodyStyle}>{learningTip.message}</p>
-        <motion.button
-          type="button"
-          onClick={() => onBeginLearningField(learningTip.lf)}
-          whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-          style={tipCtaStyle}
-        >
-          {t("hub.edtech.tipCta")} · LF{learningTip.lf}
-        </motion.button>
-      </motion.section>
-
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-radar">
-        <h2 id="nx-edtech-radar" style={sectionH2}>
-          {t("hub.edtech.radarTitle")}
-        </h2>
-        <p style={allFieldsLeadStyle}>{t("hub.edtech.radarLead")}</p>
-        <div style={radarWrapStyle}>
-          <Suspense fallback={null}>
-            <SkillRadarLazy layoutVariant="compact" epilogueActive />
-          </Suspense>
         </div>
       </motion.section>
 
-      <motion.div
-        variants={EDTECH_CARD}
-        style={statsStripStyle}
-        role="group"
-        aria-label={t("hub.edtech.statsAria")}
-      >
+      <motion.div variants={EDTECH_CARD} className="nx-edtech-hub-stats" role="group" aria-label={t("hub.edtech.statsAria")}>
         <StatChip label={t("hub.edtech.statFragments")} value={String(nexusFragments)} accent="gold" />
         <StatChip
           label={t("hub.edtech.statCoverage")}
@@ -432,38 +415,113 @@ export function NexusEdtechHubArena({
         <StatChip label={t("hub.edtech.feed.livePulse")} value="●" accent="gold" sub={t("hub.edtech.feed.liveSub")} />
       </motion.div>
 
-      <motion.section
-        variants={EDTECH_CARD}
-        style={{ ...glassPanel, padding: "22px 24px", display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center" }}
-        aria-labelledby="nx-edtech-daily-inline"
-      >
-        <span style={dailyThumbWrapStyle}>
-          <EdtechLfThumb lf={dailyLf} />
-        </span>
-        <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-          <h2 id="nx-edtech-daily-inline" style={{ ...sectionH2, marginBottom: 6 }}>
-            {t("hub.edtech.feed.dailyTitle")}
-          </h2>
-          <p style={dailyLeadStyle}>
-            {t("hub.edtech.dailyTodayLf").replace("{dailyLf}", String(dailyLf))} ·{" "}
-            {t("hub.edtech.feed.dailyLead").replace("{streak}", String(dailyParticipationStreak))}
-          </p>
-          <motion.button
-            type="button"
-            onClick={() => onBeginLearningField(dailyLf)}
-            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-            style={{ ...dailyCtaStyle, marginTop: 12 }}
-          >
-            {t("hub.edtech.feed.dailyCta")}
-          </motion.button>
-        </div>
-      </motion.section>
+      <motion.div variants={EDTECH_CARD}>
+        <EdtechHubCollapsibleSection
+          id="nx-edtech-insights"
+          title={t("hub.edtech.insights.title", "Einblicke & Praxis-Tools")}
+          lead={t("hub.edtech.insights.lead", "Lern-Tipp, Kompetenz-Radar, Tagesaufgabe und Simulatoren")}
+        >
+          <section style={{ ...edtechCardPanel, padding: "22px 24px" }} aria-labelledby="nx-edtech-tip">
+            <div style={sectionHeadRowStyle}>
+              <h3 id="nx-edtech-tip" style={{ ...sectionH3, margin: 0 }}>
+                {t("hub.edtech.tipTitle")}
+              </h3>
+              <span style={tipScoreStyle}>
+                {t("hub.edtech.tipExamLabel")}: {learningTip.examReadyPct}%
+              </span>
+            </div>
+            <p style={tipBodyStyle}>{learningTip.message}</p>
+            <motion.button
+              type="button"
+              onClick={() => onBeginLearningField(learningTip.lf)}
+              whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+              style={tipCtaStyle}
+            >
+              {t("hub.edtech.tipCta")} · LF{learningTip.lf}
+            </motion.button>
+          </section>
 
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-all-fields">
-        <h2 id="nx-edtech-all-fields" style={sectionH2}>
-          {t("hub.edtech.allFieldsTitle")}
-        </h2>
-        <p style={allFieldsLeadStyle}>{t("hub.edtech.allFieldsAp1")} · {t("hub.edtech.allFieldsAp2")}</p>
+          <section aria-labelledby="nx-edtech-radar">
+            <h3 id="nx-edtech-radar" style={sectionH3}>
+              {t("hub.edtech.radarTitle")}
+            </h3>
+            <p style={allFieldsLeadStyle}>{t("hub.edtech.radarLead")}</p>
+            <div style={radarWrapStyle}>
+              <Suspense fallback={null}>
+                <SkillRadarLazy layoutVariant="compact" epilogueActive />
+              </Suspense>
+            </div>
+          </section>
+
+          <section
+            style={{ ...glassPanel, padding: "22px 24px", display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center" }}
+            aria-labelledby="nx-edtech-daily-inline"
+          >
+            <span style={dailyThumbWrapStyle}>
+              <EdtechLfThumb lf={dailyLf} />
+            </span>
+            <div style={{ flex: "1 1 220px", minWidth: 0 }}>
+              <h3 id="nx-edtech-daily-inline" style={{ ...sectionH3, marginBottom: 6 }}>
+                {t("hub.edtech.feed.dailyTitle")}
+              </h3>
+              <p style={dailyLeadStyle}>
+                {t("hub.edtech.dailyTodayLf").replace("{dailyLf}", String(dailyLf))} ·{" "}
+                {t("hub.edtech.feed.dailyLead").replace("{streak}", String(dailyParticipationStreak))}
+              </p>
+              <motion.button
+                type="button"
+                onClick={() => onBeginLearningField(dailyLf)}
+                whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+                style={{ ...dailyCtaStyle, marginTop: 12 }}
+              >
+                {t("hub.edtech.feed.dailyCta")}
+              </motion.button>
+            </div>
+          </section>
+
+          <section aria-labelledby="nx-edtech-sim">
+            <h3 id="nx-edtech-sim" style={sectionH3}>
+              {t("hub.edtech.feed.simTitle")}
+            </h3>
+            <div style={simScrollerStyle}>
+              {simulators.map((sim) => (
+                <motion.button
+                  key={sim.label}
+                  type="button"
+                  onClick={sim.onClick}
+                  whileHover={reduceMotion ? undefined : { y: -3 }}
+                  style={{ ...glassPanel, ...simCardStyle, padding: 0, overflow: "hidden", cursor: "pointer", flex: "0 0 220px" }}
+                >
+                  <EdtechLazyVideo src={sim.video} mode="hover" style={simVideoStyle} />
+                  <span style={simLabelStyle}>{sim.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          </section>
+
+          <aside className="nx-edtech-hub-trust">
+            <h3>{t("hub.edtech.trustTitle")}</h3>
+            <p>{t("hub.edtech.trustBody")}</p>
+            <p style={{ marginTop: 8, fontSize: "0.82rem", color: "#64748b" }}>{t("hub.edtech.feed.trustPwa")}</p>
+          </aside>
+        </EdtechHubCollapsibleSection>
+      </motion.div>
+
+      <motion.section
+        id="nx-edtech-all-fields"
+        variants={EDTECH_CARD}
+        className="nx-edtech-hub-section"
+        aria-labelledby="nx-edtech-all-fields-heading"
+      >
+        <header className="nx-edtech-hub-section-head">
+          <span className="nx-edtech-hub-section-kicker">{t("hub.edtech.coursesKicker", "Curriculum")}</span>
+          <h2 id="nx-edtech-all-fields-heading" className="nx-edtech-hub-section-title">
+            {t("hub.edtech.allFieldsTitle")}
+          </h2>
+          <p className="nx-edtech-hub-section-lead">
+            {t("hub.edtech.allFieldsAp1")} · {t("hub.edtech.allFieldsAp2")}
+          </p>
+        </header>
         <motion.div style={edtechCourseGridStyle}>
           {allLfMeta.map((meta) => {
             const lfKey = meta.lfKey;
@@ -495,32 +553,6 @@ export function NexusEdtechHubArena({
           })}
         </motion.div>
       </motion.section>
-
-      <motion.section variants={EDTECH_CARD} aria-labelledby="nx-edtech-sim">
-        <h2 id="nx-edtech-sim" style={sectionH2}>
-          {t("hub.edtech.feed.simTitle")}
-        </h2>
-        <motion.div style={simScrollerStyle}>
-          {simulators.map((sim) => (
-            <motion.button
-              key={sim.label}
-              type="button"
-              onClick={sim.onClick}
-              whileHover={reduceMotion ? undefined : { y: -3 }}
-              style={{ ...glassPanel, ...simCardStyle, padding: 0, overflow: "hidden", cursor: "pointer", flex: "0 0 220px" }}
-            >
-              <EdtechLazyVideo src={sim.video} mode="hover" style={simVideoStyle} />
-              <span style={simLabelStyle}>{sim.label}</span>
-            </motion.button>
-          ))}
-        </motion.div>
-      </motion.section>
-
-      <motion.aside variants={EDTECH_CARD} style={{ ...glassPanel, padding: "22px 24px" }}>
-        <h3 style={{ ...sectionH3, marginBottom: 8 }}>{t("hub.edtech.trustTitle")}</h3>
-        <p style={trustBodyStyle}>{t("hub.edtech.trustBody")}</p>
-        <p style={trustSubStyle}>{t("hub.edtech.feed.trustPwa")}</p>
-      </motion.aside>
     </motion.div>
   );
 }
@@ -552,22 +584,35 @@ function PlatformStat({
   label,
   sub,
   accent,
+  compact,
 }: {
   value: string;
   label: string;
   sub: string;
   accent: "gold" | "cyan" | "violet";
+  compact?: boolean;
 }) {
   const color =
     accent === "gold" ? goldAccent : accent === "cyan" ? cyanAccent : "rgba(139, 92, 246, 0.95)";
   return (
-    <div style={platformStatCardStyle}>
-      <div style={{ ...platformStatValueStyle, color }}>{value}</div>
-      <div style={platformStatLabelStyle}>{label}</div>
-      <div style={platformStatSubStyle}>{sub}</div>
+    <div style={compact ? heroPlatformStatCardStyle : platformStatCardStyle}>
+      <div
+        style={{
+          ...(compact ? heroPlatformStatValueStyle : platformStatValueStyle),
+          color,
+        }}
+      >
+        {value}
+      </div>
+      <div style={compact ? heroPlatformStatLabelStyle : platformStatLabelStyle}>{label}</div>
+      <div style={compact ? heroPlatformStatSubStyle : platformStatSubStyle}>{sub}</div>
     </div>
   );
 }
+
+const hubSectionScrollStyle: CSSProperties = {
+  scrollMarginTop: 88,
+};
 
 const heroBannerOnVideoStyle: CSSProperties = {
   display: "flex",
@@ -751,10 +796,48 @@ const statSubStyle: CSSProperties = {
   color: "#94a3b8",
 };
 
-const platformGridStyle: CSSProperties = {
+const heroPlatformGridStyle: CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-  gap: 14,
+  gridTemplateColumns: "repeat(auto-fit, minmax(118px, 1fr))",
+  gap: 10,
+  marginTop: 18,
+  width: "100%",
+  maxWidth: 760,
+};
+
+const heroPlatformStatCardStyle: CSSProperties = {
+  borderRadius: 12,
+  border: "1px solid rgba(248, 250, 252, 0.22)",
+  background: "rgba(15, 23, 42, 0.42)",
+  backdropFilter: "blur(8px)",
+  WebkitBackdropFilter: "blur(8px)",
+  padding: "12px 10px",
+  textAlign: "center",
+};
+
+const heroPlatformStatValueStyle: CSSProperties = {
+  fontFamily: "var(--nx-font-mono)",
+  fontSize: "clamp(22px, 3vw, 30px)",
+  fontWeight: 800,
+  lineHeight: 1,
+  color: "#f8fafc",
+};
+
+const heroPlatformStatLabelStyle: CSSProperties = {
+  marginTop: 6,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 13,
+  fontWeight: 750,
+  color: "rgba(248, 250, 252, 0.92)",
+};
+
+const heroPlatformStatSubStyle: CSSProperties = {
+  marginTop: 2,
+  fontFamily: "var(--nx-font-sans)",
+  fontSize: 11,
+  fontWeight: 550,
+  color: "rgba(248, 250, 252, 0.68)",
+  lineHeight: 1.3,
 };
 
 const platformStatCardStyle: CSSProperties = {

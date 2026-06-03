@@ -10,10 +10,11 @@ import LeaderboardSim from "./LeaderboardSim";
 import { PerformanceGraph } from "../menu/PerformanceGraph";
 import { ArchitectInsight } from "../menu/ArchitectInsight";
 import { GlobalLeaderboard } from "../menu/GlobalLeaderboard";
-import { DAILY_PURPLE_BORDER, DAILY_PURPLE_NEON } from "../../lib/dailyIncursion";
 import type { LearningField } from "../../data/nexusRegistry";
 import { SkillTree } from "./SkillTree";
 import { EdtechLearningRankPanel } from "../navigation/edtech/EdtechLearningRankPanel";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
+import "./artifactGallery.css";
 
 const AnalyticsDashboardLazy = lazy(() =>
   import("./AnalyticsDashboard").then((m) => ({ default: m.AnalyticsDashboard }))
@@ -26,7 +27,19 @@ type ArtifactGalleryProps = {
 
 const DISCOVERY_FLAG_KEY = "nexus.gallery.discoveryPlayed.v1";
 
+function galleryTabClass(active: boolean, variant?: "daily" | "gold") {
+  return [
+    "nx-artifact-gallery-tab",
+    active ? "nx-artifact-gallery-tab--active" : "",
+    variant === "daily" ? "nx-artifact-gallery-tab--daily" : "",
+    variant === "gold" ? "nx-artifact-gallery-tab--gold" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
 export function ArtifactGallery({ visible, onClose }: ArtifactGalleryProps) {
+  const { t } = useNexusI18n();
   const { playGalleryDiscovery } = useBossAudioEngine();
   useMenuAmbientAudio(visible);
   const store = useGameStore(
@@ -56,164 +69,69 @@ export function ArtifactGallery({ visible, onClose }: ArtifactGalleryProps) {
     <AnimatePresence>
       {visible && (
         <motion.section
+          className="nx-artifact-gallery-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.28 }}
-          style={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 95,
-            padding: "28px clamp(16px, 2.4vw, 32px)",
-            background:
-              "radial-gradient(circle at 20% 15%, rgba(34,211,238,0.16), transparent 52%), radial-gradient(circle at 80% 25%, rgba(250,204,21,0.12), transparent 48%), rgba(3,8,14,0.78)",
-            backdropFilter: "blur(8px)",
-            overflow: "auto",
-          }}
         >
-          <motion.div
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            style={{
-              maxWidth: 1160,
-              margin: "0 auto",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 10,
-                marginBottom: 16,
-              }}
-            >
+          <motion.div className="nx-artifact-gallery-inner" transition={{ duration: 0.35, ease: "easeOut" }}>
+            <header className="nx-artifact-gallery-head">
               <div>
-                <div style={{ fontSize: 12, letterSpacing: ".22em", opacity: 0.85 }}>
-                  HALL OF FAME
-                </div>
-                <div style={{ marginTop: 4, fontSize: 22, fontWeight: 700 }}>
-                  Wissens-Datenbank
-                </div>
+                <div className="nx-artifact-gallery-kicker">{t("gallery.kicker", "Sammlung")}</div>
+                <div className="nx-artifact-gallery-title">{t("gallery.title", "Wissens-Datenbank")}</div>
               </div>
-              <div style={{ display: "inline-flex", gap: 8 }}>
+              <div className="nx-artifact-gallery-tabs">
                 <button
                   type="button"
+                  className={galleryTabClass(store.overlayOpenState === "GALLERY")}
                   onClick={() => store.setOverlayOpenState("GALLERY")}
-                  style={{
-                    borderRadius: 10,
-                    border: "1px solid rgba(34,211,238,0.45)",
-                    background:
-                      store.overlayOpenState === "GALLERY"
-                        ? "rgba(8,44,58,0.76)"
-                        : "rgba(7,25,36,0.74)",
-                    color: "rgba(186,230,253,0.97)",
-                    letterSpacing: ".1em",
-                    fontSize: 11,
-                    padding: "9px 12px",
-                    cursor: "pointer",
-                  }}
                 >
-                  GALLERY
+                  {t("gallery.tabGallery", "Erfolge")}
                 </button>
                 <button
                   type="button"
+                  className={galleryTabClass(store.overlayOpenState === "LEADERBOARD")}
                   onClick={() => store.setOverlayOpenState("LEADERBOARD")}
-                  style={{
-                    borderRadius: 10,
-                    border: "1px solid rgba(34,211,238,0.45)",
-                    background:
-                      store.overlayOpenState === "LEADERBOARD"
-                        ? "rgba(8,44,58,0.76)"
-                        : "rgba(7,25,36,0.74)",
-                    color: "rgba(186,230,253,0.97)",
-                    letterSpacing: ".1em",
-                    fontSize: 11,
-                    padding: "9px 12px",
-                    cursor: "pointer",
-                  }}
                 >
-                  LEADERBOARD
+                  {t("gallery.tabLeaderboard", "Rangliste")}
                 </button>
                 <button
                   type="button"
+                  className={galleryTabClass(store.overlayOpenState === "DAILY", "daily")}
                   onClick={() => store.setOverlayOpenState("DAILY")}
-                  style={{
-                    borderRadius: 10,
-                    border: `1px solid ${DAILY_PURPLE_BORDER}`,
-                    background:
-                      store.overlayOpenState === "DAILY"
-                        ? "rgba(48,20,72,0.82)"
-                        : "rgba(24,10,40,0.72)",
-                    color: DAILY_PURPLE_NEON,
-                    letterSpacing: ".1em",
-                    fontSize: 11,
-                    padding: "9px 12px",
-                    cursor: "pointer",
-                  }}
                 >
-                  DAILY
+                  {t("gallery.tabDaily", "Tagesaufgabe")}
                 </button>
                 <button
                   type="button"
+                  className={galleryTabClass(store.overlayOpenState === "SKILL_TREE", "gold")}
                   onClick={() => store.setOverlayOpenState("SKILL_TREE")}
-                  style={{
-                    borderRadius: 10,
-                    border: "1px solid color-mix(in srgb, var(--gold, #facc15) 45%, transparent)",
-                    background:
-                      store.overlayOpenState === "SKILL_TREE"
-                        ? "rgba(40,32,10,0.82)"
-                        : "rgba(7,25,36,0.74)",
-                    color: "rgba(254, 243, 199, 0.96)",
-                    letterSpacing: ".1em",
-                    fontSize: 11,
-                    padding: "9px 12px",
-                    cursor: "pointer",
-                  }}
                 >
-                  SKILL TREE
+                  {t("gallery.tabSkill", "Skill-Tree")}
                 </button>
                 <button
                   type="button"
+                  className={galleryTabClass(store.overlayOpenState === "ARCHITECT_DATA")}
                   onClick={() => store.setOverlayOpenState("ARCHITECT_DATA")}
-                  style={{
-                    borderRadius: 10,
-                    border: "1px solid rgba(56, 189, 248, 0.5)",
-                    background:
-                      store.overlayOpenState === "ARCHITECT_DATA"
-                        ? "rgba(12, 48, 72, 0.82)"
-                        : "rgba(7,25,36,0.74)",
-                    color: "rgba(186, 230, 253, 0.97)",
-                    letterSpacing: ".1em",
-                    fontSize: 11,
-                    padding: "9px 12px",
-                    cursor: "pointer",
-                  }}
                 >
-                  ARCHITECT DATA
+                  {t("gallery.tabArchitect", "Analyse")}
                 </button>
                 <button
                   type="button"
+                  className={`${galleryTabClass(false)} nx-artifact-gallery-tab--close`}
                   onClick={onClose}
-                  style={{
-                    borderRadius: 10,
-                    border: "1px solid rgba(34,211,238,0.45)",
-                    background: "rgba(7,25,36,0.74)",
-                    color: "rgba(186,230,253,0.97)",
-                    letterSpacing: ".1em",
-                    fontSize: 11,
-                    padding: "9px 12px",
-                    cursor: "pointer",
-                  }}
                 >
-                  CLOSE
+                  {t("gallery.close", "Schließen")}
                 </button>
               </div>
-            </div>
+            </header>
 
             <AnimatePresence mode="wait">
               {store.overlayOpenState === "ARCHITECT_DATA" ? (
                 <motion.div
                   key="architect-pane"
+                  className="nx-artifact-gallery-pane"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
@@ -226,6 +144,7 @@ export function ArtifactGallery({ visible, onClose }: ArtifactGalleryProps) {
               ) : store.overlayOpenState === "LEADERBOARD" ? (
                 <motion.div
                   key="leaderboard-pane"
+                  className="nx-artifact-gallery-pane"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
@@ -238,6 +157,7 @@ export function ArtifactGallery({ visible, onClose }: ArtifactGalleryProps) {
               ) : store.overlayOpenState === "SKILL_TREE" ? (
                 <motion.div
                   key="skill-tree-pane"
+                  className="nx-artifact-gallery-pane"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
@@ -258,6 +178,7 @@ export function ArtifactGallery({ visible, onClose }: ArtifactGalleryProps) {
               ) : store.overlayOpenState === "DAILY" ? (
                 <motion.div
                   key="daily-pane"
+                  className="nx-artifact-gallery-pane"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
@@ -268,6 +189,7 @@ export function ArtifactGallery({ visible, onClose }: ArtifactGalleryProps) {
               ) : (
                 <motion.div
                   key="gallery-pane"
+                  className="nx-artifact-gallery-pane"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}

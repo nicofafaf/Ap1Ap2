@@ -22,7 +22,6 @@ import {
   edtechGhostBtn,
   edtechHeaderBar,
   edtechMenuBtn,
-  edtechPageBackground,
   edtechPrimaryBtn,
   edtechCardPanel,
   goldAccent,
@@ -160,6 +159,13 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
     t,
   ]);
 
+  const scrollMapSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  };
+
   const renderLfCard = (field: (typeof fields)[number]) => {
     const border = field.isDaily
       ? `2px solid ${cyanAccent}`
@@ -276,20 +282,7 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
   };
 
   return (
-    <div
-      data-nx-edtech-sector-map="1"
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        minHeight: "100dvh",
-        display: "flex",
-        flexDirection: "column",
-        background: edtechPageBackground,
-        overflow: "hidden",
-        isolation: "isolate",
-      }}
-    >
+    <div data-nx-edtech-sector-map="1" className="nx-edtech-sector-shell">
       <header
         className="nx-edtech-sector-header"
         style={{
@@ -405,6 +398,24 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
         </div>
       </header>
 
+      <nav className="nx-edtech-map-jump-nav" aria-label={t("map.edtechTitle")}>
+        {onOpenLearningHub ? (
+          <button
+            type="button"
+            className="nx-edtech-map-jump-pill nx-edtech-map-jump-pill--hub"
+            onClick={onOpenLearningHub}
+          >
+            {t("map.jumpHub", "Übersicht")}
+          </button>
+        ) : null}
+        <button type="button" className="nx-edtech-map-jump-pill" onClick={() => scrollMapSection("nx-edtech-ap1")}>
+          {t("map.jumpAp1", "AP1")}
+        </button>
+        <button type="button" className="nx-edtech-map-jump-pill" onClick={() => scrollMapSection("nx-edtech-ap2")}>
+          {t("map.jumpAp2", "AP2")}
+        </button>
+      </nav>
+
       <div className="nx-edtech-sector-cinematic">
         <NexusCinematicShell
           variant="compact"
@@ -419,14 +430,18 @@ export function EdtechSectorMap({ onEngage, onOpenLearningHub }: EdtechSectorMap
       <main className="nx-edtech-sector-main">
         <div className="nx-edtech-inner">
 
-          <div className="nx-edtech-section-block" data-nx-tutorial="map">
+          <div id="nx-edtech-ap1" className="nx-edtech-section-block" data-nx-tutorial="map" style={{ scrollMarginTop: 88 }}>
             <h3 className="nx-edtech-section-title" style={edtechLfSectionTitle}>
               {t("map.edtechAp1Title")}
             </h3>
             <div className="nx-edtech-lf-grid">{fields.slice(0, 6).map(renderLfCard)}</div>
           </div>
 
-          <div className="nx-edtech-section-block nx-edtech-section-block--last">
+          <div
+            id="nx-edtech-ap2"
+            className="nx-edtech-section-block nx-edtech-section-block--last"
+            style={{ scrollMarginTop: 88 }}
+          >
             <h3 className="nx-edtech-section-title" style={edtechLfSectionTitle}>
               {t("map.edtechAp2Title")}
             </h3>

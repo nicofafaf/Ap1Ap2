@@ -1,0 +1,174 @@
+.nx-knowledge-vault {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.nx-knowledge-vault-category {
+  margin: 0;
+}
+
+.nx-knowledge-vault-category-title {
+  margin: 0 0 0.75rem;
+  font-family: var(--nx-font-sans);
+  font-size: 0.82rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.nx-knowledge-vault-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nx-knowledge-vault-row {
+  width: 100%;
+  text-align: left;
+  border-radius: 14px;
+  border: 1px solid rgba(51, 65, 85, 0.55);
+  background: rgba(15, 23, 42, 0.78);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-family: var(--nx-font-sans);
+  color: #e2e8f0;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.nx-knowledge-vault-row:hover:not(:disabled) {
+  border-color: rgba(6, 182, 212, 0.45);
+  transform: translateY(-1px);
+}
+
+.nx-knowledge-vault-row:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.nx-knowledge-vault-row--active {
+  border-color: rgba(6, 182, 212, 0.55);
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 8px 28px rgba(6, 182, 212, 0.12);
+}
+
+.nx-knowledge-vault-row-title {
+  font-weight: 750;
+  font-size: 0.95rem;
+}
+
+.nx-knowledge-vault-row-sub {
+  margin-top: 0.25rem;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+.nx-knowledge-vault-row-action {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.nx-knowledge-vault-detail {
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: linear-gradient(165deg, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 0.96) 100%);
+  padding: 1.25rem 1.35rem 1.35rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.nx-knowledge-vault-detail-kicker {
+  font-family: var(--nx-font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nx-knowledge-vault-detail-title {
+  margin: 0.65rem 0 0;
+  font-family: var(--nx-font-sans);
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.nx-knowledge-vault-detail-meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #94a3b8;
+}
+
+.nx-knowledge-vault-scroll {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: min(52vh, 420px);
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  padding-right: 0.25rem;
+}
+
+.nx-knowledge-vault-block {
+  scroll-snap-align: start;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.nx-knowledge-vault-block--quiz {
+  border-color: rgba(6, 182, 212, 0.28);
+}
+
+.nx-knowledge-vault-block-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+}
+
+.nx-knowledge-vault-block-label--quiz {
+  color: rgba(6, 182, 212, 0.9);
+}
+
+.nx-knowledge-vault-block p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #e2e8f0;
+}
+
+.nx-knowledge-vault-close {
+  margin-top: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.85);
+  color: #e2e8f0;
+  font-family: var(--nx-font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+}
+
+.nx-knowledge-vault-close:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+}

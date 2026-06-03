@@ -1,0 +1,114 @@
+.nx-artifact-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 95;
+  padding: max(1.25rem, env(safe-area-inset-top)) clamp(1rem, 2.4vw, 2rem)
+    max(1.25rem, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 20% 15%, rgba(6, 182, 212, 0.14), transparent 52%),
+    radial-gradient(circle at 80% 25%, rgba(214, 181, 111, 0.1), transparent 48%),
+    rgba(248, 250, 252, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: auto;
+}
+
+.nx-artifact-gallery-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.nx-artifact-gallery-head {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.65rem 0 0.85rem;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.98) 70%, rgba(248, 250, 252, 0) 100%);
+}
+
+.nx-artifact-gallery-kicker {
+  font-family: var(--nx-font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(6, 182, 212, 0.9);
+}
+
+.nx-artifact-gallery-title {
+  margin-top: 0.25rem;
+  font-family: var(--nx-font-sans);
+  font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.nx-artifact-gallery-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: flex-end;
+}
+
+.nx-artifact-gallery-tab {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: #fff;
+  color: #334155;
+  font-family: var(--nx-font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.nx-artifact-gallery-tab:hover {
+  border-color: rgba(6, 182, 212, 0.45);
+  color: #0f172a;
+}
+
+.nx-artifact-gallery-tab--active {
+  border-color: rgba(6, 182, 212, 0.55);
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.12) 0%, rgba(214, 181, 111, 0.08) 100%);
+  color: #0f172a;
+}
+
+.nx-artifact-gallery-tab--daily {
+  border-color: rgba(139, 92, 246, 0.45);
+}
+
+.nx-artifact-gallery-tab--daily.nx-artifact-gallery-tab--active {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.55);
+  color: #5b21b6;
+}
+
+.nx-artifact-gallery-tab--gold.nx-artifact-gallery-tab--active {
+  background: rgba(214, 181, 111, 0.18);
+  border-color: rgba(214, 181, 111, 0.55);
+}
+
+.nx-artifact-gallery-tab--close {
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
+.nx-artifact-gallery-pane {
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.08);
+  padding: 1.1rem 1.15rem 1.25rem;
+}

@@ -17,6 +17,9 @@
     "edtechGridSubtitle": "AP1 and AP2 — tap a field, then Start exercises",
     "edtechAp1Title": "AP1 · LF1 through LF6",
     "edtechAp2Title": "AP2 · LF7 through LF12",
+    "jumpHub": "Overview",
+    "jumpAp1": "AP1",
+    "jumpAp2": "AP2",
     "edtechLfAria": "Open learning field {lf}: {title}",
     "edtechCourse": {
       "kicker": "Course overview",
@@ -793,6 +796,26 @@
     "rankUpCert": "Rank certificate (PDF)",
     "rankUpContinue": "Continue",
     "victoryLabel": "Learning rank"
+  },
+  "gallery": {
+    "kicker": "Collection",
+    "title": "Knowledge database",
+    "tabGallery": "Achievements",
+    "tabLeaderboard": "Leaderboard",
+    "tabDaily": "Daily",
+    "tabSkill": "Skill tree",
+    "tabArchitect": "Analytics",
+    "close": "Close"
+  },
+  "vault": {
+    "open": "Open",
+    "closeRow": "Close",
+    "locked": "Locked",
+    "unlockedMeta": "Unlocked: {date} · Hits {count}",
+    "definition": "Definition",
+    "example": "Example",
+    "quizCheck": "Quiz check",
+    "closeDetail": "Close"
   },
   "cisco": {
     "heroBadge": "NetAcad · Cisco ITN",

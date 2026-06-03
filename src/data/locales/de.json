@@ -17,6 +17,9 @@
     "edtechGridSubtitle": "AP1 und AP2 — ein Feld antippen, dann „Übungen starten“",
     "edtechAp1Title": "AP1 · LF1 bis LF6",
     "edtechAp2Title": "AP2 · LF7 bis LF12",
+    "jumpHub": "Übersicht",
+    "jumpAp1": "AP1",
+    "jumpAp2": "AP2",
     "edtechLfAria": "Lernfeld {lf} öffnen: {title}",
     "edtechCourse": {
       "kicker": "Kursübersicht",
@@ -799,6 +802,26 @@
     "rankUpCert": "Rang-Urkunde (PDF)",
     "rankUpContinue": "Weiter",
     "victoryLabel": "Lern-Rang"
+  },
+  "gallery": {
+    "kicker": "Sammlung",
+    "title": "Wissens-Datenbank",
+    "tabGallery": "Erfolge",
+    "tabLeaderboard": "Rangliste",
+    "tabDaily": "Tagesaufgabe",
+    "tabSkill": "Skill-Tree",
+    "tabArchitect": "Analyse",
+    "close": "Schließen"
+  },
+  "vault": {
+    "open": "Öffnen",
+    "closeRow": "Schließen",
+    "locked": "Gesperrt",
+    "unlockedMeta": "Freigeschaltet: {date} · Treffer {count}",
+    "definition": "Definition",
+    "example": "Beispiel",
+    "quizCheck": "Quiz-Check",
+    "closeDetail": "Schließen"
   },
   "cisco": {
     "heroBadge": "NetAcad · Cisco ITN",

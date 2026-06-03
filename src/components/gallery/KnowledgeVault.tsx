@@ -6,7 +6,8 @@ import {
   type AchievementDefinition,
   type AchievementType,
 } from "../../data/achievementRegistry";
-import { typography } from "../../theme/typography";
+import { useNexusI18n } from "../../lib/i18n/I18nProvider";
+import "./knowledgeVault.css";
 
 type GlobalCollection = Record<
   AchievementType,
@@ -70,6 +71,7 @@ type KnowledgeVaultProps = {
 };
 
 export function KnowledgeVault({ globalCollection }: KnowledgeVaultProps) {
+  const { t } = useNexusI18n();
   const [open, setOpen] = useState<AchievementType | null>(null);
 
   const byCategory = useMemo(() => {
@@ -88,32 +90,11 @@ export function KnowledgeVault({ globalCollection }: KnowledgeVaultProps) {
   const row = open ? globalCollection[open] : null;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+    <div className="nx-knowledge-vault">
       {byCategory.map(([category, ids]) => (
-        <section key={category}>
-          <h3
-            style={{
-              margin: "0 0 12px",
-              fontFamily: typography.fontSans,
-              fontSize: "max(13px, 0.82rem)",
-              fontWeight: 700,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              color: typography.fgMuted,
-            }}
-          >
-            {category}
-          </h3>
-          <ul
-            style={{
-              listStyle: "none",
-              margin: 0,
-              padding: 0,
-              display: "flex",
-              flexDirection: "column",
-              gap: 8,
-            }}
-          >
+        <section key={category} className="nx-knowledge-vault-category">
+          <h3 className="nx-knowledge-vault-category-title">{category}</h3>
+          <ul className="nx-knowledge-vault-list">
             {ids.map((id) => {
               const def = achievementRegistry[id];
               const unlocked = globalCollection[id].count > 0;
@@ -124,44 +105,22 @@ export function KnowledgeVault({ globalCollection }: KnowledgeVaultProps) {
                     type="button"
                     disabled={!unlocked}
                     onClick={() => setOpen(active ? null : id)}
-                    style={{
-                      width: "100%",
-                      textAlign: "left",
-                      cursor: unlocked ? "pointer" : "not-allowed",
-                      opacity: unlocked ? 1 : 0.5,
-                      borderRadius: 12,
-                      border: active
-                        ? "1px solid rgba(34, 211, 238, 0.55)"
-                        : "1px solid rgba(51, 65, 85, 0.55)",
-                      background: active
-                        ? "rgba(15, 23, 42, 0.92)"
-                        : "rgba(15, 23, 42, 0.72)",
-                      padding: "14px 16px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      gap: 12,
-                      fontFamily: typography.fontSans,
-                      color: typography.fg,
-                    }}
+                    className={
+                      active
+                        ? "nx-knowledge-vault-row nx-knowledge-vault-row--active"
+                        : "nx-knowledge-vault-row"
+                    }
                   >
                     <div>
-                      <div style={{ fontWeight: 700, fontSize: "max(15px, 0.95rem)" }}>
-                        {def.title}
-                      </div>
-                      <div
-                        style={{
-                          marginTop: 4,
-                          fontSize: "max(13px, 0.82rem)",
-                          color: typography.fgMuted,
-                          lineHeight: 1.45,
-                        }}
-                      >
-                        {def.subtitle}
-                      </div>
+                      <div className="nx-knowledge-vault-row-title">{def.title}</div>
+                      <div className="nx-knowledge-vault-row-sub">{def.subtitle}</div>
                     </div>
-                    <span style={{ fontSize: 12, color: typography.fgMuted }}>
-                      {unlocked ? (active ? "Schließen" : "Öffnen") : "Gesperrt"}
+                    <span className="nx-knowledge-vault-row-action">
+                      {unlocked
+                        ? active
+                          ? t("vault.closeRow", "Schließen")
+                          : t("vault.open", "Öffnen")
+                        : t("vault.locked", "Gesperrt")}
                     </span>
                   </button>
                 </li>
@@ -178,181 +137,46 @@ export function KnowledgeVault({ globalCollection }: KnowledgeVaultProps) {
             role="dialog"
             aria-modal="true"
             aria-label={openDef.title}
+            className="nx-knowledge-vault-detail"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            style={{
-              position: "relative",
-              borderRadius: 16,
-              border: "1px solid rgba(148, 163, 184, 0.4)",
-              background: "rgba(2, 6, 23, 0.92)",
-              padding: "20px 22px 22px",
-              boxShadow: "0 20px 50px rgba(0,0,0,0.5)",
-            }}
           >
-            <div
-              style={{
-                fontFamily: typography.fontSans,
-                fontSize: "max(12px, 0.75rem)",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: openDef.color,
-              }}
-            >
+            <div className="nx-knowledge-vault-detail-kicker" style={{ color: openDef.color }}>
               {CATEGORY[open]}
             </div>
-            <h4
-              style={{
-                margin: "10px 0 0",
-                fontFamily: typography.fontSans,
-                fontSize: "clamp(18px, 2.2vw, 22px)",
-                fontWeight: 700,
-                color: typography.fg,
-              }}
-            >
-              {openDef.title}
-            </h4>
-            <p
-              style={{
-                margin: "8px 0 0",
-                fontSize: typography.bodySize,
-                lineHeight: typography.bodyLineHeight,
-                color: typography.fgMuted,
-              }}
-            >
-              Freigeschaltet:{" "}
-              {row.firstUnlocked
-                ? new Date(row.firstUnlocked).toLocaleDateString()
-                : "—"}{" "}
-              · Treffer {row.count}
+            <h4 className="nx-knowledge-vault-detail-title">{openDef.title}</h4>
+            <p className="nx-knowledge-vault-detail-meta">
+              {t("vault.unlockedMeta", "Freigeschaltet: {date} · Treffer {count}")
+                .replace(
+                  "{date}",
+                  row.firstUnlocked ? new Date(row.firstUnlocked).toLocaleDateString() : "—"
+                )
+                .replace("{count}", String(row.count))}
             </p>
 
-            <div
-              style={{
-                marginTop: 18,
-                display: "flex",
-                flexDirection: "column",
-                gap: 16,
-                maxHeight: "min(52vh, 420px)",
-                overflowY: "auto",
-                scrollSnapType: "y proximity",
-                paddingRight: 4,
-              }}
-              className="nx-vault-scroll"
-            >
-              <article
-                style={{
-                  scrollSnapAlign: "start",
-                  padding: "14px 16px",
-                  borderRadius: 12,
-                  background: "rgba(15, 23, 42, 0.65)",
-                  border: "1px solid rgba(51, 65, 85, 0.5)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "max(11px, 0.7rem)",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                    color: typography.fgMuted,
-                    marginBottom: 8,
-                  }}
-                >
-                  Definition
+            <div className="nx-knowledge-vault-scroll">
+              <article className="nx-knowledge-vault-block">
+                <div className="nx-knowledge-vault-block-label">
+                  {t("vault.definition", "Definition")}
                 </div>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: typography.bodySize,
-                    lineHeight: typography.bodyLineHeight,
-                    color: typography.fg,
-                  }}
-                >
-                  {lx.definition}
-                </p>
+                <p>{lx.definition}</p>
               </article>
-              <article
-                style={{
-                  scrollSnapAlign: "start",
-                  padding: "14px 16px",
-                  borderRadius: 12,
-                  background: "rgba(15, 23, 42, 0.65)",
-                  border: "1px solid rgba(51, 65, 85, 0.5)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "max(11px, 0.7rem)",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                    color: typography.fgMuted,
-                    marginBottom: 8,
-                  }}
-                >
-                  Beispiel
-                </div>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: typography.bodySize,
-                    lineHeight: typography.bodyLineHeight,
-                    color: typography.fg,
-                  }}
-                >
-                  {lx.example}
-                </p>
+              <article className="nx-knowledge-vault-block">
+                <div className="nx-knowledge-vault-block-label">{t("vault.example", "Beispiel")}</div>
+                <p>{lx.example}</p>
               </article>
-              <article
-                style={{
-                  scrollSnapAlign: "start",
-                  padding: "14px 16px",
-                  borderRadius: 12,
-                  background: "rgba(15, 23, 42, 0.65)",
-                  border: "1px solid rgba(34, 211, 238, 0.22)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "max(11px, 0.7rem)",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                    color: "rgba(34, 211, 238, 0.9)",
-                    marginBottom: 8,
-                  }}
-                >
-                  Quiz-Check
+              <article className="nx-knowledge-vault-block nx-knowledge-vault-block--quiz">
+                <div className="nx-knowledge-vault-block-label nx-knowledge-vault-block-label--quiz">
+                  {t("vault.quizCheck", "Quiz-Check")}
                 </div>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: typography.bodySize,
-                    lineHeight: typography.bodyLineHeight,
-                    color: typography.fg,
-                  }}
-                >
-                  {lx.quizCheck}
-                </p>
+                <p>{lx.quizCheck}</p>
               </article>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setOpen(null)}
-              style={{
-                marginTop: 16,
-                borderRadius: 10,
-                border: "1px solid rgba(148, 163, 184, 0.45)",
-                background: "rgba(15, 23, 42, 0.8)",
-                color: typography.fg,
-                fontFamily: typography.fontSans,
-                fontSize: "max(13px, 0.82rem)",
-                padding: "10px 14px",
-                cursor: "pointer",
-              }}
-            >
-              Schließen
+            <button type="button" className="nx-knowledge-vault-close" onClick={() => setOpen(null)}>
+              {t("vault.closeDetail", "Schließen")}
             </button>
           </motion.div>
         )}

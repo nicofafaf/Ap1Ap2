@@ -7,7 +7,7 @@ import type { CiscoPackId } from "../types";
 export const CISCO_CARRIER_LF = 10;
 
 export function buildCiscoMcQueue(packId: CiscoPackId, shuffle = true): string[] {
-  const ids = getMcItemsForPack(packId).map((q) => q.id);
+  const ids = getQuizItemsForPack(packId).map((q) => q.id);
   if (!shuffle) return ids;
   const copy = [...ids];
   for (let i = copy.length - 1; i > 0; i -= 1) {

@@ -249,6 +249,8 @@
         "kicker": "Area",
         "home": "Home",
         "homeLead": "Welcome, continue learning, and learning modes — your entry point at a glance",
+        "duel": "Live duel",
+        "duelLead": "Kahoot-style: create a room, share link or QR, answer on a timer together — LFs, CCNA, and exams",
         "ccna": "CCNA ITN",
         "ccnaLead": "Cisco CCNA v7 chapters, exercises, and exam questions — dedicated area without LF clutter",
         "exams": "Exams",
@@ -845,5 +847,71 @@
     "mcPackCount": "{n} MC questions",
     "ladderAria": "All 17 ITN modules",
     "verbatimNote": "Questions unchanged (EN). German translation will follow as a second track. For personal study use only."
+  },
+  "liveDuel": {
+    "tabs": { "host": "Create room", "join": "Join" },
+    "host": {
+      "lead": "Pick content and settings — then you get a code, link, and QR for guests.",
+      "name": "Your name (host)",
+      "content": "Question pool",
+      "questionCount": "Number of questions",
+      "seconds": "Seconds per question",
+      "scoring": "Scoring",
+      "scoringSpeed": "Speed + correct (Kahoot-style)",
+      "scoringCorrect": "Correct / incorrect only",
+      "create": "Create room"
+    },
+    "join": {
+      "lead": "Enter the host code or open the invite link.",
+      "code": "Room code",
+      "name": "Your name",
+      "cta": "Join lobby"
+    },
+    "lobby": {
+      "lead": "Lobby — share code or QR, start when everyone is ready.",
+      "copyLink": "Copy link",
+      "qrAlt": "QR code to join",
+      "host": "Host",
+      "questions": "{n} questions · {sec}s each",
+      "start": "Start duel",
+      "waitHost": "Waiting for the host to start…",
+      "leave": "Leave"
+    },
+    "arena": {
+      "loading": "Loading questions…",
+      "progress": "Question {cur} / {total}",
+      "reveal": "Results — host advances to the next question.",
+      "next": "Next question"
+    },
+    "results": {
+      "title": "Results",
+      "hint": "Duel points can be linked to the learning rank later.",
+      "back": "Back to duel hub"
+    },
+    "sync": {
+      "local": "Local: room only on this device (test). Enable Supabase in settings for real guests.",
+      "localShort": "Mode: local",
+      "supabase": "Live sync via Supabase is active.",
+      "supabaseShort": "Mode: live (Supabase)"
+    },
+    "error": {
+      "noQuestions": "No questions for this selection — pick another field or pack.",
+      "invalidCode": "Invalid code (4–8 characters).",
+      "roomNotFound": "Room not found — check the code or ask the host to create the room first."
+    },
+    "catalog": {
+      "lfAll": "All learning fields (LF1–LF12)",
+      "lfAllDesc": "Mixed from the full curriculum",
+      "lfOne": "Learning field LF{lf}",
+      "lfOneDesc": "Exercises from one field only",
+      "ccnaAll": "CCNA ITN · all checkpoints",
+      "ccnaAllDesc": "All six checkpoint packs",
+      "ccnaPack": "CCNA modules {from}–{to}",
+      "ccnaPackDesc": "One checkpoint pack",
+      "sommerPack": "IHK Summer 2026 · {pack}",
+      "sommerPackDesc": "WiSo, GA1, or GA2",
+      "mixedWeakest": "Mix · weakest field",
+      "mixedWeakestDesc": "Like quick practice — personalized"
+    }
   }
 }

@@ -1,0 +1,170 @@
+.nx-live-duel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.nx-live-duel-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nx-live-duel-tab {
+  flex: 1 1 8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: #f8fafc;
+  padding: 0.65rem 1rem;
+  font-weight: 750;
+  font-size: 0.88rem;
+  cursor: pointer;
+  color: #475569;
+}
+
+.nx-live-duel-tab--active {
+  border-color: rgba(139, 92, 246, 0.55);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(6, 182, 212, 0.1) 100%);
+  color: #0f172a;
+}
+
+.nx-live-duel-panel {
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
+}
+
+.nx-live-duel-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.nx-live-duel-field label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.nx-live-duel-field input,
+.nx-live-duel-field select {
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.nx-live-duel-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem;
+}
+
+.nx-live-duel-cta {
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  background: linear-gradient(125deg, rgba(139, 92, 246, 0.92) 0%, rgba(99, 102, 241, 0.88) 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+}
+
+.nx-live-duel-cta:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.nx-live-duel-cta--ghost {
+  background: transparent;
+  color: #0f172a;
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+.nx-live-duel-hint {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin: 0.5rem 0 0;
+}
+
+.nx-live-duel-invite {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.nx-live-duel-code {
+  font-family: var(--nx-font-mono);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #5b21b6;
+}
+
+.nx-live-duel-qr {
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: #fff;
+  padding: 0.35rem;
+}
+
+.nx-live-duel-players {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 1rem 0;
+}
+
+.nx-live-duel-player {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(248, 250, 252, 0.9);
+  font-size: 0.9rem;
+}
+
+.nx-live-duel-arena-q {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+
+.nx-live-duel-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nx-live-duel-option {
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.nx-live-duel-option:hover {
+  border-color: rgba(6, 182, 212, 0.45);
+}
+
+.nx-live-duel-timer {
+  font-family: var(--nx-font-mono);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0e7490;
+}

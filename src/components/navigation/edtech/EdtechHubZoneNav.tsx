@@ -9,6 +9,7 @@ export type EdtechHubZoneNavProps = {
 
 const ZONE_I18N: Record<EdtechHubZoneId, { label: string; desc: string }> = {
   home: { label: "hub.edtech.zones.home", desc: "hub.edtech.zones.homeLead" },
+  duel: { label: "hub.edtech.zones.duel", desc: "hub.edtech.zones.duelLead" },
   ccna: { label: "hub.edtech.zones.ccna", desc: "hub.edtech.zones.ccnaLead" },
   exams: { label: "hub.edtech.zones.exams", desc: "hub.edtech.zones.examsLead" },
   courses: { label: "hub.edtech.zones.courses", desc: "hub.edtech.zones.coursesLead" },

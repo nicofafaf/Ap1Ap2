@@ -7,6 +7,7 @@ import { EdtechHubSidebar } from "./edtech/EdtechHubSidebar";
 import { EdtechProfileSettings } from "./edtech/EdtechProfileSettings";
 import {
   edtechHubZoneFromSearch,
+  readLiveDuelJoinCodeFromSearch,
   writeEdtechHubZoneToUrl,
   type EdtechHubZoneId,
 } from "./edtech/edtechHubZones";
@@ -45,6 +46,9 @@ export function NexusEdtechDashboard({
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [activeZone, setActiveZone] = useState<EdtechHubZoneId>(() =>
     edtechHubZoneFromSearch(typeof window !== "undefined" ? window.location.search : ""),
+  );
+  const [liveDuelJoinCode] = useState<string | null>(() =>
+    typeof window !== "undefined" ? readLiveDuelJoinCodeFromSearch(window.location.search) : null,
   );
 
   const scrollHubTop = useCallback(() => {
@@ -103,6 +107,7 @@ export function NexusEdtechDashboard({
         <NexusEdtechHubArena
           activeZone={activeZone}
           onZoneChange={onZoneChange}
+          liveDuelJoinCode={liveDuelJoinCode}
           onOpenMap={onOpenMap}
           onBeginLearningField={onBeginLearningField}
           onBeginExamField={onBeginExamField}

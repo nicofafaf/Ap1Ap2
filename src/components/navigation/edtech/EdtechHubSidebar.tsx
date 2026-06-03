@@ -70,6 +70,11 @@ export function EdtechHubSidebar({
             onClick={() => onZoneChange("home")}
           />
           <NavBtn
+            active={activeZone === "duel"}
+            label={t("hub.edtech.zones.duel")}
+            onClick={() => onZoneChange("duel")}
+          />
+          <NavBtn
             active={activeZone === "ccna"}
             label={t("hub.edtech.zones.ccna")}
             onClick={() => onZoneChange("ccna")}

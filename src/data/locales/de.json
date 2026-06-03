@@ -252,6 +252,8 @@
         "kicker": "Bereich",
         "home": "Start",
         "homeLead": "Willkommen, Weiterlernen und Lernmodi — dein Einstieg auf einen Blick",
+        "duel": "Live-Duell",
+        "duelLead": "Kahoot-Style: Raum erstellen, Link oder QR teilen, gemeinsam auf Zeit antworten — LF, CCNA und Prüfungen",
         "ccna": "CCNA ITN",
         "ccnaLead": "Cisco CCNA v7 Kapitel, Übungen und Prüfungsfragen — eigener Bereich ohne LF-Mix",
         "exams": "Prüfungen",
@@ -851,5 +853,71 @@
     "mcPackCount": "{n} MC-Fragen",
     "ladderAria": "Alle 17 ITN-Module",
     "verbatimNote": "Fragen unverändert (EN). Deutsche Übersetzung folgt als zweite Spur. Inhalte nur für den eigenen Lernkontext."
+  },
+  "liveDuel": {
+    "tabs": { "host": "Raum erstellen", "join": "Beitreten" },
+    "host": {
+      "lead": "Wähle Inhalt und Einstellungen — danach erhältst du Code, Link und QR für Gäste.",
+      "name": "Dein Name (Host)",
+      "content": "Fragenpool",
+      "questionCount": "Anzahl Fragen",
+      "seconds": "Sekunden pro Frage",
+      "scoring": "Wertung",
+      "scoringSpeed": "Geschwindigkeit + richtig (Kahoot-Style)",
+      "scoringCorrect": "Nur richtig / falsch",
+      "create": "Raum erstellen"
+    },
+    "join": {
+      "lead": "Code vom Host eingeben oder Einladungslink öffnen.",
+      "code": "Raum-Code",
+      "name": "Dein Name",
+      "cta": "Lobby beitreten"
+    },
+    "lobby": {
+      "lead": "Lobby — teile Code oder QR, starte wenn alle da sind.",
+      "copyLink": "Link kopieren",
+      "qrAlt": "QR-Code zum Beitreten",
+      "host": "Host",
+      "questions": "{n} Fragen · {sec}s pro Frage",
+      "start": "Duell starten",
+      "waitHost": "Warte auf Start durch den Host …",
+      "leave": "Verlassen"
+    },
+    "arena": {
+      "loading": "Fragen werden geladen …",
+      "progress": "Frage {cur} / {total}",
+      "reveal": "Auswertung — Host startet die nächste Frage.",
+      "next": "Nächste Frage"
+    },
+    "results": {
+      "title": "Ergebnis",
+      "hint": "Duell-Punkte können später mit dem Lern-Rang verbunden werden.",
+      "back": "Zurück zur Duell-Übersicht"
+    },
+    "sync": {
+      "local": "Lokal: Raum nur auf diesem Gerät (Test). Für echte Gäste Supabase in den Einstellungen aktivieren.",
+      "localShort": "Modus: lokal",
+      "supabase": "Echtzeit-Sync über Supabase aktiv.",
+      "supabaseShort": "Modus: Live (Supabase)"
+    },
+    "error": {
+      "noQuestions": "Keine Fragen für diese Auswahl — anderes Lernfeld oder Pack wählen.",
+      "invalidCode": "Ungültiger Code (4–8 Zeichen).",
+      "roomNotFound": "Raum nicht gefunden — Code prüfen oder Host muss Raum zuerst erstellen."
+    },
+    "catalog": {
+      "lfAll": "Alle Lernfelder (LF1–LF12)",
+      "lfAllDesc": "Gemischt aus dem gesamten Curriculum",
+      "lfOne": "Lernfeld LF{lf}",
+      "lfOneDesc": "Nur Übungen aus einem Lernfeld",
+      "ccnaAll": "CCNA ITN · alle Checkpoints",
+      "ccnaAllDesc": "Alle 6 Checkpoint-Packs",
+      "ccnaPack": "CCNA Module {from}–{to}",
+      "ccnaPackDesc": "Ein Checkpoint-Pack",
+      "sommerPack": "IHK Sommer 2026 · {pack}",
+      "sommerPackDesc": "WiSo, GA1 oder GA2",
+      "mixedWeakest": "Mix · schwächstes LF",
+      "mixedWeakestDesc": "Wie Schnell üben — personalisiert"
+    }
   }
 }

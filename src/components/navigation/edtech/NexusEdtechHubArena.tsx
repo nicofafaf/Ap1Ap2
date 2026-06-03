@@ -15,6 +15,7 @@ import { EDTECH_STAGGER, cyanAccent, goldAccent } from "./edtechHubTokens";
 import "./edtechHubArena.css";
 import "./edtechZoneShell.css";
 import { HubZoneCcna } from "./hubZones/HubZoneCcna";
+import { HubZoneDuel } from "./hubZones/HubZoneDuel";
 import { HubZoneCourses } from "./hubZones/HubZoneCourses";
 import { HubZoneExams } from "./hubZones/HubZoneExams";
 import { HubZoneHome } from "./hubZones/HubZoneHome";
@@ -25,6 +26,7 @@ import { StreakCelebration } from "./StreakCelebration";
 export type NexusEdtechHubArenaProps = {
   activeZone: EdtechHubZoneId;
   onZoneChange: (zone: EdtechHubZoneId) => void;
+  liveDuelJoinCode?: string | null;
   onOpenMap: () => void;
   onBeginLearningField: (lf: number) => void;
   onBeginExamField?: (lf: number) => void;
@@ -36,6 +38,7 @@ export type NexusEdtechHubArenaProps = {
 export function NexusEdtechHubArena({
   activeZone,
   onZoneChange,
+  liveDuelJoinCode,
   onOpenMap,
   onBeginLearningField,
   onBeginExamField,
@@ -183,6 +186,7 @@ export function NexusEdtechHubArena({
 
       <div className="nx-edtech-zone-viewport" aria-live="polite">
         {activeZone === "home" ? <HubZoneHome ctx={ctx} /> : null}
+        {activeZone === "duel" ? <HubZoneDuel presetJoinCode={liveDuelJoinCode} /> : null}
         {activeZone === "ccna" ? <HubZoneCcna ctx={ctx} /> : null}
         {activeZone === "exams" ? <HubZoneExams ctx={ctx} /> : null}
         {activeZone === "courses" ? <HubZoneCourses ctx={ctx} /> : null}

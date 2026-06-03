@@ -12,13 +12,18 @@ import {
   assertExhibitCoverage,
   assertManifestSync,
   assertPackMatchesHtml,
+  assertPackQuestionInventory,
+  CCNA_MODULE_PACK_GOLDEN,
   type CcnaModulePackId,
   type ExhibitManifestEntry,
 } from "../ciscoPackFaithfulness";
 
+function modulePackHtmlPath(packId: CcnaModulePackId): string {
+  return join(process.cwd(), "imports", "cisco", "html", `${packId}.html`);
+}
+
 function loadModulePackHtml(packId: CcnaModulePackId): string {
-  const htmlPath = join(process.cwd(), "imports", "cisco", "html", `${packId}.html`);
-  return readFileSync(htmlPath, "utf8");
+  return readFileSync(modulePackHtmlPath(packId), "utf8");
 }
 
 function loadExhibitManifest(packId: CcnaModulePackId): ExhibitManifestEntry[] {
@@ -54,7 +59,6 @@ function assertExhibitFilesOnDisk(pack: CiscoExamPack, manifest: ExhibitManifest
 
 type PackSpotCheck = {
   pack: CiscoExamPack;
-  minQuestions: number;
   q1: { type: "single" | "multi"; optionCount: number; correctEn: string };
   imageExhibits?: number[];
   codeExhibits?: { num: number; snippet: string; correctAnswer?: string }[];
@@ -63,13 +67,11 @@ type PackSpotCheck = {
 const PACKS: Record<CcnaModulePackId, PackSpotCheck> = {
   "modules-1-3": {
     pack: modules13 as CiscoExamPack,
-    minQuestions: 70,
     q1: { type: "single", optionCount: 4, correctEn: "spyware" },
     imageExhibits: [18, 43, 54],
   },
   "modules-4-7": {
     pack: modules47 as CiscoExamPack,
-    minQuestions: 65,
     q1: {
       type: "single",
       optionCount: 4,
@@ -79,7 +81,6 @@ const PACKS: Record<CcnaModulePackId, PackSpotCheck> = {
   },
   "modules-8-10": {
     pack: modules810 as CiscoExamPack,
-    minQuestions: 75,
     q1: { type: "single", optionCount: 4, correctEn: "destination IP address" },
     imageExhibits: [15, 25, 28, 40, 43],
     codeExhibits: [
@@ -89,13 +90,11 @@ const PACKS: Record<CcnaModulePackId, PackSpotCheck> = {
   },
   "modules-11-13": {
     pack: modules1113 as CiscoExamPack,
-    minQuestions: 65,
     q1: { type: "single", optionCount: 4, correctEn: "/27" },
     imageExhibits: [12, 14, 17, 28, 40],
   },
   "modules-14-15": {
     pack: modules1415 as CiscoExamPack,
-    minQuestions: 55,
     q1: {
       type: "single",
       optionCount: 4,
@@ -104,19 +103,28 @@ const PACKS: Record<CcnaModulePackId, PackSpotCheck> = {
   },
   "modules-16-17": {
     pack: modules1617 as CiscoExamPack,
-    minQuestions: 60,
     q1: { type: "single", optionCount: 5, correctEn: "firewall" },
     imageExhibits: [23, 38, 39],
   },
 };
 
 for (const [packId, cfg] of Object.entries(PACKS) as [CcnaModulePackId, PackSpotCheck][]) {
+  const golden = CCNA_MODULE_PACK_GOLDEN[packId];
+  const htmlPath = modulePackHtmlPath(packId);
+  const hasHtmlExport = existsSync(htmlPath);
+
   describe(`${packId} faithfulness vs itexamanswers.net`, () => {
-    it("imports every numbered checkpoint question from the HTML export", () => {
-      const html = loadModulePackHtml(packId);
-      expect(() => assertPackMatchesHtml(cfg.pack, html)).not.toThrow();
-      expect(cfg.pack.items.length).toBeGreaterThanOrEqual(cfg.minQuestions);
+    it("imports complete checkpoint inventory (golden question count)", () => {
+      expect(() => assertPackQuestionInventory(cfg.pack, golden.questionCount)).not.toThrow();
     });
+
+    it.skipIf(!hasHtmlExport)(
+      "matches ITExamAnswers HTML export when imports/cisco/html is present",
+      () => {
+        const html = loadModulePackHtml(packId);
+        expect(() => assertPackMatchesHtml(cfg.pack, html)).not.toThrow();
+      }
+    );
 
     it("keeps question 1 options isolated (no bleed from later questions)", () => {
       const q1 = cfg.pack.items.find((i) => i.number === 1);

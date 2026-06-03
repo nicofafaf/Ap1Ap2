@@ -1,5 +1,6 @@
 /**
  * AAA-Audit: alle CCNA-Modul-Packs gegen ITExamAnswers HTML + Exhibit-Assets.
+ * CI: ohne imports/cisco/html nur Golden-Inventar + Exhibit-Checks.
  * Usage: node scripts/audit-cisco-modules.mjs
  */
 import { readFileSync, existsSync } from "node:fs";
@@ -19,6 +20,15 @@ const PACKS = [
   "modules-16-17",
 ];
 
+const GOLDEN_COUNTS = {
+  "modules-1-3": 75,
+  "modules-4-7": 70,
+  "modules-8-10": 76,
+  "modules-11-13": 71,
+  "modules-14-15": 61,
+  "modules-16-17": 67,
+};
+
 function checkpointQuestionNums(html) {
   const start = html.search(/<h3[^>]*>\s*Checkpoint Exam/i);
   let body = html.slice(start);
@@ -37,31 +47,60 @@ function checkpointQuestionNums(html) {
   return nums.sort((a, b) => a - b);
 }
 
+function assertGoldenInventory(packId, pack) {
+  const expected = GOLDEN_COUNTS[packId];
+  const imported = pack.items.map((i) => i.number).sort((a, b) => a - b);
+  if (imported.length !== expected) {
+    console.log(`  FAIL: golden count ${expected}, got ${imported.length}`);
+    return false;
+  }
+  const seen = new Set();
+  for (const n of imported) {
+    if (seen.has(n)) {
+      console.log(`  FAIL: duplicate question #${n}`);
+      return false;
+    }
+    seen.add(n);
+  }
+  console.log(`  OK: ${expected} questions (golden inventory)`);
+  return true;
+}
+
 let failures = 0;
+const htmlAvailable = existsSync(htmlDir);
+
+if (!htmlAvailable) {
+  console.log("[audit:cisco-modules] imports/cisco/html not found — skipping HTML cross-check (CI mode)\n");
+}
 
 for (const packId of PACKS) {
   const htmlPath = join(htmlDir, `${packId}.html`);
   const packPath = join(packsDir, `${packId}.json`);
   console.log(`\n=== ${packId} ===`);
 
-  if (!existsSync(htmlPath) || !existsSync(packPath)) {
-    console.log("  FAIL: missing html or json");
+  if (!existsSync(packPath)) {
+    console.log("  FAIL: missing pack JSON");
     failures += 1;
     continue;
   }
 
-  const html = readFileSync(htmlPath, "utf8");
   const pack = JSON.parse(readFileSync(packPath, "utf8"));
-  const expected = checkpointQuestionNums(html);
-  const imported = pack.items.map((i) => i.number).sort((a, b) => a - b);
-  const missing = expected.filter((n) => !imported.includes(n));
-  const extra = imported.filter((n) => !expected.includes(n));
 
-  if (missing.length || extra.length) {
-    console.log(`  FAIL: missing [${missing.join(",")}] extra [${extra.join(",")}]`);
+  if (existsSync(htmlPath)) {
+    const html = readFileSync(htmlPath, "utf8");
+    const expected = checkpointQuestionNums(html);
+    const imported = pack.items.map((i) => i.number).sort((a, b) => a - b);
+    const missing = expected.filter((n) => !imported.includes(n));
+    const extra = imported.filter((n) => !expected.includes(n));
+
+    if (missing.length || extra.length) {
+      console.log(`  FAIL: missing [${missing.join(",")}] extra [${extra.join(",")}]`);
+      failures += 1;
+    } else {
+      console.log(`  OK: ${expected.length} questions match HTML`);
+    }
+  } else if (!assertGoldenInventory(packId, pack)) {
     failures += 1;
-  } else {
-    console.log(`  OK: ${expected.length} questions match HTML`);
   }
 
   for (const item of pack.items) {

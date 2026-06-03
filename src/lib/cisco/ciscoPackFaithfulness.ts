@@ -11,6 +11,16 @@ export const CCNA_MODULE_PACK_IDS = [
 
 export type CcnaModulePackId = (typeof CCNA_MODULE_PACK_IDS)[number];
 
+/** Golden checkpoint counts (verified vs ITExamAnswers HTML locally). */
+export const CCNA_MODULE_PACK_GOLDEN: Record<CcnaModulePackId, { questionCount: number }> = {
+  "modules-1-3": { questionCount: 75 },
+  "modules-4-7": { questionCount: 70 },
+  "modules-8-10": { questionCount: 76 },
+  "modules-11-13": { questionCount: 71 },
+  "modules-14-15": { questionCount: 61 },
+  "modules-16-17": { questionCount: 67 },
+};
+
 export type ExhibitManifestEntry = {
   questionNumber: number;
   questionId: string;
@@ -35,6 +45,23 @@ export function checkpointQuestionNums(html: string): number[] {
     nums.push(n);
   }
   return nums.sort((a, b) => a - b);
+}
+
+export function assertPackQuestionInventory(pack: CiscoExamPack, expectedCount: number): void {
+  const nums = pack.items.map((i) => i.number).sort((a, b) => a - b);
+  if (nums.length !== expectedCount) {
+    throw new Error(`${pack.id}: expected ${expectedCount} questions, got ${nums.length}`);
+  }
+  const seen = new Set<number>();
+  for (const n of nums) {
+    if (n < 1) {
+      throw new Error(`${pack.id}: invalid question number ${n}`);
+    }
+    if (seen.has(n)) {
+      throw new Error(`${pack.id}: duplicate question number ${n}`);
+    }
+    seen.add(n);
+  }
 }
 
 export function assertPackMatchesHtml(pack: CiscoExamPack, html: string): void {

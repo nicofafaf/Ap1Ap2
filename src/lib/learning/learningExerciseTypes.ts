@@ -5,6 +5,12 @@ export type LearningMcOption = {
   whyWrongHint?: string;
 };
 
+export type LearningMatchPair = {
+  id: string;
+  left: string;
+  right: string;
+};
+
 export type LearningExercise = {
   id: string;
   title: string;
@@ -13,8 +19,10 @@ export type LearningExercise = {
   lang: "sql" | "javascript" | "csharp" | "bash" | "plain-text" | "markdown";
   mcQuestion: string;
   mcOptions: LearningMcOption[];
-  /** single = eine Option; multi = mehrere richtige (WiSo „kreuze zwei an“) */
-  mcSelectMode?: "single" | "multi";
+  /** single = eine Option; multi = mehrere richtige; match = Zuordnung */
+  mcSelectMode?: "single" | "multi" | "match";
+  /** Cisco/ITN: „Match the …“ — links zuordnen */
+  matchPairs?: LearningMatchPair[];
   /** Kurze Lektion vor der Aufgabe — Lern-App-Flow statt Prüfungs-Sprung */
   lessonCards?: Array<{
     title: string;

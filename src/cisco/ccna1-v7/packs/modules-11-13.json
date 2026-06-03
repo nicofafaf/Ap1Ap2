@@ -1,0 +1,4170 @@
+{
+  "id": "modules-11-13",
+  "course": "ccna1-itn-v7",
+  "title": {
+    "en": "Modules 11–13: IP Addressing",
+    "de": "Module 11–13: IP-Adressierung"
+  },
+  "moduleRange": [
+    11,
+    13
+  ],
+  "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+  "itemCount": 71,
+  "items": [
+    {
+      "id": "modules-11-13-q001",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 1,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.1.3",
+      "question": {
+        "en": "What is the prefix length notation for the subnet mask 255.255.255.224?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.1.3 The binary format for 255.255.255.224 is 11111111.11111111.11111111.11100000. The prefix length is the number of consecutive 1s in the subnet mask. Therefore, the prefix length is /27.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "/25",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "/26",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "/27",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "/28",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q002",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 2,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "How many valid host addresses are available on an IPv4 subnet that is configured with a /26 mask?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "254",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "190",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "192",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "62",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "64",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q003",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 3,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "Which subnet mask would be used if 5 host bits are available?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "255.255.255.0",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "255.255.255.128",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "255.255.255.224",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "255.255.255.240",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q004",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 4,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "A network administrator subnets the 192.168.10.0/24 network into subnets with /26 masks. How many equal-sized subnets are created?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "1",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "4",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "8",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "16",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "64",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q005",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 5,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "Match the subnetwork to a host address that would be included within the subnetwork. (Not all options are used.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2Subnet 192.168.1.32/27 will have a valid host range from 192.168.1.33 – 192.168.1.62 with the broadcast address as 192.168.1.63 Subnet 192.168.1.64/27 will have a valid host range from 192.168.1.65 – 192.168.1.94 with the broadcast address as 192.168.1.95 Subnet 192.168.1.96/27 will have a valid host range from 192.168.1.97 – 192.168.1.126 with the broadcast address as 192.168.1.127",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-11-13-q006",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 6,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.1.3",
+      "question": {
+        "en": "An administrator wants to create four subnetworks from the network address 192.168.1.0/24. What is the network address and subnet mask of the second useable subnet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.1.3The number of bits that are borrowed would be two, thus giving a total of 4 useable subnets: 192.168.1.0 192.168.1.64 192.168.1.128 192.168.1.192 Because 2 bits are borrowed, the new subnet mask would be /26 or 255.255.255.192",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "subnetwork 192.168.1.64",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "subnet mask 255.255.255.192",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "subnetwork 192.168.1.32",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "subnet mask 255.255.255.240",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "subnetwork 192.168.1.64",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "subnet mask 255.255.255.240",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "subnetwork 192.168.1.128",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o8",
+          "text": {
+            "en": "subnet mask 255.255.255.192",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o9",
+          "text": {
+            "en": "subnetwork 192.168.1.8",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o10",
+          "text": {
+            "en": "subnet mask 255.255.255.224",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q007",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 7,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "How many bits must be borrowed from the host portion of an address to accommodate a router with five connected networks?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2 Each network that is directly connected to an interface on a router requires its own subnet. The formula 2n, where n is the number of bits borrowed, is used to calculate the available number of subnets when borrowing a specific number of bits.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "two",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "three",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "four",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "five",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q008",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 8,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "How many host addresses are available on the 192.168.10.128/26 network?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2 A /26 prefix gives 6 host bits, which provides a total of 64 addresses, because 2^6 = 64. Subtracting the network and broadcast addresses leaves 62 usable host addresses.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "30",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "32",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "60",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "62",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "64",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q009",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 9,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "How many host addresses are available on the network 172.16.128.0 with a subnet mask of 255.255.252.0?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2 A mask of 255.255.252.0 is equal to a prefix of /22. A /22 prefix provides 22 bits for the network portion and leaves 10 bits for the host portion. The 10 bits in the host portion will provide 1022 usable IP addresses (210 – 2 = 1022).",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "510",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "512",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "1022",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "1024",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "2046",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "2048",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q010",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 10,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "question": {
+        "en": "Match each IPv4 address to the appropriate address category. (Not all options are used.)",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-11-13-q011",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 11,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.3.1",
+      "question": {
+        "en": "What three blocks of addresses are defined by RFC 1918 for private network use? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.3.1 RFC 1918, Address Allocation for Private Internets, defines three blocks of IPv4 address for private networks that should not be routable on the public Internet. * 10.0.0.0/8 * 172.16.0.0/12 * 192.168.0.0/16",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "10.0.0.0/8",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "172.16.0.0/12",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "192.168.0.0/16",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "100.64.0.0/14",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "169.254.0.0/16",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "239.0.0.0/8",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q012",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 12,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.1.6",
+      "question": {
+        "en": "Refer to the exhibit. An administrator must send a message to everyone on the router A network. What is the broadcast address for network 172.16.16.0/22?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.1.6 The 172.16.16.0/22 network has 22 bits in the network portion and 10 bits in the host portion. Converting the network address to binary yields a subnet mask of 255.255.252.0. The range of addresses in this network will end with the last address available before 172.16.20.0. Valid host addresses for this network range from 172.16.16.1-172.16.19.254, making 172.16.19.255 the broadcast address.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "172.16.16.255",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "172.16.20.255",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "172.16.19.255",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "172.16.23.255",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "172.16.255.255",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-11-13/q012.png"
+    },
+    {
+      "id": "modules-11-13-q013",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 13,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "A site administrator has been told that a particular network at the site must accommodate 126 hosts. Which subnet mask would be used that contains the required number of host bits?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2 The subnet mask of 255.255.255.0 has 8 host bits. The mask of 255.255.255.128 results in 7 host bits. The mask of 255.255.255.224 has 5 host bits. Finally, 255.255.255.240 represents 4 host bits.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "255.255.255.0",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "255.255.255.128",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "255.255.255.224",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "255.255.255.240",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q014",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 14,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.2",
+      "question": {
+        "en": "Refer to the exhibit. Considering the addresses already used and having to remain within the 10.16.10.0/24 network range, which subnet address could be assigned to the network containing 25 hosts?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.2 Addresses 10.16.10.0 through 10.16.10.63 are taken for the leftmost network. Addresses 10.16.10.192 through 10.16.10.207 are used by the center network.The address space from 208-255 assumes a /28 mask, which does not allow enough host bits to accommodate 25 host addresses.The address ranges that are available include 10.16.10.64/26 and10.16.10.128/26. To accommodate 25 hosts, 5 host bits are needed, so a /27 mask is necessary. Four possible /27 subnets could be created from the available addresses between 10.16.10.64 and 10.16.10.191: 10.16.10.64/27 10.16.10.96/27 10.16.10.128/27 10.16.10.160/27",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "10.16.10.160/26",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "10.16.10.128/28",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.16.10.64/27",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "10.16.10.224/26",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "10.16.10.240/27",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "10.16.10.240/28",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-11-13/q014.png"
+    },
+    {
+      "id": "modules-11-13-q015",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 15,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.1.3",
+      "question": {
+        "en": "What is the usable number of host IP addresses on a network that has a /26 mask?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.1.3 A /26 mask is the same as 255.255.255.192. The mask leaves 6 host bits. With 6 host bits, 64 IP addresses are possible. One address represents the subnet number and one address represents the broadcast address, which means that 62 addresses can then be used to assign to network devices.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "256",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "64",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "62",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "32",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "16",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q016",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 16,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.2.3",
+      "question": {
+        "en": "Which address prefix range is reserved for IPv4 multicast?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.2.3Multicast IPv4 addresses use the reserved class D address range of 224.0.0.0 to 239.255.255.255.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "240.0.0.0 – 254.255.255.255",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "224.0.0.0 – 239.255.255.255",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "169.254.0.0 – 169.254.255.255",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "127.0.0.0 – 127.255.255.255",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q017",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 17,
+      "type": "match",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.8.4",
+      "question": {
+        "en": "Refer to the exhibit. Match the network with the correct IP address and prefix that will satisfy the usable host addressing requirements for each network.Place the options in the following order:",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.8.4 Network A needs to use 192.168.0.128 /25, which yields 128 host addresses. Network B needs to use 192.168.0.0 /26, which yields 64 host addresses. Network C needs to use 192.168.0.96 /27, which yields 32 host addresses. Network D needs to use 192.168.0.80/30, which yields 4 host addresses.",
+        "de": null
+      },
+      "matchPairs": [
+        {
+          "left": {
+            "en": "Network A",
+            "de": null
+          },
+          "right": {
+            "en": "192.168.0.128 /25",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "Network B",
+            "de": null
+          },
+          "right": {
+            "en": "192.168.0.0 /26",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "Network C",
+            "de": null
+          },
+          "right": {
+            "en": "192.168.0.96 /27",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "Network D",
+            "de": null
+          },
+          "right": {
+            "en": "192.168.0.80 /30",
+            "de": null
+          }
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-11-13/q017.png"
+    },
+    {
+      "id": "modules-11-13-q018",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 18,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.3.1",
+      "question": {
+        "en": "A high school in New York (school A) is using videoconferencing technology to establish student interactions with another high school (school B) in Russia. The videoconferencing is conducted between two end devices through the Internet. The network administrator of school A configures the end device with the IP address 209.165.201.10. The administrator sends a request for the IP address for the end device in school B and the response is 192.168.25.10. Neither school is using a VPN. The administrator knows immediately that this IP will not work. Why?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.3.1 The IP address 192.168.25.10 is an IPv4 private address. This address will not be routed over the Internet, so school A will not be able to reach school B. Because the address is a private one, it can be used freely on an internal network. As long as no two devices on the internal network are assigned the same private IP, there is no IP conflict issue. Devices that are assigned a private IP will need to use NAT in order to communicate over the Internet.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "This is a loopback address.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "This is a link-local address.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "This is a private IP address.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "There is an IP address conflict.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q019",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 19,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "question": {
+        "en": "Which three addresses are valid public addresses? (Choose three.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "198.133.219.17",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.1.245",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.15.250.5",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "128.107.12.117",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "172.31.1.25",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "64.104.78.227",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "Explanation:Topic 11.3.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o8",
+          "text": {
+            "en": "The ranges of private IPv4 addresses are as folllows:",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o9",
+          "text": {
+            "en": "10.0.0.0 – 10.255.255.255",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o10",
+          "text": {
+            "en": "172.16.0.0 – 172.31.255.255",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o11",
+          "text": {
+            "en": "192.168.0.0 – 192.168.255.255",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q020",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 20,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.2.2",
+      "question": {
+        "en": "A message is sent to all hosts on a remote network. Which type of message is it?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.2.2 A directed broadcast is a message sent to all hosts on a specific network. It is useful for sending a broadcast to all hosts on a nonlocal network. A multicast message is a message sent to a selected group of hosts that are part of a subscribing multicast group. A limited broadcast is used for a communication that is limited to the hosts on the local network. A unicast message is a message sent from one host to another.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "limited broadcast",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "multicast",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "directed broadcast",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "unicast",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q021",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 21,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.8.3",
+      "question": {
+        "en": "A company has a network address of 192.168.1.64 with a subnet mask of 255.255.255.192. The company wants to create two subnetworks that would contain 10 hosts and 18 hosts respectively. Which two networks would achieve that? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.8.3Subnet 192.168.1.64 /27 has 5 bits that are allocated for host addresses and therefore will be able to support 32 addresses, but only 30 valid host IP addresses. Subnet 192.168.1.96/28 has 4 bits for host addresses and will be able to support 16 addresses, but only 14 valid host IP addresses.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "192.168.1.16/28",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.1.64/27",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "192.168.1.128/27",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "192.168.1.96/28",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "192.168.1.192/28",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q022",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 22,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.4.3",
+      "question": {
+        "en": "Which address is a valid IPv6 link-local unicast address?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.4.3 IPv6 LLAs are in the fe80::/10 range. The /10 indicates that the first 10 bits are 1111 1110 10xx xxxx. The first hextet has a range of 1111 1110 1000 0000 (fe80) to 1111 1110 1011 1111 (febf).",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "FEC8:1::FFFF",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "FD80::1:1234",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "FE80::1:4545:6578:ABC1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "FE0A::100:7788:998F",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "FC90:5678:4251:FFFF",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q023",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 23,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which of these addresses is the shortest abbreviation for the IP address: 3FFE:1044:0000:0000:00AB:0000:0000:0057?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2 The rules for reducing the notation of IPv6 addresses are: 1. Omit any leading 0s (zeros) in any hextet. 2. Replace any single, contiguous string of one or more 16-bit hextets consisting of all zeros with a double colon (::) . 3. The double colon (::) can only be used once within an address.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "3FFE:1044::AB::57",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "3FFE:1044::00AB::0057",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "3FFE:1044:0:0:AB::57",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "3FFE:1044:0:0:00AB::0057",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "3FFE:1044:0000:0000:00AB::57",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "3FFE:1044:0000:0000:00AB::0057",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q024",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 24,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "question": {
+        "en": "A network administrator has received the IPv6 prefix 2001:DB8::/48 for subnetting. Assuming the administrator does not subnet into the interface ID portion of the address space, how many subnets can the administrator create from the /48 prefix?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "16",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "256",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "4096",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "65536",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 12.8.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "With a network prefix of 48, there will be 16 bits available for subnetting because the interface ID starts at bit 64. Sixteen bits will yield 65536 subnets.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q025",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 25,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "question": {
+        "en": "Given IPv6 address prefix 2001:db8::/48, what will be the last subnet that is created if the subnet prefix is changed to /52?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2001:db8:0:f00::/52",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2001:db8:0:8000::/52",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2001:db8:0:f::/52",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2001:db8:0:f000::/52",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 12.8.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Prefix 2001:db8::/48 has 48 network bits. If we subnet to a /52, we are moving the network boundary four bits to the right and creating 16 subnets. The first subnet is 2001:db8::/52 the last subnet is 2001:db8:0:f000::/52.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q026",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 26,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "question": {
+        "en": "Consider the following range of addresses:2001:0DB8:BC15:00A0:0000:: 2001:0DB8:BC15:00A1:0000:: 2001:0DB8:BC15:00A2:0000:: … 2001:0DB8:BC15:00AF:0000::The prefix-length for the range of addresses is",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "/60 .",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Explanation:Topic 12.2.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "All the addresses have the part 2001:0DB8:BC15:00A in common. Each number or letter in the address represents 4 bits, so the prefix-length is /60.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q027",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 27,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.3.7",
+      "question": {
+        "en": "What type of IPv6 address is FE80::1?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.3.7 Link-local IPv6 addresses start with FE80::/10, which is any address from FE80:: to FEBF::. Link-local addresses are used extensively in IPv6 and allow directly connected devices to communicate with each other on the link they share.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "loopback",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "link-local",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "multicast",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "global unicast",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q028",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 28,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.8.1",
+      "question": {
+        "en": "Refer to the exhibit. A company is deploying an IPv6 addressing scheme for its network. The company design document indicates that the subnet portion of the IPv6 addresses is used for the new hierarchical network design, with the site subsection to represent multiple geographical sites of the company, the sub-site section to represent multiple campuses at each site, and the subnet section to indicate each network segment separated by routers. With such a scheme, what is the maximum number of subnets achieved per sub-site?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.8.1 Because only one hexadecimal character is used to represent the subnet, that one character can represent 16 different values 0 through F.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Refer to the exhibit. A company is deploying an IPv6 addressing scheme for its network. The company design document indicates that the subnet portion of the IPv6 addresses is used for the new hierarchical network design, with the s ite subsection to represent multiple geographical sites of the company, the s ub-site section to represent multiple campuses at each site, and the s ubnet section to indicate each network segment separated by routers. With such a scheme, what is the maximum number of subnets achieved per sub-site ?",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "0",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "4",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "16",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "256",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-11-13/q028.png"
+    },
+    {
+      "id": "modules-11-13-q029",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 29,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.5.6",
+      "question": {
+        "en": "What is used in the EUI-64 process to create an IPv6 interface ID on an IPv6 enabled interface?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.5.6 The EUI-64 process uses the MAC address of an interface to construct an interface ID (IID). Because the MAC address is only 48 bits in length, 16 additional bits (FF:FE) must be added to the MAC address to create the full 64-bit interface ID.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the MAC address of the IPv6 enabled interface",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "a randomly generated 64-bit hexadecimal address",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "an IPv6 address that is provided by a DHCPv6 server",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "an IPv4 address that is configured on the interface",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q030",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 30,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.8.1",
+      "question": {
+        "en": "What is the prefix for the host address 2001:DB8:BC15:A:12AB::1/64?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.8.1The network portion, or prefix, of an IPv6 address is identified through the prefix length. A /64 prefix length indicates that the first 64 bits of the IPv6 address is the network portion. Hence the prefix is 2001:DB8:BC15:A.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2001:DB8:BC15",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2001:DB8:BC15:A",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2001:DB8:BC15:A:1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2001:DB8:BC15:A:12",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q031",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 31,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.7.2",
+      "question": {
+        "en": "An IPv6 enabled device sends a data packet with the destination address of FF02::1. What is the target of this packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.7.2This address is one of the assigned IPv6 multicast addresses. Packets addressed to FF02::1 are for all IPv6 enabled devices on the link or network. FF02::2 is for all IPv6 routers that exist on the network.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the one IPv6 device on the link that has been uniquely configured with this address",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "all IPv6 enabled devices on the local link or network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "only IPv6 DHCP servers",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "only IPv6 configured routers",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q032",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 32,
+      "type": "match",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.3.3",
+      "question": {
+        "en": "Match the IPv6 address with the IPv6 address type. (Not all options are used.)Place the options in the following order:",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.3.3 FF02::1:FFAE:F85F is a solicited node multicast address. 2001:DB8::BAF:3F57:FE94 is a global unicast address. FF02::1 is the all node multicast address. Packets sent to this address will be received by all IPv6 hosts on the local link. ::1 is the IPv6 loopback address. There are no examples of link local or unique local addresses provided.",
+        "de": null
+      },
+      "matchPairs": [
+        {
+          "left": {
+            "en": "::1",
+            "de": null
+          },
+          "right": {
+            "en": "loopback",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "FF02::1",
+            "de": null
+          },
+          "right": {
+            "en": "all node multicast",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "FF02::1:FFAE:F85F",
+            "de": null
+          },
+          "right": {
+            "en": "solicited node multicast",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "2001:DB8::BAF:3F57:FE94",
+            "de": null
+          },
+          "right": {
+            "en": "global unicast",
+            "de": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q033",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 33,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.3.7",
+      "question": {
+        "en": "Which IPv6 prefix is reserved for communication between devices on the same link?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.3.7 IPv6 link-local unicast addresses are in the FE80::/10 prefix range and are not routable. They are used only for communications between devices on the same link.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "FC00::/7",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2001::/32",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "FE80::/10",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "FDFF::/7",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q034",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 34,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.3.1",
+      "question": {
+        "en": "Which type of IPv6 address refers to any unicast address that is assigned to multiple hosts?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.3.1The IPv6 specifications include anycast addresses. An anycast address is any unicast IPv6 address that is assigned to multiple devices.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "unique local",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "global unicast",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "link-local",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "anycast",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q035",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 35,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.3.3",
+      "question": {
+        "en": "What are two types of IPv6 unicast addresses? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.3.3 Multicast, anycast, and unicast are types of IPv6 addresses. There is no broadcast address in IPv6. Loopback and link-local are specific types of unicast addresses.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "multicast",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "loopback",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "link-local",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "anycast",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "broadcast",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q036",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 36,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.5.2",
+      "question": {
+        "en": "Which service provides dynamic global IPv6 addressing to end devices without using a server that keeps a record of available IPv6 addresses?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.5.2 Using stateless address autoconfiguration (SLAAC), a PC can solicit a router and receive the prefix length of the network. From this information the PC can then create its own IPv6 global unicast address.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "stateful DHCPv6",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "SLAAC",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "static IPv6 addressing",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "stateless DHCPv6",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q037",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 37,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.5.1",
+      "question": {
+        "en": "Which protocol supports Stateless Address Autoconfiguration (SLAAC) for dynamic assignment of IPv6 addresses to a host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.5.1 SLAAC uses ICMPv6 messages when dynamically assigning an IPv6 address to a host. DHCPv6 is an alternate method of assigning an IPv6 addresses to a host. ARPv6 does not exist. Neighbor Discovery Protocol (NDP) provides the functionality of ARP for IPv6 networks. UDP is the transport layer protocol used by DHCPv6.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ARPv6",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "DHCPv6",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "ICMPv6",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "UDP",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q038",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 38,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.1.2",
+      "question": {
+        "en": "Three methods allow IPv6 and IPv4 to co-exist. Match each method with its description. (Not all options are used.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.1.2 The term for the method that allows for the coexistence of the two types of packets on a single network is dual-stack. Tunneling allows for the IPv6 packet to be transported inside IPv4 packets. An IP packet can also be converted from version 6 to version 4 and vice versa. DHCP is a protocol that is used for allocating network parameters to hosts on an IP network",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-11-13-q039",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 39,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.2.2",
+      "question": {
+        "en": "A technician uses the ping 127.0.0.1 command. What is the technician testing?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the TCP/IP stack on a network host",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "connectivity between two adjacent Cisco devices",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "connectivity between a PC and the default gateway",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "connectivity between two PCs on the same network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "physical connectivity of a particular PC and the network",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q040",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 40,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.2.5",
+      "question": {
+        "en": "Refer to the exhibit. An administrator is trying to troubleshoot connectivity between PC1 and PC2 and uses the tracert command from PC1 to do it. Based on the displayed output, where should the administrator begin troubleshooting?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.2.5 Tracert is used to trace the path a packet takes. The only successful response was from the first device along the path on the same LAN as the sending host. The first device is the default gateway on router R1. The administrator should therefore start troubleshooting at R1.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "PC2",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "R1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SW2",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "R2",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "SW1",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-11-13/q040.png"
+    },
+    {
+      "id": "modules-11-13-q041",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 41,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.2.1",
+      "question": {
+        "en": "Which protocol is used by the traceroute command to send and receive echo-requests and echo-replies?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.2.1 Traceroute uses the ICMP (Internet Control Message Protocol) to send and receive echo-request and echo-reply messages.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "SNMP",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "ICMP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Telnet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "TCP",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q042",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 42,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.2.5",
+      "question": {
+        "en": "Which ICMPv6 message is sent when the IPv6 hop limit field of a packet is decremented to zero and the packet cannot be forwarded?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.2.5 ICMPv6 uses the hop limit field in the IPv6 packet header to determine if the packet has expired. If the hop limit field has reached zero, a router will send a time exceeded message back towards the source indicating that the router cannot forward the packet.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "network unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "time exceeded",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "protocol unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "port unreachable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q043",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 43,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.2.5",
+      "question": {
+        "en": "A user executes a traceroute over IPv6. At what point would a router in the path to the destination device drop the packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.2.5 When a traceroute is performed, the value in the Hop Limit field of an IPv6 packet determines how many router hops the packet can travel. Once the Hop Limit field reaches a value of zero, it can no longer be forwarded and the receiving router will drop the packet.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "when the value of the Hop Limit field reaches 255",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "when the value of the Hop Limit field reaches zero",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "when the router receives an ICMP time exceeded message",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "when the target host responds with an ICMP echo reply message",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q044",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 44,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.1",
+      "question": {
+        "en": "What is the purpose of ICMP messages?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.1 The purpose of ICMP messages is to provide feedback about issues that are related to the processing of IP packets.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to inform routers about network topology changes",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "to ensure the delivery of an IP packet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "to provide feedback of IP packet transmissions",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "to monitor the process of a domain name to IP address resolution",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q045",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 45,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.2.5",
+      "question": {
+        "en": "What source IP address does a router use by default when the traceroute command is issued?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.2.5 When sending an echo request message, a router will use the IP address of the exit interface as the source IP address. This default behavior can be changed by using an extended ping and specifying a specific source IP address.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the highest configured IP address on the router",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "a loopback IP address",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "the IP address of the outbound interface",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "the lowest configured IP address on the router",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q046",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 46,
+      "type": "match",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.3.1",
+      "question": {
+        "en": "Match each description with an appropriate IP address. (Not all options are used.)Place the options in the following order:",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.3.1 Link-Local addresses are assigned automatically by the OS environment and are located in the block 169.254.0.0/16. The private addresses ranges are 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16. TEST-NET addresses belong to the range 192.0.2.0/24. The addresses in the block 240.0.0.0 to 255.255.255.254 are reserved as experimental addresses. Loopback addresses belong to the block 127.0.0.0/8.",
+        "de": null
+      },
+      "matchPairs": [
+        {
+          "left": {
+            "en": "a link-local address",
+            "de": null
+          },
+          "right": {
+            "en": "169.254.1.5",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "a TEST-NET address",
+            "de": null
+          },
+          "right": {
+            "en": "192.0.2.123",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "an experimental address",
+            "de": null
+          },
+          "right": {
+            "en": "240.2.6.255",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "a private address",
+            "de": null
+          },
+          "right": {
+            "en": "172.19.20.5",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "a loopback address",
+            "de": null
+          },
+          "right": {
+            "en": "127.0.0.1",
+            "de": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q047",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 47,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping 192.135.250.103 command and receives a response that includes a code of 1. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "host unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "protocol unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "port unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "network unreachable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q048",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 48,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.5.1",
+      "question": {
+        "en": "Which subnet would include the address 192.168.1.96 as a usable host address?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.5.1 For the subnet of 192.168.1.64/26, there are 6 bits for host addresses, yielding 64 possible addresses. However, the first and last subnets are the network and broadcast addresses for this subnet. Therefore, the range of host addresses for this subnet is 192.168.1.65 to 192.168.1.126. The other subnets do not contain the address 192.168.1.96 as a valid host address.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "192.168.1.64/26",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.1.32/27",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "192.168.1.32/28",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "192.168.1.64/29",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q049",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 49,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.2.6",
+      "question": {
+        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.CCNA 1 v7 Modules 11 – 13 IP Addressing Exam Answers Full Modules 11 – 13 IP Addressing Exam 1 file(s) 221.48 KB DownloadWhat are the three IPv6 addresses displayed when the route from PC1 to PC2 is traced? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.2.6 Using the ipv6configcommand on PC2 displays the IPv6 address of PC2, which is 2001:DB8:1:4::A. The IPV6 link-local address, FE80::260:70FF:FE34:6930, is not used in route tracing. Using thetracert 2001:DB8:1:4::Acommand on PC1 displays four addresses: 2001:DB8:1:1::1, 2001:DB8:1:2::1 , 2001:DB8:1:3::2, and 2001:DB8:1:4::A.",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-11-13-q050",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 50,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.2.2",
+      "question": {
+        "en": "A host is transmitting a broadcast. Which host or hosts will receive it?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.2.2A broadcast is delivered to every host that has an IP address within the same network.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "all hosts in the same subnet",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "a specially defined group of hosts",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "the closest neighbor on the same network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "all hosts on the Internet",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q051",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 51,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.2.1",
+      "question": {
+        "en": "A host is transmitting a unicast. Which host or hosts will receive it?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.2.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "one specific host",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "a specially defined group of hosts",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "all hosts on the Internet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "the closest neighbor on the same network",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q052",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 52,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping 2001:db8:FACE:39::10 command and receives a response that includes a code of 3. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "address unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "network unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "host unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "protocol unreachable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q053",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 53,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.2.3",
+      "question": {
+        "en": "A host is transmitting a multicast. Which host or hosts will receive it?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.2.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "a specially defined group of hosts",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "the closest neighbor on the same network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "one specific host",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "directly connected network devices",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q060",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 60,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address 2001:0db8:0000:0000:0000:a0b0:0008:0001?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2001:db8::a0b0:8:1",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2001:db8::ab8:1:0:1000",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2001:db80:0:1::80:1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2001:db80:::1::80:1",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q061",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 61,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address fe80:09ea:0000:2200:0000:0000:0fe0:0290?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "fe80:9ea:0:2200::fe0:290",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "fe80:9:20::b000:290",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "fe80:9ea0::2020:0:bf:e0:9290",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "fe80:9ea0::2020::bf:e0:9290",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q062",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 62,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address 2002:0042:0010:c400:0000:0000:0000:0909?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2002:42:10:c400::909",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "200:420:110:c4b::910:0:90",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2002:4200::25:1090:0:99",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2002:42::25:1090:0:99",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q063",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 63,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address 2001:0db8:0000:0000:0ab8:0001:0000:1000?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2001:db8::ab8:1:0:1000",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2001:db8::a0b0:8:1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2001:db8:1::ab8:0:1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2001:db8:0:1::8:1",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q064",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 64,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address 2002:0420:00c4:1008:0025:0190:0000:0990?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2002:420:c4:1008:25:190::990",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2002:42:10:c400::909",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2002:4200::25:1090:0:99",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2002:42::25:1090:0:99",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q065",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 65,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address 2001:0db8:0000:0000:0000:a0b0:0008:0001?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2001:db8::a0b0:8:1",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2001:db8:1::ab8:0:1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2001:db8::ab8:1:0:1000",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2001:db8:0:1::8:1",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q066",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 66,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address fe80:0000:0000:0000:0220:0b3f:f0e0:0029?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "fe80::220:b3f:f0e0:29",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "fe80:9ea:0:2200::fe0:290",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "fe80:9ea0::2020:0:bf:e0:9290",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "fe80:9ea0::2020::bf:e0:9290",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q067",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 67,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address 2001:0db8:0000:0000:0000:a0b0:0008:0001?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2001:db8::a0b0:8:1",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2001:db8::ab8:1:0:1000",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2001:db80:0:1::80:1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2001:db8:0:1::8:1",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q068",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 68,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address 2002:0042:0010:c400:0000:0000:0000:0909?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "2002:42:10:c400::909",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "2002:4200::25:1090:0:99",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "2002:420:c4:1008:25:190::990",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "2002:42::25:1090:0:99",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q069",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 69,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.2",
+      "question": {
+        "en": "Which is the compressed format of the IPv6 address fe80:09ea:0000:2200:0000:0000:0fe0:0290?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "fe80:9ea:0:2200::fe0:290",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "fe80:9ea0::2020:0:bf:e0:9290",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "fe80::220:b3f:f0e0:29",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "fe80::0220:0b3f:f0e0:0029",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q070",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 70,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping 2001:db8:FACE:39::10 command and receives a response that includes a code of 2. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "beyond scope of the source address",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "communication with the destination administratively prohibited",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "address unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "no route to destination",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q071",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 71,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping 192.135.250.103 command and receives a response that includes a code of 1. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "host unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "beyond scope of the source address",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "address unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "communication with the destination administratively prohibited",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q072",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 72,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping fe80:65ab:dcc1::100 command and receives a response that includes a code of 3. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "address unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "communication with the destination administratively prohibited",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "beyond scope of the source address",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "no route to destination",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q073",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 73,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping 10.10.14.67 command and receives a response that includes a code of 0. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "network unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "protocol unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "port unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "host unreachable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q074",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 74,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping fe80:65ab:dcc1::100 command and receives a response that includes a code of 4. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "port unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "host unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "protocol unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "network unreachable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q075",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 75,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping 198.133.219.8 command and receives a response that includes a code of 0. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "network unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "protocol unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "port unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "host unreachable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q076",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 76,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping 2001:db8:3040:114::88 command and receives a response that includes a code of 4. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "port unreachable",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "host unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "protocol unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "network unreachable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-11-13-q077",
+      "packId": "modules-11-13",
+      "modules": [
+        11,
+        12,
+        13
+      ],
+      "number": 77,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "13.1.3",
+      "question": {
+        "en": "A user issues a ping 2001:db8:FACE:39::10 command and receives a response that includes a code of 2. What does this code represent?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 13.1.3 Post navigation ← Previous Article CCNA 1 v7 Modules 8 – 10: Communicating Between Networks Exam Answers Next Article → CCNA 1 v7 Modules 14 – 15: Network Application Communications Exam Answers Subscribe Notify of new follow-up comments new replies to my comments Label {} [+] Name* Email* &#916; Label {} [+] Name* Email* &#916; 110 Corrections & Clarifications View Comments Load More Comments",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "beyond scope of the source address",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "host unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "protocol unreachable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "network unreachable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

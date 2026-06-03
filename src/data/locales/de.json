@@ -769,13 +769,25 @@
     "gold_kernel": { "title": "Gold Kernel", "body": "Stabile Basis — vertiefen lohnt sich" },
     "platinum_root": { "title": "Platinum Root", "body": "AP1-Themen sitzen, AP2 kommt in Fokus" },
     "diamond_architect": { "title": "Diamond Architect", "body": "Breite Abdeckung — prüfungsnah" },
-    "apex_nexus": { "title": "Apex Nexus", "body": "Fast alles einmal sicher gelöst" },
-    "master_override": { "title": "Master Override", "body": "Plattform gemeistert — Prüfungsfit" },
+    "master_override": { "title": "Master Override", "body": "Fast alles einmal sicher gelöst — kurz vor dem Gipfel" },
+    "apex_nexus": { "title": "Apex Nexus", "body": "Höchster Lern-Rang — Plattform gemeistert, prüfungsfit" },
     "defaultPilot": "Lernender",
     "rankUpKicker": "Rang aufgestiegen",
     "rankUpLead": "Dein Fortschritt in Übungen und Lernpunkten hat dich auf die nächste Stufe der Karriereleiter gebracht.",
     "rankUpCert": "Rang-Urkunde (PDF)",
     "rankUpContinue": "Weiter",
     "victoryLabel": "Lern-Rang"
+  },
+  "cisco": {
+    "hubTitle": "CCNA: Introduction to Networks",
+    "courseCode": "2526-E2FI2-CCNA1-ITNg · ITN v7.02",
+    "hubLead": "Original Checkpoint-Fragen (1:1) für alle 17 Module — MC mit Exhibit-Grafiken",
+    "modules17": "17 Module · 6 Checkpoint-Prüfungen",
+    "mcCount": "{n} Multiple-Choice-Fragen",
+    "quizCount": "{n} Quiz-Fragen (MC + Zuordnung)",
+    "moduleRange": "Module {from}–{to}",
+    "mcPackCount": "{n} MC-Fragen",
+    "ladderAria": "Alle 17 ITN-Module",
+    "verbatimNote": "Fragen unverändert (EN). Deutsche Übersetzung folgt als zweite Spur. Inhalte nur für den eigenen Lernkontext."
   }
 }

@@ -37,6 +37,9 @@ public/assets/
 dist/
 *.map
 
+# Cisco HTML-Rohimport (JSON in src/cisco/.../packs wird committed)
+imports/cisco/html/
+
 # IHK-PDF OCR-Arbeitsordner (lokal, nicht deployen)
 exam-ocr-pages/
 .exam-pdf-extract.txt

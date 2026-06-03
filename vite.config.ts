@@ -107,8 +107,25 @@ function ensurePublicAssetsPlugin(): Plugin {
             rankCount += 1;
           }
         }
+        let ciscoExhibitCount = 0;
+        const srcCiscoExhibits = join(srcDir, "cisco", "exhibits");
+        if (existsSync(srcCiscoExhibits)) {
+          const copyTree = (from: string, to: string) => {
+            mkdirSync(to, { recursive: true });
+            for (const ent of readdirSync(from, { withFileTypes: true })) {
+              const sf = join(from, ent.name);
+              const df = join(to, ent.name);
+              if (ent.isDirectory()) copyTree(sf, df);
+              else {
+                copyFileSync(sf, df);
+                ciscoExhibitCount += 1;
+              }
+            }
+          };
+          copyTree(srcCiscoExhibits, join(destDir, "cisco", "exhibits"));
+        }
         console.warn(
-          `[ensure-public-assets] CI Slim Deploy — ${REQUIRED_DEPLOY_ASSETS.length} Kern-Assets + ${portraitCount} Portrait-PNGs + ${rankCount} Rang-Badges kopiert`,
+          `[ensure-public-assets] CI Slim Deploy — ${REQUIRED_DEPLOY_ASSETS.length} Kern-Assets + ${portraitCount} Portrait-PNGs + ${rankCount} Rang-Badges + ${ciscoExhibitCount} Cisco-Exhibits kopiert`,
         );
         return;
       }

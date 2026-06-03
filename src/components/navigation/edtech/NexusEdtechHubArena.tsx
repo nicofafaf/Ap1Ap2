@@ -21,6 +21,7 @@ import { cinematicGhostBtn, cinematicPrimaryBtn } from "../../../lib/ui/nexusCin
 import { EdtechExamReadinessCard } from "./EdtechExamReadinessCard";
 import { EdtechSommer2026ExamCard } from "./EdtechSommer2026ExamCard";
 import { EdtechLearningRankPanel } from "./EdtechLearningRankPanel";
+import { CiscoCcnaHubPanel } from "./CiscoCcnaHubPanel";
 import { EdtechLfThumb } from "./EdtechLfThumb";
 import { StreakCelebration } from "./StreakCelebration";
 import {
@@ -288,6 +289,14 @@ export function NexusEdtechHubArena({
         <EdtechLearningRankPanel
           onBeginRanked={onBeginRanked}
           onOpenLadder={() => mapWithExtras({ overlay: "LEADERBOARD" })}
+        />
+      </motion.section>
+
+      <motion.section variants={EDTECH_CARD}>
+        <CiscoCcnaHubPanel
+          onSessionStart={() => {
+            onBeginLearningField?.(10);
+          }}
         />
       </motion.section>
 

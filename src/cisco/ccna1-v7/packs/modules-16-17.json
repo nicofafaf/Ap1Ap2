@@ -1,0 +1,3688 @@
+{
+  "id": "modules-16-17",
+  "course": "ccna1-itn-v7",
+  "title": {
+    "en": "Modules 16–17: Building and Securing a Small Network",
+    "de": "Module 16–17: Kleines Netzwerk aufbauen und absichern"
+  },
+  "moduleRange": [
+    16,
+    17
+  ],
+  "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+  "itemCount": 67,
+  "items": [
+    {
+      "id": "modules-16-17-q001",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 1,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "Which component is designed to protect against unauthorized communications to and from a computer?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "security center",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "port scanner",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "antimalware",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "antivirus",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "firewall",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Explanation:Topic 16.3.5",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q002",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 2,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.3",
+      "question": {
+        "en": "Which command will block login attempts on RouterA for a period of 30 seconds if there are 2 failed login attempts within 10 seconds?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "RouterA(config)# login block-for 10 attempts 2 within 30",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "RouterA(config)# login block-for 30 attempts 2 within 10",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "RouterA(config)# login block-for 2 attempts 30 within 10",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "RouterA(config)# login block-for 30 attempts 10 within 2",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q003",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 3,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.3.4",
+      "question": {
+        "en": "What is the purpose of the network security accounting function?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.3.4",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to require users to prove who they are",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "to determine which resources a user can access",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "to keep track of the actions of a user",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "to provide challenge and response questions",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q004",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 4,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.2.2",
+      "question": {
+        "en": "What type of attack may involve the use of tools such as nslookup and fping?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.2.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "access attack",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "reconnaissance attack",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "denial of service attack",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "worm attack",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q005",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 5,
+      "type": "match",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.1.2",
+      "question": {
+        "en": "Match each weakness with an example. (Not all options are used.)Place the options in the following order:",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.1.2An employee who is trying to guess the password of another user exemplifies not a weakness but an attack.",
+        "de": null
+      },
+      "matchPairs": [
+        {
+          "left": {
+            "en": "security policy weakness",
+            "de": null
+          },
+          "right": {
+            "en": "The network administrator did not fully consider the implications of unauthorized users accessing the network.",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "configuration weakness",
+            "de": null
+          },
+          "right": {
+            "en": "When implementing an access list on a router, a network engineer did not filter a type of malicous traffic.",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "technological weakness",
+            "de": null
+          },
+          "right": {
+            "en": "A nework engineer is examining the operating system of a network device for vulnerabilities.",
+            "de": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q006",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 6,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "Match the type of information security threat to the scenario. (Not all options are used.)",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-16-17-q007",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 7,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.2.1",
+      "question": {
+        "en": "Which example of malicious code would be classified as a Trojan horse?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.2.1A Trojan horse is malicious code that has been written specifically to look like a legitimate program. This is in contrast to a virus, which simply attaches itself to an actual legitimate program. Viruses require manual intervention from a user to spread from one system to another, while a worm is able to spread automatically between systems by exploiting vulnerabilities on those devices.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "malware that was written to look like a video game",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "malware that requires manual user intervention to spread between systems",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "malware that attaches itself to a legitimate program and spreads to other programs when launched",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "malware that can automatically spread from one system to another by exploiting a vulnerability in the target",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q008",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 8,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.2.1",
+      "question": {
+        "en": "What is the difference between a virus and a worm?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.2.1 Worms are able to self-replicate and exploit vulnerabilities on computer networks without user participation.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Viruses self-replicate but worms do not.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Worms self-replicate but viruses do not.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Worms require a host file but viruses do not.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Viruses hide in legitimate programs but worms do not.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q009",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 9,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.2.3",
+      "question": {
+        "en": "Which attack involves a compromise of data that occurs between two end points?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.2.3 Threat actors frequently attempt to access devices over the internet through communication protocols. Some of the most popular remote exploits are as follows: * Man-In-the-middle attack (MITM)– The threat actor gets between devices in the system and intercepts all of the data being transmitted. This information could simply be collected or modified for a specific purpose and delivered to its original destination. * Eavesdropping attack– When devices are being installed, the threat actor can intercept data such as security keys that are used by constrained devices to establish communications once they are up and running. * SQL injection (SQLi)– Threat actors uses a flaw in the Structured Query Language (SQL) application that allows them to have access to modify the data or gain administrative privileges. * Routing attack– A threat actor could either place a rogue routing device on the network or modify routing packets to manipulate routers to send all packets to the chosen destination of the threat actor. The threat actor could then drop specific packets, known as selective forwarding, or drop all packets, known as a sinkhole attack.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "denial-of-service",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "man-in-the-middle attack",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "extraction of security parameters",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "username enumeration",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q010",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 10,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.2.2",
+      "question": {
+        "en": "Which type of attack involves an adversary attempting to gather information about a network to identify vulnerabilities?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.2.2Reconnaissance is a type of attack where the intruder is looking for wireless network vulnerabilities.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "reconnaissance",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "DoS",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "dictionary",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "man-in-the-middle",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q011",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 11,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.3.6",
+      "question": {
+        "en": "Match the description to the type of firewall filtering. (Not all options are used.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.3.6Stateful packet inspection: Prevents or allows access based on whether the traffic is in response to requests from internal hosts.URL filtering: Prevents or allows access based on web addresses or keywords.Application filtering: Prevents or allows access based on the port numbers used in the request.Packet filtering: Prevents or allows access based on the IP or MAC addresses of the source and destination.",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-16-17-q012",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 12,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.3.4",
+      "question": {
+        "en": "What is the purpose of the network security authentication function?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.3.4Authentication, authorization, and accounting are network services collectively known as AAA. Authentication requires users to prove who they are. Authorization determines which resources the user can access. Accounting keeps track of the actions of the user.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to require users to prove who they are",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "to determine which resources a user can access",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "to keep track of the actions of a user",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "to provide challenge and response questions",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q013",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 13,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.3.6",
+      "question": {
+        "en": "Which firewall feature is used to ensure that packets coming into a network are legitimate responses to requests initiated from internal hosts?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.3.6Stateful packet inspection on a firewall checks that incoming packets are actually legitimate responses to requests originating from hosts inside the network. Packet filtering can be used to permit or deny access to resources based on IP or MAC address. Application filtering can permit or deny access based on port number. URL filtering is used to permit or deny access based on URL or on keywords.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "stateful packet inspection",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "URL filtering",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "application filtering",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "packet filtering",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q014",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 14,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "When applied to a router, which command would help mitigate brute-force password attacks against the router?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "exec-timeout 30",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "service password-encryption",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "banner motd $Max failed logins = 5$",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "login block-for 60 attempts 5 within 60",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 16.4.3",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Thelogin block-forcommand sets a limit on the maximum number of failed login attempts allowed within a defined period of time. If this limit is exceeded, no further logins are allowed for the specified period of time. This helps to mitigate brute-force password cracking since it will significantly increase the amount of time required to crack a password. Theexec-timeoutcommand specifies how long the session can be idle before the user is disconnected. Theservice password-encryptioncommand encrypts the passwords in the running configuration. Thebanner motdcommand displays a message to users who are logging in to the device.",
+            "de": null
+          },
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q015",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 15,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.4",
+      "question": {
+        "en": "Identify the steps needed to configure a switch for SSH. The answer order does not matter. (Not all options are used.)ITN (Version 7.00) – Building and Securing a Small Network Exam",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.4 The loginandpassword ciscocommands are used with Telnet switch configuration, not SSH configuration.",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-16-17-q016",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 16,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "What feature of SSH makes it more secure than Telnet for a device management connection?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "confidentiality with IPsec",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "stronger password requirement",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "random one-time port connection",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "login information and data encryption",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 16.4.4Secure Shell (SSH) is a protocol that provides a secure management connection to a remote device. SSH provides security by providing encryption for both authentication (username and password) and the transmitted data. Telnet is a protocol that uses unsecure plaintext transmission. SSH is assigned to TCP port 22 by default. Although this port can be changed in the SSH server configuration, the port is not dynamically changed. SSH does not use IPsec.",
+            "de": null
+          },
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q017",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 17,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.4",
+      "question": {
+        "en": "What is the advantage of using SSH over Telnet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.4 SSH provides a secure method for remote access to hosts by encrypting network traffic between the SSH client and remote hosts. Although both Telnet and SSH request authentication before a connection is established, Telnet does not support encryption of login credentials.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "SSH is easier to use.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "SSH operates faster than Telnet.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SSH provides secure communications to access hosts.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "SSH supports authentication for a connection request.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q018",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 18,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.3.4",
+      "question": {
+        "en": "What is the role of an IPS?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.3.4 An intrusion prevention system (IPS) provides real-time detection and blocking of attacks.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "detecting and blocking of attacks in real time",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "connecting global threat information to Cisco network security devices",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "authenticating and validating traffic",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "filtering of nefarious websites",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q019",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 19,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "A user is redesigning a network for a small company and wants to ensure security at a reasonable price. The user deploys a new application-aware firewall with intrusion detection capabilities on the ISP connection. The user installs a second firewall to separate the company network from the public network. Additionally, the user installs an IPS on the internal network of the company. What approach is the user implementing?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "attack based",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "risk based",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "structured",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "layered",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 16.3.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Using different defenses at various points of the network creates a layered approach.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q020",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 20,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "What is an accurate description of redundancy?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "configuring a router with a complete MAC address database to ensure that all frames can be forwarded to the correct destination",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "configuring a switch with proper security to ensure that all traffic forwarded through an interface is filtered",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "designing a network to use multiple virtual devices to ensure that all traffic uses the best path through the internetwork",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "designing a network to use multiple paths between switches to ensure there is no single point of failure",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 17.1.4",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Redundancy attempts to remove any single point of failure in a network by using multiple physically cabled paths between switches in the network.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q021",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 21,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.1.5",
+      "question": {
+        "en": "A network administrator is upgrading a small business network to give high priority to real-time applications traffic. What two types of network services is the network administrator trying to accommodate? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.1.5Streaming media, such as video, and voice traffic, are both examples of real-time traffic. Real-time traffic needs higher priority through the network than other types of traffic because it is very sensitive to network delay and latency.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "voice",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "video",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "instant messaging",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "FTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "SNMP",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q022",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 22,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.3.2",
+      "question": {
+        "en": "What is the purpose of a small company using a protocol analyzer utility to capture network traffic on the network segments where the company is considering a network upgrade?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.3.2 An important prerequisite for considering network growth is to understand the type and amount of traffic that is crossing the network as well as the current traffic flow. By using a protocol analyzer in each network segment, the network administrator can document and analyze the network traffic pattern for each segment, which becomes the base in determining the needs and means of the network growth.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to identify the source and destination of local network traffic",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "to capture the Internet connection bandwidth requirement",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "to document and analyze network traffic requirements on each network segment",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "to establish a baseline for security analysis after the network is upgraded",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q023",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 23,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.1",
+      "question": {
+        "en": "Refer to the exhibit. An administrator is testing connectivity to a remote device with the IP address 10.1.1.1. What does the output of this command indicate?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.1 In the output of the ping command, an exclamation mark (!) indicates a response was successfully received, a period (.) indicates that the connection timed out while waiting for a reply, and the letter \"U\" indicates that a router along the path did not have a route to the destination and sent an ICMP destination unreachable message back to the source.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Connectivity to the remote device was successful.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "A router along the path did not have a route to the destination.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "A ping packet is being blocked by a security device along the path.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "The connection timed out while waiting for a reply from the remote device.",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-16-17/q023.png"
+    },
+    {
+      "id": "modules-16-17-q024",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 24,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.2",
+      "question": {
+        "en": "Which method is used to send a ping message specifying the source address for the ping?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.2 By issuing thepingcommand without a destination IP address in privileged EXEC mode, the Cisco IOS enters extended ping mode. This allows the user to implement extended commands which include source IP address.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Issue the ping command from within interface configuration mode.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Issue the ping command without specifying a destination IP address.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Issue the ping command without extended commands.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Issue the ping command after shutting down un-needed interfaces.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q025",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 25,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.1",
+      "question": {
+        "en": "A network engineer is analyzing reports from a recently performed network baseline. Which situation would depict a possible latency issue?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.1 While analyzing historical reports an administrator can compare host-to-host timers from thepingcommand and depict possible latency issues.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "a change in the bandwidth according to the show interfaces output",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "a next-hop timeout from a traceroute",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "an increase in host-to-host ping response times",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "a change in the amount of RAM according to the show version output",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q026",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 26,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.1",
+      "question": {
+        "en": "Which statement is true about Cisco IOS ping indicators?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.1 The most common indicators of a ping issued from the Cisco IOS are \"!\", \".\", and \"U\". The \"!\" indicates that the ping completed successfully, verifying connectivity at Layer 3. The \".\" may indicate that a connectivity problem, routing problem, or device security issue exists along the path and that an ICMP destination unreachable message was not provided. The \"U\" indicates that a router along the path may not have had a route to the destination address, and that it responded with an ICMP unreachable message.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "‘!’ indicates that the ping was unsuccessful and that the device may have issues finding a DNS server.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "‘U’ may indicate that a router along the path did not contain a route to the destination address and that the ping was unsuccessful.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "‘.’ indicates that the ping was successful but the response time was longer than normal.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "A combination of ‘.’ and ‘!’ indicates that a router along the path did not have a route to the destination address and responded with an ICMP unreachable message.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q027",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 27,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "A user reports a lack of network connectivity. The technician takes control of the user machine and attempts to ping other computers on the network and these pings fail. The technician pings the default gateway and that also fails. What can be determined for sure by the results of these tests?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The NIC in the PC is bad.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The TCP/IP protocol is not enabled.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The router that is attached to the same network as the workstation is down.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Nothing can be determined for sure at this point.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 17.4.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "In networks today, a failed ping could mean that the other devices on the network are blocking pings. Further investigation such as checking network connectivity from other devices on the same network is warranted.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q028",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 28,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.3",
+      "question": {
+        "en": "A network technician issues the C:&gt; tracert -6 www.cisco.com command on a Windows PC. What is the purpose of the -6 command option?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.3 The -6option in the commandC:&gt; tracert -6 www.cisco.comis used to force the trace to use IPv6.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It forces the trace to use IPv6.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It limits the trace to only 6 hops.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It sets a 6 milliseconds timeout for each replay.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It sends 6 probes within each TTL time period.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q029",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 29,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.3",
+      "question": {
+        "en": "Why would a network administrator use the tracert utility?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.3Thetracertutility is used to identify the path a packet takes from source to destination.Tracertis commonly used when packets are dropped or not reaching a specific destination.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to determine the active TCP connections on a PC",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "to check information about a DNS name in the DNS server",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "to identify where a packet was lost or delayed on a network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "to display the IP address, default gateway, and DNS server address for a PC",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q030",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 30,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.6",
+      "question": {
+        "en": "A ping fails when performed from router R1 to directly connected router R2. The network administrator then proceeds to issue the show cdp neighbors command. Why would the network administrator issue this command if the ping failed between the two routers?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.6 The show cdp neighborscommand can be used to prove that Layer 1 and Layer 2 connectivity exists between two Cisco devices. For example, if two devices have duplicate IP addresses, a ping between the devices will fail, but the output ofshow cdp neighborswill be successful. Theshow cdp neighbors detailcould be used to verify the IP address of the directly connected device in case the same IP address is assigned to the two routers.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The network administrator suspects a virus because the ping command did not work.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The network administrator wants to verify Layer 2 connectivity.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The network administrator wants to verify the IP address configured on router R2.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "The network administrator wants to determine if connectivity can be established from a non-directly connected network.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q031",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 31,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "A network engineer is troubleshooting connectivity issues among interconnected Cisco routers and switches. Which command should the engineer use to find the IP address information, host name, and IOS version of neighboring network devices?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "show version",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "show ip route",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show cdp neighbors detail",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 17.5.6The show cdp neighbors detailcommand reveals much information about neighboring Cisco devices, including the IP address, the capabilities, host name, and IOS version. Theshow interfacesandshow versioncommands display information about the local device.",
+            "de": null
+          },
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q032",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 32,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.5",
+      "question": {
+        "en": "What information about a Cisco router can be verified using the show version command?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.5The value of the configuration register can be verified with the show versioncommand.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the routing protocol version that is enabled",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "the value of the configuration register",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "the operational status of serial interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "the administrative distance used to reach networks",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q033",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 33,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "Which command should be used on a Cisco router or switch to allow log messages to be displayed on remotely connected sessions using Telnet or SSH?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "debug all",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "logging synchronous",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show running-config",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "terminal monitor",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 17.6.4The terminal monitor command is very important to use when log messages appear. Log messages appear by default when a user is directly consoled into a Cisco device, but require the terminal monitor command to be entered when a user is accessing a network device remotely.",
+            "de": null
+          },
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q034",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 34,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.6.4",
+      "question": {
+        "en": "Which command can an administrator issue on a Cisco router to send debug messages to the vty lines?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.6.4 Debug messages, like other IOS log messages, are sent to the console line by default. Sending these messages to the terminal lines requires theterminal monitorcommand.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "terminal monitor",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "logging console",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "logging buffered",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "logging synchronous",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q035",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 35,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.6.1",
+      "question": {
+        "en": "By following a structured troubleshooting approach, a network administrator identified a network issue after a conversation with the user. What is the next step that the administrator should take?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.6.1 A structured network troubleshooting approach should include these steps in sequence: * Identify the problem. * Establish a theory of probable causes. * Test the theory to determine cause. * Establish a plan of action to resolve the issue. * Verify full system functionality and implement preventive measures. * Document findings, actions, and outcomes.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Verify full system functionality.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Test the theory to determine cause.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Establish a theory of probable causes.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Establish a plan of action to resolve the issue.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q036",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 36,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.7.5",
+      "question": {
+        "en": "Users are complaining that they are unable to browse certain websites on the Internet. An administrator can successfully ping a web server via its IP address, but cannot browse to the domain name of the website. Which troubleshooting tool would be most useful in determining where the problem is?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.7.5 The nslookupcommand can be used to look up information about a particular DNS name in the DNS server. The information includes the IP address of the DNS server being used as well as the IP address associated with the specified DNS name. This command can help verify the DNS that is used and if the domain name to IP address resolution works.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "netstat",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "tracert",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "nslookup",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "ipconfig",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q037",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 37,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.7.3",
+      "question": {
+        "en": "An employee complains that a Windows PC cannot connect to the Internet. A network technician issues the ipconfig command on the PC and is shown an IP address of 169.254.10.3. Which two conclusions can be drawn? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.7.3When a Windows PC is configured to obtain an IP address automatically, the PC will try to obtain an IP address from a DHCP server. When the PC cannot contact a DHCP server, Windows will automatically assign an address belonging to the 169.254.0.0/16 range.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The PC cannot contact a DHCP server.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The DNS server address is misconfigured.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The default gateway address is not configured.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "The PC is configured to obtain an IP address automatically.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "The enterprise network is misconfigured for dynamic routing.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q038",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 38,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.2",
+      "question": {
+        "en": "Refer to the exhibit. Host H3 is having trouble communicating with host H1. The network administrator suspects a problem exists with the H3 workstation and wants to prove that there is no problem with the R2 configuration. What tool could the network administrator use on router R2 to prove that communication exists to host H1 from the interface on R2, which is the interface that H3 uses when communicating with remote networks?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.2An extended ping allows an administrator to select specific ping features. For example in this situation, the network administrator could do an extended ping and specify a source address of the gigabit Ethernet port on the router. The destination address would be the IP address of host H1. If the ping succeeds connectivity exists from the Ethernet router interface on R2 to device H1.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "traceroute",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "show cdp neighbors",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Telnet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "an extended ping",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-16-17/q038.jpg"
+    },
+    {
+      "id": "modules-16-17-q039",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 39,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.5",
+      "question": {
+        "en": "Refer to the exhibit. Baseline documentation for a small company had ping round trip time statistics of 36/97/132 between hosts H1 and H3. Today the network administrator checked connectivity by pinging between hosts H1 and H3 that resulted in a round trip time of 1458/2390/6066. What does this indicate to the network administrator?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.5Ping round trip time statistics are shown in milliseconds. The larger the number the more delay. A baseline is critical in times of slow performance. By looking at the documentation for the performance when the network is performing fine and comparing it to information when there is a problem, a network administrator can resolve problems faster.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Connectivity between H1 and H3 is fine.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "H3 is not connected properly to the network.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Something is causing interference between H1 and R1.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Performance between the networks is within expected parameters.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Something is causing a time delay between the networks.",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-16-17/q039.jpg"
+    },
+    {
+      "id": "modules-16-17-q040",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 40,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.2.2",
+      "question": {
+        "en": "Which network service automatically assigns IP addresses to devices on the network?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.2.2 Dynamic Host Configuration Protocol (DHCP) can be used to allow end devices to automatically configure IP information, such as their IP address, subnet mask, DNS server, and default gateway. The DNS service is used to provide domain name resolution, mapping hostnames to IP addresses. Telnet is a method for remotely accessing a CLI session of a switch or router. Tracerouteis a command used to determine the path a packet takes as it traverses the network.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "DHCP",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Telnet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "DNS",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "traceroute",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q041",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 41,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.5",
+      "question": {
+        "en": "Which command can an administrator execute to determine what interface a router will use to reach remote networks?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.5The show ip routecommand is used to display the IP routing table of the router. The IP routing table will show a list of known local and remote networks and the interfaces that the router will use to reach those networks.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "show arp",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show ip route",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show protocols",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q042",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 42,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.3",
+      "question": {
+        "en": "On which two interfaces or ports can security be improved by configuring executive timeouts? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.3Executive timeouts allow the Cisco device to automatically disconnect users after they have been idle for the specified time. Console, vty, and aux ports can be configured with executive timeouts.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Fast Ethernet interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "console ports",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "serial interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "vty ports",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "loopback interfaces",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q043",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 43,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.4",
+      "question": {
+        "en": "When configuring SSH on a router to implement secure network management, a network engineer has issued the login local and transport input ssh line vty commands. What three additional configuration actions have to be performed to complete the SSH configuration? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.4 SSH is automatically enabled after the RSA keys are generated. Setting user privilege levels and configuring role-based CLI access are good security practices but are not a requirement of implementing SSH.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Set the user privilege levels.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Generate the asymmetric RSA keys.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Configure the correct IP domain name.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Configure role-based CLI access.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Create a valid local username and password database.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Manually enable SSH after the RSA keys are generated.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q044",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 44,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "question": {
+        "en": "What is considered the most effective way to mitigate a worm attack?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Change system passwords every 30 days.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Ensure that all systems have the most current virus definitions.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Ensure that AAA is configured in the network.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Download security updates from the operating system vendor and patch all vulnerable systems.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 16.3.3",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Because worms take advantage of vulnerabilities in the system itself, the most effective way to mitigate worm attacks is to download security updates from the operating system vendor and patch all vulnerable systems.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q045",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 45,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.1",
+      "question": {
+        "en": "Which statement describes the ping and tracert commands?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.1 The pingutility tests end-to-end connectivity between the two hosts. However, if the message does not reach the destination, there is no way to determine where the problem is located. On the other hand, thetracerouteutility (tracertin Windows) traces the route a message takes from its source to the destination.Traceroutedisplays each hop along the way and the time it takes for the message to get to that network and back.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Tracert shows each hop, while ping shows a destination reply only.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Tracert uses IP addresses; ping does not.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Both ping and tracert can show results in a graphical display.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Ping shows whether the transmission is successful; tracert does not.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q046",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 46,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.4",
+      "question": {
+        "en": "A technician is to document the current configurations of all network devices in a college, including those in off-site buildings. Which protocol would be best to use to securely access the network devices?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.4Telnet sends passwords and other information in clear text, while SSH encrypts its data. FTP and HTTP do not provide remote device access for configuration purposes.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "FTP",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "HTTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SSH",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Telnet",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q047",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 47,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.4",
+      "question": {
+        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.CCNA 1 v7 Modules 16 – 17 Building and Securing a Small Network Exam Modules 16 – 17 Building and Securing a Small Network Exam 1 file(s) 180.48 KB DownloadWhich command has to be configured on the router to complete the SSH configuration?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.4 The missing command to complete the SSH configuration is transport input sshinline vty 0 4mode.The commandsservice password-encryptionandenable secret classdo configure secure features on the router, but are not required to configure SSH. The commandip domain-name cisco.comis not required because the command ip domain-name span.comhas been used.",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-16-17-q048",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 48,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.2",
+      "question": {
+        "en": "An administrator decides to use “WhatAreyouwaiting4” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is strong because it uses a passphrase.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is weak because it is often the default password on new devices.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is weak since it uses easily found personal information.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is weak since it is a word that is easily found in the dictionary.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q049",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 49,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.2",
+      "question": {
+        "en": "An administrator decides to use “pR3s!d7n&0” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is weak because it is often the default password on new devices.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is weak since it uses easily found personal information.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is weak since it is a word that is easily found in the dictionary.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q050",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 50,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.2",
+      "question": {
+        "en": "An administrator decides to use “5$7*4#033!” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is strong because it contains 10 numbers and special characters.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is weak because it is often the default password on new devices.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is weak since it uses easily found personal information.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q051",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 51,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.2",
+      "question": {
+        "en": "An administrator decides to use “pR3s!d7n&0” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is weak since it is a word that is easily found in the dictionary.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is strong because it uses a passphrase.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is strong because it contains 10 numbers and special characters.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q052",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 52,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.1",
+      "question": {
+        "en": "An administrator decides to use “12345678!” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is weak because it uses a series of numbers or letters.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is strong because it uses a passphrase.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is weak since it is a word that is easily found in the dictionary.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q053",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 53,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.1",
+      "question": {
+        "en": "An administrator decides to use “admin” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is weak because it is often the default password on new devices.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is strong because it uses a passphrase.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is strong because it contains 10 numbers and special characters.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q054",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 54,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.2",
+      "question": {
+        "en": "An administrator decides to use “Feb121978” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is weak because it uses easily found personal information.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is strong because it uses a passphrase.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is weak since it is a word that is easily found in the dictionary.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q055",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 55,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.1",
+      "question": {
+        "en": "An administrator decides to use “password” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is weak because it is a commonly used password.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is weak since it is a word that is easily found in the dictionary.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is strong because it uses a passphrase.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q056",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 56,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.2",
+      "question": {
+        "en": "An administrator decides to use “RobErT” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is weak since it uses easily found personal information.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is strong because it uses a passphrase.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is strong because it contains 10 numbers and special characters.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q057",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 57,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.2",
+      "question": {
+        "en": "An administrator decides to use “Elizabeth” as the password on a newly installed router. Which statement applies to the password choice?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.2Rules for strong passwords: * minimum of 8 characters, preferably 10. * use complex combinations of numbers, special characters, and upper and lower case letters. * avoid repetition, common dictionary words, letter or number sequences. * avoid names of children, relatives, pets, birthdays, or any easily identifiable personal information. * can be created by misspelling words or replacing vowels with numbers or special characters.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is weak because it uses easily found personal information.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is strong because it uses a passphrase.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is weak since it is a word that is easily found in the dictionary.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is strong because it uses a minimum of 10 numbers, letters and special characters.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q058",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 58,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.7",
+      "question": {
+        "en": "A network technician is troubleshooting an issue and needs to verify the IP addresses of all interfaces on a router. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.7",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "show ip interface brief",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "nslookup",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "ipconfig getifaddr en0",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip route",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q059",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 59,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.7.1",
+      "question": {
+        "en": "Students who are connected to the same switch are having slower than normal response times. The administrator suspects a duplex setting issue. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.7.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "ipconfig getifaddr en0",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "copy running-config startup-config",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip nat translations",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q060",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 60,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.1",
+      "question": {
+        "en": "A user wants to know the IP address of the PC. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ipconfig",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "copy running-config startup-config",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip nat translations",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q061",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 61,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.1",
+      "question": {
+        "en": "A student wants to save a router configuration to NVRAM. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "copy running-config startup-config",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show ip nat translations",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip route",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q062",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 62,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.3",
+      "question": {
+        "en": "A support technician needs to know the IP address of the wireless interface on a MAC. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ipconfig getifaddr en0",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "copy running-config startup-config",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip nat translations",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q063",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 63,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.5",
+      "question": {
+        "en": "A network technician is troubleshooting an issue and needs to verify all of the IPv6 interface addresses on a router. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.5",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "show ipv6 interface",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show ip nat translations",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip route",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q064",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 64,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.1",
+      "question": {
+        "en": "A teacher is having difficulties connecting his PC to the classroom network. He needs to verify that a default gateway is configured correctly. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ipconfig",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "copy running-config startup-config",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip nat translations",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q065",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 65,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.7.2",
+      "question": {
+        "en": "Only employees connected to IPv6 interfaces are having difficulty connecting to remote networks. The analyst wants to verify that IPv6 routing has been enabled. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.7.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "show running-config",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "show interfaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "copy running-config startup-config",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip nat translations",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q066",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 66,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.7.5",
+      "question": {
+        "en": "An administrator is troubleshooting connectivity issues and needs to determine the IP address of a website. What is the best command to use to accomplish the task?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.7.5",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "nslookup",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "show ipv6 route",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "show ipv6 interface",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "copy startup-config running-config",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-16-17-q067",
+      "packId": "modules-16-17",
+      "modules": [
+        16,
+        17
+      ],
+      "number": 67,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.8",
+      "question": {
+        "en": "What is a characteristic of UDP?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.8UDP has no way to reorder the datagrams into their transmission order, so UDP simply reassembles the data in the order it was received and forwards it to the application. Post navigation ← Previous Article CCNA 1 v7 Modules 14 – 15: Network Application Communications Exam Answers Next Article → CCNA1 v7.0: ITN Practice PT Skills Assessment (PTSA) Answers Subscribe Notify of new follow-up comments new replies to my comments Label {} [+] Name* Email* &#916; Label {} [+] Name* Email* &#916; 40 Corrections & Clarifications View Comments Load More Comments",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "UDP datagrams take the same path and arrive in the correct order at the destination.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Applications that use UDP are always considered unreliable.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "UDP reassembles the received datagrams in the order they were received.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "UDP only passes data to the network when the destination is ready to receive the data.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

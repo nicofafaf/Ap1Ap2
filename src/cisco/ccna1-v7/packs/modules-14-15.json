@@ -1,0 +1,3716 @@
+{
+  "id": "modules-14-15",
+  "course": "ccna1-itn-v7",
+  "title": {
+    "en": "Modules 14–15: Network Application Communications",
+    "de": "Module 14–15: Anwendungen im Netzwerk"
+  },
+  "moduleRange": [
+    14,
+    15
+  ],
+  "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+  "itemCount": 61,
+  "items": [
+    {
+      "id": "modules-14-15-q001",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 1,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.7.4",
+      "question": {
+        "en": "Which action is performed by a client when establishing communication with a server via the use of UDP at the transport layer?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.7.4",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The client sets the window size for the session.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The client sends an ISN to the server to start the 3-way handshake.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The client randomly selects a source port number.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "The client sends a synchronization segment to begin the session.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q002",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 2,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.5.2",
+      "question": {
+        "en": "Which transport layer feature is used to guarantee session establishment?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.5.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "UDP ACK flag",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "TCP 3-way handshake",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "UDP sequence number",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "TCP port number",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q003",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 3,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.4.3",
+      "question": {
+        "en": "What is the complete range of TCP and UDP well-known ports?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.4.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "0 to 255",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "0 to 1023",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "256 – 1023",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "1024 – 49151",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q004",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 4,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.4.2",
+      "question": {
+        "en": "What is a socket?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.4.2",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the combination of the source and destination IP address and source and destination Ethernet address",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "the combination of a source IP address and port number or a destination IP address and port number",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "the combination of the source and destination sequence and acknowledgment numbers",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "the combination of the source and destination sequence numbers and port numbers",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q005",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 5,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.6.5",
+      "question": {
+        "en": "A PC is downloading a large file from a server. The TCP window is 1000 bytes. The server is sending the file using 100-byte segments. How many segments will the server send before it requires an acknowledgment from the PC?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.6.5 With a window of 1000 bytes, the destination host accepts segments until all 1000 bytes of data have been received. Then the destination host sends an acknowledgment.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "1 segment",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "10 segments",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "100 segments",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "1000 segments",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q006",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 6,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.6.5",
+      "question": {
+        "en": "Which factor determines TCP window size?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.6.5 Window is the number of bytes that the sender will send prior to expecting an acknowledgement from the destination device. The initial window is agreed upon during the session startup via the three-way handshake between source and destination. It is determined by how much data the destination device of a TCP session is able to accept and process at one time.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the amount of data to be transmitted",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "the number of services included in the TCP segment",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "the amount of data the destination can process at one time",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "the amount of data the source is capable of sending at one time",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q007",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 7,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.1.5",
+      "question": {
+        "en": "What does a client do when it has UDP datagrams to send?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.1.5 When a client has UDP datagrams to send, it just sends the datagrams.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It just sends the datagrams.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It queries the server to see if it is ready to receive data.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It sends a simplified three-way handshake to the server.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It sends to the server a segment with the SYN flag set to synchronize the conversation.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q008",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 8,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.3.2",
+      "question": {
+        "en": "Which three fields are used in a UDP segment header? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.3.2 A UDP header consists of only the Source Port, Destination Port, Length, and Checksum fields. Sequence Number, Acknowledgment Number, and Window Size are TCP header fields.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Window Size",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Length",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Source Port",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Acknowledgment Number",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Checksum",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Sequence Number",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q009",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 9,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.1.1",
+      "question": {
+        "en": "What are two roles of the transport layer in data communication on a network? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.1.1 The transport layer has several responsibilities. The primary responsibilities include the following: * Tracking the individual communication streams between applications on the source and destination hosts * Segmenting data at the source and reassembling the data at the destination * Identifying the proper application for each communication stream through the use of port numbers",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "identifying the proper application for each communication stream",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "tracking the individual communication between applications on the source and destination hosts",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "providing frame delimiting to identify bits making up a frame",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "performing a cyclic redundancy check on the frame for errors",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "providing the interface between applications and the underlying network over which messages are transmitted",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q010",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 10,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.6.1",
+      "question": {
+        "en": "What information is used by TCP to reassemble and reorder received segments?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.6.1 At the transport layer, TCP uses the sequence numbers in the header of each TCP segment to reassemble the segments into the correct order.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "port numbers",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "sequence numbers",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "acknowledgment numbers",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "fragment numbers",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q011",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 11,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.4.1",
+      "question": {
+        "en": "What important information is added to the TCP/IP transport layer header to ensure communication and connectivity with a remote network device?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.4.1 The destination and source port numbers are used to identify exactly which protocol and process is requesting or responding to a request.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "timing and synchronization",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "destination and source port numbers",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "destination and source physical addresses",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "destination and source logical network addresses",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q012",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 12,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.7.1",
+      "question": {
+        "en": "Which two characteristics are associated with UDP sessions? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.7.1 TCP: * Provides tracking of transmitted data segments * Destination devices will acknowledge received data. * Source devices will retransmit unacknowledged data. UDP * Destination devices will not acknowledge received data * Headers use very little overhead and cause minimal delay.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Destination devices receive traffic with minimal delay.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Transmitted data segments are tracked.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Destination devices reassemble messages and pass them to an application.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Received data is unacknowledged.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Unacknowledged data packets are retransmitted.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q013",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 13,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "A client application needs to terminate a TCP communication session with a server. Place the termination process steps in the order that they will occur. (Not all options are used.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Explanation:Topic 14.5.3",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "In order to terminate a TCP session, the client sends to the server a segment with the FIN flag set. The server acknowledges the client by sending a segment with the ACK flag set. The server sends a FIN to the client to terminate the server to client session. The client acknowledges the termination by sending a segment with the ACK flag set.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q014",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 14,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.5.3",
+      "question": {
+        "en": "Which flag in the TCP header is used in response to a received FIN in order to terminate connectivity between two network devices?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.5.3 In a TCP session, when a device has no more data to send, it will send a segment with the FIN flag set. The connected device that receives the segment will respond with an ACK to acknowledge that segment. The device that sent the ACK will then send a FIN message to close the connection it has with the other device. The sending of the FIN should be followed with the receipt of an ACK from the other device.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "FIN",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "ACK",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SYN",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "RST",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q015",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 15,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.4.3",
+      "question": {
+        "en": "Which protocol or service uses UDP for a client-to-server communication and TCP for server-to-server communication?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.4.3 Some applications may use both TCP and UDP. DNS uses UDP when clients send requests to a DNS server, and TCP when two DNS serves directly communicate.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "HTTP",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "FTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "DNS",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "SMTP",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q016",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 16,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.7.2",
+      "question": {
+        "en": "What is a characteristic of UDP?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.7.2 UDP has no way to reorder the datagrams into their transmission order, so UDP simply reassembles the data in the order it was received and forwards it to the application.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "UDP datagrams take the same path and arrive in the correct order at the destination.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Applications that use UDP are always considered unreliable.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "UDP reassembles the received datagrams in the order they were received.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "UDP only passes data to the network when the destination is ready to receive the data.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q017",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 17,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.4.3",
+      "question": {
+        "en": "What kind of port must be requested from IANA in order to be used with a specific application?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.4.3 Registered ports (numbers 1024 to 49151) are assigned by IANA to a requesting entity to use with specific processes or applications. These processes are primarily individual applications that a user has chosen to install, rather than common applications that would receive a well-known port number. For example, Cisco has registered port 1985 for its Hot Standby Routing Protocol (HSRP) process.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "registered port",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "private port",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "dynamic port",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "source port",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q018",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 18,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.2.4",
+      "question": {
+        "en": "Which three application layer protocols use TCP? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.2.4 Some protocols require the reliable data transport that is provided by TCP. In addition, these protocols do not have real time communication requirements and can tolerate some data loss while minimizing protocol overhead. Examples of these protocols are SMTP, FTP, and HTTP.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "SMTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "FTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SNMP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "HTTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "TFTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "DHCP",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q019",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 19,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.7.1",
+      "question": {
+        "en": "Which three statements characterize UDP? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.7.1 UDP is a simple protocol that provides the basic transport layer functions. It has much lower overhead than TCP because it is not connection-oriented and does not offer the sophisticated retransmission, sequencing, and flow control mechanisms that provide reliability.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "UDP provides basic connectionless transport layer functions.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "UDP provides connection-oriented, fast transport of data at Layer 3.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "UDP relies on application layer protocols for error detection.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "UDP is a low overhead protocol that does not provide sequencing or flow control mechanisms.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "UDP relies on IP for error detection and recovery.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "UDP provides sophisticated flow control mechanisms.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q020",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 20,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "Which two fields are included in the TCP header but not in the UDP header? (Choose two.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "window",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "checksum",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "source port",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "destination port",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "sequence number",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Explanation:Topic 14.2.3",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "The sequence number and window fields are included in the TCP header but not in the UDP header.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q021",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 21,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "Which field in the TCP header indicates the status of the three-way handshake process?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "window",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "reserved",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "checksum",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "control bits",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 14.5.4",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "The value in the control bits field of theTCP header indicates the progress and status of the connection.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q022",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 22,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "Why does HTTP use TCP as the transport layer protocol?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to ensure the fastest possible download speed",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "because HTTP is a best-effort protocol",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "because transmission errors can be tolerated easily",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "because HTTP requires reliable delivery",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 14.1.6",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "When a host requests a web page, transmission reliability and completeness must be guaranteed. Therefore, HTTP uses TCP as its transport layer protocol.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q023",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 23,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.1.6",
+      "question": {
+        "en": "Which two types of applications are best suited for UDP? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.1.6Applications that can tolerate some data loss, require a simple request and reply, and handle reliability themselves are best suited for UDP. UDP has low overhead and no requirement of reliability. TCP provides services for reliability, controlling data flow, and the reordering of segments.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "applications that need data flow control",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "applications that require reliable delivery",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "applications that handle reliability themselves",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "applications that need the reordering of segments",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "applications that can tolerate some data loss, but require little or no delay",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q024",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 24,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.4.1",
+      "question": {
+        "en": "How are port numbers used in the TCP/IP encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.4.1 Both UDP and TCP use port numbers to provide a unique identifier for each conversation. Source port numbers are randomly generated and are used to track different conversations. Destination port numbers identify specific services by using either a default port number for the service or a port number that is assigned manually by a system administrator.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Source port numbers and destination port numbers are not necessary when UDP is the transport layer protocol being used for the communication.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Source port and destination port numbers are randomly generated.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "If multiple conversations occur that are using the same service, the source port number is used to track the separate conversations.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Destination port numbers are assigned automatically and cannot be changed.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q025",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 25,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.1.6",
+      "question": {
+        "en": "In what two situations would UDP be better than TCP as the preferred transport protocol? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.1.6 UDP is a very simple transport layer protocol that does not guarantee delivery. Devices on both ends of the conversation are not required to keep track of the conversation. UDP is used as the transport protocol for applications that need a speedy, best-effort delivery.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "when applications need to guarantee that a packet arrives intact, in sequence, and unduplicated",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "when a faster delivery mechanism is needed",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "when delivery overhead is not an issue",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "when applications do not need to guarantee delivery of the data",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "when destination port numbers are dynamic",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q026",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 26,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.1.2",
+      "question": {
+        "en": "What are three responsibilities of the transport layer? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.1.2 The transport layer has several responsibilities. Some of the primary responsibilities include the following: Tracking the individual communication streams between applications on the source and destination hosts Segmenting data at the source and reassembling the data at the destination Identifying the proper application for each communication stream through the use of port numbers Multiplexing the communications of multiple users or applications over a single network Managing the reliability requirements of applications",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "meeting the reliability requirements of applications, if any",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "multiplexing multiple communication streams from many users or applications on the same network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "identifying the applications and services on the client and server that should handle transmitted data",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "directing packets towards the destination network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "formatting data into a compatible form for receipt by the destination devices",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "conducting error detection of the contents in frames",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q027",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 27,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.4.7",
+      "question": {
+        "en": "Which three statements describe a DHCP Discover message? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.4.7 When a host configured to use DHCP powers up on a network it sends a DHCPDISCOVER message. FF-FF-FF-FF-FF-FF is the L2 broadcast address. A DHCP server replies with a unicast DHCPOFFER message back to the host.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The source MAC address is 48 ones (FF-FF-FF-FF-FF-FF).",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The destination IP address is 255.255.255.255.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The message comes from a server offering an IP address.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "The message comes from a client seeking an IP address.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "All hosts receive the message, but only a DHCP server replies.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Only the DHCP server receives the message.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q028",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 28,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.3.2",
+      "question": {
+        "en": "Which two protocols may devices use in the application process that sends email? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.3.2 POP, POP3, and IMAP are protocols that are used to retrieve email from servers. SMTP is the default protocol that is used to send email. DNS may be used by the sender email server to find the address of the destination email server.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "HTTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "SMTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "POP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "IMAP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "DNS",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "POP3",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q029",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 29,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.5.2",
+      "question": {
+        "en": "What is true about the Server Message Block protocol?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.5.2 The Server Message Block protocol is a protocol for file, printer, and directory sharing. Clients establish a long term connection to servers and when the connection is active, the resources can be accessed. Every SMB message has the same format. The use of SMB differs from FTP mainly in the length of the sessions. SMB messages can authenticate sessions.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Different SMB message types have a different format.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Clients establish a long term connection to servers.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SMB messages cannot authenticate a session.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "SMB uses the FTP protocol for communication.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q030",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 30,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.3.2",
+      "question": {
+        "en": "What is the function of the HTTP GET message?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.3.2There are three common HTTP message types: * GET – used by clients to request data from the web server * POST – used by clients to upload data to a web server * PUT – used by clients to upload data to a web server",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to request an HTML page from a web server",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "to send error information from a web server to a web client",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "to upload content to a web server from a web client",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "to retrieve client email from an email server using TCP port 110",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q031",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 31,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.1.1",
+      "question": {
+        "en": "Which OSI layer provides the interface between the applications used to communicate and the underlying network over which messages are transmitted?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.1.1The application layer is the layer that is closest to the end user and provides the interface between the underlying network and the applications used to communicate.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "application",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "presentation",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "session",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "transport",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q032",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 32,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.2.1",
+      "question": {
+        "en": "Which networking model is being used when an author uploads one chapter document to a file server of a book publisher?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.2.1 In the client/server network model, a network device assumes the role of server in order to provide a particular service such as file transfer and storage. In the client/server network model, a dedicated server does not have to be used, but if one is present, the network model being used is the client/server model. In contrast, a peer-to-peer network does not have a dedicated server.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "peer-to-peer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "master-slave",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "client/server",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "point-to-point",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q033",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 33,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.2.1",
+      "question": {
+        "en": "What do the client/server and peer-to-peer network models have in common?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.2.1 In both the client/server and peer-to-peer network models, clients and servers exist. In peer-to-peer networks, no dedicated server exists, but a device can assume the server role to provide information to a device serving in the client role.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Both models have dedicated servers.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Both models support devices in server and client roles.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Both models require the use of TCP/IP-based protocols.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Both models are used only in the wired network environment.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q034",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 34,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.2.4",
+      "question": {
+        "en": "In what networking model would eDonkey, eMule, BitTorrent, Bitcoin, and LionShare be used?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.2.4 In a peer-to-peer networking model, data is exchanged between two network devices without the use of a dedicated server. Peer-to-peer applications such as Shareaz, eDonkey, and Bitcoin allow one network device to assume the role of server, while one or more other network devices assume the role of client using the peer-to-peer application.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "peer-to-peer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "client-based",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "master-slave",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "point-to-point",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q035",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 35,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.2.4",
+      "question": {
+        "en": "What is a common protocol that is used with peer-to-peer applications such as WireShare, Bearshare, and Shareaza?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.2.4 The Gnutella protocol is used when one user shares an entire file with another user. A person would load a Gnutella-based application such as gtk-gnutella or WireShare and use that application to locate and access resources shared by others.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Ethernet",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Gnutella",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "POP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "SMTP",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q036",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 36,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "What is a key characteristic of the peer-to-peer networking model?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "wireless networking",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "social networking without the Internet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "network printing using a print server",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "resource sharing without a dedicated server",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 15.2.2",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "The peer-to-peer (P2P) networking model allows data, printer, and resource sharing without a dedicated server.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q037",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 37,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "The application layer of the TCP/IP model performs the functions of what three layers of the OSI model? (Choose three.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "physical",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "session",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "presentation",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "data link",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "transport",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "application",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o8",
+          "text": {
+            "en": "Explanation:Topic 15.1.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o9",
+          "text": {
+            "en": "The network access layer of the TCP/IP model performs the same functions as the physical and data link layers of the OSI model. The internetwork layer equates to the network layer of the OSI model. The transport layers are the same in both models. The application layer of the TCP/IP model represents the session, presentation, and application layers of the OSI model.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q038",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 38,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "What is an example of network communication that uses the client-server model?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "A user uses eMule to download a file that is shared by a friend after the file location is determined.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "A workstation initiates an ARP to find the MAC address of a receiving host.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "A user prints a document by using a printer that is attached to a workstation of a coworker.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "A workstation initiates a DNS request when the user types www.cisco.com in the address bar of a web browser.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 15.2.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "When a user types a domain name of a website into the address bar of a web browser, a workstation needs to send a DNS request to the DNS server for the name resolution process. This request is a client/server model application. The eMule application is P2P. Sharing a printer on a workstation is a peer-to-peer network. Using ARP is just a broadcast message sent by a host.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q039",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 39,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.1.1",
+      "question": {
+        "en": "Which layer in the TCP/IP model is used for formatting, compressing, and encrypting data?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.1.1 The application layer of the TCP/IP model performs the functions of three layers of the OSI model – application, presentation, and session. The application layer of the TCP/IP model is the layer that provides the interface between the applications, is responsible for formatting, compressing, and encrypting data, and is used to create and maintain dialogs between source and destination applications.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "internetwork",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "session",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "presentation",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "application",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "network access",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q040",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 40,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.5.2",
+      "question": {
+        "en": "What is an advantage of SMB over FTP?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.5.2SMB and FTP are client/server protocols that are used for file transfer. SMB allows the connecting device to access resources as if they were on the local client device. SMB and FTP use the TCP protocol for connection establishment and they can transfer data in both directions. FTP requires two connections between the client and the server, one for commands and replies, the other for the actual file transfer.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Only with SMB can data transfers occur in both directions.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Only SMB establishes two simultaneous connections with the client, making the data transfer faster.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SMB is more reliable than FTP because SMB uses TCP and FTP uses UDP.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "SMB clients can establish a long-term connection to the server.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q041",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 41,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "A manufacturing company subscribes to certain hosted services from its ISP. The services that are required include hosted world wide web, file transfer, and e-mail. Which protocols represent these three key applications? (Choose three.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "FTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "HTTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "DNS",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "SNMP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "DHCP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "SMTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "Explanation:Topic 15.3.2",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o8",
+          "text": {
+            "en": "The ISP uses the HTTP protocol in conjunction with hosting web pages, the FTP protocol with file transfers, and SMTP with e-mail. DNS is used to translate domain names to IP addresses. SNMP is used for network management traffic. DHCP ic commonly used to manage IP addressing.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q042",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 42,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.3.2",
+      "question": {
+        "en": "Which application layer protocol uses message types such as GET, PUT, and POST?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.3.2 The GET command is a client request for data from a web server. A PUT command uploads resources and content, such as images, to a web server. A POST command uploads data files to a web server.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "DNS",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "DHCP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SMTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "HTTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "POP3",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q043",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 43,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.4.2",
+      "question": {
+        "en": "What type of information is contained in a DNS MX record?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.4.2 MX, or mail exchange messages, are used to map a domain name to several mail exchange servers that all belong to the same domain.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the FQDN of the alias used to identify a service",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "the IP address for an FQDN entry",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "the domain name mapped to mail exchange servers",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "the IP address of an authoritative name server",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q044",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 44,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "Which three protocols operate at the application layer of the TCP/IP model? (Choose three.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ARP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "TCP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "UDP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "FTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "POP3",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "DHCP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "Explanation:Topic 15.1.3",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o8",
+          "text": {
+            "en": "FTP, DHCP, and POP3 are application layer protocols. TCP and UDP are transport layer protocols. ARP is a network layer protocol.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q045",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 45,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "Which protocol is used by a client to communicate securely with a web server?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "SMTP",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "SMB",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "IMAP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "HTTPS",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 15.3.2",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "HTTPS is a secure form of HTTP used to access web content hosted by a web server.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q046",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 46,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.2.2",
+      "question": {
+        "en": "Which applications or services allow hosts to act as client and server at the same time?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.2.2 P2P applications allow the clients to behave as servers if needed. When using authentication services, email exchange, and client/server applications, one host acts as server and the other acts as client at all times.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "client/server applications",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "email applications",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "P2P applications",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "authentication services",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q047",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 47,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "question": {
+        "en": "What are two characteristics of peer-to-peer networks? (Choose two.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "scalability",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "one way data flow",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "decentralized resources",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "centralized user accounts",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "resource sharing without a dedicated server",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Explanation:Topic 15.2.2",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "Peer-to-peer networks have decentralized resources because every computer can serve as both a server and a client. One computer might assume the role of server for one transaction while acting as a client for another transaction. Peer-to-peer networks can share resources among network devices without the use of a dedicated server.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q048",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 48,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.1.2",
+      "question": {
+        "en": "Which scenario describes a function provided by the transport layer?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.1.2 The source and destination port numbers are used to identify the correct application and window within that application.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "A student is using a classroom VoIP phone to call home. The unique identifier burned into the phone is a transport layer address used to contact another network device on the same network.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "A student is playing a short web-based movie with sound. The movie and sound are encoded within the transport layer header.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "A student has two web browser windows open in order to access two web sites. The transport layer ensures the correct web page is delivered to the correct browser window.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "A corporate worker is accessing a web server located on a corporate network. The transport layer formats the screen so the web page appears properly no matter what device is being used to view the web site.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q049",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 49,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.1.1",
+      "question": {
+        "en": "Which three layers of the OSI model provide similar network services to those provided by the application layer of the TCP/IP model? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.1.1 The three upper layers of the OSI model, the session, presentation, and application layers, provide application services similar to those provided by the TCP/IP model application layer. Lower layers of the OSI model are more concerned with data flow.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "physical layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "session layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "presentation layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q050",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 50,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.6.3",
+      "question": {
+        "en": "A PC that is communicating with a web server has a TCP window size of 6,000 bytes when sending data and a packet size of 1,500 bytes. Which byte of information will the web server acknowledge after it has received two packets of data from the PC?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.6.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "3001",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "6001",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "4500",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "6000",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q051",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 51,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.6.3",
+      "question": {
+        "en": "A PC that is communicating with a web server has a TCP window size of 6,000 bytes when sending data and a packet size of 1,500 bytes. Which byte of information will the web server acknowledge after it has received three packets of data from the PC?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.6.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "4501",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "6001",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "6000",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "4500",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q052",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 52,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "14.6.3",
+      "question": {
+        "en": "A PC that is communicating with a web server has a TCP window size of 6,000 bytes when sending data and a packet size of 1,500 bytes. Which byte of information will the web server acknowledge after it has received four packets of data from the PC?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 14.6.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "6001",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "3001",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "1501",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "1500",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q053",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 53,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.5.1",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting TFTP service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.5.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "69",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "67",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "53",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "80",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q054",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 54,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.5.1",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting FTP service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.5.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "21",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "69",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "67",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "80",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q055",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 55,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.5.1",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting SSH service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.5.1",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "22",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "69",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "67",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "80",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q056",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 56,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.1.3",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting HTTP service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "80",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "67",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "53",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "69",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q057",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 57,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.3.4",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting POP3 service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.3.4",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "110",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "67",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "53",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "69",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "443",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "161",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "80",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q058",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 58,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.1.3",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting telnet service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "23",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "443",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "161",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "110",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q059",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 59,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.1.3",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting SNMP service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "161",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "443",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "110",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "80",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q060",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 60,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.1.3",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting SMTP service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.1.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "25",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "443",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "161",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "110",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-14-15-q061",
+      "packId": "modules-14-15",
+      "modules": [
+        14,
+        15
+      ],
+      "number": 61,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
+      "topic": "15.3.2",
+      "question": {
+        "en": "A client creates a packet to send to a server. The client is requesting HTTPS service. What number will be used as the destination port number in the sending packet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 15.3.2 Post navigation ← Previous Article CCNA 1 v7 Modules 11 – 13: IP Addressing Exam Answers Full Next Article → CCNA 1 v7 Modules 16 – 17: Building and Securing a Small Network Exam Answers Subscribe Notify of new follow-up comments new replies to my comments Label {} [+] Name* Email* &#916; Label {} [+] Name* Email* &#916; 44 Corrections & Clarifications View Comments Load More Comments",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "443",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "161",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "110",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "80",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

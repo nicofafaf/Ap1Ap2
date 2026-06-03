@@ -14,6 +14,7 @@ import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
 import { useGameStore } from "../../../store/useGameStore";
 import { publicAssetUrl } from "../../../data/nexusRegistry";
 import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
+import { CiscoMatchExercise } from "../../combat/CiscoMatchExercise";
 import { EdtechExamTimerBar } from "./EdtechExamTimerBar";
 import "./edtechLearningSession.css";
 
@@ -26,6 +27,7 @@ export type EdtechLearningSessionProps = {
   examStrict: boolean;
   onPick: (opt: LearningMcOption) => void;
   onSubmitMulti?: () => void;
+  onSubmitMatch?: (ok: boolean, selectionKey: string) => void;
 };
 
 export function EdtechLearningSession({
@@ -37,6 +39,7 @@ export function EdtechLearningSession({
   examStrict,
   onPick,
   onSubmitMulti,
+  onSubmitMatch,
 }: EdtechLearningSessionProps) {
   const { t } = useNexusI18n();
   const reduceMotion = useReducedMotion();
@@ -50,6 +53,7 @@ export function EdtechLearningSession({
   const meta = getLfCourseMeta(lfNum);
   const isBeginner = Boolean(exercise.lessonCards?.length);
   const isMultiMc = exercise.mcSelectMode === "multi";
+  const isMatchMc = exercise.mcSelectMode === "match";
   const selectedIds = pickedIds ?? new Set<string>();
 
   const displayTitle = useMemo(
@@ -95,10 +99,16 @@ export function EdtechLearningSession({
     [...correctIds].every((id) => selectedIds.has(id));
 
   const picked = exercise.mcOptions.find((o) => o.id === pickedId);
-  const showHit = isMultiMc ? Boolean(multiOk) : Boolean(picked?.isCorrect && pickedId);
-  const showMiss = isMultiMc
-    ? Boolean(mcSubmitted && !multiOk)
-    : Boolean(picked && !picked.isCorrect && pickedId);
+  const showHit = isMatchMc
+    ? pickedId === "match:ok"
+    : isMultiMc
+      ? Boolean(multiOk)
+      : Boolean(picked?.isCorrect && pickedId);
+  const showMiss = isMatchMc
+    ? Boolean(mcSubmitted && pickedId === "match:miss")
+    : isMultiMc
+      ? Boolean(mcSubmitted && !multiOk)
+      : Boolean(picked && !picked.isCorrect && pickedId);
 
   const exitLearn = () => {
     resetCombat();
@@ -197,9 +207,11 @@ export function EdtechLearningSession({
 
           <section className="nx-edtech-learn-card" aria-label={t("learningTerminal.ariaMc")}>
             <div className="nx-edtech-learn-card-label">
-              {isMultiMc
-                ? t("learningTerminal.mcMultiLabel", "Schritt 2 · Mehrfachauswahl")
-                : t("learningTerminal.edtechQuestionLabel", "Schritt 2 · Deine Frage")}
+              {isMatchMc
+                ? t("learningTerminal.matchLabel", "Schritt 2 · Zuordnung")
+                : isMultiMc
+                  ? t("learningTerminal.mcMultiLabel", "Schritt 2 · Mehrfachauswahl")
+                  : t("learningTerminal.edtechQuestionLabel", "Schritt 2 · Deine Frage")}
             </div>
             <p className="nx-edtech-learn-question">{mcQuestion}</p>
             {isMultiMc ? (
@@ -207,6 +219,16 @@ export function EdtechLearningSession({
                 {t("learningTerminal.mcMultiHint", "Wähle alle zutreffenden Antworten und tippe dann auf Prüfen")}
               </p>
             ) : null}
+            {isMatchMc && exercise.matchPairs?.length ? (
+              <CiscoMatchExercise
+                key={exercise.id}
+                pairs={exercise.matchPairs}
+                submitted={mcSubmitted}
+                onSubmit={(ok, key) => onSubmitMatch?.(ok, key)}
+              />
+            ) : null}
+            {!isMatchMc ? (
+              <>
             <div className="nx-edtech-learn-options" role="group">
               {exercise.mcOptions.map((opt) => {
                 const active = isMultiMc ? selectedIds.has(opt.id) : pickedId === opt.id;
@@ -252,6 +274,8 @@ export function EdtechLearningSession({
               >
                 {t("learningTerminal.mcSubmitMulti", "Antwort prüfen")}
               </button>
+            ) : null}
+              </>
             ) : null}
             {showHit ? (
               <div className="nx-edtech-learn-feedback nx-edtech-learn-feedback--hit" role="status">

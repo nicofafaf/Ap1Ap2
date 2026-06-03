@@ -1,0 +1,4391 @@
+{
+  "id": "modules-1-3",
+  "course": "ccna1-itn-v7",
+  "title": {
+    "en": "Modules 1–3: Basic Network Connectivity and Communications",
+    "de": "Module 1–3: Netzwerkgrundlagen und Kommunikation"
+  },
+  "moduleRange": [
+    1,
+    3
+  ],
+  "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+  "itemCount": 75,
+  "items": [
+    {
+      "id": "modules-1-3-q001",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 1,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.8.1",
+      "question": {
+        "en": "During a routine inspection, a technician discovered that software that was installed on a computer was secretly collecting data about websites that were visited by users of the computer. Which type of threat is affecting this computer?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.8.1Spyware is software that is installed on a network device and that collects information.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "DoS attack",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "identity theft",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "spyware",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "zero-day attack",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q002",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 2,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.4.4",
+      "question": {
+        "en": "Which term refers to a network that provides secure access to the corporate offices by suppliers, customers and collaborators?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.4.4The term Internet refers to the worldwide collection of connected networks. Intranet refers to a private connection of LANs and WANS that belong to an organization and is designed to be accessible to the members of the organization, employees, or others with authorization. Extranets provide secure and safe access to suppliers, customers, and collaborators. Extendednet is not a type of network.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Internet",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "intranet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "extranet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "extendednet",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q003",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 3,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.7.2",
+      "question": {
+        "en": "A large corporation has modified its network to allow users to access network resources from their personal laptops and smart phones. Which networking trend does this describe?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.7.2BYOD allows end users to use personal tools to access the corporate network. Allowing this trend can have major impacts on a network, such as security and compatibility with corporate software and devices.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "cloud computing",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "online collaboration",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "bring your own device",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "video conferencing",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q004",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 4,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.5.1",
+      "question": {
+        "en": "What is an ISP?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.5.1An ISP, or Internet Service Provider, is an organization that provides access to the Internet for businesses and individuals.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is a standards body that develops cabling and wiring standards for networking.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is a protocol that establishes how computers within a local network communicate.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is an organization that enables individuals and businesses to connect to the Internet.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is a networking device that combines the functionality of several different networking devices in one.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q005",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 5,
+      "type": "match",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.6.5",
+      "question": {
+        "en": "Match the requirements of a reliable network with the supporting network architecture. (Not all options are used.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.6.5",
+        "de": null
+      },
+      "matchPairs": [
+        {
+          "left": {
+            "en": "fault tolerance",
+            "de": null
+          },
+          "right": {
+            "en": "Provide redundant links and devices.",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "scalability",
+            "de": null
+          },
+          "right": {
+            "en": "Expand the network without degrading the service for existing users.",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "security",
+            "de": null
+          },
+          "right": {
+            "en": "Protect the network from unauthorized access.",
+            "de": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q006",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 6,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.4.4",
+      "question": {
+        "en": "An employee at a branch office is creating a quote for a customer. In order to do this, the employee needs to access confidential pricing information from internal servers at the Head Office. What type of network would the employee access?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.4.4 Intranet is a term used to refer to a private connection of LANs and WANs that belongs to an organization. An intranet is designed to be accessible only by the organization&#8217;s members, employees, or others with authorization.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "an intranet",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "the Internet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "an extranet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "a local area network",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q007",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 7,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.7.8",
+      "question": {
+        "en": "Which statement describes the use of powerline networking technology?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.7.8Powerline networking adds the ability to connect a device to the network using an adapter wherever there is an electrical outlet. The network uses existing electrical wiring to send data. It is not a replacement for physical cabling, but it can add functionality in places where wireless access points cannot be used or cannot reach devices.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "New “smart” electrical cabling is used to extend an existing home LAN.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "A home LAN is installed without the use of physical cabling.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "A device connects to an existing home LAN using an adapter and an existing electrical outlet.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Wireless access points use powerline adapters to distribute data through the home LAN.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q008",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 8,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.1.8",
+      "question": {
+        "en": "A networking technician is working on the wireless network at a medical clinic. The technician accidentally sets up the wireless network so that patients can see the medical records data of other patients. Which of the four network characteristics has been violated in this situation?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.1.8 Network security includes protecting the confidentiality of data that is on the network. In this case, because confidential data has been made available to unauthorized users, the security characteristic of the network has failed.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "fault tolerance",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "scalability",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "security",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Quality of Service (QoS)",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "reliability",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q009",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 9,
+      "type": "match",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.5.2",
+      "question": {
+        "en": "Match each characteristic to its corresponding Internet connectivity type. (Not all options are used.)Checkpoint Exam: Basic Network Connectivity and Communications Exam Q9 Place the options in the following order:",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.5.2 DSL is an always-on, high bandwidth connection that runs over telephone lines. Cable uses the same coaxial cable that carries television signals into the home to provide Internet access. Dialup telephone is much slower than either DSL or cable, but is the least expensive option for home users because it can use any telephone line and a simple modem. Satellite requires a clear line of sight and is affected by trees and other obstructions. None of these typical home options use dedicated leased lines such as T1/E1 and T3/E3.",
+        "de": null
+      },
+      "matchPairs": [
+        {
+          "left": {
+            "en": "uses coaxial cable as a medium",
+            "de": null
+          },
+          "right": {
+            "en": "cable",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "not suited for heavily wooded areas",
+            "de": null
+          },
+          "right": {
+            "en": "satellite",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "typically has very low bandwidth",
+            "de": null
+          },
+          "right": {
+            "en": "dialup telephone",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "high bandwidth connection that runs over telephone line",
+            "de": null
+          },
+          "right": {
+            "en": "DSL",
+            "de": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q010",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 10,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "question": {
+        "en": "What two criteria are used to help select a network medium from various network media? (Choose two.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the types of data that need to be prioritized",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "the cost of the end devices utilized in the network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "the distance the selected medium can successfully carry a signal",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "the number of intermediate devices installed in the network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "the environment where the selected medium is to be installed",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Explanation:Topic 2.6.2",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "Criteria for choosing a network medium are the distance the selected medium can successfully carry a signal, the environment in which the selected medium is to be installed, the amount of data and the speed at which the data must be transmitted, and the cost of the medium and its installation.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q011",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 11,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.6.4",
+      "question": {
+        "en": "What type of network traffic requires QoS?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.6.4 Video conferencing utilizes real-time audio and video communications. Both of these are time-sensitive and bandwidth-intensive forms of communication that require quality of service to be active on the network. QoS will ensure an uninterrupted user experience.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "email",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "on-line purchasing",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "video conferencing",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "wiki",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q012",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 12,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.8.2",
+      "question": {
+        "en": "A user is implementing security on a small office network. Which two actions would provide the minimum security requirements for this network? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.8.2 Technically complex security measures such as intrusion prevention and intrusion prevention systems are usually associated with business networks rather than home networks. Installing antivirus software, antimalware software, and implementing a firewall will usually be the minimum requirements for home networks. Installing a home wireless network will not improve network security, and will require further security actions to be taken.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "implementing a firewall",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "installing a wireless network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "installing antivirus software",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "implementing an intrusion detection system",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "adding a dedicated intrusion prevention device",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q013",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 13,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.4.3",
+      "question": {
+        "en": "Passwords can be used to restrict access to all or parts of the Cisco IOS. Select the modes and interfaces that can be protected with passwords. (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.4.3 Access to the VTY and console interfaces can be restricted using passwords. Out-of-band management of the router can be restricted in both user EXEC and privileged EXEC modes.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "VTY interface",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "console interface",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Ethernet interface",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "boot IOS mode",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "privileged EXEC mode",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "router configuration mode",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q014",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 14,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.6.2",
+      "question": {
+        "en": "Which interface allows remote management of a Layer 2 switch?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.6.2 In a Layer 2 switch, there is a switch virtual interface (SVI) that provides a means for remotely managing the device.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the AUX interface",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "the console port interface",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "the switch virtual interface",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "the first Ethernet port interface",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q015",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 15,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "question": {
+        "en": "What function does pressing the Tab key have when entering a command in IOS?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It aborts the current command and returns to configuration mode.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It exits configuration mode and returns to user EXEC mode.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It moves the cursor to the beginning of the next line.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It completes the remainder of a partially typed word in a command.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 2.3.5",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Pressing the Tab key after a command has been partially typed will cause the IOS to complete the rest of the command.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q016",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 16,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.5.2",
+      "question": {
+        "en": "While trying to solve a network issue, a technician made multiple changes to the current router configuration file. The changes did not solve the problem and were not saved. What action can the technician take to discard the changes and work with the file in NVRAM?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.5.2 The technician does not want to make any mistakes trying to remove all the changes that were done to the running configuration file. The solution is to reboot the router without saving the running configuration. The copy startup-config running-config command does not overwrite the running configuration file with the configuration file stored in NVRAM, but rather it just has an additive effect.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Issue the reload command without saving the running configuration.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Delete the vlan.dat file and reboot the device.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Close and reopen the terminal emulation software.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Issue the copy startup-config running-config command.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q017",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 17,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.3.5",
+      "question": {
+        "en": "An administrator uses the Ctrl-Shift-6 key combination on a switch after issuing the ping command. What is the purpose of using these keystrokes?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.3.5 To interrupt an IOS process such as ping or traceroute, a user enters the Ctrl-Shift-6 key combination. Tab completes the remainder of parameters or arguments within a command. To exit from configuration mode to privileged mode use the Ctrl-Z keystroke. CTRL-R will redisplay the line just typed, thus making it easier for the user to press Enter and reissue the ping command.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to restart the ping process",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "to interrupt the ping process",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "to exit to a different configuration mode",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "to allow the user to complete the command",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q018",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 18,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.4.3",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is configuring access control to switch SW1. If the administrator uses a console connection to connect to the switch, which password is needed to access user EXEC mode?CCNA-1-v7-Modules-1-3-Basic Network Connectivity and Communications Exam Answers 14",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.4.3 Telnet accesses a network device through the virtual interface configured with the line VTY command. The password configured under this is required to access the user EXEC mode. The password configured under the line console 0 command is required to gain entry through the console port, and the enable and enable secret passwords are used to allow entry into the privileged EXEC mode.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "letmein",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "secretin",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "lineconin",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "linevtyin",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-1-3/q018.jpg"
+    },
+    {
+      "id": "modules-1-3-q019",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 19,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.7.4",
+      "question": {
+        "en": "A technician configures a switch with these commands:CopySwitchA(config)# interface vlan 1 SwitchA(config-if)# ip address 192.168.1.1 255.255.255.0 SwitchA(config-if)# no shutdownWhat is the technician configuring?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.7.4 For a switch to have an IP address, a switch virtual interface must be configured. This allows the switch to be managed remotely over the network.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Telnet access",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "SVI",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "password encryption",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "physical switchport access",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q020",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 20,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.2.4",
+      "question": {
+        "en": "Which command or key combination allows a user to return to the previous level in the command hierarchy?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.2.4 End and CTRL-Z return the user to the privileged EXEC mode. Ctrl-C ends a command in process. The exit command returns the user to the previous level.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "end",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "exit",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Ctrl-Z",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Ctrl-C",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q021",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 21,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.5.1",
+      "question": {
+        "en": "What are two characteristics of RAM on a Cisco device? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.5.1 RAM stores data that is used by the device to support network operations. The running configuration is stored in RAM. This type of memory is considered volatile memory because data is lost during a power cycle. Flash memory stores the IOS and delivers a copy of the IOS into RAM when a device is powered on. Flash memory is nonvolatile since it retains stored contents during a loss of power.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "RAM provides nonvolatile storage.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The configuration that is actively running on the device is stored in RAM.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The contents of RAM are lost during a power cycle.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "RAM is a component in Cisco switches but not in Cisco routers.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "RAM is able to store multiple versions of IOS and configuration files.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q022",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 22,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "question": {
+        "en": "Which two host names follow the guidelines for naming conventions on Cisco IOS devices? (Choose two.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Branch2!",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "RM-3-Switch-2A4",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Floor(15)",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "HO Floor 17",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "SwBranch799",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Explanation:Topic 2.4.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "Some guidelines for naming conventions are that names should:",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o8",
+          "text": {
+            "en": "Start with a letter",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o9",
+          "text": {
+            "en": "Contain no spaces",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o10",
+          "text": {
+            "en": "End with a letter or digit",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o11",
+          "text": {
+            "en": "Use only letters, digits, and dashes",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o12",
+          "text": {
+            "en": "Be less than 64 characters in length",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q023",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 23,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.1.4",
+      "question": {
+        "en": "How is SSH different from Telnet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.1.4 SSH is the preferred protocol for connecting to a device operating system over the network because it is much more secure than Telnet. Both SSH and Telnet are used to connect to devices over the network, and so are both used in-band. PuTTY and Terra Term can be used to make both SSH and Telnet connections.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "SSH makes connections over the network, whereas Telnet is for out-of-band access.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "SSH provides security to remote sessions by encrypting messages and using user authentication. Telnet is considered insecure and sends messages in plaintext.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "SSH requires the use of the PuTTY terminal emulation program. Tera Term must be used to connect to devices through the use of Telnet.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "SSH must be configured over an active network connection, whereas Telnet is used to connect to a device from a console connection.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q024",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 24,
+      "type": "match",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.2.4",
+      "question": {
+        "en": "An administrator is configuring a switch console port with a password. In what order will the administrator travel through the IOS modes of operation in order to reach the mode in which the configuration commands will be entered? (Not all options are used.)Place the options in the following order:",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.2.4 The configuration mode that the administrator first encounters is user EXEC mode. After the enablecommand is entered, the next mode is privileged EXEC mode. From there, theconfigure terminal command is entered to move to global configuration mode. Finally, the administrator enters theline console 0command to enter the mode in which the configuration will be entered.",
+        "de": null
+      },
+      "matchPairs": [
+        {
+          "left": {
+            "en": "first mode",
+            "de": null
+          },
+          "right": {
+            "en": "user EXEC mode",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "second mode",
+            "de": null
+          },
+          "right": {
+            "en": "privileged EXEC mode",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "third mode",
+            "de": null
+          },
+          "right": {
+            "en": "global configuration mode",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "final mode",
+            "de": null
+          },
+          "right": {
+            "en": "line configuration mode",
+            "de": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q025",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 25,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "question": {
+        "en": "What are three characteristics of an SVI? (Choose three.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is designed as a security protocol to protect switch ports.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is not associated with any physical interface on a switch.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is a special interface that allows connectivity by different types of media.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "It is required to allow connectivity by any device at any location.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "It provides a means to remotely manage a switch.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "It is associated with VLAN1 by default.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "Explanation:Topic 2.6.2Switches have one or more switch virtual interfaces (SVIs). SVIs are created in software since there is no physical hardware associated with them. Virtual interfaces provide a means to remotely manage a switch over a network that is using IP. Each switch comes with one SVI appearing in the default configuration \"out-of-the-box.\" The default SVI interface is VLAN1.",
+            "de": null
+          },
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q026",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 26,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "question": {
+        "en": "What command is used to verify the condition of the switch interfaces, including the status of the interfaces and a configured IP address?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ipconfig",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "ping",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "traceroute",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "show ip interface brief",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "Explanation:Topic 2.8.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "The show ip interface brief command is used to display a brief synopsis of the condition of the device interfaces. The ipconfig command is used to verify TCP/IP properties on a host. The ping command is used to verify Layer 3 connectivity. The traceroute command is used to trace the network path from source to destination.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q027",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 27,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "question": {
+        "en": "Match the description with the associated IOS mode. (Not all options are used.)",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-1-3-q028",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 28,
+      "type": "match",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.3.5",
+      "question": {
+        "en": "Match the definitions to their respective CLI hot keys and shortcuts. (Not all options are used.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.3.5 The shortcuts with their functions are as follows: – Tab – Completes the remainder of a partially typed command or keyword – Space bar – displays the next screen – ? – provides context-sensitive help – Up Arrow – Allows user to scroll backward through former commands – Ctrl-C – cancels any command currently being entered and returns directly to privileged EXEC mode – Ctrl-Shift-6 – Allows the user to interrupt an IOS process such as ping or traceroute",
+        "de": null
+      },
+      "matchPairs": [
+        {
+          "left": {
+            "en": "provides context-sensitive help",
+            "de": null
+          },
+          "right": {
+            "en": "?",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "displays the next screen",
+            "de": null
+          },
+          "right": {
+            "en": "Space bar",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "completes abbreviated commands and parameters",
+            "de": null
+          },
+          "right": {
+            "en": "Tab",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "scrolls backwards through previously entered commands",
+            "de": null
+          },
+          "right": {
+            "en": "Up Arrow",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "aborts commands such as trace and ping",
+            "de": null
+          },
+          "right": {
+            "en": "Ctrl-Shift-6",
+            "de": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q029",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 29,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.3.1",
+      "question": {
+        "en": "In the show running-config command, which part of the syntax is represented by running-config ?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.3.1 The first part of the syntax, show, is the command, and the second part of the syntax, running-config, is the keyword. The keyword specifies what should be displayed as the output of the show command.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "the command",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "a keyword",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "a variable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "a prompt",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q030",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 30,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.5.2",
+      "question": {
+        "en": "After making configuration changes on a Cisco switch, a network administrator issues a copy running-config startup-config command. What is the result of issuing this command?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.5.2With the copy running-config startup-config command, the content of the current operating configuration replaces the startup configuration file stored in NVRAM. The configuration file saved in NVRAM will be loaded when the device is restarted.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The new configuration will be stored in flash memory.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The new configuration will be loaded if the switch is restarted.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The current IOS file will be replaced with the newly configured file.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "The configuration changes will be removed and the original configuration will be restored.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q031",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 31,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.4.4",
+      "question": {
+        "en": "What command will prevent all unencrypted passwords from displaying in plain text in a configuration file?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.4.4 To prevent all configured passwords from appearing in plain text in configuration files, an administrator can execute the service password-encryption command. This command encrypts all configured passwords in the configuration file.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "(config)# enable password secret",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "(config)# enable secret Secret_Password",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "(config-line)# password secret",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "(config)# service password-encryption",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "(config)# enable secret Encrypted_Password",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q032",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 32,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.4.4",
+      "question": {
+        "en": "A network administrator enters the service password-encryption command into the configuration mode of a router. What does this command accomplish?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.4.4 The startup-config and running-config files display most passwords in plaintext. Use the service password-encryption global config command to encrypt all plaintext passwords in these files.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "This command encrypts passwords as they are transmitted across serial WAN links.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "This command prevents someone from viewing the running configuration passwords.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "This command enables a strong encryption algorithm for the enable secret password command.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "This command automatically encrypts passwords in configuration files that are currently stored in NVRAM.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "This command provides an exclusive encrypted password for external service personnel who are required to do router maintenance.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q033",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 33,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.1.9",
+      "question": {
+        "en": "What method can be used by two computers to ensure that packets are not dropped because too much data is being sent too quickly?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.1.9 In order for two computers to be able to communicate effectively, there must be a mechanism that allows both the source and destination to set the timing of the transmission and receipt of data. Flow control allows for this by ensuring that data is not sent too fast for it to be received properly.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "encapsulation",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "flow control",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "access method",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "response timeout",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q034",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 34,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.4",
+      "question": {
+        "en": "Which statement accurately describes a TCP/IP encapsulation process when a PC is sending data to the network?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.4 When the data is traveling from the PC to the network, the transport layer sends segments to the internet layer. The internet layer sends packets to the network access layer, which creates frames and then converts the frames to bits. The bits are released to the network media.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Data is sent from the internet layer to the network access layer.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Packets are sent from the network access layer to the transport layer.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Segments are sent from the transport layer to the internet layer.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Frames are sent from the network access layer to the internet layer.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q035",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 35,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.3.4",
+      "question": {
+        "en": "What three application layer protocols are part of the TCP/IP protocol suite? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.3.4 DNS, DHCP, and FTP are all application layer protocols in the TCP/IP protocol suite. ARP and PPP are network access layer protocols, and NAT is an internet layer protocol in the TCP/IP protocol suite.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ARP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "DHCP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "DNS",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "FTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "NAT",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "PPP",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q036",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 36,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.3.2",
+      "question": {
+        "en": "Match the description to the organization. (Not all options are used.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.3.2 and 3.4.2The EIA is an international standards and trade organization for electronics organizations. It is best known for its standards related to electrical wiring, connectors, and the 19-inch racks used to mount networking equipment.",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-1-3-q037",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 37,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "question": {
+        "en": "Which name is assigned to the transport layer PDU?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "bits",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "data",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "frame",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "packet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "segment",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "Explanation:Topic 3.6.3",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o7",
+          "text": {
+            "en": "Application data is passed down the protocol stack on its way to be transmitted across the network media. During the process, various protocols add information to it at each level. At each stage of the process, a PDU (protocol data unit) has a different name to reflect its new functions. The PDUs are named according to the protocols of the TCP/IP suite:",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o8",
+          "text": {
+            "en": "Data – The general term for the PDU used at the application layer.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o9",
+          "text": {
+            "en": "Segment – transport layer PDU",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o10",
+          "text": {
+            "en": "Packet – network layer PDU",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o11",
+          "text": {
+            "en": "Frame – data link layer PDU",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "o12",
+          "text": {
+            "en": "Bits – A physical layer PDU used when physically transmitting data over the medium",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q038",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 38,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.7.2",
+      "question": {
+        "en": "When IPv4 addressing is manually configured on a web server, which property of the IPv4 configuration identifies the network and host portion for an IPv4 address?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.7.2 There are several components that need to be entered when configuring IPv4 for an end device: * IPv4 address– uniquely identifies an end device on the network * Subnet mask– determines the network address portion and host portion for an IPv4 address * Default gateway– the IP address of the router interface used for communicating with hosts in another network * DNS server address– the IP address of the Domain Name System (DNS) server DHCP server address (if DHCP is used) is not configured manually on end devices. It will be provided by a DHCP server when an end device requests an IP address.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "DNS server address",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "subnet mask",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "default gateway",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "DHCP server address",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q039",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 39,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "What process involves placing one PDU inside of another PDU?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3 When a message is placed inside of another message, this is known as encapsulation. On networks, encapsulation takes place when one protocol data unit is carried inside of the data field of the next lower protocol data unit.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "encapsulation",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "encoding",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "segmentation",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "flow control",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q040",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 40,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.5.4",
+      "question": {
+        "en": "What layer is responsible for routing messages through an internetwork in the TCP/IP model?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.5.4 The TCP/IP model consists of four layers: application, transport, internet, and network access. Of these four layers, it is the internet layer that is responsible for routing messages. The session layer is not part of the TCP/IP model but is rather part of the OSI model.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "internet",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "transport",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "network access",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "session",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q041",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 41,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "question": {
+        "en": "For the TCP/IP protocol suite, what is the correct order of events when a Telnet message is being prepared to be sent over the network?",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-1-3-q042",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 42,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "Which PDU format is used when bits are received from the network medium by the NIC of a host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3 When received at the physical layer of a host, the bits are formatted into a frame at the data link layer. A packet is the PDU at the network layer. A segment is the PDU at the transport layer. A file is a data structure that may be used at the application layer.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "file",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "frame",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "packet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "segment",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q043",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 43,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.7.2",
+      "question": {
+        "en": "Refer to the exhibit. ServerB is attempting to contact HostA. Which two statements correctly identify the addressing that ServerB will generate in the process? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.7.2In order to send data to HostA, ServerB will generate a packet that contains the IP address of the destination device on the remote network and a frame that contains the MAC address of the default gateway device on the local network.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ServerB will generate a packet with the destination IP address of RouterB.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "ServerB will generate a frame with the destination MAC address of SwitchB.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "ServerB will generate a packet with the destination IP address of RouterA.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "ServerB will generate a frame with the destination MAC address of RouterB.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "ServerB will generate a packet with the destination IP address of HostA.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "f",
+          "text": {
+            "en": "ServerB will generate a frame with the destination MAC address of RouterA.",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-1-3/q043.png"
+    },
+    {
+      "id": "modules-1-3-q044",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 44,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.1.9",
+      "question": {
+        "en": "Which method allows a computer to react accordingly when it requests data from a server and the server takes too long to respond?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.1.9If a computer makes a request and does not hear a response within an acceptable amount of time, the computer assumes that no answer is coming and reacts accordingly.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "encapsulation",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "flow control",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "access method",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "response timeout",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q045",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 45,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "A web client is receiving a response for a web page from a web server. From the perspective of the client, what is the correct order of the protocol stack that is used to decode the received transmission?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3 1. HTTP governs the way that a web server and client interact. 2. TCP manages individual conversations between web servers and clients. 3. IP is responsible for delivery across the best path to the destination. 4. Ethernet takes the packet from IP and formats it for transmission.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Ethernet, IP, TCP, HTTP",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "HTTP, TCP, IP, Ethernet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Ethernet, TCP, IP, HTTP",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "HTTP, Ethernet, IP, TCP",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q046",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 46,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.5.4",
+      "question": {
+        "en": "Which two OSI model layers have the same functionality as a single layer of the TCP/IP model? (Choose two.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.5.4 The OSI data link and physical layers together are equivalent to the TCP/IP network access layer. The OSI transport layer is functionally equivalent to the TCP/IP transport layer, and the OSI network layer is equivalent to the TCP/IP internet layer. The OSI application, presentation, and session layers are functionally equivalent to the application layer within the TCP/IP model.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "data link",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "network",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "physical",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "session",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "transport",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q047",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 47,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.7.2",
+      "question": {
+        "en": "At which layer of the OSI model would a logical address be added during encapsulation?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.7.2 Logical addresses, also known as IP addresses, are added at the network layer. Physical addresses are edded at the data link layer. Port addresses are added at the transport layer. No addresses are added at the physical layer.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "physical layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "network layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q048",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 48,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.1.9",
+      "question": {
+        "en": "What is a characteristic of multicast messages?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.1.9 Multicast is a one-to-many type of communication. Multicast messages are addressed to a specific multicast group.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "They are sent to a select group of hosts.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "They are sent to all hosts on a network.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "They must be acknowledged.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "They are sent to a single destination.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q049",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 49,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.1.7",
+      "question": {
+        "en": "Which statement is correct about network protocols?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.1.7 Network protocols are implemented in hardware, or software, or both. They interact with each other within different layers of a protocol stack. Protocols have nothing to do with the installation of the network equipment. Network protocols are required to exchange information between source and destination devices in both local and remote networks.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Network protocols define the type of hardware that is used and how it is mounted in racks.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "They define how messages are exchanged between the source and the destination.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "They all function in the network access layer of TCP/IP.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "They are only required for exchange of messages between devices on remote networks.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q050",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 50,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.4.1",
+      "question": {
+        "en": "What is an advantage of network devices using open standard protocols?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.4.1 An advantage of network devices implementing open standard protocols, such as from the TCP/IP suite, is that clients and servers running different operating systems can communicate with each other. Open standard protocols facilitate innovation and competition between vendors and across markets, and can reduce the occurrence of monopolies in networking markets.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Network communications is confined to data transfers between devices from the same vendor.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "A client host and a server running different operating systems can successfully exchange data.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Internet access can be controlled by a single ISP in each market.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Competition and innovation are limited to specific types of products.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q051",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 51,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.2.4",
+      "question": {
+        "en": "Which device performs the function of determining the path that messages should take through internetworks?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.2.4 A router is used to determine the path that the messages should take through the network. A firewall is used to filter incoming and outgoing traffic. A DSL modem is used to provide Internet connection for a home or an organization.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "a router",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "a firewall",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "a web server",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "a DSL modem",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q052",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 52,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.7.4",
+      "question": {
+        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.CCNA-1-v7-Modules-1-3-Basic Network Connectivity and Communications Exam Answers 52 Modules 1 - 3: Basic Network Connectivity and Communications Exam - Packet Tracer 0.00 KB 20839 downloads ... DownloadWhat is the IP address of the switch virtual interface (SVI) on Switch0?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.7.4 After the enable command is issued, theshow running-configurationcommand or theshow ip interfaces briefcommand will display the IP address of the switch virtual interface (SVI).",
+        "de": null
+      },
+      "needsManual": true
+    },
+    {
+      "id": "modules-1-3-q053",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 53,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.6.2",
+      "question": {
+        "en": "Why would a Layer 2 switch need an IP address?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.6.2 A switch, as a Layer 2 device, does not need an IP address to transmit frames to attached devices. However, when a switch is accessed remotely through the network, it must have a Layer 3 address. The IP address must be applied to a virtual interface rather than to a physical interface. Routers, not switches, function as default gateways.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "to enable the switch to send broadcast frames to attached PCs",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "to enable the switch to function as a default gateway",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "to enable the switch to be managed remotely",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "to enable the switch to receive frames from attached PCs",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q054",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 54,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "2.2.1",
+      "question": {
+        "en": "Refer to the exhibit. An administrator is trying to configure the switch but receives the error message that is displayed in the exhibit. What is the problem?CCNA-1-v7-Modules-1-3-Basic Network Connectivity and Communications Exam Answers 54",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 2.2.1 In order to enter global configuration mode, the commandconfigure terminal, or a shortened version such asconfig t, must be entered from privileged EXEC mode. In this scenario the administrator is in user EXEC mode, as indicated by the &gt; symbol after the hostname. The administrator would need to use theenablecommand to move into privileged EXEC mode before entering theconfigure terminalcommand.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The entire command, configure terminal, must be used.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The administrator is already in global configuration mode.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The administrator must first enter privileged EXEC mode before issuing the command.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "The administrator must connect via the console port to access global configuration mode.",
+            "de": null
+          },
+          "correct": false
+        }
+      ],
+      "illustrationSrc": "/assets/cisco/exhibits/modules-1-3/q054.png"
+    },
+    {
+      "id": "modules-1-3-q055",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 55,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.4.4",
+      "question": {
+        "en": "What term describes a network owned by one organization that provides safe and secure access to individuals who work for a different organization?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.4.4 The termextranetdescribes a controlled and private network infrastructure owned by a single organization that is purposely built to grant secure, limited access to external individuals who work for completely different organizations or business entities. An extranet is typically deployed to facilitate seamless collaboration with external stakeholders such as trusted suppliers, vendors, business partners, or high-priority clients. It allows them to access specific internal resources and files safely without exposing the core corporate network to broader security risks.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "extranet",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "cloud",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "BYOD",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "quality of service",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q056",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 56,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.7.6",
+      "question": {
+        "en": "What term describes storing personal files on servers over the internet to provide access anywhere, anytime, and on any device?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.7.6 The termcloud(or cloud computing) refers to the practice of storing, managing, and processing data on remote servers hosted on the Internet, rather than on a local hard drive. This architecture allows users to seamlessly upload and retrieve their personal files, applications, and services from any geographical location, at any given time, and across any internet-enabled device.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "cloud",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "BYOD",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "quality of service",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "converged network",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q057",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 57,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.2.2",
+      "question": {
+        "en": "What term describes a network where one computer can be both client and server?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.2.2 The termpeer-to-peer(P2P) describes a network model where every interconnected computer can function as both a client and a server simultaneously. In this specific architecture, there is no requirement for a centralized or dedicated server. For instance, a computer acts as a server when it shares a local file or a connected printer with other users, and at the same time, it operates as a client when retrieving a shared document stored on another workstation. This setup is highly cost-effective for home environments or small offices, though it has distinct limitations regarding scalability and centralized security management.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "peer-to-peer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "cloud",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "BYOD",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "quality of service",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q058",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 58,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.4.1",
+      "question": {
+        "en": "What term describes a type of network used by people who work from home or from a small remote office?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.4.1 The termSOHOstands for Small Office, Home Office. It describes a specific category of Local Area Network (LAN) engineered to support individuals working remotely from home or operating within a small-scale business environment with a limited number of end devices. These networks are highly cost-effective and typically rely on a single, integrated multi-function device (a standard home router) that simultaneously provides switching capabilities, wireless access (Wi-Fi), and routing functions to grant Internet access and enable local resource sharing.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "SOHO network",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "BYOD",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "quality of service",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "converged network",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q059",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 59,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.2.2",
+      "question": {
+        "en": "What term describes a computing model where server software runs on dedicated computers?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.2.2 Theclient/servermodel is a distributed network architecture where tasks and workloads are partitioned between service providers (calledservers) and service requesters (calledclients). In this specific computing model, the server software runs on dedicated, high-performance computers that are completely optimized to host, manage, and respond to requests sent by multiple client devices simultaneously (such as web servers, file servers, or email servers). This centralization of network resources and hardware is what mainly distinguishes the client/server architecture from a Peer-to-Peer (P2P) network, where individual devices share responsibilities equally and can act as both clients and servers at the same time without relying on dedicated hardware.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "client/server",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "internet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "intranet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "extranet",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q061",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 61,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.7.8",
+      "question": {
+        "en": "What term describes a technology that allows devices to connect to the LAN using an electrical outlet?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.7.8Powerline networkingis a technology that allows data to be transmitted over an object&#8217;s existing electrical wiring. By using specialized powerline adapters plugged directly into any standardelectrical outlet, devices can seamlessly connect to the local area network (LAN). This approach effectively turns standard electrical infrastructure into network data channels without requiring extra Ethernet cabling.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "powerline networking",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "internet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "intranet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "extranet",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q062",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 62,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.6.4",
+      "question": {
+        "en": "What term describes a policy that allows network devices to manage the flow of data to give priority to voice and video?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.6.4Quality of Service (QoS)is a network policy that enables devices to manage data traffic flows by prioritizing bandwidth. It ensures that time-sensitive, real-time communications likevoice and videoare given higher priority over standard data traffic. This mechanism significantly reduces latency and jitter, maintaining acceptable transmission quality even during network congestion. Other options like Internet, Intranet, or Extranet merely define the scope or boundaries of network access.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "quality of service",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "internet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "intranet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "extranet",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q063",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 63,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.4.4",
+      "question": {
+        "en": "What term describes a private collection of LANs and WANs that belongs to an organization?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.4.4 Anintranetis a private collection of LANs and WANs that belongs to an organization. It is designed to be accessible only by the organization&#8217;s members, employees, or others with explicit authorization to securely share internal data and resources.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "intranet",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "internet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "extranet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "peer-to-peer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q064",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 64,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.7.2",
+      "question": {
+        "en": "What term describes the ability to use personal devices across a business or campus network?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.7.2 The termBYOD(which stands for Bring Your Own Device) describes the growing trend and corporate policy where users, employees, or students are officially permitted to utilize their personal tech devices (such as laptops, smartphones, or tablets) to connect to a corporate or campus network to access internal organizational resources.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "BYOD",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "internet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "intranet",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "extranet",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q065",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 65,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.4",
+      "question": {
+        "en": "At which OSI layer is a source IP address added to a PDU during the encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.4",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "network layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q066",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 66,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "At which OSI layer is a destination port number added to a PDU during the encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3 The transport layer(Layer 4 of the OSI model) is responsible for establishing a temporary communication session between two applications and transferring data between them reliably. During the encapsulation process, as data moves down from the application layer, the transport layer breaks it into smaller pieces calledsegments(PDU). It is exactly at this stage that a header containing both thesource port numberand thedestination port numberis added. The destination port number is critical because it tells the receiving device exactly which specific upper-layer application or service (such as HTTP on port 80, HTTPS on port 443, or DNS on port 53) should receive the data.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "network layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q067",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 67,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "At which OSI layer is data added to a PDU during the encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3 Theapplication layer(Layer 7 of the OSI model) is the starting point where data is generated by user interactions or software applications (such as web browsers or email clients). During the encapsulation process, this layer takes the raw user information and formats it according to the specific protocol in use (such as HTTP, FTP, or SMTP), creating the initial PDU known simply asdata. This data PDU is then passed down to the lower layers of the OSI stack, where it will sequentially receive headers and trailers (becoming segments, packets, and frames) to prepare it for physical transmission.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "network layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q068",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 68,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.4",
+      "question": {
+        "en": "At which OSI layer is a source IP address added to a PDU during the encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.4 Thenetwork layer(Layer 3 of the OSI model) is responsible for end-to-end packet delivery across multiple interconnected networks. During the encapsulation process, when data from the transport layer arrives at the network layer, it is packaged into protocol data units calledpackets(PDUs). At this stage, a Layer 3 network header is attached, which strictly includes both thesource IP address(identifying the original sender) and the destination IP address (identifying the final receiver). This logical addressing allows intermediate routers to successfully inspect the information and forward the data along the best path toward its final destination.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "network layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "presentation layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q069",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 69,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.2.1",
+      "question": {
+        "en": "Which of the following is the name for all computers connected to a network that participate directly in network communication?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.2.1Hosts are all computers connected to a network that participate directly in network communication.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Servers",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Intermediary device",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Host",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "media",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q070",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 70,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "At which OSI layer is a destination IP address added to a PDU during the encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3 Thenetwork layer(Layer 3 of the OSI model) is responsible for logical addressing and routing data across different interconnected networks. During the encapsulation process, as data segments move down from the transport layer, the network layer packages them into protocol data units calledpackets(PDU). It is exactly at this stage that a network header containing both thesource IP addressand thedestination IP addressis added. The destination IP address is critical because it allows intermediate routers to make proper forwarding decisions, ensuring the packet is routed through the correct path until it reaches its ultimate destination.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "network layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "presentation layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q071",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 71,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "At which OSI layer is a source MAC address added to a PDU during the encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3 Thedata link layer(Layer 2 of the OSI model) is responsible for preparing data for physical transmission across local network media and controlling access to those media. During the encapsulation process, as IP packets move down from the network layer (Layer 3), the data link layer packages them into protocol data units calledframes(PDUs). It is exactly at this stage that a data link header is attached, which includes both thesource MAC address(the physical address of the sending device&#8217;s NIC) and the destination MAC address (the next physical hop on the local network). This allows local network hardware, such as switches, to successfully identify the immediate sender and receiver within the same local network segment.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "presentation layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q072",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 72,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "At which OSI layer is a source port number added to a PDU during the encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3 Thetransport layer(Layer 4 of the OSI model) is responsible for managing data flow and ensuring that applications on both ends of the network can communicate seamlessly. During the encapsulation process, data moving down from the application layer is segmented into smaller protocol data units calledsegments(PDUs). It is precisely at this level that a transport header is attached, which includes both thesource port numberand the destination port number. The source port number is dynamically assigned by the sending device to uniquely identify the local application session initiating the communication, ensuring that return traffic is directed back to the correct software or service.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "network layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "presentation layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q073",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 73,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "3.6.3",
+      "question": {
+        "en": "At which OSI layer is a destination MAC address added to a PDU during the encapsulation process?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 3.6.3",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "data link layer",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "transport layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "application layer",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "network layer",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q074",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 74,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.2.5",
+      "question": {
+        "en": "When data is encoded as pulses of light, which media is being used to transmit the data?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.2.5Fiber-optic cable is the media is being used to transmit the data when data is encoded as pulses of light.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Wireless",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Fire optic cable",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Copper cable",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q075",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 75,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.2.4",
+      "question": {
+        "en": "Which two devices are intermediary devices? (Choose two)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.2.4 and 1.3.1Routers and switches are intermediary devices.",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Host",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Router",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Switch",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Servers",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-1-3-q076",
+      "packId": "modules-1-3",
+      "modules": [
+        1,
+        2,
+        3
+      ],
+      "number": 76,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
+      "topic": "1.6.2",
+      "question": {
+        "en": "A college is building a new dormitory on its campus. Workers are digging in the ground to install a new water pipe for the dormitory. A worker accidentally damages a fiber optic cable that connects two of the existing dormitories to the campus data center. Although the cable has been cut, students in the dormitories only experience a very short interruption of network services. What characteristic of the network is shown here?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 1.6.2Fault tolerance is the characteristic of a network which allows it to quickly respond to failures of network devices, media, or services. Quality of service refers to the measures taken to ensure that network traffic requiring higher throughput receives the required network resources. Scalability refers to the ability of the network to grow to accommodate new requirements. Security refers to protecting networks and data from theft, alteration, or destruction. Integrity refers to the completeness of something and is generally not used as a characteristic of networks in the same way as the other terms. Post navigation ← Previous Article CCNA 1 v7 Exam Answers – Introduction to Networks v7.0 (ITN) Next Article → CCNA 1 v7 Modules 4 – 7: Ethernet Concepts Exam Answers Subscribe Notify of new follow-up comments new replies to my comments Label {} [+] Name* Email* &#916; Label {} [+] Name* Email* &#916; 172 Corrections & Clarifications View Comments Load More Comments",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "quality of service (QoS)",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "scalability",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "security",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "fault tolerance",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "integrity",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

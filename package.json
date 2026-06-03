@@ -15,7 +15,10 @@
     "generate:ap-drills": "node scripts/generate-ap-exam-drills.mjs",
     "verify": "npm run typecheck && npm test && npm run build && npm run audit:curriculum",
     "audit:curriculum": "vite-node scripts/audit-curriculum.mjs",
-    "optimize:ranks": "node scripts/optimize-rank-assets.mjs"
+    "optimize:ranks": "node scripts/optimize-rank-assets.mjs",
+    "fetch:cisco": "node scripts/fetch-ccna1-itn-html.mjs",
+    "import:cisco": "node scripts/import-cisco-html.mjs --all",
+    "scrape:cisco-exhibits": "node scripts/scrape-cisco-exhibit-images.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.22",

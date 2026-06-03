@@ -763,13 +763,25 @@
     "gold_kernel": { "title": "Gold Kernel", "body": "Stable base — time to go deeper" },
     "platinum_root": { "title": "Platinum Root", "body": "AP1 topics solid, AP2 in focus" },
     "diamond_architect": { "title": "Diamond Architect", "body": "Broad coverage — exam-ready path" },
-    "apex_nexus": { "title": "Apex Nexus", "body": "Almost everything solved at least once" },
-    "master_override": { "title": "Master Override", "body": "Platform mastered — exam fit" },
+    "master_override": { "title": "Master Override", "body": "Almost everything solved once — one step from the top" },
+    "apex_nexus": { "title": "Apex Nexus", "body": "Top learning rank — platform mastered, exam ready" },
     "defaultPilot": "Learner",
     "rankUpKicker": "Rank up",
     "rankUpLead": "Your exercise progress and learning points moved you up the career ladder.",
     "rankUpCert": "Rank certificate (PDF)",
     "rankUpContinue": "Continue",
     "victoryLabel": "Learning rank"
+  },
+  "cisco": {
+    "hubTitle": "CCNA: Introduction to Networks",
+    "courseCode": "2526-E2FI2-CCNA1-ITNg · ITN v7.02",
+    "hubLead": "Original checkpoint questions (verbatim) for all 17 modules — MC with exhibit graphics",
+    "modules17": "17 modules · 6 checkpoint exams",
+    "mcCount": "{n} multiple-choice questions",
+    "quizCount": "{n} quiz items (MC + matching)",
+    "moduleRange": "Modules {from}–{to}",
+    "mcPackCount": "{n} MC questions",
+    "ladderAria": "All 17 ITN modules",
+    "verbatimNote": "Questions unchanged (EN). German translation will follow as a second track. For personal study use only."
   }
 }

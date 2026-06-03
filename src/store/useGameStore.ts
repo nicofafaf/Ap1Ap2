@@ -21,6 +21,12 @@ import {
   streakMilestoneFor,
 } from "../lib/learning/blitzSession";
 import { countSolvedExercises, rankLpDelta, RANKED_SPRINT_SIZE } from "../lib/progression/learningRank";
+import type { CiscoPackId } from "../cisco/types";
+import {
+  buildCiscoMcQueue,
+  CISCO_CARRIER_LF,
+} from "../cisco/ccna1-v7/ciscoLearningSession";
+import { CCNA1_ITN_17_MODULES } from "../cisco/ccna1-v7/examCatalog";
 import type { LearningRankId } from "../data/learningRankRegistry";
 import {
   applyLearningRankLpDelta,
@@ -613,6 +619,11 @@ type GameStore = {
   beginBlitzTraining: () => void;
   /** Ranked-Sprint: 15 Übungen, erhöhte Lernpunkte */
   beginRankedSprint: () => void;
+  /** CCNA 1 ITN — Original-MC aus Checkpoint-Packs (Module 1–17) */
+  isCiscoSession: boolean;
+  ciscoPackId: CiscoPackId | null;
+  beginCiscoPack: (packId: CiscoPackId) => void;
+  beginCiscoModule: (module: number) => void;
   activeRankedRun: boolean;
   rankedRunLpSession: number;
   learningRankLp: number;
@@ -928,6 +939,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
   blitzIndex: 0,
   blitzTargetLf: 1,
   activeRankedRun: false,
+  isCiscoSession: false,
+  ciscoPackId: null,
   rankedRunLpSession: 0,
   learningRankLp: loadLearningRankLp(),
   learningRankUpCelebration: null,
@@ -1004,6 +1017,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
         if (nextIndex >= state.blitzQueue.length) {
           return {
             isBlitzSession: false,
+            isCiscoSession: false,
+            ciscoPackId: null,
             activeRankedRun: false,
             rankedRunLpSession: 0,
             ihkExamPackId: null,
@@ -2568,6 +2583,37 @@ export const useGameStore = create<GameStore>((set, get) => ({
       // no-op
     }
     get().initiateCombat(lf, 100);
+  },
+  beginCiscoPack: (packId) => {
+    const queue = buildCiscoMcQueue(packId, true);
+    const first = queue[0] ?? null;
+    if (!first) return;
+    set({
+      ihkExamPackId: null,
+      examPresentationMode: false,
+      examSessionEndsAt: null,
+      activeRankedRun: false,
+      rankedRunLpSession: 0,
+      isCiscoSession: true,
+      ciscoPackId: packId,
+      isBlitzSession: true,
+      blitzQueue: queue,
+      blitzIndex: 0,
+      blitzTargetLf: CISCO_CARRIER_LF,
+      preferredLearningExerciseId: first,
+      isTutorialCombatRun: false,
+      combatTutorialStep: 0,
+    });
+    try {
+      localStorage.setItem("nexus.examPresentationMode.v1", "0");
+    } catch {
+      // no-op
+    }
+  },
+  beginCiscoModule: (module) => {
+    const def = CCNA1_ITN_17_MODULES.find((m) => m.module === module);
+    if (!def) return;
+    get().beginCiscoPack(def.packId);
   },
   setExamPresentationMode: (enabled) => {
     try {

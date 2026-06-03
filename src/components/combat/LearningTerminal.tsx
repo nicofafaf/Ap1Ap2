@@ -22,6 +22,7 @@ import {
   sanitizeEdtechLearningText,
 } from "../../lib/learning/edtechLfDisplay";
 import { BEGINNER_EXERCISE_IDS_BY_LF } from "../../lib/learning/learningRegistry";
+import { getCiscoLearningExerciseById } from "../../cisco/ccna1-v7/ciscoLearningSession";
 
 export type LearningTerminalProps = {
   currentLF: LearningField;
@@ -392,8 +393,25 @@ export function LearningTerminal({
     window.setTimeout(() => setRimGold(false), 840);
   }, [panelShake, reduceMotion]);
 
+  const isCiscoSession = useGameStore((s) => s.isCiscoSession);
+  const ciscoPackId = useGameStore((s) => s.ciscoPackId);
+
   const bundle = useMemo(() => {
     const leitner = useGameStore.getState().learningLeitnerByExerciseId;
+    if (isCiscoSession && preferredLearningExerciseId) {
+      const exercise = getCiscoLearningExerciseById(preferredLearningExerciseId);
+      if (exercise) {
+        return {
+          snippet: {
+            lang: "javascript",
+            code: `# CCNA ITN · ${ciscoPackId ?? "checkpoint"}\n${exercise.mcQuestion}`,
+            caption: "CCNA Checkpoint — Original MC",
+          },
+          exercise,
+          exerciseLf: currentLF,
+        };
+      }
+    }
     if (sectorZero) {
       const seed = (entryToken ^ (sectorZeroMorphToken * 0x9e3779b9)) >>> 0;
       return getFinalExamLearningBundle(seed, leitner);
@@ -420,6 +438,8 @@ export function LearningTerminal({
     semantic,
     entryToken,
     preferredLearningExerciseId,
+    isCiscoSession,
+    ciscoPackId,
     edtechFlow,
     edtechExcludeExerciseId,
     edtechRecentExerciseIds,
@@ -479,6 +499,7 @@ export function LearningTerminal({
   }, [exercise?.coachLine, learningStoryMode]);
 
   const isMultiMc = exercise?.mcSelectMode === "multi";
+  const isMatchMc = exercise?.mcSelectMode === "match";
 
   useEffect(() => {
     setPickedId(null);
@@ -506,7 +527,7 @@ export function LearningTerminal({
   }, [exercise?.id, answerLf, clearActiveMissionContext, setActiveMissionContext]);
 
   const highlighted = useMemo(
-    () => highlightCode(snippet.code, snippet.lang),
+    () => highlightCode(snippet.code, snippet.lang as Parameters<typeof highlightCode>[1]),
     [snippet.code, snippet.lang]
   );
 
@@ -577,6 +598,31 @@ export function LearningTerminal({
       triggerBossHit,
       unlockSectorMastery,
       playVictoryFinisherSequence,
+    ]
+  );
+
+  const handleMatchSubmit = useCallback(
+    (ok: boolean, selectionKey: string) => {
+      if (!exercise || mcSubmitted) return;
+      setMcSubmitted(true);
+      setPickedId(ok ? "match:ok" : "match:miss");
+      recordCombatLearningAttempt({
+        lf: answerLf,
+        exerciseId: exercise.id,
+        title: exercise.title,
+        problem: exercise.problem,
+        mcQuestion: exercise.mcQuestion,
+        selectedOptionId: selectionKey,
+        wasCorrect: ok,
+      });
+      if (ok) applyMcSuccess(selectionKey);
+    },
+    [
+      answerLf,
+      applyMcSuccess,
+      exercise,
+      mcSubmitted,
+      recordCombatLearningAttempt,
     ]
   );
 
@@ -704,7 +750,7 @@ export function LearningTerminal({
     edtechFlow &&
     learningFocus &&
     exercise &&
-    exercise.mcOptions.length > 0 &&
+    (exercise.mcOptions.length > 0 || (exercise.matchPairs?.length ?? 0) > 0) &&
     exercise.lang !== "sql" &&
     exercise.lang !== "csharp" &&
     exercise.lang !== "bash";
@@ -720,6 +766,7 @@ export function LearningTerminal({
         examStrict={examStrict}
         onPick={handleMcOption}
         onSubmitMulti={handleMcSubmitMulti}
+        onSubmitMatch={handleMatchSubmit}
       />
     );
   }

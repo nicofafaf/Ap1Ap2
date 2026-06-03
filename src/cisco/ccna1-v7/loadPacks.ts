@@ -77,6 +77,18 @@ export function totalCiscoMcCount(): number {
   );
 }
 
+export function getPlayableCountForPack(id: CiscoPackId): number {
+  if (isPtLabPack(id)) return getSessionItemsForPack(id).length;
+  return getQuizItemsForPack(id).length;
+}
+
+export function totalCiscoPlayableCount(): number {
+  return getAllCiscoPacks().reduce(
+    (sum, p) => sum + getPlayableCountForPack(p.id as CiscoPackId),
+    0
+  );
+}
+
 export function totalCiscoQuizCount(): number {
   return getAllCiscoPacks().reduce(
     (sum, p) => sum + getQuizItemsForPack(p.id as CiscoPackId).length,

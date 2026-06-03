@@ -4,12 +4,14 @@ import { CCNA1_ITN_17_MODULES, CCNA1_ITN_PACKS } from "../../../cisco/ccna1-v7/e
 import {
   ensureCiscoPacksLoaded,
   getAllCiscoPacks,
+  getPlayableCountForPack,
   getQuizItemsForPack,
-  totalCiscoQuizCount,
+  totalCiscoPlayableCount,
 } from "../../../cisco/ccna1-v7/loadPacks";
 import type { CiscoPackId } from "../../../cisco/types";
 import {
   CISCO_EXAM_PACK_IDS,
+  ciscoCourseProgress,
   ciscoPackProgress,
   hasCiscoLeitnerData,
   pickWeakestCiscoModule,
@@ -39,7 +41,7 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
     void ensureCiscoPacksLoaded()
       .then(() => {
         if (cancelled) return;
-        setQuizTotal(totalCiscoQuizCount());
+        setQuizTotal(totalCiscoPlayableCount());
         setPacksReady(true);
         setLoadError(null);
       })
@@ -78,9 +80,15 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
 
   const packStats = useMemo(() => {
     const map = new Map<CiscoPackId, number>();
-    for (const p of packs) map.set(p.id as CiscoPackId, getQuizItemsForPack(p.id as CiscoPackId).length);
+    for (const p of packs) map.set(p.id as CiscoPackId, getPlayableCountForPack(p.id as CiscoPackId));
     return map;
   }, [packs]);
+
+  const courseProgress = useMemo(() => {
+    const totals: Partial<Record<CiscoPackId, number>> = {};
+    for (const [id, count] of packStats) totals[id] = count;
+    return ciscoCourseProgress(leitner, totals);
+  }, [leitner, packStats]);
 
   const weakestModule = useMemo(
     () => (hasCiscoLeitnerData(leitner) ? pickWeakestCiscoModule(leitner) : null),
@@ -122,6 +130,9 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
               ? t("cisco.quizCount").replace("{n}", String(quizTotal))
               : t("cisco.loading", "Lade Prüfungsbank…")}{" "}
             · {t("cisco.modules17")}
+            {courseProgress.solved > 0
+              ? ` · ${t("cisco.courseProgress", "{pct}% Kurs geübt").replace("{pct}", String(courseProgress.pct))}`
+              : ""}
           </p>
           {loadError ? (
             <p className="nx-cisco-load-error" role="alert">
@@ -197,7 +208,7 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
                 const packId = pack.id as CiscoPackId;
                 const isPtLab = packId === "pt-skills-final" || packId === "pt-skills-practice";
                 const isExamPack = CISCO_EXAM_PACK_IDS.includes(packId);
-                const count = isPtLab ? pack.itemCount : getQuizItemsForPack(packId).length;
+                const count = isPtLab ? pack.itemCount : getPlayableCountForPack(packId);
                 return (
                   <div key={pack.id} className="nx-cisco-pack-card nx-cisco-pack-card--final">
                     <span className="nx-cisco-pack-title">

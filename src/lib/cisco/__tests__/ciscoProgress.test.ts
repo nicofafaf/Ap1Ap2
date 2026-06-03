@@ -4,6 +4,7 @@ import {
   buildCiscoWeaknessExerciseIds,
   ciscoPackIdFromExerciseId,
   ciscoPackProgress,
+  ciscoCourseProgress,
   isCiscoExerciseId,
   rankCiscoModuleWeaknesses,
 } from "../ciscoProgress";
@@ -63,5 +64,15 @@ describe("ciscoProgress", () => {
     };
     const q = buildCiscoWeaknessExerciseIds(leitner, "modules-8-10", 10);
     expect(q[0]).toBe("modules-8-10-q001");
+  });
+
+  it("computes course progress across packs", () => {
+    const leitner = {
+      "modules-1-3-q001": { ...defaultLeitnerState(), repetitions: 1, box: 3 },
+      "modules-1-3-q002": { ...defaultLeitnerState(), repetitions: 2, box: 4 },
+    };
+    const p = ciscoCourseProgress(leitner, { "modules-1-3": 75, "modules-4-7": 70 });
+    expect(p.solved).toBe(2);
+    expect(p.total).toBe(145);
   });
 });

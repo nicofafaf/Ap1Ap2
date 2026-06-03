@@ -876,7 +876,10 @@
     "ptLabLabel": "Packet Tracer Lab",
     "ptLabHint": "Stelle das Szenario in Packet Tracer nach, dann tippe auf Weiter.",
     "ptLabComplete": "Lab abgeschlossen — weiter",
-    "ptLabOpenSource": "Referenz auf ITExamAnswers öffnen"
+    "ptLabOpenSource": "Referenz auf ITExamAnswers öffnen",
+    "sessionProgress": "Session",
+    "examSessionProgress": "Prüfung",
+    "courseProgress": "{pct}% Kurs geübt"
   },
   "liveDuel": {
     "tabs": { "host": "Raum erstellen", "join": "Beitreten" },

@@ -132,6 +132,25 @@ export function ciscoPackTitle(packId: CiscoPackId, locale: "de" | "en"): string
   return locale === "de" ? meta.titleDe : meta.titleEn;
 }
 
+export function ciscoCourseProgress(
+  leitner: Readonly<Record<string, LeitnerCardState>>,
+  packTotals: Readonly<Partial<Record<CiscoPackId, number>>>
+): { solved: number; total: number; pct: number } {
+  let solved = 0;
+  let total = 0;
+  for (const meta of CCNA1_ITN_PACKS) {
+    const count = packTotals[meta.id] ?? 0;
+    if (count <= 0) continue;
+    total += count;
+    solved += ciscoPackProgress(leitner, meta.id, count).solved;
+  }
+  return {
+    solved,
+    total,
+    pct: total > 0 ? Math.round((solved / total) * 100) : 0,
+  };
+}
+
 export function hasCiscoLeitnerData(leitner: Readonly<Record<string, LeitnerCardState>>): boolean {
   return Object.keys(leitner).some(isCiscoExerciseId);
 }

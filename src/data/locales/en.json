@@ -870,7 +870,10 @@
     "ptLabLabel": "Packet Tracer lab",
     "ptLabHint": "Recreate the scenario in Packet Tracer, then tap Continue.",
     "ptLabComplete": "Lab done — continue",
-    "ptLabOpenSource": "Open ITExamAnswers reference"
+    "ptLabOpenSource": "Open ITExamAnswers reference",
+    "sessionProgress": "Session",
+    "examSessionProgress": "Exam",
+    "courseProgress": "{pct}% of course practiced"
   },
   "liveDuel": {
     "tabs": { "host": "Create room", "join": "Join" },

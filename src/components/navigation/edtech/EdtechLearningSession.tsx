@@ -11,6 +11,7 @@ import {
 import { getLfCourseMeta } from "../../../lib/learning/lfCourseCatalog";
 import { BEGINNER_EXERCISE_IDS_BY_LF } from "../../../lib/learning/learningRegistry";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
+import { ciscoPackTitle } from "../../../lib/cisco/ciscoProgress";
 import { useGameStore } from "../../../store/useGameStore";
 import { publicAssetUrl } from "../../../data/nexusRegistry";
 import { NexusCinematicShell } from "../../ui/NexusCinematicShell";
@@ -50,6 +51,10 @@ export function EdtechLearningSession({
   const examSessionEndsAt = useGameStore((s) => s.examSessionEndsAt);
   const isCiscoSession = useGameStore((s) => s.isCiscoSession);
   const ciscoPackId = useGameStore((s) => s.ciscoPackId);
+  const blitzIndex = useGameStore((s) => s.blitzIndex);
+  const blitzQueue = useGameStore((s) => s.blitzQueue);
+  const ciscoExamPackId = useGameStore((s) => s.ciscoExamPackId);
+  const { locale } = useNexusI18n();
 
   const lfNum = Number.parseInt(lf.replace("LF", ""), 10);
   const meta = getLfCourseMeta(lfNum);
@@ -82,9 +87,41 @@ export function EdtechLearningSession({
     [exercise.coachLine, learningStoryMode]
   );
 
-  const solved = new Set(learningCorrectByLf[lf] ?? []).size;
-  const total = meta?.totalExercises ?? 0;
-  const pct = total > 0 ? Math.min(100, Math.round((solved / total) * 100)) : 0;
+  const progressView = useMemo(() => {
+    if (isCiscoSession && blitzQueue.length > 0) {
+      const cur = Math.min(blitzIndex + 1, blitzQueue.length);
+      return {
+        label: ciscoExamPackId
+          ? t("cisco.examSessionProgress", "Prüfung")
+          : t("cisco.sessionProgress", "Session"),
+        solved: cur,
+        total: blitzQueue.length,
+        pct: Math.round((cur / blitzQueue.length) * 100),
+      };
+    }
+    const solvedCount = new Set(learningCorrectByLf[lf] ?? []).size;
+    const totalCount = meta?.totalExercises ?? 0;
+    return {
+      label: t("edtechLearn.progressLabel", "Dein Fortschritt"),
+      solved: solvedCount,
+      total: totalCount,
+      pct: totalCount > 0 ? Math.min(100, Math.round((solvedCount / totalCount) * 100)) : 0,
+    };
+  }, [
+    blitzIndex,
+    blitzQueue.length,
+    ciscoExamPackId,
+    isCiscoSession,
+    learningCorrectByLf,
+    lf,
+    meta?.totalExercises,
+    t,
+  ]);
+
+  const solved = progressView.solved;
+  const total = progressView.total;
+  const pct = progressView.pct;
+  const progressLabel = progressView.label;
 
   const beginnerIds = [...(BEGINNER_EXERCISE_IDS_BY_LF[lf] ?? [])];
   const beginnerIdx = beginnerIds.indexOf(exercise.id);
@@ -145,7 +182,9 @@ export function EdtechLearningSession({
             <h2 className="nx-edtech-learn-cisco-title">{t("cisco.hubTitle", "CCNA ITN Checkpoint")}</h2>
             <p className="nx-edtech-learn-cisco-lead">{displayTitle}</p>
             {ciscoPackId ? (
-              <p className="nx-edtech-learn-cisco-pack">{ciscoPackId.replace("modules-", "Module ")}</p>
+              <p className="nx-edtech-learn-cisco-pack">
+                {ciscoPackTitle(ciscoPackId, locale === "de" ? "de" : "en")}
+              </p>
             ) : null}
           </div>
         ) : (
@@ -162,12 +201,12 @@ export function EdtechLearningSession({
       <header className="nx-edtech-learn-header">
         <div className="nx-edtech-learn-header-text">
           <span className="nx-edtech-learn-lf" id="nx-edtech-learn-heading">
-            {t("edtechLearn.progressLabel", "Dein Fortschritt")}
+            {progressLabel}
           </span>
           <div className="nx-edtech-learn-progress-wrap">
             <div className="nx-edtech-learn-progress-meta">
               <span>
-                {t("edtechLearn.progressLabel", "Dein Fortschritt")} · {solved}/{total}
+                {progressLabel} · {solved}/{total}
               </span>
               <span>{pct}%</span>
             </div>

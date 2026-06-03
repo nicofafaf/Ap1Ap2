@@ -8,6 +8,7 @@ import {
 } from "../../../lib/curriculum/trainingProfile";
 import { LF02_FEINLERNZIELE, LF02_KMK_GROBZIEL, LF02_KMK_RICHTZIEL } from "../../../lib/curriculum/lf02KmkObjectives";
 import { useNexusI18n } from "../../../lib/i18n/I18nProvider";
+import type { QuestionLocaleMode } from "../../../lib/i18n/questionLocale";
 import { useGameStore } from "../../../store/useGameStore";
 import { edtechGhostBtn, edtechPrimaryBtn } from "./edtechHubTokens";
 import "./edtechProfileSettings.css";
@@ -18,14 +19,18 @@ export type EdtechProfileSettingsProps = {
 };
 
 export function EdtechProfileSettings({ open, onClose }: EdtechProfileSettingsProps) {
-  const { t } = useNexusI18n();
+  const { t, locale, setLocale } = useNexusI18n();
   const reduceMotion = useReducedMotion();
   const trainingTrack = useGameStore((s) => s.trainingTrack);
   const bundeslandId = useGameStore((s) => s.bundeslandId);
   const learningStoryMode = useGameStore((s) => s.learningStoryMode);
+  const questionLocaleMode = useGameStore((s) => s.questionLocaleMode);
+  const autoTranslateQuestions = useGameStore((s) => s.autoTranslateQuestions);
   const setTrainingTrack = useGameStore((s) => s.setTrainingTrack);
   const setBundeslandId = useGameStore((s) => s.setBundeslandId);
   const setLearningStoryMode = useGameStore((s) => s.setLearningStoryMode);
+  const setQuestionLocaleMode = useGameStore((s) => s.setQuestionLocaleMode);
+  const setAutoTranslateQuestions = useGameStore((s) => s.setAutoTranslateQuestions);
 
   const activeTrack = trainingTrack ?? "ae";
   const activeBl = bundeslandId ?? DEFAULT_BUNDESLAND;
@@ -63,6 +68,70 @@ export function EdtechProfileSettings({ open, onClose }: EdtechProfileSettingsPr
                 ×
               </button>
             </header>
+
+            <section className="nx-edtech-settings-block" aria-labelledby="nx-edtech-settings-language">
+              <h3 id="nx-edtech-settings-language">{t("hub.edtech.settings.languageTitle", "Sprache")}</h3>
+              <p className="nx-edtech-settings-lead">
+                {t("hub.edtech.settings.languageLead", "Oberfläche und Fragen getrennt")}
+              </p>
+              <p className="nx-edtech-settings-select-label">{t("hub.edtech.settings.uiLangTitle", "Oberfläche")}</p>
+              <div className="nx-edtech-settings-grid">
+                {(["de", "en"] as const).map((loc) => (
+                  <button
+                    key={loc}
+                    type="button"
+                    className={[
+                      "nx-edtech-settings-card",
+                      locale === loc ? "nx-edtech-settings-card--active" : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                    onClick={() => setLocale(loc)}
+                  >
+                    <span className="nx-edtech-settings-card-title">
+                      {loc === "de"
+                        ? t("hub.edtech.settings.uiLangDe", "Deutsch")
+                        : t("hub.edtech.settings.uiLangEn", "English")}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <p className="nx-edtech-settings-select-label">{t("hub.edtech.settings.questionLangTitle", "Fragen")}</p>
+              <div className="nx-edtech-settings-grid">
+                {(["ui", "de", "en"] as QuestionLocaleMode[]).map((mode) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    className={[
+                      "nx-edtech-settings-card",
+                      questionLocaleMode === mode ? "nx-edtech-settings-card--active" : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                    onClick={() => setQuestionLocaleMode(mode)}
+                  >
+                    <span className="nx-edtech-settings-card-title">
+                      {mode === "ui"
+                        ? t("hub.edtech.settings.questionLangUi", "Wie Oberfläche")
+                        : mode === "de"
+                          ? t("hub.edtech.settings.questionLangDe", "Deutsch")
+                          : t("hub.edtech.settings.questionLangEn", "English")}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <label className="nx-edtech-settings-toggle">
+                <input
+                  type="checkbox"
+                  checked={autoTranslateQuestions}
+                  onChange={(e) => setAutoTranslateQuestions(e.target.checked)}
+                />
+                <span>{t("hub.edtech.settings.autoTranslateOn", "Fehlende Texte übersetzen")}</span>
+              </label>
+              <p className="nx-edtech-settings-lead">
+                {t("hub.edtech.settings.autoTranslateLead", "Gecacht, braucht kurz Internet")}
+              </p>
+            </section>
 
             <section className="nx-edtech-settings-block" aria-labelledby="nx-edtech-settings-track">
               <h3 id="nx-edtech-settings-track">{t("hub.edtech.settings.trackTitle", "Ausbildungsrichtung")}</h3>

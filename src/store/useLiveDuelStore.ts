@@ -108,7 +108,7 @@ export const useLiveDuelStore = create<LiveDuelStore>((set, get) => ({
         ? getLiveDuelSyncMode() === "supabase"
           ? "liveDuel.sync.supabase"
           : "liveDuel.sync.local"
-        : sync.message,
+        : "liveDuel.error.syncFailed",
     });
     return true;
   },

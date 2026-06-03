@@ -10,85 +10,8 @@
     17
   ],
   "sourceUrl": "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
-  "itemCount": 5,
+  "itemCount": 4,
   "items": [
-    {
-      "id": "system-test-q001",
-      "packId": "system-test",
-      "modules": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17
-      ],
-      "number": 1,
-      "type": "single",
-      "verbatim": true,
-      "sourceUrl": "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
-      "question": {
-        "en": "What two characteristics describe an FTP connection? (Choose two.)",
-        "de": null
-      },
-      "explanation": {
-        "en": "An FTP client is an application that runs on a computer used to push and pull files from a server running an FTP daemon. To transfer files, FTP requires two connections between the client and the server: one for commands and replies and another for the actual file transfer. The client establishes the first connection to the server for control traffic and the second connection for the actual file transfer. This connection is created every time there is a file to be transferred. The client can download a file from or upload a file to the server.",
-        "de": null
-      },
-      "options": [
-        {
-          "id": "a",
-          "text": {
-            "en": "The server establishes the first connection with the client to control traffic that consists of server commands and client replies.",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "b",
-          "text": {
-            "en": "A large file requires more than two connections between the client and the server to successfully download it.",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": {
-            "en": "The first connection established is for traffic control and the second connection is created to transfer a file.",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": {
-            "en": "Files can be downloaded from or uploaded to the server.",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "The client needs to run a daemon program to establish an FTP connection with a server.",
-            "de": null
-          },
-          "correct": false
-        }
-      ]
-    },
     {
       "id": "system-test-q002",
       "packId": "system-test",
@@ -119,15 +42,11 @@
         "en": "Refer to the exhibit. Consider the IP address configuration shown from PC1. What is a description of the default gateway address?",
         "de": null
       },
-      "explanation": {
-        "en": "The default gateway is used to route packets destined for remote networks. The default gateway IP address is the address of the first Layer 3 device (the router interface) that connects to the same network.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
           "text": {
-            "en": "CCNA 1 System Test Course (Version 1.1) – System Test Exam PC1",
+            "en": "It is the IP address of the Router1 interface that connects the PC1 LAN to Router1.",
             "de": null
           },
           "correct": true
@@ -135,7 +54,7 @@
         {
           "id": "b",
           "text": {
-            "en": "It is the IP address of the Router1 interface that connects the PC1 LAN to Router1.",
+            "en": "It is the IP address of the Router1 interface that connects the company to the Internet.",
             "de": null
           },
           "correct": false
@@ -143,21 +62,13 @@
         {
           "id": "c",
           "text": {
-            "en": "It is the IP address of the Router1 interface that connects the company to the Internet.",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": {
             "en": "It is the IP address of the ISP network device located in the cloud.",
             "de": null
           },
           "correct": false
         },
         {
-          "id": "e",
+          "id": "d",
           "text": {
             "en": "It is the IP address of Switch1 that connects PC1 to other devices on the same LAN.",
             "de": null
@@ -197,10 +108,6 @@
         "en": "Open the PT activity. Perform the tasks in the activity instructions and then answer the question.",
         "de": null
       },
-      "explanation": {
-        "en": "From the PDU, the destination port is 443, which means the service requested is HTTPS.CCNA 1 System Test Course (Version 1.1) – System Test Exam PT Answer",
-        "de": null
-      },
       "needsManual": true
     },
     {
@@ -231,10 +138,6 @@
       "sourceUrl": "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
       "question": {
         "en": "Which statement describes the physical topology for a LAN?",
-        "de": null
-      },
-      "explanation": {
-        "en": "A physical topology defines the way in which computers and other network devices are connected to a network.",
         "de": null
       },
       "options": [
@@ -302,7 +205,7 @@
         "en": "Match the term to the value represented.",
         "de": null
       },
-      "needsManual": true
+      "matchPairs": []
     }
   ]
 }

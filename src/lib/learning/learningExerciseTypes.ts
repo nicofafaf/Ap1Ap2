@@ -35,6 +35,8 @@ export type LearningExercise = {
   };
   /** Optional: Diagramm/Foto — bei 404 nur einmaliger Fallback, kein Retry */
   illustrationSrc?: string;
+  /** CCNA: Router-Konfiguration als Text-Exhibit */
+  exhibitCode?: string;
   /** Optional: Kurz-Hilfe unter der Aufgabe (ADHD-freundlich, ohne Extra-Scroll) */
   solutionHint?: string;
   /** Optional: Coach-Flavour vor MC-Frage (aus beginnerPath JSON) */

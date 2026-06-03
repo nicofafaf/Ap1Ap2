@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { buildLiveDuelJoinUrl, buildLiveDuelQrImageUrl } from "../../lib/liveDuel/liveDuelUrls";
-import { getLiveDuelSyncMode } from "../../lib/liveDuel/liveDuelSync";
+import { getLiveDuelSyncMode, subscribeLiveDuelRoomUpdates } from "../../lib/liveDuel/liveDuelSync";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
 import { useLiveDuelStore } from "../../store/useLiveDuelStore";
 
@@ -18,8 +18,12 @@ export function LiveDuelLobby() {
 
   useEffect(() => {
     if (!room?.code) return;
-    const id = window.setInterval(() => void refreshRoom(), 2000);
-    return () => window.clearInterval(id);
+    const poll = window.setInterval(() => void refreshRoom(), 2000);
+    const unsub = subscribeLiveDuelRoomUpdates(room.code, () => void refreshRoom());
+    return () => {
+      window.clearInterval(poll);
+      unsub();
+    };
   }, [room?.code, refreshRoom]);
 
   if (!room) return null;

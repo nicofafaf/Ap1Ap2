@@ -253,7 +253,7 @@
         "home": "Start",
         "homeLead": "Willkommen, Weiterlernen und Lernmodi — dein Einstieg auf einen Blick",
         "duel": "Live-Duell",
-        "duelLead": "Kahoot-Style: Raum erstellen, Link oder QR teilen, gemeinsam auf Zeit antworten — LF, CCNA und Prüfungen",
+        "duelLead": "Live-Duell: Raum erstellen, Link oder QR teilen, gemeinsam auf Zeit antworten — LF, CCNA und Prüfungen",
         "ccna": "CCNA ITN",
         "ccnaLead": "Cisco CCNA v7 Kapitel, Übungen und Prüfungsfragen — eigener Bereich ohne LF-Mix",
         "exams": "Prüfungen",
@@ -473,6 +473,18 @@
         "storyTitle": "Story-Modus",
         "storyLead": "Missionstexte mit Nexus-Rahmen statt neutraler Kurzfassung",
         "storyOn": "Story in Lernaufgaben anzeigen",
+        "languageTitle": "Sprache",
+        "languageLead": "Oberfläche und Fragen getrennt — CCNA, Lernfelder und Live-Duell",
+        "uiLangTitle": "Oberfläche",
+        "uiLangDe": "Deutsch",
+        "uiLangEn": "English",
+        "questionLangTitle": "Fragen & Antworten",
+        "questionLangUi": "Wie Oberfläche",
+        "questionLangDe": "Deutsch",
+        "questionLangEn": "English",
+        "autoTranslateTitle": "Automatisch übersetzen",
+        "autoTranslateLead": "Fehlende Übersetzungen nachladen (gecacht, braucht kurz Internet)",
+        "autoTranslateOn": "Fehlende Texte übersetzen",
         "lf2Title": "LF2 · Prüfungs-Checkliste",
         "done": "Fertig"
       }
@@ -842,7 +854,7 @@
   "cisco": {
     "heroBadge": "NetAcad · Cisco ITN",
     "loading": "Lade Prüfungsbank…",
-    "loadError": "CCNA-Inhalt konnte nicht geladen werden.",
+    "loadError": "CCNA-Inhalt konnte nicht geladen werden",
     "hubTitle": "CCNA: Introduction to Networks",
     "courseCode": "2526-E2FI2-CCNA1-ITNg · ITN v7.02",
     "hubLead": "Original Checkpoint-Fragen (1:1) für alle 17 Module — MC mit Exhibit-Grafiken",
@@ -863,7 +875,7 @@
       "questionCount": "Anzahl Fragen",
       "seconds": "Sekunden pro Frage",
       "scoring": "Wertung",
-      "scoringSpeed": "Geschwindigkeit + richtig (Kahoot-Style)",
+      "scoringSpeed": "Geschwindigkeit + richtig (mehr Punkte bei schneller Antwort)",
       "scoringCorrect": "Nur richtig / falsch",
       "create": "Raum erstellen"
     },
@@ -886,7 +898,7 @@
     "arena": {
       "loading": "Fragen werden geladen …",
       "progress": "Frage {cur} / {total}",
-      "reveal": "Auswertung — Host startet die nächste Frage.",
+      "reveal": "Auswertung — Host startet die nächste Frage",
       "next": "Nächste Frage"
     },
     "results": {
@@ -895,7 +907,7 @@
       "back": "Zurück zur Duell-Übersicht"
     },
     "sync": {
-      "local": "Lokal: Raum nur auf diesem Gerät (Test). Für echte Gäste Supabase in den Einstellungen aktivieren.",
+      "local": "Lokal: Host und Gäste müssen denselben Browser/Profil nutzen (z. B. zwei Tabs). Für Handys anderer Teilnehmer: Supabase in den Einstellungen.",
       "localShort": "Modus: lokal",
       "supabase": "Echtzeit-Sync über Supabase aktiv.",
       "supabaseShort": "Modus: Live (Supabase)"
@@ -903,7 +915,8 @@
     "error": {
       "noQuestions": "Keine Fragen für diese Auswahl — anderes Lernfeld oder Pack wählen.",
       "invalidCode": "Ungültiger Code (4–8 Zeichen).",
-      "roomNotFound": "Raum nicht gefunden — Code prüfen oder Host muss Raum zuerst erstellen."
+      "roomNotFound": "Raum nicht gefunden — Code prüfen oder Host muss Raum zuerst erstellen.",
+      "syncFailed": "Sync fehlgeschlagen — Raum ist lokal gespeichert, Echtzeit-Sync prüfen"
     },
     "catalog": {
       "lfAll": "Alle Lernfelder (LF1–LF12)",

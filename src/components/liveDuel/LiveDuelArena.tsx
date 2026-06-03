@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
-import { resolveLiveDuelQuestion } from "../../lib/liveDuel/liveDuelQuestionResolve";
+import { useEffect, useState } from "react";
+import { resolveLiveDuelQuestionAsync } from "../../lib/liveDuel/liveDuelQuestionResolve";
 import { useNexusI18n } from "../../lib/i18n/I18nProvider";
+import { useQuestionLocale } from "../../lib/i18n/useQuestionLocale";
 import { useLiveDuelStore } from "../../store/useLiveDuelStore";
 
 export function LiveDuelArena() {
@@ -13,11 +14,23 @@ export function LiveDuelArena() {
   const [answered, setAnswered] = useState(false);
   const [secLeft, setSecLeft] = useState(room?.settings.secondsPerQuestion ?? 20);
 
+  const { locale: questionLocale, autoTranslate } = useQuestionLocale();
   const ref = room?.questionQueue[room.questionIndex];
-  const resolved = useMemo(
-    () => (ref ? resolveLiveDuelQuestion(ref) : null),
-    [ref]
-  );
+  const [resolved, setResolved] = useState<Awaited<ReturnType<typeof resolveLiveDuelQuestionAsync>>>(null);
+
+  useEffect(() => {
+    if (!ref) {
+      setResolved(null);
+      return;
+    }
+    let cancelled = false;
+    void resolveLiveDuelQuestionAsync(ref, questionLocale, autoTranslate).then((q) => {
+      if (!cancelled) setResolved(q);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [ref, questionLocale, autoTranslate]);
 
   const isHost = room?.hostId === localPlayerId;
 
@@ -62,10 +75,28 @@ export function LiveDuelArena() {
         <span className="nx-live-duel-timer">{secLeft}s</span>
       </div>
 
+      {resolved.exhibitCode ? (
+        <pre
+          style={{
+            maxWidth: "100%",
+            overflowX: "auto",
+            padding: "0.75rem 1rem",
+            borderRadius: 12,
+            marginBottom: 12,
+            background: "rgba(15, 23, 42, 0.92)",
+            color: "#e2e8f0",
+            fontSize: "0.8rem",
+            lineHeight: 1.45,
+            whiteSpace: "pre",
+          }}
+        >
+          {resolved.exhibitCode}
+        </pre>
+      ) : null}
       {resolved.imageSrc ? (
         <img
           src={resolved.imageSrc}
-          alt=""
+          alt={resolved.prompt.slice(0, 120)}
           style={{ maxWidth: "100%", borderRadius: 12, marginBottom: 12 }}
         />
       ) : null}

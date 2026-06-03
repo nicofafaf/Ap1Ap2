@@ -46,6 +46,8 @@ export function EdtechLearningSession({
   const learningCorrectByLf = useGameStore((s) => s.learningCorrectByLf);
   const learningStoryMode = useGameStore((s) => s.learningStoryMode);
   const examSessionEndsAt = useGameStore((s) => s.examSessionEndsAt);
+  const isCiscoSession = useGameStore((s) => s.isCiscoSession);
+  const ciscoPackId = useGameStore((s) => s.ciscoPackId);
 
   const lfNum = Number.parseInt(lf.replace("LF", ""), 10);
   const meta = getLfCourseMeta(lfNum);
@@ -134,13 +136,24 @@ export function EdtechLearningSession({
       </AnimatePresence>
 
       <div className="nx-edtech-learn-hero-wrap">
-        <NexusCinematicShell
-          variant="strip"
-          videoSrc={publicAssetUrl(`/assets/LF${lfNum}GIF.mp4`)}
-          kicker={`${meta?.ap ?? "AP"} · LF${lfNum}`}
-          title={meta?.title ?? lf}
-          lead={displayTitle}
-        />
+        {isCiscoSession ? (
+          <div className="nx-edtech-learn-cisco-hero">
+            <span className="nx-edtech-learn-cisco-badge">{t("cisco.heroBadge", "NetAcad · Cisco ITN")}</span>
+            <h2 className="nx-edtech-learn-cisco-title">{t("cisco.hubTitle", "CCNA ITN Checkpoint")}</h2>
+            <p className="nx-edtech-learn-cisco-lead">{displayTitle}</p>
+            {ciscoPackId ? (
+              <p className="nx-edtech-learn-cisco-pack">{ciscoPackId.replace("modules-", "Module ")}</p>
+            ) : null}
+          </div>
+        ) : (
+          <NexusCinematicShell
+            variant="strip"
+            videoSrc={publicAssetUrl(`/assets/LF${lfNum}GIF.mp4`)}
+            kicker={`${meta?.ap ?? "AP"} · LF${lfNum}`}
+            title={meta?.title ?? lf}
+            lead={displayTitle}
+          />
+        )}
       </div>
 
       <header className="nx-edtech-learn-header">
@@ -216,6 +229,16 @@ export function EdtechLearningSession({
                   : t("learningTerminal.edtechQuestionLabel", "Schritt 2 · Deine Frage")}
             </div>
             <p className="nx-edtech-learn-question">{mcQuestion}</p>
+            {exercise.exhibitCode ? (
+              <pre className="nx-edtech-learn-exhibit-code">{exercise.exhibitCode}</pre>
+            ) : null}
+            {exercise.illustrationSrc ? (
+              <img
+                className="nx-edtech-learn-exhibit-img"
+                src={exercise.illustrationSrc}
+                alt={mcQuestion.slice(0, 120)}
+              />
+            ) : null}
             {isMultiMc ? (
               <p className="nx-edtech-learn-coach" style={{ marginTop: 0, marginBottom: 12 }}>
                 {t("learningTerminal.mcMultiHint", "Wähle alle zutreffenden Antworten und tippe dann auf Prüfen")}

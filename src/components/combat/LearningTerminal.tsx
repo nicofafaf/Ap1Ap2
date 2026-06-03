@@ -23,6 +23,7 @@ import {
 } from "../../lib/learning/edtechLfDisplay";
 import { BEGINNER_EXERCISE_IDS_BY_LF } from "../../lib/learning/learningRegistry";
 import { getCiscoLearningExerciseById } from "../../cisco/ccna1-v7/ciscoLearningSession";
+import { useQuestionLocale } from "../../lib/i18n/useQuestionLocale";
 
 export type LearningTerminalProps = {
   currentLF: LearningField;
@@ -395,6 +396,7 @@ export function LearningTerminal({
 
   const isCiscoSession = useGameStore((s) => s.isCiscoSession);
   const ciscoPackId = useGameStore((s) => s.ciscoPackId);
+  const { locale: questionLocale, autoTranslate } = useQuestionLocale();
   const [ciscoExercise, setCiscoExercise] = useState<LearningExercise | null>(null);
 
   useEffect(() => {
@@ -403,17 +405,31 @@ export function LearningTerminal({
       return;
     }
     let cancelled = false;
-    void getCiscoLearningExerciseById(preferredLearningExerciseId).then((exercise) => {
+    void getCiscoLearningExerciseById(preferredLearningExerciseId, {
+      locale: questionLocale,
+      autoTranslate,
+    }).then((exercise) => {
       if (!cancelled) setCiscoExercise(exercise);
     });
     return () => {
       cancelled = true;
     };
-  }, [isCiscoSession, preferredLearningExerciseId]);
+  }, [isCiscoSession, preferredLearningExerciseId, questionLocale, autoTranslate]);
 
   const bundle = useMemo(() => {
     const leitner = useGameStore.getState().learningLeitnerByExerciseId;
-    if (isCiscoSession && ciscoExercise) {
+    if (isCiscoSession && preferredLearningExerciseId) {
+      if (!ciscoExercise) {
+        return {
+          snippet: {
+            lang: "javascript" as const,
+            code: `# CCNA ITN · ${ciscoPackId ?? "checkpoint"}\n…`,
+            caption: "CCNA Checkpoint — Original MC",
+          },
+          exercise: null,
+          exerciseLf: currentLF,
+        };
+      }
       return {
         snippet: {
           lang: "javascript" as const,
@@ -784,7 +800,7 @@ export function LearningTerminal({
     );
   }
 
-  if (!exercise && edtechFlow) {
+  if (!exercise && (edtechFlow || isCiscoSession)) {
     return (
       <motion.aside
         data-nx-edtech-terminal-empty="1"
@@ -1384,10 +1400,28 @@ export function LearningTerminal({
                       {exercise.solutionHint}
                     </p>
                   ) : null}
+                  {exercise.exhibitCode ? (
+                    <pre
+                      style={{
+                        margin: "var(--nx-space-12) 0 0",
+                        padding: "var(--nx-space-16)",
+                        borderRadius: 12,
+                        background: "rgba(15, 23, 42, 0.92)",
+                        color: "#e2e8f0",
+                        fontFamily: typography.fontMono,
+                        fontSize: "clamp(12px, 1.35vw, 14px)",
+                        lineHeight: 1.45,
+                        overflowX: "auto",
+                        whiteSpace: "pre",
+                      }}
+                    >
+                      {exercise.exhibitCode}
+                    </pre>
+                  ) : null}
                   {exercise.illustrationSrc ? (
                     <SafeLearningFigure
                       src={exercise.illustrationSrc}
-                      alt=""
+                      alt={displayMcQuestion.slice(0, 120)}
                       coachMentorId={learningFocus ? coachMentorId : null}
                       coachName={learningFocus ? coachDisplayName : null}
                     />

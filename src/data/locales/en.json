@@ -250,7 +250,7 @@
         "home": "Home",
         "homeLead": "Welcome, continue learning, and learning modes — your entry point at a glance",
         "duel": "Live duel",
-        "duelLead": "Kahoot-style: create a room, share link or QR, answer on a timer together — LFs, CCNA, and exams",
+        "duelLead": "Live duel: create a room, share link or QR, answer on a timer together — LFs, CCNA, and exams",
         "ccna": "CCNA ITN",
         "ccnaLead": "Cisco CCNA v7 chapters, exercises, and exam questions — dedicated area without LF clutter",
         "exams": "Exams",
@@ -470,6 +470,18 @@
         "storyTitle": "Story mode",
         "storyLead": "Mission text with Nexus framing instead of neutral summaries",
         "storyOn": "Show story in learning tasks",
+        "languageTitle": "Language",
+        "languageLead": "UI and questions separately — CCNA, learning fields, live duel",
+        "uiLangTitle": "Interface",
+        "uiLangDe": "Deutsch",
+        "uiLangEn": "English",
+        "questionLangTitle": "Questions & answers",
+        "questionLangUi": "Same as interface",
+        "questionLangDe": "Deutsch",
+        "questionLangEn": "English",
+        "autoTranslateTitle": "Auto-translate",
+        "autoTranslateLead": "Fetch missing translations (cached, needs brief internet)",
+        "autoTranslateOn": "Translate missing text",
         "lf2Title": "LF2 · exam checklist",
         "done": "Done"
       }
@@ -836,7 +848,7 @@
   "cisco": {
     "heroBadge": "NetAcad · Cisco ITN",
     "loading": "Loading exam bank…",
-    "loadError": "Could not load CCNA content.",
+    "loadError": "Could not load CCNA content",
     "hubTitle": "CCNA: Introduction to Networks",
     "courseCode": "2526-E2FI2-CCNA1-ITNg · ITN v7.02",
     "hubLead": "Original checkpoint questions (verbatim) for all 17 modules — MC with exhibit graphics",
@@ -857,7 +869,7 @@
       "questionCount": "Number of questions",
       "seconds": "Seconds per question",
       "scoring": "Scoring",
-      "scoringSpeed": "Speed + correct (Kahoot-style)",
+      "scoringSpeed": "Speed + correct (bonus for fast answers)",
       "scoringCorrect": "Correct / incorrect only",
       "create": "Create room"
     },
@@ -880,7 +892,7 @@
     "arena": {
       "loading": "Loading questions…",
       "progress": "Question {cur} / {total}",
-      "reveal": "Results — host advances to the next question.",
+      "reveal": "Results — host advances to the next question",
       "next": "Next question"
     },
     "results": {
@@ -897,7 +909,8 @@
     "error": {
       "noQuestions": "No questions for this selection — pick another field or pack.",
       "invalidCode": "Invalid code (4–8 characters).",
-      "roomNotFound": "Room not found — check the code or ask the host to create the room first."
+      "roomNotFound": "Room not found — check the code or ask the host to create the room first.",
+      "syncFailed": "Sync failed — room saved locally, check live sync settings"
     },
     "catalog": {
       "lfAll": "All learning fields (LF1–LF12)",

@@ -23,9 +23,16 @@ import {
 import { countSolvedExercises, rankLpDelta, RANKED_SPRINT_SIZE } from "../lib/progression/learningRank";
 import type { CiscoPackId } from "../cisco/types";
 import {
+  isQuestionLocaleMode,
+  persistAutoTranslateQuestions,
+  persistQuestionLocaleMode,
+  readQuestionLocalePrefs,
+} from "../lib/i18n/questionLocale";
+import {
   buildCiscoMcQueue,
   CISCO_CARRIER_LF,
 } from "../cisco/ccna1-v7/ciscoLearningSession";
+import { ensureCiscoPacksLoaded } from "../cisco/ccna1-v7/loadPacks";
 import { CCNA1_ITN_17_MODULES } from "../cisco/ccna1-v7/examCatalog";
 import type { LearningRankId } from "../data/learningRankRegistry";
 import {
@@ -350,6 +357,10 @@ type PlayerProfilePersisted = {
   bundeslandId: import("../lib/curriculum/trainingProfile").BundeslandId | null;
   /** Story-Rahmen in Missionen (true = keine Neutralisierung von Fantasy-Texten) */
   learningStoryMode: boolean;
+  /** Fragen: ui = wie Oberfläche, sonst fest DE/EN */
+  questionLocaleMode: import("../lib/i18n/questionLocale").QuestionLocaleMode;
+  /** Fehlende Übersetzungen per API nachladen (gecacht) */
+  autoTranslateQuestions: boolean;
 };
 
 function playerProfileFromState(s: {
@@ -361,6 +372,8 @@ function playerProfileFromState(s: {
   trainingTrack: import("../lib/curriculum/trainingProfile").TrainingTrack | null;
   bundeslandId: import("../lib/curriculum/trainingProfile").BundeslandId | null;
   learningStoryMode: boolean;
+  questionLocaleMode: import("../lib/i18n/questionLocale").QuestionLocaleMode;
+  autoTranslateQuestions: boolean;
 }): PlayerProfilePersisted {
   return {
     mentorWaifuIndex: s.mentorWaifuIndex,
@@ -371,6 +384,8 @@ function playerProfileFromState(s: {
     trainingTrack: s.trainingTrack,
     bundeslandId: s.bundeslandId,
     learningStoryMode: s.learningStoryMode,
+    questionLocaleMode: s.questionLocaleMode,
+    autoTranslateQuestions: s.autoTranslateQuestions,
   };
 }
 
@@ -812,6 +827,10 @@ type GameStore = {
   setBundeslandId: (id: import("../lib/curriculum/trainingProfile").BundeslandId) => void;
   learningStoryMode: boolean;
   setLearningStoryMode: (enabled: boolean) => void;
+  questionLocaleMode: import("../lib/i18n/questionLocale").QuestionLocaleMode;
+  setQuestionLocaleMode: (mode: import("../lib/i18n/questionLocale").QuestionLocaleMode) => void;
+  autoTranslateQuestions: boolean;
+  setAutoTranslateQuestions: (enabled: boolean) => void;
   /** LF1-Trainingskampf mit reduzierter Boss-Aggression */
   isTutorialCombatRun: boolean;
   /** 0…3 — erwartete Karten: Encrypt → Overclock → Recursion; 3 = alle Schritte erledigt */
@@ -2379,6 +2398,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
   trainingTrack: null,
   bundeslandId: null,
   learningStoryMode: true,
+  questionLocaleMode: readQuestionLocalePrefs().mode,
+  autoTranslateQuestions: readQuestionLocalePrefs().autoTranslate,
   isTutorialCombatRun: false,
   combatTutorialStep: 0,
   nexusChrome: readStoredNexusChrome(),
@@ -2433,6 +2454,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   setLearningStoryMode: (enabled) => {
     set({ learningStoryMode: enabled });
+    persistPlayerProfile(playerProfileFromState(get()));
+  },
+
+  setQuestionLocaleMode: (mode) => {
+    persistQuestionLocaleMode(mode);
+    set({ questionLocaleMode: mode });
+    persistPlayerProfile(playerProfileFromState(get()));
+  },
+
+  setAutoTranslateQuestions: (enabled) => {
+    persistAutoTranslateQuestions(enabled);
+    set({ autoTranslateQuestions: enabled });
     persistPlayerProfile(playerProfileFromState(get()));
   },
 
@@ -2586,9 +2619,13 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
   beginCiscoPack: (packId) => {
     void (async () => {
+      await ensureCiscoPacksLoaded().catch(() => undefined);
       const queue = await buildCiscoMcQueue(packId, true);
       const first = queue[0] ?? null;
-      if (!first) return;
+      if (!first) {
+        console.warn("[cisco] empty queue for pack", packId);
+        return;
+      }
       set({
         ihkExamPackId: null,
         examPresentationMode: false,
@@ -3262,6 +3299,15 @@ try {
     const bundeslandId =
       typeof blRaw === "string" && /^[A-Z]{2}$/.test(blRaw) ? (blRaw as import("../lib/curriculum/trainingProfile").BundeslandId) : null;
     const storyMode = p.learningStoryMode !== false;
+    const qModeRaw = p.questionLocaleMode;
+    const questionLocaleMode =
+      typeof qModeRaw === "string" && isQuestionLocaleMode(qModeRaw)
+        ? qModeRaw
+        : readQuestionLocalePrefs().mode;
+    const autoTranslateQuestions =
+      typeof p.autoTranslateQuestions === "boolean"
+        ? p.autoTranslateQuestions
+        : readQuestionLocalePrefs().autoTranslate;
     useGameStore.setState({
       mentorWaifuIndex: mentorIdx,
       playerAvatar: avatar,
@@ -3271,6 +3317,8 @@ try {
       trainingTrack: track,
       bundeslandId,
       learningStoryMode: storyMode,
+      questionLocaleMode,
+      autoTranslateQuestions,
     });
   } else if (localStorage.getItem(HAS_COMPLETED_INITIALIZATION_KEY) === "1") {
     /** Legacy: Init-Flag ohne Profil — Begleiterinnen-Raster zeigen, nicht still Waifu 1 setzen */

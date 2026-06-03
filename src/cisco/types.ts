@@ -34,6 +34,8 @@ export type CiscoQuestion = {
   explanation?: CiscoLocaleText;
   /** Exhibit-Grafik (lokal unter /assets/cisco/exhibits/) */
   illustrationSrc?: string;
+  /** Router-CLI / Code-Exhibit (itexamanswers <pre>-Block) */
+  exhibitCode?: string;
   /** Packet Tracer / Bild-only — später manuell */
   needsManual?: boolean;
 };

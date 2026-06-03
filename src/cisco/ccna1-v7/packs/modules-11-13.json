@@ -40,7 +40,7 @@
             "en": "/25",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -56,7 +56,7 @@
             "en": "/27",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -96,7 +96,7 @@
             "en": "254",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -120,7 +120,7 @@
             "en": "62",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -160,7 +160,7 @@
             "en": "255.255.255.0",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -173,10 +173,10 @@
         {
           "id": "c",
           "text": {
-            "en": "255.255.255.224",
+            "en": "255.255.255.224​",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -213,45 +213,13 @@
         {
           "id": "a",
           "text": {
-            "en": "1",
+            "en": "16",
             "de": null
           },
           "correct": true
         },
         {
           "id": "b",
-          "text": {
-            "en": "2",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": {
-            "en": "4",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": {
-            "en": "8",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "16",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
           "text": {
             "en": "64",
             "de": null
@@ -272,16 +240,11 @@
       "type": "unsupported",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
-      "topic": "11.5.2",
       "question": {
         "en": "Match the subnetwork to a host address that would be included within the subnetwork. (Not all options are used.)",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 11.5.2Subnet 192.168.1.32/27 will have a valid host range from 192.168.1.33 – 192.168.1.62 with the broadcast address as 192.168.1.63 Subnet 192.168.1.64/27 will have a valid host range from 192.168.1.65 – 192.168.1.94 with the broadcast address as 192.168.1.95 Subnet 192.168.1.96/27 will have a valid host range from 192.168.1.97 – 192.168.1.126 with the broadcast address as 192.168.1.127",
-        "de": null
-      },
-      "needsManual": true
+      "matchPairs": []
     },
     {
       "id": "modules-11-13-q006",
@@ -300,15 +263,11 @@
         "en": "An administrator wants to create four subnetworks from the network address 192.168.1.0/24. What is the network address and subnet mask of the second useable subnet?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 11.1.3The number of bits that are borrowed would be two, thus giving a total of 4 useable subnets: 192.168.1.0 192.168.1.64 192.168.1.128 192.168.1.192 Because 2 bits are borrowed, the new subnet mask would be /26 or 255.255.255.192",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
           "text": {
-            "en": "subnetwork 192.168.1.64",
+            "en": "subnetwork 192.168.1.64 subnet mask 255.255.255.192",
             "de": null
           },
           "correct": true
@@ -316,7 +275,7 @@
         {
           "id": "b",
           "text": {
-            "en": "subnet mask 255.255.255.192",
+            "en": "subnetwork 192.168.1.32 subnet mask 255.255.255.240",
             "de": null
           },
           "correct": false
@@ -324,7 +283,7 @@
         {
           "id": "c",
           "text": {
-            "en": "subnetwork 192.168.1.32",
+            "en": "subnetwork 192.168.1.64 subnet mask 255.255.255.240",
             "de": null
           },
           "correct": false
@@ -332,7 +291,7 @@
         {
           "id": "d",
           "text": {
-            "en": "subnet mask 255.255.255.240",
+            "en": "subnetwork 192.168.1.128 subnet mask 255.255.255.192",
             "de": null
           },
           "correct": false
@@ -340,47 +299,7 @@
         {
           "id": "e",
           "text": {
-            "en": "subnetwork 192.168.1.64",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "subnet mask 255.255.255.240",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "subnetwork 192.168.1.128",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "subnet mask 255.255.255.192",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o9",
-          "text": {
-            "en": "subnetwork 192.168.1.8",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o10",
-          "text": {
-            "en": "subnet mask 255.255.255.224",
+            "en": "subnetwork 192.168.1.8 subnet mask 255.255.255.224",
             "de": null
           },
           "correct": false
@@ -415,7 +334,7 @@
             "en": "two",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -423,7 +342,7 @@
             "en": "three",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -471,7 +390,7 @@
             "en": "30",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -495,7 +414,7 @@
             "en": "62",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -535,7 +454,7 @@
             "en": "510",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -551,7 +470,7 @@
             "en": "1022",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -591,8 +510,13 @@
       "type": "unsupported",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.1.6",
       "question": {
         "en": "Match each IPv4 address to the appropriate address category. (Not all options are used.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.1.6",
         "de": null
       },
       "needsManual": true
@@ -606,7 +530,7 @@
         13
       ],
       "number": 11,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "11.3.1",
@@ -615,7 +539,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 11.3.1 RFC 1918, Address Allocation for Private Internets, defines three blocks of IPv4 address for private networks that should not be routable on the public Internet. * 10.0.0.0/8 * 172.16.0.0/12 * 192.168.0.0/16",
+        "en": "Topic 11.3.1 RFC 1918, Address Allocation for Private Internets, defines three blocks of IPv4 address for private networks that should not be routable on the public Internet.",
         "de": null
       },
       "options": [
@@ -625,7 +549,7 @@
             "en": "10.0.0.0/8",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -633,7 +557,7 @@
             "en": "172.16.0.0/12",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -641,7 +565,7 @@
             "en": "192.168.0.0/16",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -697,7 +621,7 @@
             "en": "172.16.16.255",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -713,7 +637,7 @@
             "en": "172.16.19.255",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -762,7 +686,7 @@
             "en": "255.255.255.0",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -770,7 +694,7 @@
             "en": "255.255.255.128",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -818,7 +742,7 @@
             "en": "10.16.10.160/26",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -834,7 +758,7 @@
             "en": "10.16.10.64/27",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -891,7 +815,7 @@
             "en": "256",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -915,7 +839,7 @@
             "en": "62",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -952,10 +876,6 @@
         "en": "Which address prefix range is reserved for IPv4 multicast?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 11.2.3Multicast IPv4 addresses use the reserved class D address range of 224.0.0.0 to 239.255.255.255.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -963,7 +883,7 @@
             "en": "240.0.0.0 – 254.255.255.255",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -971,7 +891,7 @@
             "en": "224.0.0.0 – 239.255.255.255",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1005,7 +925,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "11.8.4",
       "question": {
-        "en": "Refer to the exhibit. Match the network with the correct IP address and prefix that will satisfy the usable host addressing requirements for each network.Place the options in the following order:",
+        "en": "Refer to the exhibit. Match the network with the correct IP address and prefix that will satisfy the usable host addressing requirements for each network.",
         "de": null
       },
       "explanation": {
@@ -1084,7 +1004,7 @@
             "en": "This is a loopback address.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1100,7 +1020,7 @@
             "en": "This is a private IP address.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1121,11 +1041,16 @@
         13
       ],
       "number": 19,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "11.3.1",
       "question": {
         "en": "Which three addresses are valid public addresses? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 11.3.1 The ranges of private IPv4 addresses are as folllows: 10.0.0.0 – 10.255.255.255 172.16.0.0 – 172.31.255.255 192.168.0.0 – 192.168.255.255",
         "de": null
       },
       "options": [
@@ -1135,7 +1060,7 @@
             "en": "198.133.219.17",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -1159,7 +1084,7 @@
             "en": "128.107.12.117",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -1175,47 +1100,7 @@
             "en": "64.104.78.227",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "Explanation:Topic 11.3.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "The ranges of private IPv4 addresses are as folllows:",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o9",
-          "text": {
-            "en": "10.0.0.0 – 10.255.255.255",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o10",
-          "text": {
-            "en": "172.16.0.0 – 172.31.255.255",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o11",
-          "text": {
-            "en": "192.168.0.0 – 192.168.255.255",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1247,7 +1132,7 @@
             "en": "limited broadcast",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1263,7 +1148,7 @@
             "en": "directed broadcast",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1284,16 +1169,12 @@
         13
       ],
       "number": 21,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "11.8.3",
       "question": {
         "en": "A company has a network address of 192.168.1.64 with a subnet mask of 255.255.255.192. The company wants to create two subnetworks that would contain 10 hosts and 18 hosts respectively. Which two networks would achieve that? (Choose two.)",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 11.8.3Subnet 192.168.1.64 /27 has 5 bits that are allocated for host addresses and therefore will be able to support 32 addresses, but only 30 valid host IP addresses. Subnet 192.168.1.96/28 has 4 bits for host addresses and will be able to support 16 addresses, but only 14 valid host IP addresses.",
         "de": null
       },
       "options": [
@@ -1311,7 +1192,7 @@
             "en": "192.168.1.64/27",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1327,7 +1208,7 @@
             "en": "192.168.1.96/28",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -1367,7 +1248,7 @@
             "en": "FEC8:1::FFFF",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1383,7 +1264,7 @@
             "en": "FE80::1:4545:6578:ABC1",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1431,7 +1312,7 @@
             "en": "3FFE:1044::AB::57",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1447,7 +1328,7 @@
             "en": "3FFE:1044:0:0:AB::57",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1487,8 +1368,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.8.1",
       "question": {
         "en": "A network administrator has received the IPv6 prefix 2001:DB8::/48 for subnetting. Assuming the administrator does not subnet into the interface ID portion of the address space, how many subnets can the administrator create from the /48 prefix?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.8.1 With a network prefix of 48, there will be 16 bits available for subnetting because the interface ID starts at bit 64. Sixteen bits will yield 65536 subnets.",
         "de": null
       },
       "options": [
@@ -1498,7 +1384,7 @@
             "en": "16",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1522,23 +1408,7 @@
             "en": "65536",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 12.8.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "With a network prefix of 48, there will be 16 bits available for subnetting because the interface ID starts at bit 64. Sixteen bits will yield 65536 subnets.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1554,8 +1424,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.8.1",
       "question": {
         "en": "Given IPv6 address prefix 2001:db8::/48, what will be the last subnet that is created if the subnet prefix is changed to /52?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.8.1 Prefix 2001:db8::/48 has 48 network bits. If we subnet to a /52, we are moving the network boundary four bits to the right and creating 16 subnets. The first subnet is 2001:db8::/52 the last subnet is 2001:db8:0:f000::/52.",
         "de": null
       },
       "options": [
@@ -1565,7 +1440,7 @@
             "en": "2001:db8:0:f00::/52",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1589,23 +1464,7 @@
             "en": "2001:db8:0:f000::/52",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 12.8.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Prefix 2001:db8::/48 has 48 network bits. If we subnet to a /52, we are moving the network boundary four bits to the right and creating 16 subnets. The first subnet is 2001:db8::/52 the last subnet is 2001:db8:0:f000::/52.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1618,39 +1477,19 @@
         13
       ],
       "number": 26,
-      "type": "single",
+      "type": "unsupported",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
+      "topic": "12.2.1",
       "question": {
-        "en": "Consider the following range of addresses:2001:0DB8:BC15:00A0:0000:: 2001:0DB8:BC15:00A1:0000:: 2001:0DB8:BC15:00A2:0000:: … 2001:0DB8:BC15:00AF:0000::The prefix-length for the range of addresses is",
+        "en": "Consider the following range of addresses:",
         "de": null
       },
-      "options": [
-        {
-          "id": "a",
-          "text": {
-            "en": "/60 .",
-            "de": null
-          },
-          "correct": true
-        },
-        {
-          "id": "b",
-          "text": {
-            "en": "Explanation:Topic 12.2.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": {
-            "en": "All the addresses have the part 2001:0DB8:BC15:00A in common. Each number or letter in the address represents 4 bits, so the prefix-length is /60.",
-            "de": null
-          },
-          "correct": false
-        }
-      ]
+      "explanation": {
+        "en": "Topic 12.2.1 All the addresses have the part 2001:0DB8:BC15:00A in common. Each number or letter in the address represents 4 bits, so the prefix-length is /60.",
+        "de": null
+      },
+      "needsManual": true
     },
     {
       "id": "modules-11-13-q027",
@@ -1680,7 +1519,7 @@
             "en": "loopback",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1688,7 +1527,7 @@
             "en": "link-local",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1733,37 +1572,13 @@
         {
           "id": "a",
           "text": {
-            "en": "Refer to the exhibit. A company is deploying an IPv6 addressing scheme for its network. The company design document indicates that the subnet portion of the IPv6 addresses is used for the new hierarchical network design, with the s ite subsection to represent multiple geographical sites of the company, the s ub-site section to represent multiple campuses at each site, and the s ubnet section to indicate each network segment separated by routers. With such a scheme, what is the maximum number of subnets achieved per sub-site ?",
+            "en": "16",
             "de": null
           },
           "correct": true
         },
         {
           "id": "b",
-          "text": {
-            "en": "0",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": {
-            "en": "4",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": {
-            "en": "16",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "e",
           "text": {
             "en": "256",
             "de": null
@@ -1846,10 +1661,6 @@
         "en": "What is the prefix for the host address 2001:DB8:BC15:A:12AB::1/64?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 12.8.1The network portion, or prefix, of an IPv6 address is identified through the prefix length. A /64 prefix length indicates that the first 64 bits of the IPv6 address is the network portion. Hence the prefix is 2001:DB8:BC15:A.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1857,7 +1668,7 @@
             "en": "2001:DB8:BC15",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1865,7 +1676,7 @@
             "en": "2001:DB8:BC15:A",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1899,11 +1710,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "12.7.2",
       "question": {
-        "en": "An IPv6 enabled device sends a data packet with the destination address of FF02::1. What is the target of this packet?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 12.7.2This address is one of the assigned IPv6 multicast addresses. Packets addressed to FF02::1 are for all IPv6 enabled devices on the link or network. FF02::2 is for all IPv6 routers that exist on the network.",
+        "en": "An IPv6 enabled device sends a data packet with the destination address of FF02::1. What is the target of this packet?​",
         "de": null
       },
       "options": [
@@ -1913,20 +1720,20 @@
             "en": "the one IPv6 device on the link that has been uniquely configured with this address",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
           "text": {
-            "en": "all IPv6 enabled devices on the local link or network",
+            "en": "all IPv6 enabled devices on the local link​ or network",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
           "text": {
-            "en": "only IPv6 DHCP servers",
+            "en": "only IPv6 DHCP servers​",
             "de": null
           },
           "correct": false
@@ -1955,7 +1762,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "12.3.3",
       "question": {
-        "en": "Match the IPv6 address with the IPv6 address type. (Not all options are used.)Place the options in the following order:",
+        "en": "Match the IPv6 address with the IPv6 address type. (Not all options are used.)",
         "de": null
       },
       "explanation": {
@@ -2033,7 +1840,7 @@
             "en": "FC00::/7",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2049,7 +1856,7 @@
             "en": "FE80::/10",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2078,10 +1885,6 @@
         "en": "Which type of IPv6 address refers to any unicast address that is assigned to multiple hosts?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 12.3.1The IPv6 specifications include anycast addresses. An anycast address is any unicast IPv6 address that is assigned to multiple devices.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2089,7 +1892,7 @@
             "en": "unique local",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2113,7 +1916,7 @@
             "en": "anycast",
             "de": null
           },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -2126,7 +1929,7 @@
         13
       ],
       "number": 35,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "12.3.3",
@@ -2153,7 +1956,7 @@
             "en": "loopback",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2161,7 +1964,7 @@
             "en": "link-local",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2209,7 +2012,7 @@
             "en": "stateful DHCPv6",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2217,7 +2020,7 @@
             "en": "SLAAC",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2265,7 +2068,7 @@
             "en": "ARPv6",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2281,7 +2084,7 @@
             "en": "ICMPv6",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2302,7 +2105,7 @@
         13
       ],
       "number": 38,
-      "type": "unsupported",
+      "type": "match",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "12.1.2",
@@ -2314,7 +2117,38 @@
         "en": "Topic 12.1.2 The term for the method that allows for the coexistence of the two types of packets on a single network is dual-stack. Tunneling allows for the IPv6 packet to be transported inside IPv4 packets. An IP packet can also be converted from version 6 to version 4 and vice versa. DHCP is a protocol that is used for allocating network parameters to hosts on an IP network",
         "de": null
       },
-      "needsManual": true
+      "matchPairs": [
+        {
+          "left": {
+            "en": "The IPv4 packets and IPv6 packets coexist in the same network.",
+            "de": null
+          },
+          "right": {
+            "en": "dual-stack",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "The IPv6 packet is transported inside an IPv4 packet.",
+            "de": null
+          },
+          "right": {
+            "en": "tunneling",
+            "de": null
+          }
+        },
+        {
+          "left": {
+            "en": "IPv6 packets are converted into IPv4 packets, and vice versa.",
+            "de": null
+          },
+          "right": {
+            "en": "translation",
+            "de": null
+          }
+        }
+      ]
     },
     {
       "id": "modules-11-13-q039",
@@ -2408,7 +2242,7 @@
             "en": "PC2",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2416,7 +2250,7 @@
             "en": "R1",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2473,7 +2307,7 @@
             "en": "SNMP",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2481,7 +2315,7 @@
             "en": "ICMP",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2529,7 +2363,7 @@
             "en": "network unreachable",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2537,7 +2371,7 @@
             "en": "time exceeded",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2585,7 +2419,7 @@
             "en": "when the value of the Hop Limit field reaches 255",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2593,7 +2427,7 @@
             "en": "when the value of the Hop Limit field reaches zero",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2641,7 +2475,7 @@
             "en": "to inform routers about network topology changes",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2657,7 +2491,7 @@
             "en": "to provide feedback of IP packet transmissions",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2697,7 +2531,7 @@
             "en": "the highest configured IP address on the router",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2713,7 +2547,7 @@
             "en": "the IP address of the outbound interface",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2739,7 +2573,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "11.3.1",
       "question": {
-        "en": "Match each description with an appropriate IP address. (Not all options are used.)Place the options in the following order:",
+        "en": "Match each description with an appropriate IP address. (Not all options are used.)",
         "de": null
       },
       "explanation": {
@@ -2925,11 +2759,11 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
       "topic": "13.2.6",
       "question": {
-        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.CCNA 1 v7 Modules 11 – 13 IP Addressing Exam Answers Full Modules 11 – 13 IP Addressing Exam 1 file(s) 221.48 KB DownloadWhat are the three IPv6 addresses displayed when the route from PC1 to PC2 is traced? (Choose three.)",
+        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.",
         "de": null
       },
       "explanation": {
-        "en": "Topic 13.2.6 Using the ipv6configcommand on PC2 displays the IPv6 address of PC2, which is 2001:DB8:1:4::A. The IPV6 link-local address, FE80::260:70FF:FE34:6930, is not used in route tracing. Using thetracert 2001:DB8:1:4::Acommand on PC1 displays four addresses: 2001:DB8:1:1::1, 2001:DB8:1:2::1 , 2001:DB8:1:3::2, and 2001:DB8:1:4::A.",
+        "en": "Topic 13.2.6 Using the ipv6config command on PC2 displays the IPv6 address of PC2, which is 2001:DB8:1:4::A. The IPV6 link-local address, FE80::260:70FF:FE34:6930, is not used in route tracing. Using the tracert 2001:DB8:1:4::A command on PC1 displays four addresses: 2001:DB8:1:1::1, 2001:DB8:1:2::1 , 2001:DB8:1:3::2, and 2001:DB8:1:4::A.",
         "de": null
       },
       "needsManual": true
@@ -2952,7 +2786,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 11.2.2A broadcast is delivered to every host that has an IP address within the same network.",
+        "en": "Topic 11.2.2 A broadcast is delivered to every host that has an IP address within the same network.",
         "de": null
       },
       "options": [
@@ -4128,7 +3962,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 13.1.3 Post navigation ← Previous Article CCNA 1 v7 Modules 8 – 10: Communicating Between Networks Exam Answers Next Article → CCNA 1 v7 Modules 14 – 15: Network Application Communications Exam Answers Subscribe Notify of new follow-up comments new replies to my comments Label {} [+] Name* Email* &#916; Label {} [+] Name* Email* &#916; 110 Corrections & Clarifications View Comments Load More Comments",
+        "en": "Topic 13.1.3",
         "de": null
       },
       "options": [

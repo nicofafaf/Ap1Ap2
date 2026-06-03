@@ -3,14 +3,14 @@
   "course": "ccna1-itn-v7",
   "title": {
     "en": "Modules 8–10: Communicating Between Networks",
-    "de": "Module 8–10: Kommunikation zwischen Netzwerken"
+    "de": "Module 8–10: Kommunikation zwischen Netzwerken – Prüfungsantworten"
   },
   "moduleRange": [
     8,
     10
   ],
   "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
-  "itemCount": 66,
+  "itemCount": 76,
   "items": [
     {
       "id": "modules-8-10-q001",
@@ -40,7 +40,7 @@
             "en": "source IP address",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -48,7 +48,7 @@
             "en": "destination IP address",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -96,7 +96,7 @@
             "en": "The packet will be sent to the default gateway first, and then, depending on the response from the gateway, it may be sent to the destination host.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -104,7 +104,7 @@
             "en": "The packet will be sent directly to the destination host.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -152,7 +152,7 @@
             "en": "route the packet out the Gigabit 0/1 interface",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -160,7 +160,7 @@
             "en": "create a new Layer 2 Ethernet frame to be sent to the destination",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -192,8 +192,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "8.4.1",
       "question": {
         "en": "Which IPv4 address can a host use to ping the loopback interface?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 8.4.1",
         "de": null
       },
       "options": [
@@ -203,7 +208,7 @@
             "en": "126.0.0.1",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -227,15 +232,7 @@
             "en": "127.0.0.1",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 8.4.1",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -251,8 +248,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "8.4.2",
       "question": {
         "en": "A computer can access devices on the same network but cannot access devices on other networks. What is the probable cause of this problem?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 8.4.2",
         "de": null
       },
       "options": [
@@ -262,7 +264,7 @@
             "en": "The cable is not connected properly to the NIC.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -286,15 +288,7 @@
             "en": "The computer has an invalid default gateway address.",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 8.4.2",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -310,8 +304,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "8.1.5",
       "question": {
         "en": "Which statement describes a feature of the IP protocol?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 8.1.5 IP protocol is a connection-less protocol, considered unreliable in terms of end-to-end delivery. It does not provide error control in the cases where receiving packets are out-of-order or in cases of missing packets. It relies on upper layer services, such as TCP, to resolve these issues.",
         "de": null
       },
       "options": [
@@ -321,7 +320,7 @@
             "en": "IP encapsulation is modified based on network media.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -345,23 +344,7 @@
             "en": "IP relies on upper layer services to handle situations of missing or out-of-order packets.",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 8.1.5",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "IP protocol is a connection-less protocol, considered unreliable in terms of end-to-end delivery. It does not provide error control in the cases where receiving packets are out-of-order or in cases of missing packets. It relies on upper layer services, such as TCP, to resolve these issues.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -379,34 +362,30 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "8.3.2",
       "question": {
-        "en": "Why is NAT not needed in IPv6?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 8.3.2The large number of public IPv6 addresses eliminates the need for NAT. Sites from the largest enterprises to single households can get public IPv6 network addresses. This avoids some of the NAT-induced application problems that are experienced by applications that require end-to-end connectivity.",
+        "en": "Why is NAT not needed in IPv6?​",
         "de": null
       },
       "options": [
         {
           "id": "a",
           "text": {
-            "en": "Because IPv6 has integrated security, there is no need to hide the IPv6 addresses of internal networks.",
-            "de": null
-          },
-          "correct": true
-        },
-        {
-          "id": "b",
-          "text": {
-            "en": "Any host or user can get a public IPv6 network address because the number of available IPv6 addresses is extremely large.",
+            "en": "Because IPv6 has integrated security, there is no need to hide the IPv6 addresses of internal networks.​",
             "de": null
           },
           "correct": false
         },
         {
+          "id": "b",
+          "text": {
+            "en": "Any host or user can get a public IPv6 network address because the number of available IPv6 addresses is extremely large.​",
+            "de": null
+          },
+          "correct": true
+        },
+        {
           "id": "c",
           "text": {
-            "en": "The problems that are induced by NAT applications are solved because the IPv6 header improves packet handling by intermediate routers.",
+            "en": "The problems that are induced by NAT applications are solved because the IPv6 header improves packet handling by intermediate routers.​",
             "de": null
           },
           "correct": false
@@ -486,7 +465,7 @@
         10
       ],
       "number": 9,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "8.1.1",
@@ -495,7 +474,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.1.1 The OSI network layer provides several services to allow communication between devices: * addressing * encapsulation * routing * de-encapsulation Error detection, placing frames on the media, and collision detection are all functions of the data ink layer.",
+        "en": "Topic 8.1.1 The OSI network layer provides several services to allow communication between devices:",
         "de": null
       },
       "options": [
@@ -513,7 +492,7 @@
             "en": "routing packets toward the destination",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -521,7 +500,7 @@
             "en": "encapsulating PDUs from the transport layer",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -569,7 +548,7 @@
             "en": "Hosts that are connected to the switch can use the switch default gateway address to forward packets to a remote destination.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -585,7 +564,7 @@
             "en": "The default gateway address is used to forward packets originating from the switch to remote networks.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -721,8 +700,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "8.3.3",
       "question": {
         "en": "What is one advantage that the IPv6 simplified header offers over IPv4?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 8.3.3 The IPv6 simplified header offers several advantages over IPv4:",
         "de": null
       },
       "options": [
@@ -732,7 +716,7 @@
             "en": "smaller-sized header",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -756,55 +740,7 @@
             "en": "efficient packet handling",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 8.3.3",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "The IPv6 simplified header offers several advantages over IPv4:",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "Better routing efficiency and efficient packet handling for performance and forwarding-rate scalability",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "No requirement for processing checksums",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o9",
-          "text": {
-            "en": "Simplified and more efficient extension header mechanisms (as opposed to the IPv4 Options field)",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o10",
-          "text": {
-            "en": "A Flow Label field for per-flow processing with no need to open the transport inner packet to identify the various traffic flows",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -878,7 +814,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "8.5.1",
       "question": {
-        "en": "Refer to the exhibit. Match the packets with their destination IP address to the exiting interfaces on the router. (Not all targets are used.)Place the options in the following order:",
+        "en": "Refer to the exhibit. Match the packets with their destination IP address to the exiting interfaces on the router. (Not all targets are used.)",
         "de": null
       },
       "explanation": {
@@ -956,10 +892,6 @@
         "en": "What information does the loopback test provide?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 8.4.1Because the loopback test sends packets back to the host device, it does not provide information about network connectivity to other hosts. The loopback test verifies that the host NIC, drivers, and TCP/IP stack are functioning.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1020,10 +952,6 @@
         "en": "What routing table entry has a next hop address associated with a destination network?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 8.5.4Routing table entries for remote routes will have a next hop IP address. The next hop IP address is the address of the router interface of the next device to be used to reach the destination network. Directly-connected and local routes have no next hop, because they do not require going through another router to be reached.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1031,7 +959,7 @@
             "en": "directly-connected routes",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1047,7 +975,7 @@
             "en": "remote routes",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1076,15 +1004,11 @@
         "en": "How do hosts ensure that their packets are directed to the correct network destination?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 8.4.4Hosts must maintain their own local routing table to ensure that network layer packets are directed to the correct destination network. This local table typically contains a route to the loopback interface, a route to the network that the host is connected to, and a local default route, which represents the route that packets must take to reach all remote network addresses.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
           "text": {
-            "en": "They have to keep their own local routing table that contains a route to the loopback interface, a local network route, and a remote default route.",
+            "en": "They have to keep their own local routing table that contains a route to the loopback interface, a local network route, and a remote default route.​",
             "de": null
           },
           "correct": true
@@ -1143,7 +1067,7 @@
             "en": "Next Header",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1151,7 +1075,7 @@
             "en": "Flow Label",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1188,10 +1112,6 @@
         "en": "What statement describes the function of the Address Resolution Protocol?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 9.2.1When a PC wants to send data on the network, it always knows the IP address of the destination. However, it also needs to discover the MAC address of the destination. ARP is the protocol that is used to discover the MAC address of a host that belongs to the same network.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1199,7 +1119,7 @@
             "en": "ARP is used to discover the IP address of any host on a different network.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1223,7 +1143,7 @@
             "en": "ARP is used to discover the MAC address of any host on the local network.",
             "de": null
           },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1236,7 +1156,7 @@
         10
       ],
       "number": 21,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "9.2.3",
@@ -1255,7 +1175,7 @@
             "en": "The frame has the broadcast address as the destination address.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -1263,7 +1183,7 @@
             "en": "The destination address is unknown to the switch.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1319,7 +1239,7 @@
             "en": "They must be forwarded by all routers on the local network.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1327,7 +1247,7 @@
             "en": "They are received and processed by every device on the local network.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1375,7 +1295,7 @@
             "en": "0.0.0.0",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1391,7 +1311,7 @@
             "en": "FFFF.FFFF.FFFF",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1429,7 +1349,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 9.2.6 Issuing thearp –d * command on a PC will clear the ARP cache content. This is helpful when a network technician wants to ensure the cache is populated with updated information.",
+        "en": "Topic 9.2.6 Issuing the arp –d * command on a PC will clear the ARP cache content. This is helpful when a network technician wants to ensure the cache is populated with updated information.",
         "de": null
       },
       "options": [
@@ -1495,7 +1415,7 @@
             "en": "The switch will discard the frame.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1511,7 +1431,7 @@
             "en": "The switch will forward the frame to all ports except port 4.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1541,11 +1461,16 @@
         10
       ],
       "number": 26,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "9.3.2",
       "question": {
         "en": "Which two types of IPv6 messages are used in place of ARP for address resolution?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 9.3.2 IPv6 does not use ARP. Instead, ICMPv6 neighbor discovery is used by sending neighbor solicitation and neighbor advertisement messages.",
         "de": null
       },
       "options": [
@@ -1555,7 +1480,7 @@
             "en": "anycast",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1587,7 +1512,7 @@
             "en": "neighbor solicitation",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "f",
@@ -1595,23 +1520,7 @@
             "en": "neighbor advertisement",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "Explanation:Topic 9.3.2",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "IPv6 does not use ARP. Instead, ICMPv6 neighbor discovery is used by sending neighbor solicitation and neighbor advertisement messages.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1632,10 +1541,6 @@
         "en": "What is the aim of an ARP spoofing attack?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 9.2.8In an ARP spoofing attack, a malicious host intercepts ARP requests and replies to them so that network hosts will map an IP address to the MAC address of the malicious host.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1643,7 +1548,7 @@
             "en": "to flood the network with ARP reply broadcasts",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1659,7 +1564,7 @@
             "en": "to associate IP addresses to the wrong MAC address",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1688,10 +1593,6 @@
         "en": "Refer to the exhibit. PC1 attempts to connect to File_server1 and sends an ARP request to obtain a destination MAC address. Which MAC address will PC1 receive in the ARP reply?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 9.2.5PC1 must have a MAC address to use as a destination Layer 2 address. PC1 will send an ARP request as a broadcast and R1 will send back an ARP reply with its G0/0 interface MAC address. PC1 can then forward the packet to the MAC address of the default gateway, R1.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1699,7 +1600,7 @@
             "en": "the MAC address of S1",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1707,7 +1608,7 @@
             "en": "the MAC address of the G0/0 interface on R1",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1753,10 +1654,6 @@
         "en": "Where are IPv4 address to Layer 2 Ethernet address mappings maintained on a host computer?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 9.2.2The ARP cache is used to store IPv4 addresses and the Ethernet physical addresses or MAC addresses to which the IPv4 addresses are mapped. Incorrect mappings of IP addresses to MAC addresses can result in loss of end-to-end connectivity.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1764,7 +1661,7 @@
             "en": "neighbor table",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1772,7 +1669,7 @@
             "en": "ARP cache",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1820,7 +1717,7 @@
             "en": "source MAC address",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1836,7 +1733,7 @@
             "en": "destination MAC address",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1868,8 +1765,13 @@
       "type": "match",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.1.1",
       "question": {
         "en": "Match the commands to the correct actions. (Not all options are used.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.1.1",
         "de": null
       },
       "matchPairs": [
@@ -1917,8 +1819,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.1.1",
       "question": {
         "en": "A new network administrator has been asked to enter a banner message on a Cisco device. What is the fastest way a network administrator could test whether the banner is properly configured?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.1.1 While at the privileged mode prompt such as Router#, type exit,press Enter, and the banner message appears. Power cycling a network device that has had the banner motd command issued will also display the banner message, but this is not a quick way to test the configuration.",
         "de": null
       },
       "options": [
@@ -1960,22 +1867,6 @@
             "en": "Exit privileged EXEC mode and press Enter.",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Explanation:Topic 10.1.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "While at the privileged mode prompt such as Router#, typeexit,press Enter,and the banner message appears. Power cycling a network device that has had thebanner motdcommand issued will also display the banner message, but this is not a quick way to test the configuration.",
-            "de": null
-          },
           "correct": true
         }
       ]
@@ -1994,7 +1885,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "10.1.1",
       "question": {
-        "en": "A network administrator requires access to manage routers and switches locally and remotely. Match the description to the access method. (Not all options are used.)Place the options in the following order:",
+        "en": "A network administrator requires access to manage routers and switches locally and remotely. Match the description to the access method. (Not all options are used.)",
         "de": null
       },
       "explanation": {
@@ -2056,11 +1947,16 @@
       "type": "unsupported",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.1.1",
       "question": {
         "en": "Match the phases to the functions during the boot up process of a Cisco router. (Not all options are used.)",
         "de": null
       },
-      "needsManual": true
+      "explanation": {
+        "en": "Topic 10.1.1 There are three major phases to the bootup process of a Cisco router:",
+        "de": null
+      },
+      "matchPairs": []
     },
     {
       "id": "modules-8-10-q035",
@@ -2076,11 +1972,11 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "10.1.1",
       "question": {
-        "en": "Match the command with the device mode at which the command is entered. (Not all options are used.)Place the options in the following order:",
+        "en": "Match the command with the device mode at which the command is entered. (Not all options are used.)",
         "de": null
       },
       "explanation": {
-        "en": "Topic 10.1.1 The enablecommand is entered in R1&gt; mode. Thelogincommand is entered in R1(config-line)# mode. Thecopy running-config startup-configcommand is entered in R1# mode. Theip address 192.168.4.4 255.255.255.0command is entered in R1(config-if)# mode. Theservice password-encryptioncommand is entered in global configuration mode.",
+        "en": "Topic 10.1.1 The enable command is entered in R1&gt; mode. The login command is entered in R1(config-line)# mode. The copy running-config startup-config command is entered in R1# mode. The ip address 192.168.4.4 255.255.255.0 command is entered in R1(config-if)# mode. The service password-encryption command is entered in global configuration mode.",
         "de": null
       },
       "matchPairs": [
@@ -2145,7 +2041,7 @@
         10
       ],
       "number": 36,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "10.1.1",
@@ -2154,7 +2050,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 10.1.1NVRAM is permanent memory storage, so the startup configuration file is preserved even if the router loses power.",
+        "en": "Topic 10.1.1 NVRAM is permanent memory storage, so the startup configuration file is preserved even if the router loses power.",
         "de": null
       },
       "options": [
@@ -2172,7 +2068,7 @@
             "en": "to retain contents when power is removed",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2180,7 +2076,7 @@
             "en": "to store the startup configuration file",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2217,10 +2113,6 @@
         "en": "A router boots and enters setup mode. What is the reason for this?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 10.1.1If a router cannot locate the startup-config file in NVRAM, it will enter setup mode to allow the configuration to be entered from the console device.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2228,7 +2120,7 @@
             "en": "The IOS image is corrupt.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2244,7 +2136,7 @@
             "en": "The configuration file is missing from NVRAM.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2284,7 +2176,7 @@
             "en": "The switch will have a management interface with the address 172.16.100.1.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2292,7 +2184,7 @@
             "en": "The switch can be remotely managed from a host on another network.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2330,7 +2222,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 10.1.1 The transport input sshcommand when entered on the switch vty (virtual terminal lines) will encrypt all inbound controlled telnet connections.",
+        "en": "Topic 10.1.1 The transport input ssh command when entered on the switch vty (virtual terminal lines) will encrypt all inbound controlled telnet connections.",
         "de": null
       },
       "options": [
@@ -2340,7 +2232,7 @@
             "en": "The SSH client on the switch is enabled.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2348,7 +2240,7 @@
             "en": "Communication between the switch and remote users is encrypted.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2396,7 +2288,7 @@
             "en": "172.24.255.17",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2412,7 +2304,7 @@
             "en": "172.20.0.254",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2447,11 +2339,11 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "10.2.1",
       "question": {
-        "en": "Match the configuration mode with the command that is available in that mode. (Not all options are used.)Place the options in the following order:",
+        "en": "Match the configuration mode with the command that is available in that mode. (Not all options are used.)",
         "de": null
       },
       "explanation": {
-        "en": "Topic 10.2.1The enablecommand is entered at the R1&gt; prompt. Thelogincommand is entered at the R1(config-line)# prompt. Thecopy running-config startup-configcommand is entered at the R1# prompt. Theinterface fastethernet 0/0command is entered at the R1(config)# prompt.",
+        "en": "Topic 10.2.1 The enable command is entered at the R1&gt; prompt. The login command is entered at the R1(config-line)# prompt. The copy running-config startup-config command is entered at the R1# prompt. The interface fastethernet 0/0 command is entered at the R1(config)# prompt.",
         "de": null
       },
       "matchPairs": [
@@ -2509,8 +2401,13 @@
       "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.1.1",
       "question": {
         "en": "Which three commands are used to set up secure access to a router through a connection to the console interface? (Choose three.)",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.1.1 The three commands needed to password protect the console port are as follows:",
         "de": null
       },
       "options": [
@@ -2536,7 +2433,7 @@
             "en": "line console 0",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2552,44 +2449,12 @@
             "en": "login",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "f",
           "text": {
             "en": "password cisco",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "Explanation:Topic 10.1.1The three commands needed to password protect the console port are as follows:",
-            "de": null
-          },
-          "correct": true
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "line console 0",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o9",
-          "text": {
-            "en": "password cisco",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o10",
-          "text": {
-            "en": "loginTheinterface fastethernet 0/0command is commonly used to access the configuration mode used to apply specific parameters such as the IP address to the Fa0/0 port. Theline vty 0 4command is used to access the configuration mode for Telnet. The0and 4 parameters specify ports 0 through 4, or a maximum of five simultaneous Telnet connections. Theenable secretcommand is used to apply a password used on the router to access the privileged mode.",
             "de": null
           },
           "correct": true
@@ -2613,10 +2478,6 @@
         "en": "Refer to the exhibit. Consider the IP address configuration shown from PC1. What is a description of the default gateway address?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 10.3.1The default gateway is used to route packets destined for remote networks. The default gateway IP address is the address of the first Layer 3 device (the router interface) that connects to the same network.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2624,7 +2485,7 @@
             "en": "It is the IP address of the Router1 interface that connects the company to the Internet.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2632,7 +2493,7 @@
             "en": "It is the IP address of the Router1 interface that connects the PC1 LAN to Router1.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2662,7 +2523,7 @@
         10
       ],
       "number": 44,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "8.1.1",
@@ -2681,7 +2542,7 @@
             "en": "packet forwarding",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -2705,7 +2566,7 @@
             "en": "path selection",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -2735,7 +2596,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 10.1.1 The commandcopy running-config startup-configcopies the running-configuration file from RAM into NVRAM and saves it as the startup-configuration file. Since NVRAM is none-volatile memory it will be able to retain the configuration details when the router is powered off.",
+        "en": "Topic 10.1.1 The command copy running-config startup-config copies the running-configuration file from RAM into NVRAM and saves it as the startup-configuration file. Since NVRAM is none-volatile memory it will be able to retain the configuration details when the router is powered off.",
         "de": null
       },
       "options": [
@@ -2745,7 +2606,7 @@
             "en": "The contents of ROM will change.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2761,7 +2622,7 @@
             "en": "The contents of NVRAM will change.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2801,7 +2662,7 @@
             "en": "The host cannot communicate with other hosts in the local network.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2825,7 +2686,7 @@
             "en": "The host cannot communicate with hosts in other networks.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -2846,7 +2707,7 @@
         10
       ],
       "number": 47,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "9.2.8",
@@ -2873,7 +2734,7 @@
             "en": "On large networks with low bandwidth, multiple ARP broadcasts could cause data communication delays.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2881,7 +2742,7 @@
             "en": "Network attackers could manipulate MAC address and IP address mappings in ARP messages with the intent of intercepting network traffic.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2915,11 +2776,11 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
       "topic": "10.2.4",
       "question": {
-        "en": "Open the PT activity. Perform the tasks in the activity instructions and then answer the question.CCNA 1 v7 Modules 8 – 10 Communicating Between Networks Exam Modules 8 - 10 Communicating Between Networks Packet Tracer file 235.82 KB 10821 downloads ... DownloadWhich interfaces in each router are active and operational?R1: G0/0 and S0/0/0 R2: G0/0 and S0/0/0 R1: G0/1 and S0/0/1 R2: G0/0 and S0/0/1R1: G0/0 and S0/0/0",
+        "en": "Open the PT activity. Perform the tasks in the activity instructions and then answer the question.",
         "de": null
       },
       "explanation": {
-        "en": "Topic 10.2.4 The command to use for this activity isshow ip interface briefin each router. The active and operational interfaces are represented by the value \"up\" in the \"Status\" and \"Protocol\" columns. The interfaces in R1 with these characteristics are G0/0 and S0/0/0. In R2 they are G0/1 and S0/0/0.",
+        "en": "Topic 10.2.4 The command to use for this activity is show ip interface brief in each router. The active and operational interfaces are represented by the value &#8220;up&#8221; in the &#8220;Status&#8221; and &#8220;Protocol&#8221; columns. The interfaces in R1 with these characteristics are G0/0 and S0/0/0. In R2 they are G0/1 and S0/0/0.",
         "de": null
       },
       "needsManual": true
@@ -2942,7 +2803,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.2.2 Theprotocolfield in the IPv4 packet header is an 8-bit field used to identify the specific upper-layer protocol (Transport layer or next level) carried inside the packet&#8217;s payload. Once the destination host receives the Layer 3 packet and completes its processing, it inspects this field to determine which particular protocol handler or service should receive the de-encapsulated data. Common predefined decimal values used in this field include6forTCP,17forUDP, and1forICMP, which enables seamless multiplexing between the Network and Transport layers.",
+        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3054,7 +2915,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.2.2 Thesource IPv4 addressis a 32-bit field within the IPv4 packet header that identifies the logical address of the interface on the sending device. When a host transmits data across a network, it inserts its own IP address into this field. This allows the destination device to identify the origin of the packet, ensuring it knows exactly where to send any subsequent return traffic, acknowledgments, or error messages.",
+        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3110,7 +2971,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.2.2 Theheader checksumfield is a 16-bit field in the IPv4 header used to verify the integrity of the header data. During transmission, the sending device calculates a checksum value based on the fields within the IP header. When the packet arrives at its destination, the receiving device performs the same calculation. If the calculated value does not match the received value, the packet is considered corrupted and is discarded immediately by the receiving node.53.CopyRTR1(config)# interface gi0/1 RTR1(config-if)# description Connects to the Marketing LAN RTR1(config-if)# ip address 10.27.15.17 255.255.255.0 RTR1(config-if)# no shutdown RTR1(config-if)# interface gi0/0 RTR1(config-if)# description Connects to the Payroll LAN RTR1(config-if)# ip address 10.27.14.148 255.255.255.0 RTR1(config-if)# no shutdown RTR1(config-if)# interface s0/0/0 RTR1(config-if)# description Connects to the ISP RTR1(config-if)# ip address 10.14.15.254 255.255.255.0 RTR1(config-if)# no shutdown RTR1(config-if)# interface s0/0/1 RTR1(config-if)# description Connects to the Head Office WAN RTR1(config-if)# ip address 203.0.113.39 255.255.255.0 RTR1(config-if)# no shutdown RTR1(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Payroll LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 10.27.14.148 * 10.27.14.1 * 10.14.15.254 * 203.0.113.39 * 10.27.15.17 Explanation:Topic 10.3.1 A host&#8217;s default gateway must always correspond to the IP address of the local router interface that is directly attached to its specific network segment. By examining the configuration output in the exhibit, it is evident that interfacegi0/0is configured with the description description Connects to the Payroll LAN. The unique IP address assigned to this interface is10.27.14.148. Consequently, any new host deployed on the \"Payroll LAN\" must use this exact IP address as its default gateway to successfully communicate with destinations on remote networks.",
+        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3149,6 +3010,71 @@
       ]
     },
     {
+      "id": "modules-8-10-q053",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 53,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Payroll LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "RTR1(config)# interface gi0/1\nRTR1(config-if)# description Connects to the Marketing LAN\nRTR1(config-if)# ip address 10.27.15.17 255.255.255.0\nRTR1(config-if)# no shutdown\nRTR1(config-if)# interface gi0/0\nRTR1(config-if)# description Connects to the Payroll LAN\nRTR1(config-if)# ip address 10.27.14.148 255.255.255.0\nRTR1(config-if)# no shutdown\nRTR1(config-if)# interface s0/0/0\nRTR1(config-if)# description Connects to the ISP\nRTR1(config-if)# ip address 10.14.15.254 255.255.255.0\nRTR1(config-if)# no shutdown\nRTR1(config-if)# interface s0/0/1\nRTR1(config-if)# description Connects to the Head Office WAN\nRTR1(config-if)# ip address 203.0.113.39 255.255.255.0\nRTR1(config-if)# no shutdown\nRTR1(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "10.27.14.148",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "10.27.14.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.14.15.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "203.0.113.39",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "10.27.15.17",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
       "id": "modules-8-10-q054",
       "packId": "modules-8-10",
       "modules": [
@@ -3166,7 +3092,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.2.2 Thedestination IPv4 addressis a 32-bit field in the IP header that specifies the logical address of the end device to which the packet is being sent. This field can hold aunicastaddress (for a specific single host), amulticastaddress (for a specific group of hosts), or abroadcastaddress (for all hosts on the local network segment). Routers inspect this address to perform route lookups in their routing tables, ensuring the packet is forwarded out of the appropriate interface toward the intended destination.",
+        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3222,7 +3148,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.2.2 TheTTL(Time-to-Live) field is an 8-bit value in the IPv4 header used to prevent a packet from circulating endlessly in a network (for instance, due to a routing loop). The originating host sets an initial value; every time a router processes the packet, it decrements this value by one. If theTTLreaches zero before reaching its destination, the router discards the packet and sends an ICMP \"Time Exceeded\" message back to the source.",
+        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3278,7 +3204,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.2.2 Theversionfield in the IPv4 packet header is a 4-bit field that identifies which internet protocol version is being used to format the Layer 3 data. The binary value0100directly translates to the decimal number4, which explicitly instructs routers and receiving network devices to process the incoming packet according to IPv4 structural standards and specifications. Conversely, a binary value of 0110 (decimal 6) in this exact field would signify an IPv6 packet architecture.",
+        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3334,7 +3260,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.2.2 Theprotocolfield in the IPv4 packet header is an 8-bit field used to identify the specific upper-layer protocol (Transport layer or next level) carried inside the packet&#8217;s payload. Once the destination host receives the Layer 3 packet and completes its processing, it inspects this field to determine which particular protocol handler or service should receive the de-encapsulated data. Common predefined decimal values used in this field include6forTCP,17forUDP, and1forICMP, which enables seamless multiplexing between the Network and Transport layers.",
+        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3390,7 +3316,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 8.2.2 Theversionfield in the IPv4 packet header is a 4-bit field that identifies which internet protocol version is being used to format the Layer 3 data. The binary value0100directly translates to the decimal number4, which explicitly instructs routers and receiving network devices to process the incoming packet according to IPv4 structural standards and specifications. Conversely, a binary value of 0110 (decimal 6) in this exact field would signify an IPv6 packet architecture.",
+        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3558,7 +3484,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 9.2.4 By default, ARP table entries are dynamic and include an aging timer, which purges them automatically to ensure that the mapping information remains current. However, for critical devices like frequently used servers, a network administrator can configure astatic entry. Because these are manually defined, they are not subject to aging timers and remain \"fixed\" in the device&#8217;s memory until they are explicitly deleted or the device is rebooted, which ensures immediate and reliable address resolution without the overhead of ARP requests.",
+        "en": "Topic 9.2.4",
         "de": null
       },
       "options": [
@@ -3614,7 +3540,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 9.2.4 When a local host wants to send data to a device on a remote network, the Layer 3 IP packet contains the ultimate destination IP address. However, to deliver the frame over the local network medium at Layer 2, the host must encapsulate and address the frame to itsdefault gateway(the local router). Since the host initially only knows the default gateway&#8217;s IPv4 address, it relies onARPto dynamically discover its corresponding hardware MAC address. Once this MAC address is learned, the local host can successfully forward the traffic to the router for further internetwork routing.63.CopyFloor(config)# interface gi0/1 Floor(config-if)# description Connects to the Registrar LAN Floor(config-if)# ip address 192.168.235.234 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface gi0/0 Floor(config-if)# description Connects to the Manager LAN Floor(config-if)# ip address 192.168.234.114 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface s0/0/0 Floor(config-if)# description Connects to the ISP Floor(config-if)# ip address 10.234.235.254 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface s0/0/1 Floor(config-if)# description Connects to the Head Office WAN Floor(config-if)# ip address 203.0.113.3 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Registrar LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 192.168.235.234 * 192.168.235.1 * 10.234.235.254 * 203.0.113.3 * 192.168.234.114 Explanation:Topic 10.3.1 A host&#8217;s default gateway must correspond to the IP address of the local router interface that is directly attached to its specific network segment. Based on the configuration snippet provided, thegi0/1interface is configured with the description descripction Se conecta al Registrador LAN and has been assigned the IP address192.168.235.234. Consequently, any host connected to the \"Registrar LAN\" must use this specific IP address as its default gateway to successfully route traffic to remote networks.",
+        "en": "Topic 9.2.4",
         "de": null
       },
       "options": [
@@ -3653,6 +3579,71 @@
       ]
     },
     {
+      "id": "modules-8-10-q063",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 63,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Registrar LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "Floor(config)# interface gi0/1\nFloor(config-if)# description Connects to the Registrar LAN\nFloor(config-if)# ip address 192.168.235.234 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface gi0/0\nFloor(config-if)# description Connects to the Manager LAN\nFloor(config-if)# ip address 192.168.234.114 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface s0/0/0\nFloor(config-if)# description Connects to the ISP\nFloor(config-if)# ip address 10.234.235.254 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface s0/0/1\nFloor(config-if)# description Connects to the Head Office WAN\nFloor(config-if)# ip address 203.0.113.3 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "192.168.235.234",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.235.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.234.235.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "203.0.113.3",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "192.168.234.114",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
       "id": "modules-8-10-q064",
       "packId": "modules-8-10",
       "modules": [
@@ -3670,7 +3661,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 9.2.3 TheARPprotocol relies on Layer 2 broadcast frames to discover the MAC address of a target device when only its IP address is known. To ensure that an ARP request reaches every device within a local network segment, the frame must use the broadcast addressFF:FF:FF:FF:FF:FFas the destination MAC address. By standard hardware design, every Ethernet network interface card (NIC) is mandated to accept and pass the data portion of any frame addressed to this specific broadcast address up to the ARP process for examination.",
+        "en": "Topic 9.2.3",
         "de": null
       },
       "options": [
@@ -3726,7 +3717,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 9.2.3 When a host sends an ARP request, it is broadcast to all devices on the local network. To ensure the destination host knows where to send the reply, the Ethernet frame header containing the ARP request includes thesource MAC addressof the requesting host. Upon receiving and processing the request, the target host uses this specific source MAC address to send anARP replydirectly (unicast) to the original requester, rather than broadcasting the reply to the entire network.",
+        "en": "Topic 9.2.3",
         "de": null
       },
       "options": [
@@ -3782,7 +3773,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 9.2.3 When a host needs to discover the MAC address of another device, it sends an ARP request. Since it does not know the physical address of the destination, it sends it as a Layer 2broadcastframe. The destination MAC address used for this purpose isFF-FF-FF-FF-FF-FF. By design, switches flood any frame addressed to this broadcast address out of all active ports, except the port where the frame was received, ensuring that every device on the local network segment receives the ARP request.",
+        "en": "Topic 9.2.3",
         "de": null
       },
       "options": [
@@ -3838,7 +3829,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 9.2.3 The Ethernet II frame header contains a 2-byte field known as theTypefield (or EtherType). This field is responsible for specifying which upper-layer protocol or local subsystem should receive the payload enclosed within the frame. Every network protocol has a distinct hexadecimal identifier; for the Address Resolution Protocol (ARP), this specific code is0x0806. When a receiving network interface card (NIC) decapsulates an incoming frame and reads 0x0806 in the Type field, it instantly recognizes that the contents belong to an ARP message. As a result, the NIC bypasses the standard network stacks like IPv4 (0x0800) or IPv6 (0x86DD) and hands the data portion directly to the operating system&#8217;s internal ARP process.",
+        "en": "Topic 9.2.3",
         "de": null
       },
       "options": [
@@ -3894,7 +3885,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 9.2.3 The Ethernet II frame header contains a 2-byte field known as theTypefield (or EtherType). This field is responsible for specifying which upper-layer protocol or local subsystem should receive the payload enclosed within the frame. Every network protocol has a distinct hexadecimal identifier; for the Address Resolution Protocol (ARP), this specific code is0x0806. When a receiving network interface card (NIC) decapsulates an incoming frame and reads 0x0806 in the Type field, it instantly recognizes that the contents belong to an ARP message. As a result, the NIC bypasses the standard network stacks like IPv4 (0x0800) or IPv6 (0x86DD) and hands the data portion directly to the operating system&#8217;s internal ARP process.69.CopyMain(config)# interface gi0/1 Main(config-if)# description Connects to the Service LAN Main(config-if)# ip address 172.29.157.156 255.255.255.0 Main(config-if)# no shutdown Main(config-if)# interface gi0/0 Main(config-if)# description Connects to the Engineering LAN Main(config-if)# ip address 172.29.156.36 255.255.255.0 Main(config-if)# no shutdown Main(config-if)# interface s0/0/0 Main(config-if)# description Connects to the ISP Main(config-if)# ip address 10.156.157.254 255.255.255.0 Main(config-if)# no shutdown Main(config-if)# interface s0/0/1 Main(config-if)# description Connects to the Head Office WAN Main(config-if)# ip address 198.51.100.177 255.255.255.0 Main(config-if)# no shutdown Main(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Service LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 172.29.157.156 * 172.29.157.1 * 10.156.157.254 * 198.51.100.177 * 172.29.156.36 Explanation:Topic 10.3.170.CopyBldgA(config)# interface gi0/1 BldgA(config-if)# description Connects to the Medical LAN BldgA(config-if)# ip address 192.168.191.189 255.255.255.0 BldgA(config-if)# no shutdown BldgA(config-if)# interface gi0/0 BldgA(config-if)# description Connects to the Client LAN BldgA(config-if)# ip address 192.168.190.70 255.255.255.0 BldgA(config-if)# no shutdown BldgA(config-if)# interface s0/0/0 BldgA(config-if)# description Connects to the ISP BldgA(config-if)# ip address 10.190.191.254 255.255.255.0 BldgA(config-if)# no shutdown BldgA(config-if)# interface s0/0/1 BldgA(config-if)# description Connects to the Head Office WAN BldgA(config-if)# ip address 198.51.100.213 255.255.255.0 BldgA(config-if)# no shutdown BldgA(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Medical LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 192.168.191.189 * 192.168.191.1 * 10.190.191.254 * 198.51.100.213 * 192.168.190.70 Explanation:Topic 10.3.1 By examining the configuration of theBldgArouter, we can see that interfacegi0/1is configured with the description description Connects to the Medical LAN. The IP address assigned to this interface is192.168.191.189. Consequently, any device connected to the Medical LAN must be configured with this IP address as its default gateway, allowing the router to properly route its traffic toward remote networks.71.CopyFloor(config)# interface gi0/1 Floor(config-if)# description Connects to the Registrar LAN Floor(config-if)# ip address 192.168.225.223 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface gi0/0 Floor(config-if)# description Connects to the Manager LAN Floor(config-if)# ip address 192.168.224.103 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface s0/0/0 Floor(config-if)# description Connects to the ISP Floor(config-if)# ip address 10.224.225.254 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface s0/0/1 Floor(config-if)# description Connects to the Head Office WAN Floor(config-if)# ip address 203.0.113.246 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Registrar LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 192.168.225.223 * 192.168.225.1 * 10.224.225.254 * 203.0.113.246 * 192.168.224.103 Explanation:Topic 10.3.1 A host&#8217;s default gateway must always be the IP address of the local router interface that is directly attached to its specific network segment. By examining the configuration output provided, it is evident that interfacegi0/1is configured with the description description Connects to the Registrar LAN. The IP address assigned to this specific interface is192.168.225.223. Consequently, any new host deployed on the \"Registrar LAN\" must be configured with this exact IP address as its default gateway to successfully route traffic to remote networks.72.CopyFloor(config)# interface gi0/1 Floor(config-if)# description Connects to the Registrar LAN Floor(config-if)# ip address 10.118.63.65 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface gi0/0 Floor(config-if)# description Connects to the Manager LAN Floor(config-if)# ip address 10.118.62.196 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface s0/0/0 Floor(config-if)# description Connects to the ISP Floor(config-if)# ip address 10.62.63.254 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface s0/0/1 Floor(config-if)# description Connects to the Head Office WAN Floor(config-if)# ip address 209.165.200.87 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Manager LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 10.118.62.196 * 10.118.62.1 * 10.62.63.254 * 209.165.200.87 * 10.118.63.65 Explanation:Topic 10.3.1 A host&#8217;s default gateway must be the IP address of the local router interface that is directly attached to its specific network segment. Based on the provided configuration for the \"Manager LAN\" (interface gi0/0), the administrator has assigned the IP address10.118.62.196. Consequently, any new device connected to this network segment must be configured with this exact IP address as its default gateway to successfully route traffic to remote networks.73.CopyHQ(config)# interface gi0/1 HQ(config-if)# description Connects to the Branch LAN HQ(config-if)# ip address 172.19.99.99 255.255.255.0 HQ(config-if)# no shutdown HQ(config-if)# interface gi0/0 HQ(config-if)# description Connects to the Store LAN HQ(config-if)# ip address 172.19.98.230 255.255.255.0 HQ(config-if)# no shutdown HQ(config-if)# interface s0/0/0 HQ(config-if)# description Connects to the ISP HQ(config-if)# ip address 10.98.99.254 255.255.255.0 HQ(config-if)# no shutdown HQ(config-if)# interface s0/0/1 HQ(config-if)# description Connects to the Head Office WAN HQ(config-if)# ip address 209.165.200.120 255.255.255.0 HQ(config-if)# no shutdown HQ(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Store LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 172.19.98.230 * 172.19.98.1 * 10.98.99.254 * 209.165.200.120 * 172.19.99.99 Explanation:Topic 10.3.1 A host&#8217;s default gateway must be the IP address of the local router interface that is attached to its specific network segment. By examining the configuration output provided in the exhibit, we can see that the administrator configured interfacegi0/0with a description explicitly stating it connects to the Store LAN (description Connects to the Store LAN). The IP address assigned to this particular interface is172.19.98.230. Therefore, any new host connecting to the \"Store LAN\" must use this exact IP address as its default gateway in order to successfully route traffic to remote or external networks.74.CopyHQ(config)# interface gi0/1 HQ(config-if)# description Connects to the Branch LAN HQ(config-if)# ip address 172.20.133.132 255.255.255.0 HQ(config-if)# no shutdown HQ(config-if)# interface gi0/0 HQ(config-if)# description Connects to the Store LAN HQ(config-if)# ip address 172.20.132.13 255.255.255.0 HQ(config-if)# no shutdown HQ(config-if)# interface s0/0/0 HQ(config-if)# description Connects to the ISP HQ(config-if)# ip address 10.132.133.254 255.255.255.0 HQ(config-if)# no shutdown HQ(config-if)# interface s0/0/1 HQ(config-if)# description Connects to the Head Office WAN HQ(config-if)# ip address 198.51.100.156 255.255.255.0 HQ(config-if)# no shutdown HQ(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Store LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 172.20.132.13 * 172.20.132.1 * 10.132.133.254 * 198.51.100.156 * 172.20.133.132 Explanation:Topic 10.3.175.CopyMain(config)# interface gi0/1 Main(config-if)# description Connects to the Service LAN Main(config-if)# ip address 192.168.167.166 255.255.255.0 Main(config-if)# no shutdown Main(config-if)# interface gi0/0 Main(config-if)# description Connects to the Engineering LAN Main(config-if)# ip address 192.168.166.46 255.255.255.0 Main(config-if)# no shutdown Main(config-if)# interface s0/0/0 Main(config-if)# description Connects to the ISP Main(config-if)# ip address 10.166.167.254 255.255.255.0 Main(config-if)# no shutdown Main(config-if)# interface s0/0/1 Main(config-if)# description Connects to the Head Office WAN Main(config-if)# ip address 198.51.100.189 255.255.255.0 Main(config-if)# no shutdown Main(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Service LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 192.168.167.166 * 192.168.167.1 * 10.166.167.254 * 198.51.100.189 * 192.168.166.46 Explanation:Topic 10.3.1 A default gateway is the local router interface IP address responsible for handling traffic from a specific subnet to forward it toward remote networks. By examining the configuration of theMainrouter in the exhibit, we can see that interfacegi0/1is assigned the description description Connects to the S (referring to the Service LAN). The IP address configured on this specific interface is192.168.167.166. Consequently, any new host connecting to this Service LAN must be configured with this IP address as its default gateway to successfully communicate beyond its local segment.76.CopyBldgA(config)# interface gi0/1 BldgA(config-if)# description Connects to the Medical LAN BldgA(config-if)# ip address 192.168.201.200 255.255.255.0 BldgA(config-if)# no shutdown BldgA(config-if)# interface gi0/0 BldgA(config-if)# description Connects to the Client LAN BldgA(config-if)# ip address 192.168.200.80 255.255.255.0 BldgA(config-if)# no shutdown BldgA(config-if)# interface s0/0/0 BldgA(config-if)# description Connects to the ISP BldgA(config-if)# ip address 10.200.201.254 255.255.255.0 BldgA(config-if)# no shutdown BldgA(config-if)# interface s0/0/1 BldgA(config-if)# description Connects to the Head Office WAN BldgA(config-if)# ip address 203.0.113.222 255.255.255.0 BldgA(config-if)# no shutdown BldgA(config-if)# endRefer to the exhibit. A network administrator is connecting a new host to the Medical LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host? * 192.168.201.200 * 192.168.201.1 * 10.200.201.254 * 203.0.113.222 * 192.168.200.80 Explanation:Topic 10.3.1 A host&#8217;s default gateway must always be the specific IP address assigned to the local router interface that is directly connected to the host&#8217;s network segment. In this configuration scenario, the interface on the local router (labeled as BldgA) that services the Medical LAN is configured with the IP address192.168.201.200. Consequently, any new device deployed within the Medical LAN domain must be explicitly configured with this exact IP address as its default gateway to successfully route traffic outside of the local area network. Post navigation ← Previous Article CCNA 1 v7 Modules 4 – 7: Ethernet Concepts Exam Answers Next Article → CCNA 1 v7 Modules 11 – 13: IP Addressing Exam Answers Full Subscribe Notify of new follow-up comments new replies to my comments Label {} [+] Name* Email* &#916; Label {} [+] Name* Email* &#916; 49 Corrections & Clarifications View Comments Load More Comments",
+        "en": "Topic 9.2.3",
         "de": null
       },
       "options": [
@@ -3926,6 +3917,526 @@
           "id": "d",
           "text": {
             "en": "The port-to-MAC address table on a switch has the same entries as the ARP table on the switch.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-8-10-q069",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 69,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Service LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "Main(config)# interface gi0/1\nMain(config-if)# description Connects to the Service LAN\nMain(config-if)# ip address 172.29.157.156 255.255.255.0\nMain(config-if)# no shutdown\nMain(config-if)# interface gi0/0\nMain(config-if)# description Connects to the Engineering LAN\nMain(config-if)# ip address 172.29.156.36 255.255.255.0\nMain(config-if)# no shutdown\nMain(config-if)# interface s0/0/0\nMain(config-if)# description Connects to the ISP\nMain(config-if)# ip address 10.156.157.254 255.255.255.0\nMain(config-if)# no shutdown\nMain(config-if)# interface s0/0/1\nMain(config-if)# description Connects to the Head Office WAN\nMain(config-if)# ip address 198.51.100.177 255.255.255.0\nMain(config-if)# no shutdown\nMain(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "172.29.157.156",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "172.29.157.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.156.157.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "198.51.100.177",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "172.29.156.36",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-8-10-q070",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 70,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Medical LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "BldgA(config)# interface gi0/1\nBldgA(config-if)# description Connects to the Medical LAN\nBldgA(config-if)# ip address 192.168.191.189 255.255.255.0\nBldgA(config-if)# no shutdown\nBldgA(config-if)# interface gi0/0\nBldgA(config-if)# description Connects to the Client LAN\nBldgA(config-if)# ip address 192.168.190.70 255.255.255.0\nBldgA(config-if)# no shutdown\nBldgA(config-if)# interface s0/0/0\nBldgA(config-if)# description Connects to the ISP\nBldgA(config-if)# ip address 10.190.191.254 255.255.255.0\nBldgA(config-if)# no shutdown\nBldgA(config-if)# interface s0/0/1\nBldgA(config-if)# description Connects to the Head Office WAN\nBldgA(config-if)# ip address 198.51.100.213 255.255.255.0\nBldgA(config-if)# no shutdown\nBldgA(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "192.168.191.189",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.191.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.190.191.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "198.51.100.213",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "192.168.190.70",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-8-10-q071",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 71,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Registrar LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "Floor(config)# interface gi0/1\nFloor(config-if)# description Connects to the Registrar LAN\nFloor(config-if)# ip address 192.168.225.223 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface gi0/0\nFloor(config-if)# description Connects to the Manager LAN\nFloor(config-if)# ip address 192.168.224.103 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface s0/0/0\nFloor(config-if)# description Connects to the ISP\nFloor(config-if)# ip address 10.224.225.254 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface s0/0/1\nFloor(config-if)# description Connects to the Head Office WAN\nFloor(config-if)# ip address 203.0.113.246 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "192.168.225.223",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.225.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.224.225.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "203.0.113.246",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "192.168.224.103",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-8-10-q072",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 72,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Manager LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "Floor(config)# interface gi0/1\nFloor(config-if)# description Connects to the Registrar LAN\nFloor(config-if)# ip address 10.118.63.65 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface gi0/0\nFloor(config-if)# description Connects to the Manager LAN\nFloor(config-if)# ip address 10.118.62.196 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface s0/0/0\nFloor(config-if)# description Connects to the ISP\nFloor(config-if)# ip address 10.62.63.254 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# interface s0/0/1\nFloor(config-if)# description Connects to the Head Office WAN\nFloor(config-if)# ip address 209.165.200.87 255.255.255.0\nFloor(config-if)# no shutdown\nFloor(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "10.118.62.196",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "10.118.62.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.62.63.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "209.165.200.87",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "10.118.63.65",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-8-10-q073",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 73,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Store LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "HQ(config)# interface gi0/1\nHQ(config-if)# description Connects to the Branch LAN\nHQ(config-if)# ip address 172.19.99.99 255.255.255.0\nHQ(config-if)# no shutdown\nHQ(config-if)# interface gi0/0\nHQ(config-if)# description Connects to the Store LAN\nHQ(config-if)# ip address 172.19.98.230 255.255.255.0\nHQ(config-if)# no shutdown\nHQ(config-if)# interface s0/0/0\nHQ(config-if)# description Connects to the ISP\nHQ(config-if)# ip address 10.98.99.254 255.255.255.0\nHQ(config-if)# no shutdown\nHQ(config-if)# interface s0/0/1\nHQ(config-if)# description Connects to the Head Office WAN\nHQ(config-if)# ip address 209.165.200.120 255.255.255.0\nHQ(config-if)# no shutdown\nHQ(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "172.19.98.230",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "172.19.98.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.98.99.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "209.165.200.120",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "172.19.99.99",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-8-10-q074",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 74,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Store LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "HQ(config)# interface gi0/1\nHQ(config-if)# description Connects to the Branch LAN\nHQ(config-if)# ip address 172.20.133.132 255.255.255.0\nHQ(config-if)# no shutdown\nHQ(config-if)# interface gi0/0\nHQ(config-if)# description Connects to the Store LAN\nHQ(config-if)# ip address 172.20.132.13 255.255.255.0\nHQ(config-if)# no shutdown\nHQ(config-if)# interface s0/0/0\nHQ(config-if)# description Connects to the ISP\nHQ(config-if)# ip address 10.132.133.254 255.255.255.0\nHQ(config-if)# no shutdown\nHQ(config-if)# interface s0/0/1\nHQ(config-if)# description Connects to the Head Office WAN\nHQ(config-if)# ip address 198.51.100.156 255.255.255.0\nHQ(config-if)# no shutdown\nHQ(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "172.20.132.13",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "172.20.132.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.132.133.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "198.51.100.156",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "172.20.133.132",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-8-10-q075",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 75,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Service LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "Main(config)# interface gi0/1\nMain(config-if)# description Connects to the Service LAN\nMain(config-if)# ip address 192.168.167.166 255.255.255.0\nMain(config-if)# no shutdown\nMain(config-if)# interface gi0/0\nMain(config-if)# description Connects to the Engineering LAN\nMain(config-if)# ip address 192.168.166.46 255.255.255.0\nMain(config-if)# no shutdown\nMain(config-if)# interface s0/0/0\nMain(config-if)# description Connects to the ISP\nMain(config-if)# ip address 10.166.167.254 255.255.255.0\nMain(config-if)# no shutdown\nMain(config-if)# interface s0/0/1\nMain(config-if)# description Connects to the Head Office WAN\nMain(config-if)# ip address 198.51.100.189 255.255.255.0\nMain(config-if)# no shutdown\nMain(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "192.168.167.166",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.167.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.166.167.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "198.51.100.189",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "192.168.166.46",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "modules-8-10-q076",
+      "packId": "modules-8-10",
+      "modules": [
+        8,
+        9,
+        10
+      ],
+      "number": 76,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
+      "topic": "10.3.1",
+      "question": {
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Medical LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 10.3.1",
+        "de": null
+      },
+      "exhibitCode": "BldgA(config)# interface gi0/1\nBldgA(config-if)# description Connects to the Medical LAN\nBldgA(config-if)# ip address 192.168.201.200 255.255.255.0\nBldgA(config-if)# no shutdown\nBldgA(config-if)# interface gi0/0\nBldgA(config-if)# description Connects to the Client LAN\nBldgA(config-if)# ip address 192.168.200.80 255.255.255.0\nBldgA(config-if)# no shutdown\nBldgA(config-if)# interface s0/0/0\nBldgA(config-if)# description Connects to the ISP\nBldgA(config-if)# ip address 10.200.201.254 255.255.255.0\nBldgA(config-if)# no shutdown\nBldgA(config-if)# interface s0/0/1\nBldgA(config-if)# description Connects to the Head Office WAN\nBldgA(config-if)# ip address 203.0.113.222 255.255.255.0\nBldgA(config-if)# no shutdown\nBldgA(config-if)# end",
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "192.168.201.200",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "192.168.201.1",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10.200.201.254",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "203.0.113.222",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "192.168.200.80",
             "de": null
           },
           "correct": false

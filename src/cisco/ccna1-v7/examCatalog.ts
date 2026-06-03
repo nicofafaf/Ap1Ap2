@@ -22,7 +22,7 @@ export const CCNA1_ITN_PACKS: ReadonlyArray<{
     sourceUrl:
       "https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html",
     titleEn: "Modules 1–3: Basic Network Connectivity and Communications",
-    titleDe: "Module 1–3: Netzwerkgrundlagen und Kommunikation",
+    titleDe: "Module 1–3: Grundlagen der Netzwerkverbindungen und -kommunikation",
   },
   {
     id: "modules-4-7",
@@ -30,7 +30,7 @@ export const CCNA1_ITN_PACKS: ReadonlyArray<{
     sourceUrl:
       "https://itexamanswers.net/ccna-1-v7-modules-4-7-ethernet-concepts-exam-answers.html",
     titleEn: "Modules 4–7: Ethernet Concepts",
-    titleDe: "Module 4–7: Ethernet-Konzepte",
+    titleDe: "Module 4–7: Ethernet-Konzeptprüfung",
   },
   {
     id: "modules-8-10",
@@ -38,7 +38,7 @@ export const CCNA1_ITN_PACKS: ReadonlyArray<{
     sourceUrl:
       "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
     titleEn: "Modules 8–10: Communicating Between Networks",
-    titleDe: "Module 8–10: Kommunikation zwischen Netzwerken",
+    titleDe: "Module 8–10: Kommunikation zwischen Netzwerken – Prüfungsantworten",
   },
   {
     id: "modules-11-13",
@@ -46,7 +46,7 @@ export const CCNA1_ITN_PACKS: ReadonlyArray<{
     sourceUrl:
       "https://itexamanswers.net/ccna-1-v7-modules-11-13-ip-addressing-exam-answers-full.html",
     titleEn: "Modules 11–13: IP Addressing",
-    titleDe: "Module 11–13: IP-Adressierung",
+    titleDe: "Module 11–13: IP-Adressierungsprüfung",
   },
   {
     id: "modules-14-15",
@@ -54,7 +54,7 @@ export const CCNA1_ITN_PACKS: ReadonlyArray<{
     sourceUrl:
       "https://itexamanswers.net/ccna-1-v7-modules-14-15-network-application-communications-exam-answers.html",
     titleEn: "Modules 14–15: Network Application Communications",
-    titleDe: "Module 14–15: Anwendungen im Netzwerk",
+    titleDe: "Module 14–15: Netzwerkanwendungskommunikation",
   },
   {
     id: "modules-16-17",
@@ -62,7 +62,7 @@ export const CCNA1_ITN_PACKS: ReadonlyArray<{
     sourceUrl:
       "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
     titleEn: "Modules 16–17: Building and Securing a Small Network",
-    titleDe: "Module 16–17: Kleines Netzwerk aufbauen und absichern",
+    titleDe: "Module 16–17: Aufbau und Sicherung eines kleinen Netzwerks",
   },
   {
     id: "practice-final",
@@ -110,6 +110,26 @@ const MODULE_TITLES_EN: Record<number, string> = {
   17: "Build a Small Network",
 };
 
+const MODULE_TITLES_DE: Record<number, string> = {
+  1: "Netzwerke heute",
+  2: "Grundkonfiguration Switch und Endgeräte",
+  3: "Protokolle und Modelle",
+  4: "Bitübertragungsschicht",
+  5: "Zahlensysteme",
+  6: "Sicherungsschicht und Ethernet",
+  7: "Ethernet-Switching",
+  8: "Vermittlungsschicht",
+  9: "Adressauflösung",
+  10: "Grundkonfiguration Router",
+  11: "IPv4-Adressierung",
+  12: "IPv6-Adressierung",
+  13: "ICMP",
+  14: "Transportschicht",
+  15: "Anwendungsschicht",
+  16: "Grundlagen Netzwerksicherheit",
+  17: "Kleines Netzwerk aufbauen",
+};
+
 function packForModule(n: number): CiscoPackId {
   if (n <= 3) return "modules-1-3";
   if (n <= 7) return "modules-4-7";
@@ -129,7 +149,7 @@ export const CCNA1_ITN_17_MODULES: readonly CiscoModuleDef[] = Array.from(
       packId: packForModule(module),
       title: {
         en: `Module ${module}: ${MODULE_TITLES_EN[module] ?? "ITN"}`,
-        de: `Modul ${module}: ${MODULE_TITLES_EN[module] ?? "ITN"}`,
+        de: `Modul ${module}: ${MODULE_TITLES_DE[module] ?? "ITN"}`,
       },
     };
   }

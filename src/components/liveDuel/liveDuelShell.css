@@ -103,6 +103,19 @@
   align-items: start;
 }
 
+@media (max-width: 520px) {
+  .nx-live-duel-invite {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .nx-live-duel-code {
+    font-size: 1.55rem;
+    letter-spacing: 0.14em;
+    text-align: center;
+  }
+}
+
 .nx-live-duel-code {
   font-family: var(--nx-font-mono);
   font-size: 2rem;

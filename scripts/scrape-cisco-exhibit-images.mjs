@@ -44,7 +44,8 @@ function decodeHtml(s) {
 function extractQuestionImages(html) {
   const entries = [];
   const markers = [];
-  const blockRe = /<p[^>]*>\s*<strong>\s*(\d+)\.\s*([\s\S]*?)<\/strong>([\s\S]*?)<\/p>/gi;
+  const blockRe =
+    /<p[^>]*>\s*<strong>\s*(\d+)\.\s*([\s\S]*?)<\/strong>(?:[\s\S]*?)<\/p>/gi;
   let m;
   while ((m = blockRe.exec(html))) {
     markers.push({
@@ -57,15 +58,24 @@ function extractQuestionImages(html) {
   }
   for (let i = 0; i < markers.length; i += 1) {
     const cur = markers[i];
-    if (!/refer to the exhibit/i.test(cur.qText)) continue;
     const next = markers[i + 1];
-    const sliceEnd = next ? next.index : cur.end + 8000;
+    const sliceEnd = next ? next.index : cur.end + 12_000;
     const window = html.slice(cur.index, sliceEnd);
+    const exhibitQ =
+      /refer to the exhibit/i.test(cur.qText) || /refer to the exhibit/i.test(window);
+    if (!exhibitQ) continue;
     const imgs = [...window.matchAll(/<img[^>]+src=["']([^"']+)["'][^>]*>/gi)]
       .map((x) => decodeHtml(x[1]))
       .filter((u) => !/logo|avatar|gravatar|\/ads\/|banner-ad|itexam-1\.png/i.test(u));
     if (imgs.length === 0) continue;
-    entries.push({ num: cur.num, qText: cur.qText, imgs: [...new Set(imgs)] });
+    const qText =
+      cur.qText.length > 20
+        ? cur.qText
+        : (window.match(/<strong>(?!\s*\d+\.\s)([\s\S]*?)<\/strong>/i)?.[1] ?? cur.qText)
+            .replace(/<[^>]+>/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+    entries.push({ num: cur.num, qText, imgs: [...new Set(imgs)] });
   }
   return entries;
 }
@@ -147,8 +157,10 @@ async function main() {
   let total = 0;
   for (const [packId, url] of Object.entries(PACK_URLS)) {
     console.log(`[scrape] ${packId}`);
-    const res = await fetch(url, { headers: { "User-Agent": "LernenSchule/1.0" } });
-    const html = await res.text();
+    const localHtml = join(htmlDir, `${packId}.html`);
+    const html = existsSync(localHtml)
+      ? readFileSync(localHtml, "utf8")
+      : await fetch(url, { headers: { "User-Agent": "LernenSchule/1.0" } }).then((r) => r.text());
     const manifestPath = join(outRoot, packId, "manifest.json");
     let manifest = [];
     const n = await processPack(packId, html);

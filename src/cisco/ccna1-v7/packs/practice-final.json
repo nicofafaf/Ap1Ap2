@@ -10,7 +10,7 @@
     17
   ],
   "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
-  "itemCount": 56,
+  "itemCount": 55,
   "items": [
     {
       "id": "practice-final-q001",
@@ -44,7 +44,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 14.4.3 Destination port22is the well-known port number reserved forSSH (Secure Shell), which provides asecure remote accessconnection to network devices and servers. It is considered a secure, encrypted alternative toTelnet, which uses port 23.",
+        "en": "Topic 14.4.3",
         "de": null
       },
       "options": [
@@ -124,7 +124,7 @@
             "en": "the amount of data that can be sent at one time",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -132,7 +132,7 @@
             "en": "the amount of data that can be sent before an acknowledgment is required",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -182,10 +182,6 @@
       "topic": "14.4.3",
       "question": {
         "en": "To which TCP port group does the port 414 belong?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 14.4.3 Well Known Ports: 0 through 1023. Registered Ports: 1024 through 49151. Dynamic/Private : 49152 through 65535.",
         "de": null
       },
       "options": [
@@ -265,7 +261,7 @@
             "en": "The entire command, configure terminal, must be used.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -281,7 +277,7 @@
             "en": "The administrator must first enter privileged EXEC mode before issuing the command.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -325,10 +321,6 @@
         "en": "What is a user trying to determine when issuing a ping 10.1.1.1 command on a PC?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 13.2.1 The ping destination command can be used to test connectivity.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -336,7 +328,7 @@
             "en": "if the TCP/IP stack is functioning on the PC without putting traffic on the wire",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -344,7 +336,7 @@
             "en": "if there is connectivity with the destination device",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -392,11 +384,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "2.6.2",
       "question": {
-        "en": "What is a characteristic of a switch virtual interface (SVI)?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 2.6.2 Cisco IOS Layer 2 switches have physical ports for devices to connect. These ports do not support Layer 3 IP addresses. Therefore, switches have one or more switch virtual interfaces (SVIs). These are virtual interfaces because there is no physical hardware on the device associated with it. An SVI is created in software. The virtual interface lets you remotely manage a switch over a network using IPv4 and IPv6. Each switch comes with one SVI appearing in the default configuration “out-of-the-box.” The default SVI is interface VLAN1.",
+        "en": "What is a characteristic of a switch virtual interface (SVI)?​",
         "de": null
       },
       "options": [
@@ -463,10 +451,6 @@
       "topic": "2.1.1",
       "question": {
         "en": "Match the descriptions to the terms. (Not all options are used.)",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 2.1.1 A GUI, or graphical user interface, allows the user to interact with the operating system by pointing and clicking at elements on the screen. A CLI, or command-line interface, requires users to type commands at a prompt in order to interact with the OS. The shell is the part of the operating system that is closest to the user. The kernel is the part of the operating system that interfaces with the hardware.",
         "de": null
       },
       "matchPairs": [
@@ -543,10 +527,6 @@
         "en": "What happens when a switch receives a frame and the calculated CRC value is different than the value that is in the FCS field?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 7.1.4 The purpose of the CRC value in the FCS field is to determine if the frame has errors. If the frame does have errors, then the frame is dropped by the switch.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -554,7 +534,7 @@
             "en": "The switch notifies the source of the bad frame.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -570,7 +550,7 @@
             "en": "The switch drops the frame.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -608,6 +588,7 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "7.4.2",
       "question": {
         "en": "Two network engineers are discussing the methods used to forward frames through a switch. What is an important concept related to the cut-through method of switching?",
         "de": null
@@ -619,7 +600,7 @@
             "en": "The fragment-free switching offers the lowest level of latency.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -643,23 +624,7 @@
             "en": "Packets can be relayed with errors when fast-forward switching is used.",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 7.4.2",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Fast-forward switching offers the lowest level of latency and it is the typical cut-through method of switching. Fragment-free switching can be viewed as a compromise between store-and-forward switching and fast-forward switching. Because fast-forward switching starts forwarding before the entire packet has been received, there may be times when packets are relayed with errors.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -686,16 +651,12 @@
         17
       ],
       "number": 10,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "7.1.4",
       "question": {
         "en": "Which two issues can cause both runts and giants in Ethernet networks? (Choose two.)",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 7.1.4 Because collisions are a normal aspect of half-duplex communications, runt and giant frames are common by-products of those operations. A malfunctioning NIC can also place frames on the network that are either too short or longer than the maximum allowed length. CRC errors can result from using the wrong type of cable or from electrical interference. Using a cable that is too long can result in late collisions rather than runts and giants.",
         "de": null
       },
       "options": [
@@ -713,7 +674,7 @@
             "en": "half-duplex operations",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -721,7 +682,7 @@
             "en": "a malfunctioning NIC",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -764,7 +725,7 @@
         17
       ],
       "number": 11,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "7.1.2",
@@ -773,7 +734,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 7.1.2 The data link layer is actually divided into two sublayers: + Logical Link Control (LLC): This upper sublayer defines the software processes that provide services to the network layer protocols. It places information in the frame that identifies which network layer protocol is being used for the frame. This information allows multiple Layer 3 protocols, such as IPv4 and IPv6, to utilize the same network interface and media. + Media Access Control (MAC): This lower sublayer defines the media access processes performed by the hardware. It provides data link layer addressing and delimiting of data according to the physical signaling requirements of the medium and the type of data link layer protocol in use.",
+        "en": "Topic 7.1.2 The data link layer is actually divided into two sublayers:",
         "de": null
       },
       "options": [
@@ -791,7 +752,7 @@
             "en": "enables IPv4 and IPv6 to utilize the same physical medium",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -815,143 +776,7 @@
             "en": "places information in the Ethernet frame that identifies which network layer protocol is being encapsulated by the frame",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Other case",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "responsible for internal structure of Ethernet frame",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "applies source and destination MAC addresses to Ethernet frame",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o9",
-          "text": {
-            "en": "integrates Layer 2 flows between 10 Gigabit Ethernet over fiber and 1 Gigabit Ethernet over copper",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o10",
-          "text": {
-            "en": "enables IPv4 and IPv6 to utilize the same physical medium",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o11",
-          "text": {
-            "en": "handles communication between upper layer networking software and Ethernet NIC hardware",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o12",
-          "text": {
-            "en": "Other case",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o13",
-          "text": {
-            "en": "adds Ethernet control information to network protocol data",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o14",
-          "text": {
-            "en": "responsible for internal structure of Ethernet frame",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o15",
-          "text": {
-            "en": "implements trailer with frame check sequence for error detection",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o16",
-          "text": {
-            "en": "enables IPv4 and IPv6 to utilize the same physical medium",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o17",
-          "text": {
-            "en": "applies source and destination MAC addresses to Ethernet frameOther case",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o18",
-          "text": {
-            "en": "implements CSMA/CD over legacy shared half-duplex media",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o19",
-          "text": {
-            "en": "adds Ethernet control information to network protocol data",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o20",
-          "text": {
-            "en": "places information in the Ethernet frame that identifies which network layer protocol is being encapsulated by the frame",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o21",
-          "text": {
-            "en": "applies source and destination MAC addresses to Ethernet frame",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o22",
-          "text": {
-            "en": "integrates Layer 2 flows between 10 Gigabit Ethernet over fiber and 1 Gigabit Ethernet over copper",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -978,16 +803,12 @@
         17
       ],
       "number": 12,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "17.7.5",
       "question": {
         "en": "Which two commands could be used to check if DNS name resolution is working properly on a Windows PC? (Choose two.)",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 17.7.5 The ping command tests the connection between two hosts. When ping uses a host domain name to test the connection, the resolver on the PC will first perform the name resolution to query the DNS server for the IP address of the host. If the ping command is unable to resolve the domain name to an IP address, an error will result. Nslookup is a tool for testing and troubleshooting DNS servers.",
         "de": null
       },
       "options": [
@@ -997,7 +818,7 @@
             "en": "nslookup cisco.com",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -1005,7 +826,7 @@
             "en": "ping cisco.com",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1064,10 +885,6 @@
         "en": "A small advertising company has a web server that provides critical business service. The company connects to the Internet through a leased line service to an ISP. Which approach best provides cost effective redundancy for the Internet connection?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 17.1.4 With a separate DSL connection to another ISP, the company will have a redundancy solution for the Internet connection, in case the leased line connection fails. The other options provide other aspects of redundancy, but not the Internet connection. The options of adding a second NIC and adding multiple connections between the switches and the edge router will provide redundancy in case one NIC fails or one connection between the switches and the edge router fails. The option of adding another web server provides redundancy if the main web server fails.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1075,7 +892,7 @@
             "en": "Add a second NIC to the web server.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1083,7 +900,7 @@
             "en": "Add a connection to the Internet via a DSL line to another ISP.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1129,6 +946,7 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "12.5.1",
       "question": {
         "en": "Only employees connected to IPv6 interfaces are having difficulty connecting to remote networks. The analyst wants to verify that IPv6 routing has been enabled. What is the best command to use to accomplish the task?",
         "de": null
@@ -1140,7 +958,7 @@
             "en": "copy running-config startup-config",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1164,15 +982,7 @@
             "en": "show running-config",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 12.5.1",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1204,13 +1014,10 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "10.3.1",
       "question": {
-        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Registrar LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?CopyFloor(config)# interface gi0/1 Floor(config-if)# description Connects to the Registrar LAN Floor(config-if)# ip address 192.168.235.234 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface gi0/0 Floor(config-if)# description Connects to the Manager LAN Floor(config-if)# ip address 192.168.234.114 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface s0/0/0 Floor(config-if)# description Connects to the ISP Floor(config-if)# ip address 10.234.235.254 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# interface s0/0/1 Floor(config-if)# description Connects to the Head Office WAN Floor(config-if)# ip address 203.0.113.3 255.255.255.0 Floor(config-if)# no shutdown Floor(config-if)# end",
+        "en": "Refer to the exhibit. A network administrator is connecting a new host to the Registrar LAN. The host needs to communicate with remote networks. What IP address would be configured as the default gateway on the new host?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 10.3.1",
-        "de": null
-      },
+      "exhibitCode": "Floor(config)# interface gi0/1 \nFloor(config-if)# description Connects to the Registrar LAN \nFloor(config-if)# ip address 192.168.235.234 255.255.255.0 \nFloor(config-if)# no shutdown \nFloor(config-if)# interface gi0/0 \nFloor(config-if)# description Connects to the Manager LAN \nFloor(config-if)# ip address 192.168.234.114 255.255.255.0 \nFloor(config-if)# no shutdown \nFloor(config-if)# interface s0/0/0 \nFloor(config-if)# description Connects to the ISP \nFloor(config-if)# ip address 10.234.235.254 255.255.255.0 \nFloor(config-if)# no shutdown \nFloor(config-if)# interface s0/0/1 \nFloor(config-if)# description Connects to the Head Office WAN \nFloor(config-if)# ip address 203.0.113.3 255.255.255.0 \nFloor(config-if)# no shutdown \nFloor(config-if)# end",
       "options": [
         {
           "id": "a",
@@ -1282,11 +1089,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "10.1.1",
       "question": {
-        "en": "Match the command with the device mode at which the command is entered. (Not all options are used.)Place the options in the following order:",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 10.1.1 The enable command is entered in R1&gt; mode. The login command is entered in R1(config-line)# mode. The copy running-config startup-config command is entered in R1# mode. The ip address 192.168.4.4 255.255.255.0 command is entered in R1(config-if)# mode. The service password-encryption command is entered in global configuration mode.",
+        "en": "Match the command with the device mode at which the command is entered. (Not all options are used.)",
         "de": null
       },
       "matchPairs": [
@@ -1373,10 +1176,6 @@
         "en": "A router boots and enters setup mode. What is the reason for this?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 10.1.1 The startup configuration file is stored in NVRAM and contains the commands needed to initially configure a router. It also creates the running configuration file that is stored in in RAM.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1384,7 +1183,7 @@
             "en": "The IOS image is corrupt.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1400,82 +1199,12 @@
             "en": "The configuration file is missing from NVRAM.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
           "text": {
             "en": "The POST process has detected hardware failure.",
-            "de": null
-          },
-          "correct": false
-        }
-      ]
-    },
-    {
-      "id": "practice-final-q018",
-      "packId": "practice-final",
-      "modules": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17
-      ],
-      "number": 18,
-      "type": "single",
-      "verbatim": true,
-      "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
-      "topic": "15.3.4",
-      "question": {
-        "en": "What service is provided by POP3?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 15.3.4 ThePost Office Protocol version 3 (POP3)is an application layer protocol designed to enable email clients toretrieve messagesfrom a mail server. According to the sources, the default operation of POP3 is todownload the emailto the client&#8217;s local application and thendelete it from the server. This service operates overTCP port 110and is specifically intended for message retrieval, distinguishing it from SMTP, which is used for sending mail, and IMAP, which typically maintains messages on the server.",
-        "de": null
-      },
-      "options": [
-        {
-          "id": "a",
-          "text": {
-            "en": "Retrieves email from the server by downloading the email to the local mail application of the client.",
-            "de": null
-          },
-          "correct": true
-        },
-        {
-          "id": "b",
-          "text": {
-            "en": "An application that allows real-time chatting among remote users.",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": {
-            "en": "Allows remote access to network devices and servers.",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": {
-            "en": "Uses encryption to provide secure remote access to network devices and servers.",
             "de": null
           },
           "correct": false
@@ -1511,10 +1240,6 @@
       "topic": "1.2.2",
       "question": {
         "en": "Two students are working on a network design project. One student is doing the drawing, while the other student is writing the proposal. The drawing is finished and the student wants to share the folder that contains the drawing so that the other student can access the file and copy it to a USB drive. Which networking model is being used?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 1.2.2 In a peer-to-peer (P2P) networking model, data is exchanged between two network devices without the use of a dedicated server.",
         "de": null
       },
       "options": [
@@ -1583,10 +1308,6 @@
         "en": "Which command is used to manually query a DNS server to resolve a specific host name?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 15.4.4 The nslookup command was created to allow a user to manually query a DNS server to resolve a given host name. The ipconfig /displaydns command only displays previously resolved DNS entries. The tracert command was created to examine the path that packets take as they cross a network and can resolve a hostname by automatically querying a DNS server. The net command is used to manage network computers, servers, printers, and network drives.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -1594,7 +1315,7 @@
             "en": "tracert",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1610,7 +1331,7 @@
             "en": "nslookup",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1648,6 +1369,7 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "3.6.3",
       "question": {
         "en": "Which PDU is processed when a host computer is de-encapsulating a message at the transport layer of the TCP/IP model?",
         "de": null
@@ -1659,7 +1381,7 @@
             "en": "bits",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1683,23 +1405,7 @@
             "en": "segment",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 3.6.3",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "At the transport layer, a host computer will de-encapsulate a segment to reassemble data to an acceptable format by the application layer protocol of the TCP/IP model.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1726,9 +1432,10 @@
         17
       ],
       "number": 22,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "3.5.4",
       "question": {
         "en": "Which two OSI model layers have the same functionality as two layers of the TCP/IP model? (Choose two.)",
         "de": null
@@ -1748,7 +1455,7 @@
             "en": "network",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1772,23 +1479,7 @@
             "en": "transport",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Explanation:Topic 3.5.4",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "The OSI transport layer is functionally equivalent to the TCP/IP transport layer, and the OSI network layer is equivalent to the TCP/IP internet layer. The OSI data link and physical layers together are equivalent to the TCP/IP network access layer. The OSI session layer (with the presentation layer) is included within the TCP/IP application layer.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1815,9 +1506,10 @@
         17
       ],
       "number": 23,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "3.5.4",
       "question": {
         "en": "Which three layers of the OSI model are comparable in function to the application layer of the TCP/IP model? (Choose three.)",
         "de": null
@@ -1829,7 +1521,7 @@
             "en": "presentation",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -1869,7 +1561,7 @@
             "en": "application",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "o7",
@@ -1877,23 +1569,7 @@
             "en": "session",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "Explanation:Topic 3.5.4",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o9",
-          "text": {
-            "en": "The TCP/IP model consists of four layers: application, transport, internet, and network access. The OSI model consists of seven layers: application, presentation, session, transport, network, data link, and physical. The top three layers of the OSI model: application, presentation, and session map to the application layer of the TCP/IP model.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1923,6 +1599,7 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "17.4.1",
       "question": {
         "en": "Network information:",
         "de": null
@@ -1931,37 +1608,13 @@
         {
           "id": "a",
           "text": {
-            "en": "local router LAN interface: 172.19.29.254 / fe80:65ab:dcc1::10",
-            "de": null
-          },
-          "correct": true
-        },
-        {
-          "id": "b",
-          "text": {
-            "en": "local router WAN interface: 198.133.219.33 / 2001:db8:FACE:39::10",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "c",
-          "text": {
-            "en": "remote server: 192.135.250.103What task might a user be trying to accomplish by using the ping 2001:db8:FACE:39::10 command?",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "d",
-          "text": {
             "en": "verifying that there is connectivity within the local network",
             "de": null
           },
           "correct": false
         },
         {
-          "id": "e",
+          "id": "b",
           "text": {
             "en": "creating a network performance benchmark to a server on the company intranet",
             "de": null
@@ -1969,7 +1622,7 @@
           "correct": false
         },
         {
-          "id": "f",
+          "id": "c",
           "text": {
             "en": "determining the path to reach the remote server",
             "de": null
@@ -1977,20 +1630,12 @@
           "correct": false
         },
         {
-          "id": "o7",
+          "id": "d",
           "text": {
             "en": "verifying that there is connectivity to the internet",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "Explanation:Topic 17.4.1",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -2017,11 +1662,12 @@
         17
       ],
       "number": 25,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "13.1.1",
       "question": {
-        "en": "Which two ICMP messages are used by both IPv4 and IPv6 protocols? (Choose two.)",
+        "en": "Which two ICMP messages are used by both IPv4 and IPv6 protocols? (Choose two.)​",
         "de": null
       },
       "options": [
@@ -2055,7 +1701,7 @@
             "en": "protocol unreachable",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -2063,23 +1709,7 @@
             "en": "route redirection",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Explanation:Topic 13.1.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "The ICMP messages common to both ICMPv4 and ICMPv6 include: host confirmation, destination (net, host, protocol, port) or service unreachable, time exceeded, and route redirection. Router solicitation, neighbor solicitation, and router advertisement are new protocols implemented in ICMPv6.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -2109,6 +1739,7 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "13.2.2",
       "question": {
         "en": "A network technician types the command ping 127.0.0.1 at the command prompt on a computer. What is the technician trying to accomplish?",
         "de": null
@@ -2120,7 +1751,7 @@
             "en": "pinging a host computer that has the IP address 127.0.0.1 on the network",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2144,23 +1775,7 @@
             "en": "testing the integrity of the TCP/IP stack on the local machine",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 13.2.2",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "127.0.0.1 is an address reserved by TCP/IP to test the NIC, drivers and TCP/IP implementation of the device.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -2195,10 +1810,6 @@
         "en": "Although CSMA/CD is still a feature of Ethernet, why is it no longer necessary?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 7.1.3 The use of Layer 2 switches operating in full-duplex mode eliminates collisions, thereby eliminating the need for CSMA/CD.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2206,7 +1817,7 @@
             "en": "the virtually unlimited availability of IPv6 addresses",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2222,7 +1833,7 @@
             "en": "the use of full-duplex capable Layer 2 switches",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2268,6 +1879,7 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "6.1.3",
       "question": {
         "en": "What does a router do when it receives a Layer 2 frame over the network medium?",
         "de": null
@@ -2279,7 +1891,7 @@
             "en": "re-encapsulates the packet into a new frame",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2303,55 +1915,7 @@
             "en": "de-encapsulates the frame",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 6.1.3",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Routers are responsible for encapsulating a frame with the proper format for the physical network media they connect. At each hop along the path, a router does the following:Accepts a frame from a medium",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "De-encapsulates the frame",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o8",
-          "text": {
-            "en": "Determines the best path to forward the packet",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o9",
-          "text": {
-            "en": "Re-encapsulates the packet into a new frame",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o10",
-          "text": {
-            "en": "Forwards the new frame appropriate to the medium of that segment of the physical network",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -2378,16 +1942,12 @@
         17
       ],
       "number": 29,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "7.1.2",
       "question": {
         "en": "Which two acronyms represent the data link sublayers that Ethernet relies upon to operate? (Choose two.)",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 7.1.2 For Layer 2 functions, Ethernet relies on logical link control (LLC) and MAC sublayers to operate at the data link layer. FCS (Frame Check Sequence) and SFD (Start Frame Delimiter) are fields of the Ethernet frame. CSMA (Carrier Sense Multiple Access) is the technology Ethernet uses to manage shared media access.",
         "de": null
       },
       "options": [
@@ -2405,7 +1965,7 @@
             "en": "LLC",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2421,7 +1981,7 @@
             "en": "MAC",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -2464,10 +2024,6 @@
         "en": "A network team is comparing topologies for connecting on a shared media. Which physical topology is an example of a hybrid topology for a LAN?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 6.2.4 An extended star topology is an example of a hybrid topology as additional switches are interconnected with other star topologies. A partial mesh topology is a common hybrid WAN topology. The bus and ring are not hybrid topology types.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2475,7 +2031,7 @@
             "en": "bus",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2483,7 +2039,7 @@
             "en": "extended star",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2534,10 +2090,6 @@
         "en": "Given network 172.18.109.0, which subnet mask would be used if 6 host bits were available?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 11.5.2 With an IPv4 network, the subnet mask is determined by the hosts bits that are required: 11 host bits required – 255.255.248.0 10 host bits required – 255.255.252.0 9 host bits required – 255.255.254.0 8 host bits required – 255.255.255.0 7 host bits required – 255.255.255.128 6 host bits required – 255.255.255.192 5 host bits required – 255.255.255.224 4 host bits required – 255.255.255.240 3 host bits required – 255.255.255.248 2 host bits required – 255.255.255.252",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2545,7 +2097,7 @@
             "en": "255.255.192.0",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2561,7 +2113,7 @@
             "en": "255.255.255.192",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2609,11 +2161,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "11.5.2",
       "question": {
-        "en": "Three devices are on three different subnets. Match the network address and the broadcast address with each subnet where these devices are located. (Not all options are used.)Device 1: IP address 192.168.10.77/28 on subnet 1 Device 2: IP address192.168.10.17/30 on subnet 2 Device 3: IP address 192.168.10.35/29 on subnet 3Place the options in the following order:",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 11.5.2 To calculate any of these addresses, write the device IP address in binary. Draw a line showing where the subnet mask 1s end. For example, with Device 1, the final octet (77) is 01001101. The line would be drawn between the 0100 and the 1101 because the subnet mask is /28. Change all the bits to the right of the line to 0s to determine the network number (01000000 or 64). Change all the bits to the right of the line to 1s to determine the broadcast address (01001111 or 79).",
+        "en": "Three devices are on three different subnets. Match the network address and the broadcast address with each subnet where these devices are located. (Not all options are used.)",
         "de": null
       },
       "matchPairs": [
@@ -2710,10 +2258,6 @@
         "en": "What type of address is 198.133.219.162?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 11.3.1",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2721,7 +2265,7 @@
             "en": "link-local",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2729,7 +2273,7 @@
             "en": "public",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2775,6 +2319,7 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "11.1.6",
       "question": {
         "en": "What does the IP address 192.168.1.15/29 represent?",
         "de": null
@@ -2786,7 +2331,7 @@
             "en": "subnetwork address",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2810,23 +2355,7 @@
             "en": "broadcast address",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 11.1.6",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "A broadcast address is the last address of any given network. This address cannot be assigned to a host, and it is used to communicate with all hosts on that network.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -2856,23 +2385,24 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "12.1.1",
       "question": {
-        "en": "Why is NAT not needed in IPv6?",
+        "en": "Why is NAT not needed in IPv6?​",
         "de": null
       },
       "options": [
         {
           "id": "a",
           "text": {
-            "en": "Because IPv6 has integrated security, there is no need to hide the IPv6 addresses of internal networks.",
+            "en": "Because IPv6 has integrated security, there is no need to hide the IPv6 addresses of internal networks.​",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
           "text": {
-            "en": "The problems that are induced by NAT applications are solved because the IPv6 header improves packet handling by intermediate routers.",
+            "en": "The problems that are induced by NAT applications are solved because the IPv6 header improves packet handling by intermediate routers.​",
             "de": null
           },
           "correct": false
@@ -2888,26 +2418,10 @@
         {
           "id": "d",
           "text": {
-            "en": "Any host or user can get a public IPv6 network address because the number of available IPv6 addresses is extremely large.",
+            "en": "Any host or user can get a public IPv6 network address because the number of available IPv6 addresses is extremely large.​",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 12.1.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "The large number of public IPv6 addresses eliminates the need for NAT. Sites from the largest enterprises to single households can get public IPv6 network addresses. This avoids some of the NAT-induced application problems that are experienced by applications that require end-to-end connectivity.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -2942,10 +2456,6 @@
         "en": "What routing table entry has a next hop address associated with a destination network?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 8.5.2 Routing table entries for remote routes will have a next hop IP address. The next hop IP address is the address of the router interface of the next device to be used to reach the destination network. Directly-connected and local routes have no next hop, because they do not require going through another router to be reached.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2953,7 +2463,7 @@
             "en": "directly-connected routes",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2969,7 +2479,7 @@
             "en": "remote routes",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -3010,10 +2520,6 @@
       "topic": "8.2.2",
       "question": {
         "en": "Which term describes a field in the IPv4 packet header that contains a unicast, multicast, or broadcast address?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 8.2.2",
         "de": null
       },
       "options": [
@@ -3082,10 +2588,6 @@
         "en": "If the default gateway is configured incorrectly on the host, what is the impact on communications?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 10.3.1 A default gateway is only required to communicate with devices on another network. The absence of a default gateway does not affect connectivity between devices on the same local network.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -3093,7 +2595,7 @@
             "en": "There is no impact on communications.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3109,7 +2611,7 @@
             "en": "The host can communicate with other hosts on the local network, but is unable to communicate with hosts on remote networks.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -3163,7 +2665,7 @@
             "en": "fe80:9ea:0:2200::fe0:290",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3179,7 +2681,7 @@
             "en": "fe80::220:b3f:f0e0:29",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -3233,7 +2735,7 @@
             "en": "::1/128",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3241,7 +2743,7 @@
             "en": "fe80::30d0:115:3f57:fe4c/128",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -3288,8 +2790,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "12.3.3",
       "question": {
         "en": "What type of IPv6 address is represented by ::1/128?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 12.3.3",
         "de": null
       },
       "options": [
@@ -3299,7 +2806,7 @@
             "en": "EUI-64 generated link-local",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3323,15 +2830,7 @@
             "en": "loopback",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 12.3.3",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -3377,7 +2876,7 @@
             "en": "It supports growth over time in accordance with approved network design procedures.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3393,7 +2892,7 @@
             "en": "It ensures sensitive corporate data is available for authorized users.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -3428,7 +2927,7 @@
         17
       ],
       "number": 43,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "1.2.4",
@@ -3447,7 +2946,7 @@
             "en": "wireless LAN controller",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -3471,7 +2970,7 @@
             "en": "IPS",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -3523,7 +3022,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 1.8.1Spywareis a specific type of malicious software (malware) that isinstalled on an end device—such as a computer or smartphone—often without the user&#8217;s knowledge. Its primary characteristic is that itsecretly collects informationabout the user, which can include browsing habits, personal data, or sensitive credentials. Unlike other attacks that might aim to crash a system or delete data, spyware focuses on stealthily monitoring activity for the purpose of information theft. It is categorized as a common external security threat that requires host-level protection, such as antispyware applications, to mitigate.",
+        "en": "Topic 1.8.1",
         "de": null
       },
       "options": [
@@ -3587,8 +3086,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "7.3.2",
       "question": {
         "en": "Refer to the exhibit. The exhibit shows a small switched network and the contents of the MAC address table of the switch. PC1 has sent a frame addressed to PC3. What will the switch do with the frame?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 7.3.2 The MAC address of PC3 is not present in the MAC table of the switch. Because the switch does not know where to send the frame that is addressed to PC3, it will forward the frame to all the switch ports, except for port 4, which is the incoming port.",
         "de": null
       },
       "options": [
@@ -3598,7 +3102,7 @@
             "en": "The switch will discard the frame.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3630,23 +3134,7 @@
             "en": "The switch will forward the frame to all ports except port 4.",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Explanation:Topic 7.3.2",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "o7",
-          "text": {
-            "en": "The MAC address of PC3 is not present in the MAC table of the switch. Because the switch does not know where to send the frame that is addressed to PC3, it will forward the frame to all the switch ports, except for port 4, which is the incoming port.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ],
       "illustrationSrc": "/assets/cisco/exhibits/practice-final/q045.png"
@@ -3693,7 +3181,7 @@
             "en": "0.0.0.0",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3717,7 +3205,7 @@
             "en": "FFFF.FFFF.FFFF",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -3771,7 +3259,7 @@
             "en": "SW1 will send an ARP reply with its Fa0/1 MAC address.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3779,7 +3267,7 @@
             "en": "RT1 will send an ARP reply with its own Fa0/0 MAC address.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -3920,7 +3408,7 @@
             "en": "A packet-filtering firewall uses session layer information to track the state of a connection, whereas a stateful firewall uses application layer information to track the state of a connection.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -3936,7 +3424,7 @@
             "en": "A packet-filtering firewall typically can filter up to the transport layer, whereas a stateful firewall can filter up to the session layer.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -3971,7 +3459,7 @@
         17
       ],
       "number": 50,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "1.8.2",
@@ -3998,7 +3486,7 @@
             "en": "Use antivirus software.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -4014,7 +3502,7 @@
             "en": "Keep software up to date.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -4052,8 +3540,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "16.2.4",
       "question": {
         "en": "The employees and residents of Ciscoville cannot access the Internet or any remote web-based services. IT workers quickly determine that the city firewall is being flooded with so much traffic that a breakdown of connectivity to the Internet is occurring. Which type of attack is being launched at Ciscoville?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.2.4 A DoS (denial of service) attack prevents authorized users from using one or more computing resources.",
         "de": null
       },
       "options": [
@@ -4063,7 +3556,7 @@
             "en": "access",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -4087,23 +3580,7 @@
             "en": "DoS",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 16.2.4",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "A DoS (denial of service) attack prevents authorized users from using one or more computing resources.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -4130,7 +3607,7 @@
         17
       ],
       "number": 52,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "4.5.6",
@@ -4149,7 +3626,7 @@
             "en": "Fiber-optic cabling does not conduct electricity.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -4165,12 +3642,12 @@
             "en": "Fiber-optic cabling is primarily used as backbone cabling.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
           "text": {
-            "en": "Fiber-optic cabling uses LEDs for single-mode cables and laser technology for multimode cables.",
+            "en": "Fiber-optic cabling uses LEDs for single-mode cab​les and laser technology for multimode cables.",
             "de": null
           },
           "correct": false
@@ -4227,7 +3704,7 @@
             "en": "latency",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -4243,7 +3720,7 @@
             "en": "throughput",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -4297,7 +3774,7 @@
             "en": "10 Mb/s",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -4313,7 +3790,7 @@
             "en": "128 kb/s",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -4354,7 +3831,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
       "topic": "4.3.2",
       "question": {
-        "en": "Match the description with the media. (Not all options are used.)Place the options in the following order:",
+        "en": "Match the description with the media. (Not all options are used.)",
         "de": null
       },
       "explanation": {
@@ -4436,7 +3913,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 13.2.2 127.0.0.1 is an address reserved by TCP/IP to test the NIC, drivers and TCP/IP implementation of the device. Post navigation ← Previous Article CCNA1 v7.0: ITN Practice PT Skills Assessment (PTSA) Answers Next Article → ITN (Version 7.00) Final PT Skills Assessment (PTSA) Exam Answers Subscribe Notify of new follow-up comments new replies to my comments Label {} [+] Name* Email* &#916; Label {} [+] Name* Email* &#916; 43 Corrections & Clarifications View Comments Load More Comments",
+        "en": "Topic 13.2.2 127.0.0.1 is an address reserved by TCP/IP to test the NIC, drivers and TCP/IP implementation of the device.",
         "de": null
       },
       "options": [
@@ -4446,7 +3923,7 @@
             "en": "tracing the path to a host computer on the network and the network has the IP address 127.0.0.1",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -4454,7 +3931,7 @@
             "en": "testing the integrity of the TCP/IP stack on the local machine",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",

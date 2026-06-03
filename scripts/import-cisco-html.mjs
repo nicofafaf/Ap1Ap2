@@ -33,7 +33,7 @@ const PACK_META = {
       "https://itexamanswers.net/ccna-1-v7-modules-8-10-communicating-between-networks-exam-answers.html",
     moduleRange: [8, 10],
     titleEn: "Modules 8–10: Communicating Between Networks",
-    titleDe: "Module 8–10: Kommunikation zwischen Netzwerken",
+    titleDe: "Module 8–10: Kommunikation zwischen Netzwerken – Prüfungsantworten",
   },
   "modules-11-13": {
     sourceUrl:
@@ -130,7 +130,22 @@ function parseOptions(block) {
   return options;
 }
 
+function parseHtmlMatchTable(block) {
+  const pairs = [];
+  const trRe = /<tr[^>]*>\s*<td[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>\s*<\/tr>/gi;
+  let m;
+  while ((m = trRe.exec(block))) {
+    const left = stripHtml(m[1]);
+    const right = stripHtml(m[2]);
+    if (!left || !right || /place the options/i.test(left)) continue;
+    pairs.push({ left: { en: left, de: null }, right: { en: right, de: null } });
+  }
+  return pairs;
+}
+
 function parseMatchTable(block) {
+  const html = parseHtmlMatchTable(block);
+  if (html.length >= 2) return html;
   const pairs = [];
   for (const line of block.split("\n")) {
     const m = line.match(/^\|\s*(.+?)\s*\|\s*(.+?)\s*\|$/);
@@ -232,7 +247,181 @@ function splitQuestions(body) {
   return { mode: "plain", chunks };
 }
 
+function stripHtml(s) {
+  return decodeHtml(
+    s
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+}
+
+function decodeHtml(s) {
+  return s
+    .replace(/&#8211;/g, "–")
+    .replace(/&#038;/g, "&")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, " ");
+}
+
+function parseWordPressOptions(blockHtml) {
+  const section = blockHtml.split(/<div[^>]*class="[^"]*message_box[^"]*success/i)[0] ?? blockHtml;
+  const ulMatch = section.match(/<ul[^>]*>[\s\S]*?<\/ul>/i);
+  if (!ulMatch) return [];
+  const options = [];
+  const liRe = /<li[^>]*>([\s\S]*?)<\/li>/gi;
+  const ids = "abcdef";
+  let m;
+  let idx = 0;
+  while ((m = liRe.exec(ulMatch[0]))) {
+    const inner = m[1];
+    const correct = /#ff0000/i.test(inner) || /color:\s*#f{2}0000/i.test(inner);
+    const text = stripHtml(inner);
+    if (!text || text.length < 2) continue;
+    options.push({
+      id: ids[idx] ?? `o${idx + 1}`,
+      text: { en: text, de: null },
+      correct,
+    });
+    idx += 1;
+  }
+  return options;
+}
+
+function sliceWordPressCheckpointBody(text) {
+  const start = text.search(/<h3[^>]*>\s*Checkpoint Exam/i);
+  let body = start >= 0 ? text.slice(start) : text;
+  const endMarkers = [
+    /<nav[^>]*class="[^"]*post-navigation/i,
+    /<!-- Start Related Posts -->/i,
+    /<h3[^>]*>\s*Search/i,
+    /## Post navigation/i,
+  ];
+  for (const em of endMarkers) {
+    const idx = body.search(em);
+    if (idx > 500) body = body.slice(0, idx);
+  }
+  return body;
+}
+
+/** Findet nummerierte Checkpoint-Fragen inkl. Exhibit-<p> mit <br> und Bildern. */
+function parseExhibitPre(chunk) {
+  const m = chunk.match(/<pre[^>]*>([\s\S]*?)<\/pre>/i);
+  if (!m) return undefined;
+  return decodeHtml(m[1])
+    .replace(/<[^>]+>/g, "")
+    .replace(/\r/g, "")
+    .trim();
+}
+
+function findWordPressQuestionHits(body) {
+  const qRe =
+    /<p[^>]*>\s*<strong>\s*(\d+)\.\s*([\s\S]*?)<\/strong>(?:[\s\S]*?)<\/p>/gi;
+  const hits = [];
+  const seen = new Set();
+  let m;
+  while ((m = qRe.exec(body))) {
+    const num = Number.parseInt(m[1], 10);
+    if (seen.has(num)) continue;
+    seen.add(num);
+    hits.push({
+      num,
+      index: m.index,
+      qEnd: m.index + m[0].length,
+      qText: m[2],
+    });
+  }
+  hits.sort((a, b) => a.num - b.num);
+  return hits;
+}
+
+/** ITExamAnswers WordPress HTML (2024+) — verbatim aus <p><strong>N. … */
+function parseWordPressHtmlBody(text, packId, meta) {
+  const body = sliceWordPressCheckpointBody(text);
+  const hits = findWordPressQuestionHits(body);
+  const modules = modulesForRange(meta.moduleRange);
+  const items = [];
+  for (let i = 0; i < hits.length; i += 1) {
+    const cur = hits[i];
+    const nextStart = i + 1 < hits.length ? hits[i + 1].index : body.length;
+    const chunk = body.slice(cur.qEnd, nextStart);
+    let questionRaw = stripHtml(cur.qText);
+    if (!questionRaw || questionRaw.length < 8) {
+      const altM = chunk.match(
+        /<p[^>]*>\s*<strong>(?!\s*\d+\.\s)([\s\S]*?)<\/strong>/i
+      );
+      if (altM) questionRaw = stripHtml(altM[1]);
+    }
+    if (!questionRaw || questionRaw.length < 8) continue;
+    const explM = chunk.match(
+      /<div[^>]*class="[^"]*message_box[^"]*success[^"]*"[^>]*>[\s\S]*?<strong>Explanation:<\/strong>\s*([\s\S]*?)<\/p>/i
+    );
+    const topicM = chunk.match(/Topic\s+([\d.]+)/i);
+    const optHtml = chunk.replace(/<div[^>]*class="[^"]*message_box[\s\S]*?<\/div>/gi, "");
+    const options = parseWordPressOptions(optHtml);
+    let type = detectType(questionRaw, optHtml, options);
+    const item = {
+      id: `${packId}-q${String(cur.num).padStart(3, "0")}`,
+      packId,
+      modules,
+      number: cur.num,
+      type,
+      verbatim: true,
+      sourceUrl: meta.sourceUrl,
+      topic:
+        topicM?.[1] ??
+        (explM ? stripHtml(explM[1]).match(/Topic\s+([\d.]+)/i)?.[1] : undefined),
+      question: { en: questionRaw, de: null },
+    };
+    if (explM) {
+      const expl = stripHtml(explM[1]);
+      if (expl) item.explanation = { en: expl, de: null };
+    }
+    if (/refer to the exhibit/i.test(questionRaw)) {
+      const pre = parseExhibitPre(chunk);
+      if (pre) item.exhibitCode = pre;
+    }
+    if (type === "match") {
+      item.matchPairs = parseMatchTable(chunk) ;
+      if (!item.matchPairs?.length) item.type = "unsupported";
+    } else if (type === "single" || type === "multi") {
+      if (options.length < 2) {
+        item.type = "unsupported";
+        item.needsManual = true;
+      } else {
+        item.options = options;
+        if (type === "single") {
+          const correct = options.filter((o) => o.correct);
+          if (correct.length !== 1) {
+            const first = options.findIndex((o) => o.correct);
+            options.forEach((o, idx) => {
+              o.correct = idx === (first >= 0 ? first : 0);
+            });
+          }
+        }
+      }
+    } else {
+      item.needsManual = true;
+    }
+    items.push(item);
+  }
+  return {
+    id: packId,
+    course: "ccna1-itn-v7",
+    title: { en: meta.titleEn, de: meta.titleDe },
+    moduleRange: meta.moduleRange,
+    sourceUrl: meta.sourceUrl,
+    itemCount: items.length,
+    items,
+  };
+}
+
 function parseHtmlBody(text, packId, meta) {
+  if (/<p[^>]*>\s*<strong>\s*\d+\./i.test(text) && /Checkpoint Exam/i.test(text)) {
+    return parseWordPressHtmlBody(text, packId, meta);
+  }
   const body = normalizeExamText(sliceExamBody(text));
   const split = splitQuestions(body);
   const items = [];

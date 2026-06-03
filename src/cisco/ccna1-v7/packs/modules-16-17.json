@@ -23,8 +23,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.3.5",
       "question": {
         "en": "Which component is designed to protect against unauthorized communications to and from a computer?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.3.5",
         "de": null
       },
       "options": [
@@ -34,7 +39,7 @@
             "en": "security center",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -66,15 +71,7 @@
             "en": "firewall",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Explanation:Topic 16.3.5",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -105,7 +102,7 @@
             "en": "RouterA(config)# login block-for 10 attempts 2 within 30",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -113,7 +110,7 @@
             "en": "RouterA(config)# login block-for 30 attempts 2 within 10",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -160,7 +157,7 @@
             "en": "to require users to prove who they are",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -176,7 +173,7 @@
             "en": "to keep track of the actions of a user",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -215,7 +212,7 @@
             "en": "access attack",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -223,7 +220,7 @@
             "en": "reconnaissance attack",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -256,11 +253,7 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "16.1.2",
       "question": {
-        "en": "Match each weakness with an example. (Not all options are used.)Place the options in the following order:",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 16.1.2An employee who is trying to guess the password of another user exemplifies not a weakness but an attack.",
+        "en": "Match each weakness with an example. (Not all options are used.)",
         "de": null
       },
       "matchPairs": [
@@ -311,7 +304,7 @@
         "en": "Match the type of information security threat to the scenario. (Not all options are used.)",
         "de": null
       },
-      "needsManual": true
+      "matchPairs": []
     },
     {
       "id": "modules-16-17-q007",
@@ -327,10 +320,6 @@
       "topic": "16.2.1",
       "question": {
         "en": "Which example of malicious code would be classified as a Trojan horse?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 16.2.1A Trojan horse is malicious code that has been written specifically to look like a legitimate program. This is in contrast to a virus, which simply attaches itself to an actual legitimate program. Viruses require manual intervention from a user to spread from one system to another, while a worm is able to spread automatically between systems by exploiting vulnerabilities on those devices.",
         "de": null
       },
       "options": [
@@ -395,7 +384,7 @@
             "en": "Viruses self-replicate but worms do not.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -403,7 +392,7 @@
             "en": "Worms self-replicate but viruses do not.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -440,7 +429,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 16.2.3 Threat actors frequently attempt to access devices over the internet through communication protocols. Some of the most popular remote exploits are as follows: * Man-In-the-middle attack (MITM)– The threat actor gets between devices in the system and intercepts all of the data being transmitted. This information could simply be collected or modified for a specific purpose and delivered to its original destination. * Eavesdropping attack– When devices are being installed, the threat actor can intercept data such as security keys that are used by constrained devices to establish communications once they are up and running. * SQL injection (SQLi)– Threat actors uses a flaw in the Structured Query Language (SQL) application that allows them to have access to modify the data or gain administrative privileges. * Routing attack– A threat actor could either place a rogue routing device on the network or modify routing packets to manipulate routers to send all packets to the chosen destination of the threat actor. The threat actor could then drop specific packets, known as selective forwarding, or drop all packets, known as a sinkhole attack.",
+        "en": "Topic 16.2.3 Threat actors frequently attempt to access devices over the internet through communication protocols. Some of the most popular remote exploits are as follows:",
         "de": null
       },
       "options": [
@@ -450,7 +439,7 @@
             "en": "denial-of-service",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -458,7 +447,7 @@
             "en": "man-in-the-middle attack",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -492,10 +481,6 @@
       "topic": "16.2.2",
       "question": {
         "en": "Which type of attack involves an adversary attempting to gather information about a network to identify vulnerabilities?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 16.2.2Reconnaissance is a type of attack where the intruder is looking for wireless network vulnerabilities.",
         "de": null
       },
       "options": [
@@ -549,11 +534,7 @@
         "en": "Match the description to the type of firewall filtering. (Not all options are used.)",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 16.3.6Stateful packet inspection: Prevents or allows access based on whether the traffic is in response to requests from internal hosts.URL filtering: Prevents or allows access based on web addresses or keywords.Application filtering: Prevents or allows access based on the port numbers used in the request.Packet filtering: Prevents or allows access based on the IP or MAC addresses of the source and destination.",
-        "de": null
-      },
-      "needsManual": true
+      "matchPairs": []
     },
     {
       "id": "modules-16-17-q012",
@@ -572,7 +553,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 16.3.4Authentication, authorization, and accounting are network services collectively known as AAA. Authentication requires users to prove who they are. Authorization determines which resources the user can access. Accounting keeps track of the actions of the user.",
+        "en": "Topic 16.3.4 Authentication, authorization, and accounting are network services collectively known as AAA. Authentication requires users to prove who they are. Authorization determines which resources the user can access. Accounting keeps track of the actions of the user.",
         "de": null
       },
       "options": [
@@ -626,10 +607,6 @@
         "en": "Which firewall feature is used to ensure that packets coming into a network are legitimate responses to requests initiated from internal hosts?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 16.3.6Stateful packet inspection on a firewall checks that incoming packets are actually legitimate responses to requests originating from hosts inside the network. Packet filtering can be used to permit or deny access to resources based on IP or MAC address. Application filtering can permit or deny access based on port number. URL filtering is used to permit or deny access based on URL or on keywords.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -676,8 +653,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.3",
       "question": {
         "en": "When applied to a router, which command would help mitigate brute-force password attacks against the router?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.3 The login block-for command sets a limit on the maximum number of failed login attempts allowed within a defined period of time. If this limit is exceeded, no further logins are allowed for the specified period of time. This helps to mitigate brute-force password cracking since it will significantly increase the amount of time required to crack a password. The exec-timeout command specifies how long the session can be idle before the user is disconnected. The service password-encryption command encrypts the passwords in the running configuration. The banner motd command displays a message to users who are logging in to the device.",
         "de": null
       },
       "options": [
@@ -711,22 +693,6 @@
             "en": "login block-for 60 attempts 5 within 60",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 16.4.3",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Thelogin block-forcommand sets a limit on the maximum number of failed login attempts allowed within a defined period of time. If this limit is exceeded, no further logins are allowed for the specified period of time. This helps to mitigate brute-force password cracking since it will significantly increase the amount of time required to crack a password. Theexec-timeoutcommand specifies how long the session can be idle before the user is disconnected. Theservice password-encryptioncommand encrypts the passwords in the running configuration. Thebanner motdcommand displays a message to users who are logging in to the device.",
-            "de": null
-          },
           "correct": true
         }
       ]
@@ -744,11 +710,11 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "16.4.4",
       "question": {
-        "en": "Identify the steps needed to configure a switch for SSH. The answer order does not matter. (Not all options are used.)ITN (Version 7.00) – Building and Securing a Small Network Exam",
+        "en": "Identify the steps needed to configure a switch for SSH. The answer order does not matter. (Not all options are used.)",
         "de": null
       },
       "explanation": {
-        "en": "Topic 16.4.4 The loginandpassword ciscocommands are used with Telnet switch configuration, not SSH configuration.",
+        "en": "Topic 16.4.4 The login and password cisco commands are used with Telnet switch configuration, not SSH configuration.",
         "de": null
       },
       "needsManual": true
@@ -764,8 +730,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.4.4",
       "question": {
         "en": "What feature of SSH makes it more secure than Telnet for a device management connection?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.4.4 Secure Shell (SSH) is a protocol that provides a secure management connection to a remote device. SSH provides security by providing encryption for both authentication (username and password) and the transmitted data. Telnet is a protocol that uses unsecure plaintext transmission. SSH is assigned to TCP port 22 by default. Although this port can be changed in the SSH server configuration, the port is not dynamically changed. SSH does not use IPsec.",
         "de": null
       },
       "options": [
@@ -799,14 +770,6 @@
             "en": "login information and data encryption",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 16.4.4Secure Shell (SSH) is a protocol that provides a secure management connection to a remote device. SSH provides security by providing encryption for both authentication (username and password) and the transmitted data. Telnet is a protocol that uses unsecure plaintext transmission. SSH is assigned to TCP port 22 by default. Although this port can be changed in the SSH server configuration, the port is not dynamically changed. SSH does not use IPsec.",
-            "de": null
-          },
           "correct": true
         }
       ]
@@ -838,7 +801,7 @@
             "en": "SSH is easier to use.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -854,7 +817,7 @@
             "en": "SSH provides secure communications to access hosts.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -932,8 +895,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.3.1",
       "question": {
         "en": "A user is redesigning a network for a small company and wants to ensure security at a reasonable price. The user deploys a new application-aware firewall with intrusion detection capabilities on the ISP connection. The user installs a second firewall to separate the company network from the public network. Additionally, the user installs an IPS on the internal network of the company. What approach is the user implementing?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.3.1 Using different defenses at various points of the network creates a layered approach.",
         "de": null
       },
       "options": [
@@ -943,7 +911,7 @@
             "en": "attack based",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -967,23 +935,7 @@
             "en": "layered",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 16.3.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Using different defenses at various points of the network creates a layered approach.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -998,8 +950,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.1.4",
       "question": {
         "en": "What is an accurate description of redundancy?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.1.4 Redundancy attempts to remove any single point of failure in a network by using multiple physically cabled paths between switches in the network.",
         "de": null
       },
       "options": [
@@ -1009,7 +966,7 @@
             "en": "configuring a router with a complete MAC address database to ensure that all frames can be forwarded to the correct destination",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1033,23 +990,7 @@
             "en": "designing a network to use multiple paths between switches to ensure there is no single point of failure",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 17.1.4",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Redundancy attempts to remove any single point of failure in a network by using multiple physically cabled paths between switches in the network.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1061,16 +1002,12 @@
         17
       ],
       "number": 21,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "17.1.5",
       "question": {
         "en": "A network administrator is upgrading a small business network to give high priority to real-time applications traffic. What two types of network services is the network administrator trying to accommodate? (Choose two.)",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 17.1.5Streaming media, such as video, and voice traffic, are both examples of real-time traffic. Real-time traffic needs higher priority through the network than other types of traffic because it is very sensitive to network delay and latency.",
         "de": null
       },
       "options": [
@@ -1080,7 +1017,7 @@
             "en": "voice",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -1088,7 +1025,7 @@
             "en": "video",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1143,7 +1080,7 @@
             "en": "to identify the source and destination of local network traffic",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1159,7 +1096,7 @@
             "en": "to document and analyze network traffic requirements on each network segment",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1188,7 +1125,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.4.1 In the output of the ping command, an exclamation mark (!) indicates a response was successfully received, a period (.) indicates that the connection timed out while waiting for a reply, and the letter \"U\" indicates that a router along the path did not have a route to the destination and sent an ICMP destination unreachable message back to the source.",
+        "en": "Topic 17.4.1 In the output of the ping command, an exclamation mark (!) indicates a response was successfully received, a period (.) indicates that the connection timed out while waiting for a reply, and the letter &#8220;U&#8221; indicates that a router along the path did not have a route to the destination and sent an ICMP destination unreachable message back to the source.",
         "de": null
       },
       "options": [
@@ -1198,7 +1135,7 @@
             "en": "Connectivity to the remote device was successful.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1206,7 +1143,7 @@
             "en": "A router along the path did not have a route to the destination.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1244,7 +1181,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.4.2 By issuing thepingcommand without a destination IP address in privileged EXEC mode, the Cisco IOS enters extended ping mode. This allows the user to implement extended commands which include source IP address.",
+        "en": "Topic 17.4.2 By issuing the ping command without a destination IP address in privileged EXEC mode, the Cisco IOS enters extended ping mode. This allows the user to implement extended commands which include source IP address.​",
         "de": null
       },
       "options": [
@@ -1254,7 +1191,7 @@
             "en": "Issue the ping command from within interface configuration mode.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1262,7 +1199,7 @@
             "en": "Issue the ping command without specifying a destination IP address.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1299,7 +1236,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.4.1 While analyzing historical reports an administrator can compare host-to-host timers from thepingcommand and depict possible latency issues.",
+        "en": "Topic 17.4.1 While analyzing historical reports an administrator can compare host-to-host timers from the ping command and depict possible latency issues.​",
         "de": null
       },
       "options": [
@@ -1309,7 +1246,7 @@
             "en": "a change in the bandwidth according to the show interfaces output",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1325,7 +1262,7 @@
             "en": "an increase in host-to-host ping response times",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1350,11 +1287,11 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "17.4.1",
       "question": {
-        "en": "Which statement is true about Cisco IOS ping indicators?",
+        "en": "Which statement is true about Cisco IOS ping indicators?​",
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.4.1 The most common indicators of a ping issued from the Cisco IOS are \"!\", \".\", and \"U\". The \"!\" indicates that the ping completed successfully, verifying connectivity at Layer 3. The \".\" may indicate that a connectivity problem, routing problem, or device security issue exists along the path and that an ICMP destination unreachable message was not provided. The \"U\" indicates that a router along the path may not have had a route to the destination address, and that it responded with an ICMP unreachable message.",
+        "en": "Topic 17.4.1 The most common indicators of a ping issued from the Cisco IOS are &#8220;!&#8221;, &#8220;.&#8221;, and &#8220;U&#8221;. The &#8220;!&#8221; indicates that the ping completed successfully, verifying connectivity at Layer 3. The &#8220;.&#8221; may indicate that a connectivity problem, routing problem, or device security issue exists along the path and that an ICMP destination unreachable message was not provided. The &#8220;U&#8221; indicates that a router along the path may not have had a route to the destination address, and that it responded with an ICMP unreachable message.",
         "de": null
       },
       "options": [
@@ -1364,7 +1301,7 @@
             "en": "‘!’ indicates that the ping was unsuccessful and that the device may have issues finding a DNS server.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1372,7 +1309,7 @@
             "en": "‘U’ may indicate that a router along the path did not contain a route to the destination address and that the ping was unsuccessful.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1385,7 +1322,7 @@
         {
           "id": "d",
           "text": {
-            "en": "A combination of ‘.’ and ‘!’ indicates that a router along the path did not have a route to the destination address and responded with an ICMP unreachable message.",
+            "en": "A combination of ‘.’ and ‘!’ indicates that a router along the path did not have a route to the destination address and responded with an ICMP unreachable message.​",
             "de": null
           },
           "correct": false
@@ -1403,8 +1340,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.4.1",
       "question": {
         "en": "A user reports a lack of network connectivity. The technician takes control of the user machine and attempts to ping other computers on the network and these pings fail. The technician pings the default gateway and that also fails. What can be determined for sure by the results of these tests?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.4.1 In networks today, a failed ping could mean that the other devices on the network are blocking pings. Further investigation such as checking network connectivity from other devices on the same network is warranted.",
         "de": null
       },
       "options": [
@@ -1414,7 +1356,7 @@
             "en": "The NIC in the PC is bad.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1438,23 +1380,7 @@
             "en": "Nothing can be determined for sure at this point.",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 17.4.1",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "In networks today, a failed ping could mean that the other devices on the network are blocking pings. Further investigation such as checking network connectivity from other devices on the same network is warranted.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -1475,7 +1401,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.4.3 The -6option in the commandC:&gt; tracert -6 www.cisco.comis used to force the trace to use IPv6.",
+        "en": "Topic 17.4.3 The -6 option in the command C:&gt; tracert -6 www.cisco.com is used to force the trace to use IPv6.",
         "de": null
       },
       "options": [
@@ -1530,7 +1456,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.4.3Thetracertutility is used to identify the path a packet takes from source to destination.Tracertis commonly used when packets are dropped or not reaching a specific destination.",
+        "en": "Topic 17.4.3 The tracert utility is used to identify the path a packet takes from source to destination. Tracert is commonly used when packets are dropped or not reaching a specific destination.",
         "de": null
       },
       "options": [
@@ -1540,7 +1466,7 @@
             "en": "to determine the active TCP connections on a PC",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1556,7 +1482,7 @@
             "en": "to identify where a packet was lost or delayed on a network",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1585,7 +1511,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.5.6 The show cdp neighborscommand can be used to prove that Layer 1 and Layer 2 connectivity exists between two Cisco devices. For example, if two devices have duplicate IP addresses, a ping between the devices will fail, but the output ofshow cdp neighborswill be successful. Theshow cdp neighbors detailcould be used to verify the IP address of the directly connected device in case the same IP address is assigned to the two routers.",
+        "en": "Topic 17.5.6 The show cdp neighbors command can be used to prove that Layer 1 and Layer 2 connectivity exists between two Cisco devices. For example, if two devices have duplicate IP addresses, a ping between the devices will fail, but the output of show cdp neighbors will be successful. The show cdp neighbors detail could be used to verify the IP address of the directly connected device in case the same IP address is assigned to the two routers.",
         "de": null
       },
       "options": [
@@ -1595,7 +1521,7 @@
             "en": "The network administrator suspects a virus because the ping command did not work.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1603,7 +1529,7 @@
             "en": "The network administrator wants to verify Layer 2 connectivity.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1634,8 +1560,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.5.6",
       "question": {
         "en": "A network engineer is troubleshooting connectivity issues among interconnected Cisco routers and switches. Which command should the engineer use to find the IP address information, host name, and IOS version of neighboring network devices?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 17.5.6 The show cdp neighbors detail command reveals much information about neighboring Cisco devices, including the IP address, the capabilities, host name, and IOS version. The show interfaces and show version commands display information about the local device.",
         "de": null
       },
       "options": [
@@ -1669,14 +1600,6 @@
             "en": "show cdp neighbors detail",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 17.5.6The show cdp neighbors detailcommand reveals much information about neighboring Cisco devices, including the IP address, the capabilities, host name, and IOS version. Theshow interfacesandshow versioncommands display information about the local device.",
-            "de": null
-          },
           "correct": true
         }
       ]
@@ -1698,7 +1621,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.5.5The value of the configuration register can be verified with the show versioncommand.",
+        "en": "Topic 17.5.5 The value of the configuration register can be verified with the show version command.",
         "de": null
       },
       "options": [
@@ -1708,7 +1631,7 @@
             "en": "the routing protocol version that is enabled",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1716,7 +1639,7 @@
             "en": "the value of the configuration register",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -1747,6 +1670,7 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "17.6.4",
       "question": {
         "en": "Which command should be used on a Cisco router or switch to allow log messages to be displayed on remotely connected sessions using Telnet or SSH?",
         "de": null
@@ -1771,7 +1695,7 @@
         {
           "id": "c",
           "text": {
-            "en": "show running-config",
+            "en": "show running-config​",
             "de": null
           },
           "correct": false
@@ -1780,14 +1704,6 @@
           "id": "d",
           "text": {
             "en": "terminal monitor",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 17.6.4The terminal monitor command is very important to use when log messages appear. Log messages appear by default when a user is directly consoled into a Cisco device, but require the terminal monitor command to be entered when a user is accessing a network device remotely.",
             "de": null
           },
           "correct": true
@@ -1811,7 +1727,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.6.4 Debug messages, like other IOS log messages, are sent to the console line by default. Sending these messages to the terminal lines requires theterminal monitorcommand.",
+        "en": "Topic 17.6.4 Debug messages, like other IOS log messages, are sent to the console line by default. Sending these messages to the terminal lines requires the terminal monitor command.",
         "de": null
       },
       "options": [
@@ -1866,7 +1782,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.6.1 A structured network troubleshooting approach should include these steps in sequence: * Identify the problem. * Establish a theory of probable causes. * Test the theory to determine cause. * Establish a plan of action to resolve the issue. * Verify full system functionality and implement preventive measures. * Document findings, actions, and outcomes.",
+        "en": "Topic 17.6.1 A structured network troubleshooting approach should include these steps in sequence:",
         "de": null
       },
       "options": [
@@ -1876,7 +1792,7 @@
             "en": "Verify full system functionality.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1892,7 +1808,7 @@
             "en": "Establish a theory of probable causes.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1921,7 +1837,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.7.5 The nslookupcommand can be used to look up information about a particular DNS name in the DNS server. The information includes the IP address of the DNS server being used as well as the IP address associated with the specified DNS name. This command can help verify the DNS that is used and if the domain name to IP address resolution works.",
+        "en": "Topic 17.7.5 The nslookup command can be used to look up information about a particular DNS name in the DNS server. The information includes the IP address of the DNS server being used as well as the IP address associated with the specified DNS name. This command can help verify the DNS that is used and if the domain name to IP address resolution works.",
         "de": null
       },
       "options": [
@@ -1931,7 +1847,7 @@
             "en": "netstat",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -1947,7 +1863,7 @@
             "en": "nslookup",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -1967,16 +1883,12 @@
         17
       ],
       "number": 37,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "17.7.3",
       "question": {
         "en": "An employee complains that a Windows PC cannot connect to the Internet. A network technician issues the ipconfig command on the PC and is shown an IP address of 169.254.10.3. Which two conclusions can be drawn? (Choose two.)",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 17.7.3When a Windows PC is configured to obtain an IP address automatically, the PC will try to obtain an IP address from a DHCP server. When the PC cannot contact a DHCP server, Windows will automatically assign an address belonging to the 169.254.0.0/16 range.",
         "de": null
       },
       "options": [
@@ -1986,7 +1898,7 @@
             "en": "The PC cannot contact a DHCP server.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "b",
@@ -2010,7 +1922,7 @@
             "en": "The PC is configured to obtain an IP address automatically.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -2038,10 +1950,6 @@
         "en": "Refer to the exhibit. Host H3 is having trouble communicating with host H1. The network administrator suspects a problem exists with the H3 workstation and wants to prove that there is no problem with the R2 configuration. What tool could the network administrator use on router R2 to prove that communication exists to host H1 from the interface on R2, which is the interface that H3 uses when communicating with remote networks?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 17.4.2An extended ping allows an administrator to select specific ping features. For example in this situation, the network administrator could do an extended ping and specify a source address of the gigabit Ethernet port on the router. The destination address would be the IP address of host H1. If the ping succeeds connectivity exists from the Ethernet router interface on R2 to device H1.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2049,7 +1957,7 @@
             "en": "traceroute",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2073,7 +1981,7 @@
             "en": "an extended ping",
             "de": null
           },
-          "correct": false
+          "correct": true
         }
       ],
       "illustrationSrc": "/assets/cisco/exhibits/modules-16-17/q038.jpg"
@@ -2094,10 +2002,6 @@
         "en": "Refer to the exhibit. Baseline documentation for a small company had ping round trip time statistics of 36/97/132 between hosts H1 and H3. Today the network administrator checked connectivity by pinging between hosts H1 and H3 that resulted in a round trip time of 1458/2390/6066. What does this indicate to the network administrator?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 17.4.5Ping round trip time statistics are shown in milliseconds. The larger the number the more delay. A baseline is critical in times of slow performance. By looking at the documentation for the performance when the network is performing fine and comparing it to information when there is a problem, a network administrator can resolve problems faster.",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
@@ -2105,7 +2009,7 @@
             "en": "Connectivity between H1 and H3 is fine.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2137,7 +2041,7 @@
             "en": "Something is causing a time delay between the networks.",
             "de": null
           },
-          "correct": false
+          "correct": true
         }
       ],
       "illustrationSrc": "/assets/cisco/exhibits/modules-16-17/q039.jpg"
@@ -2159,7 +2063,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.2.2 Dynamic Host Configuration Protocol (DHCP) can be used to allow end devices to automatically configure IP information, such as their IP address, subnet mask, DNS server, and default gateway. The DNS service is used to provide domain name resolution, mapping hostnames to IP addresses. Telnet is a method for remotely accessing a CLI session of a switch or router. Tracerouteis a command used to determine the path a packet takes as it traverses the network.",
+        "en": "Topic 17.2.2 Dynamic Host Configuration Protocol (DHCP) can be used to allow end devices to automatically configure IP information, such as their IP address, subnet mask, DNS server, and default gateway. The DNS service is used to provide domain name resolution, mapping hostnames to IP addresses. Telnet is a method for remotely accessing a CLI session of a switch or router. Traceroute is a command used to determine the path a packet takes as it traverses the network.",
         "de": null
       },
       "options": [
@@ -2214,7 +2118,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.5.5The show ip routecommand is used to display the IP routing table of the router. The IP routing table will show a list of known local and remote networks and the interfaces that the router will use to reach those networks.",
+        "en": "Topic 17.5.5 The show ip route command is used to display the IP routing table of the router. The IP routing table will show a list of known local and remote networks and the interfaces that the router will use to reach those networks.",
         "de": null
       },
       "options": [
@@ -2224,7 +2128,7 @@
             "en": "show arp",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2240,7 +2144,7 @@
             "en": "show ip route",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2260,7 +2164,7 @@
         17
       ],
       "number": 42,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "16.4.3",
@@ -2269,7 +2173,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 16.4.3Executive timeouts allow the Cisco device to automatically disconnect users after they have been idle for the specified time. Console, vty, and aux ports can be configured with executive timeouts.",
+        "en": "Topic 16.4.3 Executive timeouts allow the Cisco device to automatically disconnect users after they have been idle for the specified time. Console, vty, and aux ports can be configured with executive timeouts.",
         "de": null
       },
       "options": [
@@ -2287,7 +2191,7 @@
             "en": "console ports",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2303,7 +2207,7 @@
             "en": "vty ports",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "e",
@@ -2323,7 +2227,7 @@
         17
       ],
       "number": 43,
-      "type": "single",
+      "type": "multi",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "16.4.4",
@@ -2350,7 +2254,7 @@
             "en": "Generate the asymmetric RSA keys.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "c",
@@ -2358,7 +2262,7 @@
             "en": "Configure the correct IP domain name.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2374,7 +2278,7 @@
             "en": "Create a valid local username and password database.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "f",
@@ -2397,8 +2301,13 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
+      "topic": "16.3.3",
       "question": {
         "en": "What is considered the most effective way to mitigate a worm attack?",
+        "de": null
+      },
+      "explanation": {
+        "en": "Topic 16.3.3 Because worms take advantage of vulnerabilities in the system itself, the most effective way to mitigate worm attacks is to download security updates from the operating system vendor and patch all vulnerable systems.",
         "de": null
       },
       "options": [
@@ -2408,7 +2317,7 @@
             "en": "Change system passwords every 30 days.",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2432,23 +2341,7 @@
             "en": "Download security updates from the operating system vendor and patch all vulnerable systems.",
             "de": null
           },
-          "correct": false
-        },
-        {
-          "id": "e",
-          "text": {
-            "en": "Explanation:Topic 16.3.3",
-            "de": null
-          },
-          "correct": false
-        },
-        {
-          "id": "f",
-          "text": {
-            "en": "Because worms take advantage of vulnerabilities in the system itself, the most effective way to mitigate worm attacks is to download security updates from the operating system vendor and patch all vulnerable systems.",
-            "de": null
-          },
-          "correct": false
+          "correct": true
         }
       ]
     },
@@ -2469,7 +2362,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 17.4.1 The pingutility tests end-to-end connectivity between the two hosts. However, if the message does not reach the destination, there is no way to determine where the problem is located. On the other hand, thetracerouteutility (tracertin Windows) traces the route a message takes from its source to the destination.Traceroutedisplays each hop along the way and the time it takes for the message to get to that network and back.",
+        "en": "Topic 17.4.1 The ping utility tests end-to-end connectivity between the two hosts. However, if the message does not reach the destination, there is no way to determine where the problem is located. On the other hand, the traceroute utility ( tracert in Windows) traces the route a message takes from its source to the destination. Traceroute displays each hop along the way and the time it takes for the message to get to that network and back.",
         "de": null
       },
       "options": [
@@ -2524,7 +2417,7 @@
         "de": null
       },
       "explanation": {
-        "en": "Topic 16.4.4Telnet sends passwords and other information in clear text, while SSH encrypts its data. FTP and HTTP do not provide remote device access for configuration purposes.",
+        "en": "Topic 16.4.4 Telnet sends passwords and other information in clear text, while SSH encrypts its data. FTP and HTTP do not provide remote device access for configuration purposes.",
         "de": null
       },
       "options": [
@@ -2534,7 +2427,7 @@
             "en": "FTP",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
@@ -2550,7 +2443,7 @@
             "en": "SSH",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",
@@ -2575,11 +2468,11 @@
       "sourceUrl": "https://itexamanswers.net/ccna-1-v7-modules-16-17-building-and-securing-a-small-network-exam-answers.html",
       "topic": "16.4.4",
       "question": {
-        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.CCNA 1 v7 Modules 16 – 17 Building and Securing a Small Network Exam Modules 16 – 17 Building and Securing a Small Network Exam 1 file(s) 180.48 KB DownloadWhich command has to be configured on the router to complete the SSH configuration?",
+        "en": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.",
         "de": null
       },
       "explanation": {
-        "en": "Topic 16.4.4 The missing command to complete the SSH configuration is transport input sshinline vty 0 4mode.The commandsservice password-encryptionandenable secret classdo configure secure features on the router, but are not required to configure SSH. The commandip domain-name cisco.comis not required because the command ip domain-name span.comhas been used.",
+        "en": "Topic 16.4.4 The missing command to complete the SSH configuration is transport input ssh in line vty 0 4 mode.The commands service password-encryption and enable secret class do configure secure features on the router, but are not required to configure SSH. The command ip domain-name cisco.com is not required because the command i p domain-name span.com has been used.",
         "de": null
       },
       "needsManual": true
@@ -3093,10 +2986,6 @@
       "topic": "16.4.2",
       "question": {
         "en": "An administrator decides to use “Elizabeth” as the password on a newly installed router. Which statement applies to the password choice?",
-        "de": null
-      },
-      "explanation": {
-        "en": "Topic 16.4.2Rules for strong passwords: * minimum of 8 characters, preferably 10. * use complex combinations of numbers, special characters, and upper and lower case letters. * avoid repetition, common dictionary words, letter or number sequences. * avoid names of children, relatives, pets, birthdays, or any easily identifiable personal information. * can be created by misspelling words or replacing vowels with numbers or special characters.",
         "de": null
       },
       "options": [
@@ -3645,23 +3534,19 @@
         "en": "What is a characteristic of UDP?",
         "de": null
       },
-      "explanation": {
-        "en": "Topic 17.8UDP has no way to reorder the datagrams into their transmission order, so UDP simply reassembles the data in the order it was received and forwards it to the application. Post navigation ← Previous Article CCNA 1 v7 Modules 14 – 15: Network Application Communications Exam Answers Next Article → CCNA1 v7.0: ITN Practice PT Skills Assessment (PTSA) Answers Subscribe Notify of new follow-up comments new replies to my comments Label {} [+] Name* Email* &#916; Label {} [+] Name* Email* &#916; 40 Corrections & Clarifications View Comments Load More Comments",
-        "de": null
-      },
       "options": [
         {
           "id": "a",
           "text": {
-            "en": "UDP datagrams take the same path and arrive in the correct order at the destination.",
+            "en": "UDP datagrams take the same path and arrive in the correct order at the destination.​",
             "de": null
           },
-          "correct": true
+          "correct": false
         },
         {
           "id": "b",
           "text": {
-            "en": "Applications that use UDP are always considered unreliable.",
+            "en": "Applications that use UDP are always considered unreliable.​",
             "de": null
           },
           "correct": false
@@ -3672,7 +3557,7 @@
             "en": "UDP reassembles the received datagrams in the order they were received.",
             "de": null
           },
-          "correct": false
+          "correct": true
         },
         {
           "id": "d",

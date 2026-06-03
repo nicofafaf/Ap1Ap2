@@ -77,6 +77,13 @@ const PACK_META = {
     titleEn: "ITNv7 System Test Exam",
     titleDe: "System-Test",
   },
+  "pt-skills-final": {
+    sourceUrl:
+      "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
+    moduleRange: [1, 17],
+    titleEn: "ITN Final PT Skills Assessment (PTSA)",
+    titleDe: "Abschluss-PT-Fähigkeitenbeurteilung (PTSA)",
+  },
 };
 
 function stripMd(s) {
@@ -290,9 +297,15 @@ function parseWordPressOptions(blockHtml) {
   return options;
 }
 
-function sliceWordPressCheckpointBody(text) {
-  const start = text.search(/<h3[^>]*>\s*Checkpoint Exam/i);
-  let body = start >= 0 ? text.slice(start) : text;
+function sliceWordPressExamBody(text) {
+  const startCandidates = [
+    text.search(/<h3[^>]*>\s*Checkpoint Exam/i),
+    text.search(/<h2[^>]*>[\s\S]{0,400}Practice Final/i),
+    text.search(/<h3[^>]*>[\s\S]{0,200}Course Final Exam/i),
+    text.search(/<h3[^>]*>\s*System Test/i),
+    text.search(/<h3[^>]*>\s*ITN Final Skills Exam/i),
+  ].filter((i) => i >= 0);
+  let body = startCandidates.length ? text.slice(Math.min(...startCandidates)) : text;
   const endMarkers = [
     /<nav[^>]*class="[^"]*post-navigation/i,
     /<!-- Start Related Posts -->/i,
@@ -317,29 +330,102 @@ function parseExhibitPre(chunk) {
 }
 
 function findWordPressQuestionHits(body) {
-  const qRe =
-    /<p[^>]*>\s*<strong>\s*(\d+)\.\s*([\s\S]*?)<\/strong>(?:[\s\S]*?)<\/p>/gi;
+  const patterns = [
+    /<p[^>]*>\s*<strong>\s*(\d{1,3})\.(?!\d)\s*([\s\S]*?)<\/strong>/gi,
+    /<p[^>]*>[\s\S]{0,4000}?<strong>\s*(\d{1,3})\.(?!\d)\s*([\s\S]*?)<\/strong>/gi,
+  ];
   const hits = [];
   const seen = new Set();
-  let m;
-  while ((m = qRe.exec(body))) {
-    const num = Number.parseInt(m[1], 10);
-    if (seen.has(num)) continue;
-    seen.add(num);
-    hits.push({
-      num,
-      index: m.index,
-      qEnd: m.index + m[0].length,
-      qText: m[2],
-    });
+  for (const qRe of patterns) {
+    let m;
+    while ((m = qRe.exec(body))) {
+      const num = Number.parseInt(m[1], 10);
+      if (num < 1 || num > 200 || seen.has(num)) continue;
+      seen.add(num);
+      hits.push({
+        num,
+        index: m.index,
+        qEnd: m.index + m[0].length,
+        qText: m[2],
+      });
+    }
   }
   hits.sort((a, b) => a.num - b.num);
   return hits;
 }
 
 /** ITExamAnswers WordPress HTML (2024+) — verbatim aus <p><strong>N. … */
+function parsePtSkillsPack(text, packId, meta) {
+  const modules = modulesForRange(meta.moduleRange);
+  const scenarioRe =
+    /<h3>Answers Key(?:\s*-\s*100% Score)?<\/h3>([\s\S]*?)(?=<h3>Answers Key|<h3>Download PDF|$)/gi;
+  const items = [];
+  let m;
+  let num = 0;
+  while ((m = scenarioRe.exec(text))) {
+    num += 1;
+    const chunk = m[1];
+    const topo =
+      chunk.match(/<img[^>]+src=["']([^"']+153921[^"']+)["']/i)?.[1] ??
+      chunk.match(/<img[^>]+src=["']([^"']+wp-content[^"']+)["']/i)?.[1];
+    const routerPre = chunk.match(
+      /Router R1 configuration script[\s\S]*?<pre[^>]*>([\s\S]*?)<\/pre>/i
+    )?.[1];
+    const switchPre = chunk.match(
+      /Switch S1 configuration script[\s\S]*?<pre[^>]*>([\s\S]*?)<\/pre>/i
+    )?.[1];
+    const idTag = chunk.match(/ID:\s*(\d+)/i)?.[1] ?? String(num).padStart(3, "0");
+    const exhibitParts = [];
+    if (routerPre) exhibitParts.push(parseExhibitPre(`<pre>${routerPre}</pre>`) ?? stripHtml(routerPre));
+    if (switchPre) exhibitParts.push(parseExhibitPre(`<pre>${switchPre}</pre>`) ?? stripHtml(switchPre));
+    items.push({
+      id: `${packId}-q${String(num).padStart(3, "0")}`,
+      packId,
+      modules,
+      number: num,
+      type: "unsupported",
+      verbatim: true,
+      sourceUrl: meta.sourceUrl,
+      needsManual: true,
+      question: {
+        en: `ITN Final PTSA — Scenario ID ${idTag} (Packet Tracer lab — see exhibit for R1/S1 config)`,
+        de: null,
+      },
+      exhibitCode: exhibitParts.filter(Boolean).join("\n\n---\n\n") || undefined,
+      illustrationSrc: topo
+        ? `/assets/cisco/exhibits/${packId}/q${String(num).padStart(3, "0")}.jpg`
+        : undefined,
+    });
+  }
+  if (items.length === 0) {
+    items.push({
+      id: `${packId}-q001`,
+      packId,
+      modules,
+      number: 1,
+      type: "unsupported",
+      verbatim: true,
+      sourceUrl: meta.sourceUrl,
+      needsManual: true,
+      question: {
+        en: "ITN Final PT Skills Assessment — open source page for full lab guide",
+        de: null,
+      },
+    });
+  }
+  return {
+    id: packId,
+    course: "ccna1-itn-v7",
+    title: { en: meta.titleEn, de: meta.titleDe },
+    moduleRange: meta.moduleRange,
+    sourceUrl: meta.sourceUrl,
+    itemCount: items.length,
+    items,
+  };
+}
+
 function parseWordPressHtmlBody(text, packId, meta) {
-  const body = sliceWordPressCheckpointBody(text);
+  const body = sliceWordPressExamBody(text);
   const hits = findWordPressQuestionHits(body);
   const modules = modulesForRange(meta.moduleRange);
   const items = [];
@@ -419,7 +505,10 @@ function parseWordPressHtmlBody(text, packId, meta) {
 }
 
 function parseHtmlBody(text, packId, meta) {
-  if (/<p[^>]*>\s*<strong>\s*\d+\./i.test(text) && /Checkpoint Exam/i.test(text)) {
+  if (packId === "pt-skills-final") {
+    return parsePtSkillsPack(text, packId, meta);
+  }
+  if (/<p[^>]*>[\s\S]*?<strong>\s*\d{1,3}\.(?!\d)/i.test(text)) {
     return parseWordPressHtmlBody(text, packId, meta);
   }
   const body = normalizeExamText(sliceExamBody(text));

@@ -30,19 +30,29 @@ export type ExhibitManifestEntry = {
 
 /** Nummerierte Checkpoint-Fragen aus ITExamAnswers WordPress HTML. */
 export function checkpointQuestionNums(html: string): number[] {
-  const start = html.search(/<h3[^>]*>\s*Checkpoint Exam/i);
-  let body = html.slice(start);
+  const startCandidates = [
+    html.search(/<h3[^>]*>\s*Checkpoint Exam/i),
+    html.search(/<h2[^>]*>[\s\S]{0,400}Practice Final/i),
+    html.search(/<h3[^>]*>[\s\S]{0,200}Course Final Exam/i),
+    html.search(/<h3[^>]*>\s*System Test/i),
+  ].filter((i) => i >= 0);
+  let body = startCandidates.length ? html.slice(Math.min(...startCandidates)) : html;
   const end = body.search(/<nav[^>]*class="[^"]*post-navigation/i);
   if (end > 500) body = body.slice(0, end);
-  const re = /<p[^>]*>\s*<strong>\s*(\d+)\.\s*([\s\S]*?)<\/strong>(?:[\s\S]*?)<\/p>/gi;
+  const patterns = [
+    /<p[^>]*>\s*<strong>\s*(\d{1,3})\.(?!\d)\s*([\s\S]*?)<\/strong>/gi,
+    /<p[^>]*>[\s\S]{0,4000}?<strong>\s*(\d{1,3})\.(?!\d)\s*([\s\S]*?)<\/strong>/gi,
+  ];
   const seen = new Set<number>();
   const nums: number[] = [];
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(body))) {
-    const n = Number.parseInt(m[1], 10);
-    if (seen.has(n)) continue;
-    seen.add(n);
-    nums.push(n);
+  for (const re of patterns) {
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(body))) {
+      const n = Number.parseInt(m[1], 10);
+      if (n < 1 || n > 200 || seen.has(n)) continue;
+      seen.add(n);
+      nums.push(n);
+    }
   }
   return nums.sort((a, b) => a - b);
 }

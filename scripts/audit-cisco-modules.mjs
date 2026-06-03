@@ -11,7 +11,7 @@ const htmlDir = join(root, "imports/cisco/html");
 const packsDir = join(root, "src/cisco/ccna1-v7/packs");
 const exhibitRoot = join(root, "assets/cisco/exhibits");
 
-const PACKS = [
+const MODULE_PACKS = [
   "modules-1-3",
   "modules-4-7",
   "modules-8-10",
@@ -20,6 +20,8 @@ const PACKS = [
   "modules-16-17",
 ];
 
+const FINAL_PACKS = ["practice-final", "course-final", "system-test"];
+
 const GOLDEN_COUNTS = {
   "modules-1-3": 75,
   "modules-4-7": 70,
@@ -27,28 +29,43 @@ const GOLDEN_COUNTS = {
   "modules-11-13": 71,
   "modules-14-15": 61,
   "modules-16-17": 67,
+  "practice-final": 56,
+  "course-final": 158,
+  "system-test": 5,
+  "pt-skills-final": 3,
 };
 
 function checkpointQuestionNums(html) {
-  const start = html.search(/<h3[^>]*>\s*Checkpoint Exam/i);
-  let body = html.slice(start);
+  const startCandidates = [
+    html.search(/<h3[^>]*>\s*Checkpoint Exam/i),
+    html.search(/<h2[^>]*>[\s\S]{0,400}Practice Final/i),
+    html.search(/<h3[^>]*>[\s\S]{0,200}Course Final Exam/i),
+    html.search(/<h3[^>]*>\s*System Test/i),
+  ].filter((i) => i >= 0);
+  let body = startCandidates.length ? html.slice(Math.min(...startCandidates)) : html;
   const end = body.search(/<nav[^>]*class="[^"]*post-navigation/i);
   if (end > 500) body = body.slice(0, end);
-  const re = /<p[^>]*>\s*<strong>\s*(\d+)\.\s*([\s\S]*?)<\/strong>(?:[\s\S]*?)<\/p>/gi;
+  const patterns = [
+    /<p[^>]*>\s*<strong>\s*(\d{1,3})\.(?!\d)\s*([\s\S]*?)<\/strong>/gi,
+    /<p[^>]*>[\s\S]{0,4000}?<strong>\s*(\d{1,3})\.(?!\d)\s*([\s\S]*?)<\/strong>/gi,
+  ];
   const seen = new Set();
   const nums = [];
-  let m;
-  while ((m = re.exec(body))) {
-    const n = Number.parseInt(m[1], 10);
-    if (seen.has(n)) continue;
-    seen.add(n);
-    nums.push(n);
+  for (const re of patterns) {
+    let m;
+    while ((m = re.exec(body))) {
+      const n = Number.parseInt(m[1], 10);
+      if (n < 1 || n > 200 || seen.has(n)) continue;
+      seen.add(n);
+      nums.push(n);
+    }
   }
   return nums.sort((a, b) => a - b);
 }
 
 function assertGoldenInventory(packId, pack) {
   const expected = GOLDEN_COUNTS[packId];
+  if (!expected) return true;
   const imported = pack.items.map((i) => i.number).sort((a, b) => a - b);
   if (imported.length !== expected) {
     console.log(`  FAIL: golden count ${expected}, got ${imported.length}`);
@@ -66,27 +83,27 @@ function assertGoldenInventory(packId, pack) {
   return true;
 }
 
-let failures = 0;
-const htmlAvailable = existsSync(htmlDir);
-
-if (!htmlAvailable) {
-  console.log("[audit:cisco-modules] imports/cisco/html not found — skipping HTML cross-check (CI mode)\n");
-}
-
-for (const packId of PACKS) {
+function auditPack(packId, { htmlCrossCheck = true } = {}) {
   const htmlPath = join(htmlDir, `${packId}.html`);
   const packPath = join(packsDir, `${packId}.json`);
   console.log(`\n=== ${packId} ===`);
 
   if (!existsSync(packPath)) {
     console.log("  FAIL: missing pack JSON");
-    failures += 1;
-    continue;
+    return 1;
   }
 
   const pack = JSON.parse(readFileSync(packPath, "utf8"));
+  let failures = 0;
 
-  if (existsSync(htmlPath)) {
+  if (packId === "pt-skills-final") {
+    if (pack.itemCount < 1) {
+      console.log("  FAIL: pt-skills-final has no scenario items");
+      failures += 1;
+    } else {
+      console.log(`  OK: ${pack.itemCount} PTSA scenario(s)`);
+    }
+  } else if (existsSync(htmlPath) && htmlCrossCheck) {
     const html = readFileSync(htmlPath, "utf8");
     const expected = checkpointQuestionNums(html);
     const imported = pack.items.map((i) => i.number).sort((a, b) => a - b);
@@ -136,12 +153,28 @@ for (const packId of PACKS) {
     const exhibitRefs = pack.items.filter((i) =>
       /refer to the exhibit/i.test(i.question?.en || "")
     ).length;
+    const imageRefs = pack.items.filter((i) => i.illustrationSrc).length;
     if (exhibitRefs > 0) {
       console.log(`  WARN: ${exhibitRefs} exhibit refs but no manifest`);
+    } else if (imageRefs > 0 && packId === "pt-skills-final") {
+      console.log(`  exhibits: ${imageRefs} PTSA topology refs (no manifest)`);
     } else {
       console.log("  exhibits: none (expected)");
     }
   }
+
+  return failures;
+}
+
+let failures = 0;
+const htmlAvailable = existsSync(htmlDir);
+
+if (!htmlAvailable) {
+  console.log("[audit:cisco-modules] imports/cisco/html not found — skipping HTML cross-check (CI mode)\n");
+}
+
+for (const packId of [...MODULE_PACKS, ...FINAL_PACKS, "pt-skills-final"]) {
+  failures += auditPack(packId, { htmlCrossCheck: htmlAvailable });
 }
 
 console.log(`\n[audit:cisco-modules] ${failures ? `${failures} failure(s)` : "all packs AAA-ready"}`);

@@ -58,7 +58,10 @@ export function CiscoCcnaHubPanel({ onSessionStart }: CiscoCcnaHubPanelProps) {
     () =>
       packs.filter(
         (p) =>
-          p.id === "practice-final" || p.id === "course-final" || p.id === "system-test"
+          p.id === "practice-final" ||
+          p.id === "course-final" ||
+          p.id === "system-test" ||
+          p.id === "pt-skills-final"
       ),
     [packs]
   );

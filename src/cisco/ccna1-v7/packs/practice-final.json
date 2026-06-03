@@ -10,7 +10,7 @@
     17
   ],
   "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
-  "itemCount": 55,
+  "itemCount": 56,
   "items": [
     {
       "id": "practice-final-q001",
@@ -1171,7 +1171,6 @@
       "type": "single",
       "verbatim": true,
       "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
-      "topic": "10.1.1",
       "question": {
         "en": "A router boots and enters setup mode. What is the reason for this?",
         "de": null
@@ -1205,6 +1204,72 @@
           "id": "d",
           "text": {
             "en": "The POST process has detected hardware failure.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "practice-final-q018",
+      "packId": "practice-final",
+      "modules": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "number": 18,
+      "type": "single",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccna-1-version-7-00-itnv7-practice-final-exam-answers.html",
+      "topic": "15.3.4",
+      "question": {
+        "en": "What service is provided by POP3?",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Retrieves email from the server by downloading the email to the local mail application of the client.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "An application that allows real-time chatting among remote users.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Allows remote access to network devices and servers.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Uses encryption to provide secure remote access to network devices and servers.",
             "de": null
           },
           "correct": false

@@ -1,0 +1,116 @@
+{
+  "id": "pt-skills-final",
+  "course": "ccna1-itn-v7",
+  "title": {
+    "en": "ITN Final PT Skills Assessment (PTSA)",
+    "de": "Abschluss-PT-Fähigkeitenbeurteilung (PTSA)"
+  },
+  "moduleRange": [
+    1,
+    17
+  ],
+  "sourceUrl": "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
+  "itemCount": 3,
+  "items": [
+    {
+      "id": "pt-skills-final-q001",
+      "packId": "pt-skills-final",
+      "modules": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "number": 1,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
+      "needsManual": true,
+      "question": {
+        "en": "ITN Final PTSA — Scenario ID 001 (Packet Tracer lab — see exhibit for R1/S1 config)",
+        "de": null
+      },
+      "exhibitCode": "enable\nconfigure terminal \nno ip domain-lookup\nhostname R1\nbanner motd #Unauthorized access to this device is prohibited!#\n\ninterface g0/0/0\ndescription Connect to Subnet B\nip address 192.168.10.129 255.255.255.192\nno shutdown \nexit\n\ninterface g0/0/1\ndescription Connect to Subnet A\nip address 192.168.10.1 255.255.255.128\nno shutdown \nexit\n\nenable secret DontTellAnyone\nservice password-encryption\nsecurity passwords min-length 10\n\nip domain-name netsec.com\nusername netadmin secret Ci$co12345\n\nline console 0\npassword C@nsPassw!\nlogin\nexit\n\nline vty 0 15\ntransport input ssh\nlogin local\nexit\n\ncrypto key generate rsa\n1024\nexit\ncopy running-config startup-config\n\n---\n\nenable\nconfigure terminal \nno ip domain-lookup\nhostname S1\nbanner motd #Unauthorized access to this device is prohibited!#\n\ninterface vlan 1\ndescription Switch Subnet A\nip address 192.168.10.2 255.255.255.128\nno shutdown \nexit\n\nip default-gateway 192.168.10.1\n\nenable secret DontTellAnyone\nservice password-encryption\n\nip domain-name netsec.com\nusername netadmin secret Ci$co12345\n\nline console 0\npassword C@nsPassw!\nlogin\nexit\n\nline vty 0 15\ntransport input ssh\nlogin local\nexit\n\ncrypto key generate rsa\n1024\n\nint range f0/1 - 4, f0/7 - 24, g0/1 - 2\ndescription Unused switch ports\nshutdown\n\nend\ncopy running-config startup-config",
+      "illustrationSrc": "/assets/cisco/exhibits/pt-skills-final/q001.jpg"
+    },
+    {
+      "id": "pt-skills-final-q002",
+      "packId": "pt-skills-final",
+      "modules": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "number": 2,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
+      "needsManual": true,
+      "question": {
+        "en": "ITN Final PTSA — Scenario ID 002 (Packet Tracer lab — see exhibit for R1/S1 config)",
+        "de": null
+      },
+      "illustrationSrc": "/assets/cisco/exhibits/pt-skills-final/q002.jpg"
+    },
+    {
+      "id": "pt-skills-final-q003",
+      "packId": "pt-skills-final",
+      "modules": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "number": 3,
+      "type": "unsupported",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
+      "needsManual": true,
+      "question": {
+        "en": "ITN Final PTSA — Scenario ID 003 (Packet Tracer lab — see exhibit for R1/S1 config)",
+        "de": null
+      },
+      "illustrationSrc": "/assets/cisco/exhibits/pt-skills-final/q003.jpg"
+    }
+  ]
+}

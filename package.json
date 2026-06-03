@@ -19,7 +19,8 @@
     "optimize:ranks": "node scripts/optimize-rank-assets.mjs",
     "fetch:cisco": "node scripts/fetch-ccna1-itn-html.mjs",
     "import:cisco": "node scripts/import-cisco-html.mjs --all",
-    "scrape:cisco-exhibits": "node scripts/scrape-cisco-exhibit-images.mjs"
+    "scrape:cisco-exhibits": "node scripts/scrape-cisco-exhibit-images.mjs",
+    "refresh:cisco": "node scripts/fetch-ccna1-itn-html.mjs && node scripts/import-cisco-html.mjs --all && node scripts/scrape-cisco-exhibit-images.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.22",

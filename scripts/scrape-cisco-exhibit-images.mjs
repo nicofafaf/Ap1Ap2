@@ -30,6 +30,8 @@ const PACK_URLS = {
     "https://itexamanswers.net/ccna-1-v7-0-final-exam-answers-full-introduction-to-networks.html",
   "system-test":
     "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
+  "pt-skills-final":
+    "https://itexamanswers.net/itn-version-7-00-final-pt-skills-assessment-ptsa-exam-answers.html",
 };
 
 function decodeHtml(s) {
@@ -45,7 +47,7 @@ function extractQuestionImages(html) {
   const entries = [];
   const markers = [];
   const blockRe =
-    /<p[^>]*>\s*<strong>\s*(\d+)\.\s*([\s\S]*?)<\/strong>(?:[\s\S]*?)<\/p>/gi;
+    /<p[^>]*>\s*<strong>\s*(\d{1,3})\.(?!\d)\s*([\s\S]*?)<\/strong>/gi;
   let m;
   while ((m = blockRe.exec(html))) {
     markers.push({
@@ -61,8 +63,7 @@ function extractQuestionImages(html) {
     const next = markers[i + 1];
     const sliceEnd = next ? next.index : cur.end + 12_000;
     const window = html.slice(cur.index, sliceEnd);
-    const exhibitQ =
-      /refer to the exhibit/i.test(cur.qText) || /refer to the exhibit/i.test(window);
+    const exhibitQ = /refer to the exhibit/i.test(cur.qText);
     if (!exhibitQ) continue;
     const imgs = [...window.matchAll(/<img[^>]+src=["']([^"']+)["'][^>]*>/gi)]
       .map((x) => decodeHtml(x[1]))
@@ -135,7 +136,21 @@ async function processPack(packId, html) {
   return manifest.length;
 }
 
-function patchPackJson(packId, manifest) {
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function writeJsonWithRetry(path, data, attempts = 8) {
+  for (let i = 0; i < attempts; i += 1) {
+    try {
+      writeFileSync(path, data, "utf8");
+      return;
+    } catch (e) {
+      if (i === attempts - 1) throw e;
+      await sleep(600);
+    }
+  }
+}
+
+async function patchPackJson(packId, manifest) {
   const packPath = join(packsDir, `${packId}.json`);
   if (!existsSync(packPath)) return;
   const pack = JSON.parse(readFileSync(packPath, "utf8"));
@@ -148,8 +163,38 @@ function patchPackJson(packId, manifest) {
       patched += 1;
     }
   }
-  writeFileSync(packPath, `${JSON.stringify(pack, null, 2)}\n`);
+  await writeJsonWithRetry(packPath, `${JSON.stringify(pack, null, 2)}\n`);
   console.log(`  [json] ${packId}: ${patched} illustrationSrc gesetzt`);
+}
+
+async function processPtSkillsImages(packId, html) {
+  const packOut = join(outRoot, packId);
+  mkdirSync(packOut, { recursive: true });
+  const scenarioRe =
+    /<h3>Answers Key(?:\s*-\s*100% Score)?<\/h3>([\s\S]*?)(?=<h3>Answers Key|<h3>Download PDF|$)/gi;
+  let m;
+  let num = 0;
+  let count = 0;
+  while ((m = scenarioRe.exec(html))) {
+    num += 1;
+    const chunk = m[1];
+    const imgMatch = chunk.match(/src=["']([^"']+153921[^"']+)["']/i);
+    if (!imgMatch) continue;
+    const imgUrl = decodeHtml(imgMatch[1]);
+    const fileName = `q${String(num).padStart(3, "0")}.jpg`;
+    const dest = join(packOut, fileName);
+    if (!existsSync(dest)) {
+      try {
+        await downloadImage(imgUrl, dest);
+        console.log(`  [img] ${packId} scenario ${num}`);
+      } catch (e) {
+        console.warn(`  [skip] ${packId} scenario ${num}: ${e.message}`);
+        continue;
+      }
+    }
+    count += 1;
+  }
+  return count;
 }
 
 async function main() {
@@ -163,12 +208,17 @@ async function main() {
       : await fetch(url, { headers: { "User-Agent": "LernenSchule/1.0" } }).then((r) => r.text());
     const manifestPath = join(outRoot, packId, "manifest.json");
     let manifest = [];
-    const n = await processPack(packId, html);
-    total += n;
-    if (existsSync(manifestPath)) {
-      manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+    let n = 0;
+    if (packId === "pt-skills-final") {
+      n = await processPtSkillsImages(packId, html);
+    } else {
+      n = await processPack(packId, html);
+      if (existsSync(manifestPath)) {
+        manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+      }
+      await patchPackJson(packId, manifest);
     }
-    patchPackJson(packId, manifest);
+    total += n;
     await new Promise((r) => setTimeout(r, 800));
   }
   console.log(`[scrape] ${total} Exhibit-Bilder gesamt`);

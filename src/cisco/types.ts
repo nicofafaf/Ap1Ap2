@@ -60,7 +60,8 @@ export type CiscoPackId =
   | "modules-16-17"
   | "practice-final"
   | "course-final"
-  | "system-test";
+  | "system-test"
+  | "pt-skills-final";
 
 export type CiscoModuleDef = {
   module: number;

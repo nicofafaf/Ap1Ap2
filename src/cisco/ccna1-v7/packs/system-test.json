@@ -10,8 +10,81 @@
     17
   ],
   "sourceUrl": "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
-  "itemCount": 4,
+  "itemCount": 5,
   "items": [
+    {
+      "id": "system-test-q001",
+      "packId": "system-test",
+      "modules": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "number": 1,
+      "type": "multi",
+      "verbatim": true,
+      "sourceUrl": "https://itexamanswers.net/ccnav7-system-test-course-version-1-1-system-test-exam-answers.html",
+      "question": {
+        "en": "What two characteristics describe an FTP connection? (Choose two.)",
+        "de": null
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The server establishes the first connection with the client to control traffic that consists of server commands and client replies.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "A large file requires more than two connections between the client and the server to successfully download it.",
+            "de": null
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The first connection established is for traffic control and the second connection is created to transfer a file.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": {
+            "en": "Files can be downloaded from or uploaded to the server.",
+            "de": null
+          },
+          "correct": true
+        },
+        {
+          "id": "e",
+          "text": {
+            "en": "The client needs to run a daemon program to establish an FTP connection with a server.",
+            "de": null
+          },
+          "correct": false
+        }
+      ]
+    },
     {
       "id": "system-test-q002",
       "packId": "system-test",
